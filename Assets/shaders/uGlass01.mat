@@ -8,9 +8,9 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: uGlass01
   m_Shader: {fileID: 45, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: _LIGHTMAPPING_REALTIME
-  m_LightmapFlags: 5
-  m_CustomRenderQueue: -1
+  m_ShaderKeywords: _ALPHAPREMULTIPLY_ON _EMISSION _LIGHTMAPPING_REALTIME
+  m_LightmapFlags: 1
+  m_CustomRenderQueue: 3000
   m_SavedProperties:
     serializedVersion: 2
     m_TexEnvs:
@@ -100,7 +100,7 @@ Material:
       data:
         first:
           name: _DstBlend
-        second: 0
+        second: 10
       data:
         first:
           name: _Parallax
@@ -108,11 +108,11 @@ Material:
       data:
         first:
           name: _ZWrite
-        second: 1
+        second: 0
       data:
         first:
           name: _Glossiness
-        second: .827000022
+        second: .196999997
       data:
         first:
           name: _BumpScale
@@ -132,11 +132,11 @@ Material:
       data:
         first:
           name: _EmissionScaleUI
-        second: 0
+        second: .5
       data:
         first:
           name: _Mode
-        second: 0
+        second: 3
       data:
         first:
           name: _Metallic
@@ -149,11 +149,11 @@ Material:
       data:
         first:
           name: _EmissionColor
-        second: {r: 0, g: 0, b: 0, a: 0}
+        second: {r: .389815539, g: .468194962, b: .5, a: .5}
       data:
         first:
           name: _Color
-        second: {r: .683844626, g: .829931259, b: .99999994, a: .00392156886}
+        second: {r: .68385303, g: .829936266, b: 1, a: .117647059}
       data:
         first:
           name: _SpecColor
