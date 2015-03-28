@@ -18736,6 +18736,66 @@ Transform:
   - {fileID: 2139235609}
   m_Father: {fileID: 489079105}
   m_RootOrder: 0
+--- !u!1 &1056603486
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1056603488}
+  - 108: {fileID: 1056603487}
+  m_Layer: 0
+  m_Name: hot_water01
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!108 &1056603487
+Light:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1056603486}
+  m_Enabled: 1
+  serializedVersion: 6
+  m_Type: 2
+  m_Color: {r: .389705896, g: .0315203369, b: .0315203369, a: 1}
+  m_Intensity: 2.11999989
+  m_Range: 7
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_Strength: 1
+    m_Bias: .0500000007
+    m_NormalBias: .400000006
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 4
+  m_BounceIntensity: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+  m_AreaSize: {x: 1, y: 1}
+--- !u!4 &1056603488
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1056603486}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8.19999981, y: -7.78000021, z: -10.3999996}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
 --- !u!1 &1065127609
 GameObject:
   m_ObjectHideFlags: 0
@@ -18745,8 +18805,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 1065127611}
   - 108: {fileID: 1065127610}
+  - 114: {fileID: 1065127612}
   m_Layer: 0
-  m_Name: Point light
+  m_Name: lamp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18763,7 +18824,7 @@ Light:
   m_Type: 2
   m_Color: {r: .783953249, g: .792993069, b: .852941155, a: 1}
   m_Intensity: 2
-  m_Range: 5
+  m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -18796,6 +18857,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 346041073}
   m_RootOrder: 1
+--- !u!114 &1065127612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1065127609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f9024ba073584fbaa55a480f5521402, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1091643221
 Transform:
   m_PrefabParentObject: {fileID: 439466, guid: a4caa264e22184830ace7cee82900ef7, type: 2}
