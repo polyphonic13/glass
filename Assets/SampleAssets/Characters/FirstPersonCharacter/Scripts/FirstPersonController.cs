@@ -10,7 +10,10 @@ namespace UnitySampleAssets.Characters.FirstPerson
     [RequireComponent(typeof (AudioSource))]
     public class FirstPersonController : MonoBehaviour
     {
-        [SerializeField] private bool m_IsWalking;
+		[SerializeField] private bool _damageFromFall = false;
+		[SerializeField] private float _health = 100; 
+
+		[SerializeField] private bool m_IsWalking;
         [SerializeField] private float m_WalkSpeed;
         [SerializeField] private float m_RunSpeed;
         [SerializeField] [Range(0f, 1f)] private float m_RunstepLenghten;
@@ -28,6 +31,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
         [SerializeField] private AudioClip m_JumpSound;           // the sound played when character leaves the ground.
         [SerializeField] private AudioClip m_LandSound;           // the sound played when character touches back on ground.
 
+		private GravityDamager _gravityDamager;
         private Camera m_Camera;
         private bool m_Jump;
         private float m_YRotation;
@@ -57,6 +61,10 @@ namespace UnitySampleAssets.Characters.FirstPerson
             m_Jumping = false;
             m_AudioSource = GetComponent<AudioSource>();
 			m_MouseLook.Init(transform , m_Camera.transform);
+
+			if(_damageFromFall) {
+				_gravityDamager = GetComponent<GravityDamager>();
+			}
         }
 
 
@@ -73,14 +81,23 @@ namespace UnitySampleAssets.Characters.FirstPerson
             if (!m_PreviouslyGrounded && m_CharacterController.isGrounded)
             {
                 StartCoroutine(m_JumpBob.DoBobCycle());
-                PlayLandingSound();
+//                PlayLandingSound();
                 m_MoveDir.y = 0f;
                 m_Jumping = false;
+
+				if(_damageFromFall) {
+					_health -= _gravityDamager.endFall();
+				}
+
             }
             if (!m_CharacterController.isGrounded && !m_Jumping && m_PreviouslyGrounded)
             {
                 m_MoveDir.y = 0f;
             }
+
+			if(!m_CharacterController.isGrounded && m_PreviouslyGrounded) {
+				_gravityDamager.beginFall();
+			}
 
             m_PreviouslyGrounded = m_CharacterController.isGrounded;
         }
@@ -118,7 +135,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
                 if (m_Jump)
                 {
                     m_MoveDir.y = m_JumpSpeed;
-                    PlayJumpSound();
+//                    PlayJumpSound();
                     m_Jump = false;
                     m_Jumping = true;
                 }
@@ -156,7 +173,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
 
             m_NextStep = m_StepCycle + m_StepInterval;
 
-            PlayFootStepAudio();
+//            PlayFootStepAudio();
         }
 
 
