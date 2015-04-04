@@ -65,7 +65,8 @@ namespace UnitySampleAssets.Characters.FirstPerson
 			if(_damageFromFall) {
 				_gravityDamager = GetComponent<GravityDamager>();
 			}
-        }
+			_updateHealth();
+		}
 
 
         // Update is called once per frame
@@ -87,6 +88,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
 
 				if(_damageFromFall) {
 					_health -= _gravityDamager.endFall();
+					_updateHealth();
 				}
 
             }
@@ -275,5 +277,11 @@ namespace UnitySampleAssets.Characters.FirstPerson
             }
             body.AddForceAtPosition(m_CharacterController.velocity*0.1f, hit.point, ForceMode.Impulse);
         }
+
+		// custom methods
+		private void _updateHealth() {
+			UIHealthManager.health = _health;
+		}
+
     }
 }

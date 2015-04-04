@@ -26,7 +26,8 @@ public class GravityDamager : MonoBehaviour {
 
 		if(_timeInAir > _minDamagingFall) {
 			Debug.Log("damage = " + (_timeInAir * _damageForFallSeconds));
-			damage = Mathf.Round(_timeInAir * _damageForFallSeconds);
+//			damage = Mathf.Round(_timeInAir * _damageForFallSeconds);
+			damage = _timeInAir * _damageForFallSeconds;
 		}
 
 		_isFalling = false;
