@@ -85,7 +85,8 @@ namespace UnitySampleAssets.Characters.FirstPerson
                 m_Jumping = false;
 
 				if(_damageFromFall) {
-					GameControl.instance.health -= _gravityDamager.endFall();
+					float health = GameControl.instance.health - _gravityDamager.endFall();
+					GameControl.instance.updateHealth(health);
 				}
 
             }

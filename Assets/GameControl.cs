@@ -5,6 +5,10 @@ public class GameControl : MonoBehaviour {
 
 	public static GameControl instance;
 
+	public delegate void HealthUpdateHandler(float val);
+	public event HealthUpdateHandler onHealthUpdated;
+
+
 	public float health; 
 
 	// Use this for initialization
@@ -17,8 +21,11 @@ public class GameControl : MonoBehaviour {
 		}
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
+	public void updateHealth(float val) {
+		health = val; 
+
+		if(onHealthUpdated != null) {
+			onHealthUpdated(val);
+		}
 	}
 }
