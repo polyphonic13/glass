@@ -11,7 +11,6 @@ namespace UnitySampleAssets.Characters.FirstPerson
     public class FirstPersonController : MonoBehaviour
     {
 		[SerializeField] private bool _damageFromFall = false;
-		[SerializeField] private float _health = 100; 
 
 		[SerializeField] private bool m_IsWalking;
         [SerializeField] private float m_WalkSpeed;
@@ -65,7 +64,6 @@ namespace UnitySampleAssets.Characters.FirstPerson
 			if(_damageFromFall) {
 				_gravityDamager = GetComponent<GravityDamager>();
 			}
-			_updateHealth();
 		}
 
 
@@ -87,8 +85,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
                 m_Jumping = false;
 
 				if(_damageFromFall) {
-					_health -= _gravityDamager.endFall();
-					_updateHealth();
+					GameControl.instance.health -= _gravityDamager.endFall();
 				}
 
             }
@@ -278,11 +275,6 @@ namespace UnitySampleAssets.Characters.FirstPerson
             }
             body.AddForceAtPosition(m_CharacterController.velocity*0.1f, hit.point, ForceMode.Impulse);
         }
-
-		// custom methods
-		private void _updateHealth() {
-			UIHealthManager.health = _health;
-		}
 
     }
 }
