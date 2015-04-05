@@ -38,6 +38,7 @@ public class GameControl : MonoBehaviour {
 	}
 
 	public Vector3 getStartingPosition() {
+		Debug.Log("GameControl/getStartingPosition, val = " + _startingPositions[targetRoom]);
 		return _startingPositions[targetRoom];
 	}
 }

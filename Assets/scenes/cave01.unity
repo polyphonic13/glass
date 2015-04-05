@@ -4453,7 +4453,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f9024ba073584fbaa55a480f5521402, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulb: {fileID: 0}
 --- !u!4 &1091643221
 Transform:
   m_PrefabParentObject: {fileID: 439466, guid: a4caa264e22184830ace7cee82900ef7, type: 2}
@@ -4710,7 +4709,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1209358370}
   - 108: {fileID: 1209358369}
-  - 114: {fileID: 1209358371}
   m_Layer: 0
   m_Name: flash_light
   m_TagString: Untagged
@@ -4762,18 +4760,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 346041073}
   m_RootOrder: 0
---- !u!114 &1209358371
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1209358368}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f9024ba073584fbaa55a480f5521402, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _bulb: {fileID: 0}
 --- !u!1001 &1257254056
 Prefab:
   m_ObjectHideFlags: 0
@@ -6955,7 +6941,8 @@ Prefab:
       propertyPath: m_SkinWidth
       value: 9.99999975e-05
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11409022, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &2045354274
