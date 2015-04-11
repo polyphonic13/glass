@@ -3,6 +3,8 @@ using System.Collections;
 
 public class EventCenter : MonoBehaviour {
 
+	public delegate void UnderWaterHandler(bool under);
+
 	public delegate void RoomHandler(string room);
     public delegate void NoteHandler(string msg = "", bool zoom = false);
 	public delegate void PlayerHandler(bool enable);
@@ -17,7 +19,9 @@ public class EventCenter : MonoBehaviour {
 	
 	public delegate void TriggerEventHandler(string evt);
 	public delegate void CollectedEventHandler(string evt);
-	
+
+	public event UnderWaterHandler onUnderWater; 
+
 	public event RoomHandler onRoomEntered;
 	public event RoomHandler onRoomExited;
 
@@ -45,6 +49,12 @@ public class EventCenter : MonoBehaviour {
 	                _instance = GameObject.FindObjectOfType(typeof(EventCenter)) as EventCenter;      
 			}
 			return _instance;
+		}
+	}
+
+	public void changeUnderWater(bool under) {
+		if(onUnderWater != null) {
+			onUnderWater(under); 
 		}
 	}
 

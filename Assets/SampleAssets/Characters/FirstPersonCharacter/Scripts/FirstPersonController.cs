@@ -11,6 +11,8 @@ namespace UnitySampleAssets.Characters.FirstPerson
     public class FirstPersonController : MonoBehaviour
     {
 		[SerializeField] private bool _damageFromFall = false;
+		[SerializeField] private float _underWaterGravity;
+		[SerializeField] private float _diveSpeed; 
 
 		[SerializeField] private bool m_IsWalking;
         [SerializeField] private float m_WalkSpeed;
@@ -19,7 +21,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
         [SerializeField] private float m_JumpSpeed;
         [SerializeField] private float m_StickToGroundForce;
         [SerializeField] private float m_GravityMultiplier;
-        [SerializeField] private MouseLook m_MouseLook;
+		[SerializeField] private MouseLook m_MouseLook;
         [SerializeField] private bool m_UseFovKick;
         [SerializeField] private FOVKick m_FovKick = new FOVKick();
         [SerializeField] private bool m_UseHeadBob;
@@ -31,6 +33,9 @@ namespace UnitySampleAssets.Characters.FirstPerson
         [SerializeField] private AudioClip m_LandSound;           // the sound played when character touches back on ground.
 
 		private GravityDamager _gravityDamager;
+		private bool _isUnderWater = false; 
+		private float _gravity; 
+
         private Camera m_Camera;
         private bool m_Jump;
         private float m_YRotation;
@@ -46,7 +51,18 @@ namespace UnitySampleAssets.Characters.FirstPerson
         private bool m_Jumping;
         private AudioSource m_AudioSource;
 
-        // Use this for initialization
+ 
+		public void onUnderWater(bool under) {
+			Debug.Log("Player/onUnderWater, under = " + under);
+			_isUnderWater = under;
+			if(under) {
+				_gravity = _underWaterGravity;
+			} else {
+				_gravity = m_GravityMultiplier;
+			}
+		}
+		
+		// Use this for initialization
         private void Start()
         {
             m_CharacterController = GetComponent<CharacterController>();
@@ -61,9 +77,13 @@ namespace UnitySampleAssets.Characters.FirstPerson
             m_AudioSource = GetComponent<AudioSource>();
 			m_MouseLook.Init(transform , m_Camera.transform);
 
+			_gravity = m_GravityMultiplier;
+
 			if(_damageFromFall) {
 				_gravityDamager = GetComponent<GravityDamager>();
 			}
+
+			EventCenter.Instance.onUnderWater += this.onUnderWater;
 		}
 
 
@@ -84,7 +104,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
                 m_MoveDir.y = 0f;
                 m_Jumping = false;
 
-				if(_damageFromFall) {
+				if(_damageFromFall && !_isUnderWater) {
 					float health = GameControl.instance.health - _gravityDamager.endFall();
 					GameControl.instance.updateHealth(health);
 				}
@@ -102,7 +122,6 @@ namespace UnitySampleAssets.Characters.FirstPerson
             m_PreviouslyGrounded = m_CharacterController.isGrounded;
 
         }
-
 
         private void PlayLandingSound()
         {
@@ -128,24 +147,35 @@ namespace UnitySampleAssets.Characters.FirstPerson
             m_MoveDir.x = desiredMove.x*speed;
             m_MoveDir.z = desiredMove.z*speed;
 
+			if(_isUnderWater) {
+				// SWIMING
+				if(Input.GetKey(KeyCode.LeftShift)) {
+					// diving (shift key)
+					Debug.Log("diving");
+					m_MoveDir += Physics.gravity*(-(_gravity*_diveSpeed))*Time.fixedDeltaTime;
+				} else {
+					// floating to surface (default)
+					Debug.Log("floating");
+					m_MoveDir += Physics.gravity*_gravity*Time.fixedDeltaTime;
+				}
+			} else {
+				// NORMAL WALK/FALL
+				if (m_CharacterController.isGrounded) {
+					m_MoveDir.y = -m_StickToGroundForce;
+					
+					if (m_Jump) {
+						m_MoveDir.y = m_JumpSpeed;
+						//                    PlayJumpSound();
+						m_Jump = false;
+						m_Jumping = true;
+					}
+				} else {
+					// normal fall to ground
+	                m_MoveDir += Physics.gravity*_gravity*Time.fixedDeltaTime;
+				}
+			}
 
-            if (m_CharacterController.isGrounded)
-            {
-                m_MoveDir.y = -m_StickToGroundForce;
-
-                if (m_Jump)
-                {
-                    m_MoveDir.y = m_JumpSpeed;
-//                    PlayJumpSound();
-                    m_Jump = false;
-                    m_Jumping = true;
-                }
-            }
-            else
-            {
-                m_MoveDir += Physics.gravity*m_GravityMultiplier*Time.fixedDeltaTime;
-            }
-            m_CollisionFlags = m_CharacterController.Move(m_MoveDir*Time.fixedDeltaTime);
+			m_CollisionFlags = m_CharacterController.Move(m_MoveDir*Time.fixedDeltaTime);
 
             ProgressStepCycle(speed);
             UpdateCameraPosition(speed);
