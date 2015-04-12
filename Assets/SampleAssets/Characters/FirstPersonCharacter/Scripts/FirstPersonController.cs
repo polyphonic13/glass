@@ -3,6 +3,7 @@ using UnityEngine;
 using UnitySampleAssets.CrossPlatformInput;
 using UnitySampleAssets.Utility;
 using Random = UnityEngine.Random;
+using UnityStandardAssets.ImageEffects;
 
 namespace UnitySampleAssets.Characters.FirstPerson
 {
@@ -32,9 +33,13 @@ namespace UnitySampleAssets.Characters.FirstPerson
         [SerializeField] private AudioClip m_JumpSound;           // the sound played when character leaves the ground.
         [SerializeField] private AudioClip m_LandSound;           // the sound played when character touches back on ground.
 
+		enum _movementStates { normal, climb, swim, dive };
+		static _movementStates _currentMovementState;
+		static _movementStates _previousMovementState; 
+
 		private GravityDamager _gravityDamager;
-		private bool _isUnderWater = false; 
 		private float _gravity; 
+//		private GlobalFog _globalFog;
 
         private Camera m_Camera;
         private bool m_Jump;
@@ -52,12 +57,18 @@ namespace UnitySampleAssets.Characters.FirstPerson
         private AudioSource m_AudioSource;
 
  
-		public void onUnderWater(bool under) {
-			Debug.Log("Player/onUnderWater, under = " + under);
-			_isUnderWater = under;
-			if(under) {
-				_gravity = _underWaterGravity;
+		public void onOnWater(bool water, Transform tgt) {
+			Debug.Log("Player/onOnWater, water = " + water);
+			if(water) {
+				_currentMovementState = _previousMovementState = _movementStates.swim;
+//				Vector3 newCameraPosition;
+//				newCameraPosition = m_Camera.transform.localPosition;
+//				newCameraPosition.y = tgt.position.y;
+//				m_Camera.transform.position = newCameraPosition;
+				//_gravity = _underWaterGravity;
+				_gravity = 0;
 			} else {
+				_currentMovementState = _movementStates.normal;
 				_gravity = m_GravityMultiplier;
 			}
 		}
@@ -77,13 +88,16 @@ namespace UnitySampleAssets.Characters.FirstPerson
             m_AudioSource = GetComponent<AudioSource>();
 			m_MouseLook.Init(transform , m_Camera.transform);
 
+			_currentMovementState = _movementStates.normal;
 			_gravity = m_GravityMultiplier;
+
+//			_globalFog = m_Camera.GetComponent<GlobalFog>();
 
 			if(_damageFromFall) {
 				_gravityDamager = GetComponent<GravityDamager>();
 			}
 
-			EventCenter.Instance.onUnderWater += this.onUnderWater;
+			EventCenter.Instance.onOnWater += this.onOnWater;
 		}
 
 
@@ -104,7 +118,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
                 m_MoveDir.y = 0f;
                 m_Jumping = false;
 
-				if(_damageFromFall && !_isUnderWater) {
+				if(_damageFromFall && (_currentMovementState == _movementStates.normal || _currentMovementState == _movementStates.climb)) {
 					float health = GameControl.instance.health - _gravityDamager.endFall();
 					GameControl.instance.updateHealth(health);
 				}
@@ -147,33 +161,67 @@ namespace UnitySampleAssets.Characters.FirstPerson
             m_MoveDir.x = desiredMove.x*speed;
             m_MoveDir.z = desiredMove.z*speed;
 
-			if(_isUnderWater) {
-				// SWIMING
-				if(Input.GetKey(KeyCode.LeftShift)) {
-					// diving (shift key)
-					Debug.Log("diving");
-					m_MoveDir += Physics.gravity*(-(_gravity*_diveSpeed))*Time.fixedDeltaTime;
-				} else {
-					// floating to surface (default)
-					Debug.Log("floating");
-					m_MoveDir += Physics.gravity*_gravity*Time.fixedDeltaTime;
+			switch(_currentMovementState) {
+				case _movementStates.normal:
+					// NORMAL WALK/FALL
+					if (m_CharacterController.isGrounded) {
+						m_MoveDir.y = -m_StickToGroundForce;
+						
+						if (m_Jump) {
+							m_MoveDir.y = m_JumpSpeed;
+							//                    PlayJumpSound();
+							m_Jump = false;
+							m_Jumping = true;
+	                        }
+	                    } else {
+	                        // normal fall to ground
+	                        m_MoveDir += Physics.gravity*_gravity*Time.fixedDeltaTime;
+	                    }
+                    break;
+                
+				case _movementStates.climb:
+					break;
+
+				case _movementStates.swim:
+					Debug.Log("swimming, _isUnderWater = ");
+					// SWIMMING
+					// do not move y -- stay on surface of water
+					m_MoveDir.y = 0f;
+
+					// allow shift to begin dive
+					if(Input.GetKey(KeyCode.LeftShift)) {
+						_gravity = _underWaterGravity;
+                    	_currentMovementState = _movementStates.dive;
+                    }
+                    break;
+
+				case _movementStates.dive:
+					// DIVING
+					if(Input.GetKey(KeyCode.LeftShift)) {
+						// diving (shift key)
+						Debug.Log("diving");
+						m_MoveDir += Physics.gravity*(-(_gravity*_diveSpeed))*Time.fixedDeltaTime;
+					} else {
+						// floating to surface (default)
+                        Debug.Log("floating");
+                        m_MoveDir += Physics.gravity*_gravity*Time.fixedDeltaTime;
+                    }
+                    break;
+
+				default:
+					break;
+			}
+
+			// turn on fog when first diving, remove when not diving
+			if(_currentMovementState == _movementStates.dive) {
+				if(_previousMovementState != _movementStates.dive) {
+//					_globalFog.enabled = true;
 				}
 			} else {
-				// NORMAL WALK/FALL
-				if (m_CharacterController.isGrounded) {
-					m_MoveDir.y = -m_StickToGroundForce;
-					
-					if (m_Jump) {
-						m_MoveDir.y = m_JumpSpeed;
-						//                    PlayJumpSound();
-						m_Jump = false;
-						m_Jumping = true;
-					}
-				} else {
-					// normal fall to ground
-	                m_MoveDir += Physics.gravity*_gravity*Time.fixedDeltaTime;
-				}
+//				_globalFog.enabled = false;
 			}
+
+			_previousMovementState = _currentMovementState;
 
 			m_CollisionFlags = m_CharacterController.Move(m_MoveDir*Time.fixedDeltaTime);
 

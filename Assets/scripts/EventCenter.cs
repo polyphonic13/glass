@@ -3,7 +3,7 @@ using System.Collections;
 
 public class EventCenter : MonoBehaviour {
 
-	public delegate void UnderWaterHandler(bool under);
+	public delegate void OnWaterHandler(bool water, Transform tgt);
 
 	public delegate void RoomHandler(string room);
     public delegate void NoteHandler(string msg = "", bool zoom = false);
@@ -20,7 +20,7 @@ public class EventCenter : MonoBehaviour {
 	public delegate void TriggerEventHandler(string evt);
 	public delegate void CollectedEventHandler(string evt);
 
-	public event UnderWaterHandler onUnderWater; 
+	public event OnWaterHandler onOnWater; 
 
 	public event RoomHandler onRoomEntered;
 	public event RoomHandler onRoomExited;
@@ -52,9 +52,9 @@ public class EventCenter : MonoBehaviour {
 		}
 	}
 
-	public void changeUnderWater(bool under) {
-		if(onUnderWater != null) {
-			onUnderWater(under); 
+	public void changeOnWater(bool water, Transform tgt) {
+		if(onOnWater != null) {
+			onOnWater(water, tgt); 
 		}
 	}
 
