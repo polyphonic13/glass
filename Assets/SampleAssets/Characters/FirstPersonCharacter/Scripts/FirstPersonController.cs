@@ -14,6 +14,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
 		[SerializeField] private bool _damageFromFall = false;
 		[SerializeField] private float _underWaterGravity;
 		[SerializeField] private float _diveSpeed; 
+		[SerializeField] private float _swimSpeed; 
 
 		[SerializeField] private bool m_IsWalking;
         [SerializeField] private float m_WalkSpeed;
@@ -158,9 +159,6 @@ namespace UnitySampleAssets.Characters.FirstPerson
                                m_CharacterController.height/2f);
             desiredMove = Vector3.ProjectOnPlane(desiredMove, hitInfo.normal).normalized;
 
-            m_MoveDir.x = desiredMove.x*speed;
-            m_MoveDir.z = desiredMove.z*speed;
-
 			switch(_currentMovementState) {
 				case _movementStates.normal:
 					// NORMAL WALK/FALL
@@ -187,9 +185,10 @@ namespace UnitySampleAssets.Characters.FirstPerson
 					// SWIMMING
 					// do not move y -- stay on surface of water
 					m_MoveDir.y = 0f;
-
+					speed *= _swimSpeed;
+					
 					// allow shift to begin dive
-					if(Input.GetKey(KeyCode.LeftShift)) {
+					if(Input.GetKey(KeyCode.C)) {
 						_gravity = _underWaterGravity;
                     	_currentMovementState = _movementStates.dive;
                     }
@@ -197,7 +196,8 @@ namespace UnitySampleAssets.Characters.FirstPerson
 
 				case _movementStates.dive:
 					// DIVING
-					if(Input.GetKey(KeyCode.LeftShift)) {
+					speed *= _swimSpeed;
+					if(Input.GetKey(KeyCode.C)) {
 						// diving (shift key)
 						Debug.Log("diving");
 						m_MoveDir += Physics.gravity*(-(_gravity*_diveSpeed))*Time.fixedDeltaTime;
@@ -223,7 +223,10 @@ namespace UnitySampleAssets.Characters.FirstPerson
 
 			_previousMovementState = _currentMovementState;
 
-			m_CollisionFlags = m_CharacterController.Move(m_MoveDir*Time.fixedDeltaTime);
+			m_MoveDir.x = desiredMove.x*speed;
+			m_MoveDir.z = desiredMove.z*speed;
+			
+            m_CollisionFlags = m_CharacterController.Move(m_MoveDir*Time.fixedDeltaTime);
 
             ProgressStepCycle(speed);
             UpdateCameraPosition(speed);
