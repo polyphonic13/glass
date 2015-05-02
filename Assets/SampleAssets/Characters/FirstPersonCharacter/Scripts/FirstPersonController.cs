@@ -13,6 +13,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
     {
 		[SerializeField] private bool _damageFromFall = false;
 		[SerializeField] private float _underWaterGravity;
+		[SerializeField] private float _crawlSpeed;
 		[SerializeField] private float _diveSpeed; 
 		[SerializeField] private float _swimSpeed; 
 
@@ -34,7 +35,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
         [SerializeField] private AudioClip m_JumpSound;           // the sound played when character leaves the ground.
         [SerializeField] private AudioClip m_LandSound;           // the sound played when character touches back on ground.
 
-		enum _movementStates { normal, climb, swim, dive };
+		enum _movementStates { normal, crawl, climb, swim, dive };
 		static _movementStates _currentMovementState;
 		static _movementStates _previousMovementState; 
 
@@ -106,8 +107,25 @@ namespace UnitySampleAssets.Characters.FirstPerson
         private void Update()
         {
             RotateView();
-            // the jump state needs to read here to make sure it is not missed
-            if (!m_Jump)
+
+			// allow to dive if swimming 
+			if(Input.GetKey(KeyCode.C)) {
+				if(_currentMovementState == _movementStates.swim || _currentMovementState == _movementStates.dive) {
+					_gravity = _underWaterGravity;
+					_currentMovementState = _movementStates.dive;
+				}
+			}
+			// toggle crawl if walking/crawling
+			if(Input.GetKeyDown(KeyCode.C)) {
+				if(_currentMovementState == _movementStates.normal) {
+					_currentMovementState = _movementStates.crawl;
+				} else if(_currentMovementState == _movementStates.crawl) {
+					_currentMovementState = _movementStates.normal;
+				}
+			}
+
+			// the jump state needs to read here to make sure it is not missed
+			if (!m_Jump)
             {
                 m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
             }
@@ -160,6 +178,15 @@ namespace UnitySampleAssets.Characters.FirstPerson
             desiredMove = Vector3.ProjectOnPlane(desiredMove, hitInfo.normal).normalized;
 
 			switch(_currentMovementState) {
+				case _movementStates.crawl:
+					speed *= _crawlSpeed;
+					if(m_CharacterController.isGrounded) {
+						m_MoveDir.y = -m_StickToGroundForce;
+					} else {
+						m_MoveDir += Physics.gravity*_gravity*Time.fixedDeltaTime;
+					}
+					break;
+
 				case _movementStates.normal:
 					// NORMAL WALK/FALL
 					if (m_CharacterController.isGrounded) {
@@ -170,11 +197,11 @@ namespace UnitySampleAssets.Characters.FirstPerson
 							//                    PlayJumpSound();
 							m_Jump = false;
 							m_Jumping = true;
-	                        }
-	                    } else {
-	                        // normal fall to ground
-	                        m_MoveDir += Physics.gravity*_gravity*Time.fixedDeltaTime;
-	                    }
+                        }
+                    } else {
+                        // normal fall to ground
+                        m_MoveDir += Physics.gravity*_gravity*Time.fixedDeltaTime;
+                    }
                     break;
                 
 				case _movementStates.climb:
@@ -188,10 +215,6 @@ namespace UnitySampleAssets.Characters.FirstPerson
 					speed *= _swimSpeed;
 					
 					// allow shift to begin dive
-					if(Input.GetKey(KeyCode.C)) {
-						_gravity = _underWaterGravity;
-                    	_currentMovementState = _movementStates.dive;
-                    }
                     break;
 
 				case _movementStates.dive:
