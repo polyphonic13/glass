@@ -43,6 +43,9 @@ namespace UnitySampleAssets.Characters.FirstPerson
 		private float _gravity; 
 //		private GlobalFog _globalFog;
 
+		private Transform _collider;
+		private float _cameraStartY;
+		private float _crawlCameraY = 0.1f;
         private Camera m_Camera;
         private bool m_Jump;
         private float m_YRotation;
@@ -78,6 +81,8 @@ namespace UnitySampleAssets.Characters.FirstPerson
 		// Use this for initialization
         private void Start()
         {
+			_collider = GameObject.Find("collider").transform;
+
             m_CharacterController = GetComponent<CharacterController>();
             m_Camera = Camera.main;
             m_OriginalCameraPosition = m_Camera.transform.localPosition;
@@ -92,6 +97,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
 
 			_currentMovementState = _movementStates.normal;
 			_gravity = m_GravityMultiplier;
+			_cameraStartY = m_Camera.transform.position.y;
 
 //			_globalFog = m_Camera.GetComponent<GlobalFog>();
 
@@ -119,8 +125,12 @@ namespace UnitySampleAssets.Characters.FirstPerson
 			if(Input.GetKeyDown(KeyCode.C)) {
 				if(_currentMovementState == _movementStates.normal) {
 					_currentMovementState = _movementStates.crawl;
+					_switchToCrawling(true);
+					Debug.Log("crawl");
 				} else if(_currentMovementState == _movementStates.crawl) {
 					_currentMovementState = _movementStates.normal;
+					_switchToCrawling(false);
+					Debug.Log("walk");
 				}
 			}
 
@@ -155,6 +165,18 @@ namespace UnitySampleAssets.Characters.FirstPerson
             m_PreviouslyGrounded = m_CharacterController.isGrounded;
 
         }
+
+		private void _switchToCrawling(bool crawl) {
+			Vector3 pos; 
+			if(crawl) {
+				pos = new Vector3(0, _crawlCameraY, 0);
+				_collider.Rotate(90, 0, 0);
+			} else {
+				pos = new Vector3(0, _cameraStartY, 0);
+				_collider.Rotate(-90, 0, 0);
+			}
+//			m_Camera.transform.position = pos;
+		}
 
         private void PlayLandingSound()
         {
