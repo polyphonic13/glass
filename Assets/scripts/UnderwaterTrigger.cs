@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class UnderWaterTrigger : MonoBehaviour {
+public class UnderwaterTrigger : MonoBehaviour {
 
 	[SerializeField] bool _isOnWater; 
 
