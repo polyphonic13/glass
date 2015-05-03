@@ -22,8 +22,8 @@ public class InteractiveElement : MonoBehaviour {
 	public void init(int activeCursor = 1) {
 //		Debug.Log("InteractiveElement[ " + this.name + " ]/init, activeCursor = " + activeCursor);
 		playerHead = GameObject.Find("FirstPersonCharacter").gameObject.transform;
-		_mouseManager = MouseManager.Instance;
-		_activeCursor = activeCursor;
+//		_mouseManager = MouseManager.Instance;
+//		_activeCursor = activeCursor;
 
 		if(this.transform.tag == "persistentItem") {
 			this.isRoomActive = true;
@@ -35,7 +35,7 @@ public class InteractiveElement : MonoBehaviour {
 			eventCenter.onRoomExited += this.onRoomExited;
 
 		}
-		EventCenter.Instance.onMouseClick += this.OnMouseClick;
+//		EventCenter.Instance.onMouseClick += this.OnMouseClick;
 	}
 
 	public virtual void onRoomEntered(string room) {

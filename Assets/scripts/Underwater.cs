@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Underwater : MonoBehaviour {
+public class Underwater : RoomElement {
 	public Transform player;
 	public float heightOffset = 1f;
 
@@ -19,26 +19,28 @@ public class Underwater : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-//		Debug.Log("player y = " + player.position.y + ", water y = " + _waterLevel + ", under water = " + _isUnderWater);
-		if((player.position.y + heightOffset) < _waterLevel) {
-			_isUnderWater = true;
-		} else {
-			_isUnderWater = false;
-		}
-
-//		if ((player.position.y < _waterLevel) != _isUnderWater) {
-//			_isUnderWater = transform.position.y < _waterLevel;
-//			if (_isUnderWater) setUnderwater ();
-//			if (!_isUnderWater) setNormal ();
-//		}
-		if(_isUnderWater != _previousState) {
-			if(_isUnderWater) {
-				setUnderwater();
+		if(this.isRoomActive) {
+//			Debug.Log("player y = " + player.position.y + ", water y = " + _waterLevel + ", under water = " + _isUnderWater);
+			if((player.position.y + heightOffset) < _waterLevel) {
+				_isUnderWater = true;
 			} else {
-				setNormal();
+				_isUnderWater = false;
 			}
+			
+			//		if ((player.position.y < _waterLevel) != _isUnderWater) {
+			//			_isUnderWater = transform.position.y < _waterLevel;
+			//			if (_isUnderWater) setUnderwater ();
+			//			if (!_isUnderWater) setNormal ();
+			//		}
+			if(_isUnderWater != _previousState) {
+                if(_isUnderWater) {
+                    setUnderwater();
+                } else {
+                    setNormal();
+                }
+            }
+            _previousState = _isUnderWater;
 		}
-		_previousState = _isUnderWater;
 	}
 	
 	void setNormal () {
