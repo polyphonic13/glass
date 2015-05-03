@@ -46,6 +46,8 @@ namespace UnitySampleAssets.Characters.FirstPerson
 		private Transform _collider;
 		private float _cameraStartY;
 		private float _crawlCameraY = 0.1f;
+		private bool _justCrouched = false;
+
         private Camera m_Camera;
         private bool m_Jump;
         private float m_YRotation;
@@ -66,16 +68,12 @@ namespace UnitySampleAssets.Characters.FirstPerson
 			Debug.Log("Player/onOnWater, water = " + water);
 			if(water) {
 				_currentMovementState = _previousMovementState = _movementStates.swim;
-//				Vector3 newCameraPosition;
-//				newCameraPosition = m_Camera.transform.localPosition;
-//				newCameraPosition.y = tgt.position.y;
-//				m_Camera.transform.position = newCameraPosition;
-				//_gravity = _underWaterGravity;
 				_gravity = 0;
 			} else {
 				_currentMovementState = _movementStates.normal;
 				_gravity = m_GravityMultiplier;
 			}
+			_gravityDamager.cancelFall();
 		}
 		
 		// Use this for initialization
@@ -123,13 +121,15 @@ namespace UnitySampleAssets.Characters.FirstPerson
 			}
 			// toggle crawl if walking/crawling
 			if(Input.GetKeyDown(KeyCode.C)) {
-				if(_currentMovementState == _movementStates.normal) {
+				if(_currentMovementState == _movementStates.normal && m_CharacterController.isGrounded) {
 					_currentMovementState = _movementStates.crawl;
 					_switchToCrawling(true);
+					_justCrouched = true;
 					Debug.Log("crawl");
 				} else if(_currentMovementState == _movementStates.crawl) {
 					_currentMovementState = _movementStates.normal;
 					_switchToCrawling(false);
+					_justCrouched = true;
 					Debug.Log("walk");
 				}
 			}
@@ -147,7 +147,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
                 m_MoveDir.y = 0f;
                 m_Jumping = false;
 
-				if(_damageFromFall && (_currentMovementState == _movementStates.normal || _currentMovementState == _movementStates.climb)) {
+				if(_damageFromFall && (_currentMovementState == _movementStates.normal || _currentMovementState == _movementStates.climb || _currentMovementState == _movementStates.crawl)) {
 					float health = GameControl.instance.health - _gravityDamager.endFall();
 					GameControl.instance.updateHealth(health);
 				}
@@ -159,23 +159,24 @@ namespace UnitySampleAssets.Characters.FirstPerson
             }
 
 			if(!m_CharacterController.isGrounded && m_PreviouslyGrounded) {
-				_gravityDamager.beginFall();
+//				if(!_justCrouched) {
+					_gravityDamager.beginFall();
+//				}
+			} else if(m_CharacterController.isGrounded) {
+//				_justCrouched = false;
 			}
 
             m_PreviouslyGrounded = m_CharacterController.isGrounded;
-
-        }
+		}
 
 		private void _switchToCrawling(bool crawl) {
-			Vector3 pos; 
 			if(crawl) {
-				pos = new Vector3(0, _crawlCameraY, 0);
-				_collider.Rotate(90, 0, 0);
+				this.transform.localScale -= new Vector3(0, 0.5f, 0);
+				this.transform.localPosition -= new Vector3(0, 0.5f, 0);
 			} else {
-				pos = new Vector3(0, _cameraStartY, 0);
-				_collider.Rotate(-90, 0, 0);
+				this.transform.localScale += new Vector3(0, 0.5f, 0);
+				this.transform.localPosition += new Vector3(0, 0.5f, 0);
 			}
-//			m_Camera.transform.position = pos;
 		}
 
         private void PlayLandingSound()
