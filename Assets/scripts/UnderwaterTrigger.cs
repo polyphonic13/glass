@@ -3,12 +3,12 @@ using System.Collections;
 
 public class UnderwaterTrigger : MonoBehaviour {
 
-	[SerializeField] bool _isOnWater; 
+	public bool isOnWater; 
 
 	void OnTriggerEnter(Collider tgt) {
 //		Debug.Log("under water trigger, tgt.tag = " + tgt.gameObject.tag);
 		if(tgt.gameObject.tag == "Player") {
-			EventCenter.Instance.changeOnWater(_isOnWater, this.transform);
+			EventCenter.Instance.changeOnWater(isOnWater, this.transform);
 		}
 	}
 
