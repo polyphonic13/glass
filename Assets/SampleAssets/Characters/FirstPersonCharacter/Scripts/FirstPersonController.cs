@@ -65,7 +65,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
 
  
 		public void onOnWater(bool water, Transform tgt) {
-			Debug.Log("Player/onOnWater, water = " + water);
+//			Debug.Log("Player/onOnWater, water = " + water);
 			if(water) {
 				_currentMovementState = _previousMovementState = _movementStates.swim;
 				_gravity = 0;
@@ -75,7 +75,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
 			}
 			_gravityDamager.cancelFall();
 		}
-		
+
 		// Use this for initialization
         private void Start()
         {
@@ -231,7 +231,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
 					break;
 
 				case _movementStates.swim:
-					Debug.Log("swimming, _isUnderWater = ");
+//					Debug.Log("swimming, _isUnderWater = ");
 					// SWIMMING
 					// do not move y -- stay on surface of water
 					m_MoveDir.y = 0f;
@@ -245,11 +245,11 @@ namespace UnitySampleAssets.Characters.FirstPerson
 					speed *= _swimSpeed;
 					if(Input.GetKey(KeyCode.C)) {
 						// diving (shift key)
-						Debug.Log("diving");
+//						Debug.Log("diving");
 						m_MoveDir += Physics.gravity*(-(_gravity*_diveSpeed))*Time.fixedDeltaTime;
 					} else {
 						// floating to surface (default)
-                        Debug.Log("floating");
+//                        Debug.Log("floating");
                         m_MoveDir += Physics.gravity*_gravity*Time.fixedDeltaTime;
                     }
                     break;
