@@ -25,9 +25,9 @@ public class RoomElement : MonoBehaviour {
 	}
 
 	public void onRoomEntered(string room) {
-		Debug.Log("RoomElement/onRoomEntered, room = " + room + ", this.containingRoom = " + this.containingRoom);
+//		Debug.Log("RoomElement/onRoomEntered, room = " + room + ", this.containingRoom = " + this.containingRoom);
 		if(room == this.containingRoom) {
-			Debug.Log ("ACTIVATED");
+			Debug.Log (this.name + "ACTIVATED");
 			this.isRoomActive = true;
 		} else {
 			this.isRoomActive = false;

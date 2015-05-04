@@ -6,7 +6,7 @@ public class UnderwaterTrigger : MonoBehaviour {
 	public bool isOnWater; 
 
 	void OnTriggerEnter(Collider tgt) {
-//		Debug.Log("under water trigger, tgt.tag = " + tgt.gameObject.tag);
+//		Debug.Log(this.name + " under water trigger, tgt.tag = " + tgt.gameObject.tag + ", isOnWater = " + isOnWater);
 		if(tgt.gameObject.tag == "Player") {
 			EventCenter.Instance.changeOnWater(isOnWater, this.transform);
 		}

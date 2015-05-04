@@ -12,6 +12,7 @@ public class Underwater : RoomElement {
 	// Use this for initialization
 	void Start () {
 		_waterLevel = this.transform.position.y;
+//		Debug.Log(this.name + ", _waterLevel = " + _waterLevel);
 		_isUnderWater = false;
 		_previousState = false;
 		setNormal();
@@ -20,7 +21,7 @@ public class Underwater : RoomElement {
 	// Update is called once per frame
 	void Update () {
 		if(this.isRoomActive) {
-//			Debug.Log("player y = " + player.position.y + ", water y = " + _waterLevel + ", under water = " + _isUnderWater);
+//			Debug.Log(this.name + " player y = " + player.position.y + ", water y = " + _waterLevel + ", under water = " + _isUnderWater);
 			if((player.position.y + heightOffset) < _waterLevel) {
 				_isUnderWater = true;
 			} else {
