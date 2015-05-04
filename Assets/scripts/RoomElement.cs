@@ -29,6 +29,8 @@ public class RoomElement : MonoBehaviour {
 		if(room == this.containingRoom) {
 			Debug.Log ("ACTIVATED");
 			this.isRoomActive = true;
+		} else {
+			this.isRoomActive = false;
 		}
 	}
 
