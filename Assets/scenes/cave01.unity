@@ -16,10 +16,10 @@ RenderSettings:
   serializedVersion: 6
   m_Fog: 1
   m_FogColor: {r: .293908834, g: .29411763, b: .291954994, a: .0196078438}
-  m_FogMode: 3
+  m_FogMode: 1
   m_FogDensity: .00999999978
-  m_LinearFogStart: 0
-  m_LinearFogEnd: 300
+  m_LinearFogStart: 1
+  m_LinearFogEnd: 50
   m_AmbientSkyColor: {r: .306066185, g: .328066349, b: .375, a: 1}
   m_AmbientEquatorColor: {r: .114, g: .125, b: .133000001, a: 1}
   m_AmbientGroundColor: {r: .0469999984, g: .0430000015, b: .0350000001, a: 1}
@@ -5085,11 +5085,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 2034762946}
   normalColor: {r: .110294104, g: .113538049, b: .113538049, a: 0}
-  normalHeight: .00100000005
-  normalHeightDensity: 9.99999975e-05
-  underwaterColor: {r: .138137981, g: .163625315, b: .257352948, a: 0}
-  underwaterHeight: .100000001
-  underwaterHeightDensity: .00100000005
+  normalStartDistance: 0
+  underwaterColor: {r: .031087799, g: .117713436, b: .16911763, a: 0}
+  underwaterStartDistance: 2
 --- !u!1001 &1437873353
 Prefab:
   m_ObjectHideFlags: 0
@@ -5528,11 +5526,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11428132, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
       propertyPath: heightFog
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11428132, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
       propertyPath: heightDensity
       value: .00100000005
+      objectReference: {fileID: 0}
+    - target: {fileID: 11428132, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
+      propertyPath: startDistance
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
