@@ -3,6 +3,8 @@ using System.Collections;
 
 public class EventCenter : MonoBehaviour {
 
+	public delegate void PlayerDamageHandler(float damage); 
+
 	public delegate void OnWaterHandler(bool water, Transform tgt);
 	public delegate void UnderWaterHandler(bool under);
 
@@ -20,6 +22,8 @@ public class EventCenter : MonoBehaviour {
 	
 	public delegate void TriggerEventHandler(string evt);
 	public delegate void CollectedEventHandler(string evt);
+
+	public event PlayerDamageHandler onPlayerDamaged;
 
 	public event OnWaterHandler onOnWater; 
 	public event UnderWaterHandler onUnderWater; 
@@ -51,6 +55,12 @@ public class EventCenter : MonoBehaviour {
 	                _instance = GameObject.FindObjectOfType(typeof(EventCenter)) as EventCenter;      
 			}
 			return _instance;
+		}
+	}
+
+	public void damagePlayer(float damage) {
+		if(onPlayerDamaged != null) {
+			onPlayerDamaged(damage);
 		}
 	}
 

@@ -64,6 +64,11 @@ namespace UnitySampleAssets.Characters.FirstPerson
         private AudioSource m_AudioSource;
 
  
+		public void onPlayerDamaged(float damage) {
+			float health = GameControl.instance.health - damage;
+			GameControl.instance.updateHealth(health);
+		}
+
 		public void onOnWater(bool water, Transform tgt) {
 //			Debug.Log("Player/onOnWater, water = " + water);
 			if(water) {
@@ -103,7 +108,9 @@ namespace UnitySampleAssets.Characters.FirstPerson
 				_gravityDamager = GetComponent<GravityDamager>();
 			}
 
-			EventCenter.Instance.onOnWater += this.onOnWater;
+			var ec = EventCenter.Instance;
+			ec.onOnWater += this.onOnWater;
+			ec.onPlayerDamaged += this.onPlayerDamaged;
 		}
 
 

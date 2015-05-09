@@ -4,8 +4,7 @@ using System.Collections;
 public class GravityDamager : MonoBehaviour {
 
 	public float damageForFallSeconds = 5f;
-	[SerializeField] private float _minDamagingFall = 1.5f;
-//	[SerializeField] private float _damageForFallSeconds = 5f;
+	public float _minDamagingFall = 1.5f;
 
 	private float _timeInAir = 0f;
 	private bool _isFalling = false; 
