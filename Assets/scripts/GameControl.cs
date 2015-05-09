@@ -7,12 +7,20 @@ public class GameControl : MonoBehaviour {
 
 	public delegate void HealthUpdateHandler(float val);
 	public event HealthUpdateHandler onHealthUpdated;
-	
-	public float health; 
+
+	public delegate void BreathUpdateHandler(float val);
+	public event BreathUpdateHandler onBreathUpdated;
+
+	public float health = 100f; 
+	public float breath = 120f;
+	public float remainingBreath;
+
 	public int targetRoom;
 
-	private Vector3 _cave01Start = new Vector3(133f, 4f, 1.4f);
-	private Vector3 _houseFloor2BedroomNorth = new Vector3(0f, 0f, 0f);
+	private float _currentBreath;
+
+//	private Vector3 _cave01Start = new Vector3(133f, 4f, 1.4f);
+//	private Vector3 _houseFloor2BedroomNorth = new Vector3(0f, 0f, 0f);
 
 	private Vector3[] _startingPositions = new [] {
 		new Vector3(133f, 4f, 1.4f),
@@ -27,6 +35,8 @@ public class GameControl : MonoBehaviour {
 		} else if(this != instance) {
 			Destroy(gameObject);
 		}
+
+		remainingBreath = breath;
 	}
 
 	public void updateHealth(float val) {
@@ -35,10 +45,51 @@ public class GameControl : MonoBehaviour {
 		if(onHealthUpdated != null) {
 			onHealthUpdated(val);
 		}
+
+		if(health < 0) {
+			_die();
+		}
+	}
+
+	public void damagePlayer(float val) {
+		health -= val;
+		if(onHealthUpdated != null) {
+			onHealthUpdated(health);
+		}
+
+		if(health < 0) {
+			_die();
+		}
+	}
+
+	public void updateBreath(float val) {
+		remainingBreath = val;
+		if(onBreathUpdated != null) {
+			onBreathUpdated(remainingBreath);
+		}
+	}
+
+	public void updateHeldBreathTime(float val) {
+
+		remainingBreath = breath - val;
+
+		Debug.Log("GameControl/updateHeldBreathTime, val = " + val + ", remainingBreath = " + remainingBreath);
+		if(onBreathUpdated != null) {
+			onBreathUpdated(remainingBreath);
+		}
+	}
+
+	public void resetBreath() {
+		remainingBreath = breath;
 	}
 
 	public Vector3 getStartingPosition() {
 		Debug.Log("GameControl/getStartingPosition, val = " + _startingPositions[targetRoom]);
 		return _startingPositions[targetRoom];
+	}
+
+	private void _die() {
+		Application.LoadLevel("game_over");
+
 	}
 }

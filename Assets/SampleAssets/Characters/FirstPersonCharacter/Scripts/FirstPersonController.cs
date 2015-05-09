@@ -108,7 +108,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
 				_gravityDamager = GetComponent<GravityDamager>();
 			}
 
-			var ec = EventCenter.Instance;
+			var ec = EventCenter.instance;
 			ec.onOnWater += this.onOnWater;
 			ec.onPlayerDamaged += this.onPlayerDamaged;
 		}

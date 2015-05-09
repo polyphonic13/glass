@@ -46,7 +46,7 @@ public class Underwater : RoomElement {
 	
 	void setNormal () {
 		Debug.Log("above water");
-		EventCenter.Instance.changeUnderWater(false);
+		EventCenter.instance.changeUnderWater(false);
 //		RenderSettings.fogDensity = 0.01f;
 //		RenderSettings.fogDensity = 0;
 		
@@ -57,7 +57,7 @@ public class Underwater : RoomElement {
 	void setUnderwater () {
 		Debug.Log("under water");
 //		RenderSettings.fogDensity = 0.5f;
-		EventCenter.Instance.changeUnderWater(true);
+		EventCenter.instance.changeUnderWater(true);
 		
 		//  Testing
 //		waterPlane.localScale = new Vector3 (waterPlane.localScale.x, -1.0f, waterPlane.localScale.z);

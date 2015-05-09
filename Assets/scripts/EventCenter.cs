@@ -49,10 +49,10 @@ public class EventCenter : MonoBehaviour {
 	private static EventCenter _instance;
 	private EventCenter() {}
 	
-	public static EventCenter Instance {
+	public static EventCenter instance {
 		get {
 			if(_instance == null) {
-	                _instance = GameObject.FindObjectOfType(typeof(EventCenter)) as EventCenter;      
+				_instance = GameObject.FindObjectOfType(typeof(EventCenter)) as EventCenter;      
 			}
 			return _instance;
 		}

@@ -7,7 +7,7 @@ public class CameraZoom : MonoBehaviour {
 
 	Camera _camera;
 	float _normal;
-	float _smooth = 0.5f;
+//	float _smooth = 0.5f;
 	bool _isZoomed = false;
 
 	// Use this for initialization

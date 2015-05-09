@@ -1,16 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SceneChanager : MonoBehaviour {
+public class SceneChanger : MonoBehaviour {
 
-	[SerializeField] private string _targetScene;
-	[SerializeField] private int _targetRoom;
+	public string targetScene;
+	public int targetRoom;
 
 	void OnTriggerEnter(Collider tgt) {
 		Debug.Log("scene changer trigger, tgt.tag = " + tgt.gameObject.tag);
 		if(tgt.gameObject.tag == "Player") {
-			GameControl.instance.targetRoom = _targetRoom;
-			Application.LoadLevel(_targetScene);
+			GameControl.instance.targetRoom = targetRoom;
+			Application.LoadLevel(targetScene);
 			var player = GameObject.Find("Player");
 //			player.transform.position = GameControl.instance.getStartingPosition();
 		}

@@ -30,12 +30,12 @@ public class InteractiveElement : MonoBehaviour {
 		} else {
 			this.isRoomActive = false;
 	
-			var eventCenter = EventCenter.Instance;
+			var eventCenter = EventCenter.instance;
 			eventCenter.onRoomEntered += this.onRoomEntered;
 			eventCenter.onRoomExited += this.onRoomExited;
 
 		}
-//		EventCenter.Instance.onMouseClick += this.OnMouseClick;
+//		EventCenter.instance.onMouseClick += this.OnMouseClick;
 	}
 
 	public virtual void onRoomEntered(string room) {

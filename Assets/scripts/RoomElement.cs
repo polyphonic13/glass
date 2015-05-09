@@ -13,7 +13,7 @@ public class RoomElement : MonoBehaviour {
 	}
 
 	public void init() {
-		var ec = EventCenter.Instance;
+		var ec = EventCenter.instance;
 
 		ec.onRoomEntered += this.onRoomEntered;
 		ec.onRoomExited	 += this.onRoomExited;
