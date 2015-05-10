@@ -30,7 +30,7 @@ public class FogManager : MonoBehaviour {
 //			_fog.height = underwaterHeight;
 //			_fog.heightDensity = underwaterHeightDensity;
 		} else {
-			_fog.enabled = false;
+			_fog.enabled = true;
 			RenderSettings.fogColor = normalColor;
 			_fog.startDistance = normalStartDistance;
 //			_fog.height = normalHeight;

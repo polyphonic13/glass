@@ -122,7 +122,7 @@ public class GameControl : MonoBehaviour {
 	private void _postHealthUpdate() {
 		EventCenter.instance.updatePlayerProperty("health", health);
 		
-		if(health < 0) {
+		if(health < 1) {
 			_die();
 		}
 	}
