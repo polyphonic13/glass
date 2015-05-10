@@ -9,10 +9,8 @@ public class SceneChanger : MonoBehaviour {
 	void OnTriggerEnter(Collider tgt) {
 		Debug.Log("scene changer trigger, tgt.tag = " + tgt.gameObject.tag);
 		if(tgt.gameObject.tag == "Player") {
-			GameControl.instance.targetRoom = targetRoom;
-			Application.LoadLevel(targetScene);
-			var player = GameObject.Find("Player");
-//			player.transform.position = GameControl.instance.getStartingPosition();
+			GameControl.instance.changeScene(targetScene, targetRoom);
 		}
 	}
+
 }

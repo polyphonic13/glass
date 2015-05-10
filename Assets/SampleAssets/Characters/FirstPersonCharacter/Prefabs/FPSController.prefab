@@ -16,6 +16,9 @@ GameObject:
   - 114: {fileID: 11454934}
   - 114: {fileID: 11442388}
   - 114: {fileID: 11423918}
+  - 114: {fileID: 11414032}
+  - 114: {fileID: 11483242}
+  - 114: {fileID: 11480380}
   m_Layer: 0
   m_Name: FPSController
   m_TagString: Player
@@ -71,6 +74,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 477784}
   - 108: {fileID: 10823274}
+  - 114: {fileID: 11479564}
   m_Layer: 0
   m_Name: lamp
   m_TagString: Untagged
@@ -101,8 +105,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.25, y: 23.3999996, z: 104.099998}
+  m_LocalRotation: {x: 0, y: -.707106829, z: 0, w: .707106709}
+  m_LocalPosition: {x: 37.0999985, y: -.100000001, z: 6.0999999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400002}
@@ -142,7 +146,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 151046}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.34000003, y: -.50999999, z: -.810000002}
+  m_LocalPosition: {x: .579999983, y: -.50999999, z: .389999986}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400002}
@@ -390,7 +394,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _damageFromFall: 1
   _underWaterGravity: -.100000001
-  _crawlSpeed: 0
+  _crawlSpeed: .200000003
   _diveSpeed: 2
   _swimSpeed: .330000013
   m_IsWalking: 0
@@ -474,6 +478,18 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8bc94ec6ed537e743b481638bdcd503d, type: 3}
   m_JumpSound: {fileID: 8300000, guid: 5897aeed9b676024fbb8c694b421a861, type: 3}
   m_LandSound: {fileID: 8300000, guid: 3b09d59f4499d45428baa7a21e954296, type: 3}
+--- !u!114 &11414032
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1db36278d33d46cb81087d52e90befe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageForBreathlessSeconds: 5
 --- !u!114 &11417312
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -501,8 +517,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33c4ef5fa8dd94823bbf5021dc9e913d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageForFallSeconds: 5
   _minDamagingFall: 1.5
-  _damageForFallSeconds: 10
 --- !u!114 &11428132
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -518,8 +534,8 @@ MonoBehaviour:
   useRadialDistance: 1
   heightFog: 0
   height: .100000001
-  heightDensity: .100000001
-  startDistance: 1
+  heightDensity: .00100000005
+  startDistance: 0
   fogShader: {fileID: 4800000, guid: 70d8568987ac0499f952b54c7c13e265, type: 3}
 --- !u!114 &11430688
 MonoBehaviour:
@@ -555,8 +571,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33c4ef5fa8dd94823bbf5021dc9e913d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageForFallSeconds: 5
   _minDamagingFall: 1.5
-  _damageForFallSeconds: 10
 --- !u!114 &11458014
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -579,6 +595,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 774110817de644f5e8dd26c1bdb887ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11479564
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 125006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 774110817de644f5e8dd26c1bdb887ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11480380
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6656e6555020740a09cbf46fa2449f9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 2000000}
+  normalColor: {r: .110294104, g: .113538049, b: .113538049, a: 0}
+  normalStartDistance: 0
+  underwaterColor: {r: .031087799, g: .117713436, b: .16911763, a: 0}
+  underwaterStartDistance: 2
+--- !u!114 &11483242
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 985340c415a944d33a9893d5661d0b51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  staminaRechargeTime: 1
 --- !u!114 &11498548
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -617,7 +672,7 @@ CharacterController:
   m_Height: 1.79999995
   m_Radius: .00999999978
   m_SlopeLimit: 45
-  m_StepOffset: .300000012
+  m_StepOffset: 0
   m_SkinWidth: 9.99999975e-05
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: 0, z: 0}

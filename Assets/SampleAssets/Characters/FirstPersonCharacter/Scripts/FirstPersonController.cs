@@ -244,14 +244,12 @@ namespace UnitySampleAssets.Characters.FirstPerson
 					m_MoveDir.y = 0f;
 					speed *= _swimSpeed;
 					
-					// allow shift to begin dive
                     break;
 
 				case _movementStates.dive:
 					// DIVING
 					speed *= _swimSpeed;
 					if(Input.GetKey(KeyCode.C)) {
-						// diving (shift key)
 //						Debug.Log("diving");
 						m_MoveDir += Physics.gravity*(-(_gravity*_diveSpeed))*Time.fixedDeltaTime;
 					} else {
@@ -366,7 +364,8 @@ namespace UnitySampleAssets.Characters.FirstPerson
 #if !MOBILE_INPUT
             // On standalone builds, walk/run speed is modified by a key press.
             // keep track of whether or not the character is walking or running
-            m_IsWalking = !Input.GetKey(KeyCode.LeftShift);
+//            m_IsWalking = !Input.GetKey(KeyCode.LeftShift);
+			m_IsWalking = !StaminaManager.isBoosted;
 #endif
             // set the desired speed to be walking or running
             speed = m_IsWalking ? m_WalkSpeed : m_RunSpeed;

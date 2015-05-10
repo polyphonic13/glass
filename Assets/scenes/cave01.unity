@@ -905,6 +905,10 @@ Prefab:
       propertyPath: breath
       value: 120
       objectReference: {fileID: 0}
+    - target: {fileID: 11416276, guid: d6632904813824ff889b1c963b5a9b20, type: 2}
+      propertyPath: stamina
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d6632904813824ff889b1c963b5a9b20, type: 2}
   m_IsPrefabParent: 0
@@ -4601,21 +4605,6 @@ Transform:
   - {fileID: 517970875}
   m_Father: {fileID: 0}
   m_RootOrder: 4
---- !u!1 &942208980 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 125006, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
-  m_PrefabInternal: {fileID: 1618072988}
---- !u!114 &942208983
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 942208980}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 774110817de644f5e8dd26c1bdb887ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &977462836
 GameObject:
   m_ObjectHideFlags: 0
@@ -5337,42 +5326,10 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400008, guid: 5b08a735a3bd442a8bf6509a92688fef, type: 3}
   m_PrefabInternal: {fileID: 1282458927}
---- !u!1 &1295706014 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
-  m_PrefabInternal: {fileID: 1618072988}
---- !u!114 &1295706015
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1295706014}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1db36278d33d46cb81087d52e90befe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageForBreathlessSeconds: 5
 --- !u!4 &1295706019 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
-  m_PrefabInternal: {fileID: 1618072988}
---- !u!114 &1295706024
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1295706014}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6656e6555020740a09cbf46fa2449f9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainCamera: {fileID: 2034762946}
-  normalColor: {r: .110294104, g: .113538049, b: .113538049, a: 0}
-  normalStartDistance: 0
-  underwaterColor: {r: .031087799, g: .117713436, b: .16911763, a: 0}
-  underwaterStartDistance: 2
+  m_PrefabInternal: {fileID: 1599547227}
 --- !u!1001 &1437873353
 Prefab:
   m_ObjectHideFlags: 0
@@ -5734,7 +5691,7 @@ MonoBehaviour:
   containingRoom: room01
   player: {fileID: 1295706019}
   heightOffset: 1
---- !u!1001 &1618072988
+--- !u!1001 &1599547227
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -5776,58 +5733,6 @@ Prefab:
     - target: {fileID: 100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
       propertyPath: m_Name
       value: player
-      objectReference: {fileID: 0}
-    - target: {fileID: 11400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
-      propertyPath: _crawlSpeed
-      value: .200000003
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
-      propertyPath: m_Name
-      value: FirstPersonCharacter
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 14300000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
-      propertyPath: m_StepOffset
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11423918, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
-      propertyPath: _damageForFallSeconds
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 491016, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: .389999986
-      objectReference: {fileID: 0}
-    - target: {fileID: 491016, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: .579999983
-      objectReference: {fileID: 0}
-    - target: {fileID: 11428132, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
-      propertyPath: heightFog
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11428132, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
-      propertyPath: heightDensity
-      value: .00100000005
-      objectReference: {fileID: 0}
-    - target: {fileID: 11428132, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
-      propertyPath: startDistance
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 151046, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 125006, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
@@ -7566,11 +7471,6 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 475884, guid: e060e153f9c0640cb9cfde1820c4d94a, type: 2}
   m_PrefabInternal: {fileID: 1989821490}
---- !u!20 &2034762946 stripped
-Camera:
-  m_PrefabParentObject: {fileID: 2000000, guid: 5e9e851c0e142814dac026a256ba2ac0,
-    type: 2}
-  m_PrefabInternal: {fileID: 1618072988}
 --- !u!1 &2034904710
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,11 +3,11 @@ using System.Collections;
 
 public class GameControl : MonoBehaviour {
 
-	public static GameControl instance;
+//	public static GameControl instance;
 
 	public float health = 100f; 
 	public float breath = 120f;
-	public float stamina = 10f;
+	public float stamina = 5f;
 	public float remainingBreath;
 	public float remainingStamina; 
 
@@ -15,7 +15,19 @@ public class GameControl : MonoBehaviour {
 
 	private float _currentBreath;
 
-//	private Vector3 _cave01Start = new Vector3(133f, 4f, 1.4f);
+	private static GameControl _instance;
+	private GameControl() {}
+	
+	public static GameControl instance {
+		get {
+			if(_instance == null) {
+				_instance = GameObject.FindObjectOfType(typeof(GameControl)) as GameControl;      
+			}
+			return _instance;
+		}
+	}
+	
+	//	private Vector3 _cave01Start = new Vector3(133f, 4f, 1.4f);
 //	private Vector3 _houseFloor2BedroomNorth = new Vector3(0f, 0f, 0f);
 
 	private Vector3[] _startingPositions = new [] {
@@ -25,10 +37,10 @@ public class GameControl : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
-		if(instance == null) {
+		if(_instance == null) {
 			DontDestroyOnLoad(gameObject);
-			instance = this;
-		} else if(this != instance) {
+			_instance = this;
+		} else if(this != _instance) {
 			Destroy(gameObject);
 		}
 
@@ -60,22 +72,22 @@ public class GameControl : MonoBehaviour {
 		return val;
 	}
 
+
+	public void changeScene(string tgt, int room) {
+		targetRoom = room;
+		Application.LoadLevel(tgt);
+//		var player = GameObject.Find("Player");
+//		player.transform.position = GameControl.instance.getStartingPosition();
+	}
+
 	public void updateHealth(float val) {
 		health = val; 
-		EventCenter.instance.updatePlayerProperty("health", health);
-
-		if(health < 0) {
-			_die();
-		}
+		_postHealthUpdate();
 	}
 
 	public void damagePlayer(float val) {
 		health -= val;
-		EventCenter.instance.updatePlayerProperty("health", health);
-
-		if(health < 0) {
-			_die();
-		}
+		_postHealthUpdate();
 	}
 
 	public void updateBreath(float val) {
@@ -90,6 +102,7 @@ public class GameControl : MonoBehaviour {
 
 	public void resetBreath() {
 		remainingBreath = breath;
+		EventCenter.instance.updatePlayerProperty("breath", remainingBreath);
 	}
 
 	public void updateStamina(float val) {
@@ -102,10 +115,18 @@ public class GameControl : MonoBehaviour {
 	}
 
 	public Vector3 getStartingPosition() {
-		Debug.Log("GameControl/getStartingPosition, val = " + _startingPositions[targetRoom]);
+//		Debug.Log("GameControl/getStartingPosition, val = " + _startingPositions[targetRoom]);
 		return _startingPositions[targetRoom];
 	}
 
+	private void _postHealthUpdate() {
+		EventCenter.instance.updatePlayerProperty("health", health);
+		
+		if(health < 0) {
+			_die();
+		}
+	}
+	
 	private void _die() {
 		Application.LoadLevel("game_over");
 
