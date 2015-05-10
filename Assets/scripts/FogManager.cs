@@ -10,7 +10,7 @@ public class FogManager : MonoBehaviour {
 	public float normalStartDistance = 0f;
 
 	public Color underwaterColor;
-	public float underwaterStartDistance = 5f; 
+	public float underwaterStartDistance = 2f; 
 
 	private GlobalFog _fog;
 
