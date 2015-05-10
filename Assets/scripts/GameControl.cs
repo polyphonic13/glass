@@ -5,15 +5,11 @@ public class GameControl : MonoBehaviour {
 
 	public static GameControl instance;
 
-	public delegate void HealthUpdateHandler(float val);
-	public event HealthUpdateHandler onHealthUpdated;
-
-	public delegate void BreathUpdateHandler(float val);
-	public event BreathUpdateHandler onBreathUpdated;
-
 	public float health = 100f; 
 	public float breath = 120f;
+	public float stamina = 10f;
 	public float remainingBreath;
+	public float remainingStamina; 
 
 	public int targetRoom;
 
@@ -37,14 +33,36 @@ public class GameControl : MonoBehaviour {
 		}
 
 		remainingBreath = breath;
+		remainingStamina = stamina;
+
+		var ec = EventCenter.instance;
+		ec.updatePlayerProperty("health", health);
+		ec.updatePlayerProperty("breath", remainingBreath);
+		ec.updatePlayerProperty("stamina", remainingStamina);
+	}
+
+	public float getProperty(string prop) {
+		float val = 0;
+
+		switch(prop) {
+			case "health":
+				val = health;
+				break;
+			case "breath":
+				val = remainingBreath;
+				break;
+			case "stamina":
+				val = remainingStamina;
+				break;
+			default:
+				break;
+		}
+		return val;
 	}
 
 	public void updateHealth(float val) {
 		health = val; 
-
-		if(onHealthUpdated != null) {
-			onHealthUpdated(val);
-		}
+		EventCenter.instance.updatePlayerProperty("health", health);
 
 		if(health < 0) {
 			_die();
@@ -53,9 +71,7 @@ public class GameControl : MonoBehaviour {
 
 	public void damagePlayer(float val) {
 		health -= val;
-		if(onHealthUpdated != null) {
-			onHealthUpdated(health);
-		}
+		EventCenter.instance.updatePlayerProperty("health", health);
 
 		if(health < 0) {
 			_die();
@@ -64,23 +80,25 @@ public class GameControl : MonoBehaviour {
 
 	public void updateBreath(float val) {
 		remainingBreath = val;
-		if(onBreathUpdated != null) {
-			onBreathUpdated(remainingBreath);
-		}
-	}
+		EventCenter.instance.updatePlayerProperty("breath", remainingBreath);
+    }
 
 	public void updateHeldBreathTime(float val) {
-
-		remainingBreath = breath - val;
-
-		Debug.Log("GameControl/updateHeldBreathTime, val = " + val + ", remainingBreath = " + remainingBreath);
-		if(onBreathUpdated != null) {
-			onBreathUpdated(remainingBreath);
-		}
-	}
+        remainingBreath = breath - val;
+        EventCenter.instance.updatePlayerProperty("breath", remainingBreath);
+    }
 
 	public void resetBreath() {
 		remainingBreath = breath;
+	}
+
+	public void updateStamina(float val) {
+		remainingStamina = val;
+		EventCenter.instance.updatePlayerProperty("stamina", remainingStamina);
+    }
+
+	public void resetStamina() {
+		remainingStamina = stamina;
 	}
 
 	public Vector3 getStartingPosition() {

@@ -8,6 +8,8 @@ public class EventCenter : MonoBehaviour {
 	public delegate void OnWaterHandler(bool water, Transform tgt);
 	public delegate void UnderWaterHandler(bool under);
 
+	public delegate void PlayerPropertyUpdater(string prop, float val);
+
 	public delegate void RoomHandler(string room);
     public delegate void NoteHandler(string msg = "", bool zoom = false);
 	public delegate void PlayerHandler(bool enable);
@@ -27,6 +29,8 @@ public class EventCenter : MonoBehaviour {
 
 	public event OnWaterHandler onOnWater; 
 	public event UnderWaterHandler onUnderWater; 
+
+	public event PlayerPropertyUpdater onPlayerPropertyUpdated;
 
 	public event RoomHandler onRoomEntered;
 	public event RoomHandler onRoomExited;
@@ -73,6 +77,12 @@ public class EventCenter : MonoBehaviour {
 	public void changeUnderWater(bool under) {
 		if(onUnderWater != null) {
 			onUnderWater(under);
+		}
+	}
+
+	public void updatePlayerProperty(string prop, float val) {
+		if(onPlayerPropertyUpdated != null) {
+			onPlayerPropertyUpdated(prop, val);
 		}
 	}
 

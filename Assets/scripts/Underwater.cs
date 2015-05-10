@@ -45,7 +45,7 @@ public class Underwater : RoomElement {
 	}
 	
 	void setNormal () {
-		Debug.Log("above water");
+//		Debug.Log("above water");
 		EventCenter.instance.changeUnderWater(false);
 //		RenderSettings.fogDensity = 0.01f;
 //		RenderSettings.fogDensity = 0;
@@ -55,7 +55,7 @@ public class Underwater : RoomElement {
 	}
 	
 	void setUnderwater () {
-		Debug.Log("under water");
+//		Debug.Log("under water");
 //		RenderSettings.fogDensity = 0.5f;
 		EventCenter.instance.changeUnderWater(true);
 		
