@@ -6,11 +6,22 @@ public class SceneChanger : MonoBehaviour {
 	public string targetScene;
 	public int targetRoom;
 
+	private bool activated { get; set; }
+
+	void Awake() {
+		this.activated = true;
+	}
+
 	void OnTriggerEnter(Collider tgt) {
-		Debug.Log("scene changer trigger, tgt.tag = " + tgt.gameObject.tag);
-		if(tgt.gameObject.tag == "Player") {
-			GameControl.instance.changeScene(targetScene, targetRoom);
+		if(this.activated) {
+			Debug.Log("scene changer trigger, tgt.tag = " + tgt.gameObject.tag);
+			if(tgt.gameObject.tag == "Player") {
+				GameControl.instance.changeScene(targetScene, targetRoom);
+			}
 		}
 	}
 
+	public void setActive(bool active) {
+		this.activated = active;
+	}
 }
