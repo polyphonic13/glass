@@ -81,6 +81,7 @@ public class EventCenter : MonoBehaviour {
 	}
 
 	public void updatePlayerProperty(string prop, float val) {
+//		Debug.Log("EventCenter/updatePlayerProperty, prop = " + prop + ", val = " + val);
 		if(onPlayerPropertyUpdated != null) {
 			onPlayerPropertyUpdated(prop, val);
 		}

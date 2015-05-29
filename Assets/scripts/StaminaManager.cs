@@ -13,6 +13,7 @@ public class StaminaManager : MonoBehaviour {
 
 	void Awake () {
 		_remainingStamina = _maxStamina = GameControl.instance.stamina;
+		GameControl.instance.updateStamina(_remainingStamina);
 	}
 
 	void Update () {
