@@ -33,7 +33,8 @@ public class GravityDamager : MonoBehaviour {
 			_isFalling = false;
 			_timeInAir = 0;
 		}
-		return damage;
+//		return damage;
+		return 0;
 	}
 
 	public void cancelFall() {
