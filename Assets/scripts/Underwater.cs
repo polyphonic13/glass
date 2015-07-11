@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
-using System.Collections;
+// using System.Collections;
 
 public class Underwater : RoomElement {
-	public Transform player;
-	public float heightOffset = 1f;
+	public Transform _player;
+	public float _heightOffset = 1f;
 
 	private bool _isUnderWater;
 	private bool _previousState;
@@ -11,7 +11,7 @@ public class Underwater : RoomElement {
 
 	// Use this for initialization
 	void Start () {
-		_waterLevel = this.transform.position.y;
+		_waterLevel = transform.position.y;
 //		Debug.Log(this.name + ", _waterLevel = " + _waterLevel);
 		_isUnderWater = false;
 		_previousState = false;
@@ -20,15 +20,11 @@ public class Underwater : RoomElement {
 	
 	// Update is called once per frame
 	void Update () {
-		if(this.isRoomActive) {
-//			Debug.Log(this.name + " player y = " + player.position.y + ", water y = " + _waterLevel + ", under water = " + _isUnderWater);
-			if((player.position.y + heightOffset) < _waterLevel) {
-				_isUnderWater = true;
-			} else {
-				_isUnderWater = false;
-			}
+		if(isRoomActive) {
+//			Debug.Log(name + " _player y = " + _player.position.y + ", water y = " + _waterLevel + ", under water = " + _isUnderWater);
+			((_player.position.y + _heightOffset) < _waterLevel) ? _isUnderWater = true : _isUnderWater = false;
 			
-			//		if ((player.position.y < _waterLevel) != _isUnderWater) {
+			//		if ((_player.position.y < _waterLevel) != _isUnderWater) {
 			//			_isUnderWater = transform.position.y < _waterLevel;
 			//			if (_isUnderWater) setUnderwater ();
 			//			if (!_isUnderWater) setNormal ();
