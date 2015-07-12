@@ -1,37 +1,35 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 
 public class ArmatureTrigger : InteractiveElement {
-	public ArmatureParent pops;
-	public Transform parentBone;
-	public AnimationClip mainClip;
+	public ArmatureParent _pops;
+	public Transform _parentBone;
+	public AnimationClip _mainClip;
 
 	void Awake() {
-		init();
+		Init();
 	}
 	
 	public void OnMouseDown() {
-		this.InputTaken ();
+		InputTaken ();
 	}
 
 	public override void InputTaken() {
-//		Debug.Log ("ArmatureTrigger[" + this.name + "]/InputTaken, isRoomActive = " + this.isRoomActive + ", enabled = " + this.enabled);
-//		if(this.isRoomActive && this.isEnabled) {
-			var difference = Vector3.Distance(playerHead.position, this.transform.position);
+//		Debug.Log ("ArmatureTrigger[" + name + "]/InputTaken, isRoomActive = " + isRoomActive + ", enabled = " + enabled);
+//		if(isRoomActive && isEnabled) {
+			var difference = Vector3.Distance(playerHead.position, transform.position);
 			if(difference <= interactDistance) {
-					handleAnimation();
+					HandleAnimation();
 			}
 //		} 
 	}
 
-	public virtual void handleAnimation() {
-//		Debug.Log("ArmatureTrigger[ " + this.name + " ]/handleAnimation");
-		sendAnimationToPops(mainClip.name, parentBone);
+	public virtual void HandleAnimation() {
+//		Debug.Log("ArmatureTrigger[ " + name + " ]/HandleAnimation");
+		SendAnimationToPops(_mainClip.name, _parentBone);
 	}
 	
-	public void sendAnimationToPops(string clipName, Transform bone = null) {
-//		Debug.Log("ArmatureTrigger[ " + this.name + " ]/sendAnimationToPops, clipName = " + clipName);
-		pops.playAnimation(clipName, bone);
+	public void SendAnimationToPops(string clipName, Transform bone = null) {
+//		Debug.Log("ArmatureTrigger[ " + name + " ]/SendAnimationToPops, clipName = " + clipName);
+		_pops.PlayAnimation(clipName, bone);
 	}
 }

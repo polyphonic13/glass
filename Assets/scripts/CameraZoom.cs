@@ -1,14 +1,13 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class CameraZoom : MonoBehaviour {
+public class Camera_zoom : MonoBehaviour {
 
-	public float zoom = 10;
+	public float _zoom = 10;
 
 	Camera _camera;
 	float _normal;
 //	float _smooth = 0.5f;
-	bool _isZoomed = false;
+	bool _isZoomed;
 
 	// Use this for initialization
 	void Start () {
@@ -19,18 +18,12 @@ public class CameraZoom : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(Input.GetKeyDown(KeyCode.Z)) {
-			ZoomCamera();
+			_zoomCamera();
 		}
 	}
 
-	void ZoomCamera() {
-		if(_isZoomed) {
-//			_camera.fieldOfView = Mathf.Lerp(_camera.fieldOfView, _normal, Time.deltaTime / _smooth);
-			_camera.fieldOfView = _normal;
-		} else {
-//			_camera.fieldOfView = Mathf.Lerp(_camera.fieldOfView, zoom, Time.deltaTime / _smooth);
-			_camera.fieldOfView = zoom;
-		}
+	void _zoomCamera() {
+		_camera.fieldOfView = (_isZoomed) ? _normal : _zoom;
 		_isZoomed = !_isZoomed;
 	}
 }

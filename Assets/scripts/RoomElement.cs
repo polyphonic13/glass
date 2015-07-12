@@ -12,11 +12,11 @@ public class RoomElement : MonoBehaviour {
 		init ();
 	}
 
-	public void init() {
+	public void Init() {
 		var ec = EventCenter.Instance;
 
-		ec.OnRoomEntered += this.OnRoomEntered;
-		ec.OnRoomExited	 += this.OnRoomExited;
+		ec.OnRoomEntered += OnRoomEntered;
+		ec.OnRoomExited	 += OnRoomExited;
 	}
 
 	// Update is called once per frame
@@ -25,18 +25,18 @@ public class RoomElement : MonoBehaviour {
 	}
 
 	public void OnRoomEntered(string room) {
-//		Debug.Log("RoomElement/OnRoomEntered, room = " + room + ", this.containingRoom = " + this.containingRoom);
-		if(room == this.containingRoom) {
-			Debug.Log (this.name + "ACTIVATED");
-			this.isRoomActive = true;
+//		Debug.Log("RoomElement/OnRoomEntered, room = " + room + ", containingRoom = " + containingRoom);
+		if(room == containingRoom) {
+			Debug.Log (name + "ACTIVATED");
+			isRoomActive = true;
 		} else {
-			this.isRoomActive = false;
+			isRoomActive = false;
 		}
 	}
 
 	public void OnRoomExited(string room) {
-		if(room == this.containingRoom) {
-			this.isRoomActive = false;
+		if(room == containingRoom) {
+			isRoomActive = false;
 		}
 	}
 }

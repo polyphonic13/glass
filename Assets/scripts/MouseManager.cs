@@ -48,7 +48,7 @@ public class MouseManager : MonoBehaviour {
 //		Screen.lockCursor = true;
 	}
 
-	public void init() {
+	public void Init() {
 	}
 
 	public void drawCursor() {

@@ -1,17 +1,16 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class BreathingManager : MonoBehaviour {
 
 	private float _breathHoldTime;
-	public float damageForBreathlessSeconds = 0.001f;
+	public float _damageForBreathlessSeconds = 0.001f;
 
-	private bool _isUnderWater = false;
+	private bool _isUnderWater;
 
-	private float _timeUnderWater = 0;
+	private float _timeUnderWater;
 	// Use this for initialization
 	void Awake () {
-		EventCenter.Instance.OnUnderWater += this.OnUnderWater;
+		EventCenter.Instance.OnUnderWater += OnUnderWater;
 		_breathHoldTime = GameControl.instance.breath;
 	}
 	

@@ -1,60 +1,59 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class ArmatureParent : MonoBehaviour {
 	
 	public delegate void AnimationHandler(Transform bone);
 	
-	public event AnimationHandler onAnimationPlayed;
+	public event AnimationHandler OnAnimationPlayed;
 	
-	public AnimationClip defaultAnimation; 
+	public AnimationClip _defaultAnimation; 
 	
-	public Animation animation { get; set; }
+	public Animation _animation { get; set; }
 	
-	public virtual void playAnimation(string clip, Transform bone = null) {
-		Debug.Log("ArmatureParent[ " + this.name + " ]/playAnimation, clip = " + clip + ", bone = " + bone.name);
-		animateArmatureBone(clip, bone);
+	public virtual void PlayAnimation(string clip, Transform bone = null) {
+		Debug.Log("ArmatureParent[ " + name + " ]/PlayAnimation, clip = " + clip + ", bone = " + bone.name);
+		AnimateArmatureBone(clip, bone);
 //		if(bone != null) {
-//			this.animationPlayed(bone);
+//			AnimationPlayed(bone);
 //		}
 	}
 	
-	public void animateArmatureBone(string clip, Transform bone = null) {
-		Debug.Log("  animateArmatureBone, clip = " + clip);
+	public void AnimateArmatureBone(string clip, Transform bone = null) {
+		Debug.Log("  AnimateArmatureBone, clip = " + clip);
 		if(bone != null) {
-			this.animation [clip].AddMixingTransform(bone);
+			_animation [clip].AddMixingTransform(bone);
 		}
-		this.animation [clip].wrapMode = WrapMode.Once;
-		this.animation.Play(clip);
+		_animation [clip].wrapMode = WrapMode.Once;
+		_animation.Play(clip);
 	}
 
-	public virtual void init() {
-		this.animation = GetComponent<Animation>();
-		Debug.Log("ArmatureParent[ " + this.name + " ]/init, animation = " + this.animation);
-		playDefaultAnimation();
+	public virtual void Init() {
+		_animation = GetComponent<Animation>();
+		Debug.Log("ArmatureParent[ " + name + " ]/init, _animation = " + _animation);
+		PlayDefaultAnimation();
 
 	}
 	
-	public void playDefaultAnimation() {
+	public void PlayDefaultAnimation() {
 //		gameObject.SetActive(false);
 
-		if(defaultAnimation != null) {
-//			Debug.Log("ArmatureParent/Start, defaultAnimation = " + defaultAnimation.name);
-			this.animation [defaultAnimation.name].layer = 0;
-			this.animation[defaultAnimation.name].wrapMode = WrapMode.Once;
-			this.animation.Play(defaultAnimation.name);
+		if(_defaultAnimation != null) {
+//			Debug.Log("ArmatureParent/Start, _defaultAnimation = " + _defaultAnimation.name);
+			_animation [_defaultAnimation.name].layer = 0;
+			_animation[_defaultAnimation.name].wrapMode = WrapMode.Once;
+			_animation.Play(_defaultAnimation.name);
 		}
 	}
 	
-	public void animationPlayed(Transform bone = null) {
-		Debug.Log("ArmatureParent[ " + this.name + " ]/animationPlayed, bone = " + bone);
-		if(onAnimationPlayed != null) {
-			onAnimationPlayed(bone);
+	public void AnimationPlayed(Transform bone = null) {
+		Debug.Log("ArmatureParent[ " + name + " ]/AnimationPlayed, bone = " + bone);
+		if(OnAnimationPlayed != null) {
+			OnAnimationPlayed(bone);
 		}
 	}
 	
 	void Awake() {
-		init();
+		Init();
 	}
 	
 }

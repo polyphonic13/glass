@@ -1,47 +1,45 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class FirstPersonMovement : MonoBehaviour {
 
-	enum _movementStates { normal, climb, swim };
+	enum _movementStates { Normal, Climb, Swim, Crawl };
 	static _movementStates _currentMovementType;
 
 	void Awake() {
-		_currentMovementType = _movementStates.normal;
+		_currentMovementType = _movementStates.Normal;
 	}
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
 	void Update () {
-		// determine move state first
 
 		switch(_currentMovementType) {
-		case _movementStates.normal:
-			normalMove();
+		case _movementStates.Normal:
+			NormalMove();
 			break;
-		case _movementStates.climb:
-			climbMove();
+		case _movementStates.Climb:
+			ClimbMove();
 			break;
-		case _movementStates.swim:
-			swimMove();
+		case _movementStates.Swim:
+			SwimMove();
 			break;
 		}
 	}
 
-	void normalMove() {
+	void NormalMove() {
+		Debug.Log("normal move");
+	}
+
+	void ClimbMove() {
+		Debug.Log("climb move");
 
 	}
 
-	void climbMove() {
-
-	}
-
-	void swimMove() {
+	void SwimMove() {
+		Debug.Log("swim move");
 
 	}
 	
+	void Crawl() {
+		Debug.Log("crawl move");
+
+	}
 }

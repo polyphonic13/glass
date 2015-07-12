@@ -12,7 +12,7 @@ public class Underwater : RoomElement {
 	// Use this for initialization
 	void Start () {
 		_waterLevel = transform.position.y;
-//		Debug.Log(this.name + ", _waterLevel = " + _waterLevel);
+//		Debug.Log(name + ", _waterLevel = " + _waterLevel);
 		_isUnderWater = false;
 		_previousState = false;
 		setNormal();
