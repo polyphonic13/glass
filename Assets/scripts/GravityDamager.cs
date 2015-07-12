@@ -21,7 +21,7 @@ public class GravityDamager : MonoBehaviour {
 
 	public float EndFall() {
 		Debug.Log("GravityDamager/EndFall, damageMultiplier = " + _damageForFallSeconds + ", _timeInAir = " + _timeInAir);
-		float damage;
+		float damage = 0f;
 		if(_isFalling) {
 			if(_timeInAir > _minDamagingFall) {
 				Debug.Log("damage = " + ((_timeInAir * 10) * _damageForFallSeconds));

@@ -1,46 +1,46 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class StaminaManager : MonoBehaviour {
 
-	public static bool isBoosted = false;
+	private const float RECHARGE_DELAY = 5f;
 
-	private float _nextActionTime = 0.0f;
-	private float _rechargeDelay = 5f;
+	private float _nextActionTime;
 
 	private float _maxStamina;
-	private float RemainingStamina; 
+	private float _remainingStamina; 
+
+	public static bool IsBoosted { get; set; }
 
 	void Awake () {
-		RemainingStamina = _maxStamina = GameControl.Instance.Rem;
-		GameControl.Instance.UpdateStamina(RemainingStamina);
+		_remainingStamina = _maxStamina = GameControl.Instance.RemainingStamina;
+		GameControl.Instance.UpdateStamina(_remainingStamina);
 	}
 
 	void Update () {
 		if(Input.GetKey(KeyCode.LeftShift)) {
-			if(RemainingStamina > 0) {
-				isBoosted = true;
-				RemainingStamina -= Time.deltaTime;
-				GameControl.Instance.UpdateStamina(RemainingStamina);
+			if(_remainingStamina > 0) {
+				IsBoosted = true;
+				_remainingStamina -= Time.deltaTime;
+				GameControl.Instance.UpdateStamina(_remainingStamina);
 			} else {
 //				Debug.Log("out of stamina");
-				isBoosted = false;
-				RemainingStamina = 0;
+				IsBoosted = false;
+				_remainingStamina = 0;
 			}
-			_nextActionTime = Time.time + _rechargeDelay;
+			_nextActionTime = Time.time + RECHARGE_DELAY;
 		} else {
-			isBoosted = false;
-			if(RemainingStamina < _maxStamina) {
+			IsBoosted = false;
+			if(_remainingStamina < _maxStamina) {
 
 				if(Time.time > _nextActionTime) {
-//					Debug.Log("incrementing RemainingStamina: " + RemainingStamina + ", max = " + _maxStamina);
-					_nextActionTime = Time.time + _rechargeDelay;
+//					Debug.Log("incrementing _remainingStamina: " + _remainingStamina + ", max = " + _maxStamina);
+					_nextActionTime = Time.time + RECHARGE_DELAY;
 
-					Mathf.Floor(RemainingStamina++);
-					if(RemainingStamina > _maxStamina) {
-						RemainingStamina = _maxStamina;
+					Mathf.Floor(_remainingStamina++);
+					if(_remainingStamina > _maxStamina) {
+						_remainingStamina = _maxStamina;
 					}
-					GameControl.Instance.UpdateStamina(RemainingStamina);
+					GameControl.Instance.UpdateStamina(_remainingStamina);
 				}
 			}
 		}

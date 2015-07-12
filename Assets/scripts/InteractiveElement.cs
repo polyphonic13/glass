@@ -10,8 +10,7 @@ public class InteractiveElement : MonoBehaviour {
 	private MouseManager _mouseManager;
 	private int _activeCursor;
 
-	public Transform _playerHead;
-
+	public Transform PlayerHead { get; set; }
 	public bool IsRoomActive { get; set; } 
 
 	void Awake() {
@@ -20,7 +19,7 @@ public class InteractiveElement : MonoBehaviour {
 
 	public void Init(int activeCursor = 1) {
 //		Debug.Log("InteractiveElement[ " + name + " ]/init, activeCursor = " + activeCursor);
-		_playerHead = GameObject.Find("FirstPersonCharacter").gameObject.transform;
+		PlayerHead = GameObject.Find("FirstPersonCharacter").gameObject.transform;
 //		_mouseManager = MouseManager.Instance;
 		_activeCursor = activeCursor;
 
@@ -74,7 +73,7 @@ public class InteractiveElement : MonoBehaviour {
 
 	public void MouseOver() {
 //		Debug.Log("InteractiveElement[ " + name + " ]/OnMouseOver, IsRoomActive = " + IsRoomActive);
-		var difference = Vector3.Distance(_playerHead.position, transform.position);
+		var difference = Vector3.Distance(PlayerHead.position, transform.position);
 		if(difference < _interactDistance) {
 			_mouseManager.setCursorType(_activeCursor);
 			if(_willHighlight) {

@@ -20,7 +20,7 @@ public class Underwater : RoomElement {
 	
 	// Update is called once per frame
 	void Update () {
-		if(isRoomActive) {
+		if(IsRoomActive) {
 //			Debug.Log(name + " _player y = " + _player.position.y + ", water y = " + _waterLevel + ", under water = " + _isUnderWater);
 			_isUnderWater = ((_player.position.y + _heightOffset) < _waterLevel) || false;
 			
