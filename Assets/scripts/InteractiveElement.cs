@@ -1,19 +1,18 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class InteractiveElement : MonoBehaviour {
 
-	public float interactDistance = 4;
-	public string containingRoom; 
-	public bool isEnabled = true;
-	public bool willHighlight = true; 
+	public float _interactDistance = 4;
+	public string _containingRoom; 
+	public bool _isEnabled = true;
+	public bool _willHighlight = true; 
 	
 	private MouseManager _mouseManager;
 	private int _activeCursor;
 
-	public Transform playerHead;
+	public Transform _playerHead;
 
-	public bool isRoomActive { get; set; } 
+	public bool IsRoomActive { get; set; } 
 
 	void Awake() {
 		Init();
@@ -21,14 +20,14 @@ public class InteractiveElement : MonoBehaviour {
 
 	public void Init(int activeCursor = 1) {
 //		Debug.Log("InteractiveElement[ " + name + " ]/init, activeCursor = " + activeCursor);
-		playerHead = GameObject.Find("FirstPersonCharacter").gameObject.transform;
+		_playerHead = GameObject.Find("FirstPersonCharacter").gameObject.transform;
 //		_mouseManager = MouseManager.Instance;
-//		_activeCursor = activeCursor;
+		_activeCursor = activeCursor;
 
 		if(transform.tag == "persistentItem") {
-			isRoomActive = true;
+			IsRoomActive = true;
 		} else {
-			isRoomActive = false;
+			IsRoomActive = false;
 	
 			var eventCenter = EventCenter.Instance;
 			eventCenter.OnRoomEntered += OnRoomEntered;
@@ -39,23 +38,23 @@ public class InteractiveElement : MonoBehaviour {
 	}
 
 	public virtual void OnRoomEntered(string room) {
-		if(room == containingRoom) {
+		if(room == _containingRoom) {
 //			Debug.Log("InteractiveElement[ " + name + " ]/OnRoomEntered");
-			isRoomActive = true;
+			IsRoomActive = true;
 		}
 	}
 
 	public void OnRoomExited(string room) {
-		if(room == containingRoom) {
+		if(room == _containingRoom) {
 //			Debug.Log("InteractiveElement[ " + name + " ]/OnRoomExited");
-			isRoomActive = false;
+			IsRoomActive = false;
 		}
 	}
 
-	public void OnInputTaken(string name) {
-//		if(isRoomActive && isEnabled) {
+	public void OnInputTaken(string n) {
+//		if(IsRoomActive && _isEnabled) {
 //			Debug.Log ("InteractiveElement[" + name + "]/OnInputTaken, name = " + name);
-			if(name == name) {
+			if(n == name) {
 				Debug.Log (name + " was clicked");
 				InputTaken ();
 			}
@@ -67,41 +66,41 @@ public class InteractiveElement : MonoBehaviour {
 	}
 
 	public virtual void OnMouseOver() {
-//		Debug.Log("InteractiveElement[ " + name + " ]/OnMouseOver, isRoomActive = " + isRoomActive + ", isEnabled = " + isEnabled);
-		if(isRoomActive && isEnabled) {
-			mouseOver();
+//		Debug.Log("InteractiveElement[ " + name + " ]/OnMouseOver, IsRoomActive = " + IsRoomActive + ", _isEnabled = " + _isEnabled);
+		if(IsRoomActive && _isEnabled) {
+			MouseOver();
 		}
 	}
 
-	public void mouseOver() {
-//		Debug.Log("InteractiveElement[ " + name + " ]/OnMouseOver, isRoomActive = " + isRoomActive);
-		var difference = Vector3.Distance(playerHead.position, transform.position);
-		if(difference < interactDistance) {
+	public void MouseOver() {
+//		Debug.Log("InteractiveElement[ " + name + " ]/OnMouseOver, IsRoomActive = " + IsRoomActive);
+		var difference = Vector3.Distance(_playerHead.position, transform.position);
+		if(difference < _interactDistance) {
 			_mouseManager.setCursorType(_activeCursor);
-			if(willHighlight) {
-				addHighlight();
+			if(_willHighlight) {
+				AddHighlight();
 			}
 		}
 	}
 
-	public void addHighlight() {
+	public void AddHighlight() {
 		
 	}
 	
 	public virtual void OnMouseExit() {
-		if(isRoomActive && isEnabled) {
-			mouseExit();
+		if(IsRoomActive && _isEnabled) {
+			MouseExit();
 		}
 	}
 
-	public void mouseExit() {
+	public void MouseExit() {
 		_mouseManager.setCursorType(MouseManager.Instance.DEFAULT_CURSOR);
-		if(willHighlight) {
-			removeHighlight();
+		if(_willHighlight) {
+			RemoveHighlight();
 		}
 	}
 	
-	public void removeHighlight() {
+	public void RemoveHighlight() {
 		
 	}
 }

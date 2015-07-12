@@ -23,7 +23,7 @@ public class UIPlayerPropertyText : MonoBehaviour {
 	}
 
 	void updateText() {
-		var value = Mathf.Round(GameControl.instance.getProperty(property));
+		var value = Mathf.Round(GameControl.Instance.getProperty(property));
 		if(value < 0) {
 			value = 0;
 		}

@@ -12,8 +12,8 @@ public class StaminaManager : MonoBehaviour {
 	private float _remainingStamina; 
 
 	void Awake () {
-		_remainingStamina = _maxStamina = GameControl.instance.stamina;
-		GameControl.instance.updateStamina(_remainingStamina);
+		_remainingStamina = _maxStamina = GameControl.Instance.stamina;
+		GameControl.Instance.updateStamina(_remainingStamina);
 	}
 
 	void Update () {
@@ -21,7 +21,7 @@ public class StaminaManager : MonoBehaviour {
 			if(_remainingStamina > 0) {
 				isBoosted = true;
 				_remainingStamina -= Time.deltaTime;
-				GameControl.instance.updateStamina(_remainingStamina);
+				GameControl.Instance.updateStamina(_remainingStamina);
 			} else {
 //				Debug.Log("out of stamina");
 				isBoosted = false;
@@ -40,7 +40,7 @@ public class StaminaManager : MonoBehaviour {
 					if(_remainingStamina > _maxStamina) {
 						_remainingStamina = _maxStamina;
 					}
-					GameControl.instance.updateStamina(_remainingStamina);
+					GameControl.Instance.updateStamina(_remainingStamina);
 				}
 			}
 		}

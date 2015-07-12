@@ -63,8 +63,8 @@ namespace UnitySampleAssets.Characters.FirstPerson
 
  
 		public void OnPlayerDamaged(float damage) {
-			float health = GameControl.instance.health - damage;
-			GameControl.instance.updateHealth(health);
+			float health = GameControl.Instance.health - damage;
+			GameControl.Instance.updateHealth(health);
 		}
 
 		public void OnAboveWater(bool water, Transform tgt) {
@@ -153,8 +153,8 @@ namespace UnitySampleAssets.Characters.FirstPerson
                 m_Jumping = false;
 
 				if(_damageFromFall && (_currentMovementState == _movementStates.Normal || _currentMovementState == _movementStates.Climb || _currentMovementState == _movementStates.Crawl)) {
-					float health = GameControl.instance.health - _gravityDamager.endFall();
-					GameControl.instance.updateHealth(health);
+					float health = GameControl.Instance.health - _gravityDamager.endFall();
+					GameControl.Instance.updateHealth(health);
 				}
 
             }

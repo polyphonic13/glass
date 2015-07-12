@@ -1,24 +1,21 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class GameControl : MonoBehaviour {
 
 //	public static GameControl instance;
 
-	public float health = 100f; 
-	public float breath = 120f;
-	public float stamina = 5f;
-	public float remainingBreath;
-	public float remainingStamina; 
+	public float _health = 100f; 
+	public float _breath = 120f;
+	public float _stamina = 5f;
+	public float _remainingBreath;
+	public float _remainingStamina; 
 
-	public int targetRoom;
-
-	private float _currentBreath;
+	public int _targetRoom;
 
 	private static GameControl _instance;
 	private GameControl() {}
 	
-	public static GameControl instance {
+	public static GameControl Instance {
 		get {
 			if(_instance == null) {
 				_instance = GameObject.FindObjectOfType(typeof(GameControl)) as GameControl;      
@@ -44,85 +41,83 @@ public class GameControl : MonoBehaviour {
 			Destroy(gameObject);
 		}
 
-		remainingBreath = breath;
-		remainingStamina = stamina;
+		_remainingBreath = _breath;
+		_remainingStamina = _stamina;
 
 		var ec = EventCenter.Instance;
-		ec.UpdatePlayerProperty("health", health);
-		ec.UpdatePlayerProperty("breath", remainingBreath);
-		ec.UpdatePlayerProperty("stamina", remainingStamina);
+		ec.UpdatePlayerProperty("_health", _health);
+		ec.UpdatePlayerProperty("_breath", _remainingBreath);
+		ec.UpdatePlayerProperty("_stamina", _remainingStamina);
 	}
 
-	public float getProperty(string prop) {
+	public float GetProperty(string prop) {
 		float val = 0;
 
 		switch(prop) {
-			case "health":
-				val = health;
+			case "_health":
+				val = _health;
 				break;
-			case "breath":
-				val = remainingBreath;
+			case "_breath":
+				val = _remainingBreath;
 				break;
-			case "stamina":
-				val = remainingStamina;
-				break;
-			default:
+			case "_stamina":
+				val = _remainingStamina;
 				break;
 		}
 		return val;
 	}
 
 
-	public void changeScene(string tgt, int room) {
-		targetRoom = room;
+	public void ChangeScene(string tgt, int room) {
+		_targetRoom = room;
 		Application.LoadLevel(tgt);
 //		var player = GameObject.Find("Player");
-//		player.transform.position = GameControl.instance.getStartingPosition();
+//		player.transform.position = GameControl.Instance.GetStartingPosition();
 	}
 
-	public void updateHealth(float val) {
-		health = val; 
+	public void UpdateHealth(float val) {
+		_health = val; 
 		_postHealthUpdate();
 	}
 
 	public void DamagePlayer(float val) {
-		health -= val;
+		_health -= val;
 		_postHealthUpdate();
 	}
 
-	public void updateBreath(float val) {
-		remainingBreath = val;
-		EventCenter.Instance.UpdatePlayerProperty("breath", remainingBreath);
+	public void UpdateBreath(float val) {
+		_remainingBreath = val;
+		EventCenter.Instance.UpdatePlayerProperty("_breath", _remainingBreath);
     }
 
-	public void updateHeldBreathTime(float val) {
-        remainingBreath = breath - val;
-        EventCenter.Instance.UpdatePlayerProperty("breath", remainingBreath);
+	public void UpdateHeldBreathTime(float val) {
+        _remainingBreath = _breath - val;
+        EventCenter.Instance.UpdatePlayerProperty("_breath", _remainingBreath);
     }
 
-	public void resetBreath() {
-		remainingBreath = breath;
-		EventCenter.Instance.UpdatePlayerProperty("breath", remainingBreath);
+	public void ResetBreath() {
+		_remainingBreath = _breath;
+		EventCenter.Instance.UpdatePlayerProperty("_breath", _remainingBreath);
 	}
 
-	public void updateStamina(float val) {
-		remainingStamina = val;
-		EventCenter.Instance.UpdatePlayerProperty("stamina", remainingStamina);
+	public void UpdateStamina(float val) {
+		_remainingStamina = val;
+		EventCenter.Instance.UpdatePlayerProperty("_stamina", _remainingStamina);
     }
 
-	public void resetStamina() {
-		remainingStamina = stamina;
+	public void ResetStamina() {
+		_remainingStamina = _stamina;
 	}
 
-	public Vector3 getStartingPosition() {
-//		Debug.Log("GameControl/getStartingPosition, val = " + _startingPositions[targetRoom]);
-		return _startingPositions[targetRoom];
+	public Vector3 GetStartingPosition() {
+//		Debug.Log("GameControl/GetStartingPosition, val = " + _startingPositions[_targetRoom]);
+		return _startingPositions[_targetRoom];
 	}
 
 	private void _postHealthUpdate() {
-		EventCenter.Instance.UpdatePlayerProperty("health", health);
+		EventCenter.Instance.UpdatePlayerProperty("_health", _health);
 		
-		if(health < 1) {
+		if(_health < 1) {
 			_die();
 		}
 	}

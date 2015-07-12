@@ -16,7 +16,7 @@ public class SceneChanger : MonoBehaviour {
 		if(activated) {
 			Debug.Log("scene changer trigger, tgt.tag = " + tgt.gameObject.tag);
 			if(tgt.gameObject.tag == "Player") {
-				GameControl.instance.changeScene(targetScene, targetRoom);
+				GameControl.Instance.changeScene(targetScene, targetRoom);
 			}
 		}
 	}
