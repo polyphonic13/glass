@@ -22,7 +22,7 @@ public class Underwater : RoomElement {
 	void Update () {
 		if(isRoomActive) {
 //			Debug.Log(name + " _player y = " + _player.position.y + ", water y = " + _waterLevel + ", under water = " + _isUnderWater);
-			((_player.position.y + _heightOffset) < _waterLevel) ? _isUnderWater = true : _isUnderWater = false;
+			_isUnderWater = ((_player.position.y + _heightOffset) < _waterLevel) || false;
 			
 			//		if ((_player.position.y < _waterLevel) != _isUnderWater) {
 			//			_isUnderWater = transform.position.y < _waterLevel;
@@ -42,7 +42,7 @@ public class Underwater : RoomElement {
 	
 	void setNormal () {
 //		Debug.Log("above water");
-		EventCenter.instance.changeUnderWater(false);
+		EventCenter.Instance.ChangeUnderWater(false);
 //		RenderSettings.fogDensity = 0.01f;
 //		RenderSettings.fogDensity = 0;
 		
@@ -53,7 +53,7 @@ public class Underwater : RoomElement {
 	void setUnderwater () {
 //		Debug.Log("under water");
 //		RenderSettings.fogDensity = 0.5f;
-		EventCenter.instance.changeUnderWater(true);
+		EventCenter.Instance.ChangeUnderWater(true);
 		
 		//  Testing
 //		waterPlane.localScale = new Vector3 (waterPlane.localScale.x, -1.0f, waterPlane.localScale.z);

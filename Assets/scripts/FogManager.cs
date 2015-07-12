@@ -15,14 +15,14 @@ public class FogManager : MonoBehaviour {
 	private GlobalFog _fog;
 
 	void Start () {
-		EventCenter.instance.onUnderWater += this.onUnderWater;
+		EventCenter.Instance.OnUnderWater += this.OnUnderWater;
 		_fog = mainCamera.GetComponent<GlobalFog>();
 		_fog.distanceFog = true;
-		this.onUnderWater(false);
+		this.OnUnderWater(false);
 	}
 	
-	public void onUnderWater(bool under) {
-//		Debug.Log("FogManager/onUnderWater, under = " + under);
+	public void OnUnderWater(bool under) {
+//		Debug.Log("FogManager/OnUnderWater, under = " + under);
 		if(under) {
 			_fog.enabled = true;
 			RenderSettings.fogColor = underwaterColor;

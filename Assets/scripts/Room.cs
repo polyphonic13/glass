@@ -9,17 +9,17 @@ public class Room : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		if(isStartingRoom) {
-			EventCenter.instance.enterRoom(this.roomName);
+			EventCenter.Instance.EnterRoom(this.roomName);
 		}
 	}
 	
 	public void roomTriggered(string name) {
-		var ec = EventCenter.instance;
+		var ec = EventCenter.Instance;
 
 		if(name == this.roomName) {
-			ec.exitRoom(this.roomName);
+			ec.ExitRoom(this.roomName);
 		} else {
-			ec.enterRoom(this.roomName);
+			ec.EnterRoom(this.roomName);
 		}
 	}
 }

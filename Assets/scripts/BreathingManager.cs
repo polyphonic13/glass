@@ -11,7 +11,7 @@ public class BreathingManager : MonoBehaviour {
 	private float _timeUnderWater = 0;
 	// Use this for initialization
 	void Awake () {
-		EventCenter.instance.onUnderWater += this.onUnderWater;
+		EventCenter.Instance.OnUnderWater += this.OnUnderWater;
 		_breathHoldTime = GameControl.instance.breath;
 	}
 	
@@ -25,14 +25,14 @@ public class BreathingManager : MonoBehaviour {
 
 			if(_timeUnderWater > _breathHoldTime) {
 				var damage = _timeUnderWater - _breathHoldTime;
-				GameControl.instance.damagePlayer(damage/100);
+				GameControl.instance.DamagePlayer(damage/100);
 				// dispatch damage taken
 			}
 		}
 	}
 
-	void onUnderWater(bool under) {
-//		Debug.Log("BreathingManager/onUnderWater, under = " + under);
+	void OnUnderWater(bool under) {
+//		Debug.Log("BreathingManager/OnUnderWater, under = " + under);
 		_isUnderWater = under;
 		if(!under) {
 			_timeUnderWater = 0;

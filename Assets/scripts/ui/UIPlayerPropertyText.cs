@@ -11,13 +11,13 @@ public class UIPlayerPropertyText : MonoBehaviour {
 
 	void Awake () {
 		_text = GetComponent<Text>();
-		EventCenter.instance.onPlayerPropertyUpdated += this.onPlayerPropertyUpdated;
+		EventCenter.Instance.OnPlayerPropertyUpdated += this.OnPlayerPropertyUpdated;
 		this.updateText();
 	}
 	
-	void onPlayerPropertyUpdated(string prop, float val) {
+	void OnPlayerPropertyUpdated(string prop, float val) {
 		if(prop == property) {
-//			Debug.Log("UIPlayerPropertyText[" + prefix + "]/onPlayerPropertyUpdated, prop = " + prop + ", val = " + val);
+//			Debug.Log("UIPlayerPropertyText[" + prefix + "]/OnPlayerPropertyUpdated, prop = " + prop + ", val = " + val);
 			this.updateText();
 		}
 	}

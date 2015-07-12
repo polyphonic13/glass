@@ -13,10 +13,10 @@ public class RoomElement : MonoBehaviour {
 	}
 
 	public void init() {
-		var ec = EventCenter.instance;
+		var ec = EventCenter.Instance;
 
-		ec.onRoomEntered += this.onRoomEntered;
-		ec.onRoomExited	 += this.onRoomExited;
+		ec.OnRoomEntered += this.OnRoomEntered;
+		ec.OnRoomExited	 += this.OnRoomExited;
 	}
 
 	// Update is called once per frame
@@ -24,8 +24,8 @@ public class RoomElement : MonoBehaviour {
 	
 	}
 
-	public void onRoomEntered(string room) {
-//		Debug.Log("RoomElement/onRoomEntered, room = " + room + ", this.containingRoom = " + this.containingRoom);
+	public void OnRoomEntered(string room) {
+//		Debug.Log("RoomElement/OnRoomEntered, room = " + room + ", this.containingRoom = " + this.containingRoom);
 		if(room == this.containingRoom) {
 			Debug.Log (this.name + "ACTIVATED");
 			this.isRoomActive = true;
@@ -34,7 +34,7 @@ public class RoomElement : MonoBehaviour {
 		}
 	}
 
-	public void onRoomExited(string room) {
+	public void OnRoomExited(string room) {
 		if(room == this.containingRoom) {
 			this.isRoomActive = false;
 		}

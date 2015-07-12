@@ -9,7 +9,7 @@ public class RoomTrigger : MonoBehaviour {
 
 	void OnTriggerEnter(Collider tgt) {
 		Debug.Log("RoomTrigger/OnTriggerEnter, roomName = " + this.roomName);
-		EventCenter.instance.enterRoom(this.roomName);
+		EventCenter.Instance.EnterRoom(this.roomName);
 //		containingRoom.roomTriggered(this.roomName);
 	}
 

@@ -19,11 +19,11 @@ public class CameraZoom : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(Input.GetKeyDown(KeyCode.Z)) {
-			zoomCamera();
+			ZoomCamera();
 		}
 	}
 
-	void zoomCamera() {
+	void ZoomCamera() {
 		if(_isZoomed) {
 //			_camera.fieldOfView = Mathf.Lerp(_camera.fieldOfView, _normal, Time.deltaTime / _smooth);
 			_camera.fieldOfView = _normal;

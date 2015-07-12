@@ -47,10 +47,10 @@ public class GameControl : MonoBehaviour {
 		remainingBreath = breath;
 		remainingStamina = stamina;
 
-		var ec = EventCenter.instance;
-		ec.updatePlayerProperty("health", health);
-		ec.updatePlayerProperty("breath", remainingBreath);
-		ec.updatePlayerProperty("stamina", remainingStamina);
+		var ec = EventCenter.Instance;
+		ec.UpdatePlayerProperty("health", health);
+		ec.UpdatePlayerProperty("breath", remainingBreath);
+		ec.UpdatePlayerProperty("stamina", remainingStamina);
 	}
 
 	public float getProperty(string prop) {
@@ -85,29 +85,29 @@ public class GameControl : MonoBehaviour {
 		_postHealthUpdate();
 	}
 
-	public void damagePlayer(float val) {
+	public void DamagePlayer(float val) {
 		health -= val;
 		_postHealthUpdate();
 	}
 
 	public void updateBreath(float val) {
 		remainingBreath = val;
-		EventCenter.instance.updatePlayerProperty("breath", remainingBreath);
+		EventCenter.Instance.UpdatePlayerProperty("breath", remainingBreath);
     }
 
 	public void updateHeldBreathTime(float val) {
         remainingBreath = breath - val;
-        EventCenter.instance.updatePlayerProperty("breath", remainingBreath);
+        EventCenter.Instance.UpdatePlayerProperty("breath", remainingBreath);
     }
 
 	public void resetBreath() {
 		remainingBreath = breath;
-		EventCenter.instance.updatePlayerProperty("breath", remainingBreath);
+		EventCenter.Instance.UpdatePlayerProperty("breath", remainingBreath);
 	}
 
 	public void updateStamina(float val) {
 		remainingStamina = val;
-		EventCenter.instance.updatePlayerProperty("stamina", remainingStamina);
+		EventCenter.Instance.UpdatePlayerProperty("stamina", remainingStamina);
     }
 
 	public void resetStamina() {
@@ -120,7 +120,7 @@ public class GameControl : MonoBehaviour {
 	}
 
 	private void _postHealthUpdate() {
-		EventCenter.instance.updatePlayerProperty("health", health);
+		EventCenter.Instance.UpdatePlayerProperty("health", health);
 		
 		if(health < 1) {
 			_die();

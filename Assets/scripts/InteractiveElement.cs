@@ -30,39 +30,39 @@ public class InteractiveElement : MonoBehaviour {
 		} else {
 			this.isRoomActive = false;
 	
-			var eventCenter = EventCenter.instance;
-			eventCenter.onRoomEntered += this.onRoomEntered;
-			eventCenter.onRoomExited += this.onRoomExited;
+			var eventCenter = EventCenter.Instance;
+			eventCenter.OnRoomEntered += this.OnRoomEntered;
+			eventCenter.OnRoomExited += this.OnRoomExited;
 
 		}
-//		EventCenter.instance.onMouseClick += this.OnMouseClick;
+//		EventCenter.Instance.OnInputTaken += this.OnInputTaken;
 	}
 
-	public virtual void onRoomEntered(string room) {
+	public virtual void OnRoomEntered(string room) {
 		if(room == this.containingRoom) {
-//			Debug.Log("InteractiveElement[ " + this.name + " ]/onRoomEntered");
+//			Debug.Log("InteractiveElement[ " + this.name + " ]/OnRoomEntered");
 			this.isRoomActive = true;
 		}
 	}
 
-	public void onRoomExited(string room) {
+	public void OnRoomExited(string room) {
 		if(room == this.containingRoom) {
-//			Debug.Log("InteractiveElement[ " + this.name + " ]/onRoomExited");
+//			Debug.Log("InteractiveElement[ " + this.name + " ]/OnRoomExited");
 			this.isRoomActive = false;
 		}
 	}
 
-	public void OnMouseClick(string name) {
+	public void OnInputTaken(string name) {
 //		if(this.isRoomActive && this.isEnabled) {
-//			Debug.Log ("InteractiveElement[" + this.name + "]/onmouseclick, name = " + name);
+//			Debug.Log ("InteractiveElement[" + this.name + "]/OnInputTaken, name = " + name);
 			if(this.name == name) {
 				Debug.Log (this.name + " was clicked");
-				this.mouseClick ();
+				this.InputTaken ();
 			}
 //		}
 
 	}
-	public virtual void mouseClick() {
+	public virtual void InputTaken() {
 
 	}
 

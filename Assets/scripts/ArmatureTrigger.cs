@@ -12,11 +12,11 @@ public class ArmatureTrigger : InteractiveElement {
 	}
 	
 	public void OnMouseDown() {
-		this.mouseClick ();
+		this.InputTaken ();
 	}
 
-	public override void mouseClick() {
-//		Debug.Log ("ArmatureTrigger[" + this.name + "]/mouseClick, isRoomActive = " + this.isRoomActive + ", enabled = " + this.enabled);
+	public override void InputTaken() {
+//		Debug.Log ("ArmatureTrigger[" + this.name + "]/InputTaken, isRoomActive = " + this.isRoomActive + ", enabled = " + this.enabled);
 //		if(this.isRoomActive && this.isEnabled) {
 			var difference = Vector3.Distance(playerHead.position, this.transform.position);
 			if(difference <= interactDistance) {

@@ -1,9 +1,7 @@
-using System;
 using UnityEngine;
 using UnitySampleAssets.CrossPlatformInput;
 using UnitySampleAssets.Utility;
 using Random = UnityEngine.Random;
-using UnityStandardAssets.ImageEffects;
 
 namespace UnitySampleAssets.Characters.FirstPerson
 {
@@ -11,11 +9,11 @@ namespace UnitySampleAssets.Characters.FirstPerson
     [RequireComponent(typeof (AudioSource))]
     public class FirstPersonController : MonoBehaviour
     {
-		[SerializeField] private bool _damageFromFall = false;
+		[SerializeField] private bool _damageFromFall;
 		[SerializeField] private float _underWaterGravity;
-		[SerializeField] private float _crawlSpeed;
-		[SerializeField] private float _diveSpeed; 
-		[SerializeField] private float _swimSpeed; 
+		[SerializeField] private float _CrawlSpeed;
+		[SerializeField] private float _DiveSpeed; 
+		[SerializeField] private float _SwimSpeed; 
 
 		[SerializeField] private bool m_IsWalking;
         [SerializeField] private float m_WalkSpeed;
@@ -35,7 +33,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
         [SerializeField] private AudioClip m_JumpSound;           // the sound played when character leaves the ground.
         [SerializeField] private AudioClip m_LandSound;           // the sound played when character touches back on ground.
 
-		enum _movementStates { normal, crawl, climb, swim, dive };
+		enum _movementStates { Normal, Crawl, Climb, Swim, Dive };
 		static _movementStates _currentMovementState;
 		static _movementStates _previousMovementState; 
 
@@ -45,7 +43,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
 
 		private Transform _collider;
 		private float _cameraStartY;
-		private float _crawlCameraY = 0.1f;
+		private const float _CrawlCameraY = 0.1f;
 		private bool _justCrouched = false;
 
         private Camera m_Camera;
@@ -64,18 +62,18 @@ namespace UnitySampleAssets.Characters.FirstPerson
         private AudioSource m_AudioSource;
 
  
-		public void onPlayerDamaged(float damage) {
+		public void OnPlayerDamaged(float damage) {
 			float health = GameControl.instance.health - damage;
 			GameControl.instance.updateHealth(health);
 		}
 
-		public void onOnWater(bool water, Transform tgt) {
-//			Debug.Log("Player/onOnWater, water = " + water);
+		public void OnAboveWater(bool water, Transform tgt) {
+//			Debug.Log("Player/OnAboveWater, water = " + water);
 			if(water) {
-				_currentMovementState = _previousMovementState = _movementStates.swim;
+				_currentMovementState = _previousMovementState = _movementStates.Swim;
 				_gravity = 0;
 			} else {
-				_currentMovementState = _movementStates.normal;
+				_currentMovementState = _movementStates.Normal;
 				_gravity = m_GravityMultiplier;
 			}
 			_gravityDamager.cancelFall();
@@ -98,7 +96,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
             m_AudioSource = GetComponent<AudioSource>();
 			m_MouseLook.Init(transform , m_Camera.transform);
 
-			_currentMovementState = _movementStates.normal;
+			_currentMovementState = _movementStates.Normal;
 			_gravity = m_GravityMultiplier;
 			_cameraStartY = m_Camera.transform.position.y;
 
@@ -108,9 +106,9 @@ namespace UnitySampleAssets.Characters.FirstPerson
 				_gravityDamager = GetComponent<GravityDamager>();
 			}
 
-			var ec = EventCenter.instance;
-			ec.onOnWater += this.onOnWater;
-			ec.onPlayerDamaged += this.onPlayerDamaged;
+			var ec = EventCenter.Instance;
+			ec.OnAboveWater += OnAboveWater;
+			ec.OnPlayerDamaged += OnPlayerDamaged;
 		}
 
 
@@ -119,22 +117,22 @@ namespace UnitySampleAssets.Characters.FirstPerson
         {
             RotateView();
 
-			// allow to dive if swimming 
+			// allow to Dive if Swimming 
 			if(Input.GetKey(KeyCode.C)) {
-				if(_currentMovementState == _movementStates.swim || _currentMovementState == _movementStates.dive) {
+				if(_currentMovementState == _movementStates.Swim || _currentMovementState == _movementStates.Dive) {
 					_gravity = _underWaterGravity;
-					_currentMovementState = _movementStates.dive;
+					_currentMovementState = _movementStates.Dive;
 				}
 			}
-			// toggle crawl if walking/crawling
+			// toggle Crawl if walking/Crawling
 			if(Input.GetKeyDown(KeyCode.C)) {
-				if(_currentMovementState == _movementStates.normal && m_CharacterController.isGrounded) {
-					_currentMovementState = _movementStates.crawl;
+				if(_currentMovementState == _movementStates.Normal && m_CharacterController.isGrounded) {
+					_currentMovementState = _movementStates.Crawl;
 					_switchToCrawling(true);
 					_justCrouched = true;
-					Debug.Log("crawl");
-				} else if(_currentMovementState == _movementStates.crawl) {
-					_currentMovementState = _movementStates.normal;
+					Debug.Log("Crawl");
+				} else if(_currentMovementState == _movementStates.Crawl) {
+					_currentMovementState = _movementStates.Normal;
 					_switchToCrawling(false);
 					_justCrouched = true;
 					Debug.Log("walk");
@@ -154,7 +152,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
                 m_MoveDir.y = 0f;
                 m_Jumping = false;
 
-				if(_damageFromFall && (_currentMovementState == _movementStates.normal || _currentMovementState == _movementStates.climb || _currentMovementState == _movementStates.crawl)) {
+				if(_damageFromFall && (_currentMovementState == _movementStates.Normal || _currentMovementState == _movementStates.Climb || _currentMovementState == _movementStates.Crawl)) {
 					float health = GameControl.instance.health - _gravityDamager.endFall();
 					GameControl.instance.updateHealth(health);
 				}
@@ -176,13 +174,13 @@ namespace UnitySampleAssets.Characters.FirstPerson
             m_PreviouslyGrounded = m_CharacterController.isGrounded;
 		}
 
-		private void _switchToCrawling(bool crawl) {
-			if(crawl) {
-				this.transform.localScale -= new Vector3(0, 0.5f, 0);
-				this.transform.localPosition -= new Vector3(0, 0.5f, 0);
+		private void _switchToCrawling(bool isCrawling) {
+			if(isCrawling) {
+				transform.localScale -= new Vector3(0, 0.5f, 0);
+				transform.localPosition -= new Vector3(0, 0.5f, 0);
 			} else {
-				this.transform.localScale += new Vector3(0, 0.5f, 0);
-				this.transform.localPosition += new Vector3(0, 0.5f, 0);
+				transform.localScale += new Vector3(0, 0.5f, 0);
+				transform.localPosition += new Vector3(0, 0.5f, 0);
 			}
 		}
 
@@ -201,15 +199,15 @@ namespace UnitySampleAssets.Characters.FirstPerson
             // always move along the camera forward as it is the direction that it being aimed at
             Vector3 desiredMove = m_Camera.transform.forward*m_Input.y + m_Camera.transform.right*m_Input.x;
 
-            // get a normal for the surface that is being touched to move along it
+            // get a Normal for the surface that is being touched to move along it
             RaycastHit hitInfo;
             Physics.SphereCast(transform.position, m_CharacterController.radius, Vector3.down, out hitInfo,
                                m_CharacterController.height/2f);
             desiredMove = Vector3.ProjectOnPlane(desiredMove, hitInfo.normal).normalized;
 
 			switch(_currentMovementState) {
-				case _movementStates.crawl:
-					speed *= _crawlSpeed;
+				case _movementStates.Crawl:
+					speed *= _CrawlSpeed;
 					if(m_CharacterController.isGrounded) {
 						m_MoveDir.y = -m_StickToGroundForce;
 					} else {
@@ -217,8 +215,8 @@ namespace UnitySampleAssets.Characters.FirstPerson
 					}
 					break;
 
-				case _movementStates.normal:
-					// NORMAL WALK/FALL
+				case _movementStates.Normal:
+					// Normal WALK/FALL
 					if (m_CharacterController.isGrounded) {
 						m_MoveDir.y = -m_StickToGroundForce;
 						
@@ -229,29 +227,29 @@ namespace UnitySampleAssets.Characters.FirstPerson
 							m_Jumping = true;
                         }
                     } else {
-                        // normal fall to ground
+                        // Normal fall to ground
                         m_MoveDir += Physics.gravity*_gravity*Time.fixedDeltaTime;
                     }
                     break;
                 
-				case _movementStates.climb:
+				case _movementStates.Climb:
 					break;
 
-				case _movementStates.swim:
-//					Debug.Log("swimming, _isUnderWater = ");
-					// SWIMMING
+				case _movementStates.Swim:
+//					Debug.Log("Swimming, _isUnderWater = ");
+					// SwimMING
 					// do not move y -- stay on surface of water
 					m_MoveDir.y = 0f;
-					speed *= _swimSpeed;
+					speed *= _SwimSpeed;
 					
                     break;
 
-				case _movementStates.dive:
+				case _movementStates.Dive:
 					// DIVING
-					speed *= _swimSpeed;
+					speed *= _SwimSpeed;
 					if(Input.GetKey(KeyCode.C)) {
 //						Debug.Log("diving");
-						m_MoveDir += Physics.gravity*(-(_gravity*_diveSpeed))*Time.fixedDeltaTime;
+						m_MoveDir += Physics.gravity*(-(_gravity*_DiveSpeed))*Time.fixedDeltaTime;
 					} else {
 						// floating to surface (default)
 //                        Debug.Log("floating");
@@ -264,8 +262,8 @@ namespace UnitySampleAssets.Characters.FirstPerson
 			}
 
 			// turn on fog when first diving, remove when not diving
-			if(_currentMovementState == _movementStates.dive) {
-				if(_previousMovementState != _movementStates.dive) {
+			if(_currentMovementState == _movementStates.Dive) {
+				if(_previousMovementState != _movementStates.Dive) {
 //					_globalFog.enabled = true;
 				}
 			} else {
@@ -371,7 +369,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
             speed = m_IsWalking ? m_WalkSpeed : m_RunSpeed;
             m_Input = new Vector2(horizontal, vertical);
 
-            // normalize input if it exceeds 1 in combined length:
+            // Normalize input if it exceeds 1 in combined length:
             if (m_Input.sqrMagnitude > 1)
             {
                 m_Input.Normalize();
