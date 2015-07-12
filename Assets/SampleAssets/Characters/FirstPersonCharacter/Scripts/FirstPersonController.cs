@@ -63,8 +63,8 @@ namespace UnitySampleAssets.Characters.FirstPerson
 
  
 		public void OnPlayerDamaged(float damage) {
-			float health = GameControl.Instance.health - damage;
-			GameControl.Instance.updateHealth(health);
+			float health = GameControl.Instance.RemainingHealth - damage;
+			GameControl.Instance.UpdateHealth(health);
 		}
 
 		public void OnAboveWater(bool water, Transform tgt) {
@@ -76,7 +76,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
 				_currentMovementState = _movementStates.Normal;
 				_gravity = m_GravityMultiplier;
 			}
-			_gravityDamager.cancelFall();
+			_gravityDamager.CancelFall();
 		}
 
 		// Use this for initialization
@@ -153,8 +153,8 @@ namespace UnitySampleAssets.Characters.FirstPerson
                 m_Jumping = false;
 
 				if(_damageFromFall && (_currentMovementState == _movementStates.Normal || _currentMovementState == _movementStates.Climb || _currentMovementState == _movementStates.Crawl)) {
-					float health = GameControl.Instance.health - _gravityDamager.endFall();
-					GameControl.Instance.updateHealth(health);
+					float health = GameControl.Instance.RemainingHealth - _gravityDamager.EndFall();
+					GameControl.Instance.UpdateHealth(health);
 				}
 
             }
@@ -165,7 +165,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
 
 			if(!m_CharacterController.isGrounded && m_PreviouslyGrounded) {
 //				if(!_justCrouched) {
-					_gravityDamager.beginFall();
+					_gravityDamager.BeginFall();
 //				}
 			} else if(m_CharacterController.isGrounded) {
 //				_justCrouched = false;
@@ -256,9 +256,6 @@ namespace UnitySampleAssets.Characters.FirstPerson
                         m_MoveDir += Physics.gravity*_gravity*Time.fixedDeltaTime;
                     }
                     break;
-
-				default:
-					break;
 			}
 
 			// turn on fog when first diving, remove when not diving

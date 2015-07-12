@@ -1,25 +1,24 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class Room : MonoBehaviour {
 
-	public bool isStartingRoom = false;
-	public string roomName;
+	public bool _isStartingRoom;
+	public string _roomName;
 
 	// Use this for initialization
 	void Start () {
-		if(isStartingRoom) {
-			EventCenter.Instance.EnterRoom(roomName);
+		if(_isStartingRoom) {
+			EventCenter.Instance.EnterRoom(_roomName);
 		}
 	}
 	
-	public void roomTriggered(string name) {
+	public void RoomTriggered(string name) {
 		var ec = EventCenter.Instance;
 
-		if(name == roomName) {
-			ec.ExitRoom(roomName);
+		if(name == _roomName) {
+			ec.ExitRoom(_roomName);
 		} else {
-			ec.EnterRoom(roomName);
+			ec.EnterRoom(_roomName);
 		}
 	}
 }

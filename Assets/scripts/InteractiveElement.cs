@@ -51,10 +51,10 @@ public class InteractiveElement : MonoBehaviour {
 		}
 	}
 
-	public void OnInputTaken(string n) {
+	public void OnInputTaken(string name) {
 //		if(IsRoomActive && _isEnabled) {
 //			Debug.Log ("InteractiveElement[" + name + "]/OnInputTaken, name = " + name);
-			if(n == name) {
+			if(name == this.name) {
 				Debug.Log (name + " was clicked");
 				InputTaken ();
 			}

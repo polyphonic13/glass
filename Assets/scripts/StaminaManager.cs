@@ -9,38 +9,38 @@ public class StaminaManager : MonoBehaviour {
 	private float _rechargeDelay = 5f;
 
 	private float _maxStamina;
-	private float _remainingStamina; 
+	private float RemainingStamina; 
 
 	void Awake () {
-		_remainingStamina = _maxStamina = GameControl.Instance.stamina;
-		GameControl.Instance.updateStamina(_remainingStamina);
+		RemainingStamina = _maxStamina = GameControl.Instance.Rem;
+		GameControl.Instance.UpdateStamina(RemainingStamina);
 	}
 
 	void Update () {
 		if(Input.GetKey(KeyCode.LeftShift)) {
-			if(_remainingStamina > 0) {
+			if(RemainingStamina > 0) {
 				isBoosted = true;
-				_remainingStamina -= Time.deltaTime;
-				GameControl.Instance.updateStamina(_remainingStamina);
+				RemainingStamina -= Time.deltaTime;
+				GameControl.Instance.UpdateStamina(RemainingStamina);
 			} else {
 //				Debug.Log("out of stamina");
 				isBoosted = false;
-				_remainingStamina = 0;
+				RemainingStamina = 0;
 			}
 			_nextActionTime = Time.time + _rechargeDelay;
 		} else {
 			isBoosted = false;
-			if(_remainingStamina < _maxStamina) {
+			if(RemainingStamina < _maxStamina) {
 
 				if(Time.time > _nextActionTime) {
-//					Debug.Log("incrementing _remainingStamina: " + _remainingStamina + ", max = " + _maxStamina);
+//					Debug.Log("incrementing RemainingStamina: " + RemainingStamina + ", max = " + _maxStamina);
 					_nextActionTime = Time.time + _rechargeDelay;
 
-					Mathf.Floor(_remainingStamina++);
-					if(_remainingStamina > _maxStamina) {
-						_remainingStamina = _maxStamina;
+					Mathf.Floor(RemainingStamina++);
+					if(RemainingStamina > _maxStamina) {
+						RemainingStamina = _maxStamina;
 					}
-					GameControl.Instance.updateStamina(_remainingStamina);
+					GameControl.Instance.UpdateStamina(RemainingStamina);
 				}
 			}
 		}

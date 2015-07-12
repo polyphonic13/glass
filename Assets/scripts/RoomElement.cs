@@ -1,15 +1,14 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class RoomElement : MonoBehaviour {
 
-	public string containingRoom;
+	public string _containingRoom;
 
-	public bool isRoomActive { get; set; }
+	public bool IsRoomActive { get; set; }
 
 	// Use this for initialization
 	void Awake () {
-		init ();
+		Init();
 	}
 
 	public void Init() {
@@ -25,18 +24,18 @@ public class RoomElement : MonoBehaviour {
 	}
 
 	public void OnRoomEntered(string room) {
-//		Debug.Log("RoomElement/OnRoomEntered, room = " + room + ", containingRoom = " + containingRoom);
-		if(room == containingRoom) {
-			Debug.Log (name + "ACTIVATED");
-			isRoomActive = true;
-		} else {
-			isRoomActive = false;
-		}
+//		Debug.Log("RoomElement/OnRoomEntered, room = " + room + ", _containingRoom = " + _containingRoom);
+		IsRoomActive = (room == _containingRoom);
+		// if(room == _containingRoom) {
+		// 	IsRoomActive = true;
+		// } else {
+		// 	IsRoomActive = false;
+		// }
 	}
 
 	public void OnRoomExited(string room) {
-		if(room == containingRoom) {
-			isRoomActive = false;
+		if(room == _containingRoom) {
+			IsRoomActive = false;
 		}
 	}
 }

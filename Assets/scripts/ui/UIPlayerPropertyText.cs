@@ -1,11 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
-public class UIPlayerPropertyText : MonoBehaviour {
+public class UIPlayer_propertyText : MonoBehaviour {
 
-	public string property;
-	public string prefix = "";
+	public string _property;
+	public string _prefix = "";
 
 	private Text _text;
 
@@ -16,17 +15,17 @@ public class UIPlayerPropertyText : MonoBehaviour {
 	}
 	
 	void OnPlayerPropertyUpdated(string prop, float val) {
-		if(prop == property) {
-//			Debug.Log("UIPlayerPropertyText[" + prefix + "]/OnPlayerPropertyUpdated, prop = " + prop + ", val = " + val);
+		if(prop == _property) {
+//			Debug.Log("UIPlayer_propertyText[" + _prefix + "]/OnPlayerPropertyUpdated, prop = " + prop + ", val = " + val);
 			updateText();
 		}
 	}
 
 	void updateText() {
-		var value = Mathf.Round(GameControl.Instance.getProperty(property));
+		var value = Mathf.Round(GameControl.Instance.GetProperty(_property));
 		if(value < 0) {
 			value = 0;
 		}
-		_text.text = prefix + value;
+		_text.text = _prefix + value;
 	}
 }

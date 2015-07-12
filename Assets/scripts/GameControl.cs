@@ -7,10 +7,12 @@ public class GameControl : MonoBehaviour {
 	public float _health = 100f; 
 	public float _breath = 120f;
 	public float _stamina = 5f;
-	public float _remainingBreath;
-	public float _remainingStamina; 
 
 	public int _targetRoom;
+
+	public float RemainingHealth { get; set; }
+	public float RemainingBreath { get; set; }
+	public float RemainingStamina { get; set; } 
 
 	private static GameControl _instance;
 	private GameControl() {}
@@ -41,13 +43,14 @@ public class GameControl : MonoBehaviour {
 			Destroy(gameObject);
 		}
 
-		_remainingBreath = _breath;
-		_remainingStamina = _stamina;
+		RemainingHealth = _health;
+		RemainingBreath = _breath;
+		RemainingStamina = _stamina;
 
 		var ec = EventCenter.Instance;
-		ec.UpdatePlayerProperty("_health", _health);
-		ec.UpdatePlayerProperty("_breath", _remainingBreath);
-		ec.UpdatePlayerProperty("_stamina", _remainingStamina);
+		ec.UpdatePlayerProperty("_health", RemainingHealth);
+		ec.UpdatePlayerProperty("_breath", RemainingBreath);
+		ec.UpdatePlayerProperty("_stamina", RemainingStamina);
 	}
 
 	public float GetProperty(string prop) {
@@ -58,10 +61,10 @@ public class GameControl : MonoBehaviour {
 				val = _health;
 				break;
 			case "_breath":
-				val = _remainingBreath;
+				val = RemainingBreath;
 				break;
-			case "_stamina":
-				val = _remainingStamina;
+			case "Stamina":
+				val = RemainingStamina;
 				break;
 		}
 		return val;
@@ -86,27 +89,27 @@ public class GameControl : MonoBehaviour {
 	}
 
 	public void UpdateBreath(float val) {
-		_remainingBreath = val;
-		EventCenter.Instance.UpdatePlayerProperty("_breath", _remainingBreath);
+		RemainingBreath = val;
+		EventCenter.Instance.UpdatePlayerProperty("_breath", RemainingBreath);
     }
 
 	public void UpdateHeldBreathTime(float val) {
-        _remainingBreath = _breath - val;
-        EventCenter.Instance.UpdatePlayerProperty("_breath", _remainingBreath);
+        RemainingBreath = _breath - val;
+        EventCenter.Instance.UpdatePlayerProperty("_breath", RemainingBreath);
     }
 
 	public void ResetBreath() {
-		_remainingBreath = _breath;
-		EventCenter.Instance.UpdatePlayerProperty("_breath", _remainingBreath);
+		RemainingBreath = _breath;
+		EventCenter.Instance.UpdatePlayerProperty("_breath", RemainingBreath);
 	}
 
 	public void UpdateStamina(float val) {
-		_remainingStamina = val;
-		EventCenter.Instance.UpdatePlayerProperty("_stamina", _remainingStamina);
+		RemainingStamina = val;
+		EventCenter.Instance.UpdatePlayerProperty("Stamina", RemainingStamina);
     }
 
 	public void ResetStamina() {
-		_remainingStamina = _stamina;
+		RemainingStamina = _stamina;
 	}
 
 	public Vector3 GetStartingPosition() {

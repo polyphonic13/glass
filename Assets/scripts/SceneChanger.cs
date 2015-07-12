@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class SceneChanger : MonoBehaviour {
 
-	public string targetScene;
-	public int targetRoom;
+	public string _targetScene;
+	public int _targetRoom;
 
 	private bool activated { get; set; }
 
@@ -16,12 +15,12 @@ public class SceneChanger : MonoBehaviour {
 		if(activated) {
 			Debug.Log("scene changer trigger, tgt.tag = " + tgt.gameObject.tag);
 			if(tgt.gameObject.tag == "Player") {
-				GameControl.Instance.changeScene(targetScene, targetRoom);
+				GameControl.Instance.ChangeScene(_targetScene, _targetRoom);
 			}
 		}
 	}
 
-	public void setActive(bool active) {
+	public void SetActive(bool active) {
 		activated = active;
 	}
 }
