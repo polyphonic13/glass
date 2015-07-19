@@ -163,14 +163,11 @@ namespace UnitySampleAssets.Characters.FirstPerson
                 m_MoveDir.y = 0f;
             }
 
-			if(!m_CharacterController.isGrounded && m_PreviouslyGrounded) {
-//				if(!_justCrouched) {
+			if(_damageFromFall) {
+				if(!m_CharacterController.isGrounded && m_PreviouslyGrounded) {
 					_gravityDamager.BeginFall();
-//				}
-			} else if(m_CharacterController.isGrounded) {
-//				_justCrouched = false;
+				}
 			}
-
             m_PreviouslyGrounded = m_CharacterController.isGrounded;
 		}
 
