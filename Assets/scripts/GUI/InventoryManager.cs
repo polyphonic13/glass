@@ -76,7 +76,7 @@ public class InventoryManager {
 				// Debug.Log("about to Draw texture for " + currentInventoryItem.iconTexture + ", currentRect = " + currentRect);
 				GUI.Box (new Rect (currentRect.x, currentRect.y, ICON_WIDTH_HEIGHT, ITEM_NAME_HEIGHT), currentInventoryItem.ItemName);
 				GUI.DrawTexture (new Rect (currentRect.x, currentRect.y + ITEM_NAME_HEIGHT, currentRect.width, currentRect.height), currentInventoryItem.iconTexture);
-				Rect controlBtnRect = new Rect (currentRect.x, (currentRect.y + ICON_WIDTH_HEIGHT + 5 + ITEM_NAME_HEIGHT), ICON_WIDTH_HEIGHT / 2, 20);
+				var controlBtnRect = new Rect (currentRect.x, (currentRect.y + ICON_WIDTH_HEIGHT + 5 + ITEM_NAME_HEIGHT), ICON_WIDTH_HEIGHT / 2, 20);
 				if (GUI.Button (controlBtnRect, "Detail")) {
 					_detailInventoryItem = currentInventoryItem as CollectableItem;
 					ShowInventory = false;
@@ -115,7 +115,7 @@ public class InventoryManager {
 		if(_detailInventoryItem != null) {
 			var detailImgLeft = Screen.width / 2 - DETAIL_IMG_WIDTH_HEIGHT / 2;
 			var detailImgTop = Screen.height / 2 - DETAIL_IMG_WIDTH_HEIGHT / 2;
-			Rect detailRect = new Rect(detailImgLeft, detailImgTop, DETAIL_IMG_WIDTH_HEIGHT + 10, DETAIL_IMG_WIDTH_HEIGHT + 50);
+			var detailRect = new Rect(detailImgLeft, detailImgTop, DETAIL_IMG_WIDTH_HEIGHT + 10, DETAIL_IMG_WIDTH_HEIGHT + 50);
 			DrawBackground("Item detail: " + _detailInventoryItem.ItemName);
 			// Debug.Log("building detail of: " + _detailInventoryItem.name);
 			GUI.Box(detailRect, _detailInventoryItem.description);
@@ -133,7 +133,7 @@ public class InventoryManager {
 	}
 	
 	public void DropItem() {
-		CollectableItem item = _itemsHash[EquippedItem] as CollectableItem;
+		var item = _itemsHash[EquippedItem] as CollectableItem;
 		item.Drop();
 		_itemToDelete = EquippedItem;
 		IsHouseKeepingNeeded = true;
