@@ -1,48 +1,44 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class ItemContainer : CollidableParent {
 	
-	public string[] collectableItems; 
+	public string[] _collectableItems; 
 	
-	private GameObject _containerSpot;
-	private int _collectedItems = 0;
+	private int _collectedItems;
 	
 	void Awake() {
 		Init();
-		_containerSpot = transform.Search("containerSpot").gameObject;
-		Debug.Log("ItemContainer/Awake, _containerSpot = " + _containerSpot);
 	}
 	
-	public override void onCollision(GameObject collisionTarget) {
-		Debug.Log("ItemContainer/onChildCollision, collisionTarget.transform.parent.name = " + collisionTarget.transform.parent.name);
-		string parentName = collisionTarget.transform.parent.name;
-		foreach(string ci in collectableItems) {
+	public override void OnCollision(GameObject target) {
+		Debug.Log("ItemContainer/onChildCollision, target.transform.parent.name = " + target.transform.parent.name);
+		string parentName = target.transform.parent.name;
+		foreach(string ci in _collectableItems) {
 			Debug.Log(" ci = " + ci);
 			if(parentName == ci) {
 				string evt = ci + "_Collected";
 				Debug.Log("  triggering: " + evt);
-				EventCenter.Instance.triggerEvent(evt);
+				EventCenter.Instance.TriggerEvent(evt);
 				_collectedItems++;
-				InitCollidableChild(collisionTarget.transform.parent.transform.gameObject);
+				InitCollidableChild(target.transform.parent.transform.gameObject);
 			}
-			handleColliderItemWeight(collisionTarget);
+			HandleColliderItemWeight(target);
 			
-			if(_collectedItems >= collectableItems.Length) {
-				EventCenter.Instance.collectedEvent(name + "_AllCollected");
+			if(_collectedItems >= _collectableItems.Length) {
+				EventCenter.Instance.TriggerCollectedEvent(name + "_AllCollected");
 			}
 		}
 	}
 
-	public override void positionChild(GameObject child) {
-		Debug.Log("ItemContainer/positionChild, child = " + child.name + ", _containerSpot = " + _containerSpot.name);
-		child.transform.parent = _containerSpot.transform;
-		child.transform.position = _containerSpot.transform.position;
-		child.transform.rotation = _containerSpot.transform.rotation; 
+	public override void PositionChild(GameObject child) {
+		Debug.Log("ItemContainer/PositionChild, child = " + child.name);
+		child.transform.parent = transform;
+		child.transform.position = transform.position;
+		child.transform.rotation = transform.rotation; 
 		
 		ItemWeight itemWeight = child.GetComponent<ItemWeight>();
 		if(itemWeight != null) {
-			itemWeight.killSelf();
+			itemWeight.KillSelf();
 		}
 	}
 }

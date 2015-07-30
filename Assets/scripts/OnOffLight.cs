@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 
 public class OnOffLight : InteractiveElement {
 
@@ -12,14 +11,13 @@ public class OnOffLight : InteractiveElement {
 	}
 	
 	public void InitOnOffLight() {
-		bulb = transform.Search("light_bulb").light;
 		bulb.enabled = enabled;
 	}
 
 	public override void OnHighlightStart() {
-//		Debug.Log("OnOffLight[ " + name + " ]/OnHighlightStart, isRoomActive = " + isRoomActive + ", isEnabled = " + isEnabled);
-		if(isRoomActive && isEnabled) {
-			mouseOver();
+//		Debug.Log("OnOffLight[ " + name + " ]/OnHighlightStart, IsRoomActive = " + IsRoomActive + ", _isEnabled = " + _isEnabled);
+		if(IsRoomActive && _isEnabled) {
+			OnHighlightStart();
 		}
 	}
 
@@ -28,11 +26,11 @@ public class OnOffLight : InteractiveElement {
 	}
 
 	public override void InputTaken() {
-		Debug.Log("OnOffLight[ " + name + " ]/InputTaken, isRoomActive = " + isRoomActive);
-		if(isRoomActive) {
-			var difference = Vector3.Distance(Camera.mainCamera.gameObject.transform.position, transform.position);
+		Debug.Log("OnOffLight[ " + name + " ]/InputTaken, IsRoomActive = " + IsRoomActive);
+		if(IsRoomActive) {
+			var difference = Vector3.Distance(Camera.main.gameObject.transform.position, transform.position);
 			//			Debug.Log("  difference = " + difference + ", bulb.enabled = " + bulb.enabled);
-			if(difference < interactDistance) {
+			if(difference < _interactDistance) {
 				Toggle();
 			}
 		}

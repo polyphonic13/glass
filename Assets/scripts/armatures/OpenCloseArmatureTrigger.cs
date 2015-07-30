@@ -21,7 +21,7 @@ public class OpenCloseArmatureTrigger : ArmatureTrigger {
 	}
 	
 	public void HandleOpenClose() {
-//		Debug.Log("OpenCloseArmatureChild[ " + name + " ]/handleOpenClose, IsOpen = " + IsOpen);
+//		Debug.Log("OpenCloseArmatureChild[ " + name + " ]/HandleOpenClose, IsOpen = " + IsOpen);
 		if(IsOpen) {
 			SendAnimationToPops(_closeClip.name, _parentBone);
 		} else {

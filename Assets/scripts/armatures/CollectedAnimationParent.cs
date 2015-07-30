@@ -10,7 +10,7 @@ public class CollectedAnimationParent : EventAnimationParent {
 	public void InitEventAnimationParent() {
 		Debug.Log("CollectedAnimationParent[ " + name + " ]/InitEventAnimationParent");
 		if(eventName != "") {
-			EventCenter.Instance.onCollectedEvent += onTriggerEvent;
+			EventCenter.Instance.OnTriggerCollectedEvent += OnTriggerEvent;
 		}
 		Init();
 	}

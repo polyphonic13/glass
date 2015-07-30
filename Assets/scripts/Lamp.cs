@@ -14,7 +14,7 @@ public class Lamp : OnOffLight {
 		_lampshade = GetComponentInChildren<Lampshade>();
 		if(_lampshade != null) {
 //			Debug.Log ("_lampshade = " + _lampshade.gameObject.transform.renderer.material.mainTexture);
-			_lampshade.gameObject.transform.renderer.material = _lampshade.offMaterial;
+			_lampshade.gameObject.transform.GetComponent<Renderer>().material = _lampshade.offMaterial;
 		}
 		InitOnOffLight();
 	}
@@ -23,9 +23,9 @@ public class Lamp : OnOffLight {
 		ToggleBulb(bulb);
 		if(_lampshade != null) {
 			if(GetIsOn()) {
-				_lampshade.gameObject.transform.renderer.material = _lampshade.onMaterial;
+				_lampshade.gameObject.transform.GetComponent<Renderer>().material = _lampshade.onMaterial;
 			} else {
-				_lampshade.gameObject.transform.renderer.material = _lampshade.offMaterial;
+				_lampshade.gameObject.transform.GetComponent<Renderer>().material = _lampshade.offMaterial;
 			}
 		}
 	}

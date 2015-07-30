@@ -104,11 +104,11 @@ public class Player : MonoBehaviour {
 
 	public void enablePlayer(bool enable) {
 		// Debug.Log("Player/enablePlayer, disable = " + disable);
-		headController.isEnabled = enable;
+		headController._isEnabled = enable;
 		var mouseLook = GetComponent<MouseLook>();
-		mouseLook.isEnabled = enable;
+		mouseLook._isEnabled = enable;
 		var cameraMouseLook = camera.GetComponent<MouseLook>();
-		cameraMouseLook.isEnabled = enable;
+		cameraMouseLook._isEnabled = enable;
 		CharacterMotor character = GetComponent<CharacterMotor>();
 		character.SetControllable(enable);
 		Screen.lockCursor = enable;

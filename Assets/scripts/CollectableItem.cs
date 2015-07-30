@@ -2,23 +2,20 @@ using UnityEngine;
 
 public class CollectableItem : InteractiveElement {
 
-	public string _itemName = "";
-	public string _description = "";
+	public string description = "";
 	// TBD: extend class with ContainableItem:
 	public string _targetContainerName = "";
 	
-	public Texture _iconTexture;
-	public Texture _detailTexture;
-
-	public bool _isEquipable;
-	public bool _isDroppable;
+	public Texture iconTexture;
+	public Texture detailTexture;
 
 	private Vector3 _originalSize;
 
 	public bool IsCollected { get; set; }
 	public bool IsEquipped { get; set; }
-	
-	
+	public string ItemName { get; set; }
+	public bool IsDroppable { get; set; }
+	public bool IsEquipable { get; set; }
 	// private Player _player;
 	
 	public ItemWeight _weight; 
@@ -62,7 +59,7 @@ public class CollectableItem : InteractiveElement {
 
 	public override void InputTaken() {
 		Debug.Log("CollectableItem/InputTaken, name = " + name);
-		var difference = Vector3.Distance(Camera.mainCamera.gameObject.transform.position, transform.position);
+		var difference = Vector3.Distance(Camera.main.gameObject.transform.position, transform.position);
 		if(difference < _interactDistance) {
 			if(!IsCollected) {
 				AddToInventory();

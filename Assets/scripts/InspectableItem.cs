@@ -20,11 +20,11 @@ public class InspectableItem : InteractiveElement {
 	}
 
 	public override void InputTaken() {
-		var difference = Vector3.Distance(Camera.mainCamera.gameObject.transform.position, transform.position);
-		if(difference < interactDistance) {
-//			Debug.Log("InspectableItem/OnInputTaken, isRoomActive = " + isRoomActive);
-			if(isRoomActive) {
-				EventCenter.Instance.addNote(description);
+		var difference = Vector3.Distance(Camera.main.gameObject.transform.position, transform.position);
+		if(difference < _interactDistance) {
+//			Debug.Log("InspectableItem/OnInputTaken, IsRoomActive = " + IsRoomActive);
+			if(IsRoomActive) {
+				EventCenter.Instance.AddNote(description);
 			}
 		}
 	}

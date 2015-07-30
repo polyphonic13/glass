@@ -14,8 +14,8 @@ public class ArmatureTrigger : InteractiveElement {
 	}
 
 	public override void InputTaken() {
-//		Debug.Log ("ArmatureTrigger[" + name + "]/InputTaken, isRoomActive = " + isRoomActive + ", enabled = " + enabled);
-//		if(isRoomActive && isEnabled) {
+//		Debug.Log ("ArmatureTrigger[" + name + "]/InputTaken, IsRoomActive = " + IsRoomActive + ", enabled = " + enabled);
+//		if(IsRoomActive && _isEnabled) {
 			var difference = Vector3.Distance(PlayerHead.position, transform.position);
 			if(difference <= _interactDistance) {
 				HandleAnimation();

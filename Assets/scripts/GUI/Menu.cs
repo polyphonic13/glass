@@ -1,11 +1,10 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class Menu {
 
-	public bool showMenu { get; set; }
+	public bool IsShowable { get; set; }
 	
-	private string[] _controlKeys =  new string [9] {
+	private string[] _controlKeys =  {
 		"mouse",
 		"w",
 		"s",
@@ -17,7 +16,7 @@ public class Menu {
 		"x"
 	};
 	
-	private string[] _controlDescriptions = new string[9] {
+	private string[] _controlDescriptions = {
 		"Look / move direction",
 		"Move forward",
 		"Move backwards",
@@ -51,18 +50,18 @@ public class Menu {
 		_style = style;
 	}
 		
-	public void draw() {
-		EventCenter.Instance.enablePlayer(false);
-		drawBackground("Menu");
-		Rect columnBg = new Rect(0, 30, Screen.width/2 - 60, Screen.height - 60);
+	public void Draw() {
+		EventCenter.Instance.EnablePlayer(false);
+		DrawBackground();
+		var columnBg = new Rect(0, 30, Screen.width/2 - 60, Screen.height - 60);
 		GUI.Box(new Rect(10, columnBg.y, columnBg.width, columnBg.height), CONTROLS);
-		drawControls();
+		DrawControls();
 		GUI.Box(new Rect(Screen.width/2 + 30, columnBg.y, columnBg.width, columnBg.height), ICONS);
-		drawCursors();
+		DrawCursors();
 	}
 	
-	public void drawControls() {
-//		Debug.Log("Menu/drawControls");
+	public void DrawControls() {
+//		Debug.Log("Menu/DrawControls");
 		for(int i = 0; i < _controlKeys.Length; i++) {
 //			Debug.Log("  c = " + c.Key + ", value = " + c.Value);
 			GUI.skin.label.alignment = TextAnchor.LowerLeft;
@@ -71,14 +70,14 @@ public class Menu {
 		GUI.Label(new Rect(50, ((_controlKeys.Length + 1) * (CONTROL_DESCRIPTION_HEIGHT + 20)), DESCRIPTION_WIDTH, CONTROL_DESCRIPTION_HEIGHT), "Mouse X sensitivity: " + Mathf.Floor(_mouseSensitivity));
 		
 		_mouseSensitivity =  Mathf.Floor(GUI.HorizontalSlider(new Rect(100, ((_controlKeys.Length + 1) * (CONTROL_DESCRIPTION_HEIGHT + 20)), 100, 30), _mouseSensitivity, MIN_MOUSE_SENSITIVITY, MAX_MOUSE_SENSITIVITY));
-		EventCenter.Instance.changeMouseSensitivity(_mouseSensitivity);
+		EventCenter.Instance.ChangeMouseSensitivity(_mouseSensitivity);
 	}
 	
-	public void drawCursors() {
+	public void DrawCursors() {
 		MouseManager mouseManager = MouseManager.Instance;
 		string[] descriptions = mouseManager.getCursorDescriptions();
 		Texture2D[] icons = mouseManager.cursors;
-//		Debug.Log("Menu/drawCursors, descriptions.length = " + descriptions.Length);
+//		Debug.Log("Menu/DrawCursors, descriptions.length = " + descriptions.Length);
 
 		for(int i = 0; i < descriptions.Length; i++) {
 		    GUI.skin.label.alignment = TextAnchor.LowerLeft;
@@ -88,16 +87,16 @@ public class Menu {
 		}
 	}
 	
-	public void drawBackground(string title) {
+	public void DrawBackground() {
 		GUI.Box(new Rect(5, 5, Screen.width - 10, Screen.height - 10), MENU_TITLE /*, _style */);
 	}
 	
-	public void destroy() {
-		// Debug.Log("Notification/destroy");	
-		showMenu = false;
+	public void Destroy() {
+		// Debug.Log("Notification/Destroy");	
+		IsShowable = false;
 		EventCenter eventCenter = EventCenter.Instance;
-		eventCenter.enablePlayer(true);
-		eventCenter.changeMouseSensitivity(_mouseSensitivity);
+		eventCenter.EnablePlayer(true);
+		eventCenter.ChangeMouseSensitivity(_mouseSensitivity);
 	}
 
 }

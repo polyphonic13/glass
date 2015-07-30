@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class CollidableParent : MonoBehaviour {
 	
@@ -23,36 +22,36 @@ public class CollidableParent : MonoBehaviour {
 	public void InitCollidableChild(GameObject child) {
 //		Debug.Log("Adding CollidableChild to " + child.name);
 		CollidableChild touchableChild = child.AddComponent<CollidableChild>();
-		touchableChild.onChildCollision += onChildCollision;
+		touchableChild.OnChildCollision += OnChildCollision;
 	}
 	
-	public void onChildCollision(GameObject collisionTarget) {
+	public void OnChildCollision(GameObject collisionTarget) {
 //		Debug.Log("CollidableParent/onChildCollision, collisionTarget = " + collisionTarget.name);
-		onCollision(collisionTarget);
+		OnCollision(collisionTarget);
 	}
 	
-	public virtual void onCollision(GameObject target) {
-		handleColliderItemWeight(target);
+	public virtual void OnCollision(GameObject target) {
+		HandleColliderItemWeight(target);
 	}
 	
-	public void handleColliderItemWeight(GameObject target) {
+	public void HandleColliderItemWeight(GameObject target) {
 //		Debug.Log("CollidableParent[ " + name + " ]/_onCollision, collisionTarget = " + target.name);
 		if(target.name == "weight(Clone)") {
 //			Debug.Log(" it is a weight");
 			ItemWeight itemWeight = target.GetComponent<ItemWeight>();
-//			Debug.Log("  itemWeight = " + itemWeight + ", targetContainerName = " + itemWeight.targetContainerName);
-			if(itemWeight.targetContainerName != null && itemWeight.targetContainerName == name) {
-//				Debug.Log("  itemWeight.parent = " + itemWeight.parentObject);
-				positionChild(itemWeight.parentObject);
+//			Debug.Log("  itemWeight = " + itemWeight + ", TargetContainerName = " + itemWeight.TargetContainerName);
+			if(itemWeight.TargetContainerName != null && itemWeight.TargetContainerName == name) {
+//				Debug.Log("  itemWeight.parent = " + itemWeight.ParentObject);
+				PositionChild(itemWeight.ParentObject);
 			}
 		}
 	}
 	
 	void OnCollisionEnter(Collision target) {
-		onCollision(target.transform.gameObject);
+		OnCollision(target.transform.gameObject);
 	}
 	
-	public virtual void positionChild(GameObject child) {
+	public virtual void PositionChild(GameObject child) {
 		// implement
 	}
 }

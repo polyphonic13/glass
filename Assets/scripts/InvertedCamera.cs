@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class InvertedCamera : MonoBehaviour {
 	public int forward = 1;
@@ -12,16 +11,16 @@ public class InvertedCamera : MonoBehaviour {
 		gameObject.SetActive (false);
 
 		var eventCenter = EventCenter.Instance;
-		eventCenter.onRoomEntered += onRoomEntered;
-		eventCenter.onRoomExited += onRoomExited;
+		eventCenter.OnRoomEntered += OnRoomEntered;
+		eventCenter.OnRoomExited += OnRoomExited;
 	}
 
 	// EXAMPLE WITH CAMERA UPSIDEDOWN
 	void OnPreCull() {
 //		Debug.Log ("InvertedCamera/OnPreCull");
-		camera.ResetWorldToCameraMatrix();
-		camera.ResetProjectionMatrix();
-		camera.projectionMatrix = camera.projectionMatrix * Matrix4x4.Scale(new Vector3(forward, up, right));
+		GetComponent<Camera>().ResetWorldToCameraMatrix();
+		GetComponent<Camera>().ResetProjectionMatrix();
+		GetComponent<Camera>().projectionMatrix = GetComponent<Camera>().projectionMatrix * Matrix4x4.Scale(new Vector3(forward, up, right));
 	}
 	
 	void OnPreRender() {
@@ -33,18 +32,18 @@ public class InvertedCamera : MonoBehaviour {
 	}
 	
 
-	public virtual void onRoomEntered(string room) {
-		Debug.Log("InvertedCamera["+name+"]/onRoomEntered: " + room + ", containingRoom: " + containingRoom);
+	public virtual void OnRoomEntered(string room) {
+		Debug.Log("InvertedCamera["+name+"]/OnRoomEntered: " + room + ", containingRoom: " + containingRoom);
 		if(room == containingRoom) {
-//			isRoomActive = true;
+//			IsRoomActive = true;
 			gameObject.SetActive(true);
 		}
 	}
 	
-	public void onRoomExited(string room) {
-		Debug.Log("InvertedCamera["+name+"]/onRoomExited: " + room + ", containingRoom: " + containingRoom);
+	public void OnRoomExited(string room) {
+		Debug.Log("InvertedCamera["+name+"]/OnRoomExited: " + room + ", containingRoom: " + containingRoom);
 		if(room == containingRoom) {
-//			isRoomActive = false;
+//			IsRoomActive = false;
 			gameObject.SetActive(false);
 		}
 	}

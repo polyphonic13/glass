@@ -13,17 +13,17 @@ public class EventUnlockTrigger : LockableArmatureTrigger {
 	}
 	
 	public void InitEventUnlockTrigger() {
-		EventCenter.Instance.onTriggerEvent += onUnlockEvent;
+		EventCenter.Instance.OnTriggerEvent += onUnlockEvent;
 		Init();	
 	}
 
 	public void onUnlockEvent(string evt) {
 		Debug.Log("EventUnlockTrigger[ " + name + " ]/onUnlockEvent, evt = " + evt + ", unlockEvent = " + unlockEvent);
 		if(evt == unlockEvent) {
-			isLocked = false;
-			isEnabled = true;
+			IsLocked = false;
+			_isEnabled = true;
 			if(unlockClip != null) {
-				sendAnimationToPops(unlockClip.name, parentBone);
+				SendAnimationToPops(unlockClip.name, _parentBone);
 			}
 			var eventCenter = EventCenter.Instance;
 			string msg;
@@ -32,13 +32,13 @@ public class EventUnlockTrigger : LockableArmatureTrigger {
 			} else {
 				msg = name + " unlocked";
 			}
-			eventCenter.addNote(msg);
+			eventCenter.AddNote(msg);
 			houseKeeping();
-			Debug.Log(" it is now unlocked: isLocked = " + isLocked + ", isEnabled = " + isEnabled);
+			Debug.Log(" it is now unlocked: IsLocked = " + IsLocked + ", _isEnabled = " + _isEnabled);
 		}
 	}
 	
 	public virtual void houseKeeping() {
-		EventCenter.Instance.onTriggerEvent -= onUnlockEvent;
+		EventCenter.Instance.OnTriggerEvent -= onUnlockEvent;
 	}
 }

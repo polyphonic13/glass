@@ -9,12 +9,12 @@ public class ContainerUnlockTrigger : EventUnlockTrigger
 	}
 	
 	void InitContainerUnlockTrigger() {
-		EventCenter.Instance.onCollectedEvent += onUnlockEvent;
+		EventCenter.Instance.OnTriggerCollectedEvent += onUnlockEvent;
 		Init();
 	}
 	
 	public override void houseKeeping() {
-		EventCenter.Instance.onCollectedEvent -= onUnlockEvent;
+		EventCenter.Instance.OnTriggerCollectedEvent -= onUnlockEvent;
 	}
 }
 

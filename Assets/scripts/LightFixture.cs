@@ -46,7 +46,7 @@ public class LightFixture : OnOffLight {
 	public void ToggleBulbs() {
 		Debug.Log("LightFixture/ToggleBulbs");
 		foreach(Transform bulb in _bulbs) {
-			ToggleBulb(bulb.light);
+			ToggleBulb(bulb.GetComponent<Light>());
 		}
 	} 
 	
@@ -61,10 +61,10 @@ public class LightFixture : OnOffLight {
 	}
 	
 	private void _turnOffSelfIllum(OnOffSelfIllum onOffSelfIllum) {
-		onOffSelfIllum.gameObject.transform.renderer.material = onOffSelfIllum.offMaterial;
+		onOffSelfIllum.gameObject.transform.GetComponent<Renderer>().material = onOffSelfIllum.offMaterial;
 	}
 
 	private void _turnOnSelfIllum(OnOffSelfIllum onOffSelfIllum) {
-		onOffSelfIllum.gameObject.transform.renderer.material = onOffSelfIllum.onMaterial;
+		onOffSelfIllum.gameObject.transform.GetComponent<Renderer>().material = onOffSelfIllum.onMaterial;
 	}
 }
