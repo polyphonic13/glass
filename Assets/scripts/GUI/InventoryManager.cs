@@ -27,10 +27,10 @@ public class InventoryManager {
 	
 	private string _itemToDelete = ""; 
 	
-	public void init(GUIStyle style) {
-		this.showInventory = false;
-		this.showDetail = false;
-		this.houseKeepingNeeded = false;
+	public void Init(GUIStyle style) {
+		showInventory = false;
+		showDetail = false;
+		houseKeepingNeeded = false;
 		_style = style;
 		_itemsHash = new Hashtable();
 		_offset = new Vector2(10, 10);
@@ -61,14 +61,14 @@ public class InventoryManager {
 		}
 	}
 
-	public void drawSummary () {
+	public void drawSummary() {
 		EventCenter.Instance.enablePlayer(false);
 		int j;
 		int k;
 //		InventoryItem currentInventoryItem = null;
 		CollectableItem currentInventoryItem = null;
 		Rect currentRect;
-		this.drawBackground ("Inventory");
+		drawBackground ("Inventory");
 
 		int i = 0;
 		Hashtable _tempItems = _itemsHash;
@@ -86,8 +86,8 @@ public class InventoryManager {
 				Rect controlBtnRect = new Rect (currentRect.x, (currentRect.y + ICON_WIDTH_HEIGHT + 5 + ITEM_NAME_HEIGHT), ICON_WIDTH_HEIGHT / 2, 20);
 				if (GUI.Button (controlBtnRect, "Detail")) {
 					_detailInventoryItem = currentInventoryItem as CollectableItem;
-					this.showInventory = false;
-					this.showDetail = true;
+					showInventory = false;
+					showDetail = true;
 				}
 
 				GUI.enabled = currentInventoryItem.isEquipable;
@@ -118,24 +118,24 @@ public class InventoryManager {
 	
 	public void drawDetail() {
 		EventCenter.Instance.enablePlayer(false);
-//		Debug.Log("drawDetail = " + this.showDetail + ", _detailInventoryItem = " + _detailInventoryItem);
+//		Debug.Log("drawDetail = " + showDetail + ", _detailInventoryItem = " + _detailInventoryItem);
 		if(_detailInventoryItem != null) {
 			var detailImgLeft = Screen.width / 2 - DETAIL_IMG_WIDTH_HEIGHT / 2;
 			var detailImgTop = Screen.height / 2 - DETAIL_IMG_WIDTH_HEIGHT / 2;
 			Rect detailRect = new Rect(detailImgLeft, detailImgTop, DETAIL_IMG_WIDTH_HEIGHT + 10, DETAIL_IMG_WIDTH_HEIGHT + 50);
-			this.drawBackground("Item detail: " + _detailInventoryItem.itemName);
+			drawBackground("Item detail: " + _detailInventoryItem.itemName);
 			// Debug.Log("building detail of: " + _detailInventoryItem.name);
 			GUI.Box(detailRect, _detailInventoryItem.description);
 			GUI.DrawTexture(new Rect(detailImgLeft + 5, detailImgTop + 45, DETAIL_IMG_WIDTH_HEIGHT, DETAIL_IMG_WIDTH_HEIGHT), _detailInventoryItem.iconTexture);
 			if(GUI.Button(new Rect(detailImgLeft - 100, 75, 100, 20), "back")) {
 				_detailInventoryItem = null;
-				this.showDetail = false;
-				this.showInventory = true;
+				showDetail = false;
+				showInventory = true;
 			}
 		} else {
 			Debug.Log("ERROR: _detailInventoryItem is null");
-			this.showDetail = false;
-			this.showInventory = false;
+			showDetail = false;
+			showInventory = false;
 		}
 	}
 	
@@ -143,7 +143,7 @@ public class InventoryManager {
 		CollectableItem item = _itemsHash[equippedItem] as CollectableItem;
 		item.drop();
 		_itemToDelete = equippedItem;
-		this.houseKeepingNeeded = true;
+		houseKeepingNeeded = true;
 		_resetEquippedItem();
 	}
 	
@@ -153,7 +153,7 @@ public class InventoryManager {
 			_itemsHash.Remove(_itemToDelete);
 			_itemToDelete = "";
 		}
-		this.houseKeepingNeeded = false;
+		houseKeepingNeeded = false;
 	}
 	
 	public void drawBackground(string title) {
@@ -161,21 +161,21 @@ public class InventoryManager {
 	}
 	
 	public void close() {
-		this.showInventory = false;
-		this.showDetail = false;
+		showInventory = false;
+		showDetail = false;
 		EventCenter.Instance.enablePlayer(true);
 	}
 
 	private void _equipAndClose(string itemName) {
 		EventCenter.Instance.equipItem(itemName);
-		this.equippedItem = itemName;
-		this.isItemEquipped = true;
+		equippedItem = itemName;
+		isItemEquipped = true;
 		close();
 	}
 	
 	private void _resetEquippedItem() {
-		this.equippedItem = "";
-		this.isItemEquipped = false;
+		equippedItem = "";
+		isItemEquipped = false;
 	}
 	
 	private void _dropAndClose(string itemName) {

@@ -7,46 +7,46 @@ public class OnOffLight : InteractiveElement {
 	public bool enabled = false;
 
 	void Awake() {
-		initOnOffLight();
-		init(MouseManager.Instance.INTERACT_CURSOR);
+		InitOnOffLight();
+		Init(MouseManager.Instance.INTERACT_CURSOR);
 	}
 	
-	public void initOnOffLight() {
-		bulb = this.transform.Search("light_bulb").light;
+	public void InitOnOffLight() {
+		bulb = transform.Search("light_bulb").light;
 		bulb.enabled = enabled;
 	}
 
-	public override void OnMouseOver() {
-//		Debug.Log("OnOffLight[ " + this.name + " ]/OnMouseOver, isRoomActive = " + this.isRoomActive + ", isEnabled = " + this.isEnabled);
-		if(this.isRoomActive && this.isEnabled) {
+	public override void OnHighlightStart() {
+//		Debug.Log("OnOffLight[ " + name + " ]/OnHighlightStart, isRoomActive = " + isRoomActive + ", isEnabled = " + isEnabled);
+		if(isRoomActive && isEnabled) {
 			mouseOver();
 		}
 	}
 
-	public void OnMouseDown() {
-		this.mouseClick ();
+	public void OnInputTaken() {
+		InputTaken();
 	}
 
-	public override void mouseClick() {
-		Debug.Log("OnOffLight[ " + this.name + " ]/mouseClick, isRoomActive = " + this.isRoomActive);
-		if(this.isRoomActive) {
-			var difference = Vector3.Distance(Camera.mainCamera.gameObject.transform.position, this.transform.position);
+	public override void InputTaken() {
+		Debug.Log("OnOffLight[ " + name + " ]/InputTaken, isRoomActive = " + isRoomActive);
+		if(isRoomActive) {
+			var difference = Vector3.Distance(Camera.mainCamera.gameObject.transform.position, transform.position);
 			//			Debug.Log("  difference = " + difference + ", bulb.enabled = " + bulb.enabled);
 			if(difference < interactDistance) {
-				this.toggle();
+				Toggle();
 			}
 		}
 	}
 
-	public virtual void toggle() {
-		this.toggleBulb(bulb);
+	public virtual void Toggle() {
+		ToggleBulb(bulb);
 	}
 	
-	public void toggleBulb(Light light) {
+	public void ToggleBulb(Light light) {
 		light.enabled = !light.enabled;
 	}
 	
-	public bool getIsOn() {
+	public bool GetIsOn() {
 		return bulb.enabled;
 	}
 }

@@ -25,12 +25,12 @@ public class MirrorCameraFollow : MonoBehaviour {
 		_myTransform = transform;
 	}
 	
-	// Use this for initialization
-	void Start () {
+	// Use this for Initialization
+	void Start() {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update() {
 		
 	}
 	void LateUpdate() {

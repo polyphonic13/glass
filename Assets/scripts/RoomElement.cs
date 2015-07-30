@@ -6,8 +6,8 @@ public class RoomElement : MonoBehaviour {
 
 	public bool IsRoomActive { get; set; }
 
-	// Use this for initialization
-	void Awake () {
+	// Use this for Initialization
+	void Awake() {
 		Init();
 	}
 
@@ -19,7 +19,7 @@ public class RoomElement : MonoBehaviour {
 	}
 
 	// Update is called once per frame
-	void Update () {
+	void Update() {
 	
 	}
 

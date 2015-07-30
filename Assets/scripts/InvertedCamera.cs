@@ -9,43 +9,43 @@ public class InvertedCamera : MonoBehaviour {
 	public string containingRoom = "";
 
 	void Start() {
-		this.gameObject.SetActive (false);
+		gameObject.SetActive (false);
 
 		var eventCenter = EventCenter.Instance;
-		eventCenter.onRoomEntered += this.onRoomEntered;
-		eventCenter.onRoomExited += this.onRoomExited;
+		eventCenter.onRoomEntered += onRoomEntered;
+		eventCenter.onRoomExited += onRoomExited;
 	}
 
 	// EXAMPLE WITH CAMERA UPSIDEDOWN
-	void OnPreCull () {
+	void OnPreCull() {
 //		Debug.Log ("InvertedCamera/OnPreCull");
 		camera.ResetWorldToCameraMatrix();
 		camera.ResetProjectionMatrix();
 		camera.projectionMatrix = camera.projectionMatrix * Matrix4x4.Scale(new Vector3(forward, up, right));
 	}
 	
-	void OnPreRender () {
+	void OnPreRender() {
 		GL.SetRevertBackfacing(true);
 	}
 	
-	void OnPostRender () {
+	void OnPostRender() {
 		GL.SetRevertBackfacing(false);
 	}
 	
 
 	public virtual void onRoomEntered(string room) {
-		Debug.Log("InvertedCamera["+this.name+"]/onRoomEntered: " + room + ", containingRoom: " + this.containingRoom);
-		if(room == this.containingRoom) {
-//			this.isRoomActive = true;
-			this.gameObject.SetActive(true);
+		Debug.Log("InvertedCamera["+name+"]/onRoomEntered: " + room + ", containingRoom: " + containingRoom);
+		if(room == containingRoom) {
+//			isRoomActive = true;
+			gameObject.SetActive(true);
 		}
 	}
 	
 	public void onRoomExited(string room) {
-		Debug.Log("InvertedCamera["+this.name+"]/onRoomExited: " + room + ", containingRoom: " + this.containingRoom);
-		if(room == this.containingRoom) {
-//			this.isRoomActive = false;
-			this.gameObject.SetActive(false);
+		Debug.Log("InvertedCamera["+name+"]/onRoomExited: " + room + ", containingRoom: " + containingRoom);
+		if(room == containingRoom) {
+//			isRoomActive = false;
+			gameObject.SetActive(false);
 		}
 	}
 	

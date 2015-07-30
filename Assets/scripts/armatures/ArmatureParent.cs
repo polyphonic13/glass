@@ -29,7 +29,7 @@ public class ArmatureParent : MonoBehaviour {
 
 	public virtual void Init() {
 		_animation = GetComponent<Animation>();
-		Debug.Log("ArmatureParent[ " + name + " ]/init, _animation = " + _animation);
+		Debug.Log("ArmatureParent[ " + name + " ]/Init, _animation = " + _animation);
 		PlayDefaultAnimation();
 
 	}

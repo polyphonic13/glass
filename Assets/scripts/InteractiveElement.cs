@@ -7,7 +7,7 @@ public class InteractiveElement : MonoBehaviour {
 	public bool _isEnabled = true;
 	public bool _willHighlight = true; 
 	
-	private MouseManager _mouseManager;
+	// private MouseManager _mouseManager;
 	private int _activeCursor;
 
 	public Transform PlayerHead { get; set; }
@@ -18,7 +18,7 @@ public class InteractiveElement : MonoBehaviour {
 	}
 
 	public void Init(int activeCursor = 1) {
-//		Debug.Log("InteractiveElement[ " + name + " ]/init, activeCursor = " + activeCursor);
+//		Debug.Log("InteractiveElement[ " + name + " ]/Init, activeCursor = " + activeCursor);
 		PlayerHead = GameObject.Find("FirstPersonCharacter").gameObject.transform;
 //		_mouseManager = MouseManager.Instance;
 		_activeCursor = activeCursor;
@@ -53,9 +53,9 @@ public class InteractiveElement : MonoBehaviour {
 	public void OnInputTaken(string name) {
 //		if(IsRoomActive && _isEnabled) {
 //			Debug.Log ("InteractiveElement[" + name + "]/OnInputTaken, name = " + name);
-			if(name == this.name) {
+			if(name == name) {
 				Debug.Log (name + " was clicked");
-				InputTaken ();
+				InputTaken();
 			}
 //		}
 
@@ -64,18 +64,18 @@ public class InteractiveElement : MonoBehaviour {
 
 	}
 
-	public virtual void OnMouseOver() {
-//		Debug.Log("InteractiveElement[ " + name + " ]/OnMouseOver, IsRoomActive = " + IsRoomActive + ", _isEnabled = " + _isEnabled);
+	public virtual void OnHighlightStart() {
+//		Debug.Log("InteractiveElement[ " + name + " ]/OnHighlightStart, IsRoomActive = " + IsRoomActive + ", _isEnabled = " + _isEnabled);
 		if(IsRoomActive && _isEnabled) {
-			MouseOver();
+			Highlight();
 		}
 	}
 
-	public void MouseOver() {
-//		Debug.Log("InteractiveElement[ " + name + " ]/OnMouseOver, IsRoomActive = " + IsRoomActive);
+	public void Highlight() {
+//		Debug.Log("InteractiveElement[ " + name + " ]/OnHighlightStart, IsRoomActive = " + IsRoomActive);
 		var difference = Vector3.Distance(PlayerHead.position, transform.position);
 		if(difference < _interactDistance) {
-			_mouseManager.setCursorType(_activeCursor);
+			// _mouseManager.setCursorType(_activeCursor);
 			if(_willHighlight) {
 				AddHighlight();
 			}
@@ -86,20 +86,20 @@ public class InteractiveElement : MonoBehaviour {
 		
 	}
 	
-	public virtual void OnMouseExit() {
+	public virtual void OnHighlightEnd() {
 		if(IsRoomActive && _isEnabled) {
-			MouseExit();
+			HighlightEnd();
 		}
 	}
 
-	public void MouseExit() {
-		_mouseManager.setCursorType(MouseManager.Instance.DEFAULT_CURSOR);
+	public void HighlightEnd() {
+		// _mouseManager.setCursorType(MouseManager.Instance.DEFAULT_CURSOR);
 		if(_willHighlight) {
 			RemoveHighlight();
 		}
 	}
 	
 	public void RemoveHighlight() {
-		
+		Debug.Log("remove highlight");
 	}
 }

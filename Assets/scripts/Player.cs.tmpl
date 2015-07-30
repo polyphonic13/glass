@@ -24,16 +24,16 @@ public class Player : MonoBehaviour {
 		camera = Camera.main;
 		_lastPosition = camera.transform.position;
 		inventory = new InventoryManager();
-		inventory.init(basicStyle);
+		inventory.Init(basicStyle);
 		notification = new Notification();
-		notification.init(basicStyle);
+		notification.Init(basicStyle);
 		menu = new Menu();
-		menu.init(basicStyle);
+		menu.Init(basicStyle);
 		menu.showMenu = true;
 		EventCenter eventCenter = EventCenter.Instance;
-		eventCenter.onEnablePlayer += this.onEnablePlayer;
-		eventCenter.onMouseSensitivityChange += this.onMouseSensitivityChange;
-		headController = GetComponent<PlayerMeshController> ();
+		eventCenter.onEnablePlayer += onEnablePlayer;
+		eventCenter.onMouseSensitivityChange += onMouseSensitivityChange;
+		headController = GetComponent<PlayerMeshController>();
 	}
 	
 	void Update() {
@@ -73,22 +73,22 @@ public class Player : MonoBehaviour {
 //		Breadcrumb _breadcrumbClone = (Breadcrumb) Instantiate(breadcrumb, _lastPosition, camera.transform.rotation);
 	}
 
-	void OnGUI () {
-		MouseManager.Instance.drawCursor ();
+	void OnGUI() {
+		MouseManager.Instance.drawCursor();
 		//Debug.Log("Player/OnGUI, showInventory = " + inventory.showInventory + ", showDetail = " + inventory.showDetail);
 		if (inventory.showInventory) {
-			inventory.drawSummary ();
+			inventory.drawSummary();
 			if(notification.showNote) {
 				EventCenter.Instance.removeNote();
 			}
 		} else if (inventory.showDetail) {
-			inventory.drawDetail ();
+			inventory.drawDetail();
 		} else if(menu.showMenu) {
 			menu.draw();
 		} else if (notification.showNote) {
-			notification.drawNote ();
+			notification.drawNote();
 		} else if (inventory.houseKeepingNeeded) {
-			inventory.houseKeeping ();
+			inventory.houseKeeping();
 		}
 	}
 	

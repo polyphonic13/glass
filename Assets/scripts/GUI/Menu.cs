@@ -47,7 +47,7 @@ public class Menu {
 	
 	private GUIStyle _style;
 	
-	public void init(GUIStyle style) {
+	public void Init(GUIStyle style) {
 		_style = style;
 	}
 		
@@ -94,7 +94,7 @@ public class Menu {
 	
 	public void destroy() {
 		// Debug.Log("Notification/destroy");	
-		this.showMenu = false;
+		showMenu = false;
 		EventCenter eventCenter = EventCenter.Instance;
 		eventCenter.enablePlayer(true);
 		eventCenter.changeMouseSensitivity(_mouseSensitivity);

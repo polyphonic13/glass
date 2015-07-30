@@ -8,14 +8,14 @@ public class BreathingManager : MonoBehaviour {
 	private bool _isUnderWater;
 
 	private float _timeUnderWater;
-	// Use this for initialization
-	void Awake () {
+	// Use this for Initialization
+	void Awake() {
 		EventCenter.Instance.OnUnderWater += OnUnderWater;
 		_breathHoldTime = GameControl.Instance.RemainingBreath;
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update() {
 //		Debug.Log("BreathingManager/update under water =  " + _isUnderWater + ", time = " + _timeUnderWater);
 		if(_isUnderWater) {
 

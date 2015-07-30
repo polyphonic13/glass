@@ -6,23 +6,23 @@ public class Lamp : OnOffLight {
 	private Lampshade _lampshade;
 	
 	void Awake() {
-		initLamp();
-		init(MouseManager.Instance.INTERACT_CURSOR);
+		InitLamp();
+		Init(MouseManager.Instance.INTERACT_CURSOR);
 	}
 
-	void initLamp() {
+	void InitLamp() {
 		_lampshade = GetComponentInChildren<Lampshade>();
 		if(_lampshade != null) {
 //			Debug.Log ("_lampshade = " + _lampshade.gameObject.transform.renderer.material.mainTexture);
 			_lampshade.gameObject.transform.renderer.material = _lampshade.offMaterial;
 		}
-		initOnOffLight();
+		InitOnOffLight();
 	}
 	
-	public override void toggle() {
-		this.toggleBulb(this.bulb);
+	public override void Toggle() {
+		ToggleBulb(bulb);
 		if(_lampshade != null) {
-			if(this.getIsOn()) {
+			if(GetIsOn()) {
 				_lampshade.gameObject.transform.renderer.material = _lampshade.onMaterial;
 			} else {
 				_lampshade.gameObject.transform.renderer.material = _lampshade.offMaterial;

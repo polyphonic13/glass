@@ -9,19 +9,19 @@ public class EventUnlockTrigger : LockableArmatureTrigger {
 	public string unlockMessage = "";
 	
 	void Awake() {
-		initEventUnlockTrigger();
+		InitEventUnlockTrigger();
 	}
 	
-	public void initEventUnlockTrigger() {
+	public void InitEventUnlockTrigger() {
 		EventCenter.Instance.onTriggerEvent += onUnlockEvent;
-		init ();	
+		Init();	
 	}
 
 	public void onUnlockEvent(string evt) {
-		Debug.Log("EventUnlockTrigger[ " + this.name + " ]/onUnlockEvent, evt = " + evt + ", unlockEvent = " + unlockEvent);
+		Debug.Log("EventUnlockTrigger[ " + name + " ]/onUnlockEvent, evt = " + evt + ", unlockEvent = " + unlockEvent);
 		if(evt == unlockEvent) {
-			this.isLocked = false;
-			this.isEnabled = true;
+			isLocked = false;
+			isEnabled = true;
 			if(unlockClip != null) {
 				sendAnimationToPops(unlockClip.name, parentBone);
 			}
@@ -30,11 +30,11 @@ public class EventUnlockTrigger : LockableArmatureTrigger {
 			if(unlockMessage != "") {
 				msg = unlockMessage;
 			} else {
-				msg = this.name + " unlocked";
+				msg = name + " unlocked";
 			}
 			eventCenter.addNote(msg);
 			houseKeeping();
-			Debug.Log(" it is now unlocked: isLocked = " + this.isLocked + ", isEnabled = " + this.isEnabled);
+			Debug.Log(" it is now unlocked: isLocked = " + isLocked + ", isEnabled = " + isEnabled);
 		}
 	}
 	

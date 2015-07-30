@@ -9,8 +9,8 @@ public class ArmatureTrigger : InteractiveElement {
 		Init();
 	}
 	
-	public void OnMouseDown() {
-		InputTaken ();
+	public void OnInputTaken() {
+		InputTaken();
 	}
 
 	public override void InputTaken() {

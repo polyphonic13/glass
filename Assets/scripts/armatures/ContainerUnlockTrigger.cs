@@ -5,16 +5,16 @@ public class ContainerUnlockTrigger : EventUnlockTrigger
 {
 
 	void Awake() {
-		initContainerUnlockTrigger();
+		InitContainerUnlockTrigger();
 	}
 	
-	void initContainerUnlockTrigger() {
-		EventCenter.Instance.onCollectedEvent += this.onUnlockEvent;
-		init ();
+	void InitContainerUnlockTrigger() {
+		EventCenter.Instance.onCollectedEvent += onUnlockEvent;
+		Init();
 	}
 	
 	public override void houseKeeping() {
-		EventCenter.Instance.onCollectedEvent -= this.onUnlockEvent;
+		EventCenter.Instance.onCollectedEvent -= onUnlockEvent;
 	}
 }
 

@@ -3,27 +3,27 @@ using System.Collections;
 
 public class CollidableParent : MonoBehaviour {
 	
-	// Use this for initialization
-	void Awake () {
-		init ();	
+	// Use this for Initialization
+	void Awake() {
+		Init();	
 	}
 	
-	public void init() {
-		initCollidableChildren();
+	public void Init() {
+		InitCollidableChildren();
 	}
 	
-	public void initCollidableChildren() {
+	public void InitCollidableChildren() {
 		var childTransforms = gameObject.GetComponentsInChildren<Transform>();
 		
 		foreach(Transform childTransform in childTransforms) {
-			initCollidableChild(childTransform.gameObject);
+			InitCollidableChild(childTransform.gameObject);
 		}
 	}
 	
-	public void initCollidableChild(GameObject child) {
+	public void InitCollidableChild(GameObject child) {
 //		Debug.Log("Adding CollidableChild to " + child.name);
 		CollidableChild touchableChild = child.AddComponent<CollidableChild>();
-		touchableChild.onChildCollision += this.onChildCollision;
+		touchableChild.onChildCollision += onChildCollision;
 	}
 	
 	public void onChildCollision(GameObject collisionTarget) {
@@ -36,12 +36,12 @@ public class CollidableParent : MonoBehaviour {
 	}
 	
 	public void handleColliderItemWeight(GameObject target) {
-//		Debug.Log("CollidableParent[ " + this.name + " ]/_onCollision, collisionTarget = " + target.name);
+//		Debug.Log("CollidableParent[ " + name + " ]/_onCollision, collisionTarget = " + target.name);
 		if(target.name == "weight(Clone)") {
 //			Debug.Log(" it is a weight");
 			ItemWeight itemWeight = target.GetComponent<ItemWeight>();
 //			Debug.Log("  itemWeight = " + itemWeight + ", targetContainerName = " + itemWeight.targetContainerName);
-			if(itemWeight.targetContainerName != null && itemWeight.targetContainerName == this.name) {
+			if(itemWeight.targetContainerName != null && itemWeight.targetContainerName == name) {
 //				Debug.Log("  itemWeight.parent = " + itemWeight.parentObject);
 				positionChild(itemWeight.parentObject);
 			}

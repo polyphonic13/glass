@@ -8,7 +8,7 @@ public class UIPlayer_propertyText : MonoBehaviour {
 
 	private Text _text;
 
-	void Awake () {
+	void Awake() {
 		_text = GetComponent<Text>();
 		EventCenter.Instance.OnPlayerPropertyUpdated += OnPlayerPropertyUpdated;
 		updateText();

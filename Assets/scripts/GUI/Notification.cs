@@ -12,13 +12,13 @@ public class Notification {
 	
 	private bool _zoomNote = false;
 	
-	public void init(GUIStyle style) {
+	public void Init(GUIStyle style) {
 		_style = style;
-		// Debug.Log("Notification/init, _style = " + _style);
-		this.showNote = false;
+		// Debug.Log("Notification/Init, _style = " + _style);
+		showNote = false;
 		_eventCenter = EventCenter.Instance;
-		_eventCenter.onAddNote += this.onAddNote;
-		_eventCenter.onRemoveNote += this.onRemoveNote;
+		_eventCenter.onAddNote += onAddNote;
+		_eventCenter.onRemoveNote += onRemoveNote;
 	}
 	
     public void onAddNote(string msg, bool zoom = false) {
@@ -38,12 +38,12 @@ public class Notification {
 			_eventCenter.zoomCamera(true);
 		}
 		_eventCenter.enablePlayer(false);
-		this.showNote = true;
+		showNote = true;
 	}
 	
 	public void destroy() {
 		// Debug.Log("Notification/destroy");	
-		this.showNote = false;
+		showNote = false;
 		_content = "";
 		_eventCenter.enablePlayer(true);
 	}
@@ -51,7 +51,7 @@ public class Notification {
 	public void drawNote() {
 		GUI.Box(new Rect((Screen.width/2 - 250),(Screen.height/2 - 50), 500, 100), _content /*, _style */);
 		if(GUI.Button(new Rect((Screen.width/2 + 150),(Screen.height/2 - 70), 100, 20), "Close" /*, _style */)) {
-			this.destroy();
+			destroy();
 			if(_zoomNote) {
 				_eventCenter.zoomCamera(false);
 				_zoomNote = false;

@@ -6,24 +6,24 @@ public class InspectableItem : InteractiveElement {
 	public string description = "";
 
 	void Awake() {
-//		Debug.Log("InspectableItem[ " + this.name + " ]/Awake");
-		initInteractiveElement();
+//		Debug.Log("InspectableItem[ " + name + " ]/Awake");
+		InitInteractiveElement();
 	}
 
-	public void initInteractiveElement() {
-		init(MouseManager.Instance.MAGNIFY_CURSOR);
-//		init(3);
+	public void InitInteractiveElement() {
+		Init(MouseManager.Instance.MAGNIFY_CURSOR);
+//		Init(3);
 	}
 	
-	public void OnMouseDown() {
-		this.mouseClick ();
+	public void OnInputTaken() {
+		InputTaken();
 	}
 
-	public override void mouseClick() {
-		var difference = Vector3.Distance(Camera.mainCamera.gameObject.transform.position, this.transform.position);
+	public override void InputTaken() {
+		var difference = Vector3.Distance(Camera.mainCamera.gameObject.transform.position, transform.position);
 		if(difference < interactDistance) {
-//			Debug.Log("InspectableItem/OnMouseDown, this.isRoomActive = " + this.isRoomActive);
-			if(this.isRoomActive) {
+//			Debug.Log("InspectableItem/OnInputTaken, isRoomActive = " + isRoomActive);
+			if(isRoomActive) {
 				EventCenter.Instance.addNote(description);
 			}
 		}

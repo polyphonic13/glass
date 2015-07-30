@@ -9,7 +9,7 @@ public class FirstPersonMovement : MonoBehaviour {
 		_currentMovementType = _movementStates.Normal;
 	}
 
-	void Update () {
+	void Update() {
 
 		switch(_currentMovementType) {
 		case _movementStates.Normal:

@@ -4,15 +4,15 @@ using System.Collections;
 public class CollectedAnimationParent : EventAnimationParent {
 
 	void Awake() {
-		initEventAnimationParent();
+		InitEventAnimationParent();
 	}
 	
-	public void initEventAnimationParent() {
-		Debug.Log("CollectedAnimationParent[ " + this.name + " ]/initEventAnimationParent");
+	public void InitEventAnimationParent() {
+		Debug.Log("CollectedAnimationParent[ " + name + " ]/InitEventAnimationParent");
 		if(eventName != "") {
-			EventCenter.Instance.onCollectedEvent += this.onTriggerEvent;
+			EventCenter.Instance.onCollectedEvent += onTriggerEvent;
 		}
-		init();
+		Init();
 	}
 
 }

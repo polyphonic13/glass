@@ -4,14 +4,14 @@ public class Flashlight : MonoBehaviour {
 
 	private Light _bulb;
 
-	// Use this for initialization
-	void Start () {
+	// Use this for Initialization
+	void Start() {
 		_bulb = gameObject.GetComponent<Light>();
 		_bulb.enabled = false;
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update() {
 		if(Input.GetKeyDown(KeyCode.F)) {
 			_bulb.enabled = !_bulb.enabled;
 		}

@@ -5,8 +5,8 @@ public class Breadcrumb : MonoBehaviour {
 
 	public int lifeTime = 3;
 
-	// Use this for initialization
-	IEnumerator Start () {
+	// Use this for Initialization
+	IEnumerator Start() {
 		yield return new WaitForSeconds(lifeTime);
 		_killSelf();
 	}
@@ -14,6 +14,6 @@ public class Breadcrumb : MonoBehaviour {
 	// Update is called once per frame
 	void _killSelf() {
 		//Debug.Log("SlingshotBullet/_killSelf");
-		Destroy(this.gameObject);	
+		Destroy(gameObject);	
 	}
 }

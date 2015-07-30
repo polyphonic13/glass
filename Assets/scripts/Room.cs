@@ -5,8 +5,8 @@ public class Room : MonoBehaviour {
 	public bool _isStartingRoom;
 	public string _roomName;
 
-	// Use this for initialization
-	void Start () {
+	// Use this for Initialization
+	void Start() {
 		if(_isStartingRoom) {
 			EventCenter.Instance.EnterRoom(_roomName);
 		}

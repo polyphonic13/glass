@@ -11,12 +11,12 @@ public class StaminaManager : MonoBehaviour {
 
 	public static bool IsBoosted { get; set; }
 
-	void Awake () {
+	void Awake() {
 		_remainingStamina = _maxStamina = GameControl.Instance.RemainingStamina;
 		GameControl.Instance.UpdateStamina(_remainingStamina);
 	}
 
-	void Update () {
+	void Update() {
 		if(Input.GetKey(KeyCode.LeftShift)) {
 			if(_remainingStamina > 0) {
 				IsBoosted = true;

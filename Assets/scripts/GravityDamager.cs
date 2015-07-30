@@ -8,7 +8,7 @@ public class GravityDamager : MonoBehaviour {
 	private float _timeInAir;
 	private bool _isFalling; 
 
-	void Update () {
+	void Update() {
 		if(_isFalling) {
 			_timeInAir += Time.deltaTime;
 		}

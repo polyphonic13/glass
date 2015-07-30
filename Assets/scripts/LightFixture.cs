@@ -8,11 +8,11 @@ public class LightFixture : OnOffLight {
 	private bool isOn = true;
 	
 	void Awake() {
-		initLightFixture();
-		init(MouseManager.Instance.INTERACT_CURSOR);
+		InitLightFixture();
+		Init(MouseManager.Instance.INTERACT_CURSOR);
 	}
 
-	void initLightFixture() {
+	void InitLightFixture() {
 		_onOffSelfIllums = GetComponentsInChildren<OnOffSelfIllum>();
 		if(_onOffSelfIllums != null) {
 			_toggleSelfIllums(true);
@@ -26,27 +26,27 @@ public class LightFixture : OnOffLight {
 			}
 		}
 		Debug.Log("LightFixture, _bulbs.length = " + _bulbs);
-		this.toggleBulbs();
-//		initOnOffLight();
+		ToggleBulbs();
+//		InitOnOffLight();
 	}
 	
-	public override void toggle() {
-		Debug.Log("LightFixure/toggle, isOn = " + this.isOn);
+	public override void Toggle() {
+		Debug.Log("LightFixure/Toggle, isOn = " + isOn);
 		if(_onOffSelfIllums != null) {
-			if(this.isOn) {
+			if(isOn) {
 				_toggleSelfIllums(false);
 			} else {
 				_toggleSelfIllums(true);
 			}
 		}
-		this.isOn = !this.isOn;
-		this.toggleBulbs();
+		isOn = !isOn;
+		ToggleBulbs();
 	}
 	
-	public void toggleBulbs() {
-		Debug.Log("LightFixture/toggleBulbs");
+	public void ToggleBulbs() {
+		Debug.Log("LightFixture/ToggleBulbs");
 		foreach(Transform bulb in _bulbs) {
-			this.toggleBulb(bulb.light);
+			ToggleBulb(bulb.light);
 		}
 	} 
 	

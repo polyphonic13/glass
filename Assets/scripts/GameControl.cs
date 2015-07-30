@@ -34,8 +34,8 @@ public class GameControl : MonoBehaviour {
 		new Vector3(-4f, 15.5f, -30f)
 	};
 
-	// Use this for initialization
-	void Awake () {
+	// Use this for Initialization
+	void Awake() {
 		if(_instance == null) {
 			DontDestroyOnLoad(gameObject);
 			_instance = this;

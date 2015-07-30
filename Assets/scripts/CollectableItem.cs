@@ -54,14 +54,14 @@ public class CollectableItem : InteractiveElement {
 		}
 	}
 
-	public void OnMouseDown() {
+	public void OnInputTaken() {
 		if(IsRoomActive) {
-			OnMouseClick();
+			InputTaken();
 		}
 	}
 
-	public override void OnMouseClick() {
-		Debug.Log("CollectableItem/OnMouseDown, name = " + name);
+	public override void InputTaken() {
+		Debug.Log("CollectableItem/InputTaken, name = " + name);
 		var difference = Vector3.Distance(Camera.mainCamera.gameObject.transform.position, transform.position);
 		if(difference < _interactDistance) {
 			if(!IsCollected) {
@@ -71,7 +71,7 @@ public class CollectableItem : InteractiveElement {
 	}
 	
 	public void AddToInventory() {
-		OnMouseExit();
+		OnHighlightEnd();
 		IsCollected = true;
 		// _player.inventory.addItem(this);
 		UnEquip();

@@ -9,14 +9,14 @@ public class Camera_zoom : MonoBehaviour {
 //	float _smooth = 0.5f;
 	bool _isZoomed;
 
-	// Use this for initialization
-	void Start () {
+	// Use this for Initialization
+	void Start() {
 		_camera = GameObject.Find("FirstPersonCharacter").GetComponent<Camera>();
 		_normal = _camera.fieldOfView;
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update() {
 		if(Input.GetKeyDown(KeyCode.Z)) {
 			_zoomCamera();
 		}

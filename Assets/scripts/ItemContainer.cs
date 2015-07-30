@@ -9,8 +9,8 @@ public class ItemContainer : CollidableParent {
 	private int _collectedItems = 0;
 	
 	void Awake() {
-		init ();
-		_containerSpot = this.transform.Search("containerSpot").gameObject;
+		Init();
+		_containerSpot = transform.Search("containerSpot").gameObject;
 		Debug.Log("ItemContainer/Awake, _containerSpot = " + _containerSpot);
 	}
 	
@@ -24,12 +24,12 @@ public class ItemContainer : CollidableParent {
 				Debug.Log("  triggering: " + evt);
 				EventCenter.Instance.triggerEvent(evt);
 				_collectedItems++;
-				initCollidableChild(collisionTarget.transform.parent.transform.gameObject);
+				InitCollidableChild(collisionTarget.transform.parent.transform.gameObject);
 			}
 			handleColliderItemWeight(collisionTarget);
 			
 			if(_collectedItems >= collectableItems.Length) {
-				EventCenter.Instance.collectedEvent(this.name + "_AllCollected");
+				EventCenter.Instance.collectedEvent(name + "_AllCollected");
 			}
 		}
 	}
