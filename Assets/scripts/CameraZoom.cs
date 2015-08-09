@@ -1,17 +1,16 @@
 ﻿using UnityEngine;
 
-public class Camera_zoom : MonoBehaviour {
+public class CameraZoom : MonoBehaviour {
 
 	public float _zoom = 10;
 
-	Camera _camera;
+	public Camera _camera;
 	float _normal;
 //	float _smooth = 0.5f;
 	bool _isZoomed;
 
 	// Use this for Initialization
 	void Start() {
-		_camera = GameObject.Find("FirstPersonCharacter").GetComponent<Camera>();
 		_normal = _camera.fieldOfView;
 	}
 	

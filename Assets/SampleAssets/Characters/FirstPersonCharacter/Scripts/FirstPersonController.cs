@@ -9,6 +9,8 @@ namespace UnitySampleAssets.Characters.FirstPerson
     [RequireComponent(typeof (AudioSource))]
     public class FirstPersonController : MonoBehaviour
     {
+		[SerializeField] private Canvas _playerUI; 
+		
 		[SerializeField] private bool _damageFromFall;
 		[SerializeField] private float _underWaterGravity;
 		[SerializeField] private float _CrawlSpeed;
@@ -45,6 +47,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
 		private float _cameraStartY;
 		private const float _CrawlCameraY = 0.1f;
 		private bool _justCrouched = false;
+		private bool _isMenuOpen = false;
 
         private Camera m_Camera;
         private bool m_Jump;
@@ -82,6 +85,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
 		// Use this for initialization
         private void Start()
         {
+			_playerUI.enabled = false;
 			_collider = GameObject.Find("collider").transform;
 
             m_CharacterController = GetComponent<CharacterController>();
@@ -115,60 +119,71 @@ namespace UnitySampleAssets.Characters.FirstPerson
         // Update is called once per frame
         private void Update()
         {
-            RotateView();
-
-			// allow to Dive if Swimming 
-			if(Input.GetKey(KeyCode.C)) {
-				if(_currentMovementState == _movementStates.Swim || _currentMovementState == _movementStates.Dive) {
-					_gravity = _underWaterGravity;
-					_currentMovementState = _movementStates.Dive;
-				}
-			}
-			// toggle Crawl if walking/Crawling
-			if(Input.GetKeyDown(KeyCode.C)) {
-				if(_currentMovementState == _movementStates.Normal && m_CharacterController.isGrounded) {
-					_currentMovementState = _movementStates.Crawl;
-					_switchToCrawling(true);
-					_justCrouched = true;
-					Debug.Log("Crawl");
-				} else if(_currentMovementState == _movementStates.Crawl) {
-					_currentMovementState = _movementStates.Normal;
-					_switchToCrawling(false);
-					_justCrouched = true;
-					Debug.Log("walk");
-				}
+			if(Input.GetKeyDown(KeyCode.M)) {
+				_isMenuOpen = !_isMenuOpen;
+				_playerUI.enabled = _isMenuOpen;
 			}
 
-			// the jump state needs to read here to make sure it is not missed
-			if (!m_Jump)
-            {
-                m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
-            }
+			// player updates only happen when menu is close
+			if(!_isMenuOpen) {
+				RotateView();
 
-            if (!m_PreviouslyGrounded && m_CharacterController.isGrounded)
-            {
-                StartCoroutine(m_JumpBob.DoBobCycle());
-//                PlayLandingSound();
-                m_MoveDir.y = 0f;
-                m_Jumping = false;
-
-				if(_damageFromFall && (_currentMovementState == _movementStates.Normal || _currentMovementState == _movementStates.Climb || _currentMovementState == _movementStates.Crawl)) {
-					float health = GameControl.Instance.RemainingHealth - _gravityDamager.EndFall();
-					GameControl.Instance.UpdateHealth(health);
+				// allow to Dive if Swimming 
+				if(Input.GetKey(KeyCode.C)) {
+					if(_currentMovementState == _movementStates.Swim || _currentMovementState == _movementStates.Dive) {
+						_gravity = _underWaterGravity;
+						_currentMovementState = _movementStates.Dive;
+					}
 				}
-
-            }
-            if (!m_CharacterController.isGrounded && !m_Jumping && m_PreviouslyGrounded)
-            {
-                m_MoveDir.y = 0f;
-            }
-
-			if(_damageFromFall) {
-				if(!m_CharacterController.isGrounded && m_PreviouslyGrounded) {
-					_gravityDamager.BeginFall();
+				// toggle Crawl if walking/Crawling
+				if(Input.GetKeyDown(KeyCode.C)) {
+					if(_currentMovementState == _movementStates.Normal && m_CharacterController.isGrounded) {
+						_currentMovementState = _movementStates.Crawl;
+						_switchToCrawling(true);
+						_justCrouched = true;
+						Debug.Log("Crawl");
+					} else if(_currentMovementState == _movementStates.Crawl) {
+						_currentMovementState = _movementStates.Normal;
+						_switchToCrawling(false);
+						_justCrouched = true;
+						Debug.Log("walk");
+					}
 				}
+				
+				// the jump state needs to read here to make sure it is not missed
+				if (!m_Jump)
+				{
+					m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
+				}
+				
+				if (!m_PreviouslyGrounded && m_CharacterController.isGrounded)
+				{
+					StartCoroutine(m_JumpBob.DoBobCycle());
+					//                PlayLandingSound();
+					m_MoveDir.y = 0f;
+					m_Jumping = false;
+					
+					if(_damageFromFall && (_currentMovementState == _movementStates.Normal || _currentMovementState == _movementStates.Climb || _currentMovementState == _movementStates.Crawl)) {
+						float health = GameControl.Instance.RemainingHealth - _gravityDamager.EndFall();
+						GameControl.Instance.UpdateHealth(health);
+					}
+					
+				}
+				if (!m_CharacterController.isGrounded && !m_Jumping && m_PreviouslyGrounded)
+				{
+					m_MoveDir.y = 0f;
+				}
+				
+				if(_damageFromFall) {
+					if(!m_CharacterController.isGrounded && m_PreviouslyGrounded) {
+						_gravityDamager.BeginFall();
+					}
+				}
+				m_PreviouslyGrounded = m_CharacterController.isGrounded;
+			} else {
+				m_Camera.transform.rotation = new Quaternion(0, 0, 0, 0);
 			}
-            m_PreviouslyGrounded = m_CharacterController.isGrounded;
+
 		}
 
 		private void _switchToCrawling(bool isCrawling) {
@@ -191,18 +206,19 @@ namespace UnitySampleAssets.Characters.FirstPerson
 
         private void FixedUpdate()
         {
-            float speed;
-            GetInput(out speed);
-            // always move along the camera forward as it is the direction that it being aimed at
-            Vector3 desiredMove = m_Camera.transform.forward*m_Input.y + m_Camera.transform.right*m_Input.x;
-
-            // get a Normal for the surface that is being touched to move along it
-            RaycastHit hitInfo;
-            Physics.SphereCast(transform.position, m_CharacterController.radius, Vector3.down, out hitInfo,
-                               m_CharacterController.height/2f);
-            desiredMove = Vector3.ProjectOnPlane(desiredMove, hitInfo.normal).normalized;
-
-			switch(_currentMovementState) {
+			if(!_isMenuOpen) {
+				float speed;
+				GetInput(out speed);
+				// always move along the camera forward as it is the direction that it being aimed at
+				Vector3 desiredMove = m_Camera.transform.forward*m_Input.y + m_Camera.transform.right*m_Input.x;
+				
+				// get a Normal for the surface that is being touched to move along it
+				RaycastHit hitInfo;
+				Physics.SphereCast(transform.position, m_CharacterController.radius, Vector3.down, out hitInfo,
+				                   m_CharacterController.height/2f);
+				desiredMove = Vector3.ProjectOnPlane(desiredMove, hitInfo.normal).normalized;
+				
+				switch(_currentMovementState) {
 				case _movementStates.Crawl:
 					speed *= _CrawlSpeed;
 					if(m_CharacterController.isGrounded) {
@@ -211,7 +227,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
 						m_MoveDir += Physics.gravity*_gravity*Time.fixedDeltaTime;
 					}
 					break;
-
+					
 				case _movementStates.Normal:
 					// Normal WALK/FALL
 					if (m_CharacterController.isGrounded) {
@@ -222,57 +238,58 @@ namespace UnitySampleAssets.Characters.FirstPerson
 							//                    PlayJumpSound();
 							m_Jump = false;
 							m_Jumping = true;
-                        }
-                    } else {
-                        // Normal fall to ground
-                        m_MoveDir += Physics.gravity*_gravity*Time.fixedDeltaTime;
-                    }
-                    break;
-                
+						}
+					} else {
+						// Normal fall to ground
+						m_MoveDir += Physics.gravity*_gravity*Time.fixedDeltaTime;
+					}
+					break;
+					
 				case _movementStates.Climb:
 					break;
-
+					
 				case _movementStates.Swim:
-//					Debug.Log("Swimming, _isUnderWater = ");
+					//					Debug.Log("Swimming, _isUnderWater = ");
 					// SwimMING
 					// do not move y -- stay on surface of water
 					m_MoveDir.y = 0f;
 					speed *= _SwimSpeed;
 					
-                    break;
-
+					break;
+					
 				case _movementStates.Dive:
 					// DIVING
 					speed *= _SwimSpeed;
 					if(Input.GetKey(KeyCode.C)) {
-//						Debug.Log("diving");
+						//						Debug.Log("diving");
 						m_MoveDir += Physics.gravity*(-(_gravity*_DiveSpeed))*Time.fixedDeltaTime;
 					} else {
 						// floating to surface (default)
-//                        Debug.Log("floating");
-                        m_MoveDir += Physics.gravity*_gravity*Time.fixedDeltaTime;
-                    }
-                    break;
-			}
-
-			// turn on fog when first diving, remove when not diving
-			if(_currentMovementState == _movementStates.Dive) {
-				if(_previousMovementState != _movementStates.Dive) {
-//					_globalFog.enabled = true;
+						//                        Debug.Log("floating");
+						m_MoveDir += Physics.gravity*_gravity*Time.fixedDeltaTime;
+					}
+					break;
 				}
-			} else {
-//				_globalFog.enabled = false;
+				
+				// turn on fog when first diving, remove when not diving
+				if(_currentMovementState == _movementStates.Dive) {
+					if(_previousMovementState != _movementStates.Dive) {
+						//					_globalFog.enabled = true;
+					}
+				} else {
+					//				_globalFog.enabled = false;
+				}
+				
+				_previousMovementState = _currentMovementState;
+				
+				m_MoveDir.x = desiredMove.x*speed;
+				m_MoveDir.z = desiredMove.z*speed;
+				
+				m_CollisionFlags = m_CharacterController.Move(m_MoveDir*Time.fixedDeltaTime);
+				
+				ProgressStepCycle(speed);
+				UpdateCameraPosition(speed);
 			}
-
-			_previousMovementState = _currentMovementState;
-
-			m_MoveDir.x = desiredMove.x*speed;
-			m_MoveDir.z = desiredMove.z*speed;
-			
-            m_CollisionFlags = m_CharacterController.Move(m_MoveDir*Time.fixedDeltaTime);
-
-            ProgressStepCycle(speed);
-            UpdateCameraPosition(speed);
         }
 
 
