@@ -9,7 +9,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
     [RequireComponent(typeof (AudioSource))]
     public class FirstPersonController : MonoBehaviour
     {
-		[SerializeField] private Canvas _playerUI; 
+		[SerializeField] private Canvas _menuUI; 
 		
 		[SerializeField] private bool _damageFromFall;
 		[SerializeField] private float _underWaterGravity;
@@ -85,7 +85,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
 		// Use this for initialization
         private void Start()
         {
-			_playerUI.enabled = false;
+			_menuUI.enabled = false;
 			_collider = GameObject.Find("collider").transform;
 
             m_CharacterController = GetComponent<CharacterController>();
@@ -121,7 +121,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
         {
 			if(Input.GetKeyDown(KeyCode.M)) {
 				_isMenuOpen = !_isMenuOpen;
-				_playerUI.enabled = _isMenuOpen;
+				_menuUI.enabled = _isMenuOpen;
 			}
 
 			// player updates only happen when menu is close
