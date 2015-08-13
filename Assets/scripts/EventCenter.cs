@@ -24,6 +24,8 @@ public class EventCenter : MonoBehaviour {
 	public delegate void TriggerEventHandler(string evt);
 	public delegate void TriggerCollectedEventHandler(string evt);
 
+	public delegate void InteractiveElementProximityHandler(string name);
+	
 	public event PlayerDamageHandler OnPlayerDamaged;
 
 	public event OnWaterHandler OnAboveWater; 
@@ -48,6 +50,8 @@ public class EventCenter : MonoBehaviour {
 	
 	public event TriggerEventHandler OnTriggerEvent;
 	public event TriggerCollectedEventHandler OnTriggerCollectedEvent; 
+	
+	public event InteractiveElementProximityHandler OnNearInteractiveElement;
 	
 	private static EventCenter _instance;
 	private EventCenter() {}
@@ -157,6 +161,12 @@ public class EventCenter : MonoBehaviour {
 //		Debug.Log ("EventCenter.InputTaken, name = " + name);
 		if(OnInputTaken != null) {
 			OnInputTaken(name);
+		}
+	}
+	
+	public void NearInterfactiveElement(string name) {
+		if(OnNearInteractiveElement != null) {
+			OnNearInteractiveElement(name);
 		}
 	}
 }

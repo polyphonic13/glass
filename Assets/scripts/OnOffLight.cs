@@ -14,13 +14,6 @@ public class OnOffLight : InteractiveElement {
 		bulb.enabled = enabled;
 	}
 
-	public override void OnHighlightStart() {
-//		Debug.Log("OnOffLight[ " + name + " ]/OnHighlightStart, IsRoomActive = " + IsRoomActive + ", _isEnabled = " + _isEnabled);
-		if(IsRoomActive && _isEnabled) {
-			OnHighlightStart();
-		}
-	}
-
 	public void OnInputTaken() {
 		InputTaken();
 	}

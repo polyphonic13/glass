@@ -68,7 +68,6 @@ public class CollectableItem : InteractiveElement {
 	}
 	
 	public void AddToInventory() {
-		OnHighlightEnd();
 		IsCollected = true;
 		// _player.inventory.addItem(this);
 		UnEquip();

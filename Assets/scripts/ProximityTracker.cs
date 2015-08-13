@@ -10,10 +10,12 @@ public class ProximityTracker : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-		RaycastHit hit;
-		if (Physics.Raycast(ray, out hit, 100)) {
-			Debug.DrawLine(ray.origin, hit.point);
-		}		
+	    Ray ray = new Ray(transform.position, transform.forward);
+	    RaycastHit hit;
+	    if(Physics.Raycast(ray, out hit, 100)){
+			if(hit.transform.tag === 'interactive') {
+				
+			}
+	    }
 	}
 }
