@@ -10,6 +10,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
     public class FirstPersonController : MonoBehaviour
     {
 		[SerializeField] private Canvas _menuUI; 
+		[SerializeField] private Canvas _notificationUI; 
 		
 		[SerializeField] private bool _damageFromFall;
 		[SerializeField] private float _underWaterGravity;
@@ -86,6 +87,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
         private void Start()
         {
 			_menuUI.enabled = false;
+			_notificationUI.enabled = false;
 			_collider = GameObject.Find("collider").transform;
 
             m_CharacterController = GetComponent<CharacterController>();
