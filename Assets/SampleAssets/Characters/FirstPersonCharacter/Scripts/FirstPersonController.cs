@@ -120,6 +120,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
         private void Update()
         {
 			if(Input.GetKeyDown(KeyCode.M)) {
+				Debug.Log("m pressed, _isMenuOpen = " + _isMenuOpen);
 				_isMenuOpen = !_isMenuOpen;
 				_menuUI.enabled = _isMenuOpen;
 			}
@@ -180,8 +181,6 @@ namespace UnitySampleAssets.Characters.FirstPerson
 					}
 				}
 				m_PreviouslyGrounded = m_CharacterController.isGrounded;
-			} else {
-				m_Camera.transform.rotation = new Quaternion(0, 0, 0, 0);
 			}
 
 		}
