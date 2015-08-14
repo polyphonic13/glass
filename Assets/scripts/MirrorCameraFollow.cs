@@ -1,4 +1,4 @@
-﻿//MirrorCameraFollow.cs
+//MirrorCameraFollow.cs
 //Written by Jake Bayer
 //Written and uploaded November 18, 2012
 //This is a modified C# version of the MirrorCameraFollow JS script.  Use it the same way as the Javascript version.
@@ -46,7 +46,7 @@ public class MirrorCameraFollow : MonoBehaviour {
 				_myTransform.rotation = Quaternion.Slerp(_myTransform.rotation, rotation, Time.deltaTime * damping);
 			}
 			else { //Just look at
-				_myTransform.rotation = Quaternion.FromToRotation(-Vector3.forward, (new Vector3(target.position.x, target.position.y, target.position.z) - _myTransform.position).normalized);
+				_myTransform.rotation = Quaternion.FromToRotation(-Vector3.forward,(new Vector3(target.position.x, target.position.y, target.position.z) - _myTransform.position).normalized);
 				
 				float distance = Vector3.Distance(target.position, _myTransform.position);
 				

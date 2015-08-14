@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class Menu {
 
@@ -65,11 +65,11 @@ public class Menu {
 		for(int i = 0; i < _controlKeys.Length; i++) {
 //			Debug.Log("  c = " + c.Key + ", value = " + c.Value);
 			GUI.skin.label.alignment = TextAnchor.LowerLeft;
-			GUI.Label(new Rect(50, CONTROL_DESCRIPTION_HEIGHT + (i * (CONTROL_DESCRIPTION_HEIGHT + 20)), DESCRIPTION_WIDTH, CONTROL_DESCRIPTION_HEIGHT), _controlKeys[i] + ": " + _controlDescriptions[i]);
+			GUI.Label(new Rect(50, CONTROL_DESCRIPTION_HEIGHT +(i *(CONTROL_DESCRIPTION_HEIGHT + 20)), DESCRIPTION_WIDTH, CONTROL_DESCRIPTION_HEIGHT), _controlKeys[i] + ": " + _controlDescriptions[i]);
 		}
-		GUI.Label(new Rect(50, ((_controlKeys.Length + 1) * (CONTROL_DESCRIPTION_HEIGHT + 20)), DESCRIPTION_WIDTH, CONTROL_DESCRIPTION_HEIGHT), "Mouse X sensitivity: " + Mathf.Floor(_mouseSensitivity));
+		GUI.Label(new Rect(50,((_controlKeys.Length + 1) *(CONTROL_DESCRIPTION_HEIGHT + 20)), DESCRIPTION_WIDTH, CONTROL_DESCRIPTION_HEIGHT), "Mouse X sensitivity: " + Mathf.Floor(_mouseSensitivity));
 		
-		_mouseSensitivity =  Mathf.Floor(GUI.HorizontalSlider(new Rect(100, ((_controlKeys.Length + 1) * (CONTROL_DESCRIPTION_HEIGHT + 20)), 100, 30), _mouseSensitivity, MIN_MOUSE_SENSITIVITY, MAX_MOUSE_SENSITIVITY));
+		_mouseSensitivity =  Mathf.Floor(GUI.HorizontalSlider(new Rect(100,((_controlKeys.Length + 1) *(CONTROL_DESCRIPTION_HEIGHT + 20)), 100, 30), _mouseSensitivity, MIN_MOUSE_SENSITIVITY, MAX_MOUSE_SENSITIVITY));
 		EventCenter.Instance.ChangeMouseSensitivity(_mouseSensitivity);
 	}
 	
@@ -77,8 +77,8 @@ public class Menu {
 
 		for(int i = 0; i < descriptions.Length; i++) {
 		    GUI.skin.label.alignment = TextAnchor.LowerLeft;
-			GUI.DrawTexture (new Rect (Screen.width/2 + 100, ICON_DESCRIPTION_HEIGHT + (i * (ICON_DESCRIPTION_HEIGHT + 20)), ICON_WIDTH, ICON_DESCRIPTION_HEIGHT), icons[i]);
-			GUI.Label(new Rect(Screen.width/2 + 200, ICON_DESCRIPTION_HEIGHT + (i * (ICON_DESCRIPTION_HEIGHT + 20)), DESCRIPTION_WIDTH, ICON_DESCRIPTION_HEIGHT), descriptions[i]);
+			GUI.DrawTexture(new Rect(Screen.width/2 + 100, ICON_DESCRIPTION_HEIGHT +(i *(ICON_DESCRIPTION_HEIGHT + 20)), ICON_WIDTH, ICON_DESCRIPTION_HEIGHT), icons[i]);
+			GUI.Label(new Rect(Screen.width/2 + 200, ICON_DESCRIPTION_HEIGHT +(i *(ICON_DESCRIPTION_HEIGHT + 20)), DESCRIPTION_WIDTH, ICON_DESCRIPTION_HEIGHT), descriptions[i]);
 			
 		}
 	}

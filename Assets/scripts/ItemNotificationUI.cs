@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class ItemNotificationUI : MonoBehaviour {
@@ -15,7 +15,7 @@ public class ItemNotificationUI : MonoBehaviour {
 		_iconPush = transform.Find("icon_push").gameObject;
     }
 	
-	void Update () {
+	void Update() {
 	
 	}
 }

@@ -7,11 +7,9 @@ public class InteractiveIcon : MonoBehaviour {
 	public float iconRotationSpeed = 10f;
 
 	private bool _isJustChanged = false;
-	private Quaternion _lookRotation;
-	private Vector3 _direction;
 	private InteractiveElement _element; 
 	
-	void Start () {
+	void Start() {
 		_element = gameObject.GetComponent<InteractiveElement>();
 		
 		if(interactiveIcon != null) {
@@ -19,7 +17,7 @@ public class InteractiveIcon : MonoBehaviour {
 		}
 	}
 	
-	void Update () {
+	void Update() {
 		if(_element == null || _element.IsEnabled) {
 			var target = Camera.main.transform;
 			var distance = Vector3.Distance(this.transform.position, target.position);

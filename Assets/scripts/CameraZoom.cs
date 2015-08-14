@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class CameraZoom : MonoBehaviour {
 
@@ -19,7 +19,7 @@ public class CameraZoom : MonoBehaviour {
 	}
 
 	void _zoomCamera() {
-		_camera.fieldOfView = (_isZoomed) ? _normal : _zoom;
+		_camera.fieldOfView =(_isZoomed) ? _normal : _zoom;
 		_isZoomed = !_isZoomed;
 	}
 }

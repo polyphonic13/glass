@@ -158,7 +158,7 @@ public class EventCenter : MonoBehaviour {
 	}
 
 	public void InputTaken(string name) {
-//		Debug.Log ("EventCenter.InputTaken, name = " + name);
+//		Debug.Log("EventCenter.InputTaken, name = " + name);
 		if(OnInputTaken != null) {
 			OnInputTaken(name);
 		}

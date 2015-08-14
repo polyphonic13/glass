@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 // using System.Collections;
 
 public class Underwater : RoomElement {
@@ -18,7 +18,7 @@ public class Underwater : RoomElement {
 	
 	void Update() {
 		if(IsRoomActive) {
-			_isUnderWater = ((_player.position.y + _heightOffset) < _waterLevel) || false;
+			_isUnderWater =((_player.position.y + _heightOffset) < _waterLevel) || false;
 
 			if(_isUnderWater != _previousState) {
                 if(_isUnderWater) {

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class GravityDamager : MonoBehaviour {
 
@@ -24,9 +24,9 @@ public class GravityDamager : MonoBehaviour {
 		float damage = 0f;
 		if(_isFalling) {
 			if(_timeInAir > _minDamagingFall) {
-				Debug.Log("damage = " + ((_timeInAir * 10) * _damageForFallSeconds));
+				Debug.Log("damage = " +((_timeInAir * 10) * _damageForFallSeconds));
 
-				damage = (_timeInAir * 10) * _damageForFallSeconds;
+				damage =(_timeInAir * 10) * _damageForFallSeconds;
 			}
 
 			_isFalling = false;

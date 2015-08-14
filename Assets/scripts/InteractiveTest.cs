@@ -11,13 +11,13 @@ public class InteractiveTest : MonoBehaviour {
 	private Quaternion _lookRotation;
 	private Vector3 _direction;
 
-	void Start () {
+	void Start() {
 		if(interactiveIcon != null) {
 			interactiveIcon.SetActive(false);
 		}
 	}
 	
-	void Update () {
+	void Update() {
 		var target = Camera.main.transform;
 		var distance = Vector3.Distance(this.transform.position, target.position);
 		

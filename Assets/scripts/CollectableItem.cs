@@ -89,14 +89,14 @@ public class CollectableItem : InteractiveElement {
 	}
 	
 	public void AttachToLeftHand() {
-		AttachToObject ("left_hand");
+		AttachToObject("left_hand");
 	}
 	
 	public void AttachToObject(string target) {
-		Debug.Log ("CollectableItem[" + name + "]/AttachToObject, target = " + target);
+		Debug.Log("CollectableItem[" + name + "]/AttachToObject, target = " + target);
 //		var tgt = Camera.main.transform.Search(target);
-		// var tgt = _player.transform.Search (target);
-		// Debug.Log ("tgt = " + tgt);
+		// var tgt = _player.transform.Search(target);
+		// Debug.Log("tgt = " + tgt);
 		// transform.position = tgt.transform.position;
 		// transform.rotation = tgt.transform.rotation;
 		// transform.parent = tgt.transform;	
@@ -134,7 +134,7 @@ public class CollectableItem : InteractiveElement {
 		transform.localScale = _originalSize;
 		transform.parent = null;
 
-		var __weightClone = (ItemWeight) Instantiate(_weight, transform.position, transform.rotation);
+		var __weightClone =(ItemWeight) Instantiate(_weight, transform.position, transform.rotation);
 		__weightClone.TargetContainerName = _targetContainerName;
 		__weightClone.ParentObject = gameObject;
 		__weightClone.transform.parent = transform;

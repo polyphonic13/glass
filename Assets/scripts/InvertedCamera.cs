@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class InvertedCamera : MonoBehaviour {
 	public int forward = 1;
@@ -8,7 +8,7 @@ public class InvertedCamera : MonoBehaviour {
 	public string containingRoom = "";
 
 	void Start() {
-		gameObject.SetActive (false);
+		gameObject.SetActive(false);
 
 		var eventCenter = EventCenter.Instance;
 		eventCenter.OnRoomEntered += OnRoomEntered;
@@ -17,7 +17,7 @@ public class InvertedCamera : MonoBehaviour {
 
 	// EXAMPLE WITH CAMERA UPSIDEDOWN
 	void OnPreCull() {
-//		Debug.Log ("InvertedCamera/OnPreCull");
+//		Debug.Log("InvertedCamera/OnPreCull");
 		GetComponent<Camera>().ResetWorldToCameraMatrix();
 		GetComponent<Camera>().ResetProjectionMatrix();
 		GetComponent<Camera>().projectionMatrix = GetComponent<Camera>().projectionMatrix * Matrix4x4.Scale(new Vector3(forward, up, right));
