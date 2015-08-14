@@ -18,8 +18,7 @@ public class InspectableItem : InteractiveElement {
 	}
 
 	public override void InputTaken() {
-		var difference = Vector3.Distance(Camera.main.gameObject.transform.position, transform.position);
-		if(difference < _interactDistance) {
+		if(CheckProximity()) {
 			if(IsRoomActive) {
 				EventCenter.Instance.AddNote(description);
 			}

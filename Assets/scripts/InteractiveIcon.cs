@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class InteractiveIcon : MonoBehaviour {
+public class InteractiveIcon : InteractiveElement {
 
 	public GameObject interactiveIcon; 
 	public float maxProximity = 5f;
@@ -18,20 +18,20 @@ public class InteractiveIcon : MonoBehaviour {
 	}
 	
 	void Update() {
-		if(_element == null || _element.IsEnabled) {
+		if(IsEnabled) {
 			var target = Camera.main.transform;
 			var distance = Vector3.Distance(this.transform.position, target.position);
-		
-			interactiveIcon.transform.LookAt(target);
+					
+			interactiveIcon.transform.LookAt(mainCamera.transform);
 
-			if(distance <= maxProximity) {
-			    Vector3 dir = target.position - transform.position;
+			if(CheckProximity()) {
+//			    Vector3 dir = target.position - transform.position;
 				// 1 if the same direction, -1 if opposite directions, 0 if perpendicular
-			    if(Vector3.Dot(dir, transform.forward) < 0) {
+//			    if(Vector3.Dot(dir, transform.forward) < 0) {
 					_turnOnIcon();
-				} else {
-					_turnOffIcon();
-				}
+//				} else {
+//					_turnOffIcon();
+//				}
 			} else {
 				_turnOffIcon();
 			}

@@ -16,12 +16,7 @@ public class ArmatureTrigger : InteractiveElement {
 	}
 
 	public override void InputTaken() {
-		PlayerHead = GameObject.Find("FirstPersonCharacter").gameObject.transform;
-		
-		var difference = Vector3.Distance(PlayerHead.position, transform.position);
-		if(difference <= _interactDistance) {
-			HandleAnimation();
-		}
+		HandleAnimation();
 	}
 
 	public virtual void HandleAnimation() {

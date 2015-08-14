@@ -58,9 +58,8 @@ public class CollectableItem : InteractiveElement {
 	}
 
 	public override void InputTaken() {
-		Debug.Log("CollectableItem/InputTaken, name = " + name);
-		var difference = Vector3.Distance(Camera.main.gameObject.transform.position, transform.position);
-		if(difference < _interactDistance) {
+//		Debug.Log("CollectableItem/InputTaken, name = " + name);
+		if(CheckProximity()) {
 			if(!IsCollected) {
 				AddToInventory();
 			}

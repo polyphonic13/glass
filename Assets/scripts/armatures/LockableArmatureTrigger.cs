@@ -9,9 +9,9 @@
 		InitLockableArmatureTrigger();
 	}
 	
-	public void InitLockableArmatureTrigger(int activeCursor = 1) {
+	public void InitLockableArmatureTrigger() {
 		InitOpenCloseArmatureTrigger();
-		Init(activeCursor);
+		Init();
 	}
 
 	public override void HandleAnimation() {

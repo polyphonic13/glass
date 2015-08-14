@@ -5,19 +5,19 @@ public class InteractiveElement : MonoBehaviour {
 	public float _interactDistance = 4;
 	public string _containingRoom; 
 	
-	private int _activeCursor;
-
 	public bool IsRoomActive { get; set; } 
 	public bool IsEnabled { get; set; }
+
+	public Camera mainCamera;
 
 	void Awake() {
 		Init();
 	}
 
-	public void Init(int activeCursor = 1) {
+	public void Init() {
 		IsEnabled = true;
 
-		_activeCursor = activeCursor;
+		mainCamera = Camera.main;
 
 		if(transform.tag == "persistentItem") {
 			IsRoomActive = true;
@@ -50,7 +50,14 @@ public class InteractiveElement : MonoBehaviour {
 		}
 	}
 
-	public virtual void InputTaken() {
+	public virtual void InputTaken() {}
 
+	public bool CheckProximity() {
+		var isInProximity = false;
+		var difference = Vector3.Distance(mainCamera.transform.position, transform.position);
+		if(difference < _interactDistance) {
+			isInProximity = true;
+		}
+		return isInProximity;
 	}
 }

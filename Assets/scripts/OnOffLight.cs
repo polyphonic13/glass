@@ -20,8 +20,7 @@ public class OnOffLight : InteractiveElement {
 
 	public override void InputTaken() {
 		if(IsRoomActive) {
-			var difference = Vector3.Distance(Camera.main.gameObject.transform.position, transform.position);
-			if(difference < _interactDistance) {
+			if(CheckProximity()) {
 				Toggle();
 			}
 		}
