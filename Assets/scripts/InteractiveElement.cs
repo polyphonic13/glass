@@ -44,7 +44,6 @@ public class InteractiveElement : MonoBehaviour {
 
 	public void OnInputTaken(string name) {
 		if(IsRoomActive && IsEnabled) {
-//			Debug.Log ("InteractiveElement[" + name + "]/OnInputTaken, name = " + name);
 			if(name == name) {
 				InputTaken();
 			}
