@@ -9,26 +9,17 @@ public class Underwater : RoomElement {
 	private bool _previousState;
 	private float _waterLevel;
 
-	// Use this for Initialization
 	void Start() {
 		_waterLevel = transform.position.y;
-//		Debug.Log(name + ", _waterLevel = " + _waterLevel);
 		_isUnderWater = false;
 		_previousState = false;
 		setNormal();
 	}
 	
-	// Update is called once per frame
 	void Update() {
 		if(IsRoomActive) {
-//			Debug.Log(name + " _player y = " + _player.position.y + ", water y = " + _waterLevel + ", under water = " + _isUnderWater);
 			_isUnderWater = ((_player.position.y + _heightOffset) < _waterLevel) || false;
-			
-			//		if ((_player.position.y < _waterLevel) != _isUnderWater) {
-			//			_isUnderWater = transform.position.y < _waterLevel;
-			//			if (_isUnderWater) setUnderwater();
-			//			if (!_isUnderWater) setNormal();
-			//		}
+
 			if(_isUnderWater != _previousState) {
                 if(_isUnderWater) {
                     setUnderwater();
@@ -41,21 +32,10 @@ public class Underwater : RoomElement {
 	}
 	
 	void setNormal() {
-//		Debug.Log("above water");
 		EventCenter.Instance.ChangeUnderWater(false);
-//		RenderSettings.fogDensity = 0.01f;
-//		RenderSettings.fogDensity = 0;
-		
-		//  Testing
-//		waterPlane.localScale = new Vector3 (waterPlane.localScale.x, 1.0f, waterPlane.localScale.z);
 	}
 	
 	void setUnderwater() {
-//		Debug.Log("under water");
-//		RenderSettings.fogDensity = 0.5f;
 		EventCenter.Instance.ChangeUnderWater(true);
-		
-		//  Testing
-//		waterPlane.localScale = new Vector3 (waterPlane.localScale.x, -1.0f, waterPlane.localScale.z);
 	}
 }

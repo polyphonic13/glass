@@ -7,7 +7,7 @@ public class OnOffLight : InteractiveElement {
 
 	void Awake() {
 		InitOnOffLight();
-		Init(MouseManager.Instance.INTERACT_CURSOR);
+		Init();
 	}
 	
 	public void InitOnOffLight() {
@@ -19,10 +19,8 @@ public class OnOffLight : InteractiveElement {
 	}
 
 	public override void InputTaken() {
-		Debug.Log("OnOffLight[ " + name + " ]/InputTaken, IsRoomActive = " + IsRoomActive);
 		if(IsRoomActive) {
 			var difference = Vector3.Distance(Camera.main.gameObject.transform.position, transform.position);
-			//			Debug.Log("  difference = " + difference + ", bulb.enabled = " + bulb.enabled);
 			if(difference < _interactDistance) {
 				Toggle();
 			}

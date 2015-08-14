@@ -18,10 +18,9 @@ public class EventUnlockTrigger : LockableArmatureTrigger {
 	}
 
 	public void onUnlockEvent(string evt) {
-		Debug.Log("EventUnlockTrigger[ " + name + " ]/onUnlockEvent, evt = " + evt + ", unlockEvent = " + unlockEvent);
 		if(evt == unlockEvent) {
 			IsLocked = false;
-			_isEnabled = true;
+			IsEnabled = true;
 			if(unlockClip != null) {
 				SendAnimationToPops(unlockClip.name, _parentBone);
 			}
@@ -34,7 +33,6 @@ public class EventUnlockTrigger : LockableArmatureTrigger {
 			}
 			eventCenter.AddNote(msg);
 			houseKeeping();
-			Debug.Log(" it is now unlocked: IsLocked = " + IsLocked + ", _isEnabled = " + _isEnabled);
 		}
 	}
 	

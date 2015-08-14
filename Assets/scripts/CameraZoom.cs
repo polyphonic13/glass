@@ -6,15 +6,12 @@ public class CameraZoom : MonoBehaviour {
 
 	public Camera _camera;
 	float _normal;
-//	float _smooth = 0.5f;
 	bool _isZoomed;
 
-	// Use this for Initialization
 	void Start() {
 		_normal = _camera.fieldOfView;
 	}
 	
-	// Update is called once per frame
 	void Update() {
 		if(Input.GetKeyDown(KeyCode.Z)) {
 			_zoomCamera();

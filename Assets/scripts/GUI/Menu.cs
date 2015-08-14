@@ -74,10 +74,6 @@ public class Menu {
 	}
 	
 	public void DrawCursors() {
-		MouseManager mouseManager = MouseManager.Instance;
-		string[] descriptions = mouseManager.getCursorDescriptions();
-		Texture2D[] icons = mouseManager.cursors;
-//		Debug.Log("Menu/DrawCursors, descriptions.length = " + descriptions.Length);
 
 		for(int i = 0; i < descriptions.Length; i++) {
 		    GUI.skin.label.alignment = TextAnchor.LowerLeft;

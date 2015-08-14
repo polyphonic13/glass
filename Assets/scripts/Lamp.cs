@@ -7,13 +7,12 @@ public class Lamp : OnOffLight {
 	
 	void Awake() {
 		InitLamp();
-		Init(MouseManager.Instance.INTERACT_CURSOR);
+		Init();
 	}
 
 	void InitLamp() {
 		_lampshade = GetComponentInChildren<Lampshade>();
 		if(_lampshade != null) {
-//			Debug.Log ("_lampshade = " + _lampshade.gameObject.transform.renderer.material.mainTexture);
 			_lampshade.gameObject.transform.GetComponent<Renderer>().material = _lampshade.offMaterial;
 		}
 		InitOnOffLight();

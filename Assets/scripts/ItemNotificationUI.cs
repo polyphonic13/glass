@@ -8,7 +8,6 @@ public class ItemNotificationUI : MonoBehaviour {
 	private GameObject _iconGrab;
 	private GameObject _iconPush; 
 
-	// Use this for initialization
 	void Start() {
 		_iconInteract = transform.Find("icon_interact").gameObject;
 		_iconMagnify = transform.Find("icon_magnify").gameObject;
@@ -16,7 +15,6 @@ public class ItemNotificationUI : MonoBehaviour {
 		_iconPush = transform.Find("icon_push").gameObject;
     }
 	
-	// Update is called once per frame
 	void Update () {
 	
 	}

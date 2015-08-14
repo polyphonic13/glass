@@ -11,7 +11,6 @@ public class Breadcrumb : MonoBehaviour {
 		_killSelf();
 	}
 
-	// Update is called once per frame
 	void _killSelf() {
 		//Debug.Log("SlingshotBullet/_killSelf");
 		Destroy(gameObject);	

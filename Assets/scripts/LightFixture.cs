@@ -9,7 +9,7 @@ public class LightFixture : OnOffLight {
 	
 	void Awake() {
 		InitLightFixture();
-		Init(MouseManager.Instance.INTERACT_CURSOR);
+		Init();
 	}
 
 	void InitLightFixture() {
@@ -27,7 +27,6 @@ public class LightFixture : OnOffLight {
 		}
 		Debug.Log("LightFixture, _bulbs.length = " + _bulbs);
 		ToggleBulbs();
-//		InitOnOffLight();
 	}
 	
 	public override void Toggle() {

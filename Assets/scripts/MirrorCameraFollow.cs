@@ -25,11 +25,9 @@ public class MirrorCameraFollow : MonoBehaviour {
 		_myTransform = transform;
 	}
 	
-	// Use this for Initialization
 	void Start() {
 	}
 	
-	// Update is called once per frame
 	void Update() {
 		
 	}
