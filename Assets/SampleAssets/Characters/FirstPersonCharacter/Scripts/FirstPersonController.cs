@@ -10,8 +10,9 @@ namespace UnitySampleAssets.Characters.FirstPerson
     public class FirstPersonController : MonoBehaviour
     {
 		[SerializeField] private Canvas _menuUI; 
+		[SerializeField] private Canvas _inventoryUI; 
 		[SerializeField] private Canvas _notificationUI; 
-		
+
 		[SerializeField] private bool _damageFromFall;
 		[SerializeField] private float _underWaterGravity;
 		[SerializeField] private float _CrawlSpeed;
@@ -50,7 +51,9 @@ namespace UnitySampleAssets.Characters.FirstPerson
 		private bool _justCrouched = false;
 		private bool _isMenuOpen = false;
 
-        private Camera m_Camera;
+		private bool _isInventoryOpen = false;
+
+		private Camera m_Camera;
         private bool m_Jump;
         private float m_YRotation;
         private CameraRefocus m_CameraRefocus;
@@ -87,6 +90,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
         private void Start()
         {
 			_menuUI.enabled = false;
+			_inventoryUI.enabled = false;
 			_notificationUI.enabled = false;
 			_collider = GameObject.Find("collider").transform;
 
@@ -125,10 +129,15 @@ namespace UnitySampleAssets.Characters.FirstPerson
 				Debug.Log("m pressed, _isMenuOpen = " + _isMenuOpen);
 				_isMenuOpen = !_isMenuOpen;
 				_menuUI.enabled = _isMenuOpen;
+				_inventoryUI.enabled = _isInventoryOpen = false;
+			} else if(Input.GetKeyDown(KeyCode.I)) {
+				_isInventoryOpen = !_isInventoryOpen;
+				_inventoryUI.enabled = _isInventoryOpen;
+				_menuUI.enabled =_isMenuOpen = false;
 			}
 
 			// player updates only happen when menu is close
-			if(!_isMenuOpen) {
+			if(!_isMenuOpen && !_isInventoryOpen) {
 				RotateView();
 
 				// allow to Dive if Swimming 
@@ -207,7 +216,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
 
         private void FixedUpdate()
         {
-			if(!_isMenuOpen) {
+			if(!_isMenuOpen && !_isInventoryOpen) {
 				float speed;
 				GetInput(out speed);
 				// always move along the camera forward as it is the direction that it being aimed at

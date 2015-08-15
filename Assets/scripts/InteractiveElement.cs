@@ -2,7 +2,7 @@
 
 public class InteractiveElement : MonoBehaviour {
 
-	public float _interactDistance = 2f;
+	public float _interactDistance = 3f;
 	public string _containingRoom; 
 	
 	public bool IsRoomActive { get; set; } 

@@ -331,7 +331,7 @@ GameObject:
   - 222: {fileID: 276262499}
   - 114: {fileID: 276262498}
   m_Layer: 5
-  m_Name: icon_push
+  m_Name: icon_interact
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -367,7 +367,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: .517647088}
-  m_Sprite: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c76a1e805c946431f9b69d04d61bca75, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -381,6 +381,11 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 276262496}
+--- !u!223 &331870773 stripped
+Canvas:
+  m_PrefabParentObject: {fileID: 22342444, guid: 66ffdadeba17840e4a4760329357f26c,
+    type: 2}
+  m_PrefabInternal: {fileID: 1188378728}
 --- !u!1 &360631533
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,7 +397,7 @@ GameObject:
   - 222: {fileID: 360631536}
   - 114: {fileID: 360631535}
   m_Layer: 5
-  m_Name: icon_grab
+  m_Name: icon_collect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -428,7 +433,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: .517647088}
-  m_Sprite: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9ce4379e8f12747fa9052620dc038356, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -454,7 +459,7 @@ GameObject:
   - 114: {fileID: 412054899}
   - 114: {fileID: 412054898}
   m_Layer: 5
-  m_Name: item_grab_ui
+  m_Name: item_collect_ui
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -618,7 +623,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e93f534faedb945f5a0a1d85a9ac7ff2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _interactDistance: 2
+  _interactDistance: 3
   _containingRoom: 
   interactiveIcon: {fileID: 124743769}
   iconRotationSpeed: 10
@@ -708,7 +713,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e93f534faedb945f5a0a1d85a9ac7ff2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _interactDistance: 2
+  _interactDistance: 3
   _containingRoom: 
   interactiveIcon: {fileID: 412054896}
   iconRotationSpeed: 10
@@ -830,7 +835,7 @@ GameObject:
   - 222: {fileID: 992948985}
   - 114: {fileID: 992948984}
   m_Layer: 5
-  m_Name: icon_magnify
+  m_Name: icon_inspect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -866,7 +871,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: .517647088}
-  m_Sprite: {fileID: 21300000, guid: 766854d3fb11b4471aca3a8d1bda1a22, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 70e9aeda6bbff44c6be017899000c1dd, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -961,6 +966,18 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 22499644, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 22452046, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11472334, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
+      propertyPath: _inventoryUI
+      value: 
+      objectReference: {fileID: 331870773}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
   m_IsPrefabParent: 0
@@ -994,7 +1011,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: .517647088}
-  m_Sprite: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c76a1e805c946431f9b69d04d61bca75, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -1110,7 +1127,7 @@ GameObject:
   - 114: {fileID: 1541281192}
   - 114: {fileID: 1541281191}
   m_Layer: 5
-  m_Name: item_push_ui
+  m_Name: item_interact_ui
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1275,7 +1292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e93f534faedb945f5a0a1d85a9ac7ff2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _interactDistance: 2
+  _interactDistance: 3
   _containingRoom: 
   interactiveIcon: {fileID: 1757992680}
   iconRotationSpeed: 10
@@ -1291,7 +1308,7 @@ GameObject:
   - 114: {fileID: 1757992683}
   - 114: {fileID: 1757992682}
   m_Layer: 5
-  m_Name: item_magnify_ui
+  m_Name: item_inspect_ui
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1456,7 +1473,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e93f534faedb945f5a0a1d85a9ac7ff2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _interactDistance: 2
+  _interactDistance: 3
   _containingRoom: 
   interactiveIcon: {fileID: 1541281189}
   iconRotationSpeed: 10
