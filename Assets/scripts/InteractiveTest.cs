@@ -10,15 +10,17 @@ public class InteractiveTest : MonoBehaviour {
 	private bool _isJustChanged = false;
 	private Quaternion _lookRotation;
 	private Vector3 _direction;
+	private Camera _camera;
 
 	void Start() {
 		if(interactiveIcon != null) {
 			interactiveIcon.SetActive(false);
 		}
+		_camera = Camera.main;
 	}
 	
 	void Update() {
-		var target = Camera.main.transform;
+		var target = _camera.transform;
 		var distance = Vector3.Distance(this.transform.position, target.position);
 		
 		interactiveIcon.transform.LookAt(target);

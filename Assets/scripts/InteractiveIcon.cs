@@ -3,7 +3,6 @@ using UnityEngine;
 public class InteractiveIcon : InteractiveElement {
 
 	public GameObject interactiveIcon; 
-	public float maxProximity = 5f;
 	public float iconRotationSpeed = 10f;
 
 	private bool _isJustChanged = false;
@@ -19,12 +18,10 @@ public class InteractiveIcon : InteractiveElement {
 	
 	void Update() {
 		if(IsEnabled) {
-			var target = Camera.main.transform;
-			var distance = Vector3.Distance(this.transform.position, target.position);
-					
 			interactiveIcon.transform.LookAt(mainCamera.transform);
 
 			if(CheckProximity()) {
+
 //			    Vector3 dir = target.position - transform.position;
 				// 1 if the same direction, -1 if opposite directions, 0 if perpendicular
 //			    if(Vector3.Dot(dir, transform.forward) < 0) {
@@ -32,21 +29,21 @@ public class InteractiveIcon : InteractiveElement {
 //				} else {
 //					_turnOffIcon();
 //				}
-			} else {
+			} else if(_isJustChanged){
+				Debug.Log ("just changed");
 				_turnOffIcon();
 			}
 		}
 	}
 	
 	void _turnOnIcon() {
+		Debug.Log("turning icon " + this.name + " on");
 		interactiveIcon.SetActive(true);
 		_isJustChanged = true;
 	}
 	
 	void _turnOffIcon() {
-		if(_isJustChanged) {
-			interactiveIcon.SetActive(false);
-			_isJustChanged = false;
-		}
+		interactiveIcon.SetActive(false);
+		_isJustChanged = false;
 	}
 }

@@ -2,13 +2,13 @@
 
 public class InteractiveElement : MonoBehaviour {
 
-	public float _interactDistance = 4;
+	public float _interactDistance = 2f;
 	public string _containingRoom; 
 	
 	public bool IsRoomActive { get; set; } 
 	public bool IsEnabled { get; set; }
 
-	public Camera mainCamera;
+	protected Camera mainCamera;
 
 	void Awake() {
 		Init();
@@ -56,6 +56,7 @@ public class InteractiveElement : MonoBehaviour {
 		var isInProximity = false;
 		var difference = Vector3.Distance(mainCamera.transform.position, transform.position);
 		if(difference < _interactDistance) {
+			Debug.Log(difference + " less than " + _interactDistance);
 			isInProximity = true;
 		}
 		return isInProximity;
