@@ -10,7 +10,11 @@ public class InventoryUI : MonoBehaviour {
 	[SerializeField] private int _numColumns = 5;
 	[SerializeField] private int _numRows = 3;
 
-//	private Hashtable _uiItems;
+	float debounce = 0.0f;
+	float repeat = 0.1f;  
+	// reduce to speed up auto-repeat input
+    
+	//	private Hashtable _uiItems;
 	private ArrayList _items;
 
 	private float _width; 
@@ -73,35 +77,81 @@ public class InventoryUI : MonoBehaviour {
 	void Update() {
 		if(_canvas.enabled) {
 			float horizontal = CrossPlatformInputManager.GetAxis("Horizontal");
+			float vertical = CrossPlatformInputManager.GetAxis("Vertical");
+            float now = Time.realtimeSinceStartup;
+			bool changed = false;
+
+			if (Mathf.Abs(horizontal) < 0.1f || Mathf.Abs(horizontal) < 0.1f) {
+				debounce = 0.0f;
+			}
 
 			if(horizontal != 0) {
+				changed = true;
+				int col;
 				if(horizontal < 0) {
-					if(_currentItem > 0) {
-						_currentItem--;
+					if(_currentCol > 0) {
+						_currentCol--;
 					} else {
-						_currentItem = _items.Count;
+						_currentCol = (_numColumns - 1);
 					}
 				} else {
-					if(_currentItem < _items.Count) {
-						_currentItem++;
+					if(_currentCol < (_numColumns - 1)) {
+						_currentCol++;
 					} else {
-						_currentItem = 0;
+						_currentCol = 0;
 					}
-				}
+                }
+            }
+            
+            if(vertical != 0) {
+				changed = true;
+				int row; 
+				if(vertical < 0) {
+					if(_currentRow > 0) {
+						_currentRow--;
+					} else {
+						_currentRow = (_numRows - 1);
+					}
+				} else {
+					if(_currentRow < (_numRows - 1)) {
+						_currentRow++;
+					} else {
+						_currentRow = 0;
+					}
+                }
+            }
+            
 
+//            if (now - debounce > repeat) {
+//					if(horizontal < 0) {
+//						if(_currentItem > 0) {
+//							_currentItem--;
+//						} else {
+//							_currentItem = (_items.Count - 1);
+//						}
+//					} else {
+//						if(_currentItem < (_items.Count - 1)) {
+//							_currentItem++;
+//						} else {
+//							_currentItem = 0;
+//						}
+//					}
+			if(changed) {
+				_currentItem = (_currentRow * _numColumns) + _currentCol;
+				Debug.Log("cur = " + _currentItem + ", total = " + _items.Count);
 				GameObject item = _items[_currentItem] as GameObject;
-				Debug.Log("item = " + item);
-				Debug.Log("_items = " + _items);
-                
-                if(item != null) {
+				
+				if(item != null) {
 					item.GetComponent<InventoryItemUI>().setActive(true);
 				}
 				GameObject prevItem = _items[_previousItem] as GameObject;
 				if(prevItem != null) {
 					prevItem.GetComponent<InventoryItemUI>().setActive(false);
-                }
+				}
 				_previousItem = _currentItem;
-			}
-		}
+            }
+            //                }
+            //            }
+        }
     }
 }
