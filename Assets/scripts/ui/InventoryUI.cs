@@ -10,11 +10,6 @@ public class InventoryUI : MonoBehaviour {
 	[SerializeField] private int _numColumns = 5;
 	[SerializeField] private int _numRows = 3;
 
-	float debounce = 0.0f;
-	float repeat = 0.1f;  
-	// reduce to speed up auto-repeat input
-    
-	//	private Hashtable _uiItems;
 	private ArrayList _items;
 
 	private float _width; 
@@ -27,6 +22,8 @@ public class InventoryUI : MonoBehaviour {
 	private int _currentRow = 0;
 	private int _currentItem = 0; 
 	private int _previousItem = 0;
+	private float _previousTime = 0;
+	private float _inputDelay = .03f;
 
 	private Canvas _canvas;
 
@@ -34,9 +31,10 @@ public class InventoryUI : MonoBehaviour {
 		RectTransform containerRectTransform = this.GetComponent<RectTransform>();
 		_width = containerRectTransform.rect.width / _numColumns;
 		_height = containerRectTransform.rect.height / _numRows;
+		_previousTime = Time.realtimeSinceStartup;
 		_canvas = this.gameObject.transform.parent.GetComponent<Canvas>();
 
-		Debug.Log("InventoryUI/Awake, containerRectTransform = " + containerRectTransform.rect);
+		Debug.Log("InventoryUI/Awake, _previousTime = " + _previousTime);
 //		_uiItems = new Hashtable();
 		_items = new ArrayList();
 
@@ -78,80 +76,66 @@ public class InventoryUI : MonoBehaviour {
 		if(_canvas.enabled) {
 			float horizontal = CrossPlatformInputManager.GetAxis("Horizontal");
 			float vertical = CrossPlatformInputManager.GetAxis("Vertical");
-            float now = Time.realtimeSinceStartup;
-			bool changed = false;
+			float now = Time.realtimeSinceStartup;
+            
+			if(horizontal != 0 || vertical != 0) {
+				bool changed = false;
+				Debug.Log("now = " + now + " _previousTime = " + _previousTime + ", calc = " + (_previousTime - now));
 
-			if (Mathf.Abs(horizontal) < 0.1f || Mathf.Abs(horizontal) < 0.1f) {
-				debounce = 0.0f;
+
+				if(-(_previousTime - now) > _inputDelay) {
+					if(horizontal != 0) {
+						changed = true;
+						int col;
+						if(horizontal < 0) {
+							if(_currentCol > 0) {
+								_currentCol--;
+							} else {
+								_currentCol = (_numColumns - 1);
+							}
+						} else {
+							if(_currentCol < (_numColumns - 1)) {
+								_currentCol++;
+							} else {
+								_currentCol = 0;
+							}
+						}
+					}
+					
+					if(vertical != 0) {
+						changed = true;
+						int row; 
+						if(vertical > 0) {
+							if(_currentRow > 0) {
+								_currentRow--;
+                            } else {
+                                _currentRow = (_numRows - 1);
+                            }
+                        } else {
+                            if(_currentRow < (_numRows - 1)) {
+                                _currentRow++;
+                            } else {
+                                _currentRow = 0;
+                            }
+                        }
+                    }
+                    if(changed) {
+                        _currentItem = (_currentRow * _numColumns) + _currentCol;
+//                        Debug.Log("cur = " + _currentItem + ", total = " + _items.Count);
+                        GameObject item = _items[_currentItem] as GameObject;
+                        
+                        if(item != null) {
+							item.GetComponent<InventoryItemUI>().setActive(true);
+						}
+						GameObject prevItem = _items[_previousItem] as GameObject;
+                        if(prevItem != null) {
+                            prevItem.GetComponent<InventoryItemUI>().setActive(false);
+                        }
+                        _previousItem = _currentItem;
+					}
+				}
+				_previousTime = now;
 			}
-
-			if(horizontal != 0) {
-				changed = true;
-				int col;
-				if(horizontal < 0) {
-					if(_currentCol > 0) {
-						_currentCol--;
-					} else {
-						_currentCol = (_numColumns - 1);
-					}
-				} else {
-					if(_currentCol < (_numColumns - 1)) {
-						_currentCol++;
-					} else {
-						_currentCol = 0;
-					}
-                }
-            }
-            
-            if(vertical != 0) {
-				changed = true;
-				int row; 
-				if(vertical < 0) {
-					if(_currentRow > 0) {
-						_currentRow--;
-					} else {
-						_currentRow = (_numRows - 1);
-					}
-				} else {
-					if(_currentRow < (_numRows - 1)) {
-						_currentRow++;
-					} else {
-						_currentRow = 0;
-					}
-                }
-            }
-            
-
-//            if (now - debounce > repeat) {
-//					if(horizontal < 0) {
-//						if(_currentItem > 0) {
-//							_currentItem--;
-//						} else {
-//							_currentItem = (_items.Count - 1);
-//						}
-//					} else {
-//						if(_currentItem < (_items.Count - 1)) {
-//							_currentItem++;
-//						} else {
-//							_currentItem = 0;
-//						}
-//					}
-			if(changed) {
-				_currentItem = (_currentRow * _numColumns) + _currentCol;
-				Debug.Log("cur = " + _currentItem + ", total = " + _items.Count);
-				GameObject item = _items[_currentItem] as GameObject;
-				
-				if(item != null) {
-					item.GetComponent<InventoryItemUI>().setActive(true);
-				}
-				GameObject prevItem = _items[_previousItem] as GameObject;
-				if(prevItem != null) {
-					prevItem.GetComponent<InventoryItemUI>().setActive(false);
-				}
-				_previousItem = _currentItem;
-            }
-            //                }
-            //            }
         }
     }
 }
