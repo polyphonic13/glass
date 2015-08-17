@@ -23,7 +23,7 @@ public class InventoryUI : MonoBehaviour {
 	private int _currentItem = 0; 
 	private int _previousItem = 0;
 	private float _previousTime = 0;
-	private float _inputDelay = .03f;
+	private float _inputDelay = .025f;
 
 	private Canvas _canvas;
 
