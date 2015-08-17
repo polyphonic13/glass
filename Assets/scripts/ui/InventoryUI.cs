@@ -27,7 +27,7 @@ public class InventoryUI : MonoBehaviour {
 
 	private Canvas _canvas;
 
-	public void Awake() {
+	void Awake() {
 		RectTransform containerRectTransform = this.GetComponent<RectTransform>();
 		_width = containerRectTransform.rect.width / _numColumns;
 		_height = containerRectTransform.rect.height / _numRows;
@@ -80,45 +80,20 @@ public class InventoryUI : MonoBehaviour {
             
 			if(horizontal != 0 || vertical != 0) {
 				bool changed = false;
-				Debug.Log("now = " + now + " _previousTime = " + _previousTime + ", calc = " + (_previousTime - now));
+				// Debug.Log("now = " + now + " _previousTime = " + _previousTime + ", calc = " + (_previousTime - now));
 
 
 				if(-(_previousTime - now) > _inputDelay) {
 					if(horizontal != 0) {
 						changed = true;
-						int col;
-						if(horizontal < 0) {
-							if(_currentCol > 0) {
-								_currentCol--;
-							} else {
-								_currentCol = (_numColumns - 1);
-							}
-						} else {
-							if(_currentCol < (_numColumns - 1)) {
-								_currentCol++;
-							} else {
-								_currentCol = 0;
-							}
-						}
+						_calculateCol(horizontal);
 					}
 					
 					if(vertical != 0) {
 						changed = true;
-						int row; 
-						if(vertical > 0) {
-							if(_currentRow > 0) {
-								_currentRow--;
-                            } else {
-                                _currentRow = (_numRows - 1);
-                            }
-                        } else {
-                            if(_currentRow < (_numRows - 1)) {
-                                _currentRow++;
-                            } else {
-                                _currentRow = 0;
-                            }
-                        }
+						_calculateRow(vertical);
                     }
+                    Debug.Log("col = " + _currentCol + ", row = " + _currentRow);
                     if(changed) {
                         _currentItem = (_currentRow * _numColumns) + _currentCol;
 //                        Debug.Log("cur = " + _currentItem + ", total = " + _items.Count);
@@ -136,6 +111,66 @@ public class InventoryUI : MonoBehaviour {
 				}
 				_previousTime = now;
 			}
+        }
+    }
+
+    private void _calculateCol(float horizontal) {
+		if(horizontal < 0) {
+			_decrementCol(true);
+		} else  {
+			_incrementCol(true);
+		}
+    }
+
+    private void _calculateRow(float vertical) {
+		if(vertical > 0) {
+			_decrementRow(true);
+        } else if(vertical < 0) {
+        	_incrementRow(true);
+        }
+    }
+
+    private void _incrementCol(bool isCalcCalled) {
+		if(_currentCol < (_numColumns - 1)) {
+			_currentCol++;
+		} else {
+			_currentCol = 0;
+			if(isCalcCalled) {
+				_incrementRow(false);
+			}
+		}
+    }
+
+    private void _decrementCol(bool isCalcCalled) {
+		if(_currentCol > 0) {
+			_currentCol--;
+		} else {
+			_currentCol = (_numColumns - 1);
+			if(isCalcCalled) {
+				_decrementRow(false);
+			}
+		}
+    }
+
+    private void _incrementRow(bool isCalcCalled) {
+        if(_currentRow < (_numRows - 1)) {
+            _currentRow++;
+        } else {
+            _currentRow = 0;
+            if(isCalcCalled) {
+	            _incrementCol(false);
+            }
+        }
+    }
+
+    private void _decrementRow(bool isCalcCalled) {
+		if(_currentRow > 0) {
+			_currentRow--;
+        } else {
+            _currentRow = (_numRows - 1);
+            if(isCalcCalled) {
+	            _decrementCol(false);
+            }
         }
     }
 }
