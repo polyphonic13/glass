@@ -2,8 +2,8 @@
 
 public class InteractiveElement : MonoBehaviour {
 
-	public Sprite _thumbnail;
-	public string _name;
+	public Sprite thumbnail;
+	public string itemName;
 
 	public float _interactDistance = 3f;
 	public string _containingRoom; 
@@ -33,6 +33,10 @@ public class InteractiveElement : MonoBehaviour {
 		}
 	}
 
+	public string getName() {
+		return itemName;
+	}
+
 	public Camera getCamera() {
 		return mainCamera;
 	}
@@ -51,7 +55,7 @@ public class InteractiveElement : MonoBehaviour {
 
 	public void OnInputTaken(string name) {
 		if(IsRoomActive && IsEnabled) {
-			if(name == name) {
+			if(name == itemName) {
 				InputTaken();
 			}
 		}
@@ -63,7 +67,6 @@ public class InteractiveElement : MonoBehaviour {
 		var isInProximity = false;
 		var difference = Vector3.Distance(mainCamera.transform.position, transform.position);
 		if(difference < _interactDistance) {
-			Debug.Log(difference + " less than " + _interactDistance);
 			isInProximity = true;
 		}
 		return isInProximity;

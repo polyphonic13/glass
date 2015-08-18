@@ -1,43 +1,39 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InteractiveIcon : MonoBehaviour {
 
 	public GameObject interactiveIcon; 
-	public float iconRotationSpeed = 10f;
 
 	private bool _isJustChanged = false;
-	private InteractiveElement _element; 
-	
-	void Start() {
-		_element = gameObject.GetComponent<InteractiveElement>();
-		
+	private InteractiveElement _interactiveElement; 
+	private Text _itemNameText; 
+
+	void Awake() {
+		_interactiveElement = gameObject.GetComponent<InteractiveElement>();
+		var itemNameObj = transform.Find("item_icon_ui/item_name");
+		_itemNameText = itemNameObj.GetComponent<Text>();
+
 		if(interactiveIcon != null) {
 			interactiveIcon.SetActive(false);
+			_itemNameText.text = _interactiveElement.getName();
+		} else {
+			_itemNameText.text = "";
 		}
 	}
 	
 	void Update() {
-		if(_element.IsEnabled) {
-			interactiveIcon.transform.LookAt(_element.getCamera().transform);
-
-			if(_element.CheckProximity()) {
-
-//			    Vector3 dir = target.position - transform.position;
-				// 1 if the same direction, -1 if opposite directions, 0 if perpendicular
-//			    if(Vector3.Dot(dir, transform.forward) < 0) {
-					_turnOnIcon();
-//				} else {
-//					_turnOffIcon();
-//				}
+		if(_interactiveElement.IsEnabled) {
+			interactiveIcon.transform.rotation = Quaternion.LookRotation(interactiveIcon.transform.position - _interactiveElement.getCamera().transform.position);
+			if(_interactiveElement.CheckProximity()) {
+				_turnOnIcon();
 			} else if(_isJustChanged){
-				Debug.Log ("just changed");
 				_turnOffIcon();
 			}
 		}
 	}
 	
 	void _turnOnIcon() {
-		Debug.Log("turning icon " + this.name + " on");
 		interactiveIcon.SetActive(true);
 		_isJustChanged = true;
 	}
