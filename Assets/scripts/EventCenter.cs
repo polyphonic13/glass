@@ -19,6 +19,9 @@ public class EventCenter : MonoBehaviour {
 
 	public delegate void InputTakenHandler(string name); 
 
+	public delegate void InventoryAdder(CollectableItem item);
+	public delegate void InventoryRemover(CollectableItem item);
+
 	public delegate void EquipItemHandler(string itemName);
 	
 	public delegate void TriggerEventHandler(string evt);
@@ -45,6 +48,9 @@ public class EventCenter : MonoBehaviour {
 	public event CameraZoomHandler OnCameraZoom;
 
 	public event InputTakenHandler OnInputTaken;
+
+	public event InventoryAdder OnInventoryAdded;
+	public event InventoryRemover OnInventoryRemoved;
 
 	public event EquipItemHandler OnEquipItem;
 	
@@ -138,7 +144,19 @@ public class EventCenter : MonoBehaviour {
 			OnCameraZoom(zoom);
 		}
 	}
-	
+
+	public void AddInventory(CollectableItem item) {
+		if(OnInventoryAdded != null) {
+			OnInventoryAdded(item);
+		}
+	}
+
+	public void RemoveInventory(CollectableItem item) {
+		if(OnInventoryRemoved != null) {
+			OnInventoryRemoved(item);
+		}
+	}
+
 	public void EquipItem(string itemName) {
 		if(OnEquipItem != null){
 			OnEquipItem(itemName);

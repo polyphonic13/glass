@@ -36,7 +36,6 @@ public class InventoryManager {
 	}
 	
 	public void AddItem(CollectableItem item) {
-//		Debug.Log("_items manager/AddItem, item = " + item.name + ", description = " + item.description);
 		EventCenter.Instance.AddNote(item.ItemName + " Added to inventory");
 		_itemsHash.Add(item.name, item);
 	}

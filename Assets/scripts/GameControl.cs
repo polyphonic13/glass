@@ -2,8 +2,6 @@
 
 public class GameControl : MonoBehaviour {
 
-//	public static GameControl instance;
-
 	public float _health = 100f; 
 	public float _breath = 120f;
 	public float _stamina = 5f;
@@ -26,15 +24,11 @@ public class GameControl : MonoBehaviour {
 		}
 	}
 	
-	//	private Vector3 _cave01Start = new Vector3(133f, 4f, 1.4f);
-//	private Vector3 _houseFloor2BedroomNorth = new Vector3(0f, 0f, 0f);
-
 	private Vector3[] _startingPositions = new [] {
 		new Vector3(133f, 4f, 1.4f),
 		new Vector3(-4f, 15.5f, -30f)
 	};
 
-	// Use this for Initialization
 	void Awake() {
 		if(_instance == null) {
 			DontDestroyOnLoad(gameObject);
@@ -74,8 +68,6 @@ public class GameControl : MonoBehaviour {
 	public void ChangeScene(string tgt, int room) {
 		_targetRoom = room;
 		Application.LoadLevel(tgt);
-//		var player = GameObject.Find("Player");
-//		player.transform.position = GameControl.Instance.GetStartingPosition();
 	}
 
 	public void UpdateHealth(float val) {
@@ -113,7 +105,6 @@ public class GameControl : MonoBehaviour {
 	}
 
 	public Vector3 GetStartingPosition() {
-//		Debug.Log("GameControl/GetStartingPosition, val = " + _startingPositions[_targetRoom]);
 		return _startingPositions[_targetRoom];
 	}
 

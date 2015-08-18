@@ -29,23 +29,21 @@ public class InventoryUI : MonoBehaviour {
 
 	void Awake() {
 		RectTransform containerRectTransform = this.GetComponent<RectTransform>();
+		int total = _numColumns * _numRows;
+        int row = 0;
+		int col = 0;
+        
 		_width = containerRectTransform.rect.width / _numColumns;
 		_height = containerRectTransform.rect.height / _numRows;
 		_previousTime = Time.realtimeSinceStartup;
 		_canvas = this.gameObject.transform.parent.GetComponent<Canvas>();
 
-		Debug.Log("InventoryUI/Awake, _previousTime = " + _previousTime);
-//		_uiItems = new Hashtable();
 		_items = new ArrayList();
-
-		int row = 0;
-		int col = 0;
-		int total = _numColumns * _numRows;
 
 		for(int i = 0; i < total; i++) {
 			float x = _startX + (_width * col);
 			float y = _startY + -(_height * row);
-//			Debug.Log("item["+col+","+row+"] x = " + x + ", y = " + y);
+
 			string name = "item" + i;
 			GameObject item = Instantiate(_inventoryItem) as GameObject;
 	
@@ -63,7 +61,7 @@ public class InventoryUI : MonoBehaviour {
 			rect.localPosition = new Vector3(x, y, 0);
 
 			_items.Add(item);
-//			_uiItems.Add(name, item);
+
 			col++;
 			if(col % _numColumns == 0) {
 				row++;
@@ -80,8 +78,6 @@ public class InventoryUI : MonoBehaviour {
             
 			if(horizontal != 0 || vertical != 0) {
 				bool changed = false;
-				// Debug.Log("now = " + now + " _previousTime = " + _previousTime + ", calc = " + (_previousTime - now));
-
 
 				if(-(_previousTime - now) > _inputDelay) {
 					if(horizontal != 0) {
@@ -93,10 +89,9 @@ public class InventoryUI : MonoBehaviour {
 						changed = true;
 						_calculateRow(vertical);
                     }
-                    Debug.Log("col = " + _currentCol + ", row = " + _currentRow);
+
                     if(changed) {
                         _currentItem = (_currentRow * _numColumns) + _currentCol;
-//                        Debug.Log("cur = " + _currentItem + ", total = " + _items.Count);
                         GameObject item = _items[_currentItem] as GameObject;
                         
                         if(item != null) {

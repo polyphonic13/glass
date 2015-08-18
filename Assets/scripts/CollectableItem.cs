@@ -57,20 +57,29 @@ public class CollectableItem : InteractiveElement {
 		}
 	}
 
-	public override void InputTaken() {
+//	public override void InputTaken() {
 //		Debug.Log("CollectableItem/InputTaken, name = " + name);
-		if(CheckProximity()) {
-			if(!IsCollected) {
-				AddToInventory();
-			}
+//		if(CheckProximity()) {
+//			if(!IsCollected) {
+//				AddToInventory();
+//			}
+//		}
+//	}
+
+	public override void Actuate () {
+		if(!IsCollected) {
+//			base.Actuate();
+//			Debug.Log(this.name + "/Actuate, adding to inventory");
+			AddToInventory();
 		}
 	}
-	
+
 	public void AddToInventory() {
 		IsCollected = true;
+		Inventory.Instance.AddItem(this);
 		// _player.inventory.addItem(this);
-		UnEquip();
-		Attach();
+//		UnEquip();
+//		Attach();
 	}
 
 	public virtual void Attach() {

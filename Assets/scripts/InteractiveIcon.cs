@@ -16,7 +16,7 @@ public class InteractiveIcon : MonoBehaviour {
 
 		if(interactiveIcon != null) {
 			interactiveIcon.SetActive(false);
-			_itemNameText.text = _interactiveElement.getName();
+			_itemNameText.text = _interactiveElement.GetName();
 		} else {
 			_itemNameText.text = "";
 		}
@@ -24,7 +24,7 @@ public class InteractiveIcon : MonoBehaviour {
 	
 	void Update() {
 		if(_interactiveElement.IsEnabled) {
-			interactiveIcon.transform.rotation = Quaternion.LookRotation(interactiveIcon.transform.position - _interactiveElement.getCamera().transform.position);
+			interactiveIcon.transform.rotation = Quaternion.LookRotation(interactiveIcon.transform.position - _interactiveElement.GetCamera().transform.position);
 			if(_interactiveElement.CheckProximity()) {
 				_turnOnIcon();
 			} else if(_isJustChanged){
