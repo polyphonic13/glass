@@ -549,6 +549,7 @@ GameObject:
   - 65: {fileID: 492575461}
   - 23: {fileID: 492575460}
   - 114: {fileID: 492575463}
+  - 114: {fileID: 492575464}
   m_Layer: 0
   m_Name: Cube 1
   m_TagString: interactive
@@ -623,10 +624,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4503b2618ae2c48648179161f153136a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _interactDistance: 3
-  _containingRoom: 
   interactiveIcon: {fileID: 124743769}
   iconRotationSpeed: 10
+--- !u!114 &492575464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 492575458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22c68baf2965f4a73a564f999434f460, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _thumbnail: {fileID: 0}
+  _name: 
+  _interactDistance: 3
+  _containingRoom: 
 --- !u!1001 &525465157
 Prefab:
   m_ObjectHideFlags: 0
@@ -685,6 +699,7 @@ GameObject:
   - 135: {fileID: 535583451}
   - 23: {fileID: 535583450}
   - 114: {fileID: 535583453}
+  - 114: {fileID: 535583454}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: interactive
@@ -759,10 +774,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4503b2618ae2c48648179161f153136a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _interactDistance: 3
-  _containingRoom: 
   interactiveIcon: {fileID: 412054896}
   iconRotationSpeed: 10
+--- !u!114 &535583454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 535583448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22c68baf2965f4a73a564f999434f460, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _thumbnail: {fileID: 21300000, guid: 173e0529f7b5f41d89e0a4bd0cb27036, type: 3}
+  _name: collectable_sphere
+  _interactDistance: 3
+  _containingRoom: 
 --- !u!1 &620434603
 GameObject:
   m_ObjectHideFlags: 0
@@ -1327,6 +1355,7 @@ GameObject:
   - 136: {fileID: 1570138913}
   - 23: {fileID: 1570138912}
   - 114: {fileID: 1570138916}
+  - 114: {fileID: 1570138915}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: interactive
@@ -1391,6 +1420,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1570138910}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1570138915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1570138910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22c68baf2965f4a73a564f999434f460, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _thumbnail: {fileID: 0}
+  _name: 
+  _interactDistance: 3
+  _containingRoom: 
 --- !u!114 &1570138916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1402,8 +1446,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4503b2618ae2c48648179161f153136a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _interactDistance: 3
-  _containingRoom: 
   interactiveIcon: {fileID: 1757992680}
   iconRotationSpeed: 10
 --- !u!1 &1757992680
@@ -1508,6 +1550,7 @@ GameObject:
   - 136: {fileID: 1991839690}
   - 23: {fileID: 1991839689}
   - 114: {fileID: 1991839692}
+  - 114: {fileID: 1991839693}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: interactive
@@ -1583,10 +1626,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4503b2618ae2c48648179161f153136a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _interactDistance: 3
-  _containingRoom: 
   interactiveIcon: {fileID: 1541281189}
   iconRotationSpeed: 10
+--- !u!114 &1991839693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1991839687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22c68baf2965f4a73a564f999434f460, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _thumbnail: {fileID: 0}
+  _name: 
+  _interactDistance: 3
+  _containingRoom: 
 --- !u!1 &2001767452
 GameObject:
   m_ObjectHideFlags: 0

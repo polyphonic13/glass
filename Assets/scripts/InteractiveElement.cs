@@ -2,6 +2,9 @@
 
 public class InteractiveElement : MonoBehaviour {
 
+	public Sprite _thumbnail;
+	public string _name;
+
 	public float _interactDistance = 3f;
 	public string _containingRoom; 
 	
@@ -19,7 +22,7 @@ public class InteractiveElement : MonoBehaviour {
 
 		mainCamera = Camera.main;
 
-		if(transform.tag == "persistentItem") {
+		if(transform.tag == "persistentItem" || _containingRoom == null) {
 			IsRoomActive = true;
 		} else {
 			IsRoomActive = false;
@@ -28,6 +31,10 @@ public class InteractiveElement : MonoBehaviour {
 			eventCenter.OnRoomEntered += OnRoomEntered;
 			eventCenter.OnRoomExited += OnRoomExited;
 		}
+	}
+
+	public Camera getCamera() {
+		return mainCamera;
 	}
 
 	public virtual void OnRoomEntered(string room) {

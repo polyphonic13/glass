@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class InteractiveIcon : InteractiveElement {
+public class InteractiveIcon : MonoBehaviour {
 
 	public GameObject interactiveIcon; 
 	public float iconRotationSpeed = 10f;
@@ -17,10 +17,10 @@ public class InteractiveIcon : InteractiveElement {
 	}
 	
 	void Update() {
-		if(IsEnabled) {
-			interactiveIcon.transform.LookAt(mainCamera.transform);
+		if(_element.IsEnabled) {
+			interactiveIcon.transform.LookAt(_element.getCamera().transform);
 
-			if(CheckProximity()) {
+			if(_element.CheckProximity()) {
 
 //			    Vector3 dir = target.position - transform.position;
 				// 1 if the same direction, -1 if opposite directions, 0 if perpendicular
