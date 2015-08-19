@@ -77,15 +77,11 @@ public class CollectableItem : InteractiveElement {
 		IsCollected = true;
 		var isAdded = Inventory.Instance.AddItem(this);
 		if(isAdded) {
-		// 	Destroy(this.gameObject);
-		// 	UnEquip();
-		// 	Attach();
+			// do something? 
 		}
 	}
 
 	public virtual void Attach() {
-//		Debug.Log("CollectableItem/Attach");
-//		AttachToRightHand();
 		AttachToBackpack();
 	}
 	 
@@ -112,6 +108,7 @@ public class CollectableItem : InteractiveElement {
 	}
 	
 	public void RemoveFromInventory() {
+		Inventory.Instance.RemoveItem(this.name);
 		IsCollected = false;
 	}
 	

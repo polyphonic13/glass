@@ -12,6 +12,7 @@ public class GameControl : MonoBehaviour {
 	public float RemainingBreath { get; set; }
 	public float RemainingStamina { get; set; } 
 
+
 	private static GameControl _instance;
 	private GameControl() {}
 	
