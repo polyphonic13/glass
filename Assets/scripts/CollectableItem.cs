@@ -4,8 +4,8 @@ public class CollectableItem : InteractiveElement {
 
 	public string description = "";
 	// TBD: extend class with ContainableItem:
-	public string _targetContainerName = "";
-	
+	public string targetContainerName = "";
+
 	public Texture iconTexture;
 	public Texture detailTexture;
 
@@ -23,7 +23,6 @@ public class CollectableItem : InteractiveElement {
 	
 	void Awake() {
 		InitCollectableItem();
-		
 	}
 	
 	public void InitCollectableItem() {
@@ -76,10 +75,12 @@ public class CollectableItem : InteractiveElement {
 
 	public void AddToInventory() {
 		IsCollected = true;
-		Inventory.Instance.AddItem(this);
-		// _player.inventory.addItem(this);
-//		UnEquip();
-//		Attach();
+		var isAdded = Inventory.Instance.AddItem(this);
+		if(isAdded) {
+		// 	Destroy(this.gameObject);
+		// 	UnEquip();
+		// 	Attach();
+		}
 	}
 
 	public virtual void Attach() {
@@ -143,7 +144,7 @@ public class CollectableItem : InteractiveElement {
 		transform.parent = null;
 
 		var __weightClone =(ItemWeight) Instantiate(_weight, transform.position, transform.rotation);
-		__weightClone.TargetContainerName = _targetContainerName;
+		__weightClone.TargetContainerName = targetContainerName;
 		__weightClone.ParentObject = gameObject;
 		__weightClone.transform.parent = transform;
 	}

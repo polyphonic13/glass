@@ -25,16 +25,21 @@ public class Inventory : MonoBehaviour {
 		return(_items.Contains(key)) ? true : false;
 	}
 	
-	public void AddItem(CollectableItem item) {
+	public bool AddItem(CollectableItem item) {
 		var displayName = item.GetName();
+		var isAdded = true;
 		Debug.Log("Inventory/AddItem, item = " + displayName);
-		if(_items.Count < _maxItems) {
+		if(HasItem(item.name)) {
+			// increment count of item type
+		} else if(_items.Count < _maxItems) {
 			EventCenter.Instance.AddNote(displayName + " Added to inventory");
 			_items.Add(item.name, item);
 			EventCenter.Instance.AddInventory(item);
 		} else {
 			EventCenter.Instance.AddNote("No more room for: " + displayName);
+			isAdded = false;
 		}
+		return isAdded;
 	}
 
 	public void RemoveItem(string key) {

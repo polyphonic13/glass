@@ -53,7 +53,7 @@ public class InventoryUI : MonoBehaviour {
 			InventoryItemUI itemUI = item.GetComponent<InventoryItemUI>();
 			RectTransform rect = item.GetComponent<RectTransform>();
 
-			itemUI.setCount(i);
+			// itemUI.setCount(i);
 			if(i == 0) {
 				itemUI.setActive(true);
 			}
