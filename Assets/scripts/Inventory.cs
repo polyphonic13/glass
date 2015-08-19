@@ -54,4 +54,8 @@ public class Inventory : MonoBehaviour {
 			_items.Remove(key);
 		}
 	}
+
+	public Hashtable GetAll() {
+		return _items;
+	}
 }
