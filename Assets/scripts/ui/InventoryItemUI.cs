@@ -3,8 +3,9 @@ using UnityEngine.UI;
 
 public class InventoryItemUI : MonoBehaviour {
 
-    [SerializeField] private Text itemCount;
-	[SerializeField] private Image itemThumbnail;
+	[SerializeField] private Text _itemName;
+    [SerializeField] private Text _itemCount;
+	[SerializeField] private Image _itemThumbnail;
 
 	private Image _itemBg;
     private Color32 _active;
@@ -25,19 +26,22 @@ public class InventoryItemUI : MonoBehaviour {
 		}
 	} 
 
+	public void SetName(string itemName) {
+		Debug.Log("InventoryItemUI/setName: " + itemName);
+		_itemName.text = itemName;
+	}
+
 	public void SetCount(int count) {
-		itemCount.text = "x" + count;
+		_itemCount.text = "x" + count;
 	}
 
 	public void SetThumbnail(Sprite thumbnail) {
-		Debug.Log("InventoryItemUI/SetThumbnail, thumbnail = " + thumbnail + ", sprite = " + itemThumbnail.sprite);
-		itemThumbnail.sprite = thumbnail;
-		itemThumbnail.color = Color.white;
-		Debug.Log("InventoryItemUI/SetThumbnail, thumbnail = " + thumbnail + ", sprite = " + itemThumbnail.sprite);
-	}
-
-	public void ClearThumbnail() {
-		itemThumbnail.sprite = null;
-		itemThumbnail.color = Color.black;
+		if(thumbnail != null) {
+			_itemThumbnail.sprite = thumbnail;
+			_itemThumbnail.color = Color.white;
+		} else {
+			_itemThumbnail.sprite = null;
+			_itemThumbnail.color = Color.black;
+		}
 	}
 }

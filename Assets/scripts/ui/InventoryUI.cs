@@ -57,12 +57,16 @@ public class InventoryUI : MonoBehaviour {
 
 	    	Debug.Log("_occupiedItems = " + _occupiedItems + ", ui = " + ui + ", _items.Count = " + _items.Count);
 	    	if(ui != null) {
+	    		ui.SetName(item.GetName());
 	    		ui.SetCount(1);
 		    	if(item.Thumbnail != null) {
 			    	ui.SetThumbnail(item.Thumbnail);
 		    	}
+		    	if(_occupiedItems == 0) {
+		    		ui.SetFocus(true);
+		    	}
+		    	_occupiedItems++;
 		    }
-	    	_occupiedItems++;
     	}
     }
 
@@ -93,10 +97,6 @@ public class InventoryUI : MonoBehaviour {
 			RectTransform rect = item.GetComponent<RectTransform>();
 
 			item.name = itemName;
-
-			if(i == 0) {
-				itemUI.SetFocus(true);
-			}
 
 			rect.localPosition = new Vector3(x, y, 0);
 
