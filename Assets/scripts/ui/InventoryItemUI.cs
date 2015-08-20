@@ -14,10 +14,10 @@ public class InventoryItemUI : MonoBehaviour {
 		_active = new Color32(188, 188, 188, 100);
 		_inactive = new Color32(0, 0, 0, 100);
 		_itemBg = GetComponent<Image>();
-		setActive(false);
+		SetFocus(false);
 	}
 
-	public void setActive(bool active) {
+	public void SetFocus(bool active) {
 		if(active) {
 			_itemBg.color = _active;
 		} else {
@@ -25,11 +25,19 @@ public class InventoryItemUI : MonoBehaviour {
 		}
 	} 
 
-	public void setCount(int count) {
+	public void SetCount(int count) {
 		itemCount.text = "x" + count;
 	}
 
-	public void setThumbnail(Sprite thumbnail) {
+	public void SetThumbnail(Sprite thumbnail) {
+		Debug.Log("InventoryItemUI/SetThumbnail, thumbnail = " + thumbnail + ", sprite = " + itemThumbnail.sprite);
 		itemThumbnail.sprite = thumbnail;
+		itemThumbnail.color = Color.white;
+		Debug.Log("InventoryItemUI/SetThumbnail, thumbnail = " + thumbnail + ", sprite = " + itemThumbnail.sprite);
+	}
+
+	public void ClearThumbnail() {
+		itemThumbnail.sprite = null;
+		itemThumbnail.color = Color.black;
 	}
 }

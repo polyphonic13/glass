@@ -19,8 +19,8 @@ public class EventCenter : MonoBehaviour {
 
 	public delegate void InputTakenHandler(string name); 
 
-	public delegate void InventoryAdder(CollectableItem item);
-	public delegate void InventoryRemover(CollectableItem item);
+	public delegate void InventoryAdder(string item);
+	public delegate void InventoryRemover(string item);
 
 	public delegate void EquipItemHandler(string itemName);
 	
@@ -145,13 +145,13 @@ public class EventCenter : MonoBehaviour {
 		}
 	}
 
-	public void AddInventory(CollectableItem item) {
+	public void AddInventory(string item) {
 		if(OnInventoryAdded != null) {
 			OnInventoryAdded(item);
 		}
 	}
 
-	public void RemoveInventory(CollectableItem item) {
+	public void RemoveInventory(string item) {
 		if(OnInventoryRemoved != null) {
 			OnInventoryRemoved(item);
 		}

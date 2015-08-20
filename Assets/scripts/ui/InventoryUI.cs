@@ -1,7 +1,6 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnitySampleAssets.CrossPlatformInput;
-using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour {
 
@@ -10,52 +9,93 @@ public class InventoryUI : MonoBehaviour {
 	[SerializeField] private int _numColumns = 5;
 	[SerializeField] private int _numRows = 3;
 
+	private const float START_X = -410f;
+	private const float START_Y = 115f;
+	private const float INPUT_DELAY = .03f;
+
 	private ArrayList _items;
+	private int _occupiedItems;
 
 	private float _width; 
 	private float _height; 
 
-	private float _startX = -410f;
-	private float _startY = 115f;
-
-	private int _currentCol = 0;
-	private int _currentRow = 0;
-	private int _currentItem = 0; 
-	private int _previousItem = 0;
-	private float _previousTime = 0;
-	private float _inputDelay = .03f;
+	private int _currentCol;
+	private int _currentRow;
+	private int _currentItem; 
+	private int _previousItem;
+	private float _previousTime;
 
 	private Canvas _canvas;
 
 	void Awake() {
-		RectTransform containerRectTransform = this.GetComponent<RectTransform>();
+		_items = new ArrayList();
+		_buildUI();
+
+		EventCenter.Instance.OnInventoryAdded += OnInventoryAdded;
+	}
+
+	void Update() {
+		if(_canvas.enabled) {
+			_handleInput();
+        }
+    }
+
+    public void OnInventoryAdded(string itemName) {
+    	// Debug.Log("InventoryUI/OnInventoryAdded, itemName = " + itemName);
+    	_setItemUI(itemName);	
+    }
+
+    private void _setItemUI(string itemName) {
+    	if(_occupiedItems == (_numColumns * _numRows)) {
+    		return;
+    	}
+    	var item = Inventory.Instance.GetItem(itemName);
+    	var itemUI = _items[_occupiedItems] as GameObject;
+
+    	if(itemUI != null) {
+	    	var ui = itemUI.GetComponent<InventoryItemUI>();
+
+	    	Debug.Log("_occupiedItems = " + _occupiedItems + ", ui = " + ui + ", _items.Count = " + _items.Count);
+	    	if(ui != null) {
+	    		ui.SetCount(1);
+		    	if(item.Thumbnail != null) {
+			    	ui.SetThumbnail(item.Thumbnail);
+		    	}
+		    }
+	    	_occupiedItems++;
+    	}
+    }
+
+    private void _buildUI() {
+		RectTransform containerRectTransform = GetComponent<RectTransform>();
 		int total = _numColumns * _numRows;
         int row = 0;
 		int col = 0;
-        
+
+		Hashtable hash = Inventory.Instance.GetAll();
+		var inventory = new ArrayList(hash.Values);
+
 		_width = containerRectTransform.rect.width / _numColumns;
 		_height = containerRectTransform.rect.height / _numRows;
 		_previousTime = Time.realtimeSinceStartup;
-		_canvas = this.gameObject.transform.parent.GetComponent<Canvas>();
-
-		_items = new ArrayList();
+		_canvas = gameObject.transform.parent.GetComponent<Canvas>();
 
 		for(int i = 0; i < total; i++) {
-			float x = _startX + (_width * col);
-			float y = _startY + -(_height * row);
+			float x = START_X + (_width * col);
+			float y = START_Y + -(_height * row);
 
-			string name = "item" + i;
-			GameObject item = Instantiate(_inventoryItem) as GameObject;
+			string itemName = "item" + i;
+			var item = Instantiate(_inventoryItem);
 	
-			item.transform.SetParent(this.gameObject.transform, false);
-			item.name = name;
+			item.transform.SetParent(gameObject.transform, false);
 
 			InventoryItemUI itemUI = item.GetComponent<InventoryItemUI>();
 			RectTransform rect = item.GetComponent<RectTransform>();
 
-			// itemUI.setCount(i);
+			item.name = itemName;
+
 			if(i == 0) {
-				itemUI.setActive(true);
+				itemUI.SetFocus(true);
 			}
 
 			rect.localPosition = new Vector3(x, y, 0);
@@ -68,45 +108,43 @@ public class InventoryUI : MonoBehaviour {
 				col = 0;
 			}
 		}
-	}
+    }
 
-	void Update() {
-		if(_canvas.enabled) {
-			float horizontal = CrossPlatformInputManager.GetAxis("Horizontal");
-			float vertical = CrossPlatformInputManager.GetAxis("Vertical");
+    private void _handleInput() {
+		float horizontal = CrossPlatformInputManager.GetAxis("Horizontal");
+		float vertical = CrossPlatformInputManager.GetAxis("Vertical");
+        
+		if(horizontal != 0 || vertical != 0) {
 			float now = Time.realtimeSinceStartup;
-            
-			if(horizontal != 0 || vertical != 0) {
-				bool changed = false;
 
-				if(-(_previousTime - now) > _inputDelay) {
-					if(horizontal != 0) {
-						changed = true;
-						_calculateCol(horizontal);
-					}
-					
-					if(vertical != 0) {
-						changed = true;
-						_calculateRow(vertical);
-                    }
-
-                    if(changed) {
-                        _currentItem = (_currentRow * _numColumns) + _currentCol;
-                        GameObject item = _items[_currentItem] as GameObject;
-                        
-                        if(item != null) {
-							item.GetComponent<InventoryItemUI>().setActive(true);
-						}
-						GameObject prevItem = _items[_previousItem] as GameObject;
-                        if(prevItem != null) {
-                            prevItem.GetComponent<InventoryItemUI>().setActive(false);
-                        }
-                        _previousItem = _currentItem;
-					}
+			if(-(_previousTime - now) > INPUT_DELAY) {
+				var changed = false;
+				if(horizontal != 0) {
+					changed = true;
+					_calculateCol(horizontal);
 				}
-				_previousTime = now;
+				
+				if(vertical != 0) {
+					changed = true;
+					_calculateRow(vertical);
+                }
+
+                if(changed) {
+                    _currentItem = (_currentRow * _numColumns) + _currentCol;
+                    var item = _items[_currentItem] as GameObject;
+                    
+                    if(item != null) {
+						item.GetComponent<InventoryItemUI>().SetFocus(true);
+					}
+					var prevItem = _items[_previousItem] as  GameObject;
+                    if(prevItem != null) {
+                        prevItem.GetComponent<InventoryItemUI>().SetFocus(false);
+                    }
+                    _previousItem = _currentItem;
+				}
 			}
-        }
+			_previousTime = now;
+		}
     }
 
     private void _calculateCol(float horizontal) {

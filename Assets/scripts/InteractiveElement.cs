@@ -3,7 +3,7 @@ using UnitySampleAssets.CrossPlatformInput;
 
 public class InteractiveElement : MonoBehaviour {
 
-	public Sprite thumbnail;
+	public Sprite Thumbnail;
 	public string ItemName;
 
 	public float _interactDistance = 3f;

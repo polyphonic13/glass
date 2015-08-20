@@ -36,7 +36,7 @@ public class Inventory : MonoBehaviour {
 			_items.Add(item.name, item);
 			item.transform.position = this.transform.position;
 			item.transform.parent = this.transform;
-			EventCenter.Instance.AddInventory(item);
+			EventCenter.Instance.AddInventory(item.name);
 		} else {
 			EventCenter.Instance.AddNote("No more room for: " + displayName);
 			isAdded = false;
@@ -50,8 +50,16 @@ public class Inventory : MonoBehaviour {
 			// TBD
 			// otherwise remove completely
 			var item = _items[key] as CollectableItem;
-			EventCenter.Instance.RemoveInventory(item);
+			EventCenter.Instance.RemoveInventory(item.name);
 			_items.Remove(key);
+		}
+	}
+
+	public CollectableItem GetItem(string key) {
+		if(HasItem(key)) {
+			return _items[key] as CollectableItem;
+		} else {
+			return null;
 		}
 	}
 

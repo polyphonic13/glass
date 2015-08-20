@@ -3,39 +3,127 @@
 	{
 		"selected_items":
 		[
+			[
+				"AttachT",
+				"AttachToGameObject()	void"
+			],
+			[
+				"is",
+				"isAdded	?"
+			],
+			[
+				"GetCom",
+				"GetComponent<T>()	T"
+			],
+			[
+				"Unit",
+				"UnityEngine	UnityEngine"
+			],
+			[
+				"Mo",
+				"MonoBehaviour	MonoBehaviour"
+			],
+			[
+				"_de",
+				"_decrementCol()	int"
+			],
+			[
+				"_in",
+				"_incrementCol()	int"
+			],
+			[
+				"_decre",
+				"_decrementRow()	int"
+			],
+			[
+				"_incre",
+				"_incrementRow()	int"
+			],
+			[
+				"_cal",
+				"_calculateRow()	int"
+			],
+			[
+				"Remi",
+				"RemainingStamina	float { get; set; }"
+			],
+			[
+				"Rema",
+				"RemainingStamina	float { get; set; }"
+			],
+			[
+				"Rem",
+				"RemainingHealth	float { get; set; }"
+			],
+			[
+				"Stam",
+				"_stamina	float"
+			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "glass.sln",
+			"file": "Assets/scripts/InteractiveElement.cs",
 			"settings":
 			{
-				"buffer_size": 2346,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "glass.sublime-project",
-			"settings":
-			{
-				"buffer_size": 83,
+				"buffer_size": 1706,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "Assets/scripts/Underwater.cs",
+			"file": "Assets/scripts/InteractiveIcon.cs",
 			"settings":
 			{
-				"buffer_size": 1834,
+				"buffer_size": 1136,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/Users/paulhoover/Library/Application Support/Sublime Text 3/Packages/User/C#.sublime-settings",
+			"file": "Assets/scripts/CollectableItem.cs",
 			"settings":
 			{
-				"buffer_size": 161,
+				"buffer_size": 3564,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Assets/scripts/GameControl.cs",
+			"settings":
+			{
+				"buffer_size": 2647,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Assets/scripts/ui/InventoryUI.cs",
+			"settings":
+			{
+				"buffer_size": 4325,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Assets/scripts/ui/InventoryItemUI.cs",
+			"settings":
+			{
+				"buffer_size": 716,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Assets/scripts/Inventory.cs",
+			"settings":
+			{
+				"buffer_size": 1644,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Assets/scripts/EventCenter.cs",
+			"settings":
+			{
+				"buffer_size": 4846,
 				"line_ending": "Unix"
 			}
 		}
@@ -79,27 +167,218 @@
 	[
 		"/Users/paulhoover/Documents/code/games/unity/glass",
 		"/Users/paulhoover/Documents/code/games/unity/glass/Assets",
-		"/Users/paulhoover/Documents/code/games/unity/glass/Assets/scripts"
+		"/Users/paulhoover/Documents/code/games/unity/glass/Assets/scripts",
+		"/Users/paulhoover/Documents/code/games/unity/glass/Assets/scripts/ui"
 	],
 	"file_history":
 	[
+		"/Users/paulhoover/Documents/code/games/unity/glass/Assets/scenes/climb_test.unity",
+		"/Users/paulhoover/Documents/code/games/unity/glass/Assets/scripts/ui/InventoryUI.cs",
+		"/Users/paulhoover/Documents/code/games/unity/glass/Assets/scripts/ui/InventoryItemUI.cs",
+		"/Users/paulhoover/Documents/code/games/unity/glass/Assets/scripts/OnOffLight.cs",
+		"/Users/paulhoover/Documents/code/games/unity/glass/Assets/scripts/InvertedCamera.cs",
+		"/Users/paulhoover/Documents/code/games/unity/glass/Assets/scripts/InspectableItem.cs",
+		"/Users/paulhoover/Documents/code/games/unity/glass/Assets/scripts/GUI/InventoryManager.cs",
+		"/Users/paulhoover/Documents/code/games/unity/glass/Assets/scripts/armatures/ArmatureTrigger.cs",
+		"/Users/paulhoover/Documents/code/games/unity/glass/Assets/scripts/armatures/ArmatureParent.cs",
+		"/Users/paulhoover/Documents/code/games/unity/glass/Assets/scripts/CollectableItem.cs",
+		"/Users/paulhoover/Documents/code/games/unity/glass/Assets/SampleAssets/Characters/FirstPersonCharacter/Scripts/FirstPersonController.cs",
+		"/Users/paulhoover/Documents/code/games/unity/glass/Assets/scripts/GUI/Menu.cs",
+		"/Users/paulhoover/Documents/code/games/unity/glass/Assets/scripts/GUI/Notification.cs",
+		"/Users/paulhoover/Documents/code/games/unity/glass/Assets/scripts/ItemContainer.cs",
+		"/Users/paulhoover/Documents/code/games/unity/glass/Assets/scripts/CollidableChild.cs",
+		"/Users/paulhoover/Documents/code/games/unity/glass/Assets/scripts/CollidableParent.cs",
+		"/Users/paulhoover/Documents/code/games/unity/glass/Assets/scripts/Player.cs.tmpl",
+		"/Users/paulhoover/Documents/code/games/unity/glass/Assets/scripts/InteractiveElement.cs",
+		"/Users/paulhoover/Documents/code/games/unity/glass/Assets/scripts/ItemWeight.cs",
+		"/Users/paulhoover/Documents/code/games/unity/glass/Assets/scripts/EventCenter.cs",
+		"/Users/paulhoover/Documents/code/games/unity/glass/Assets/scripts/armatures/OpenCloseArmatureTrigger.cs",
+		"/Users/paulhoover/Documents/code/games/unity/glass/Assets/scripts/armatures/LockableArmatureTrigger.cs",
+		"/Users/paulhoover/Documents/code/games/unity/glass/Assets/scripts/armatures/EventUnlockTrigger.cs",
+		"/Users/paulhoover/Documents/code/games/unity/glass/Assets/scripts/armatures/ContainerUnlockTrigger.cs",
+		"/Users/paulhoover/Documents/code/games/unity/glass/Assets/scripts/StaminaManager.cs",
+		"/Users/paulhoover/Documents/code/games/unity/glass/Assets/scripts/Underwater.cs",
+		"/Users/paulhoover/Documents/code/games/unity/glass/Assets/scripts/UnderwaterTrigger.cs",
+		"/Users/paulhoover/Documents/code/games/unity/glass/Assets/scripts/GameControl.cs",
+		"/Users/paulhoover/Documents/code/games/unity/glass/Assets/scripts/ArmatureTrigger.cs",
+		"/Users/paulhoover/Documents/code/games/unity/glass/Assets/scripts/BreathingManager.cs",
+		"/Users/paulhoover/Documents/code/games/unity/glass/Assets/scripts/GravityDamager.cs",
+		"/Users/paulhoover/Documents/code/games/unity/glass/Assets/scripts/Room.cs",
+		"/Users/paulhoover/Documents/code/games/unity/glass/Assets/scripts/RoomElement.cs",
+		"/Users/paulhoover/Documents/code/games/unity/glass/Assets/scripts/RoomTrigger.cs",
+		"/Users/paulhoover/Documents/code/games/unity/glass/Assets/scripts/SceneChanger.cs",
+		"/Users/paulhoover/Documents/code/games/unity/glass/Assets/SampleAssets/Characters/FirstPersonCharacter/Prefabs/FPSController.prefab",
+		"/Users/paulhoover/Documents/code/games/unity/glass/Assets/scripts/ui/UIPlayerPropertyText.cs",
+		"/Users/paulhoover/Documents/code/games/unity/glass/Assets/prefabs/house_door.prefab",
+		"/Users/paulhoover/Documents/code/games/unity/glass/Assets/prefabs/player.prefab",
+		"/Users/paulhoover/Documents/code/games/unity/glass/Assets/scripts/CameraZoom.cs",
+		"/Users/paulhoover/Documents/code/games/unity/glass/Assets/scripts/FirstPersonMovement.cs",
+		"/Users/paulhoover/Documents/code/games/unity/glass/Assets/scripts/FogManager.cs",
+		"/Users/paulhoover/Documents/code/games/unity/glass/Assets/scripts/Flashlight.cs",
+		"/Users/paulhoover/Library/Application Support/Sublime Text 3/Packages/OmniSharp/OmniSharpSublime.sublime-settings",
+		"/Users/paulhoover/Documents/code/games/unity/glass/Assets/Standard Assets/Effects/GlassRefraction/Textures/GlassStainedNormals.tif",
+		"/Users/paulhoover/Documents/code/games/unity/glass/Assets/scripts/ArmatureParent.cs",
+		"/Users/paulhoover/Documents/code/games/unity/glass/Assets/SampleAssets/Characters/FirstPersonCharacter/Scripts/MouseLook.cs",
+		"/Users/paulhoover/Documents/code/games/unity/glass/Assets/scripts/MouseManager.cs",
+		"/Users/paulhoover/Documents/code/games/unity/glass/Assets/SampleAssets/Characters/CrossPlatformInput/Scripts/CrossPlatformInputManager.cs",
+		"/Users/paulhoover/Documents/code/games/unity/glass/Assets/SampleAssets/Characters/ThirdPersonCharacter/Scripts/AICharacterControl.cs",
+		"/Users/paulhoover/Documents/code/games/unity/glass/Assets/SampleAssets/Characters/Utility/WaypointCircuit.cs",
+		"/Users/paulhoover/Documents/code/games/unity/glass/Assets/SampleAssets/Characters/CrossPlatformInput/Prefabs/DualTouchControls.prefab",
+		"/Users/paulhoover/Documents/code/games/unity/glass/Assets/SampleAssets/Characters/CrossPlatformInput/Prefabs/MobileAircraftControls.prefab",
+		"/Users/paulhoover/Documents/code/games/unity/glass/Assets/SampleAssets/Characters/CrossPlatformInput/Prefabs/MobileSingleStickControl.prefab",
+		"/Users/paulhoover/Documents/code/games/unity/glass/Assets/Standard Assets/Effects/ImageEffects/Scripts/ContrastStretch.cs",
+		"/Users/paulhoover/Documents/code/games/unity/glass/Assets/Standard Assets/Effects/ImageEffects/Shaders/BlurEffectConeTaps.shader",
+		"/Users/paulhoover/Library/Application Support/Sublime Text 3/Packages/User/C#.sublime-settings",
+		"/Users/paulhoover/Documents/code/games/unity/glass/glass.sublime-project",
+		"/Users/paulhoover/Documents/code/games/unity/glass/glass.sln"
 	],
 	"find":
 	{
-		"height": 0.0
+		"height": 35.0
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 93.0,
 		"where_history":
 		[
+			"",
+			"Assets",
+			""
 		]
 	},
 	"find_state":
 	{
-		"case_sensitive": false,
+		"case_sensitive": true,
 		"find_history":
 		[
+			"_originalSize",
+			"GameControl.Instance",
+			"_targetContainerName",
+			"_thumbnail",
+			"_name",
+			"GameObject.Find",
+			"_element",
+			"iconRotationSpeed",
+			"Start()",
+			"_menuUI",
+			"bulb",
+			"onRoom",
+			"ShowNote",
+			"ShowMenu",
+			"drawNote",
+			"destroy",
+			"addNote",
+			"showNote",
+			"zoomCamera",
+			"enablePlayer",
+			"onRemoveNote",
+			"onAddNote",
+			"destroy",
+			"draw",
+			"showMenu",
+			"changeMouseSensitivity",
+			"enablePlayer",
+			"hasItem",
+			"_equippedItem",
+			"houseKeepingNeeded",
+			"isItemEquipped",
+			"equippedItem",
+			"Get;",
+			"_DropAndClose",
+			"close",
+			"houseKeeping()",
+			"drop",
+			"draw",
+			"get",
+			"add",
+			"show",
+			"drop()",
+			"_description",
+			"_iconTexture",
+			"_isEquipable",
+			"isEquipable",
+			"_isDroppable",
+			"isDroppable",
+			"isEquipped",
+			"equipItem",
+			"enablePlayer",
+			"itemName",
+			"_itemName",
+			"addNote",
+			"collectableItems",
+			"_containerSpot",
+			"positionChild",
+			"onCollision",
+			"triggerEvent",
+			"parentObject",
+			"targetContainerName",
+			"OnMouseClick",
+			"weight",
+			"isEquipped",
+			"isCollected",
+			"isDroppable",
+			"isEquipable",
+			"detailTexture",
+			"iconTexture",
+			"targetContainerName",
+			"description",
+			"itemName",
+			"mouseClick",
+			"addToInventory",
+			"moUse",
+			"MoUse",
+			"use",
+			"drop",
+			"store",
+			"unEquip",
+			"equip",
+			"remove",
+			"attach",
+			"this.",
+			"killSelf",
+			"this.",
+			"parentObject",
+			"targetContainerName",
+			"mouseExit",
+			"interactDistance",
+			"isRoomActive",
+			"init",
+			"_player",
+			"onEquipItem",
+			"_player",
+			"onEquipItem",
+			"keyName",
+			"lockedItemName",
+			"handle",
+			"isLocked",
+			"init",
+			"this.",
+			"closeClip",
+			"this.parentBone",
+			"isOpen",
+			"isBoosted",
+			"_isBoosted",
+			"_rechargeDelay",
+			"RemainingStamina",
+			"isBoosted",
+			".resetBreath",
+			".updateHeldBreathTime",
+			".breath",
+			"interactDistance",
+			"playerHead",
+			"_playerHead",
+			".endFall",
+			".beginFall",
+			".cancelFall",
+			".Health",
+			"updateHealth",
+			"GameControl.Instance.health",
+			"Get_property",
+			"OnPlayer_propertyUpdated",
+			"prefix",
+			"property",
+			"getProperty",
+			" Stamina"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -107,6 +386,134 @@
 		"regex": false,
 		"replace_history":
 		[
+			"targetContainerName",
+			"thumbnail",
+			"name",
+			"_interactiveElement",
+			"_bulb",
+			"OnRoom",
+			"IsShowable",
+			"DrawNote",
+			"Destroy",
+			"AddNote",
+			"ShowNote",
+			"ZoomCamera",
+			"EnablePlayer",
+			"OnRemoveNote",
+			"OnAddNote",
+			"Destroy",
+			"Draw",
+			"ShowMenu",
+			"ChangeMouseSensitivity",
+			"EnablePlayer",
+			"HasItem",
+			"EquippedItem",
+			"IsHouseKeepingNeeded",
+			"IsItemEquipped",
+			"EquippedItem",
+			"get;",
+			"_dropAndClose",
+			"Close",
+			"HouseKeeping",
+			"Drop",
+			"Draw",
+			"Get",
+			"Add",
+			"Show",
+			"Drop()",
+			"description",
+			"IsEquipable",
+			"IsDroppable",
+			"IsEquipped",
+			"EquipItem",
+			"EnablePlayer",
+			"ItemName",
+			"AddNote",
+			"_collectableItems",
+			"PositionChild",
+			"OnCollision",
+			"TriggerEvent",
+			"ParentObject",
+			"TargetContainerName",
+			"OnInputTaken",
+			"_weight",
+			"IsEquipped",
+			"IsCollected",
+			"_isDroppable",
+			"_isEquipable",
+			"_detailTexture",
+			"_iconTexture",
+			"_targetContainerName",
+			"_description",
+			"_itemName",
+			"OnMouseClick",
+			"AddToInventory",
+			"mouse",
+			"Mouse",
+			"Use",
+			"Drop",
+			"Store",
+			"UnEquip",
+			"Equip",
+			"Remove",
+			"Attach",
+			"",
+			"KillSelf",
+			"",
+			"_parentObject",
+			"_targetContainerName",
+			"OnMouseExit",
+			"_interactDistance",
+			"IsRoomActive",
+			"Init",
+			"OnEquipItem",
+			"_keyName",
+			"_lockedItemName",
+			"Handle",
+			"IsLocked",
+			"Init",
+			"",
+			"_closeClip",
+			"_parentBone",
+			"IsOpen",
+			"IsBoosted",
+			"RECHARGE_DELAY",
+			"_remainingStamina",
+			"_isBoosted",
+			".ResetBreath",
+			".UpdateHeldBreathTime",
+			".RemainingBreath",
+			"_interactDistance",
+			"PlayerHead",
+			".EndFall",
+			".BeginFall",
+			".CancelFall",
+			".RemainingHealth",
+			"UpdateHealth",
+			"GameControl.Instance.Health",
+			"GetProperty",
+			"OnPlayerPropertyUpdated",
+			"_prefix",
+			"_property",
+			"GetProperty",
+			" _stamina",
+			"RemainingBreath",
+			"RemainingStamina",
+			"GameControl.Instance.Breath",
+			"GameControl.Instance.Health",
+			"Stamina",
+			"GameControl.Instance.Stamina",
+			"UpdateStamina",
+			"SetActive",
+			"_target",
+			"ChangeScene",
+			"_roomName",
+			"_containingRoom",
+			"IsRoomActive",
+			"Init()",
+			"RoomTriggered",
+			"_roomName",
+			"_isStartingRoom"
 		],
 		"reverse": false,
 		"show_context": true,
@@ -117,73 +524,233 @@
 	"groups":
 	[
 		{
-			"selected": 3,
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "glass.sln",
+					"file": "Assets/scripts/InteractiveElement.cs",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2346,
+						"buffer_size": 1706,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								726,
+								726
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"oops":
+							{
+								"1039,1043": "Parameter can be IComparable",
+								"112,120": "Name should have prefix '_'. (Rule 'Fields').",
+								"293,303": "Name should have prefix '_'. (Rule 'Fields').",
+								"697,704": "'getName' should start with an upper case letter. (Rule 'Methods')",
+								"747,756": "'getCamera' should start with an upper case letter. (Rule 'Methods')",
+								"838,840": "Convert to '|=' expresssion",
+								"86,95": "Name should have prefix '_'. (Rule 'Fields').",
+								"933,937": "Parameter can be IComparable",
+								"943,945": "Convert to '&=' expresssion"
+							},
+							"syntax": "Packages/C#/C#.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 210.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "Assets/scripts/InteractiveIcon.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1136,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								449,
+								449
+							]
+						],
+						"settings":
+						{
+							"oops":
+							{
+								"109,124": "Name should have prefix '_'. (Rule 'Fields').",
+								"159,164": "Initializing field by default value is redundant"
+							},
+							"syntax": "Packages/C#/C#.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
-					"buffer": 1,
-					"file": "glass.sublime-project",
+					"buffer": 2,
+					"file": "Assets/scripts/CollectableItem.cs",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 83,
+						"buffer_size": 3564,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								80,
-								80
+								2710,
+								2710
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JSON.tmLanguage"
+							"oops":
+							{
+								"1838,1841": "Could not determine type",
+								"1852,1861": "'Inventory' is not a known identifier",
+								"1862,1870": "'?' does not contain a definition for 'Instance'",
+								"1871,1878": "'?' does not contain a definition for 'AddItem'",
+								"1884,1885": "'?' does not contain a definition for 'AddItem'",
+								"1891,1898": "Cannot convert from ? to System.Boolean",
+								"2645,2654": "'Inventory' is not a known identifier",
+								"2655,2663": "'?' does not contain a definition for 'Instance'",
+								"2664,2674": "'?' does not contain a definition for 'RemoveItem'",
+								"2685,2686": "'?' does not contain a definition for 'RemoveItem'"
+							},
+							"syntax": "Packages/C#/C#.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "Assets/scripts/Underwater.cs",
+					"buffer": 3,
+					"file": "Assets/scripts/GameControl.cs",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1834,
+						"buffer_size": 2647,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								317,
+								317
+							]
+						],
+						"settings":
+						{
+							"oops":
+							{
+								"1182,1186": "Parameter can be IComparable",
+								"1453,1457": "Parameter can be IComparable",
+								"1549,1552": "Parameter can be IComparable",
+								"1717,1720": "Parameter can be IComparable",
+								"2171,2174": "Parameter can be IComparable",
+								"473,483": "Static method invoked via derived type",
+								"619,622": "Redundant array creation expression"
+							},
+							"syntax": "Packages/C#/C#.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 11.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "Assets/scripts/ui/InventoryUI.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4325,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3055,
+								3055
+							]
+						],
+						"settings":
+						{
+							"oops":
+							{
+								"1049,1053": "'this.' is redundant and can be removed safely.",
+								"1262,1266": "Local variable 'name' hides property 'UnityEngine.Object.name'",
+								"1284,1294": "Use 'var' keyword",
+								"1329,1330": "Type cast is redundant",
+								"1375,1379": "'this.' is redundant and can be removed safely.",
+								"193,207": "The private field '_inventoryItem' is never assigned",
+								"1987,1992": "Variable could be moved to a nested scope",
+								"2047,2057": "Comparison of floating point numbers can be unequal due to the differing precision of the two values.",
+								"2066,2074": "Comparison of floating point numbers can be unequal due to the differing precision of the two values.",
+								"2088,2092": "Variable could be moved to a nested scope",
+								"2168,2178": "Comparison of floating point numbers can be unequal due to the differing precision of the two values.",
+								"2268,2276": "Comparison of floating point numbers can be unequal due to the differing precision of the two values.",
+								"241,252": "Convert to constant",
+								"2507,2517": "Use 'var' keyword",
+								"2709,2719": "Use 'var' keyword",
+								"288,296": "Convert to constant",
+								"3435,3447": "Parameter can be IComparable",
+								"3640,3652": "Parameter can be IComparable",
+								"3845,3857": "Parameter can be IComparable",
+								"396,403": "Convert to constant",
+								"4110,4122": "Parameter can be IComparable",
+								"428,435": "Convert to constant",
+								"472,473": "Initializing field by default value is redundant",
+								"502,503": "Initializing field by default value is redundant",
+								"533,534": "Initializing field by default value is redundant",
+								"566,567": "Initializing field by default value is redundant",
+								"600,601": "Initializing field by default value is redundant",
+								"618,629": "Convert to constant",
+								"754,758": "'this.' is redundant and can be removed safely.",
+								"89,94": "Using directive is not used by code and can be removed safely."
+							},
+							"syntax": "Packages/C#/C#.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 362.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "Assets/scripts/ui/InventoryItemUI.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 716,
 						"regions":
 						{
 						},
@@ -200,38 +767,80 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 125.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "/Users/paulhoover/Library/Application Support/Sublime Text 3/Packages/User/C#.sublime-settings",
+					"buffer": 6,
+					"file": "Assets/scripts/Inventory.cs",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 161,
+						"buffer_size": 1644,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								161,
-								161
+								1362,
+								1362
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JSON.tmLanguage"
+							"oops":
+							{
+								"118,127": "Convert to constant",
+								"1497,1499": "Convert to 'return' statement",
+								"154,160": "Convert to readonly",
+								"1562,1566": "Redundant 'else' keyword",
+								"342,352": "Static method invoked via derived type",
+								"489,492": "Parameter can be IComparable",
+								"527,528": "Redundant conditional expression",
+								"941,945": "'this.' is redundant and can be removed safely.",
+								"993,997": "'this.' is redundant and can be removed safely."
+							},
+							"syntax": "Packages/C#/C#.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 314.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "Assets/scripts/EventCenter.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4846,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1114,
+								1133
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C#/C#.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 204.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -239,11 +848,11 @@
 	],
 	"incremental_find":
 	{
-		"height": 0.0
+		"height": 25.0
 	},
 	"input":
 	{
-		"height": 0.0
+		"height": 31.0
 	},
 	"layout":
 	{
@@ -276,11 +885,15 @@
 	{
 		"height": 0.0
 	},
+	"output.variable_get":
+	{
+		"height": 105.0
+	},
 	"pinned_build_system": "",
 	"project": "glass.sublime-project",
 	"replace":
 	{
-		"height": 0.0
+		"height": 64.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -289,6 +902,18 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"event",
+				"Assets/scripts/EventCenter.cs"
+			],
+			[
+				"itemwe",
+				"Assets/scripts/ItemWeight.cs"
+			],
+			[
+				"firstpersonpla",
+				"Assets/SampleAssets/Characters/FirstPersonCharacter/Prefabs/FPSController.prefab"
+			]
 		],
 		"width": 0.0
 	},
@@ -314,12 +939,12 @@
 	"settings":
 	{
 	},
-	"show_minimap": true,
+	"show_minimap": false,
 	"show_open_files": false,
-	"show_tabs": true,
+	"show_tabs": false,
 	"side_bar_visible": true,
 	"side_bar_width": 259.0,
-	"status_bar_visible": true,
+	"status_bar_visible": false,
 	"template_settings":
 	{
 	}
