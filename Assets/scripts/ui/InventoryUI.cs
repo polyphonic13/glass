@@ -9,8 +9,8 @@ public class InventoryUI : MonoBehaviour {
 	[SerializeField] private int _numColumns = 5;
 	[SerializeField] private int _numRows = 3;
 
-	private const float START_X = -410f;
-	private const float START_Y = 115f;
+	private const float START_X = -430f;
+	private const float START_Y = 85f;
 	private const float INPUT_DELAY = .03f;
 
 	private ArrayList _items;
@@ -129,7 +129,7 @@ public class InventoryUI : MonoBehaviour {
 					_calculateRow(vertical);
                 }
 
-                if(changed) {
+                if(changed)   {
                     _currentItem = (_currentRow * _numColumns) + _currentCol;
                     var item = _items[_currentItem] as GameObject;
                     
@@ -186,7 +186,7 @@ public class InventoryUI : MonoBehaviour {
     }
 
     private void _incrementRow(bool isCalcCalled) {
-        if(_currentRow < (_numRows - 1)) {
+	        if(_currentRow < (_numRows - 1)) {
             _currentRow++;
         } else {
             _currentRow = 0;
