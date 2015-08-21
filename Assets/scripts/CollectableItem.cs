@@ -37,7 +37,7 @@ public class CollectableItem : InteractiveElement {
 
 	public void OnEquipItem(string itemName) {
 		if(IsCollected) {
-			Debug.Log("CollectableItem[ " + name + " ]/OnEquipItem, itemName = " + itemName + ", IsEquipped = " + IsEquipped);
+			// Debug.Log("CollectableItem[ " + name + " ]/OnEquipItem, itemName = " + itemName + ", IsEquipped = " + IsEquipped);
 			if(name == itemName) {
 				if(IsEquipped) { 					// item is already in Use, Store it
 					UnEquip();
@@ -98,7 +98,7 @@ public class CollectableItem : InteractiveElement {
 	}
 	
 	public void AttachToObject(string target) {
-		Debug.Log("CollectableItem[" + name + "]/AttachToObject, target = " + target);
+		// Debug.Log("CollectableItem[" + name + "]/AttachToObject, target = " + target);
 //		var tgt = Camera.main.transform.Search(target);
 		// var tgt = _player.transform.Search(target);
 		// Debug.Log("tgt = " + tgt);

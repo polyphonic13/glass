@@ -49,9 +49,10 @@ namespace UnitySampleAssets.Characters.FirstPerson
 		private float _cameraStartY;
 		private const float _CrawlCameraY = 0.1f;
 		private bool _justCrouched = false;
-		private bool _isMenuOpen = false;
 
+		private bool _isMenuOpen = false;
 		private bool _isInventoryOpen = false;
+		private bool _isNotificationOpen = false;
 
 		private Camera m_Camera;
         private bool m_Jump;
@@ -76,6 +77,10 @@ namespace UnitySampleAssets.Characters.FirstPerson
  			} else {
  				elementInProximity = null;
  			}
+ 		}
+
+ 		public void OnAddNote(string message) {
+ 			_notificationUI.enabled = _isNotificationOpen = true;
  		}
 
 		public void OnPlayerDamaged(float damage) {
@@ -129,6 +134,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
 			ec.OnAboveWater += OnAboveWater;
 			ec.OnPlayerDamaged += OnPlayerDamaged;
 			ec.OnNearInteractiveElement += OnNearInteractiveElement;
+			ec.OnAddNote += OnAddNote;
 		}
 
 
@@ -136,29 +142,33 @@ namespace UnitySampleAssets.Characters.FirstPerson
         private void Update()
         {
 			if(CrossPlatformInputManager.GetButtonDown("Fire2")) {
-				Debug.Log("m pressed, _isMenuOpen = " + _isMenuOpen);
 				_isMenuOpen = !_isMenuOpen;
 				_menuUI.enabled = _isMenuOpen;
 				_inventoryUI.enabled = _isInventoryOpen = false;
+				_notificationUI.enabled = _isNotificationOpen = false;
 			} else if(CrossPlatformInputManager.GetButtonDown("Fire3")) {
-				Debug.Log("fire3 pressed, inventory open = " + _isInventoryOpen);
 				_isInventoryOpen = !_isInventoryOpen;
 				_inventoryUI.enabled = _isInventoryOpen;
 				_menuUI.enabled =_isMenuOpen = false;
+				_notificationUI.enabled = _isNotificationOpen = false;
 			}
 
 			if(CrossPlatformInputManager.GetButtonDown("Fire1")) {
-				if(!_isMenuOpen && !_isInventoryOpen) {
+				if(!_isMenuOpen && !_isInventoryOpen && !_isNotificationOpen) {
 					if(elementInProximity != null) {
 						elementInProximity.Actuate();
 					}
-				// } else {
-				// 	// enter / select presseed with menu open
-				// 	if(_isInventoryOpen) {
-				// 		Debug.Log("Inventory open, enter pressed");
-				// 	} else {
-				// 		Debug.Log("Menu open, enter pressed");
-				// 	}
+				} else {
+					if(_isNotificationOpen) {
+						EventCenter.Instance.RemoveNote();
+						_notificationUI.enabled = _isNotificationOpen = false;
+					}
+					// enter / select presseed with menu open
+					// if(_isInventoryOpen) {
+					// 	Debug.Log("Inventory open, enter pressed");
+					// } else {
+					// 	Debug.Log("Menu open, enter pressed");
+					// }
 				}
 			}
 

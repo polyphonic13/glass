@@ -10,7 +10,7 @@ public class EventCenter : MonoBehaviour {
 	public delegate void PlayerPropertyUpdater(string prop, float val);
 
 	public delegate void RoomHandler(string room);
-    public delegate void NoteHandler(string msg = "", bool zoom = false);
+    public delegate void NoteHandler(string message = "");
 	public delegate void PlayerHandler(bool enable);
 	public delegate void PlayerBreadcrumbHandler(Vector3 position);
 	public delegate void MouseSensitivityHandler(float sensitivity);
@@ -108,15 +108,15 @@ public class EventCenter : MonoBehaviour {
 		}
 	}
 
-	public void AddNote(string msg, bool zoom = false) {
+	public void AddNote(string message = "") {
 		if(OnAddNote != null) {
-			OnAddNote(msg, zoom);
+			OnAddNote(message);
 		}
 	}
 	
-	public void RemoveNote(string msg = "", bool zoom = false) {
+	public void RemoveNote(string message = "") {
 		if(OnRemoveNote != null) {
-			OnRemoveNote(msg, zoom);
+			OnRemoveNote(message);
 		}
 	}
 	
