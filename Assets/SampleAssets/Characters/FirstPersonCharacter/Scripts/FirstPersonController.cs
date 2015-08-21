@@ -130,7 +130,8 @@ namespace UnitySampleAssets.Characters.FirstPerson
 				_isMenuOpen = !_isMenuOpen;
 				_menuUI.enabled = _isMenuOpen;
 				_inventoryUI.enabled = _isInventoryOpen = false;
-			} else if(Input.GetKeyDown(KeyCode.I)) {
+			} else if(CrossPlatformInputManager.GetButtonDown("Fire3")) {
+				Debug.Log("fire3 pressed, inventory open = " + _isInventoryOpen);
 				_isInventoryOpen = !_isInventoryOpen;
 				_inventoryUI.enabled = _isInventoryOpen;
 				_menuUI.enabled =_isMenuOpen = false;
@@ -141,14 +142,14 @@ namespace UnitySampleAssets.Characters.FirstPerson
 				RotateView();
 
 				// allow to Dive if Swimming 
-				if(Input.GetKey(KeyCode.C)) {
+				if(CrossPlatformInputManager.GetButtonDown("Crouch")) {
 					if(_currentMovementState == _movementStates.Swim || _currentMovementState == _movementStates.Dive) {
 						_gravity = _underWaterGravity;
 						_currentMovementState = _movementStates.Dive;
 					}
 				}
 				// toggle Crawl if walking/Crawling
-				if(Input.GetKeyDown(KeyCode.C)) {
+				if(CrossPlatformInputManager.GetButtonDown("Crouch")) {
 					if(_currentMovementState == _movementStates.Normal && m_CharacterController.isGrounded) {
 						_currentMovementState = _movementStates.Crawl;
 						_switchToCrawling(true);
