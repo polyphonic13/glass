@@ -28,7 +28,7 @@ public class Inventory : MonoBehaviour {
 	public bool AddItem(CollectableItem item) {
 		var displayName = item.GetName();
 		var isAdded = true;
-		Debug.Log("Inventory/AddItem, item = " + displayName);
+		// Debug.Log("Inventory/AddItem, item = " + displayName);
 		if(HasItem(item.name)) {
 			// increment count of item type
 		} else if(_items.Count < _maxItems) {

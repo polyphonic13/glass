@@ -21,8 +21,7 @@ public class InteractiveElement : MonoBehaviour {
 	void Update() {
 		if(IsEnabled) {
 			if(CheckProximity()) {
-				if(CrossPlatformInputManager.GetButton("Fire1")) {
-//					Debug.Log (this.name + ": Fire1 pressed");
+				if(CrossPlatformInputManager.GetButtonDown("Fire1")) {
 					Actuate();
 				}
 			}
@@ -45,9 +44,7 @@ public class InteractiveElement : MonoBehaviour {
 		}
 	}
 
-	public virtual void Actuate() {
-
-	}
+	public virtual void Actuate() {}
 
 	public string GetName() {
 		return ItemName;

@@ -55,7 +55,7 @@ public class InventoryUI : MonoBehaviour {
     	if(itemUI != null) {
 	    	var ui = itemUI.GetComponent<InventoryItemUI>();
 
-	    	Debug.Log("_occupiedItems = " + _occupiedItems + ", ui = " + ui + ", _items.Count = " + _items.Count);
+	    	// Debug.Log("_occupiedItems = " + _occupiedItems + ", ui = " + ui + ", _items.Count = " + _items.Count);
 	    	if(ui != null) {
 	    		ui.SetName(item.GetName());
 	    		ui.SetCount(1);
@@ -111,40 +111,42 @@ public class InventoryUI : MonoBehaviour {
     }
 
     private void _handleInput() {
-		float horizontal = CrossPlatformInputManager.GetAxis("Horizontal");
-		float vertical = CrossPlatformInputManager.GetAxis("Vertical");
-        
-		if(horizontal != 0 || vertical != 0) {
-			float now = Time.realtimeSinceStartup;
+    	if(_occupiedItems > 0) {
+			float horizontal = CrossPlatformInputManager.GetAxis("Horizontal");
+			float vertical = CrossPlatformInputManager.GetAxis("Vertical");
+	        
+			if(horizontal != 0 || vertical != 0) {
+				float now = Time.realtimeSinceStartup;
 
-			if(-(_previousTime - now) > INPUT_DELAY) {
-				var changed = false;
-				if(horizontal != 0) {
-					changed = true;
-					_calculateCol(horizontal);
-				}
-				
-				if(vertical != 0) {
-					changed = true;
-					_calculateRow(vertical);
-                }
-
-                if(changed)   {
-                    _currentItem = (_currentRow * _numColumns) + _currentCol;
-                    var item = _items[_currentItem] as GameObject;
-                    
-                    if(item != null) {
-						item.GetComponent<InventoryItemUI>().SetFocus(true);
+				if(-(_previousTime - now) > INPUT_DELAY) {
+					var changed = false;
+					if(horizontal != 0) {
+						changed = true;
+						_calculateCol(horizontal);
 					}
-					var prevItem = _items[_previousItem] as  GameObject;
-                    if(prevItem != null) {
-                        prevItem.GetComponent<InventoryItemUI>().SetFocus(false);
-                    }
-                    _previousItem = _currentItem;
+					
+					if(vertical != 0) {
+						changed = true;
+						_calculateRow(vertical);
+	                }
+
+	                if(changed)   {
+	                    _currentItem = (_currentRow * _numColumns) + _currentCol;
+	                    var item = _items[_currentItem] as GameObject;
+	                    
+	                    if(item != null) {
+							item.GetComponent<InventoryItemUI>().SetFocus(true);
+						}
+						var prevItem = _items[_previousItem] as  GameObject;
+	                    if(prevItem != null) {
+	                        prevItem.GetComponent<InventoryItemUI>().SetFocus(false);
+	                    }
+	                    _previousItem = _currentItem;
+					}
 				}
+				_previousTime = now;
 			}
-			_previousTime = now;
-		}
+    	}
     }
 
     private void _calculateCol(float horizontal) {
@@ -186,8 +188,8 @@ public class InventoryUI : MonoBehaviour {
     }
 
     private void _incrementRow(bool isCalcCalled) {
-	        if(_currentRow < (_numRows - 1)) {
-            _currentRow++;
+        if(_currentRow < (_numRows - 1)) {
+	        _currentRow++;
         } else {
             _currentRow = 0;
             if(isCalcCalled) {

@@ -12,10 +12,11 @@ public class InventoryItemUI : MonoBehaviour {
 	private Color32 _inactive; 
 
 	void Awake() {
-		_active = new Color32(188, 188, 188, 100);
+		_active = new Color32(100, 100, 100, 100);
 		_inactive = new Color32(0, 0, 0, 100);
 		_itemBg = GetComponent<Image>();
 		SetFocus(false);
+		SetThumbnail(null);
 	}
 
 	public void SetFocus(bool active) {
@@ -27,7 +28,7 @@ public class InventoryItemUI : MonoBehaviour {
 	} 
 
 	public void SetName(string itemName) {
-		Debug.Log("InventoryItemUI/setName: " + itemName);
+		// Debug.Log("InventoryItemUI/setName: " + itemName);
 		_itemName.text = itemName;
 	}
 
@@ -41,7 +42,7 @@ public class InventoryItemUI : MonoBehaviour {
 			_itemThumbnail.color = Color.white;
 		} else {
 			_itemThumbnail.sprite = null;
-			_itemThumbnail.color = Color.black;
+			_itemThumbnail.color = new Color32(0, 0, 0, 0);
 		}
 	}
 }

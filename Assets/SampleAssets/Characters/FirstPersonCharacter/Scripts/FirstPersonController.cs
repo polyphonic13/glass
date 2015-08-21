@@ -125,7 +125,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
         // Update is called once per frame
         private void Update()
         {
-			if(Input.GetKeyDown(KeyCode.M)) {
+			if(CrossPlatformInputManager.GetButtonDown("Fire2")) {
 				Debug.Log("m pressed, _isMenuOpen = " + _isMenuOpen);
 				_isMenuOpen = !_isMenuOpen;
 				_menuUI.enabled = _isMenuOpen;
