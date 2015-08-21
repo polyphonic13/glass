@@ -14,6 +14,8 @@ public class InteractiveElement : MonoBehaviour {
 
 	protected Camera MainCamera;
 
+	private bool _wasJustInProximity;
+
 	void Awake() {
 		Init();
 	}
@@ -21,9 +23,9 @@ public class InteractiveElement : MonoBehaviour {
 	void Update() {
 		if(IsEnabled) {
 			if(CheckProximity()) {
-				if(CrossPlatformInputManager.GetButtonDown("Fire1")) {
-					Actuate();
-				}
+				// if(CrossPlatformInputManager.GetButtonDown("Fire1")) {
+				// 	Actuate();
+				// }
 			}
 		}
 	}
@@ -77,11 +79,17 @@ public class InteractiveElement : MonoBehaviour {
 	public virtual void InputTaken() {}
 
 	public bool CheckProximity() {
-		var isInProximity = false;
+		bool isInProximity = false;
 		var difference = Vector3.Distance(MainCamera.transform.position, transform.position);
 		if(difference < _interactDistance) {
 			isInProximity = true;
+			EventCenter.Instance.NearInteractiveElement(this, true);
+			_wasJustInProximity = true;
+		} else if(_wasJustInProximity) {
+			EventCenter.Instance.NearInteractiveElement(this, false);
+			_wasJustInProximity = false;
 		}
+
 		return isInProximity;
 	}
 }

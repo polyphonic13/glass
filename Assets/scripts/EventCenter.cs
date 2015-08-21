@@ -27,7 +27,7 @@ public class EventCenter : MonoBehaviour {
 	public delegate void TriggerEventHandler(string evt);
 	public delegate void TriggerCollectedEventHandler(string evt);
 
-	public delegate void InteractiveElementProximityHandler(string name);
+	public delegate void InteractiveElementProximityHandler(InteractiveElement element, bool inProximity);
 	
 	public event PlayerDamageHandler OnPlayerDamaged;
 
@@ -182,9 +182,9 @@ public class EventCenter : MonoBehaviour {
 		}
 	}
 	
-	public void NearInterfactiveElement(string name) {
+	public void NearInteractiveElement(InteractiveElement element, bool inProximity) {
 		if(OnNearInteractiveElement != null) {
-			OnNearInteractiveElement(name);
+			OnNearInteractiveElement(element, inProximity);
 		}
 	}
 }

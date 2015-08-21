@@ -68,7 +68,16 @@ namespace UnitySampleAssets.Characters.FirstPerson
         private bool m_Jumping;
         private AudioSource m_AudioSource;
 
+        private InteractiveElement elementInProximity;
  
+ 		public void OnNearInteractiveElement(InteractiveElement element, bool isInProximity) {
+ 			if(isInProximity) {
+ 				elementInProximity = element;
+ 			} else {
+ 				elementInProximity = null;
+ 			}
+ 		}
+
 		public void OnPlayerDamaged(float damage) {
 			float health = GameControl.Instance.RemainingHealth - damage;
 			GameControl.Instance.UpdateHealth(health);
@@ -119,6 +128,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
 			var ec = EventCenter.Instance;
 			ec.OnAboveWater += OnAboveWater;
 			ec.OnPlayerDamaged += OnPlayerDamaged;
+			ec.OnNearInteractiveElement += OnNearInteractiveElement;
 		}
 
 
@@ -137,7 +147,22 @@ namespace UnitySampleAssets.Characters.FirstPerson
 				_menuUI.enabled =_isMenuOpen = false;
 			}
 
-			// player updates only happen when menu is close
+			if(CrossPlatformInputManager.GetButtonDown("Fire1")) {
+				if(!_isMenuOpen && !_isInventoryOpen) {
+					if(elementInProximity != null) {
+						elementInProximity.Actuate();
+					}
+				// } else {
+				// 	// enter / select presseed with menu open
+				// 	if(_isInventoryOpen) {
+				// 		Debug.Log("Inventory open, enter pressed");
+				// 	} else {
+				// 		Debug.Log("Menu open, enter pressed");
+				// 	}
+				}
+			}
+
+			// player updates only happen when menus are closed
 			if(!_isMenuOpen && !_isInventoryOpen) {
 				RotateView();
 
