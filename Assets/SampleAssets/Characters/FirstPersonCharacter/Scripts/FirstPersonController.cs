@@ -154,15 +154,11 @@ namespace UnitySampleAssets.Characters.FirstPerson
 			}
 
 			if(CrossPlatformInputManager.GetButtonDown("Fire1")) {
-				if(!_isMenuOpen && !_isInventoryOpen && !_isNotificationOpen) {
+				if(!_isMenuOpen && !_isInventoryOpen) {
 					if(elementInProximity != null) {
 						elementInProximity.Actuate();
 					}
 				} else {
-					if(_isNotificationOpen) {
-						EventCenter.Instance.RemoveNote();
-						_notificationUI.enabled = _isNotificationOpen = false;
-					}
 					// enter / select presseed with menu open
 					// if(_isInventoryOpen) {
 					// 	Debug.Log("Inventory open, enter pressed");

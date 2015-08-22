@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class NotificationUI : MonoBehaviour {
 
@@ -19,4 +20,12 @@ public class NotificationUI : MonoBehaviour {
 		_message.text = "";
 	}
 
+	private IEnumerator _fade(Material mat) {
+		for (float f = 1f; f >= 0; f -= 0.1f) {
+			Color c = mat.color;
+			c.a = f;
+			mat.color = c;
+			yield return null;
+		}
+	}
 }
