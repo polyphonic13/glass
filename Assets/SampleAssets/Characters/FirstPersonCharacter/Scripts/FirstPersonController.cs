@@ -11,7 +11,6 @@ namespace UnitySampleAssets.Characters.FirstPerson
     {
 		[SerializeField] private Canvas _menuUI; 
 		[SerializeField] private Canvas _inventoryUI; 
-		[SerializeField] private Canvas _notificationUI; 
 
 		[SerializeField] private bool _damageFromFall;
 		[SerializeField] private float _underWaterGravity;
@@ -43,7 +42,6 @@ namespace UnitySampleAssets.Characters.FirstPerson
 
 		private GravityDamager _gravityDamager;
 		private float _gravity; 
-//		private GlobalFog _globalFog;
 
 		private Transform _collider;
 		private float _cameraStartY;
@@ -52,7 +50,6 @@ namespace UnitySampleAssets.Characters.FirstPerson
 
 		private bool _isMenuOpen = false;
 		private bool _isInventoryOpen = false;
-		private bool _isNotificationOpen = false;
 
 		private Camera m_Camera;
         private bool m_Jump;
@@ -79,10 +76,6 @@ namespace UnitySampleAssets.Characters.FirstPerson
  			}
  		}
 
- 		public void OnAddNote(string message) {
- 			_notificationUI.enabled = _isNotificationOpen = true;
- 		}
-
 		public void OnPlayerDamaged(float damage) {
 			float health = GameControl.Instance.RemainingHealth - damage;
 			GameControl.Instance.UpdateHealth(health);
@@ -100,12 +93,10 @@ namespace UnitySampleAssets.Characters.FirstPerson
 			_gravityDamager.CancelFall();
 		}
 
-		// Use this for initialization
         private void Start()
         {
 			_menuUI.enabled = false;
 			_inventoryUI.enabled = false;
-			_notificationUI.enabled = false;
 			_collider = GameObject.Find("collider").transform;
 
             m_CharacterController = GetComponent<CharacterController>();
@@ -134,7 +125,6 @@ namespace UnitySampleAssets.Characters.FirstPerson
 			ec.OnAboveWater += OnAboveWater;
 			ec.OnPlayerDamaged += OnPlayerDamaged;
 			ec.OnNearInteractiveElement += OnNearInteractiveElement;
-			ec.OnAddNote += OnAddNote;
 		}
 
 
@@ -145,12 +135,10 @@ namespace UnitySampleAssets.Characters.FirstPerson
 				_isMenuOpen = !_isMenuOpen;
 				_menuUI.enabled = _isMenuOpen;
 				_inventoryUI.enabled = _isInventoryOpen = false;
-				_notificationUI.enabled = _isNotificationOpen = false;
 			} else if(CrossPlatformInputManager.GetButtonDown("Fire3")) {
 				_isInventoryOpen = !_isInventoryOpen;
 				_inventoryUI.enabled = _isInventoryOpen;
 				_menuUI.enabled =_isMenuOpen = false;
-				_notificationUI.enabled = _isNotificationOpen = false;
 			}
 
 			if(CrossPlatformInputManager.GetButtonDown("Fire1")) {
