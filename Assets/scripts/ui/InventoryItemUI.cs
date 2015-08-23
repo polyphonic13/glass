@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 using UnityEngine.UI;
 
 public class InventoryItemUI : MonoBehaviour {
@@ -12,24 +13,42 @@ public class InventoryItemUI : MonoBehaviour {
 	private Image _itemBg;
     private Color32 _active;
 	private Color32 _inactive; 
+	private Color32	_controlInactive; 
 
 	private bool _isFocused;
 	private bool _isControlPanelOpen; 
+
+	private ArrayList _panels;
+	private int _focusedControlButton; 
+	private int _previousControlButton; 
 
 	void Awake() {
 		_controlPanel.alpha = 0;
 		_active = new Color32(100, 100, 100, 100);
 		_inactive = new Color32(0, 0, 0, 100);
+		_controlInactive = new Color32(50, 50, 50, 100);
+
 		_itemBg = GetComponent<Image>();
 		SetFocus(false);
 		SetThumbnail(null);
-	}
 
-//	void Update() {
-//		if(_isFocused) {
-//
-//		}
-//	}
+		var usePanel = _controlPanel.transform.Find("panel_use").gameObject;
+		var inspectPanel = _controlPanel.transform.Find("panel_inspect").gameObject;
+		var dropPanel = _controlPanel.transform.Find("panel_drop").gameObject;
+
+		var useImage = usePanel.GetComponent<Image>();
+		var inspectImage = inspectPanel.GetComponent<Image>();
+		var dropImage = dropPanel.GetComponent<Image>();
+
+		useImage.color = _active;
+		inspectImage.color = _controlInactive;
+		dropImage.color = _controlInactive;
+
+		_panels = new ArrayList(3);
+		_panels.Add(useImage);
+		_panels.Add(inspectImage);
+		_panels.Add(dropImage);
+	}
 
 	public void Select() {
 		_controlPanel.alpha = 1;
@@ -42,7 +61,25 @@ public class InventoryItemUI : MonoBehaviour {
 	}
 
 	public void ChangeControlButtonFocus(bool increment) {
-		Debug.Log("InventoryItemUI["+this.name+"]/ChangeControlButtonFocus, increment = " + increment);
+		_previousControlButton = _focusedControlButton;
+		if(increment) {
+			if(_focusedControlButton < (_panels.Count - 1)) {
+				_focusedControlButton++;
+			} else {
+				_focusedControlButton = 0;
+			}
+		} else {
+			if(_focusedControlButton > 0) {
+				_focusedControlButton--;
+			} else {
+				_focusedControlButton = (_panels.Count -1);
+			}
+		}
+
+		Image panel = _panels[_focusedControlButton] as Image;
+		panel.color = _active;
+		panel = _panels[_previousControlButton] as Image;
+		panel.color = _controlInactive;
 	}
 
 	public void SetFocus(bool active) {

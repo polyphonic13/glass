@@ -133,16 +133,16 @@ public class InventoryUI : MonoBehaviour {
 					}
 				}
 			} else if(_isSelectingItem) {
-				if(_checkDelayedAxisInput("vertical")) {
+				if(CrossPlatformInputManager.GetButtonDown("Cancel")) {
+					_selectedInventoryItemUI.Deselect();
+					_isSelectingItem = false;
+				} else if(_checkDelayedAxisInput("vertical")) {
 					if(_vertical > 0) {
 						_selectedInventoryItemUI.ChangeControlButtonFocus(false);
 					} else {
 						_selectedInventoryItemUI.ChangeControlButtonFocus(true);
 					}
 				}
-			} else if(CrossPlatformInputManager.GetButtonDown("Cancel") && _isSelectingItem) {
-				_selectedInventoryItemUI.Deselect();
-				_isSelectingItem = false;
 			} else if(!_isSelectingItem) {
 				if(_checkDelayedAxisInput()) {
 					if(_horizontal != 0) {
