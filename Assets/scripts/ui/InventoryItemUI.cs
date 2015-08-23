@@ -24,9 +24,9 @@ public class InventoryItemUI : MonoBehaviour {
 
 	void Awake() {
 		_controlPanel.alpha = 0;
-		_active = new Color32(100, 100, 100, 100);
+		_active = new Color32(150, 150, 150, 100);
 		_inactive = new Color32(0, 0, 0, 100);
-		_controlInactive = new Color32(50, 50, 50, 100);
+		_controlInactive = new Color32(75, 75, 75, 100);
 
 		_itemBg = GetComponent<Image>();
 		SetFocus(false);
@@ -60,7 +60,7 @@ public class InventoryItemUI : MonoBehaviour {
 		_isControlPanelOpen = false;
 	}
 
-	public void ChangeControlButtonFocus(bool increment) {
+	public void SetControlButtonFocus(bool increment) {
 		_previousControlButton = _focusedControlButton;
 		if(increment) {
 			if(_focusedControlButton < (_panels.Count - 1)) {
@@ -80,6 +80,27 @@ public class InventoryItemUI : MonoBehaviour {
 		panel.color = _active;
 		panel = _panels[_previousControlButton] as Image;
 		panel.color = _controlInactive;
+	}
+
+	public void SelectControlButton() {
+		switch(_focusedControlButton) {
+			case 0:
+				Debug.Log("InventoryItemUI["+this.name+"]/SelectControlButton, Use selected");
+			break;
+
+			case 1:
+				Debug.Log("InventoryItemUI["+this.name+"]/SelectControlButton, Inspect selected");
+			break;
+
+			case 2:
+				Debug.Log("InventoryItemUI["+this.name+"]/SelectControlButton, Drop selected");
+			break;
+
+			default:
+				Debug.LogWarning("Unknown control button");
+			break;
+		}
+
 	}
 
 	public void SetFocus(bool active) {

@@ -146,13 +146,6 @@ namespace UnitySampleAssets.Characters.FirstPerson
 					if(elementInProximity != null) {
 						elementInProximity.Actuate();
 					}
-				} else {
-					// enter / select presseed with menu open
-					// if(_isInventoryOpen) {
-					// 	Debug.Log("Inventory open, enter pressed");
-					// } else {
-					// 	Debug.Log("Menu open, enter pressed");
-					// }
 				}
 			}
 

@@ -131,6 +131,8 @@ public class InventoryUI : MonoBehaviour {
 						_selectedInventoryItemUI = itemUI.GetComponent<InventoryItemUI>();
 						_selectedInventoryItemUI.Select();
 					}
+				} else {
+					_selectedInventoryItemUI.SelectControlButton();
 				}
 			} else if(_isSelectingItem) {
 				if(CrossPlatformInputManager.GetButtonDown("Cancel")) {
@@ -138,9 +140,9 @@ public class InventoryUI : MonoBehaviour {
 					_isSelectingItem = false;
 				} else if(_checkDelayedAxisInput("vertical")) {
 					if(_vertical > 0) {
-						_selectedInventoryItemUI.ChangeControlButtonFocus(false);
+						_selectedInventoryItemUI.SetControlButtonFocus(false);
 					} else {
-						_selectedInventoryItemUI.ChangeControlButtonFocus(true);
+						_selectedInventoryItemUI.SetControlButtonFocus(true);
 					}
 				}
 			} else if(!_isSelectingItem) {
