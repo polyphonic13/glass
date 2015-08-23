@@ -19,11 +19,17 @@ public class InventoryUI : MonoBehaviour {
 	private float _width; 
 	private float _height; 
 
+	private float _horizontal;
+	private float _vertical;
+
 	private int _currentCol;
 	private int _currentRow;
 	private int _currentItem; 
 	private int _previousItem;
 	private float _previousTime;
+
+	private bool _isSelectingItem;
+	private InventoryItemUI _selectedInventoryItemUI; 
 
 	private Canvas _canvas;
 
@@ -37,7 +43,11 @@ public class InventoryUI : MonoBehaviour {
 
 	void Update() {
 		if(_canvas.enabled) {
-			_handleInput();
+//			bool xAxisDown = GameControl.Instance.GetAxisDown("horizontal");
+//			if(xAxisDown) {
+//				Debug.Log("InventoryUI/Update, xAxisInput: " + xAxisDown);
+//			}
+			_checkInput();
         }
     }
 
@@ -111,55 +121,79 @@ public class InventoryUI : MonoBehaviour {
 		}
     }
 
-    private void _handleInput() {
+    private void _checkInput() {
     	if(_occupiedItems > 0) {
     		if(CrossPlatformInputManager.GetButtonDown("Fire1")) {
-                var itemUI = _items[_currentItem] as GameObject;
-				var item = Inventory.Instance.GetItem(itemUI.name);
-				if(item != null) {
-					Debug.Log("InventoryUI/_handleInput, Fire1 down, currentItem = " + item.GetName());
-				}
-			} else {
-				float horizontal = CrossPlatformInputManager.GetAxis("Horizontal");
-				float vertical = CrossPlatformInputManager.GetAxis("Vertical");
-		        
-				if(horizontal != 0 || vertical != 0) {
-					float now = Time.realtimeSinceStartup;
-
-					if(-(_previousTime - now) > INPUT_DELAY) {
-						var changed = false;
-						if(horizontal != 0) {
-							changed = true;
-							_calculateCol(horizontal);
-						}
-						
-						if(vertical != 0) {
-							changed = true;
-							_calculateRow(vertical);
-		                }
-
-		                if(changed)   {
-		                    _currentItem = (_currentRow * _numColumns) + _currentCol;
-		                    var item = _items[_currentItem] as GameObject;
-		                    
-		                    if(item != null) {
-								item.GetComponent<InventoryItemUI>().SetFocus(true);
-							}
-							var prevItem = _items[_previousItem] as  GameObject;
-		                    if(prevItem != null) {
-		                        prevItem.GetComponent<InventoryItemUI>().SetFocus(false);
-		                    }
-		                    _previousItem = _currentItem;
-						}
+				if(!_isSelectingItem) {
+					var itemUI = _items[_currentItem] as GameObject;
+					if(itemUI != null) {
+						_isSelectingItem = true;
+						_selectedInventoryItemUI = itemUI.GetComponent<InventoryItemUI>();
+						_selectedInventoryItemUI.Select();
 					}
-					_previousTime = now;
+				}
+			} else if(_isSelectingItem) {
+				if(_checkDelayedAxisInput("vertical")) {
+					if(_vertical > 0) {
+						_selectedInventoryItemUI.ChangeControlButtonFocus(false);
+					} else {
+						_selectedInventoryItemUI.ChangeControlButtonFocus(true);
+					}
+				}
+			} else if(CrossPlatformInputManager.GetButtonDown("Cancel") && _isSelectingItem) {
+				_selectedInventoryItemUI.Deselect();
+				_isSelectingItem = false;
+			} else if(!_isSelectingItem) {
+				if(_checkDelayedAxisInput()) {
+					if(_horizontal != 0) {
+						_calculateCol(_horizontal);
+					} else if(_vertical != 0) {
+						_calculateRow(_vertical);
+					}
+					_currentItem = (_currentRow * _numColumns) + _currentCol;
+					var item = _items[_currentItem] as GameObject;
+					
+					if(item != null) {
+						item.GetComponent<InventoryItemUI>().SetFocus(true);
+					}
+					var prevItem = _items[_previousItem] as GameObject;
+					if(prevItem != null) {
+						prevItem.GetComponent<InventoryItemUI>().SetFocus(false);
+					}
+					_previousItem = _currentItem;
 				}
 			}
 	
     	}
     }
 
-    private void _calculateCol(float horizontal) {
+	private bool _checkDelayedAxisInput(string axis = "both") {
+		bool changed = false;
+		_horizontal = CrossPlatformInputManager.GetAxisRaw("Horizontal");
+		_vertical = CrossPlatformInputManager.GetAxisRaw("Vertical");
+
+		if(axis == "both" && (_horizontal != 0 || _vertical != 0)) {
+			changed = _checkPreviousTime();
+		} else if(axis == "horizontal" && _horizontal != 0) {
+			changed = _checkPreviousTime();
+		} else if(axis == "vertical" && _vertical != 0) {
+			changed = _checkPreviousTime();
+		}
+
+		return changed;
+	}
+
+	private bool _checkPreviousTime() {
+		var changed = false;
+		float now = Time.realtimeSinceStartup;
+		if(-(_previousTime - now) > INPUT_DELAY) {
+			changed = true;
+		}
+		_previousTime = now;
+		return changed;
+	}
+
+	private void _calculateCol(float horizontal) {
 		if(horizontal < 0) {
 			_decrementCol(true);
 		} else  {

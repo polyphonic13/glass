@@ -12,6 +12,7 @@ public class GameControl : MonoBehaviour {
 	public float RemainingBreath { get; set; }
 	public float RemainingStamina { get; set; } 
 
+	private AxisDown _axisDown;
 
 	private static GameControl _instance;
 	private GameControl() {}
@@ -38,6 +39,8 @@ public class GameControl : MonoBehaviour {
 			Destroy(gameObject);
 		}
 
+		_axisDown = GetComponent<AxisDown>();
+
 		RemainingHealth = _health;
 		RemainingBreath = _breath;
 		RemainingStamina = _stamina;
@@ -46,6 +49,14 @@ public class GameControl : MonoBehaviour {
 		ec.UpdatePlayerProperty("_health", RemainingHealth);
 		ec.UpdatePlayerProperty("_breath", RemainingBreath);
 		ec.UpdatePlayerProperty("_stamina", RemainingStamina);
+	}
+
+	public int GetAxisInput(string axis) {
+		return _axisDown.GetAxisInput(axis);
+	}
+
+	public bool GetAxisDown(string axis) {
+		return _axisDown.GetAxisDown(axis);
 	}
 
 	public float GetProperty(string prop) {
