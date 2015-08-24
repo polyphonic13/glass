@@ -43,19 +43,18 @@ public class InventoryUI : MonoBehaviour {
 
 	void Update() {
 		if(_canvas.enabled) {
-//			bool xAxisDown = GameControl.Instance.GetAxisDown("horizontal");
-//			if(xAxisDown) {
-//				Debug.Log("InventoryUI/Update, xAxisInput: " + xAxisDown);
-//			}
 			_checkInput();
         }
     }
 
     public void OnInventoryAdded(string itemName) {
-    	// Debug.Log("InventoryUI/OnInventoryAdded, itemName = " + itemName);
     	_setItemUI(itemName);	
     }
 
+	public void OnInventoryRemoved(string itemName) {
+		_resetItemUI(itemName);
+	}
+	
     private void _setItemUI(string itemName) {
     	if(_occupiedItems == (_numColumns * _numRows)) {
     		return;
@@ -66,7 +65,8 @@ public class InventoryUI : MonoBehaviour {
     	if(itemUI != null) {
 	    	var ui = itemUI.GetComponent<InventoryItemUI>();
 
-	    	itemUI.name = item.name;
+	    	// itemUI.name = item.name;
+			itemUI.name = itemName;
 	    	// Debug.Log("_occupiedItems = " + _occupiedItems + ", ui = " + ui + ", _items.Count = " + _items.Count);
 	    	if(ui != null) {
 	    		ui.SetName(item.GetName());
@@ -82,6 +82,28 @@ public class InventoryUI : MonoBehaviour {
     	}
     }
 
+	private void _resetItemsUI(string itemName) {
+		ArrayList tempItems = new ArrayList();
+		var itemUI;
+		var ui;
+		var item;
+		var inventory = Inventory.Instance;
+		
+		for(int i = 0; i < _occupiedItems; i++) {
+			itemUI = _items[i] as GameObject;
+			ui = itemUI.GetComponent<InventoryItemUI>();
+			
+			if(ui.name != itemName) {
+				tempItems.Add(ui.name);
+			}
+			ui.Reset();
+		}
+		
+		for(i = 0; i < tempItems; i++) {
+			_setItemUI(tempItems[i]);
+		}
+	}
+	
     private void _buildUI() {
 		RectTransform containerRectTransform = GetComponent<RectTransform>();
 		int total = _numColumns * _numRows;

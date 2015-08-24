@@ -46,10 +46,8 @@ public class Inventory : MonoBehaviour {
 
 	public void RemoveItem(string key) {
 		if(HasItem(key)) {
-			// check for count and decrement if > 1
-			// TBD
-			// otherwise remove completely
 			var item = _items[key] as CollectableItem;
+			item.transform.position = Camera.main.position;
 			EventCenter.Instance.RemoveInventory(item.name);
 			_items.Remove(key);
 		}

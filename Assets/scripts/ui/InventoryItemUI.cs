@@ -22,6 +22,8 @@ public class InventoryItemUI : MonoBehaviour {
 	private int _focusedControlButton; 
 	private int _previousControlButton; 
 
+	private string _firstName = ""; 
+	
 	void Awake() {
 		_controlPanel.alpha = 0;
 		_active = new Color32(150, 150, 150, 100);
@@ -94,6 +96,7 @@ public class InventoryItemUI : MonoBehaviour {
 
 			case 2:
 				Debug.Log("InventoryItemUI["+this.name+"]/SelectControlButton, Drop selected");
+				Inventory.Instance.RemoveItem(this.name);
 			break;
 
 			default:
@@ -115,6 +118,9 @@ public class InventoryItemUI : MonoBehaviour {
 	public void SetName(string itemName) {
 		// Debug.Log("InventoryItemUI/setName: " + itemName);
 		_itemName.text = itemName;
+		if(_firstName == "") {
+			_firstName = itemName;
+		}
 	}
 
 	public void SetCount(int count) {
@@ -129,5 +135,11 @@ public class InventoryItemUI : MonoBehaviour {
 			_itemThumbnail.sprite = null;
 			_itemThumbnail.color = new Color32(0, 0, 0, 0);
 		}
+	}
+	
+	public void Reset() {
+		SetName(_firstName);
+		SetCount(0);
+		SetThumbnail(null);
 	}
 }
