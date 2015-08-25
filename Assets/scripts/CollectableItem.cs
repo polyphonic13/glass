@@ -74,10 +74,9 @@ public class CollectableItem : InteractiveElement {
 	}
 
 	public void AddToInventory() {
-		IsCollected = true;
 		var isAdded = Inventory.Instance.AddItem(this);
 		if(isAdded) {
-			// do something? 
+			IsCollected = true;
 		}
 	}
 
