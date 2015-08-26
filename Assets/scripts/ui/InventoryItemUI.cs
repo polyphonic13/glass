@@ -22,7 +22,7 @@ public class InventoryItemUI : MonoBehaviour {
 	private int _focusedControlButton; 
 	private int _previousControlButton; 
 
-	private string _firstName = ""; 
+	private string _initName = ""; 
 	
 	void Awake() {
 		_controlPanel.alpha = 0;
@@ -63,25 +63,21 @@ public class InventoryItemUI : MonoBehaviour {
 	}
 
 	public void SetControlButtonFocus(bool increment) {
-		_previousControlButton = _focusedControlButton;
+		int btn = _focusedControlButton;
 		if(increment) {
 			if(_focusedControlButton < (_panels.Count - 1)) {
-				_focusedControlButton++;
+				btn++;
 			} else {
-				_focusedControlButton = 0;
+				btn = 0;
 			}
 		} else {
 			if(_focusedControlButton > 0) {
-				_focusedControlButton--;
+				btn--;
 			} else {
-				_focusedControlButton = (_panels.Count -1);
+				btn = (_panels.Count -1);
 			}
 		}
-
-		Image panel = _panels[_focusedControlButton] as Image;
-		panel.color = _active;
-		panel = _panels[_previousControlButton] as Image;
-		panel.color = _controlInactive;
+		_setControlButtonFocus(btn);
 	}
 
 	public void SelectControlButton() {
@@ -118,13 +114,17 @@ public class InventoryItemUI : MonoBehaviour {
 	public void SetName(string itemName) {
 		// Debug.Log("InventoryItemUI/setName: " + itemName);
 		_itemName.text = itemName;
-		if(_firstName == "") {
-			_firstName = itemName;
+		if(_initName == "") {
+			_initName = itemName;
 		}
 	}
 
 	public void SetCount(int count) {
-		_itemCount.text = "x" + count;
+		if(count > 0) {
+			_itemCount.text = "x" + count;
+		} else {
+			_itemCount.text = "";
+		}
 	}
 
 	public void SetThumbnail(Sprite thumbnail) {
@@ -138,8 +138,24 @@ public class InventoryItemUI : MonoBehaviour {
 	}
 	
 	public void Reset() {
-		SetName(_firstName);
+		gameObject.name = _initName;
+		SetName("");
 		SetCount(0);
 		SetThumbnail(null);
+		_setControlButtonFocus(0);
+		SetFocus(false);
+		Deselect();
 	}
+
+	private void _setControlButtonFocus(int btn) {
+		_previousControlButton = _focusedControlButton;
+		_focusedControlButton = btn;
+
+		Image panel = _panels[_focusedControlButton] as Image;
+		panel.color = _active;
+		panel = _panels[_previousControlButton] as Image;
+		panel.color = _controlInactive;
+	}
+	
+
 }

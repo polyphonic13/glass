@@ -25,7 +25,6 @@ public class InventoryUI : MonoBehaviour {
 	private int _currentRow;
 	private int _currentItemIndex; 
 	private int _previousItemIndex;
-	private float _previousTime;
 
 	private bool _isSelectingItem;
 	private InventoryItemUI _selectedInventoryItemUI; 
@@ -62,7 +61,7 @@ public class InventoryUI : MonoBehaviour {
     	}
     	var item = Inventory.Instance.GetItem(itemName);
     	var itemUI = _items[_occupiedItems] as InventoryItemUI;
-
+		Debug.Log("_items["+_occupiedItems+"] = " + itemUI);
 		itemUI.name = itemName;
 		itemUI.SetName(item.GetName());
    		itemUI.SetCount(1);
@@ -77,38 +76,42 @@ public class InventoryUI : MonoBehaviour {
 
 	private void _resetItems(string itemName) {
 		InventoryItemUI itemUI;
-		int i;
-		
+
+		_isSelectingItem = false;
 		_occupiedItems = 0;
-		
-		for(i = 0; i < _items.Count; i++) {
+		_previousItemIndex = _currentItemIndex = 0;
+
+		for(int i = 0; i < _items.Count; i++) {
 			itemUI = _items[i] as InventoryItemUI;
-			
-			if(itemUI.name != itemName) {
-				_items.RemoveAt(i);
-			}
 			itemUI.Reset();
 		}
-		
-		// have to loop again now that _items order changed
-		for(i = 0; i < _items.Count; i++) {
-			itemUI = _items[i] as InventoryItemUI;
-			_setItem(itemUI.name);
-		}
+
+		_buildInventoryItems();
 	}
-	
+
+	private void _buildInventoryItems() {
+		Hashtable hash = Inventory.Instance.GetAll();
+		var inventory = new ArrayList(hash.Values);
+		int total = _numColumns * _numRows;
+		CollectableItem item;
+		
+		for(int i = 0; i < inventory.Count; i++) {
+			if(i < total) {
+				item = inventory[i] as CollectableItem;
+				_setItem(item.name);
+			}
+		}
+
+	}
+
     private void _buildUI() {
 		RectTransform containerRectTransform = GetComponent<RectTransform>();
 		int total = _numColumns * _numRows;
         int row = 0;
 		int col = 0;
 
-		Hashtable hash = Inventory.Instance.GetAll();
-		var inventory = new ArrayList(hash.Values);
-
 		_width = containerRectTransform.rect.width / _numColumns;
 		_height = containerRectTransform.rect.height / _numRows;
-		_previousTime = Time.realtimeSinceStartup;
 
 		for(int i = 0; i < total; i++) {
 			float x = START_X + (_width * col);
@@ -122,7 +125,8 @@ public class InventoryUI : MonoBehaviour {
 			InventoryItemUI itemUI = item.GetComponent<InventoryItemUI>();
 			RectTransform rect = item.GetComponent<RectTransform>();
 
-			itemUI.name = item.name = itemName;
+			item.name = itemName;
+			itemUI.SetName(itemName);
 
 			rect.localPosition = new Vector3(x, y, 0);
 

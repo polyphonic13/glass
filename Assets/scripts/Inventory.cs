@@ -45,11 +45,13 @@ public class Inventory : MonoBehaviour {
 	}
 
 	public void RemoveItem(string key) {
+		Debug.Log("Inventory/RemoveItem, key = " + key);
 		if(HasItem(key)) {
 			var item = _items[key] as CollectableItem;
+			item.IsCollected = false;
 			item.transform.position = Camera.main.transform.position;
-			EventCenter.Instance.RemoveInventory(item.name);
 			_items.Remove(key);
+			EventCenter.Instance.RemoveInventory(item.name);
 		}
 	}
 

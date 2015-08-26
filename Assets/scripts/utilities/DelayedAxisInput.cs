@@ -27,7 +27,6 @@ public class DelayedAxisInput {
 		var changed = false;
 		float now = Time.realtimeSinceStartup;
 		if(-(_previousTime - now) > INPUT_DELAY) {
-			Debug.Log("IT IS CHANGED");
 			changed = true;
 		}
 		_previousTime = now;
