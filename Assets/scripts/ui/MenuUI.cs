@@ -2,8 +2,6 @@
 using System.Collections;
 using UnitySampleAssets.CrossPlatformInput;
 
-public enum MenuType {both,horizontal,vertical}
-
 public class MenuUI : MonoBehaviour {
 
 	public ArrayList uiButtons; 

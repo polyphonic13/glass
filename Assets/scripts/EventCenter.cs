@@ -29,7 +29,10 @@ public class EventCenter : MonoBehaviour {
 	public delegate void TriggerCollectedEventHandler(string evt);
 
 	public delegate void InteractiveElementProximityHandler(InteractiveElement element, bool inProximity);
-	
+
+	public delegate void CloseMenuHandler();
+	public delegate void CloseInventoryHandler();
+
 	public event PlayerDamageHandler OnPlayerDamaged;
 
 	public event OnWaterHandler OnAboveWater; 
@@ -60,7 +63,10 @@ public class EventCenter : MonoBehaviour {
 	public event TriggerCollectedEventHandler OnTriggerCollectedEvent; 
 	
 	public event InteractiveElementProximityHandler OnNearInteractiveElement;
-	
+
+	public event CloseMenuHandler OnCloseMenuUI;
+	public event CloseInventoryHandler OnCloseInventoryUI;
+
 	private static EventCenter _instance;
 	private EventCenter() {}
 	
@@ -193,6 +199,18 @@ public class EventCenter : MonoBehaviour {
 	public void NearInteractiveElement(InteractiveElement element, bool inProximity) {
 		if(OnNearInteractiveElement != null) {
 			OnNearInteractiveElement(element, inProximity);
+		}
+	}
+
+	public void CloseMenuUI() {
+		if(OnCloseMenuUI != null) {
+			OnCloseMenuUI();
+		}
+	}
+
+	public void CloseInventoryUI() {
+		if(OnCloseInventoryUI != null) {
+			OnCloseInventoryUI();
 		}
 	}
 }

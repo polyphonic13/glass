@@ -93,6 +93,14 @@ namespace UnitySampleAssets.Characters.FirstPerson
 			_gravityDamager.CancelFall();
 		}
 
+		public void OnCloseInventoryUI() {
+			_closeInventoryUI();
+		}
+
+		public void OnCloseMenuUI() {
+			_closeMenuUI();
+		}
+
         private void Start()
         {
 			_menuUI.enabled = false;
@@ -125,18 +133,28 @@ namespace UnitySampleAssets.Characters.FirstPerson
 			ec.OnAboveWater += OnAboveWater;
 			ec.OnPlayerDamaged += OnPlayerDamaged;
 			ec.OnNearInteractiveElement += OnNearInteractiveElement;
+			ec.OnCloseInventoryUI += OnCloseInventoryUI;
+			ec.OnCloseMenuUI += OnCloseMenuUI;
 		}
 
-        private void Update()
+		private void _closeInventoryUI() {
+			_inventoryUI.enabled = _isInventoryOpen = false;
+		}
+		
+		private void _closeMenuUI() {
+			_menuUI.enabled = _isMenuOpen = false;
+		}
+		
+		private void Update()
         {
 			if(CrossPlatformInputManager.GetButtonDown("Fire2")) {
 				_isMenuOpen = !_isMenuOpen;
 				_menuUI.enabled = _isMenuOpen;
-				_inventoryUI.enabled = _isInventoryOpen = false;
+				_closeInventoryUI();
 			} else if(CrossPlatformInputManager.GetButtonDown("Fire3")) {
 				_isInventoryOpen = !_isInventoryOpen;
 				_inventoryUI.enabled = _isInventoryOpen;
-				_menuUI.enabled =_isMenuOpen = false;
+				_closeMenuUI();
 			}
 
 			if(CrossPlatformInputManager.GetButtonDown("Fire1")) {

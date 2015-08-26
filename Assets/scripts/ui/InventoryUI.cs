@@ -141,8 +141,18 @@ public class InventoryUI : MonoBehaviour {
     }
 
     private void _checkInput() {
-    	if(_occupiedItems > 0) {
-    		if(CrossPlatformInputManager.GetButtonDown("Fire1")) {
+		if(CrossPlatformInputManager.GetButtonDown("Cancel")) {
+			if(_isSelectingItem) {
+				if(_selectedInventoryItemUI != null) {
+					_selectedInventoryItemUI.Deselect();
+				}
+				_isSelectingItem = false;
+			} else {
+				EventCenter.Instance.CloseInventoryUI();
+			}
+		}
+		if(_occupiedItems > 0) {
+			if(CrossPlatformInputManager.GetButtonDown("Fire1")) {
 				if(!_isSelectingItem) {
 					_selectedInventoryItemUI = _items[_currentItemIndex] as InventoryItemUI;
 					if(_selectedInventoryItemUI != null) {
@@ -155,12 +165,7 @@ public class InventoryUI : MonoBehaviour {
 					}
 				}
 			} else if(_isSelectingItem) {
-				if(CrossPlatformInputManager.GetButtonDown("Cancel")) {
-					if(_selectedInventoryItemUI != null) {
-						_selectedInventoryItemUI.Deselect();
-					}
-					_isSelectingItem = false;
-				} else if(DelayedAxisInput.Check("vertical", out _horizontal, out _vertical)) {
+				if(DelayedAxisInput.Check("vertical", out _horizontal, out _vertical)) {
 					var setFocus = true;
 					if(_vertical > 0) {
 						setFocus = false;
