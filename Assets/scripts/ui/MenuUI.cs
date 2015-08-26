@@ -56,7 +56,7 @@ public class MenuUI : MonoBehaviour {
 				float horizontal = 0;
 				float vertical = 0;
 				
-				bool axisChanged = DelayedAxisInput.Check(type, horizontal, vertical);
+				bool axisChanged = DelayedAxisInput.Check(type, out horizontal, out vertical);
 				if(axisChanged) {
 					ButtonUI button;
 

@@ -143,6 +143,7 @@ public class InventoryUI : MonoBehaviour {
 					_selectedInventoryItemUI = _items[_currentItemIndex] as InventoryItemUI;
 					if(_selectedInventoryItemUI != null) {
 						_selectedInventoryItemUI.Select();
+						_isSelectingItem = true;
 					}
 				} else {
 					if(_selectedInventoryItemUI != null) {
@@ -155,7 +156,7 @@ public class InventoryUI : MonoBehaviour {
 						_selectedInventoryItemUI.Deselect();
 					}
 					_isSelectingItem = false;
-				} else if(DelayedAxisInput.Check("vertical", _horizontal, _vertical)) {
+				} else if(DelayedAxisInput.Check("vertical", out _horizontal, out _vertical)) {
 					var setFocus = true;
 					if(_vertical > 0) {
 						setFocus = false;
@@ -165,16 +166,15 @@ public class InventoryUI : MonoBehaviour {
 					}
 				}
 			} else if(!_isSelectingItem) {
-				if(DelayedAxisInput.Check("both", _horizontal, _vertical)) {
-					Debug.Log("there was axis input");
+				if(DelayedAxisInput.Check("both", out _horizontal, out _vertical)) {
 					if(_horizontal != 0) {
-						_calculateAxis(_horizontal, _currentRow, _numRows, _currentColumn, _numColumns);
+						_calculateCol(_horizontal);
 					} else if(_vertical != 0) {
-						_calculateAxis(_vertical, _currentColumn, _numColumns, _currentRow, _numRows);
+						_calculateRow(_vertical);
 					}
 					_currentItemIndex = (_currentRow * _numColumns) + _currentColumn;
 					var item = _items[_currentItemIndex] as InventoryItemUI;
-					Debug.Log("_currentItemIndex = " + _currentItemIndex + ", item = " + item);			
+
 					if(item != null) {
 						item.SetFocus(true);
 					}
@@ -189,18 +189,65 @@ public class InventoryUI : MonoBehaviour {
     	}
     }
 
-	private void _calculateAxis(float axisValue, int axisCounter, int axisMax, int oppositeCounter, int oppositeMax) {
-		if(axisValue < 0) {
-			if(_decrement(axisCounter, axisMax, true)) {
-				_decrement(oppositeCounter, oppositeMax);
-			}
+	private void _calculateCol(float horizontal) {
+		if(horizontal < 0) {
+			_decrementCol(true);
+		} else  {
+			_incrementCol(true);
+		}
+	}
+	
+	private void _calculateRow(float vertical) {
+		if(vertical > 0) {
+			_decrementRow(true);
+		} else if(vertical < 0) {
+			_incrementRow(true);
+		}
+	}
+	
+	private void _incrementCol(bool isCalcCalled) {
+		if(_currentColumn < (_numColumns - 1)) {
+			_currentColumn++;
 		} else {
-			if(_increment(axisCounter, axisMax, true)) {
-				_increment(oppositeCounter, oppositeMax);
+			_currentColumn = 0;
+			if(isCalcCalled) {
+				_incrementRow(false);
 			}
 		}
 	}
 	
+	private void _decrementCol(bool isCalcCalled) {
+		if(_currentColumn > 0) {
+			_currentColumn--;
+		} else {
+			_currentColumn = (_numColumns - 1);
+			if(isCalcCalled) {
+				_decrementRow(false);
+			}
+		}
+	}
+	
+	private void _incrementRow(bool isCalcCalled) {
+		if(_currentRow < (_numRows - 1)) {
+			_currentRow++;
+		} else {
+			_currentRow = 0;
+			if(isCalcCalled) {
+				_incrementCol(false);
+			}
+		}
+	}
+	
+	private void _decrementRow(bool isCalcCalled) {
+		if(_currentRow > 0) {
+			_currentRow--;
+		} else {
+			_currentRow = (_numRows - 1);
+			if(isCalcCalled) {
+				_decrementCol(false);
+			}
+		}
+	}
 	private bool _increment(int counter, int max, bool isCalcCalled = false) {
 		if(counter < (max - 1)) {
 			counter++;

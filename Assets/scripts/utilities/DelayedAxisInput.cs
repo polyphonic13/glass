@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using UnitySampleAssets.CrossPlatformInput;
 
 public class DelayedAxisInput {
@@ -6,7 +7,7 @@ public class DelayedAxisInput {
 	private static float _previousTime = Time.realtimeSinceStartup;
 	private const float INPUT_DELAY = .03f;
 
-	public static bool Check(string axis, float horizontal, float vertical) {
+	public static bool Check(string axis, out float horizontal, out float vertical) {
 		bool changed = false;
 		horizontal = CrossPlatformInputManager.GetAxisRaw("Horizontal");
 		vertical = CrossPlatformInputManager.GetAxisRaw("Vertical");
