@@ -166,6 +166,7 @@ public class InventoryUI : MonoBehaviour {
 				}
 			} else if(!_isSelectingItem) {
 				if(DelayedAxisInput.Check("both", _horizontal, _vertical)) {
+					Debug.Log("there was axis input");
 					if(_horizontal != 0) {
 						_calculateAxis(_horizontal, _currentRow, _numRows, _currentColumn, _numColumns);
 					} else if(_vertical != 0) {
@@ -173,7 +174,7 @@ public class InventoryUI : MonoBehaviour {
 					}
 					_currentItemIndex = (_currentRow * _numColumns) + _currentColumn;
 					var item = _items[_currentItemIndex] as InventoryItemUI;
-					
+					Debug.Log("_currentItemIndex = " + _currentItemIndex + ", item = " + item);			
 					if(item != null) {
 						item.SetFocus(true);
 					}
