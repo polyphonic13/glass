@@ -61,7 +61,7 @@ public class InventoryUI : MonoBehaviour {
     	}
     	var item = Inventory.Instance.GetItem(itemName);
     	var itemUI = _items[_occupiedItems] as InventoryItemUI;
-		Debug.Log("_items["+_occupiedItems+"] = " + itemUI);
+//		Debug.Log("_items["+_occupiedItems+"] = " + itemUI);
 		itemUI.name = itemName;
 		itemUI.SetName(item.GetName());
    		itemUI.SetCount(1);

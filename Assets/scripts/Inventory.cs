@@ -45,7 +45,7 @@ public class Inventory : MonoBehaviour {
 	}
 
 	public void RemoveItem(string key) {
-		Debug.Log("Inventory/RemoveItem, key = " + key);
+//		Debug.Log("Inventory/RemoveItem, key = " + key);
 		if(HasItem(key)) {
 			var item = _items[key] as CollectableItem;
 			item.IsCollected = false;

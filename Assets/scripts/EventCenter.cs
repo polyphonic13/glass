@@ -10,7 +10,7 @@ public class EventCenter : MonoBehaviour {
 	public delegate void PlayerPropertyUpdater(string prop, float val);
 
 	public delegate void RoomHandler(string room);
-    public delegate void NoteHandler(string message = "");
+    
 	public delegate void PlayerHandler(bool enable);
 	public delegate void PlayerBreadcrumbHandler(Vector3 position);
 	public delegate void MouseSensitivityHandler(float sensitivity);
@@ -30,6 +30,9 @@ public class EventCenter : MonoBehaviour {
 
 	public delegate void InteractiveElementProximityHandler(InteractiveElement element, bool inProximity);
 
+	public delegate void AddNoteHandler(string message = "", bool fadeOut = true);
+	public delegate void RemoveNoteHandler(string message = "");
+	
 	public delegate void CloseMenuHandler();
 	public delegate void CloseInventoryHandler();
 
@@ -43,9 +46,6 @@ public class EventCenter : MonoBehaviour {
 	public event RoomHandler OnRoomEntered;
 	public event RoomHandler OnRoomExited;
 
-    public event NoteHandler OnAddNote; 
-	public event NoteHandler OnRemoveNote; 
-	
 	public event PlayerHandler OnEnablePlayer; 
 	public event PlayerBreadcrumbHandler OnPlayerBreadcrumb;
 	public event MouseSensitivityHandler OnMouseSensitivityChange;
@@ -64,6 +64,9 @@ public class EventCenter : MonoBehaviour {
 	
 	public event InteractiveElementProximityHandler OnNearInteractiveElement;
 
+	public event AddNoteHandler OnAddNote; 
+	public event RemoveNoteHandler OnRemoveNote; 
+	
 	public event CloseMenuHandler OnCloseMenuUI;
 	public event CloseInventoryHandler OnCloseInventoryUI;
 
@@ -116,18 +119,6 @@ public class EventCenter : MonoBehaviour {
 		}
 	}
 
-	public void AddNote(string message = "") {
-		if(OnAddNote != null) {
-			OnAddNote(message);
-		}
-	}
-	
-	public void RemoveNote(string message = "") {
-		if(OnRemoveNote != null) {
-			OnRemoveNote(message);
-		}
-	}
-	
 	public void EnablePlayer(bool enable) {
 		if(OnEnablePlayer != null) {
 			OnEnablePlayer(enable);
@@ -202,6 +193,18 @@ public class EventCenter : MonoBehaviour {
 		}
 	}
 
+	public void AddNote(string message = "", bool fadeOut = true) {
+		if(OnAddNote != null) {
+			OnAddNote(message, fadeOut);
+		}
+	}
+	
+	public void RemoveNote(string message = "") {
+		if(OnRemoveNote != null) {
+			OnRemoveNote(message);
+		}
+	}
+	
 	public void CloseMenuUI() {
 		if(OnCloseMenuUI != null) {
 			OnCloseMenuUI();

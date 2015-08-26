@@ -15,9 +15,6 @@ public class InventoryItemUI : MonoBehaviour {
 	private Color32 _inactive; 
 	private Color32	_controlInactive; 
 
-	private bool _isFocused;
-	private bool _isControlPanelOpen; 
-
 	private ArrayList _panels;
 	private int _focusedControlButton; 
 	private int _previousControlButton; 
@@ -54,12 +51,10 @@ public class InventoryItemUI : MonoBehaviour {
 
 	public void Select() {
 		_controlPanel.alpha = 1;
-		_isControlPanelOpen = true;
 	}
 
 	public void Deselect() {
 		_controlPanel.alpha = 0;
-		_isControlPanelOpen = false;
 	}
 
 	public void SetControlButtonFocus(bool increment) {
@@ -108,7 +103,6 @@ public class InventoryItemUI : MonoBehaviour {
 		} else {
 			_itemBg.color = _inactive;
 		}
-		_isFocused = active;
 	} 
 
 	public void SetName(string itemName) {
