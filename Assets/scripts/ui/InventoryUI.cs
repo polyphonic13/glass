@@ -6,8 +6,8 @@ public class InventoryUI : MonoBehaviour {
 
 	[SerializeField] private GameObject _inventoryItem; 
 
-	[SerializeField] private int _numColumns = 5;
-	[SerializeField] private int _numRows = 3;
+	[SerializeField] private int _numColumns = 6;
+	[SerializeField] private int _numRows = 2;
 
 	private const float START_X = -430f;
 	private const float START_Y = 85f;
