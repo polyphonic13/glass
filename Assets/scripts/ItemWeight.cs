@@ -11,6 +11,7 @@ public class ItemWeight : MonoBehaviour {
 	void Awake() {
 		_rigidbody = GetComponent<Rigidbody>();
 //		Debug.Log("ItemWeight/Start, _rigidBody = " + _rigidbody);
+
 	}
 	
 	void OnCollisionEnter(Collision target) {
@@ -20,12 +21,12 @@ public class ItemWeight : MonoBehaviour {
 			Vector3 parentPos = transform.parent.transform.position;
 			var newPos = new Vector3(parentPos.x, _rigidbody.position.y, parentPos.z);
 			transform.parent.transform.position = newPos;
-			KillSelf();			
+			KillSelf();
 		}
 	}
 
 	public void KillSelf() {
 		Debug.Log("ItemWeight/KillSelf");
-		Destroy(gameObject);	
+		Destroy(gameObject);
 	}
 }
