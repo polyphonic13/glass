@@ -3,9 +3,10 @@ using UnitySampleAssets.CrossPlatformInput;
 
 public class DelayedAxisInput {
 	
-	private float _previousTime; 
-	
-	public static bool Check(string axis = "both", float horizontal = 0, float vertical = 0) {
+	private static float _previousTime; 
+	private const float INPUT_DELAY = .03f;
+
+	public static bool Check(string axis, float horizontal, float vertical) {
 		bool changed = false;
 		horizontal = CrossPlatformInputManager.GetAxisRaw("Horizontal");
 		vertical = CrossPlatformInputManager.GetAxisRaw("Vertical");
@@ -21,7 +22,7 @@ public class DelayedAxisInput {
 		return changed;
 	}
 
-	private bool _checkPreviousTime() {
+	private static bool _checkPreviousTime() {
 		var changed = false;
 		float now = Time.realtimeSinceStartup;
 		if(-(_previousTime - now) > INPUT_DELAY) {

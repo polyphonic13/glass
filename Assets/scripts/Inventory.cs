@@ -47,7 +47,7 @@ public class Inventory : MonoBehaviour {
 	public void RemoveItem(string key) {
 		if(HasItem(key)) {
 			var item = _items[key] as CollectableItem;
-			item.transform.position = Camera.main.position;
+			item.transform.position = Camera.main.transform.position;
 			EventCenter.Instance.RemoveInventory(item.name);
 			_items.Remove(key);
 		}

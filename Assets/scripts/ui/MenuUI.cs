@@ -1,18 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnitySampleAssets.CrossPlatformInput;
 
 public enum MenuType {both,horizontal,vertical}
 
 public class MenuUI : MonoBehaviour {
 
-	public ButtonUI[] UIButtons; 
+	public ArrayList uiButtons; 
 	
 	public float BaseAlpha = 1;
 	
 	private int _currentIndex = -1; 
 	private CanvasGroup _controlPanel;
 	
-	public MenuType type;
+	public string type;
 	
 	public bool IsEnabled { get; set; }
 	
@@ -27,8 +28,10 @@ public class MenuUI : MonoBehaviour {
 	}
 	
 	public void DeactivateButtons() {
-		for(int i = 0; i < UIButtons.length; i++) {
-			UIButtons[i].SetFocus(false);
+		ButtonUI button;
+		for(int i = 0; i < uiButtons.Count; i++) {
+			button = uiButtons[i] as ButtonUI;
+			button.SetFocus(false);
 		}
 	}
 	
@@ -36,37 +39,43 @@ public class MenuUI : MonoBehaviour {
 		_controlPanel = gameObject.GetComponent<CanvasGroup>();
 		_controlPanel.alpha = 0;
 		IsEnabled = false;
+		uiButtons = new ArrayList();
 	}
 	
 	private void Update() {
 		if(IsEnabled) {
 			if(CrossPlatformInputManager.GetButtonDown("Fire1")) {
-				UIButtons[_currentIndex].Activate():
+				ButtonUI button = uiButtons[_currentIndex] as ButtonUI;
+				button.Activate();
 			} else if(CrossPlatformInputManager.GetButtonDown("Cancel")) {
 				if(_currentIndex > -1) {
-					UIButtons[_currentIndex].SetFocus(false);
+					ButtonUI button = uiButtons[_currentIndex] as ButtonUI;
+					button.SetFocus(false);
 				}
 			} else {
-				float horizontal;
-				float vertical;
+				float horizontal = 0;
+				float vertical = 0;
 				
 				bool axisChanged = DelayedAxisInput.Check(type, horizontal, vertical);
 				if(axisChanged) {
+					ButtonUI button;
+
 					if(_currentIndex > -1) {
-						UIButtons[_currentIndex].SetFocus(false);
+						button = uiButtons[_currentIndex] as ButtonUI;
+						button.SetFocus(false);
 					}
 
 					switch(type) {
-						case MenuType.both:
+						case "both":
 						_changeCurrentButton(horizontal);
 						_changeCurrentButton(vertical);
 						break;
 						
-						case MenuType.horizontal:
+						case "horizontal":
 						_changeCurrentButton(horizontal);
 						break;
 						
-						case MenuType.vertical:
+						case "vertical":
 						_changeCurrentButton(vertical);
 						break;
 						
@@ -74,16 +83,16 @@ public class MenuUI : MonoBehaviour {
 						Debug.Log("warning: unknown menu type: " + type);
 						break;
 					}
-					
-					UIButtons[_currentIndex].SetFocus(true);
+					button = uiButtons[_currentIndex] as ButtonUI;
+					button.SetFocus(true);
 				}
 			}
 		}
 	}
 	
-	private _changeCurrentButton(float axis) {
+	private void _changeCurrentButton(float axis) {
 		if(axis > 0) {
-			if(_currentIndex < (UIButtons.length - 1)) {
+			if(_currentIndex < (uiButtons.Count - 1)) {
 				_currentIndex++;
 			} else {
 				_currentIndex = 0;
@@ -92,7 +101,7 @@ public class MenuUI : MonoBehaviour {
 			if(_currentIndex > 0) {
 				_currentIndex--;
 			} else {
-				_currentIndex = (UIButtons.length - 1);
+				_currentIndex = (uiButtons.Count - 1);
 			}
 		}
 	}

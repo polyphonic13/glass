@@ -11,7 +11,6 @@ public class InventoryUI : MonoBehaviour {
 
 	private const float START_X = -430f;
 	private const float START_Y = 85f;
-	private const float INPUT_DELAY = .03f;
 
 	private ArrayList _items;
 	private int _occupiedItems;
@@ -22,7 +21,7 @@ public class InventoryUI : MonoBehaviour {
 	private float _horizontal;
 	private float _vertical;
 
-	private int _currentCol;
+	private int _currentColumn;
 	private int _currentRow;
 	private int _currentItemIndex; 
 	private int _previousItemIndex;
@@ -77,7 +76,7 @@ public class InventoryUI : MonoBehaviour {
     }
 
 	private void _resetItems(string itemName) {
-		var itemUI;
+		InventoryItemUI itemUI;
 		int i;
 		
 		_occupiedItems = 0;
@@ -86,7 +85,7 @@ public class InventoryUI : MonoBehaviour {
 			itemUI = _items[i] as InventoryItemUI;
 			
 			if(itemUI.name != itemName) {
-				_items[i].Remove();
+				_items.RemoveAt(i);
 			}
 			itemUI.Reset();
 		}
@@ -156,7 +155,7 @@ public class InventoryUI : MonoBehaviour {
 						_selectedInventoryItemUI.Deselect();
 					}
 					_isSelectingItem = false;
-				} else if(_checkDelayedAxisInput("vertical")) {
+				} else if(DelayedAxisInput.Check("vertical", _horizontal, _vertical)) {
 					var setFocus = true;
 					if(_vertical > 0) {
 						setFocus = false;
@@ -172,7 +171,7 @@ public class InventoryUI : MonoBehaviour {
 					} else if(_vertical != 0) {
 						_calculateAxis(_vertical, _currentColumn, _numColumns, _currentRow, _numRows);
 					}
-					_currentItemIndex = (_currentRow * _numColumns) + _currentCol;
+					_currentItemIndex = (_currentRow * _numColumns) + _currentColumn;
 					var item = _items[_currentItemIndex] as InventoryItemUI;
 					
 					if(item != null) {
