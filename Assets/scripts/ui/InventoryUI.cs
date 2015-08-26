@@ -126,7 +126,7 @@ public class InventoryUI : MonoBehaviour {
 			RectTransform rect = item.GetComponent<RectTransform>();
 
 			item.name = itemName;
-			itemUI.SetName(itemName);
+//			itemUI.SetName(itemName);
 
 			rect.localPosition = new Vector3(x, y, 0);
 
