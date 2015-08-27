@@ -166,80 +166,81 @@ namespace UnitySampleAssets.Characters.FirstPerson
 		#region update		
 		private void Update()
         {
-			if(CrossPlatformInputManager.GetButtonDown("Fire3")) {
-				_isMenuOpen = !_isMenuOpen;
-				_menuUI.enabled = _isMenuOpen;
-				_closeInventoryUI();
-			} else if(CrossPlatformInputManager.GetButtonDown("Fire2")) {
-				_isInventoryOpen = !_isInventoryOpen;
-				_inventoryUI.enabled = _isInventoryOpen;
-				_closeMenuUI();
-			}
+			if (!_isInspectorOpen) {
+				if(CrossPlatformInputManager.GetButtonDown("Fire3")) {
+					_isMenuOpen = !_isMenuOpen;
+					_menuUI.enabled = _isMenuOpen;
+					_closeInventoryUI();
+				} else if(CrossPlatformInputManager.GetButtonDown("Fire2")) {
+					_isInventoryOpen = !_isInventoryOpen;
+					_inventoryUI.enabled = _isInventoryOpen;
+					_closeMenuUI();
+				}
 
-
-			// player updates only happen when menus are closed
-			if(!_isMenuOpen && !_isInventoryOpen && !_isInspectorOpen) {
-				RotateView();
-
-				if(CrossPlatformInputManager.GetButtonDown("Fire1")) {
-					if(_elementInProximity != null) {
-						_elementInProximity.Actuate();
-					}
-				}
-				// allow to Dive if Swimming 
-				if(CrossPlatformInputManager.GetButtonDown("Crouch")) {
-					if(_currentMovementState == _movementStates.Swim || _currentMovementState == _movementStates.Dive) {
-						_gravity = _underWaterGravity;
-						_currentMovementState = _movementStates.Dive;
-					}
-				}
-				// toggle Crawl if walking/Crawling
-				if(CrossPlatformInputManager.GetButtonDown("Crouch")) {
-					if(_currentMovementState == _movementStates.Normal && m_CharacterController.isGrounded) {
-						_currentMovementState = _movementStates.Crawl;
-						_switchToCrawling(true);
-						_justCrouched = true;
-						Debug.Log("Crawl");
-					} else if(_currentMovementState == _movementStates.Crawl) {
-						_currentMovementState = _movementStates.Normal;
-						_switchToCrawling(false);
-						_justCrouched = true;
-						Debug.Log("walk");
-					}
-				}
-				
-				// the jump state needs to read here to make sure it is not missed
-				if (!m_Jump)
-				{
-					m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
-				}
-				
-				if (!m_PreviouslyGrounded && m_CharacterController.isGrounded)
-				{
-					StartCoroutine(m_JumpBob.DoBobCycle());
-					//                PlayLandingSound();
-					m_MoveDir.y = 0f;
-					m_Jumping = false;
+				// player updates only happen when menus are closed
+				if(!_isMenuOpen && !_isInventoryOpen) {
+					RotateView();
 					
-					if(_damageFromFall && (_currentMovementState == _movementStates.Normal || _currentMovementState == _movementStates.Climb || _currentMovementState == _movementStates.Crawl)) {
-						float health = GameControl.Instance.RemainingHealth - _gravityDamager.EndFall();
-						GameControl.Instance.UpdateHealth(health);
+					if(CrossPlatformInputManager.GetButtonDown("Fire1")) {
+						if(_elementInProximity != null) {
+							_elementInProximity.Actuate();
+						}
+					}
+					// allow to Dive if Swimming 
+					if(CrossPlatformInputManager.GetButtonDown("Crouch")) {
+						if(_currentMovementState == _movementStates.Swim || _currentMovementState == _movementStates.Dive) {
+							_gravity = _underWaterGravity;
+							_currentMovementState = _movementStates.Dive;
+						}
+					}
+					// toggle Crawl if walking/Crawling
+					if(CrossPlatformInputManager.GetButtonDown("Crouch")) {
+						if(_currentMovementState == _movementStates.Normal && m_CharacterController.isGrounded) {
+							_currentMovementState = _movementStates.Crawl;
+							_switchToCrawling(true);
+							_justCrouched = true;
+							Debug.Log("Crawl");
+						} else if(_currentMovementState == _movementStates.Crawl) {
+							_currentMovementState = _movementStates.Normal;
+							_switchToCrawling(false);
+							_justCrouched = true;
+							Debug.Log("walk");
+						}
 					}
 					
-				}
-				if (!m_CharacterController.isGrounded && !m_Jumping && m_PreviouslyGrounded)
-				{
-					m_MoveDir.y = 0f;
+					// the jump state needs to read here to make sure it is not missed
+					if (!m_Jump)
+					{
+						m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
+					}
+					
+					if (!m_PreviouslyGrounded && m_CharacterController.isGrounded)
+					{
+						StartCoroutine(m_JumpBob.DoBobCycle());
+						//                PlayLandingSound();
+						m_MoveDir.y = 0f;
+						m_Jumping = false;
+						
+						if(_damageFromFall && (_currentMovementState == _movementStates.Normal || _currentMovementState == _movementStates.Climb || _currentMovementState == _movementStates.Crawl)) {
+							float health = GameControl.Instance.RemainingHealth - _gravityDamager.EndFall();
+							GameControl.Instance.UpdateHealth(health);
+						}
+						
+					}
+					if (!m_CharacterController.isGrounded && !m_Jumping && m_PreviouslyGrounded)
+					{
+						m_MoveDir.y = 0f;
+					}
+					
+					if(_damageFromFall) {
+						if(!m_CharacterController.isGrounded && m_PreviouslyGrounded) {
+							_gravityDamager.BeginFall();
+						}
+					}
+					m_PreviouslyGrounded = m_CharacterController.isGrounded;
 				}
 				
-				if(_damageFromFall) {
-					if(!m_CharacterController.isGrounded && m_PreviouslyGrounded) {
-						_gravityDamager.BeginFall();
-					}
-				}
-				m_PreviouslyGrounded = m_CharacterController.isGrounded;
 			}
-
 		}
 		#endregion
 

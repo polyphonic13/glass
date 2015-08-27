@@ -1,12 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using UnitySampleAssets.CrossPlatformInput;
 
 public class ItemInspector : MonoBehaviour {
 
 	public const int INSPECTOR_LAYER = 15;
-
-	public Transform target;
 
 	public float distance = 4.0f;
 
@@ -20,18 +19,29 @@ public class ItemInspector : MonoBehaviour {
 	public float distanceMax = 15f;
 	
 	public float smoothTime = 2f;
-	
+
+	public float zoomAmount = 2f;
+	public float maxZoom = 5f;
+	public float minZoom = -5f;
+
 	private float rotationYAxis = 0.0f;
 	private float rotationXAxis = 0.0f;
 	
 	private float velocityX = 0.0f;
 	private float velocityY = 0.0f;
 
+	private Transform _target;
 	private Transform _previousParent;
 	private Vector3 _previousPosition;
 	private int _previousLayer;
 
+	private Camera _uiCamera; 
 	private Camera _camera;
+	private float _originalFieldOfView;
+	private int _currentZoom;
+
+	private Text _itemName;
+	private Text _itemDescription;
 
 	private static ItemInspector _instance;
 	private ItemInspector() {}
@@ -45,41 +55,67 @@ public class ItemInspector : MonoBehaviour {
 		}
 	}
 	
-	public void AddTarget(Transform tgt) {
-		target = tgt;
+	public void AddTarget(Transform tgt, string itemName, string itemDescription) {
+		_target = tgt;
 
-		_previousParent = target.parent.transform;
-		_previousPosition = target.position;
-		_previousLayer = target.gameObject.layer;
+		_previousParent = _target.parent.transform;
+		_previousPosition = _target.position;
+		_previousLayer = _target.gameObject.layer;
 
-		target.parent = transform.parent;
-		target.gameObject.layer = INSPECTOR_LAYER;
+		_target.parent = transform.parent;
+		_target.gameObject.layer = INSPECTOR_LAYER;
 
 		Vector3 position = new Vector3 (transform.position.x + distance, transform.position.y, transform.position.z);
-		target.transform.position = position;
-		transform.rotation = Quaternion.LookRotation (transform.position - target.transform.position);
-
+		_target.transform.position = position;
+		transform.rotation = Quaternion.LookRotation (transform.position - _target.transform.position);
+		_itemName.text = itemName;
+		_itemDescription.text = itemDescription;
+		_uiCamera.enabled = true;
 		_camera.enabled = true;
 	}
 
 	public void RemoveTarget() {
-		target.parent = _previousParent;
-		target.position = _previousPosition;
-		target.gameObject.layer = _previousLayer;
+		_target.parent = _previousParent;
+		_target.position = _previousPosition;
+		_target.gameObject.layer = _previousLayer;
 
-		target = null;
+		_target = null;
 		_camera.enabled = false;
+		_camera.fieldOfView = _originalFieldOfView;
+		_currentZoom = 0;
+		_uiCamera.enabled = false;
+		_itemName.text = "";
+		_itemDescription.text = "";
 	}
 
 	void Awake() {
 		_camera = gameObject.GetComponent<Camera> ();
 		_camera.enabled = false;
+		_originalFieldOfView = _camera.fieldOfView;
+
+		Transform uiCam = transform.parent.transform.Find ("item_inspector_ui_camera");
+		_uiCamera = uiCam.GetComponent<Camera> ();
+		_uiCamera.enabled = false;
+		_itemName = uiCam.transform.Find ("inspector_ui/text_name").GetComponent<Text>();
+		_itemName.text = "";
+		_itemDescription = uiCam.transform.Find ("inspector_ui/text_description").GetComponent<Text>();
+		_itemDescription.text = "";
 	}
 	
 	void LateUpdate() {
-		if (target) {
+		if (_target) {
 			if(CrossPlatformInputManager.GetButtonDown("Cancel")) {
-				EventCenter.Instance.InspectItem(false, target.name);
+				EventCenter.Instance.InspectItem(false, _target.name);
+			} else if(CrossPlatformInputManager.GetButtonDown("Fire1")) {
+				if(_currentZoom < maxZoom) {
+					_camera.fieldOfView += zoomAmount;
+					_currentZoom++;
+				}
+			} else if(CrossPlatformInputManager.GetButtonDown("Fire2")) {
+				if(_currentZoom > minZoom) {
+					_camera.fieldOfView -= zoomAmount;
+					_currentZoom--;
+				}
 			} else {
 				float horizontal = CrossPlatformInputManager.GetAxis("Horizontal");
 				float vertical = CrossPlatformInputManager.GetAxis("Vertical");
@@ -95,7 +131,7 @@ public class ItemInspector : MonoBehaviour {
 				Quaternion rotation = toRotation;
 
 				Vector3 negDistance = new Vector3(0.0f, 0.0f, -distance);
-				Vector3 position = rotation * negDistance + target.position;
+				Vector3 position = rotation * negDistance + _target.position;
 				
 				transform.rotation = rotation;
 				transform.position = position;
