@@ -8,8 +8,11 @@ public class Inventory : MonoBehaviour {
 	private Hashtable _items;
 
 	private static Inventory _instance;
-	private Inventory() {
+	private Inventory() {}
+
+	private void Awake() {
 		_items = new Hashtable();
+		EventCenter.Instance.OnInspectItem += OnInspectItem;
 	}
 
 	public static Inventory Instance {
@@ -47,9 +50,20 @@ public class Inventory : MonoBehaviour {
 	public void InspectItem(string key) {
 		if (HasItem (key)) {
 			var item = _items[key] as CollectableItem;
-			item.IsInspected = !item.IsInspected;
+			ItemInspector.Instance.AddTarget(item.transform);
 			EventCenter.Instance.InspectItem(item.IsInspected, item.name);
+			item.IsInspected = !item.IsInspected;
 		}
+	}
+
+	public void OnInspectItem(bool isInspecting, string itemName) {
+		var item = _items[itemName] as CollectableItem;
+		if (isInspecting) {
+			ItemInspector.Instance.AddTarget (item.transform);
+		} else {
+			ItemInspector.Instance.RemoveTarget ();
+		}
+		item.IsInspected = !item.IsInspected;
 	}
 
 	public void RemoveItem(string key) {

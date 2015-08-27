@@ -9,6 +9,8 @@ namespace UnitySampleAssets.Characters.FirstPerson
     [RequireComponent(typeof (AudioSource))]
     public class Player : MonoBehaviour
     {
+		public Transform temp;
+
 		[SerializeField] private Canvas _menuUI; 
 		[SerializeField] private Canvas _inventoryUI; 
 
@@ -96,8 +98,9 @@ namespace UnitySampleAssets.Characters.FirstPerson
 		}
 
 		public void OnInspectItem(bool isInspecting, string item) {
-			mainCamera.enabled = !isInspecting;
+//			mainCamera.enabled = !isInspecting;
 			_isInspectorOpen = isInspecting;
+			Debug.Log ("Player/OnInspectItem, _isInspectorOpen = " + _isInspectorOpen);
 		}
 
 		public void OnCloseInventoryUI() {
@@ -109,12 +112,12 @@ namespace UnitySampleAssets.Characters.FirstPerson
 		}
 		#endregion
 
-		#region start
-        private void Start()
+		#region awake
+        private void Awake()
         {
 			_menuUI.enabled = false;
 			_inventoryUI.enabled = false;
-			_isInspectorOpen = _isMenuOpen = _isInventoryOpen = true;
+			_isInspectorOpen = _isMenuOpen = _isInventoryOpen = false;
 			_collider = GameObject.Find("collider").transform;
 
             m_CharacterController = GetComponent<CharacterController>();
@@ -149,40 +152,40 @@ namespace UnitySampleAssets.Characters.FirstPerson
 		}
 		#endregion
 
+		#region ui
 		private void _closeInventoryUI() {
-			Debug.Log ("Player/_closeInventoryUI");
+			Debug.Log ("Player/_closeInventoryUI, _invetoryUI enabled = " + _inventoryUI.enabled);
 			_inventoryUI.enabled = _isInventoryOpen = false;
 		}
 		
 		private void _closeMenuUI() {
 			_menuUI.enabled = _isMenuOpen = false;
 		}
+		#endregion
 
 		#region update		
 		private void Update()
         {
-			if(CrossPlatformInputManager.GetButtonDown("Fire2")) {
+			if(CrossPlatformInputManager.GetButtonDown("Fire3")) {
 				_isMenuOpen = !_isMenuOpen;
 				_menuUI.enabled = _isMenuOpen;
 				_closeInventoryUI();
-			} else if(CrossPlatformInputManager.GetButtonDown("Fire3")) {
+			} else if(CrossPlatformInputManager.GetButtonDown("Fire2")) {
 				_isInventoryOpen = !_isInventoryOpen;
 				_inventoryUI.enabled = _isInventoryOpen;
 				_closeMenuUI();
 			}
 
-			if(CrossPlatformInputManager.GetButtonDown("Fire1")) {
-				if(!_isMenuOpen && !_isInventoryOpen) {
-					if(_elementInProximity != null) {
-						_elementInProximity.Actuate();
-					}
-				}
-			}
 
 			// player updates only happen when menus are closed
 			if(!_isMenuOpen && !_isInventoryOpen && !_isInspectorOpen) {
 				RotateView();
 
+				if(CrossPlatformInputManager.GetButtonDown("Fire1")) {
+					if(_elementInProximity != null) {
+						_elementInProximity.Actuate();
+					}
+				}
 				// allow to Dive if Swimming 
 				if(CrossPlatformInputManager.GetButtonDown("Crouch")) {
 					if(_currentMovementState == _movementStates.Swim || _currentMovementState == _movementStates.Dive) {
@@ -259,7 +262,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
 
         private void FixedUpdate()
         {
-			if(!_isMenuOpen && !_isInventoryOpen) {
+			if(!_isMenuOpen && !_isInventoryOpen && !_isInspectorOpen) {
 				float speed;
 				GetInput(out speed);
 				// always move along the camera forward as it is the direction that it being aimed at

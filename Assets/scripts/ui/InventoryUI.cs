@@ -27,6 +27,8 @@ public class InventoryUI : MonoBehaviour {
 	private int _previousItemIndex;
 
 	private bool _isSelectingItem;
+	private bool _isInspectingItem;
+
 	private InventoryItemUI _selectedInventoryItemUI; 
 
 	private Canvas _canvas;
@@ -38,7 +40,11 @@ public class InventoryUI : MonoBehaviour {
 	public void OnInventoryRemoved(string itemName) {
 		_resetItems(itemName);
 	}
-	
+
+	public void OnInspectItem(bool isInspecting, string item) {
+		_isInspectingItem = isInspecting;
+	}
+
 	private void Awake() {
 		_items = new ArrayList();
 		_canvas = gameObject.transform.parent.GetComponent<Canvas>();
@@ -47,6 +53,7 @@ public class InventoryUI : MonoBehaviour {
 		var ec = EventCenter.Instance;
 		ec.OnInventoryAdded += OnInventoryAdded;
 		ec.OnInventoryRemoved += OnInventoryRemoved;
+		ec.OnInspectItem += OnInspectItem;
 	}
 
 	private void Update() {
@@ -142,16 +149,18 @@ public class InventoryUI : MonoBehaviour {
 
     private void _checkInput() {
 		if(CrossPlatformInputManager.GetButtonDown("Cancel")) {
-			if(_isSelectingItem) {
-				if(_selectedInventoryItemUI != null) {
-					_selectedInventoryItemUI.Deselect();
+			if(!_isInspectingItem) {
+				if(_isSelectingItem) {
+					if(_selectedInventoryItemUI != null) {
+						_selectedInventoryItemUI.Deselect();
+					}
+					_isSelectingItem = false;
+				} else {
+					EventCenter.Instance.CloseInventoryUI();
 				}
-				_isSelectingItem = false;
-			} else {
-				EventCenter.Instance.CloseInventoryUI();
 			}
 		}
-		if(_occupiedItems > 0) {
+		if(_occupiedItems > 0 && !_isInspectingItem) {
 			if(CrossPlatformInputManager.GetButtonDown("Fire1")) {
 				if(!_isSelectingItem) {
 					_selectedInventoryItemUI = _items[_currentItemIndex] as InventoryItemUI;
@@ -171,7 +180,7 @@ public class InventoryUI : MonoBehaviour {
 						setFocus = false;
 					}
 					if(_selectedInventoryItemUI != null) {
-						_selectedInventoryItemUI.SetControlButtonFocus(setFocus);
+						_selectedInventoryItemUI.IncrementControlButtonFocus(setFocus);
 					}
 				}
 			} else if(!_isSelectingItem) {

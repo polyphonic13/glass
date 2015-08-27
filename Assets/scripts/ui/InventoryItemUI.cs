@@ -57,7 +57,7 @@ public class InventoryItemUI : MonoBehaviour {
 		_controlPanel.alpha = 0;
 	}
 
-	public void SetControlButtonFocus(bool increment) {
+	public void IncrementControlButtonFocus(bool increment) {
 		int btn = _focusedControlButton;
 		if(increment) {
 			if(_focusedControlButton < (_panels.Count - 1)) {
@@ -72,7 +72,17 @@ public class InventoryItemUI : MonoBehaviour {
 				btn = (_panels.Count -1);
 			}
 		}
-		_setControlButtonFocus(btn);
+		SetControlButtonFocus(btn);
+	}
+
+	public void SetControlButtonFocus(int btn) {
+		_previousControlButton = _focusedControlButton;
+		_focusedControlButton = btn;
+		
+		Image panel = _panels[_focusedControlButton] as Image;
+		panel.color = _active;
+		panel = _panels[_previousControlButton] as Image;
+		panel.color = _controlInactive;
 	}
 
 	public void SelectControlButton() {
@@ -82,13 +92,10 @@ public class InventoryItemUI : MonoBehaviour {
 			break;
 
 			case 1:
-				Debug.Log("InventoryItemUI["+this.name+"]/SelectControlButton, Inspect selected");
-//				EventCenter.Instance.CloseInventoryUI();
-				Inventory.Instance.InspectItem(this.name);
+				EventCenter.Instance.InspectItem(true, this.name);
 			break;
 
 			case 2:
-				Debug.Log("InventoryItemUI["+this.name+"]/SelectControlButton, Drop selected");
 				Inventory.Instance.RemoveItem(this.name);
 			break;
 
@@ -96,7 +103,6 @@ public class InventoryItemUI : MonoBehaviour {
 				Debug.LogWarning("Unknown control button");
 			break;
 		}
-
 	}
 
 	public void SetFocus(bool active) {
@@ -138,20 +144,9 @@ public class InventoryItemUI : MonoBehaviour {
 		SetName("");
 		SetCount(0);
 		SetThumbnail(null);
-		_setControlButtonFocus(0);
+		SetControlButtonFocus(0);
 		SetFocus(false);
 		Deselect();
 	}
-
-	private void _setControlButtonFocus(int btn) {
-		_previousControlButton = _focusedControlButton;
-		_focusedControlButton = btn;
-
-		Image panel = _panels[_focusedControlButton] as Image;
-		panel.color = _active;
-		panel = _panels[_previousControlButton] as Image;
-		panel.color = _controlInactive;
-	}
-	
 
 }
