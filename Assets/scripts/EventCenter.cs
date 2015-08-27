@@ -32,7 +32,9 @@ public class EventCenter : MonoBehaviour {
 
 	public delegate void AddNoteHandler(string message = "", bool fadeOut = true);
 	public delegate void RemoveNoteHandler(string message = "");
-	
+
+	public delegate void InspectItemHandler(bool isInspecting, string item);
+
 	public delegate void CloseMenuHandler();
 	public delegate void CloseInventoryHandler();
 
@@ -66,7 +68,9 @@ public class EventCenter : MonoBehaviour {
 
 	public event AddNoteHandler OnAddNote; 
 	public event RemoveNoteHandler OnRemoveNote; 
-	
+
+	public event InspectItemHandler OnInspectItem; 
+
 	public event CloseMenuHandler OnCloseMenuUI;
 	public event CloseInventoryHandler OnCloseInventoryUI;
 
@@ -204,7 +208,13 @@ public class EventCenter : MonoBehaviour {
 			OnRemoveNote(message);
 		}
 	}
-	
+
+	public void InspectItem(bool isInspecting, string item) {
+		if (OnInspectItem != null) {
+			OnInspectItem (isInspecting, item);
+		}
+	}
+
 	public void CloseMenuUI() {
 		if(OnCloseMenuUI != null) {
 			OnCloseMenuUI();

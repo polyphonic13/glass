@@ -83,6 +83,8 @@ public class InventoryItemUI : MonoBehaviour {
 
 			case 1:
 				Debug.Log("InventoryItemUI["+this.name+"]/SelectControlButton, Inspect selected");
+//				EventCenter.Instance.CloseInventoryUI();
+				Inventory.Instance.InspectItem(this.name);
 			break;
 
 			case 2:

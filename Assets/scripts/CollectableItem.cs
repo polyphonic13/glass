@@ -16,6 +16,7 @@ public class CollectableItem : InteractiveElement {
 	public string ItemName { get; set; }
 	public bool IsDroppable { get; set; }
 	public bool IsEquipable { get; set; }
+	public bool IsInspected { get; set; }
 	// private Player _player;
 	
 	public ItemWeight _weight; 
@@ -27,8 +28,7 @@ public class CollectableItem : InteractiveElement {
 	
 	public void InitCollectableItem() {
 		Init();
-		IsCollected = false;
-		IsEquipped = false;
+		IsCollected = IsEquipped = IsInspected = false;
 		// _player = GameObject.Find("player").GetComponent<Player>();
 		_originalSize = transform.localScale;
 

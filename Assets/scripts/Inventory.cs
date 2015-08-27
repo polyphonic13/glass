@@ -44,6 +44,14 @@ public class Inventory : MonoBehaviour {
 		return isAdded;
 	}
 
+	public void InspectItem(string key) {
+		if (HasItem (key)) {
+			var item = _items[key] as CollectableItem;
+			item.IsInspected = !item.IsInspected;
+			EventCenter.Instance.InspectItem(item.IsInspected, item.name);
+		}
+	}
+
 	public void RemoveItem(string key) {
 //		Debug.Log("Inventory/RemoveItem, key = " + key);
 		if(HasItem(key)) {

@@ -1,4 +1,4 @@
-using UnityEngine;
+ using UnityEngine;
 using UnitySampleAssets.CrossPlatformInput;
 using UnitySampleAssets.Utility;
 using Random = UnityEngine.Random;
@@ -50,11 +50,12 @@ namespace UnitySampleAssets.Characters.FirstPerson
 
 		private bool _isMenuOpen = false;
 		private bool _isInventoryOpen = false;
+		private bool _isInspectorOpen = false;
 
-		private Camera m_Camera;
+		private Camera mainCamera;
         private bool m_Jump;
         private float m_YRotation;
-        private CameraRefocus m_CameraRefocus;
+        private CameraRefocus mainCameraRefocus;
         private Vector2 m_Input;
         private Vector3 m_MoveDir = Vector3.zero;
         private CharacterController m_CharacterController;
@@ -66,13 +67,14 @@ namespace UnitySampleAssets.Characters.FirstPerson
         private bool m_Jumping;
         private AudioSource m_AudioSource;
 
-        private InteractiveElement elementInProximity;
- 
+        private InteractiveElement _elementInProximity;
+
+		#region delegate handlers
  		public void OnNearInteractiveElement(InteractiveElement element, bool isInProximity) {
  			if(isInProximity) {
- 				elementInProximity = element;
+ 				_elementInProximity = element;
  			} else {
- 				elementInProximity = null;
+ 				_elementInProximity = null;
  			}
  		}
 
@@ -93,6 +95,11 @@ namespace UnitySampleAssets.Characters.FirstPerson
 			_gravityDamager.CancelFall();
 		}
 
+		public void OnInspectItem(bool isInspecting, string item) {
+			mainCamera.enabled = !isInspecting;
+			_isInspectorOpen = isInspecting;
+		}
+
 		public void OnCloseInventoryUI() {
 			_closeInventoryUI();
 		}
@@ -100,30 +107,33 @@ namespace UnitySampleAssets.Characters.FirstPerson
 		public void OnCloseMenuUI() {
 			_closeMenuUI();
 		}
+		#endregion
 
+		#region start
         private void Start()
         {
 			_menuUI.enabled = false;
 			_inventoryUI.enabled = false;
+			_isInspectorOpen = _isMenuOpen = _isInventoryOpen = true;
 			_collider = GameObject.Find("collider").transform;
 
             m_CharacterController = GetComponent<CharacterController>();
-            m_Camera = Camera.main;
-            m_OriginalCameraPosition = m_Camera.transform.localPosition;
-            m_CameraRefocus = new CameraRefocus(m_Camera, transform, m_Camera.transform.localPosition);
-            m_FovKick.Setup(m_Camera);
-            m_HeadBob.Setup(m_Camera, m_StepInterval);
+            mainCamera = Camera.main;
+            m_OriginalCameraPosition = mainCamera.transform.localPosition;
+            mainCameraRefocus = new CameraRefocus(mainCamera, transform, mainCamera.transform.localPosition);
+            m_FovKick.Setup(mainCamera);
+            m_HeadBob.Setup(mainCamera, m_StepInterval);
             m_StepCycle = 0f;
             m_NextStep = m_StepCycle/2f;
             m_Jumping = false;
             m_AudioSource = GetComponent<AudioSource>();
-			m_MouseLook.Init(transform , m_Camera.transform);
+			m_MouseLook.Init(transform , mainCamera.transform);
 
 			_currentMovementState = _movementStates.Normal;
 			_gravity = m_GravityMultiplier;
-			_cameraStartY = m_Camera.transform.position.y;
+			_cameraStartY = mainCamera.transform.position.y;
 
-//			_globalFog = m_Camera.GetComponent<GlobalFog>();
+//			_globalFog = mainCamera.GetComponent<GlobalFog>();
 
 			if(_damageFromFall) {
 				_gravityDamager = GetComponent<GravityDamager>();
@@ -133,18 +143,22 @@ namespace UnitySampleAssets.Characters.FirstPerson
 			ec.OnAboveWater += OnAboveWater;
 			ec.OnPlayerDamaged += OnPlayerDamaged;
 			ec.OnNearInteractiveElement += OnNearInteractiveElement;
+			ec.OnInspectItem += OnInspectItem;
 			ec.OnCloseInventoryUI += OnCloseInventoryUI;
 			ec.OnCloseMenuUI += OnCloseMenuUI;
 		}
+		#endregion
 
 		private void _closeInventoryUI() {
+			Debug.Log ("Player/_closeInventoryUI");
 			_inventoryUI.enabled = _isInventoryOpen = false;
 		}
 		
 		private void _closeMenuUI() {
 			_menuUI.enabled = _isMenuOpen = false;
 		}
-		
+
+		#region update		
 		private void Update()
         {
 			if(CrossPlatformInputManager.GetButtonDown("Fire2")) {
@@ -159,14 +173,14 @@ namespace UnitySampleAssets.Characters.FirstPerson
 
 			if(CrossPlatformInputManager.GetButtonDown("Fire1")) {
 				if(!_isMenuOpen && !_isInventoryOpen) {
-					if(elementInProximity != null) {
-						elementInProximity.Actuate();
+					if(_elementInProximity != null) {
+						_elementInProximity.Actuate();
 					}
 				}
 			}
 
 			// player updates only happen when menus are closed
-			if(!_isMenuOpen && !_isInventoryOpen) {
+			if(!_isMenuOpen && !_isInventoryOpen && !_isInspectorOpen) {
 				RotateView();
 
 				// allow to Dive if Swimming 
@@ -224,6 +238,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
 			}
 
 		}
+		#endregion
 
 		private void _switchToCrawling(bool isCrawling) {
 			if(isCrawling) {
@@ -248,7 +263,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
 				float speed;
 				GetInput(out speed);
 				// always move along the camera forward as it is the direction that it being aimed at
-				Vector3 desiredMove = m_Camera.transform.forward*m_Input.y + m_Camera.transform.right*m_Input.x;
+				Vector3 desiredMove = mainCamera.transform.forward*m_Input.y + mainCamera.transform.right*m_Input.x;
 				
 				// get a Normal for the surface that is being touched to move along it
 				RaycastHit hitInfo;
@@ -379,20 +394,20 @@ namespace UnitySampleAssets.Characters.FirstPerson
             }
             if (m_CharacterController.velocity.magnitude > 0 && m_CharacterController.isGrounded)
             {
-                m_Camera.transform.localPosition =
+                mainCamera.transform.localPosition =
                     m_HeadBob.DoHeadBob(m_CharacterController.velocity.magnitude +
                                       (speed*(m_IsWalking ? 1f : m_RunstepLenghten)));
-                newCameraPosition = m_Camera.transform.localPosition;
-                newCameraPosition.y = m_Camera.transform.localPosition.y - m_JumpBob.Offset();
+                newCameraPosition = mainCamera.transform.localPosition;
+                newCameraPosition.y = mainCamera.transform.localPosition.y - m_JumpBob.Offset();
             }
             else
             {
-                newCameraPosition = m_Camera.transform.localPosition;
+                newCameraPosition = mainCamera.transform.localPosition;
                 newCameraPosition.y = m_OriginalCameraPosition.y - m_JumpBob.Offset();
             }
-            m_Camera.transform.localPosition = newCameraPosition;
+            mainCamera.transform.localPosition = newCameraPosition;
 
-            m_CameraRefocus.SetFocusPoint();
+            mainCameraRefocus.SetFocusPoint();
         }
 
         private void GetInput(out float speed)
@@ -430,8 +445,8 @@ namespace UnitySampleAssets.Characters.FirstPerson
 
         private void RotateView()
         {
-            m_MouseLook.LookRotation (transform, m_Camera.transform);
-            m_CameraRefocus.GetFocusPoint();
+            m_MouseLook.LookRotation (transform, mainCamera.transform);
+            mainCameraRefocus.GetFocusPoint();
         }
 
         private void OnControllerColliderHit(ControllerColliderHit hit)
