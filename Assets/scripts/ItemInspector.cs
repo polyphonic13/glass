@@ -7,22 +7,22 @@ public class ItemInspector : MonoBehaviour {
 
 	public const int INSPECTOR_LAYER = 15;
 
-	public float distance = 4.0f;
+	public float distance = 2.0f;
 
 	public float xSpeed = 120.0f;
 	public float ySpeed = 120.0f;
 	
-	public float yMinLimit = -20f;
-	public float yMaxLimit = 80f;
+	public float yMinLimit = -361f;
+	public float yMaxLimit = 361f;
 	
 	public float distanceMin = .5f;
 	public float distanceMax = 15f;
 	
 	public float smoothTime = 2f;
 
-	public float zoomAmount = 2f;
-	public float maxZoom = 5f;
-	public float minZoom = -5f;
+	public float zoomAmount = 15f;
+	public float maxZoom = 3f;
+	public float minZoom = -2f;
 
 	private float rotationYAxis = 0.0f;
 	private float rotationXAxis = 0.0f;
@@ -30,14 +30,17 @@ public class ItemInspector : MonoBehaviour {
 	private float velocityX = 0.0f;
 	private float velocityY = 0.0f;
 
-	private Transform _target;
+	private Transform _item;
 	private Transform _previousParent;
 	private Vector3 _previousPosition;
 	private int _previousLayer;
 
 	private Camera _uiCamera; 
 	private Camera _camera;
-	private float _originalFieldOfView;
+	private float _initialFieldOfView				;
+	private Quaternion _initialRotation;
+	private Vector3 _initialPosition;
+
 	private int _currentZoom;
 
 	private Text _itemName;
@@ -55,19 +58,23 @@ public class ItemInspector : MonoBehaviour {
 		}
 	}
 	
-	public void AddTarget(Transform tgt, string itemName, string itemDescription) {
-		_target = tgt;
+	public void AddTarget(Transform item, string itemName, string itemDescription) {
 
-		_previousParent = _target.parent.transform;
-		_previousPosition = _target.position;
-		_previousLayer = _target.gameObject.layer;
+		_item = item;
 
-		_target.parent = transform.parent;
-		_target.gameObject.layer = INSPECTOR_LAYER;
+		transform.position = _initialPosition;
+		transform.rotation = _initialRotation;
+
+		_previousParent = _item.parent.transform;
+		_previousPosition = _item.position;
+		_previousLayer = _item.gameObject.layer;
+
+		_item.parent = transform.parent;
+		_item.gameObject.layer = INSPECTOR_LAYER;
 
 		Vector3 position = new Vector3 (transform.position.x + distance, transform.position.y, transform.position.z);
-		_target.transform.position = position;
-		transform.rotation = Quaternion.LookRotation (transform.position - _target.transform.position);
+		_item.transform.position = position;
+		transform.rotation = Quaternion.LookRotation (transform.position - _item.transform.position);
 		_itemName.text = itemName;
 		_itemDescription.text = itemDescription;
 		_uiCamera.enabled = true;
@@ -75,23 +82,30 @@ public class ItemInspector : MonoBehaviour {
 	}
 
 	public void RemoveTarget() {
-		_target.parent = _previousParent;
-		_target.position = _previousPosition;
-		_target.gameObject.layer = _previousLayer;
+		_item.parent = _previousParent;
+		_item.position = _previousPosition;
+		_item.gameObject.layer = _previousLayer;
 
-		_target = null;
+		_item = null;
 		_camera.enabled = false;
-		_camera.fieldOfView = _originalFieldOfView;
+		_camera.fieldOfView = _initialFieldOfView;
 		_currentZoom = 0;
+		Debug.Log ("current rotation = " + transform.rotation + ", init = " + _initialRotation);
+		transform.position = _initialPosition;
+		transform.rotation = _initialRotation;
+
 		_uiCamera.enabled = false;
 		_itemName.text = "";
 		_itemDescription.text = "";
+
 	}
 
 	void Awake() {
 		_camera = gameObject.GetComponent<Camera> ();
 		_camera.enabled = false;
-		_originalFieldOfView = _camera.fieldOfView;
+		_initialFieldOfView = _camera.fieldOfView;
+		_initialRotation = transform.rotation;
+		_initialPosition = transform.position;
 
 		Transform uiCam = transform.parent.transform.Find ("item_inspector_ui_camera");
 		_uiCamera = uiCam.GetComponent<Camera> ();
@@ -103,9 +117,9 @@ public class ItemInspector : MonoBehaviour {
 	}
 	
 	void LateUpdate() {
-		if (_target) {
+		if (_item) {
 			if(CrossPlatformInputManager.GetButtonDown("Cancel")) {
-				EventCenter.Instance.InspectItem(false, _target.name);
+				EventCenter.Instance.InspectItem(false, _item.name);
 			} else if(CrossPlatformInputManager.GetButtonDown("Fire1")) {
 				if(_currentZoom < maxZoom) {
 					_camera.fieldOfView += zoomAmount;
@@ -119,8 +133,8 @@ public class ItemInspector : MonoBehaviour {
 			} else {
 				float horizontal = CrossPlatformInputManager.GetAxis("Horizontal");
 				float vertical = CrossPlatformInputManager.GetAxis("Vertical");
-				velocityX += xSpeed * horizontal * 0.01f;
-				velocityY += ySpeed * vertical * 0.01f;
+				velocityX = xSpeed * horizontal * 0.01f;
+				velocityY = ySpeed * vertical * 0.01f;
 
 				rotationYAxis += velocityX;
 				rotationXAxis -= velocityY;
@@ -131,7 +145,7 @@ public class ItemInspector : MonoBehaviour {
 				Quaternion rotation = toRotation;
 
 				Vector3 negDistance = new Vector3(0.0f, 0.0f, -distance);
-				Vector3 position = rotation * negDistance + _target.position;
+				Vector3 position = rotation * negDistance + _item.position;
 				
 				transform.rotation = rotation;
 				transform.position = position;

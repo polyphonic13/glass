@@ -98,9 +98,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
 		}
 
 		public void OnInspectItem(bool isInspecting, string item) {
-//			mainCamera.enabled = !isInspecting;
 			_isInspectorOpen = isInspecting;
-			Debug.Log ("Player/OnInspectItem, _isInspectorOpen = " + _isInspectorOpen);
 		}
 
 		public void OnCloseInventoryUI() {
@@ -154,7 +152,6 @@ namespace UnitySampleAssets.Characters.FirstPerson
 
 		#region ui
 		private void _closeInventoryUI() {
-			Debug.Log ("Player/_closeInventoryUI, _invetoryUI enabled = " + _inventoryUI.enabled);
 			_inventoryUI.enabled = _isInventoryOpen = false;
 		}
 		
