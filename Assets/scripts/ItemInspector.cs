@@ -24,11 +24,11 @@ public class ItemInspector : MonoBehaviour {
 	public float maxZoom = 3f;
 	public float minZoom = -2f;
 
-	private float rotationYAxis = 0.0f;
-	private float rotationXAxis = 0.0f;
+	private float _rotationYAxis = 0.0f;
+	private float _rotationXAxis = 0.0f;
 	
-	private float velocityX = 0.0f;
-	private float velocityY = 0.0f;
+	private float _velocityX = 0.0f;
+	private float _velocityY = 0.0f;
 
 	private Transform _item;
 	private Transform _previousParent;
@@ -59,11 +59,7 @@ public class ItemInspector : MonoBehaviour {
 	}
 	
 	public void AddTarget(Transform item, string itemName, string itemDescription) {
-
 		_item = item;
-
-		transform.position = _initialPosition;
-		transform.rotation = _initialRotation;
 
 		_previousParent = _item.parent.transform;
 		_previousPosition = _item.position;
@@ -74,7 +70,6 @@ public class ItemInspector : MonoBehaviour {
 
 		Vector3 position = new Vector3 (transform.position.x + distance, transform.position.y, transform.position.z);
 		_item.transform.position = position;
-		transform.rotation = Quaternion.LookRotation (transform.position - _item.transform.position);
 		_itemName.text = itemName;
 		_itemDescription.text = itemDescription;
 		_uiCamera.enabled = true;
@@ -90,14 +85,20 @@ public class ItemInspector : MonoBehaviour {
 		_camera.enabled = false;
 		_camera.fieldOfView = _initialFieldOfView;
 		_currentZoom = 0;
-		Debug.Log ("current rotation = " + transform.rotation + ", init = " + _initialRotation);
-		transform.position = _initialPosition;
-		transform.rotation = _initialRotation;
 
 		_uiCamera.enabled = false;
 		_itemName.text = "";
 		_itemDescription.text = "";
 
+		_rotationYAxis = 0.0f;
+		_rotationXAxis = 0.0f;
+		
+		_velocityX = 0.0f;
+		_velocityY = 0.0f;
+
+		transform.position = _initialPosition;
+		transform.rotation = _initialRotation;
+		
 	}
 
 	void Awake() {
@@ -133,25 +134,26 @@ public class ItemInspector : MonoBehaviour {
 			} else {
 				float horizontal = CrossPlatformInputManager.GetAxis("Horizontal");
 				float vertical = CrossPlatformInputManager.GetAxis("Vertical");
-				velocityX = xSpeed * horizontal * 0.01f;
-				velocityY = ySpeed * vertical * 0.01f;
 
-				rotationYAxis += velocityX;
-				rotationXAxis -= velocityY;
+				_velocityX = xSpeed * horizontal * 0.01f;
+				_velocityY = ySpeed * vertical * 0.01f;
 				
-				rotationXAxis = ClampAngle(rotationXAxis, yMinLimit, yMaxLimit);
+				_rotationYAxis += _velocityX;
+				_rotationXAxis -= _velocityY;
+				
+				_rotationXAxis = ClampAngle(_rotationXAxis, yMinLimit, yMaxLimit);
 				Quaternion fromRotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, 0);
-				Quaternion toRotation = Quaternion.Euler(rotationXAxis, rotationYAxis, 0);
+				Quaternion toRotation = Quaternion.Euler(_rotationXAxis, _rotationYAxis, 0);
 				Quaternion rotation = toRotation;
-
+				
 				Vector3 negDistance = new Vector3(0.0f, 0.0f, -distance);
 				Vector3 position = rotation * negDistance + _item.position;
 				
 				transform.rotation = rotation;
 				transform.position = position;
 				
-				velocityX = Mathf.Lerp(velocityX, 0, Time.deltaTime * smoothTime);
-				velocityY = Mathf.Lerp(velocityY, 0, Time.deltaTime * smoothTime);
+				_velocityX = Mathf.Lerp(_velocityX, 0, Time.deltaTime * smoothTime);
+				_velocityY = Mathf.Lerp(_velocityY, 0, Time.deltaTime * smoothTime);
 			}
 		}
 	}
