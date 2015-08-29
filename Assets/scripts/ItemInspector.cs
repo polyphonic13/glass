@@ -66,7 +66,8 @@ public class ItemInspector : MonoBehaviour {
 		_previousLayer = _item.gameObject.layer;
 
 		_item.parent = transform.parent;
-		_item.gameObject.layer = INSPECTOR_LAYER;
+//		_item.gameObject.layer = INSPECTOR_LAYER;
+		Utilities.Instance.ChangeLayers(_item.gameObject, INSPECTOR_LAYER);
 
 		Vector3 position = new Vector3 (transform.position.x + distance, transform.position.y, transform.position.z);
 		_item.transform.position = position;
@@ -79,7 +80,8 @@ public class ItemInspector : MonoBehaviour {
 	public void RemoveTarget() {
 		_item.parent = _previousParent;
 		_item.position = _previousPosition;
-		_item.gameObject.layer = _previousLayer;
+//		_item.gameObject.layer = _previousLayer;
+		Utilities.Instance.ChangeLayers (_item.gameObject, _previousLayer);
 
 		_item = null;
 		_camera.enabled = false;
@@ -118,6 +120,7 @@ public class ItemInspector : MonoBehaviour {
 	}
 	
 	void LateUpdate() {
+		// based on: http://answers.unity3d.com/questions/463704/smooth-orbit-round-object-with-adjustable-orbit-ra.html
 		if (_item) {
 			if(CrossPlatformInputManager.GetButtonDown("Cancel")) {
 				EventCenter.Instance.InspectItem(false, _item.name);

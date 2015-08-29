@@ -296,7 +296,7 @@ Light:
   serializedVersion: 6
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 2
+  m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 69
   m_CookieSize: 10
@@ -478,17 +478,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9204a84ad0853456a94af219574f4c38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 3
+  distance: 1
   xSpeed: 120
   ySpeed: 120
-  yMinLimit: -180
-  yMaxLimit: 180
+  yMinLimit: -361
+  yMaxLimit: 361
   distanceMin: .5
   distanceMax: 15
   smoothTime: 2
-  zoomAmount: 4
-  maxZoom: 5
-  minZoom: -5
+  zoomAmount: 15
+  maxZoom: 3
+  minZoom: -2
 --- !u!124 &12408564
 Behaviour:
   m_ObjectHideFlags: 1
@@ -586,7 +586,7 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 71, y: -62}
+  m_AnchoredPosition: {x: 71, y: -75}
   m_SizeDelta: {x: 512, y: 128}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22465924
@@ -604,7 +604,7 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 146, y: 77}
+  m_AnchoredPosition: {x: 1, y: -4}
   m_SizeDelta: {x: 1064, y: 480}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22494982

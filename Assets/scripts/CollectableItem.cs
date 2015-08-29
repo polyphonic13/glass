@@ -5,23 +5,18 @@ public class CollectableItem : InteractiveElement {
 	public string description = "";
 	// TBD: extend class with ContainableItem:
 	public string targetContainerName = "";
-
-	public Texture iconTexture;
-	public Texture detailTexture;
-
-	private Vector3 _originalSize;
+	public bool preserveCollisions; 
 
 	public bool IsCollected { get; set; }
 	public bool IsEquipped { get; set; }
-	public string ItemName { get; set; }
 	public bool IsDroppable { get; set; }
 	public bool IsEquipable { get; set; }
 	public bool IsInspected { get; set; }
-	// private Player _player;
-	
+
 	public ItemWeight _weight; 
-	private Vector3 _previousRigidBodyPos;
-	
+
+	private Vector3 _originalSize;
+
 	void Awake() {
 		InitCollectableItem();
 	}
@@ -98,12 +93,12 @@ public class CollectableItem : InteractiveElement {
 	
 	public void AttachToObject(string target) {
 		// Debug.Log("CollectableItem[" + name + "]/AttachToObject, target = " + target);
-//		var tgt = Camera.main.transform.Search(target);
+		var tgt = Camera.main.transform.Find(target);
 		// var tgt = _player.transform.Search(target);
 		// Debug.Log("tgt = " + tgt);
-		// transform.position = tgt.transform.position;
-		// transform.rotation = tgt.transform.rotation;
-		// transform.parent = tgt.transform;	
+		 transform.position = tgt.transform.position;
+//		 transform.rotation = tgt.transform.rotation;
+		 transform.parent = tgt.transform;	
 	}
 	
 	public void RemoveFromInventory() {
@@ -136,13 +131,25 @@ public class CollectableItem : InteractiveElement {
 	public virtual void Drop() {
 		IsEquipped = false;
 		IsCollected = false;
+		AttachToRightHand ();
 		transform.localScale = _originalSize;
 		transform.parent = null;
-
+//		if (!preserveCollisions) {
+//			ActivateRigidBody(true);
+//		}
+//		Mesh mesh = GetComponent<MeshFilter>().mesh;
+//		Bounds bounds = mesh.bounds;
+//		Vector3 startPosition = new Vector3 (transform.position.x, (transform.position.y - bounds.size.y), transform.position.z);
+//		Debug.Log ("transform y = " + transform.position.y + ", start y = " + startPosition.y);
+		BoxCollider collider = gameObject.GetComponent<BoxCollider> ();
+//		var scale = transform.localScale;
+		var scale = collider.transform.localScale;
+		Debug.Log (this.name + " local scale = " + scale);
 		var __weightClone =(ItemWeight) Instantiate(_weight, transform.position, transform.rotation);
-		__weightClone.TargetContainerName = targetContainerName;
+		__weightClone.transform.localScale = scale;
 		__weightClone.ParentObject = gameObject;
 		__weightClone.transform.parent = transform;
+
 	}
-	
+
 }
