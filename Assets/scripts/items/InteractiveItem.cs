@@ -35,7 +35,7 @@ public class InteractiveItem : MonoBehaviour {
 
 		MainCamera = Camera.main;
 
-		if(transform.tag == "persistentItem" || _containingRoom == null) {
+		if(transform.tag == "persistentItem" || _containingRoom == "") {
 			IsRoomActive = true;
 		} else {
 			IsRoomActive = false;
@@ -46,7 +46,9 @@ public class InteractiveItem : MonoBehaviour {
 		}
 	}
 
-	public virtual void Actuate() {}
+	public virtual void Actuate() {
+		Debug.Log (this.name + "/Actuate");
+	}
 
 	public string GetName() {
 		return ItemName;
@@ -67,16 +69,6 @@ public class InteractiveItem : MonoBehaviour {
 			IsRoomActive = false;
 		}
 	}
-
-	public void OnInputTaken(string name) {
-		if(IsRoomActive && IsEnabled) {
-			if(name == ItemName) {
-				InputTaken();
-			}
-		}
-	}
-
-	public virtual void InputTaken() {}
 
 	public bool CheckProximity() {
 		bool isInProximity = false;

@@ -6,26 +6,26 @@ public class InteractiveIcon : MonoBehaviour {
 	public GameObject interactiveIcon; 
 
 	private bool _isJustChanged = false;
-	private InteractiveItem _InteractiveItem; 
+	private InteractiveItem _interactiveItem; 
 	private Text _itemNameText; 
 
 	void Awake() {
-		_InteractiveItem = gameObject.GetComponent<InteractiveItem>();
+		_interactiveItem = gameObject.GetComponent<InteractiveItem>();
 		var itemNameObj = transform.Find("item_icon_ui/item_name");
 		_itemNameText = itemNameObj.GetComponent<Text>();
 
 		if(interactiveIcon != null) {
 			interactiveIcon.SetActive(false);
-			_itemNameText.text = _InteractiveItem.GetName();
+			_itemNameText.text = _interactiveItem.GetName();
 		} else {
 			_itemNameText.text = "";
 		}
 	}
 	
 	void Update() {
-		if(_InteractiveItem.IsEnabled) {
-			interactiveIcon.transform.rotation = Quaternion.LookRotation(interactiveIcon.transform.position - _InteractiveItem.GetCamera().transform.position);
-			if(_InteractiveItem.CheckProximity()) {
+		if(_interactiveItem.IsEnabled) {
+			interactiveIcon.transform.rotation = Quaternion.LookRotation(interactiveIcon.transform.position - _interactiveItem.GetCamera().transform.position);
+			if(_interactiveItem.CheckProximity()) {
 				_turnOnIcon();
 			} else if(_isJustChanged){
 				_turnOffIcon();

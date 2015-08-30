@@ -14,11 +14,11 @@ public class OnOffLight : InteractiveItem {
 		bulb.enabled = enabled;
 	}
 
-	public void OnInputTaken() {
-		InputTaken();
+	public void OnActuate() {
+		Actuate();
 	}
 
-	public override void InputTaken() {
+	public override void Actuate() {
 		if(IsRoomActive) {
 			if(CheckProximity()) {
 				Toggle();

@@ -9,13 +9,13 @@ public class ArmatureTrigger : InteractiveItem {
 		Init();
 	}
 	
-	public void OnInputTaken() {
+	public void OnActuate() {
 		if(IsRoomActive && IsEnabled) {
-			InputTaken();
+			Actuate();
 		}
 	}
 
-	public override void InputTaken() {
+	public override void Actuate() {
 		HandleAnimation();
 	}
 

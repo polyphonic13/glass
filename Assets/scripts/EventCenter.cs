@@ -17,7 +17,7 @@ public class EventCenter : MonoBehaviour {
 
 	public delegate void CameraZoomHandler(bool zoom);
 
-	public delegate void InputTakenHandler(string name); 
+	public delegate void ActuateHandler(string name); 
 
 	public delegate void InventoryAdder(string item);
 	public delegate void InventoryRemover(string item);
@@ -54,7 +54,7 @@ public class EventCenter : MonoBehaviour {
 	public event MouseSensitivityHandler OnMouseSensitivityChange;
 	public event CameraZoomHandler OnCameraZoom;
 
-	public event InputTakenHandler OnInputTaken;
+	public event ActuateHandler OnActuate;
 
 	public event InventoryAdder OnInventoryAdded;
 	public event InventoryRemover OnInventoryRemoved;
@@ -188,10 +188,10 @@ public class EventCenter : MonoBehaviour {
 		}
 	}
 
-	public void InputTaken(string name) {
-//		Debug.Log("EventCenter.InputTaken, name = " + name);
-		if(OnInputTaken != null) {
-			OnInputTaken(name);
+	public void Actuate(string name) {
+//		Debug.Log("EventCenter.Actuate, name = " + name);
+		if(OnActuate != null) {
+			OnActuate(name);
 		}
 	}
 	

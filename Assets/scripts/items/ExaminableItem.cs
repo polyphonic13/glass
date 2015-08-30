@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class InspectableItem : InteractiveItem {
+public class ExaminableItem : InteractiveItem {
 
 	public string description = "";
 
@@ -13,11 +13,7 @@ public class InspectableItem : InteractiveItem {
 		Init();
 	}
 	
-	public void OnInputTaken() {
-		InputTaken();
-	}
-
-	public override void InputTaken() {
+	public override void Actuate() {
 		if(CheckProximity()) {
 			if(IsRoomActive) {
 				EventCenter.Instance.AddNote(description);

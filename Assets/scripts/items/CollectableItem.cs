@@ -45,21 +45,6 @@ public class CollectableItem : InteractiveItem {
 		}
 	}
 
-	public void OnInputTaken() {
-		if(IsRoomActive) {
-			InputTaken();
-		}
-	}
-
-//	public override void InputTaken() {
-//		Debug.Log("CollectableItem/InputTaken, name = " + name);
-//		if(CheckProximity()) {
-//			if(!IsCollected) {
-//				AddToInventory();
-//			}
-//		}
-//	}
-
 	public override void Actuate () {
 		if(!IsCollected) {
 //			base.Actuate();
