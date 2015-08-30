@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnitySampleAssets.CrossPlatformInput;
 
-public class InteractiveElement : MonoBehaviour {
+public class InteractiveItem : MonoBehaviour {
 
 	public Sprite Thumbnail;
 	public string ItemName;
@@ -83,10 +83,10 @@ public class InteractiveElement : MonoBehaviour {
 		var difference = Vector3.Distance(MainCamera.transform.position, transform.position);
 		if(difference < _interactDistance) {
 			isInProximity = true;
-			EventCenter.Instance.NearInteractiveElement(this, true);
+			EventCenter.Instance.NearInteractiveItem(this, true);
 			_wasJustInProximity = true;
 		} else if(_wasJustInProximity) {
-			EventCenter.Instance.NearInteractiveElement(this, false);
+			EventCenter.Instance.NearInteractiveItem(this, false);
 			_wasJustInProximity = false;
 		}
 

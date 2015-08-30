@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class OnOffLight : InteractiveElement {
+public class OnOffLight : InteractiveItem {
 
 	public Light bulb; 
 	public bool enabled = false;

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CollectableItem : InteractiveElement {
+public class CollectableItem : InteractiveItem {
 
 	public string description = "";
 	// TBD: extend class with ContainableItem:
@@ -112,9 +112,9 @@ public class CollectableItem : InteractiveElement {
 
 	public void Use(string tgt = "right_hand") {
 //		Debug.Log("CollectableItem[ " + name + " ]/Use");
-		IsEquipped = true;
-		transform.localScale = _originalSize;
-		AttachToObject(tgt);
+//		IsEquipped = true;
+//		transform.localScale = _originalSize;
+//		AttachToObject(tgt);
 	}
 	
 	public virtual void UnEquip() {

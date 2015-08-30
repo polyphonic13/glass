@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ArmatureTrigger : InteractiveElement {
+public class ArmatureTrigger : InteractiveItem {
 	public ArmatureParent _pops;
 	public Transform _parentBone;
 	public AnimationClip _mainClip;

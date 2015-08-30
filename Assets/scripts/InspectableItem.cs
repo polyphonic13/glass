@@ -1,15 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class InspectableItem : InteractiveElement {
+public class InspectableItem : InteractiveItem {
 
 	public string description = "";
 
 	void Awake() {
-		InitInteractiveElement();
+		InitInteractiveItem();
 	}
 
-	public void InitInteractiveElement() {
+	public void InitInteractiveItem() {
 		Init();
 	}
 	

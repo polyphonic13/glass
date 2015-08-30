@@ -28,12 +28,13 @@ public class EventCenter : MonoBehaviour {
 	public delegate void TriggerEventHandler(string evt);
 	public delegate void TriggerCollectedEventHandler(string evt);
 
-	public delegate void InteractiveElementProximityHandler(InteractiveElement element, bool inProximity);
+	public delegate void InteractiveItemProximityHandler(InteractiveItem element, bool inProximity);
 
 	public delegate void AddNoteHandler(string message = "", bool fadeOut = true);
 	public delegate void RemoveNoteHandler(string message = "");
 
 	public delegate void InspectItemHandler(bool isInspecting, string item);
+	public delegate void UserItemHandler(string item);
 
 	public delegate void CloseMenuHandler();
 	public delegate void CloseInventoryHandler();
@@ -64,16 +65,18 @@ public class EventCenter : MonoBehaviour {
 	public event TriggerEventHandler OnTriggerEvent;
 	public event TriggerCollectedEventHandler OnTriggerCollectedEvent; 
 	
-	public event InteractiveElementProximityHandler OnNearInteractiveElement;
+	public event InteractiveItemProximityHandler OnNearInteractiveItem;
 
 	public event AddNoteHandler OnAddNote; 
 	public event RemoveNoteHandler OnRemoveNote; 
 
 	public event InspectItemHandler OnInspectItem; 
+	public event UserItemHandler OnUseItem; 
 
 	public event CloseMenuHandler OnCloseMenuUI;
 	public event CloseInventoryHandler OnCloseInventoryUI;
 
+	#region singleton
 	private static EventCenter _instance;
 	private EventCenter() {}
 	
@@ -85,6 +88,7 @@ public class EventCenter : MonoBehaviour {
 			return _instance;
 		}
 	}
+	#endregion
 
 	public void DamagePlayer(float damage) {
 		if(OnPlayerDamaged != null) {
@@ -191,9 +195,9 @@ public class EventCenter : MonoBehaviour {
 		}
 	}
 	
-	public void NearInteractiveElement(InteractiveElement element, bool inProximity) {
-		if(OnNearInteractiveElement != null) {
-			OnNearInteractiveElement(element, inProximity);
+	public void NearInteractiveItem(InteractiveItem element, bool inProximity) {
+		if(OnNearInteractiveItem != null) {
+			OnNearInteractiveItem(element, inProximity);
 		}
 	}
 
@@ -212,6 +216,12 @@ public class EventCenter : MonoBehaviour {
 	public void InspectItem(bool isInspecting, string item) {
 		if (OnInspectItem != null) {
 			OnInspectItem (isInspecting, item);
+		}
+	}
+
+	public void UseItem(string item) {
+		if (OnUseItem != null) {
+			OnUseItem (item);
 		}
 	}
 

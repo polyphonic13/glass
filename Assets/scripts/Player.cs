@@ -69,10 +69,10 @@ namespace UnitySampleAssets.Characters.FirstPerson
         private bool m_Jumping;
         private AudioSource m_AudioSource;
 
-        private InteractiveElement _elementInProximity;
+        private InteractiveItem _elementInProximity;
 
 		#region delegate handlers
- 		public void OnNearInteractiveElement(InteractiveElement element, bool isInProximity) {
+ 		public void OnNearInteractiveItem(InteractiveItem element, bool isInProximity) {
  			if(isInProximity) {
  				_elementInProximity = element;
  			} else {
@@ -143,7 +143,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
 			var ec = EventCenter.Instance;
 			ec.OnAboveWater += OnAboveWater;
 			ec.OnPlayerDamaged += OnPlayerDamaged;
-			ec.OnNearInteractiveElement += OnNearInteractiveElement;
+			ec.OnNearInteractiveItem += OnNearInteractiveItem;
 			ec.OnInspectItem += OnInspectItem;
 			ec.OnCloseInventoryUI += OnCloseInventoryUI;
 			ec.OnCloseMenuUI += OnCloseMenuUI;

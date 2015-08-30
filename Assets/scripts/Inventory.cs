@@ -47,14 +47,23 @@ public class Inventory : MonoBehaviour {
 		return isAdded;
 	}
 
-	public void OnInspectItem(bool isInspecting, string itemName) {
-		var item = _items[itemName] as CollectableItem;
-		if (isInspecting) {
-			ItemInspector.Instance.AddTarget (item.transform, item.GetName(), item.description);
-		} else {
-			ItemInspector.Instance.RemoveTarget ();
+	public void OnInspectItem(bool isInspecting, string key) {
+		if (HasItem (key)) {
+			var item = _items[key] as CollectableItem;
+			if (isInspecting) {
+				ItemInspector.Instance.AddTarget (item.transform, item.GetName(), item.description);
+			} else {
+				ItemInspector.Instance.RemoveTarget ();
+			}
+			item.IsInspected = !item.IsInspected;
 		}
-		item.IsInspected = !item.IsInspected;
+	}
+
+	public void OnUseItem(string key) {
+		if (HasItem (key)) {
+			var item = _items[key] as CollectableItem;
+
+		}
 	}
 
 	public void RemoveItem(string key) {
