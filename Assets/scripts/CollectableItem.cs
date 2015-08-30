@@ -134,21 +134,15 @@ public class CollectableItem : InteractiveElement {
 		AttachToRightHand ();
 		transform.localScale = _originalSize;
 		transform.parent = null;
-//		if (!preserveCollisions) {
-//			ActivateRigidBody(true);
-//		}
-//		Mesh mesh = GetComponent<MeshFilter>().mesh;
-//		Bounds bounds = mesh.bounds;
-//		Vector3 startPosition = new Vector3 (transform.position.x, (transform.position.y - bounds.size.y), transform.position.z);
-//		Debug.Log ("transform y = " + transform.position.y + ", start y = " + startPosition.y);
+
 		BoxCollider collider = gameObject.GetComponent<BoxCollider> ();
-//		var scale = transform.localScale;
+
 		var scale = collider.transform.localScale;
 		Debug.Log (this.name + " local scale = " + scale);
-		var __weightClone =(ItemWeight) Instantiate(_weight, transform.position, transform.rotation);
+		var __weightClone =(ItemWeight) Instantiate(_weight, collider.transform.position, collider.	transform.rotation);
 		__weightClone.transform.localScale = scale;
 		__weightClone.ParentObject = gameObject;
-		__weightClone.transform.parent = transform;
+		__weightClone.transform.parent = collider.transform;
 
 	}
 
