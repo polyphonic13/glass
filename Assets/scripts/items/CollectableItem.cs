@@ -12,8 +12,11 @@ public class CollectableItem : InteractiveItem {
 	public bool IsDroppable { get; set; }
 	public bool IsEquipable { get; set; }
 	public bool IsInspected { get; set; }
+	public bool IsUsable { get; set; }
 
 	public ItemWeight _weight; 
+
+	private Transform _backpack;
 
 	private Vector3 _originalSize;
 
@@ -65,7 +68,7 @@ public class CollectableItem : InteractiveItem {
 	}
 	 
 	public void AttachToBackpack() {
-		AttachToObject("backpack");
+		AttachToObject(_backpack);
 	}
 	
 	public void AttachToRightHand() {
@@ -76,16 +79,16 @@ public class CollectableItem : InteractiveItem {
 		AttachToObject("left_hand");
 	}
 	
-	public void AttachToObject(string target) {
+	public void AttachToObject(Transform target) {
 		// Debug.Log("CollectableItem[" + name + "]/AttachToObject, target = " + target);
-		var tgt = Camera.main.transform.Find(target);
+//		var tgt = Camera.main.transform.Find(target);
 		// var tgt = _player.transform.Search(target);
 		// Debug.Log("tgt = " + tgt);
-		 transform.position = tgt.transform.position;
+		transform.position = target.transform.position;
 //		 transform.rotation = tgt.transform.rotation;
-		 transform.parent = tgt.transform;	
+		transform.parent = target;	
 	}
-	
+
 	public void RemoveFromInventory() {
 		Inventory.Instance.RemoveItem(this.name);
 		IsCollected = false;
@@ -105,7 +108,13 @@ public class CollectableItem : InteractiveItem {
 	public virtual void UnEquip() {
 		Store();
 	}
-	
+
+	public virtual void Collect(Transform target) {
+		IsCollected = true;
+		_backpack = target;
+		Store ();
+	}
+
 	public void Store() {
 //		Debug.Log("CollableItem[ " + name + " ]/putAway");
 		IsEquipped = false;

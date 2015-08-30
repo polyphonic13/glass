@@ -5,6 +5,8 @@ public class Inventory : MonoBehaviour {
 
 	[SerializeField] private int _maxItems = 15;
 
+	private Transform _backpack;
+
 	private Hashtable _items;
 
 	private static Inventory _instance;
@@ -13,6 +15,7 @@ public class Inventory : MonoBehaviour {
 	private void Awake() {
 		_items = new Hashtable();
 		EventCenter.Instance.OnInspectItem += OnInspectItem;
+		_backpack = GameObject.Find ("backpack").gameObject.transform;
 	}
 
 	public static Inventory Instance {
@@ -37,8 +40,10 @@ public class Inventory : MonoBehaviour {
 		} else if(_items.Count < _maxItems) {
 			EventCenter.Instance.AddNote(displayName + " Added to inventory");
 			_items.Add(item.name, item);
-			item.transform.position = this.transform.position;
-			item.transform.parent = this.transform;
+			item.Collect(_backpack);
+//			item.Store();
+//			item.transform.position = this.transform.position;
+//		 	item.transform.parent = this.transform;
 			EventCenter.Instance.AddInventory(item.name);
 		} else {
 			EventCenter.Instance.AddNote("No more room for: " + displayName);
