@@ -18,7 +18,7 @@ public class UsableProximity : MonoBehaviour {
 			var difference = Vector3.Distance(target1.position, target2.position);
 			if(difference < usableDistance) {
 				if(!_collectableItem.IsUsable) {
-					Debug.Log (this.name + " is enabled, proximity difference = " + difference);
+//					Debug.Log (this.name + " is enabled, proximity difference = " + difference);
 					_collectableItem.IsUsable = true;
 				}
 			} else if(_collectableItem.IsUsable) {
