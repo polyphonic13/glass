@@ -17,7 +17,6 @@ public class CollectableItem : InteractiveItem {
 	public ItemWeight _weight; 
 
 	private Transform _backpack;
-	private Transform _leftHand;
 	private Transform _rightHand;
 
 	private Vector3 _originalSize;
@@ -33,6 +32,12 @@ public class CollectableItem : InteractiveItem {
 		_originalSize = transform.localScale;
 	}
 
+	public virtual void ItemUpdate() {
+		if(IsEnabled && !IsCollected) {
+			CheckProximity();
+		}
+	}
+	
 	public override void Actuate () {
 		if(!IsCollected) {
 //			base.Actuate();
@@ -52,15 +57,13 @@ public class CollectableItem : InteractiveItem {
 	}
 	 
 	public void AttachToBackpack() {
+//		transform.localScale = new Vector3(0, 0, 0);
 		AttachToObject(_backpack);
 	}
 	
 	public void AttachToRightHand() {
+		transform.localScale = _originalSize;
 		AttachToObject (_rightHand);
-	}
-	
-	public void AttachToLeftHand() {
-		AttachToObject (_leftHand);
 	}
 	
 	public void AttachToObject(Transform target) {
@@ -73,10 +76,12 @@ public class CollectableItem : InteractiveItem {
 		}
 	}
 
-	public virtual void Collect(Transform backpack) {
+	public virtual void Collect(Transform backpack, Transform rightHand) {
 		IsCollected = true;
 		_backpack = backpack;
+		_rightHand = rightHand;
 		Store ();
+		EventCenter.Instance.NearInteractiveItem(this, false);
 	}
 	
 	public virtual void Equip(Transform rightHand) {
@@ -97,13 +102,12 @@ public class CollectableItem : InteractiveItem {
 
 	public void Store() {
 		IsEquipped = false;
-		transform.localScale = new Vector3(0, 0, 0);
 		AttachToBackpack();
 	}
 
 	public virtual void Drop() {
-		transform.localScale = _originalSize;
 		AttachToRightHand ();
+		transform.parent = null;
 
 		BoxCollider collider = gameObject.GetComponent<BoxCollider> ();
 

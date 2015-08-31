@@ -71,13 +71,21 @@ namespace UnitySampleAssets.Characters.FirstPerson
 
         private InteractiveItem _elementInProximity;
 
+		public bool IsUIOpen() {
+			var isOpen = false;
+			if (_isMenuOpen || _isInventoryOpen) {
+				isOpen = true;
+			}
+			return isOpen;
+		}
+
 		#region delegate handlers
- 		public void OnNearInteractiveItem(InteractiveItem element, bool isInProximity) {
- 			if(isInProximity) {
- 				_elementInProximity = element;
- 			} else {
- 				_elementInProximity = null;
- 			}
+ 		public void OnNearInteractiveItem(InteractiveItem item, bool isInProximity) {
+			if(isInProximity) {
+				_elementInProximity = item;
+			} else {
+				_elementInProximity = null;
+			}
  		}
 
 		public void OnPlayerDamaged(float damage) {
@@ -179,6 +187,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
 					RotateView();
 					
 					if(CrossPlatformInputManager.GetButtonDown("Fire1")) {
+						Debug.Log("Player fire1 pressed, _elementInProximity = " + _elementInProximity);
 						if(_elementInProximity != null) {
 							_elementInProximity.Actuate();
 						}

@@ -17,7 +17,8 @@ public class Inventory : MonoBehaviour {
 	private void Awake() {
 		_items = new Hashtable();
 		Transform player = GameObject.Find ("player").transform;
-		_backpack = player.Find ("backpack");
+//		_backpack = player.Find ("backpack");
+		_backpack = this.transform;
 		_leftHand = player.Find ("player_head_camera/left_hand");
 		_rightHand = player.Find ("player_head_camera/right_hand");
 
@@ -44,9 +45,9 @@ public class Inventory : MonoBehaviour {
 			// increment count of item type
 		} else if(_items.Count < _maxItems) {
 			_items.Add(item.name, item);
-			item.Collect(_backpack);
-			EventCenter.Instance.AddInventory(item.name);
+			item.Collect(_backpack, _rightHand);
 			EventCenter.Instance.AddNote(item.ItemName + " Added to inventory");
+			EventCenter.Instance.AddInventory(item.name);
 		} else {
 			isAdded = false;
 			EventCenter.Instance.AddNote("No more room for: " + item.ItemName);
@@ -73,7 +74,7 @@ public class Inventory : MonoBehaviour {
 				item.Use();
 			} else {
 				EventCenter.Instance.CloseInventoryUI ();
-				EventCenter.Instance.AddNote(item.ItemName + " can not be used now");
+				EventCenter.Instance.AddNote(item.ItemName + " can not be used here");
 			}
 		}
 	}

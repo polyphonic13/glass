@@ -21,15 +21,15 @@ public class InteractiveItem : MonoBehaviour {
 	}
 
 	void Update() {
+		ItemUpdate ();
+	}
+
+	public virtual void ItemUpdate() {
 		if(IsEnabled) {
-			if(CheckProximity()) {
-				// if(CrossPlatformInputManager.GetButtonDown("Fire1")) {
-				// 	Actuate();
-				// }
-			}
+			CheckProximity();
 		}
 	}
-	
+
 	public void Init() {
 		IsEnabled = true;
 
@@ -75,6 +75,7 @@ public class InteractiveItem : MonoBehaviour {
 		var difference = Vector3.Distance(MainCamera.transform.position, transform.position);
 		if(difference < _interactDistance) {
 			isInProximity = true;
+//			Debug.Log("InteractiveItem["+this.name+"]/CheckProximity: " + isInProximity);
 			EventCenter.Instance.NearInteractiveItem(this, true);
 			_wasJustInProximity = true;
 		} else if(_wasJustInProximity) {

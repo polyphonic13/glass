@@ -3,7 +3,8 @@ using System.Collections;
  
 public class UsableProximity : MonoBehaviour {
 
-	public Transform usabilityTarget;
+	public Transform target1;
+	public Transform target2;
 	public float usableDistance = 2f;
 
 	private CollectableItem _collectableItem;
@@ -14,7 +15,7 @@ public class UsableProximity : MonoBehaviour {
 	
 	void Update () {
 		if (_collectableItem.IsCollected) {
-			var difference = Vector3.Distance(usabilityTarget.position, transform.position);
+			var difference = Vector3.Distance(target1.position, target2.position);
 			if(difference < usableDistance) {
 				if(!_collectableItem.IsUsable) {
 					Debug.Log (this.name + " is enabled, proximity difference = " + difference);
