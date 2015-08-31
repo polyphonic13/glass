@@ -52,14 +52,15 @@ public class NotificationUI : MonoBehaviour {
 
 	private void _clearQueue() {
 		if (_queue.Count > 0) {
+			StopCoroutine("_fade");
 			_isClearing = true;
 			_canvasGroup.alpha = _startAlpha;
 			int index = _queue.Count - 1;
 			string msg = _queue [index] as string;
 			_message.text = msg;
 			_queue.RemoveAt (index);
-			Debug.Log("NotificationUI/_clearQueue, msg = " + msg + ", count = " + _queue.Count);
 			StartCoroutine ("_fade");
+			_clearQueue();
 		} else {
 			_isClearing = false;
 		}
@@ -72,9 +73,6 @@ public class NotificationUI : MonoBehaviour {
 			}
 			if(f <= 1f) {
 				_canvasGroup.alpha = f;
-				_clearQueue();
-				Debug.Log("...end coroutine, count = " + _queue.Count);
-//				break;
 			}
 			yield return null;
 		}
