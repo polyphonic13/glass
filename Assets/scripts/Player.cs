@@ -187,7 +187,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
 					RotateView();
 					
 					if(CrossPlatformInputManager.GetButtonDown("Fire1")) {
-						Debug.Log("Player fire1 pressed, _elementInProximity = " + _elementInProximity);
+//						Debug.Log("Player fire1 pressed, _elementInProximity = " + _elementInProximity);
 						if(_elementInProximity != null) {
 							_elementInProximity.Actuate();
 						}

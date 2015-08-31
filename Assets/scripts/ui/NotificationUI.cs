@@ -23,16 +23,18 @@ public class NotificationUI : MonoBehaviour {
 	}
 	
 	public void OnAddNote(string message, bool fadeOut = true) {
-		_message.text = message;
-		if (fadeOut) {
-			StartCoroutine("_fade");
-		}
-//		if (_queue.Count == 0 || (message != _queue [_queue.Count - 1])) {
-//			_queue.Add (message);
-//			if (!_isClearing) {
-//				_clearQueue ();
-//			}
+//		_canvasGroup.alpha = _startAlpha;
+//		_message.text = message;
+//		if (fadeOut) {
+//			StartCoroutine("_fade");
 //		}
+		Debug.Log ("NotificationUI/OnAddNote, _isClearing = " + _isClearing + ", message = " + message);
+		if (_queue.Count == 0 || (message != _queue [_queue.Count - 1])) {
+			_queue.Add (message);
+			if (!_isClearing) {
+				_clearQueue ();
+			}
+		}
 	}
 
 	public void OnRemoveNote(string message) {
@@ -50,14 +52,16 @@ public class NotificationUI : MonoBehaviour {
 
 	private void _clearQueue() {
 		if (_queue.Count > 0) {
-//			_isClearing = true;
+			_isClearing = true;
 			_canvasGroup.alpha = _startAlpha;
 			int index = _queue.Count - 1;
-			_message.text = _queue [index] as string;
+			string msg = _queue [index] as string;
+			_message.text = msg;
 			_queue.RemoveAt (index);
+			Debug.Log("NotificationUI/_clearQueue, msg = " + msg + ", count = " + _queue.Count);
 			StartCoroutine ("_fade");
 		} else {
-//			_isClearing = false;
+			_isClearing = false;
 		}
 	}
 
@@ -68,7 +72,9 @@ public class NotificationUI : MonoBehaviour {
 			}
 			if(f <= 1f) {
 				_canvasGroup.alpha = f;
-//				_clearQueue();
+				_clearQueue();
+				Debug.Log("...end coroutine, count = " + _queue.Count);
+//				break;
 			}
 			yield return null;
 		}
