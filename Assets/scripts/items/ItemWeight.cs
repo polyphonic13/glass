@@ -5,7 +5,7 @@ public class ItemWeight : MonoBehaviour {
 	
 	private Rigidbody _rigidbody;
 	
-	public GameObject ParentObject { get; set; }
+	public CollectableItem collectableItem { get; set; }
 	public string TargetContainerName { get; set; }
 
 	void Awake() {
@@ -27,6 +27,7 @@ public class ItemWeight : MonoBehaviour {
 
 	public void KillSelf() {
 		Debug.Log("ItemWeight/KillSelf");
+		collectableItem.IsCollected = false;
 		Destroy(gameObject);
 	}
 }

@@ -6,6 +6,8 @@ public class Inventory : MonoBehaviour {
 	[SerializeField] private int _maxItems = 15;
 
 	private Transform _backpack;
+	private Transform _leftHand;
+	private Transform _rightHand;
 
 	private Hashtable _items;
 
@@ -14,8 +16,12 @@ public class Inventory : MonoBehaviour {
 
 	private void Awake() {
 		_items = new Hashtable();
+		Transform player = GameObject.Find ("player").transform;
+		_backpack = player.Find ("backpack");
+		_leftHand = player.Find ("player_head_camera/left_hand");
+		_rightHand = player.Find ("player_head_camera/right_hand");
+
 		EventCenter.Instance.OnInspectItem += OnInspectItem;
-		_backpack = GameObject.Find ("backpack").gameObject.transform;
 	}
 
 	public static Inventory Instance {
@@ -32,22 +38,18 @@ public class Inventory : MonoBehaviour {
 	}
 	
 	public bool AddItem(CollectableItem item) {
-		var displayName = item.GetName();
 		var isAdded = true;
-		// Debug.Log("Inventory/AddItem, item = " + displayName);
+		 Debug.Log("Inventory/AddItem, item = " + item.name);
 		if(HasItem(item.name)) {
 			// increment count of item type
 		} else if(_items.Count < _maxItems) {
-			EventCenter.Instance.AddNote(displayName + " Added to inventory");
 			_items.Add(item.name, item);
 			item.Collect(_backpack);
-//			item.Store();
-//			item.transform.position = this.transform.position;
-//		 	item.transform.parent = this.transform;
 			EventCenter.Instance.AddInventory(item.name);
+			EventCenter.Instance.AddNote(item.ItemName + " Added to inventory");
 		} else {
-			EventCenter.Instance.AddNote("No more room for: " + displayName);
 			isAdded = false;
+			EventCenter.Instance.AddNote("No more room for: " + item.ItemName);
 		}
 		return isAdded;
 	}
@@ -56,7 +58,7 @@ public class Inventory : MonoBehaviour {
 		if (HasItem (key)) {
 			var item = _items[key] as CollectableItem;
 			if (isInspecting) {
-				ItemInspector.Instance.AddTarget (item.transform, item.GetName(), item.description);
+				ItemInspector.Instance.AddTarget (item.transform, item.ItemName, item.description);
 			} else {
 				ItemInspector.Instance.RemoveTarget ();
 			}
@@ -64,10 +66,15 @@ public class Inventory : MonoBehaviour {
 		}
 	}
 
-	public void OnUseItem(string key) {
+	public void UseItem(string key) {
 		if (HasItem (key)) {
 			var item = _items[key] as CollectableItem;
-
+			if(item.IsUsable) {
+				item.Use();
+			} else {
+				EventCenter.Instance.CloseInventoryUI ();
+				EventCenter.Instance.AddNote(item.ItemName + " can not be used now");
+			}
 		}
 	}
 

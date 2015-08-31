@@ -89,6 +89,7 @@ public class InventoryItemUI : MonoBehaviour {
 		switch(_focusedControlButton) {
 			case 0:
 				Debug.Log("InventoryItemUI["+this.name+"]/SelectControlButton, Use selected");
+				Inventory.Instance.UseItem(this.name);
 			break;
 
 			case 1:

@@ -42,7 +42,7 @@ public class CollidableParent : MonoBehaviour {
 //			Debug.Log("  itemWeight = " + itemWeight + ", TargetContainerName = " + itemWeight.TargetContainerName);
 			if(itemWeight.TargetContainerName != null && itemWeight.TargetContainerName == name) {
 //				Debug.Log("  itemWeight.parent = " + itemWeight.ParentObject);
-				PositionChild(itemWeight.ParentObject);
+//				PositionChild(itemWeight.ParentObject);
 			}
 		}
 	}

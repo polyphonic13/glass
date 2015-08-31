@@ -13,10 +13,15 @@ public class UsableProximity : MonoBehaviour {
 	}
 	
 	void Update () {
-		if (_collectableItem.IsEnabled) {
+		if (_collectableItem.IsCollected) {
 			var difference = Vector3.Distance(usabilityTarget.position, transform.position);
 			if(difference < usableDistance) {
-				_collectableItem.IsUsable = true;
+				if(!_collectableItem.IsUsable) {
+					Debug.Log (this.name + " is enabled, proximity difference = " + difference);
+					_collectableItem.IsUsable = true;
+				}
+			} else if(_collectableItem.IsUsable) {
+				_collectableItem.IsUsable = false;
 			}
 		}
 	}

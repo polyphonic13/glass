@@ -23,8 +23,6 @@ public class EventCenter : MonoBehaviour {
 	public delegate void InventoryRemover(string item);
 	public delegate void InventoryIncrementer(string item);
 	
-	public delegate void EquipItemHandler(string itemName);
-	
 	public delegate void TriggerEventHandler(string evt);
 	public delegate void TriggerCollectedEventHandler(string evt);
 
@@ -34,7 +32,7 @@ public class EventCenter : MonoBehaviour {
 	public delegate void RemoveNoteHandler(string message = "");
 
 	public delegate void InspectItemHandler(bool isInspecting, string item);
-	public delegate void UserItemHandler(string item);
+	public delegate void UseItemHandler(string item);
 
 	public delegate void CloseMenuHandler();
 	public delegate void CloseInventoryHandler();
@@ -60,8 +58,6 @@ public class EventCenter : MonoBehaviour {
 	public event InventoryRemover OnInventoryRemoved;
 	public event InventoryIncrementer OnInventoryIncremented;
 	
-	public event EquipItemHandler OnEquipItem;
-	
 	public event TriggerEventHandler OnTriggerEvent;
 	public event TriggerCollectedEventHandler OnTriggerCollectedEvent; 
 	
@@ -71,7 +67,7 @@ public class EventCenter : MonoBehaviour {
 	public event RemoveNoteHandler OnRemoveNote; 
 
 	public event InspectItemHandler OnInspectItem; 
-	public event UserItemHandler OnUseItem; 
+	public event UseItemHandler OnUseItem; 
 
 	public event CloseMenuHandler OnCloseMenuUI;
 	public event CloseInventoryHandler OnCloseInventoryUI;
@@ -167,12 +163,6 @@ public class EventCenter : MonoBehaviour {
 	public void IncrementInventory(string item) {
 		if(OnInventoryIncremented != null) {
 			OnInventoryIncremented(item);
-		}
-	}
-	
-	public void EquipItem(string itemName) {
-		if(OnEquipItem != null){
-			OnEquipItem(itemName);
 		}
 	}
 	
