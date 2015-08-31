@@ -23,12 +23,16 @@ public class NotificationUI : MonoBehaviour {
 	}
 	
 	public void OnAddNote(string message, bool fadeOut = true) {
-		if (_queue.Count == 0 || (message != _queue [_queue.Count - 1])) {
-			_queue.Add (message);
-//			if (!_isClearing) {
-				_clearQueue ();
-//			}
+		_message.text = message;
+		if (fadeOut) {
+			StartCoroutine("_fade");
 		}
+//		if (_queue.Count == 0 || (message != _queue [_queue.Count - 1])) {
+//			_queue.Add (message);
+//			if (!_isClearing) {
+//				_clearQueue ();
+//			}
+//		}
 	}
 
 	public void OnRemoveNote(string message) {
