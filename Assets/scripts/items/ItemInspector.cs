@@ -21,8 +21,8 @@ public class ItemInspector : MonoBehaviour {
 	public float smoothTime = 2f;
 
 	public float zoomAmount = 15f;
-	public float maxZoom = 3f;
-	public float minZoom = -2f;
+	public float maxZoom = 4f;
+	public float minZoom = -4f;
 
 	private float _rotationYAxis = 0.0f;
 	private float _rotationXAxis = 0.0f;
