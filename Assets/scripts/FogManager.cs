@@ -3,7 +3,6 @@ using UnityStandardAssets.ImageEffects;
 
 public class FogManager : MonoBehaviour {
 
-	public Camera _mainCamera;
 
 	public Color _normalColor;
 	public float _normalStartDistance;
@@ -11,10 +10,12 @@ public class FogManager : MonoBehaviour {
 	public Color _underwaterColor;
 	public float _underwaterStartDistance = 2f; 
 
+	private Camera _mainCamera;
 	private GlobalFog _fog;
 
 	void Start() {
 		EventCenter.Instance.OnUnderWater += OnUnderWater;
+		_mainCamera = Camera.main;
 		_fog = _mainCamera.GetComponent<GlobalFog>();
 		_fog.distanceFog = true;
 		OnUnderWater(false);
