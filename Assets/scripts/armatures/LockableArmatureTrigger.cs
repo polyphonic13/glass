@@ -1,9 +1,9 @@
 ﻿public class LockableArmatureTrigger : OpenCloseArmatureTrigger {
 
-	public string _lockedItemName = ""; 
 	public string _keyName = "";
-	
-	public bool IsLocked { get; set; }
+
+	public bool IsLocked = true;
+//	public bool IsLocked { get; set; }
 
 	public void Awake() {
 		InitLockableArmatureTrigger();
@@ -27,7 +27,7 @@
 				IsLocked = false;
 				HandleOpenClose();
 			 } else {
-				 EventCenter.Instance.AddNote(_lockedItemName + " is locked");
+				 EventCenter.Instance.AddNote(this.ItemName + " is locked");
 			 }
 		}
 	}

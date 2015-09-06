@@ -19,19 +19,22 @@ public class EventUnlockTrigger : LockableArmatureTrigger {
 
 	public void onUnlockEvent(string evt) {
 		if(evt == unlockEvent) {
+			Debug.Log (this.name + "/onUnlockEvent, evt = " + evt + ", unlockClip = " + unlockClip.name + ", IsLocked = " + IsLocked);
 			IsLocked = false;
 			IsEnabled = true;
 			if(unlockClip != null) {
+				Debug.Log("sending clip to pops");
 				SendAnimationToPops(unlockClip.name, _parentBone);
 			}
-			var eventCenter = EventCenter.Instance;
+
 			string msg;
 			if(unlockMessage != "") {
 				msg = unlockMessage;
 			} else {
 				msg = name + " unlocked";
 			}
-			eventCenter.AddNote(msg);
+			Debug.Log("going to add this msg: " + msg);
+			EventCenter.Instance.AddNote(msg);
 			houseKeeping();
 		}
 	}
