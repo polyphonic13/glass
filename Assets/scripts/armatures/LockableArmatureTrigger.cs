@@ -23,14 +23,12 @@
 		if(!IsLocked) {
 			HandleOpenClose();
 		} else {
-			// if(_player.inventory.hasItem(_keyName)) {
-				// string itemName = _player.inventory.getItemName(_keyName);
-				// EventCenter.Instance.AddNote(_lockedItemName + " unlocked with " + itemName);
+			 if(Inventory.Instance.HasItem(_keyName)) {
 				IsLocked = false;
 				HandleOpenClose();
-			// } else {
-				// EventCenter.Instance.AddNote("The " + _lockedItemName + " is locked");
-			// }
+			 } else {
+				 EventCenter.Instance.AddNote(_lockedItemName + " is locked");
+			 }
 		}
 	}
 
