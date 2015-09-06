@@ -11,7 +11,7 @@ public class ArmatureParent : MonoBehaviour {
 	public Animation _animation { get; set; }
 	
 	public virtual void PlayAnimation(string clip, Transform bone = null) {
-		Debug.Log("ArmatureParent[ " + name + " ]/PlayAnimation, clip = " + clip + ", bone = " + bone.name);
+		Debug.Log("ArmatureParent[ " + name + " ]/PlayAnimation, clip = " + clip);
 		AnimateArmatureBone(clip, bone);
 //		if(bone != null) {
 //			AnimationPlayed(bone);
@@ -38,7 +38,7 @@ public class ArmatureParent : MonoBehaviour {
 //		gameObject.SetActive(false);
 
 		if(_defaultAnimation != null) {
-//			Debug.Log("ArmatureParent/Start, _defaultAnimation = " + _defaultAnimation.name);
+			Debug.Log("ArmatureParent/Start, _defaultAnimation = " + _defaultAnimation.name);
 			_animation [_defaultAnimation.name].layer = 0;
 			_animation[_defaultAnimation.name].wrapMode = WrapMode.Once;
 			_animation.Play(_defaultAnimation.name);
