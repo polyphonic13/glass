@@ -71,7 +71,7 @@ public class InventoryUI : MonoBehaviour {
 //		Debug.Log("_items["+_occupiedItems+"] = " + itemUI);
 		itemUI.name = itemName;
 		itemUI.SetName(item.GetName());
-   		itemUI.SetCount(1);
+   		itemUI.SetCount(0);
     	if(item.Thumbnail != null) {
 	    	itemUI.SetThumbnail(item.Thumbnail);
     	}
