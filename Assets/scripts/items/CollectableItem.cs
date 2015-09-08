@@ -34,7 +34,7 @@ public class CollectableItem : InteractiveItem {
 
 	public virtual void ItemUpdate() {
 		if(IsEnabled && !IsCollected) {
-			CheckProximity();
+//			CheckProximity();
 		}
 	}
 	

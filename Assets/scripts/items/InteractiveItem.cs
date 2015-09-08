@@ -11,17 +11,18 @@ public class InteractiveItem : MonoBehaviour {
 	
 	public bool IsRoomActive { get; set; } 
 	public bool IsEnabled { get; set; }
+	public bool IsFocused { get; set; }
 
 	protected Camera MainCamera;
 
-	private bool _wasJustInProximity;
+	private bool _wasJustFocused;
 
 	void Awake() {
 		Init();
 	}
 
 	void Update() {
-		ItemUpdate ();
+//		ItemUpdate ();
 	}
 
 	public virtual void ItemUpdate() {
@@ -32,8 +33,9 @@ public class InteractiveItem : MonoBehaviour {
 
 	public void Init() {
 		IsEnabled = true;
+		IsFocused = false;
 
-		MainCamera = Camera.main;
+//		MainCamera = Camera.main;
 
 		if(transform.tag == "persistentItem" || _containingRoom == "") {
 			IsRoomActive = true;
@@ -70,17 +72,31 @@ public class InteractiveItem : MonoBehaviour {
 		}
 	}
 
+	public void SetFocus(bool isFocused) {
+		if (isFocused) {
+			if (!_wasJustFocused) {
+				EventCenter.Instance.NearInteractiveItem(this, true);
+				_wasJustFocused = true;
+				IsFocused = true;
+			}
+		} else if (_wasJustFocused) {
+			EventCenter.Instance.NearInteractiveItem(this, false);
+			_wasJustFocused = false;
+			IsFocused = false;
+		}
+	}
+
 	public bool CheckProximity() {
 		bool isInProximity = false;
 		var difference = Vector3.Distance(MainCamera.transform.position, transform.position);
 		if(difference < _interactDistance) {
 			isInProximity = true;
 //			Debug.Log("InteractiveItem["+this.name+"]/CheckProximity: " + isInProximity);
-			EventCenter.Instance.NearInteractiveItem(this, true);
-			_wasJustInProximity = true;
-		} else if(_wasJustInProximity) {
-			EventCenter.Instance.NearInteractiveItem(this, false);
-			_wasJustInProximity = false;
+			EventCenter.Instance.NearInteractiveItem(this, isInProximity);
+			_wasJustFocused = true;
+		} else if(_wasJustFocused) {
+			EventCenter.Instance.NearInteractiveItem(this, isInProximity);
+			_wasJustFocused = false;
 		}
 
 		return isInProximity;

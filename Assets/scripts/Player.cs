@@ -9,10 +9,9 @@ namespace UnitySampleAssets.Characters.FirstPerson
     [RequireComponent(typeof (AudioSource))]
     public class Player : MonoBehaviour
     {
-		public Transform temp;
-
 		[SerializeField] private Canvas _menuUI; 
 		[SerializeField] private Canvas _inventoryUI; 
+		[SerializeField] private Canvas _interactiveItemUI; 
 
 		[SerializeField] private bool _damageFromFall;
 		[SerializeField] private float _underWaterGravity;
@@ -80,13 +79,14 @@ namespace UnitySampleAssets.Characters.FirstPerson
 		}
 
 		#region delegate handlers
- 		public void OnNearInteractiveItem(InteractiveItem item, bool isInProximity) {
-			if(isInProximity) {
+ 		public void OnNearInteractiveItem(InteractiveItem item, bool isFocused) {
+			if(isFocused) {
 				_elementInProximity = item;
 			} else {
 				_elementInProximity = null;
 			}
- 		}
+			_interactiveItemUI.enabled = isFocused;
+		}
 
 		public void OnPlayerDamaged(float damage) {
 			float health = GameControl.Instance.RemainingHealth - damage;
@@ -123,6 +123,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
         {
 			_menuUI.enabled = false;
 			_inventoryUI.enabled = false;
+			_interactiveItemUI.enabled = false;
 			_isInspectorOpen = _isMenuOpen = _isInventoryOpen = false;
 			_collider = GameObject.Find("collider").transform;
 

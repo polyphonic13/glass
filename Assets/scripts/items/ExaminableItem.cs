@@ -14,8 +14,8 @@ public class ExaminableItem : InteractiveItem {
 	}
 	
 	public override void Actuate() {
-		if(CheckProximity()) {
-			if(IsRoomActive) {
+		if(IsRoomActive) {
+			if(CheckProximity()) {
 				EventCenter.Instance.AddNote(description);
 			}
 		}
