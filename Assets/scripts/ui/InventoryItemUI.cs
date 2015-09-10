@@ -51,6 +51,7 @@ public class InventoryItemUI : MonoBehaviour {
 
 	public void Select() {
 		_controlPanel.alpha = 1;
+		SetControlButtonFocus (0);
 	}
 
 	public void Deselect() {
@@ -83,6 +84,7 @@ public class InventoryItemUI : MonoBehaviour {
 		panel.color = _active;
 		panel = _panels[_previousControlButton] as Image;
 		panel.color = _controlInactive;
+		Debug.Log ("SetControlButtonFocus[" + this.name + "], btn = " + btn);
 	}
 
 	public void SelectControlButton() {

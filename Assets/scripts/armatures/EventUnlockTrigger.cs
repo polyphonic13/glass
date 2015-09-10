@@ -4,7 +4,8 @@ using System.Collections;
 public class EventUnlockTrigger : LockableArmatureTrigger {
 	
 	public AnimationClip unlockClip;
-	
+
+	public bool isUnlockEventOpens = false;
 	public string unlockEvent = "";
 	public string unlockMessage = "";
 	
@@ -19,12 +20,15 @@ public class EventUnlockTrigger : LockableArmatureTrigger {
 
 	public void onUnlockEvent(string evt) {
 		if(evt == unlockEvent) {
-			Debug.Log (this.name + "/onUnlockEvent, evt = " + evt + ", unlockClip = " + unlockClip.name + ", IsLocked = " + IsLocked);
+//			Debug.Log (this.name + "/onUnlockEvent, evt = " + evt + ", unlockClip = " + unlockClip.name + ", IsLocked = " + IsLocked);
 			IsLocked = false;
 			IsEnabled = true;
 			if(unlockClip != null) {
-				Debug.Log("sending clip to pops");
+//				Debug.Log("sending clip to pops");
 				SendAnimationToPops(unlockClip.name, _parentBone);
+				if(isUnlockEventOpens) {
+					IsOpen = true;
+				}
 			}
 
 			string msg;
@@ -33,7 +37,7 @@ public class EventUnlockTrigger : LockableArmatureTrigger {
 			} else {
 				msg = name + " unlocked";
 			}
-			Debug.Log("going to add this msg: " + msg);
+//			Debug.Log("going to add this msg: " + msg);
 			EventCenter.Instance.AddNote(msg);
 			houseKeeping();
 		}

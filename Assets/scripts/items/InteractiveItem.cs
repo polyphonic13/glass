@@ -35,7 +35,7 @@ public class InteractiveItem : MonoBehaviour {
 		IsEnabled = true;
 		IsFocused = false;
 
-//		MainCamera = Camera.main;
+		MainCamera = Camera.main;
 
 		if(transform.tag == "persistentItem" || _containingRoom == "") {
 			IsRoomActive = true;
@@ -73,6 +73,7 @@ public class InteractiveItem : MonoBehaviour {
 	}
 
 	public void SetFocus(bool isFocused) {
+//		Debug.Log (this.name + "/SetFocus, isFocused = " + isFocused + ", _wasJustFocused = " + _wasJustFocused);
 		if (isFocused) {
 			if (!_wasJustFocused) {
 				EventCenter.Instance.NearInteractiveItem(this, true);

@@ -71,7 +71,6 @@ public class CollectableItem : InteractiveItem {
 		if (target != null) {
 
 			transform.position = target.transform.position;
-//			transform.rotation = target.transform.rotation;
 			transform.parent = target;
 		}
 	}

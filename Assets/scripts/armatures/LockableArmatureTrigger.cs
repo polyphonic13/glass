@@ -1,4 +1,7 @@
-﻿public class LockableArmatureTrigger : OpenCloseArmatureTrigger {
+﻿using UnityEngine;
+using System.Collections;
+
+public class LockableArmatureTrigger : OpenCloseArmatureTrigger {
 
 	public string _keyName = "";
 

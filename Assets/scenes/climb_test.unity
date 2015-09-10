@@ -212,7 +212,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: de17f8414d0b34bf28548762f31a178e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -8.43999958
+      value: -8.48900032
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: de17f8414d0b34bf28548762f31a178e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -301,7 +301,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: .300000012, y: .299999982, z: .0243059956}
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: -1.1920929e-07}
 --- !u!1 &212445325
 GameObject:
@@ -517,15 +517,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: de17f8414d0b34bf28548762f31a178e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.75999999
+      value: -5.80999994
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: de17f8414d0b34bf28548762f31a178e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -8.43999958
+      value: -8.51399994
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: de17f8414d0b34bf28548762f31a178e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -19.2919998
+      value: -19.2900009
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: de17f8414d0b34bf28548762f31a178e, type: 3}
       propertyPath: m_LocalRotation.x
@@ -618,7 +618,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: .300000012, y: .299999982, z: .0243059956}
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: -1.1920929e-07}
 --- !u!1 &459154407
 GameObject:
@@ -673,6 +673,7 @@ MonoBehaviour:
   _keyName: 
   IsLocked: 1
   unlockClip: {fileID: 7400014, guid: bebdae0b8648c44bd9c8ae78d1319eb4, type: 3}
+  isUnlockEventOpens: 1
   unlockEvent: bedroom_e_dresser_drawer_top_unlock
   unlockMessage: The top dresser drawer unlocked
 --- !u!23 &459154410
@@ -1338,7 +1339,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: de17f8414d0b34bf28548762f31a178e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.75999999
+      value: 5.88999987
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: de17f8414d0b34bf28548762f31a178e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1346,7 +1347,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: de17f8414d0b34bf28548762f31a178e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -19.8449993
+      value: -15.5100002
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: de17f8414d0b34bf28548762f31a178e, type: 3}
       propertyPath: m_LocalRotation.x
@@ -1439,7 +1440,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: .300000012, y: .299999982, z: .0243059956}
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: -1.1920929e-07}
 --- !u!1 &1016357173 stripped
 GameObject:
@@ -1743,11 +1744,12 @@ MonoBehaviour:
   _containingRoom: 
   _pops: {fileID: 1392834837}
   _parentBone: {fileID: 1171463459}
-  _mainClip: {fileID: 7400014, guid: bebdae0b8648c44bd9c8ae78d1319eb4, type: 3}
+  _mainClip: {fileID: 7400004, guid: bebdae0b8648c44bd9c8ae78d1319eb4, type: 3}
   _closeClip: {fileID: 7400002, guid: bebdae0b8648c44bd9c8ae78d1319eb4, type: 3}
   _keyName: 
-  IsLocked: 1
+  IsLocked: 0
   unlockClip: {fileID: 7400004, guid: bebdae0b8648c44bd9c8ae78d1319eb4, type: 3}
+  isUnlockEventOpens: 1
   unlockEvent: bedroom_e_dresser_drawer_bottom_unlock
   unlockMessage: The bottom dresser drawer unlocked
 --- !u!23 &1243603486
@@ -2214,7 +2216,7 @@ Transform:
 GameObject:
   m_PrefabParentObject: {fileID: 102350, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
   m_PrefabInternal: {fileID: 1231681067}
---- !u!114 &1520596763
+--- !u!114 &1520596766
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -2423,7 +2425,6 @@ MonoBehaviour:
   - {fileID: 1297768598}
   - {fileID: 1016357174}
   - {fileID: 1539505473}
-  dresser: {fileID: 1392834837}
 --- !u!1 &1739194615
 GameObject:
   m_ObjectHideFlags: 0
@@ -2580,15 +2581,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Thumbnail: {fileID: 0}
   ItemName: Middle Drawer
-  _interactDistance: 2
+  _interactDistance: 3
   _containingRoom: 
   _pops: {fileID: 1392834837}
   _parentBone: {fileID: 2090328113}
-  _mainClip: {fileID: 7400014, guid: bebdae0b8648c44bd9c8ae78d1319eb4, type: 3}
+  _mainClip: {fileID: 7400010, guid: bebdae0b8648c44bd9c8ae78d1319eb4, type: 3}
   _closeClip: {fileID: 7400008, guid: bebdae0b8648c44bd9c8ae78d1319eb4, type: 3}
   _keyName: 
   IsLocked: 1
   unlockClip: {fileID: 7400010, guid: bebdae0b8648c44bd9c8ae78d1319eb4, type: 3}
+  isUnlockEventOpens: 1
   unlockEvent: bedroom_e_dresser_drawer_middle_unlock
   unlockMessage: The middle dresser drawer unlocked
 --- !u!23 &1943679768

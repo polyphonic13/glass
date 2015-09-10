@@ -4,7 +4,6 @@ using System.Collections;
 public class PiggyBank : MonoBehaviour {
 
 	public CollectableItem[] crystalKeys;
-	public ArmatureParent dresser;
 
 	private string[] _dresserAnimations = {
 		"bedroom_e_dresser_bottom_drawer_open",
@@ -26,12 +25,10 @@ public class PiggyBank : MonoBehaviour {
 	public void InsertCoin(string coin, string coinName) {
 		Debug.Log("PiggyBank/InsertCoin, coin = " + coin);
 
-		dresser.PlayAnimation (_dresserAnimations [3]);
 		for(int i = 0; i < _coins.Length; i++) {
 			if(_coins[i] == coin) {
 				Debug.Log ("this is a matching coin: " + i);
 				crystalKeys[i].IsEnabled = true;
-//				dresser.PlayAnimation(_dresserAnimations[i]);
 				EventCenter.Instance.TriggerEvent(_unlockEvents[i]);
 			}
 		}
