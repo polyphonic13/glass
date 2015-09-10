@@ -80,10 +80,10 @@ public class InventoryItemUI : MonoBehaviour {
 		_previousControlButton = _focusedControlButton;
 		_focusedControlButton = btn;
 		
-		Image panel = _panels[_focusedControlButton] as Image;
-		panel.color = _active;
-		panel = _panels[_previousControlButton] as Image;
+		Image panel = _panels[_previousControlButton] as Image;
 		panel.color = _controlInactive;
+		panel = _panels[_focusedControlButton] as Image;
+		panel.color = _active;
 		Debug.Log ("SetControlButtonFocus[" + this.name + "], btn = " + btn);
 	}
 
