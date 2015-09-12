@@ -23,11 +23,8 @@ public class PiggyBank : MonoBehaviour {
 	};
 
 	public void InsertCoin(string coin, string coinName) {
-		Debug.Log("PiggyBank/InsertCoin, coin = " + coin);
-
 		for(int i = 0; i < _coins.Length; i++) {
 			if(_coins[i] == coin) {
-				Debug.Log ("this is a matching coin: " + i);
 				crystalKeys[i].IsEnabled = true;
 				EventCenter.Instance.TriggerEvent(_unlockEvents[i]);
 			}
@@ -41,5 +38,4 @@ public class PiggyBank : MonoBehaviour {
 			crystalKey.IsEnabled = false;
 		}
 	}
-
 }

@@ -84,7 +84,6 @@ public class InventoryItemUI : MonoBehaviour {
 		panel.color = _controlInactive;
 		panel = _panels[_focusedControlButton] as Image;
 		panel.color = _active;
-		Debug.Log ("SetControlButtonFocus[" + this.name + "], btn = " + btn);
 	}
 
 	public void SelectControlButton() {
