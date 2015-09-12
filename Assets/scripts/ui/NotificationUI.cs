@@ -26,6 +26,7 @@ public class NotificationUI : MonoBehaviour {
 		if (_queue.Count == 0 || (message != _queue [_queue.Count - 1])) {
 			_queue.Add (message);
 			if (!_isClearing) {
+				_isClearing = true;
 				_clearQueue ();
 			}
 		}
@@ -46,15 +47,12 @@ public class NotificationUI : MonoBehaviour {
 
 	private void _clearQueue() {
 		if (_queue.Count > 0) {
-			StopCoroutine("_fade");
-			_isClearing = true;
 			_canvasGroup.alpha = _startAlpha;
 			int index = _queue.Count - 1;
 			string msg = _queue [index] as string;
 			_message.text = msg;
 			_queue.RemoveAt (index);
 			StartCoroutine ("_fade");
-			_clearQueue();
 		} else {
 			_isClearing = false;
 		}
@@ -62,11 +60,14 @@ public class NotificationUI : MonoBehaviour {
 
 	private IEnumerator _fade() {
 		for (float f = 2f; f >= 0; f -= 0.015f) {
-			if(f < 0.1f) {
-				f = 0;
-			}
 			if(f <= 1f) {
+				if(f < 0.1f) {
+					f = 0;
+				}
 				_canvasGroup.alpha = f;
+				if(f == 0) {
+					_clearQueue();
+				}
 			}
 			yield return null;
 		}

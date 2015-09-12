@@ -47,6 +47,7 @@ public class Inventory : MonoBehaviour {
 			_items.Add(item.name, item);
 			item.Collect(_backpack, _rightHand);
 			EventCenter.Instance.AddNote(item.ItemName + " Added to inventory");
+//			EventCenter.Instance.AddNote(item.ItemName + " Added to inventory");
 			EventCenter.Instance.AddInventory(item.name);
 		} else {
 			isAdded = false;
