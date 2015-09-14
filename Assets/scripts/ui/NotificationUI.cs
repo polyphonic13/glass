@@ -59,7 +59,7 @@ public class NotificationUI : MonoBehaviour {
 	}
 
 	private IEnumerator _fade() {
-		for (float f = 2f; f >= 0; f -= 0.015f) {
+		for (float f = 1.5f; f >= 0; f -= 0.015f) {
 			if(f <= 1f) {
 				if(f < 0.1f) {
 					f = 0;

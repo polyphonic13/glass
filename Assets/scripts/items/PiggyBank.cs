@@ -5,12 +5,6 @@ public class PiggyBank : MonoBehaviour {
 
 	public CollectableItem[] crystalKeys;
 
-	private string[] _dresserAnimations = {
-		"bedroom_e_dresser_bottom_drawer_open",
-		"bedroom_e_dresser_middle_drawer_open",
-		"bedroom_e_dresser_top_drawer_open",
-		"bedroom_e_dresser_default"
-	};
 	private string[] _coins = {
 		"astrological_coin_aries", 
 		"astrological_coin_leo", 

@@ -4,6 +4,9 @@ using System.Collections;
 public class ExaminableItem : InteractiveItem {
 
 	public string description = "";
+	public bool singleUse = true;
+
+	private bool _isUsedOnce = false;
 
 	void Awake() {
 		InitInteractiveItem();
@@ -16,7 +19,10 @@ public class ExaminableItem : InteractiveItem {
 	public override void Actuate() {
 		if(IsRoomActive) {
 			if(CheckProximity()) {
-				EventCenter.Instance.AddNote(description);
+				if(!singleUse || !_isUsedOnce) {
+					_isUsedOnce = true;
+					EventCenter.Instance.AddNote(description);
+				}
 			}
 		}
 	}
