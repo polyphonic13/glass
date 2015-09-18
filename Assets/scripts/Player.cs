@@ -53,10 +53,10 @@ namespace UnitySampleAssets.Characters.FirstPerson
 		private bool _isInventoryOpen = false;
 		private bool _isInspectorOpen = false;
 
-		private Camera mainCamera;
+		private Camera _mainCamera;
         private bool m_Jump;
         private float m_YRotation;
-        private CameraRefocus mainCameraRefocus;
+        private CameraRefocus _mainCameraRefocus;
         private Vector2 m_Input;
         private Vector3 m_MoveDir = Vector3.zero;
         private CharacterController m_CharacterController;
@@ -69,6 +69,8 @@ namespace UnitySampleAssets.Characters.FirstPerson
         private AudioSource m_AudioSource;
 
         private InteractiveItem _elementInProximity;
+
+		private Transform[] _childTransforms; 
 
 		public bool IsUIOpen() {
 			var isOpen = false;
@@ -128,25 +130,31 @@ namespace UnitySampleAssets.Characters.FirstPerson
 			_collider = GameObject.Find("collider").transform;
 
             m_CharacterController = GetComponent<CharacterController>();
-            mainCamera = Camera.main;
-            m_OriginalCameraPosition = mainCamera.transform.localPosition;
-            mainCameraRefocus = new CameraRefocus(mainCamera, transform, mainCamera.transform.localPosition);
-            m_FovKick.Setup(mainCamera);
-            m_HeadBob.Setup(mainCamera, m_StepInterval);
+            _mainCamera = Camera.main;
+            m_OriginalCameraPosition = _mainCamera.transform.localPosition;
+            _mainCameraRefocus = new CameraRefocus(_mainCamera, transform, _mainCamera.transform.localPosition);
+            m_FovKick.Setup(_mainCamera);
+            m_HeadBob.Setup(_mainCamera, m_StepInterval);
             m_StepCycle = 0f;
             m_NextStep = m_StepCycle/2f;
             m_Jumping = false;
             m_AudioSource = GetComponent<AudioSource>();
-			m_MouseLook.Init(transform , mainCamera.transform);
+			m_MouseLook.Init(transform , _mainCamera.transform);
 
 			_currentMovementState = _movementStates.Normal;
 			_gravity = m_GravityMultiplier;
-			_cameraStartY = mainCamera.transform.position.y;
+			_cameraStartY = _mainCamera.transform.position.y;
 
-//			_globalFog = mainCamera.GetComponent<GlobalFog>();
+//			_globalFog = _mainCamera.GetComponent<GlobalFog>();
 
 			if(_damageFromFall) {
 				_gravityDamager = GetComponent<GravityDamager>();
+			}
+
+			int i = 0;
+			_childTransforms = new Transform[transform.childCount];
+			foreach (Transform t in transform) {
+				_childTransforms [i++] = t;
 			}
 
 			var ec = EventCenter.Instance;
@@ -206,12 +214,12 @@ namespace UnitySampleAssets.Characters.FirstPerson
 							_currentMovementState = _movementStates.Crawl;
 							_switchToCrawling(true);
 							_justCrouched = true;
-							Debug.Log("Crawl");
+//							Debug.Log("Crawl");
 						} else if(_currentMovementState == _movementStates.Crawl) {
 							_currentMovementState = _movementStates.Normal;
 							_switchToCrawling(false);
 							_justCrouched = true;
-							Debug.Log("walk");
+//							Debug.Log("walk");
 						}
 					}
 					
@@ -252,17 +260,25 @@ namespace UnitySampleAssets.Characters.FirstPerson
 		#endregion
 
 		private void _switchToCrawling(bool isCrawling) {
+
+			transform.DetachChildren();
+
 			if(isCrawling) {
-				transform.localScale -= new Vector3(0, 0.5f, 0);
-				transform.localPosition -= new Vector3(0, 0.5f, 0);
+				transform.localScale -= new Vector3(0, 0.75f, 0);
+				transform.localPosition -= new Vector3(0, 0.75f, 0);
+				_mainCamera.transform.localPosition -= new Vector3(0, 0.75f, 0);
 			} else {
-				transform.localScale += new Vector3(0, 0.5f, 0);
-				transform.localPosition += new Vector3(0, 0.5f, 0);
+				transform.localScale += new Vector3(0, 0.75f, 0);
+				transform.localPosition += new Vector3(0, 0.75f, 0);
+				_mainCamera.transform.localPosition += new Vector3(0, 0.75f, 0);
+			}
+
+			foreach (Transform t in _childTransforms) {
+				t.parent = transform;
 			}
 		}
 
-        private void PlayLandingSound()
-        {
+        private void PlayLandingSound() {
             m_AudioSource.clip = m_LandSound;
             // m_AudioSource.Play();
             m_NextStep = m_StepCycle + .5f;
@@ -274,7 +290,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
 				float speed;
 				GetInput(out speed);
 				// always move along the camera forward as it is the direction that it being aimed at
-				Vector3 desiredMove = mainCamera.transform.forward*m_Input.y + mainCamera.transform.right*m_Input.x;
+				Vector3 desiredMove = _mainCamera.transform.forward*m_Input.y + _mainCamera.transform.right*m_Input.x;
 				
 				// get a Normal for the surface that is being touched to move along it
 				RaycastHit hitInfo;
@@ -405,20 +421,20 @@ namespace UnitySampleAssets.Characters.FirstPerson
             }
             if (m_CharacterController.velocity.magnitude > 0 && m_CharacterController.isGrounded)
             {
-                mainCamera.transform.localPosition =
+                _mainCamera.transform.localPosition =
                     m_HeadBob.DoHeadBob(m_CharacterController.velocity.magnitude +
                                       (speed*(m_IsWalking ? 1f : m_RunstepLenghten)));
-                newCameraPosition = mainCamera.transform.localPosition;
-                newCameraPosition.y = mainCamera.transform.localPosition.y - m_JumpBob.Offset();
+                newCameraPosition = _mainCamera.transform.localPosition;
+                newCameraPosition.y = _mainCamera.transform.localPosition.y - m_JumpBob.Offset();
             }
             else
             {
-                newCameraPosition = mainCamera.transform.localPosition;
+                newCameraPosition = _mainCamera.transform.localPosition;
                 newCameraPosition.y = m_OriginalCameraPosition.y - m_JumpBob.Offset();
             }
-            mainCamera.transform.localPosition = newCameraPosition;
+            _mainCamera.transform.localPosition = newCameraPosition;
 
-            mainCameraRefocus.SetFocusPoint();
+            _mainCameraRefocus.SetFocusPoint();
         }
 
         private void GetInput(out float speed)
@@ -456,8 +472,8 @@ namespace UnitySampleAssets.Characters.FirstPerson
 
         private void RotateView()
         {
-            m_MouseLook.LookRotation (transform, mainCamera.transform);
-            mainCameraRefocus.GetFocusPoint();
+            m_MouseLook.LookRotation (transform, _mainCamera.transform);
+            _mainCameraRefocus.GetFocusPoint();
         }
 
         private void OnControllerColliderHit(ControllerColliderHit hit)

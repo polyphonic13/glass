@@ -3,6 +3,7 @@ using UnitySampleAssets.CrossPlatformInput;
 
 public class InteractiveItem : MonoBehaviour {
 
+	public Sprite Icon;
 	public Sprite Thumbnail;
 	public string ItemName;
 
