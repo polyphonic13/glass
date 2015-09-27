@@ -3224,15 +3224,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400016, guid: 26082a4d36c3445db99333705e510613, type: 3}
       propertyPath: m_LocalPosition.x
-      value: .563205719
+      value: .563000023
       objectReference: {fileID: 0}
     - target: {fileID: 400016, guid: 26082a4d36c3445db99333705e510613, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -.483571053
+      value: .272000015
       objectReference: {fileID: 0}
     - target: {fileID: 400016, guid: 26082a4d36c3445db99333705e510613, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.28279686
+      value: 3.70600009
       objectReference: {fileID: 0}
     - target: {fileID: 400016, guid: 26082a4d36c3445db99333705e510613, type: 3}
       propertyPath: m_LocalRotation.x
@@ -4954,6 +4954,41 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400004, guid: 05ff7eb3828654b97bbeead222f05527, type: 3}
   m_PrefabInternal: {fileID: 973621416}
+--- !u!1 &978130592 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100016, guid: 26082a4d36c3445db99333705e510613, type: 3}
+  m_PrefabInternal: {fileID: 590401155}
+--- !u!114 &978130593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 978130592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d5685fee4ef64e078f6725eb7c9cc65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Icon: {fileID: 21300000, guid: fb95dcee818d24ef28010358f7fdfaf7, type: 3}
+  Thumbnail: {fileID: 21300000, guid: a0ef85fe3ebe2419a9a678e476f066c9, type: 3}
+  ItemName: Toy Dog
+  _interactDistance: 1.5
+  _containingRoom: bedroom_nw
+  description: A toy dog on wheels
+  targetContainerName: 
+  _weight: {fileID: 11484862, guid: ed5b67beeb2f34409b9e0764fc6167fb, type: 2}
+--- !u!65 &978130594
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 978130592}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: .600000024, y: .600000024, z: 1}
+  m_Center: {x: 0, y: .25, z: 0}
 --- !u!1 &978715498
 GameObject:
   m_ObjectHideFlags: 0
@@ -10297,6 +10332,28 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1750010892}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1758198244 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100004, guid: eba27aadbf5eb41148986f42a446ef22, type: 3}
+  m_PrefabInternal: {fileID: 2008280142}
+--- !u!114 &1758198245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1758198244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15725ebbb138d4ca9b411776763f29fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Icon: {fileID: 21300000, guid: 766854d3fb11b4471aca3a8d1bda1a22, type: 3}
+  Thumbnail: {fileID: 0}
+  ItemName: Rabbit Hunt
+  _interactDistance: 2
+  _containingRoom: bedroom_nw
+  description: A painting of a rabbit hunt with hound dogs
+  singleUse: 0
 --- !u!1 &1770499561
 GameObject:
   m_ObjectHideFlags: 0
@@ -10550,7 +10607,6 @@ MonoBehaviour:
   _containingRoom: bedroom_n
   description: A raggedy, old, pink bunny doll
   targetContainerName: 
-  preserveCollisions: 0
   _weight: {fileID: 11484862, guid: ed5b67beeb2f34409b9e0764fc6167fb, type: 2}
 --- !u!65 &1841701382
 BoxCollider:

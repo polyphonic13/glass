@@ -5,7 +5,6 @@ public class CollectableItem : InteractiveItem {
 	public string description = "";
 	// TBD: extend class with ContainableItem:
 	public string targetContainerName = "";
-	public bool preserveCollisions; 
 
 	public bool IsCollected { get; set; }
 	public bool IsEquipped { get; set; }
