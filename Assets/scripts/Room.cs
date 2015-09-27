@@ -2,16 +2,11 @@
 
 public class Room : MonoBehaviour {
 
-	public bool _isStartingRoom;
+	public Vector3 startingPosition;
+	public Quaternion startingRotation; 
+
 	public string _roomName;
 
-	// Use this for Initialization
-	void Start() {
-		if(_isStartingRoom) {
-			EventCenter.Instance.EnterRoom(_roomName);
-		}
-	}
-	
 	public void RoomTriggered(string name) {
 		var ec = EventCenter.Instance;
 

@@ -11,17 +11,24 @@ public class Inventory : MonoBehaviour {
 
 	private Hashtable _items;
 
+	private string[] _playerScenes = {
+		"house_floor02",
+		"cave01"
+	};
+
 	private static Inventory _instance;
 	private Inventory() {}
 
 	private void Awake() {
 		_items = new Hashtable();
+	}
+
+	public void InitPlayer() {
 		Transform player = GameObject.Find ("player").transform;
-//		_backpack = player.Find ("backpack");
 		_backpack = this.transform;
 		_leftHand = player.Find ("player_head_camera/left_hand");
 		_rightHand = player.Find ("player_head_camera/right_hand");
-
+		
 		EventCenter.Instance.OnInspectItem += OnInspectItem;
 	}
 

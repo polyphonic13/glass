@@ -6,11 +6,16 @@ public class GameControl : MonoBehaviour {
 	public float _breath = 120f;
 	public float _stamina = 5f;
 
-	public int _targetRoom;
+	public int targetRoom = -1;
 
 	public float RemainingHealth { get; set; }
 	public float RemainingBreath { get; set; }
 	public float RemainingStamina { get; set; } 
+
+	private string[] _playerScenes = {
+		"house_floor02",
+		"cave01"
+	};
 
 	private static GameControl _instance;
 	private GameControl() {}
@@ -37,14 +42,25 @@ public class GameControl : MonoBehaviour {
 			Destroy(gameObject);
 		}
 
+		for (int i = 0; i < _playerScenes.Length; i++) {
+			if(_playerScenes[i] == Application.loadedLevelName) {
+				_initPlayer();
+				break;
+			}
+		}
+	}
+
+	private void _initPlayer() {
 		RemainingHealth = _health;
 		RemainingBreath = _breath;
 		RemainingStamina = _stamina;
-
+		
 		var ec = EventCenter.Instance;
-		ec.UpdatePlayerProperty("_health", RemainingHealth);
-		ec.UpdatePlayerProperty("_breath", RemainingBreath);
-		ec.UpdatePlayerProperty("_stamina", RemainingStamina);
+		ec.UpdatePlayerProperty ("_health", RemainingHealth);
+		ec.UpdatePlayerProperty ("_breath", RemainingBreath);
+		ec.UpdatePlayerProperty ("_stamina", RemainingStamina);
+
+		Inventory.Instance.InitPlayer ();
 	}
 
 	public float GetProperty(string prop) {
@@ -54,19 +70,22 @@ public class GameControl : MonoBehaviour {
 			case "_health":
 				val = _health;
 				break;
+
 			case "_breath":
 				val = RemainingBreath;
 				break;
-			case "Stamina":
+
+			case "_stamina":
 				val = RemainingStamina;
 				break;
+
 		}
 		return val;
 	}
 
 
-	public void ChangeScene(string tgt, int room) {
-		_targetRoom = room;
+	public void ChangeScene(string tgt, int room = -1) {
+		targetRoom = room;
 		Application.LoadLevel(tgt);
 	}
 
@@ -97,15 +116,11 @@ public class GameControl : MonoBehaviour {
 
 	public void UpdateStamina(float val) {
 		RemainingStamina = val;
-		EventCenter.Instance.UpdatePlayerProperty("Stamina", RemainingStamina);
+		EventCenter.Instance.UpdatePlayerProperty("_stamina", RemainingStamina);
     }
 
 	public void ResetStamina() {
 		RemainingStamina = _stamina;
-	}
-
-	public Vector3 GetStartingPosition() {
-		return _startingPositions[_targetRoom];
 	}
 
 	private void _postHealthUpdate() {
