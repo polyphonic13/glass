@@ -2592,6 +2592,25 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 443279547}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &456566295 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100738, guid: af47fbf5b6aac4fb884b43e57bd1f830, type: 3}
+  m_PrefabInternal: {fileID: 2076537180}
+--- !u!114 &456566297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 456566295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7143c2a47117457799a0dd56161456d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _defaultAnimation: {fileID: 7400008, guid: af47fbf5b6aac4fb884b43e57bd1f830, type: 3}
+  animationClip: {fileID: 7400022, guid: af47fbf5b6aac4fb884b43e57bd1f830, type: 3}
+  eventName: rabbitHuntCompleted
+  singleUse: 1
 --- !u!1 &483314472
 GameObject:
   m_ObjectHideFlags: 0
@@ -2768,6 +2787,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 947554863}
   m_RootOrder: 29
+--- !u!1 &497263860 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100004, guid: eba27aadbf5eb41148986f42a446ef22, type: 3}
+  m_PrefabInternal: {fileID: 2008280142}
+--- !u!114 &497263861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 497263860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7143c2a47117457799a0dd56161456d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _defaultAnimation: {fileID: 7400002, guid: eba27aadbf5eb41148986f42a446ef22, type: 3}
+  animationClip: {fileID: 7400004, guid: eba27aadbf5eb41148986f42a446ef22, type: 3}
+  eventName: rabbitHuntCompleted
+  singleUse: 1
 --- !u!114 &499459119 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 11412756, guid: 7cc5e4f90ac3f4edcb4c234ed894b081,
@@ -4970,7 +5008,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 978130592}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d5685fee4ef64e078f6725eb7c9cc65, type: 3}
+  m_Script: {fileID: 11500000, guid: 63d5745fe386d4ee7aff4bb9b0003fd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: fb95dcee818d24ef28010358f7fdfaf7, type: 3}
@@ -4981,6 +5019,7 @@ MonoBehaviour:
   description: A toy dog on wheels. It is unusually heavy.
   targetContainerName: 
   _weight: {fileID: 11484862, guid: ed5b67beeb2f34409b9e0764fc6167fb, type: 2}
+  toyChest: {fileID: 1870188566}
 --- !u!65 &978130594
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4993,6 +5032,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: .600000024, y: .600000024, z: 1}
   m_Center: {x: 0, y: .25, z: 0}
+--- !u!114 &978130595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 978130592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b0ca0c7e80994db6a1499e2fcbe512b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target1: {fileID: 1748712313}
+  target2: {fileID: 1584297429}
+  usableDistance: 1.5
 --- !u!1 &978715498
 GameObject:
   m_ObjectHideFlags: 0
@@ -10579,7 +10632,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1841701380}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d5685fee4ef64e078f6725eb7c9cc65, type: 3}
+  m_Script: {fileID: 11500000, guid: 63d5745fe386d4ee7aff4bb9b0003fd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: fb95dcee818d24ef28010358f7fdfaf7, type: 3}
@@ -10590,6 +10643,7 @@ MonoBehaviour:
   description: A raggedy, old, pink bunny doll. It is unusually heavy.
   targetContainerName: 
   _weight: {fileID: 11484862, guid: ed5b67beeb2f34409b9e0764fc6167fb, type: 2}
+  toyChest: {fileID: 1870188566}
 --- !u!65 &1841701382
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10602,6 +10656,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: .5, y: .75, z: .5}
   m_Center: {x: 0, y: .330000013, z: 0}
+--- !u!114 &1841701383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1841701380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b0ca0c7e80994db6a1499e2fcbe512b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target1: {fileID: 1748712313}
+  target2: {fileID: 1584297429}
+  usableDistance: 1.5
 --- !u!1 &1845781744
 GameObject:
   m_ObjectHideFlags: 0
@@ -10715,6 +10783,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 980279690}
   m_RootOrder: 14
+--- !u!1 &1870188565 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100014, guid: a4d6cb0d53b76436ab5c75e2b5e50218, type: 3}
+  m_PrefabInternal: {fileID: 727968255}
+--- !u!114 &1870188566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1870188565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fc1bbeca9bb143cba1b445986f071b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unlockEvent: rabbitHuntCompleted
 --- !u!1 &1878799110
 GameObject:
   m_ObjectHideFlags: 0
@@ -11003,6 +11087,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 2119193765}
     m_Modifications:
+    - target: {fileID: 13700002, guid: eba27aadbf5eb41148986f42a446ef22, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: eba27aadbf5eb41148986f42a446ef22, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.4000001
@@ -11043,6 +11131,10 @@ Prefab:
       propertyPath: m_TagString
       value: interactive
       objectReference: {fileID: 0}
+    - target: {fileID: 13700002, guid: eba27aadbf5eb41148986f42a446ef22, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 71ad4f9b2f1e84c9286479f9593f2106, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eba27aadbf5eb41148986f42a446ef22, type: 3}
   m_IsPrefabParent: 0
@@ -11180,7 +11272,7 @@ MonoBehaviour:
   _interactDistance: 3
   _containingRoom: bedroom_nw
   description: A painting of hound dogs hunting a rabbit.
-  singleUse: 1
+  singleUse: 0
 --- !u!1 &2049161068
 GameObject:
   m_ObjectHideFlags: 0
@@ -11426,7 +11518,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400540, guid: af47fbf5b6aac4fb884b43e57bd1f830, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2300220, guid: af47fbf5b6aac4fb884b43e57bd1f830, type: 3}
       propertyPath: m_Materials.Array.data[0]
