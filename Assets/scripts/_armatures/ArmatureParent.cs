@@ -33,7 +33,7 @@ public class ArmatureParent : MonoBehaviour {
 	
 	public void PlayDefaultAnimation() {
 		if(_defaultAnimation != null) {
-//			Debug.Log("ArmatureParent/Start, _defaultAnimation = " + _defaultAnimation.name);
+			Debug.Log("ArmatureParent["+this.name+"/Start, _defaultAnimation = " + _defaultAnimation.name);
 			_animation [_defaultAnimation.name].layer = 0;
 			_animation[_defaultAnimation.name].wrapMode = WrapMode.Once;
 			_animation.Play(_defaultAnimation.name);

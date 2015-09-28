@@ -82,12 +82,12 @@ public class Inventory : MonoBehaviour {
 		}
 	}
 
-	public void RemoveItem(string key) {
+	public void RemoveItem(string key, bool useGravity = true) {
 //		Debug.Log("Inventory/RemoveItem, key = " + key);
 		if(HasItem(key)) {
 			var item = _items[key] as CollectableItem;
 //			item.IsCollected = false;
-			item.Drop();
+			item.Drop(useGravity);
 			_items.Remove(key);
 			EventCenter.Instance.RemoveInventory(item.name);
 		}

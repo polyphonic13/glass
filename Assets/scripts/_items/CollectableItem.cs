@@ -102,19 +102,21 @@ public class CollectableItem : InteractiveItem {
 		AttachToBackpack();
 	}
 
-	public virtual void Drop() {
-		AttachToRightHand ();
-		transform.parent = null;
+	public virtual void Drop(bool useGravity = true) {
+		Debug.Log ("CollectableItem[" + this.name + "]/Drop, useGravity = " + useGravity);
+		if (useGravity) {
+			AttachToRightHand ();
+			transform.parent = null;
 
-		BoxCollider collider = gameObject.GetComponent<BoxCollider> ();
+			BoxCollider collider = gameObject.GetComponent<BoxCollider> ();
 
-		var scale = collider.transform.localScale;
-//		Debug.Log (this.name + " local scale = " + scale);
-		var __weightClone =(ItemWeight) Instantiate(_weight, collider.transform.position, collider.	transform.rotation);
-		__weightClone.transform.localScale = scale;
-		__weightClone.collectableItem = this;
-		__weightClone.transform.parent = collider.transform;
-
+			var scale = collider.transform.localScale;
+			//		Debug.Log (this.name + " local scale = " + scale);
+			var __weightClone = (ItemWeight)Instantiate (_weight, collider.transform.position, collider.transform.rotation);
+			__weightClone.transform.localScale = scale;
+			__weightClone.collectableItem = this;
+			__weightClone.transform.parent = collider.transform;
+		}
 		IsEquipped = IsUsable = false;
 	}
 
