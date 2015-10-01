@@ -124,6 +124,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 468710}
+  - 65: {fileID: 6589110}
   m_Layer: 0
   m_Name: Bone
   m_TagString: Untagged
@@ -337,6 +338,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &6589110
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 177302}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5, y: .200000003, z: 3}
+  m_Center: {x: -.75, y: 0, z: .800000012}
 --- !u!111 &11159324
 Animation:
   m_ObjectHideFlags: 1
@@ -382,15 +395,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   Thumbnail: {fileID: 0}
-  ItemName: Bedroom Door
+  ItemName: N Bedroom Door
   _interactDistance: 1
   _containingRoom: bedroom_nw
   _pops: {fileID: 11439268}
   _parentBone: {fileID: 468710}
-  _mainClip: {fileID: 7400006, guid: 8e01fa68f9de24409b0124ab1e80d980, type: 3}
-  _closeClip: {fileID: 7400004, guid: 8e01fa68f9de24409b0124ab1e80d980, type: 3}
+  _mainClip: {fileID: 7400010, guid: 8e01fa68f9de24409b0124ab1e80d980, type: 3}
+  _closeClip: {fileID: 7400008, guid: 8e01fa68f9de24409b0124ab1e80d980, type: 3}
   _keyName: bedroom_n_door_key
-  IsLocked: 1
+  IsLocked: 0
 --- !u!137 &13703408
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
