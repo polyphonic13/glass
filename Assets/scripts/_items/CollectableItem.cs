@@ -103,7 +103,7 @@ public class CollectableItem : InteractiveItem {
 	}
 
 	public virtual void Drop(bool useGravity = true) {
-		Debug.Log ("CollectableItem[" + this.name + "]/Drop, useGravity = " + useGravity);
+//		Debug.Log ("CollectableItem[" + this.name + "]/Drop, useGravity = " + useGravity);
 		if (useGravity) {
 			AttachToRightHand ();
 			transform.parent = null;

@@ -40,12 +40,12 @@ public class ToyChest : MonoBehaviour {
 				EventCenter.Instance.AddNote (toy.ItemName + " added to Toy Chest");
 				break;
 			}
-			Debug.Log("_collected = " + _collected + ", _expected = " + _expected);
-			if(_collected == _expected) {
-				Debug.Log ("toy box expected all collected");
-				EventCenter.Instance.TriggerEvent(unlockEvent);
-				EventCenter.Instance.AddNote ("There's a crash in the room next door.");
-			}
+		}
+		Debug.Log("_collected = " + _collected + ", _expected = " + _expected);
+		if(_collected == _expected) {
+			Debug.Log ("toy box expected all collected");
+			EventCenter.Instance.TriggerEvent(unlockEvent);
+			EventCenter.Instance.AddNote ("There's a crash in the room next door.");
 		}
 	}
 }
