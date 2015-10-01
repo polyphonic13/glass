@@ -13,14 +13,14 @@ public class ToyChest : MonoBehaviour {
 		"toy_dog01"
 	};
 
-	private Vector3[] _toyLocations = {
-		new Vector3(0.21f, -0.46f, -0.347f),
-		new Vector3(-9.819f, -0.495f, 2.031f)
+	private Vector3[] _toyOffsets = {
+		new Vector3(0, 0.25f, 0),
+		new Vector3(-0.66f, 0.25f, 0)
 	};
 
 	private Quaternion[] _toyRotations = {
-		new Quaternion(0, 0, 270, 0),
-		new Quaternion(0, 90, 90, 0)
+		new Quaternion(90, 90, 0, 0),
+		new Quaternion(90, 90, 0, 0)
 	};
 
 	public void AddToy(RabbitHuntToy toy) {
@@ -30,11 +30,17 @@ public class ToyChest : MonoBehaviour {
 
 			if(toy.name == _toyNames[i]) {
 				Transform toyTransform = toy.transform;
-				toyTransform.parent = this.transform.parent;
-//				toyTransform.position = _toyLocations[i];
-				toyTransform.position = this.transform.position;
+				Vector3 newPosition = new Vector3(
+					(this.transform.position.x + _toyOffsets[i].x), 
+					(this.transform.position.y + _toyOffsets[i].y), 
+					(this.transform.position.z + _toyOffsets[i].z)
+				);
+				toyTransform.parent = this.transform;
+				toyTransform.position = newPosition;
 				toyTransform.rotation = _toyRotations[i];
 				_collected++;
+
+				toy.IsEnabled = false;
 
 				EventCenter.Instance.CloseInventoryUI ();
 				EventCenter.Instance.AddNote (toy.ItemName + " added to Toy Chest");
