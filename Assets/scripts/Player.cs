@@ -127,7 +127,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
 			_inventoryUI.enabled = false;
 			_interactiveItemUI.enabled = false;
 			_isInspectorOpen = _isMenuOpen = _isInventoryOpen = false;
-			_collider = GameObject.Find("collider").transform;
+//			_collider = GameObject.Find("collider").transform;
 
             m_CharacterController = GetComponent<CharacterController>();
             _mainCamera = Camera.main;
