@@ -26,11 +26,8 @@ public class PlayerHead : MonoBehaviour {
 
 		if (Physics.Raycast (this.transform.position, this.transform.forward, out hit, interactDistance)) {
 			if (hit.transform != this.transform && hit.transform.tag == "interactive") {
-//				Debug.Log("head hit for " + hit.transform.name + ", _itemJustHit = " + _itemJustHit);
 				if (hit.transform.name != _itemJustHit) {
-//					Debug.DrawRay (this.transform.position, this.transform.forward, Color.red);
 					InteractiveItem item = hit.transform.gameObject.GetComponent<InteractiveItem> ();
-					Debug.Log("item["+item.name+"] IsEnabled = " + item.IsEnabled);
 					if(item.IsEnabled) {
 						item.SetFocus (true);
 						_itemJustHit = hit.transform.name;
