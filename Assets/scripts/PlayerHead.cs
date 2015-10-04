@@ -12,6 +12,15 @@ public class PlayerHead : MonoBehaviour {
 		_checkRayCast();
 	}
 
+	private void _clearFocus() {
+		if(_focusedItem != null) {
+			_focusedItem.SetFocus (false);
+			_focusedItem = null;
+		}
+		_itemJustHit = "";
+
+	}
+	
 	private void _checkRayCast() {
 		RaycastHit hit;
 
@@ -21,19 +30,19 @@ public class PlayerHead : MonoBehaviour {
 				if (hit.transform.name != _itemJustHit) {
 //					Debug.DrawRay (this.transform.position, this.transform.forward, Color.red);
 					InteractiveItem item = hit.transform.gameObject.GetComponent<InteractiveItem> ();
+					Debug.Log("item["+item.name+"] IsEnabled = " + item.IsEnabled);
 					if(item.IsEnabled) {
 						item.SetFocus (true);
 						_itemJustHit = hit.transform.name;
 						_focusedItem = item;
 					}
 				}
+			} else {
+				_clearFocus();
 			}
 		} else {
-			if(_focusedItem != null) {
-				_focusedItem.SetFocus (false);
-				_focusedItem = null;
-			}
-			_itemJustHit = "";
+			_clearFocus();
 		}
 	}
+	
 }
