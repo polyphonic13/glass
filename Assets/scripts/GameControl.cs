@@ -42,6 +42,8 @@ public class GameControl : MonoBehaviour {
 			Destroy(gameObject);
 		}
 
+		Cursor.visible = false;
+
 		for (int i = 0; i < _playerScenes.Length; i++) {
 			if(_playerScenes[i] == Application.loadedLevelName) {
 				_initPlayer();
