@@ -23,11 +23,12 @@ public class InteractiveItem : MonoBehaviour {
 	}
 
 	void Update() {
-//		ItemUpdate ();
+		ItemUpdate ();
 	}
 
 	public virtual void ItemUpdate() {
 		if(IsEnabled) {
+
 			CheckProximity();
 		}
 	}
@@ -100,6 +101,7 @@ public class InteractiveItem : MonoBehaviour {
 			EventCenter.Instance.NearInteractiveItem(this, isInProximity);
 			_wasJustFocused = false;
 		}
+//		Debug.Log(this.name + ", chcking proximity: " + isInProximity);
 
 		return isInProximity;
 	}
