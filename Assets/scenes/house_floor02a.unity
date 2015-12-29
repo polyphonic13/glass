@@ -5076,6 +5076,75 @@ MeshFilter:
 Transform:
   m_PrefabParentObject: {fileID: 400004, guid: 97c543d1878404ad6a824431cc8f76d6, type: 3}
   m_PrefabInternal: {fileID: 1371054352}
+--- !u!1 &747527989
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 747527990}
+  - 33: {fileID: 747527993}
+  - 65: {fileID: 747527992}
+  - 114: {fileID: 747527991}
+  m_Layer: 0
+  m_Name: endtable02_drawer_trigger
+  m_TagString: interactive
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &747527990
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 747527989}
+  m_LocalRotation: {x: -.707106769, y: -.707106829, z: 1.04308121e-07, w: 0}
+  m_LocalPosition: {x: -1.12, y: -.0399999991, z: -.0599999987}
+  m_LocalScale: {x: 1.84572244, y: .175058931, z: .734209001}
+  m_Children: []
+  m_Father: {fileID: 1376614757}
+  m_RootOrder: 0
+--- !u!114 &747527991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 747527989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d35658dd9fe54a8caf94ac9d400a9ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
+  Thumbnail: {fileID: 0}
+  ItemName: Endtable Drawer
+  _interactDistance: 1
+  _containingRoom: bedroom_n
+  _pops: {fileID: 637774977}
+  _parentBone: {fileID: 1376614757}
+  _mainClip: {fileID: 7400006, guid: dcb4ffab9c23c447e9ab4c73f8f03940, type: 3}
+  _closeClip: {fileID: 7400004, guid: dcb4ffab9c23c447e9ab4c73f8f03940, type: 3}
+--- !u!65 &747527992
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 747527989}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &747527993
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 747527989}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &756823313
 GameObject:
   m_ObjectHideFlags: 0
@@ -6337,7 +6406,7 @@ GameObject:
   - 114: {fileID: 999302641}
   m_Layer: 0
   m_Name: vaniy01_drawer_trigger
-  m_TagString: Untagged
+  m_TagString: interactive
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6368,7 +6437,7 @@ MonoBehaviour:
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   Thumbnail: {fileID: 0}
   ItemName: Vanity Drawer
-  _interactDistance: 1.5
+  _interactDistance: 1
   _containingRoom: bedroom_n
   _pops: {fileID: 200910261}
   _parentBone: {fileID: 600226721}
@@ -6993,7 +7062,7 @@ GameObject:
   - 114: {fileID: 1111610350}
   m_Layer: 0
   m_Name: dresser02_top_center_drawer_trigger
-  m_TagString: Untagged
+  m_TagString: interactive
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7024,7 +7093,7 @@ MonoBehaviour:
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   Thumbnail: {fileID: 0}
   ItemName: Top Center Drawer
-  _interactDistance: 1.5
+  _interactDistance: 1
   _containingRoom: bedroom_n
   _pops: {fileID: 2089102973}
   _parentBone: {fileID: 1541368802}
@@ -7597,7 +7666,7 @@ MeshFilter:
 GameObject:
   m_PrefabParentObject: {fileID: 100138, guid: ea042e53401994c52980c4927a19ed6f, type: 3}
   m_PrefabInternal: {fileID: 1166348885}
---- !u!114 &1198230278
+--- !u!114 &1198230279
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -7812,7 +7881,7 @@ GameObject:
   - 114: {fileID: 1248026216}
   m_Layer: 0
   m_Name: dresser02_top_left_drawer_trigger
-  m_TagString: Untagged
+  m_TagString: interactive
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7843,7 +7912,7 @@ MonoBehaviour:
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   Thumbnail: {fileID: 0}
   ItemName: Top Left Drawer
-  _interactDistance: 1.5
+  _interactDistance: 1
   _containingRoom: bedroom_n
   _pops: {fileID: 2089102973}
   _parentBone: {fileID: 597139519}
@@ -8153,99 +8222,99 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22470362, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22470362, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22470362, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 128
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22470362, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -32
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22470362, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 256
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22470362, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 64
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22430304, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22430304, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22430304, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 128
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22430304, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -128
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22430304, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 256
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22430304, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 64
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22440250, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22440250, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22440250, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 128
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22440250, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -224
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22440250, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 256
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22440250, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 64
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22489610, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22489610, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22489610, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 128
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22489610, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -320
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22489610, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 256
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22489610, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 64
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11472334, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_StepInterval
@@ -8289,8 +8358,12 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 134008, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 10849182, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
+      propertyPath: m_Cookie
+      value: 
+      objectReference: {fileID: 2800000, guid: 2c29c08dd1c0b6749b7cd0fcff7a29fd, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
   m_IsPrefabParent: 0
@@ -8371,7 +8444,7 @@ GameObject:
   - 114: {fileID: 1366590226}
   m_Layer: 0
   m_Name: dresser02_top_right_drawer_trigger
-  m_TagString: Untagged
+  m_TagString: interactive
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8402,7 +8475,7 @@ MonoBehaviour:
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   Thumbnail: {fileID: 0}
   ItemName: Top Right Drawer
-  _interactDistance: 1.5
+  _interactDistance: 1
   _containingRoom: bedroom_n
   _pops: {fileID: 2089102973}
   _parentBone: {fileID: 1994317102}
@@ -8593,6 +8666,10 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 97c543d1878404ad6a824431cc8f76d6, type: 3}
   m_IsPrefabParent: 0
+--- !u!4 &1376614757 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400008, guid: dcb4ffab9c23c447e9ab4c73f8f03940, type: 3}
+  m_PrefabInternal: {fileID: 1089420063}
 --- !u!4 &1378338367 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400154, guid: 33daf0d64b1d94152a0f1351b725f103, type: 3}
@@ -9574,7 +9651,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1554954285
 Transform:
   m_ObjectHideFlags: 0
@@ -9947,7 +10024,7 @@ GameObject:
   - 114: {fileID: 1595357384}
   m_Layer: 0
   m_Name: dresser02_bottom_drawer_trigger
-  m_TagString: Untagged
+  m_TagString: interactive
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11854,7 +11931,7 @@ GameObject:
   - 114: {fileID: 1876354981}
   m_Layer: 0
   m_Name: dresser02_middle_drawer_trigger
-  m_TagString: Untagged
+  m_TagString: interactive
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11885,7 +11962,7 @@ MonoBehaviour:
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   Thumbnail: {fileID: 0}
   ItemName: Middle Drawer
-  _interactDistance: 2
+  _interactDistance: 1
   _containingRoom: bedroom_n
   _pops: {fileID: 2089102973}
   _parentBone: {fileID: 1762748409}
