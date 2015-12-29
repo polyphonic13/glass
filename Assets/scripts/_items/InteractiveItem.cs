@@ -27,8 +27,8 @@ public class InteractiveItem : MonoBehaviour {
 	}
 
 	public virtual void ItemUpdate() {
-		if(IsEnabled) {
-
+		if(IsEnabled && IsRoomActive) {
+//			Debug.Log("going to check proximity for: " + this.name);
 			CheckProximity();
 		}
 	}
@@ -64,12 +64,14 @@ public class InteractiveItem : MonoBehaviour {
 
 	public virtual void OnRoomEntered(string room) {
 		if(room == _containingRoom) {
+			Debug.Log("activating: " + room);
 			IsRoomActive = true;
 		}
 	}
 
 	public void OnRoomExited(string room) {
 		if(room == _containingRoom) {
+			Debug.Log("deactivating: " + room);
 			IsRoomActive = false;
 		}
 	}

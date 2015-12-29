@@ -21,6 +21,7 @@ public class SceneManager : MonoBehaviour {
 
 	public void PositionAtStart(Room room) {
 		Transform player = GameObject.Find ("player").transform;
+		Debug.Log("starting position = " + room.startingPosition + ", starting rotation = " + room.startingRotation);
 		player.position = room.startingPosition;
 		player.rotation = room.startingRotation;
 	}
