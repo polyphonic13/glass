@@ -5114,7 +5114,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 747527989}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d35658dd9fe54a8caf94ac9d400a9ee, type: 3}
+  m_Script: {fileID: 11500000, guid: 809a167fa8b484b0eb84b17bb95d31c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
@@ -5126,6 +5126,8 @@ MonoBehaviour:
   _parentBone: {fileID: 1376614757}
   _mainClip: {fileID: 7400006, guid: dcb4ffab9c23c447e9ab4c73f8f03940, type: 3}
   _closeClip: {fileID: 7400004, guid: dcb4ffab9c23c447e9ab4c73f8f03940, type: 3}
+  _keyName: 
+  IsLocked: 1
 --- !u!65 &747527992
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8218,7 +8220,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 405650, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22470362, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_AnchorMin.y
@@ -9443,7 +9445,7 @@ GameObject:
   - 114: {fileID: 1520766667}
   m_Layer: 0
   m_Name: bedroom_n_door_trigger
-  m_TagString: persistent
+  m_TagString: interactive
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9475,7 +9477,7 @@ MonoBehaviour:
   Thumbnail: {fileID: 0}
   ItemName: Bedroom N Door
   _interactDistance: 1.5
-  _containingRoom: 
+  _containingRoom: bedroom_n
   _pops: {fileID: 104483796}
   _parentBone: {fileID: 104483794}
   _mainClip: {fileID: 7400010, guid: 8e01fa68f9de24409b0124ab1e80d980, type: 3}
@@ -10028,7 +10030,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1595357383
 Transform:
   m_ObjectHideFlags: 0
