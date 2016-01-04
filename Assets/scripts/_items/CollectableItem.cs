@@ -66,7 +66,7 @@ public class CollectableItem : InteractiveItem {
 	}
 	
 	public void AttachToObject(Transform target) {
-		// Debug.Log("CollectableItem[" + name + "]/AttachToObject, target = " + target);
+		 Debug.Log("CollectableItem[" + name + "]/AttachToObject, target = " + target);
 		if (target != null) {
 
 			transform.position = target.transform.position;

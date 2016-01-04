@@ -13,8 +13,9 @@ public class GameControl : MonoBehaviour {
 	public float RemainingStamina { get; set; } 
 
 	private string[] _playerScenes = {
-		"house_floor02",
-		"cave01"
+		"house_floor02a",
+		"cave01",
+		"climb_test"
 	};
 
 	private static GameControl _instance;

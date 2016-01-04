@@ -24,9 +24,11 @@ public class PlayerHead : MonoBehaviour {
 	private void _checkRayCast() {
 		RaycastHit hit;
 
+		Debug.DrawRay(this.transform.position, this.transform.forward, Color.red);
 		if (Physics.Raycast (this.transform.position, this.transform.forward, out hit, interactDistance)) {
-//			Debug.DrawRay(this.transform.position, this.transform.forward, Color.green);
-			if (hit.transform != this.transform && (hit.transform.tag == "interactive")) {
+			if (hit.transform != this.transform && (hit.transform.tag == "interactive" || hit.transform.tag == "persistent")) {
+				Debug.DrawRay(this.transform.position, this.transform.forward, Color.green);
+//				Debug.Log("hit name = " + hit.transform.name);
 				if (hit.transform.name != _itemJustHit) {
 					InteractiveItem item = hit.transform.gameObject.GetComponent<InteractiveItem> ();
 					if(item.IsEnabled) {

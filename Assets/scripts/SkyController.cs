@@ -4,6 +4,7 @@ using System.Collections;
 public class SkyController : MonoBehaviour {
 
 	public Transform stars;
+	public Transform moon;
 
 	public Gradient nightDayColor;
 
@@ -30,6 +31,11 @@ public class SkyController : MonoBehaviour {
 	private Light mainLight;
 	private Skybox sky;
 	private Material skyMat;
+
+	private string _currentState = "";
+	private string _previousState = "";
+
+	private bool _isJustChanged = false; 
 
 	// Use this for initialization
 	void Start () {
@@ -60,11 +66,21 @@ public class SkyController : MonoBehaviour {
 		i = (((dayAtmosphereThickness - nightAtmosphereThickness) * dot) + nightAtmosphereThickness);
 		skyMat.SetFloat("_AtmosphereThickness", i);
 
-		Debug.Log ("dot = " + dot + " rot = " + (dayRotationSpeed * Time.deltaTime * skySpeed));
+//		Debug.Log ("dot = " + dot + " rot = " + (dayRotationSpeed * Time.deltaTime * skySpeed));
 		if(dot > 0) {
+			_currentState = "day";
+
 			this.transform.Rotate(dayRotationSpeed * Time.deltaTime * skySpeed);
 		} else {
+			_currentState = "night";
+
 			this.transform.Rotate(nightRotationSpeed * Time.deltaTime * skySpeed);
+		}
+
+		if (_currentState != _previousState) {
+			// dispatch new state
+			EventCenter.Instance.ChangeDayNightState(_currentState);
+			_previousState = _currentState;
 		}
 
 		stars.rotation = this.transform.rotation;

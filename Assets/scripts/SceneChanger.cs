@@ -13,7 +13,7 @@ public class SceneChanger : MonoBehaviour {
 
 	void OnTriggerEnter(Collider tgt) {
 		if(activated) {
-			Debug.Log("scene changer trigger, tgt.tag = " + tgt.gameObject.tag);
+//			Debug.Log("scene changer trigger, tgt.tag = " + tgt.gameObject.tag);
 			if(tgt.gameObject.tag == "Player") {
 				GameControl.Instance.ChangeScene(_targetScene, _targetRoom);
 			}

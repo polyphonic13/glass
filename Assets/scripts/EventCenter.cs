@@ -37,6 +37,8 @@ public class EventCenter : MonoBehaviour {
 	public delegate void CloseMenuHandler();
 	public delegate void CloseInventoryHandler();
 
+	public delegate void DayNightHandler (string state);
+
 	public event PlayerDamageHandler OnPlayerDamaged;
 
 	public event OnWaterHandler OnAboveWater; 
@@ -71,6 +73,8 @@ public class EventCenter : MonoBehaviour {
 
 	public event CloseMenuHandler OnCloseMenuUI;
 	public event CloseInventoryHandler OnCloseInventoryUI;
+
+	public event DayNightHandler OnDayNightChange;
 
 	#region singleton
 	private static EventCenter _instance;
@@ -224,6 +228,13 @@ public class EventCenter : MonoBehaviour {
 	public void CloseInventoryUI() {
 		if(OnCloseInventoryUI != null) {
 			OnCloseInventoryUI();
+		}
+	}
+
+	public void ChangeDayNightState(string state) {
+		Debug.Log ("ChangeDayNightState, state = " + state);
+		if (OnDayNightChange != null) {
+			OnDayNightChange (state);
 		}
 	}
 }

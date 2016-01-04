@@ -9,4 +9,10 @@ public class StartGame : MonoBehaviour {
 		GameControl.Instance.targetRoom = FirstRoom;
 		Application.LoadLevel(FirstLevel);
 	}
+
+	private void Update() {
+		if (Input.GetKeyDown (KeyCode.Return)) {
+			Go ();
+		}
+	}
 }
