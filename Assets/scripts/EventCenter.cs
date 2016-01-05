@@ -26,7 +26,7 @@ public class EventCenter : MonoBehaviour {
 	public delegate void TriggerEventHandler(string evt);
 	public delegate void TriggerCollectedEventHandler(string evt);
 
-	public delegate void InteractiveItemProximityHandler(InteractiveItem element, bool inProximity);
+	public delegate void InteractiveItemProximityHandler(InteractiveItem item, bool isInProximity);
 
 	public delegate void AddNoteHandler(string message = "", bool fadeOut = true);
 	public delegate void RemoveNoteHandler(string message = "");
@@ -189,9 +189,10 @@ public class EventCenter : MonoBehaviour {
 		}
 	}
 	
-	public void NearInteractiveItem(InteractiveItem element, bool inProximity) {
+	public void NearInteractiveItem(InteractiveItem item, bool isInProximity) {
+		Debug.Log ("EventCenter/NearInteractiveItem, item = " + item.name + ", isInProximity = " + isInProximity);
 		if(OnNearInteractiveItem != null) {
-			OnNearInteractiveItem(element, inProximity);
+			OnNearInteractiveItem(item, isInProximity);
 		}
 	}
 
