@@ -29,7 +29,7 @@ public class InteractiveItem : MonoBehaviour {
 	public virtual void ItemUpdate() {
 		if(IsEnabled && IsRoomActive) {
 //			Debug.Log("going to check proximity for: " + this.name);
-			CheckProximity();
+//			CheckProximity();
 		}
 	}
 

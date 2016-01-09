@@ -24,23 +24,17 @@ public class PlayerHead : MonoBehaviour {
 	private void _checkRayCast() {
 		RaycastHit hit;
 
-		Debug.DrawRay(this.transform.position, this.transform.forward, Color.red);
+//		Debug.DrawRay(this.transform.position, this.transform.forward, Color.red);
 		if (Physics.Raycast (this.transform.position, this.transform.forward, out hit, interactDistance)) {
 			if (hit.transform != this.transform && (hit.transform.tag == "interactive" || hit.transform.tag == "persistent")) {
-				Debug.DrawRay(this.transform.position, this.transform.forward, Color.green);
+//				Debug.DrawRay(this.transform.position, this.transform.forward, Color.green);
 //				Debug.Log("hit name = " + hit.transform.name);
 				if (hit.transform.name != _itemJustHit) {
 					InteractiveItem item = hit.transform.gameObject.GetComponent<InteractiveItem> ();
 					if(item.IsEnabled) {
-//						bool isLookingAtItem = IsLookingAtObject(this.transform, item.transform);
-//						Debug.Log ("isLookingAtItem[ " + item.name + " ] = " + isLookingAtItem);
-//						if(isLookingAtItem) {
-							item.SetFocus (true);
-							_itemJustHit = hit.transform.name;
-							_focusedItem = item;
-//						} else {
-//							_clearFocus();
-//						}
+						item.SetFocus (true);
+						_itemJustHit = hit.transform.name;
+						_focusedItem = item;
 					}
 				}
 			} else {
