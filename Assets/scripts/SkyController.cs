@@ -62,7 +62,7 @@ public class SkyController : MonoBehaviour {
 
 		RenderSettings.fogColor = nightDayFogColor.Evaluate (dot);
 		RenderSettings.fogDensity = fogDensityCurve.Evaluate (dot) * fogScale;
-
+	
 		i = (((dayAtmosphereThickness - nightAtmosphereThickness) * dot) + nightAtmosphereThickness);
 		skyMat.SetFloat("_AtmosphereThickness", i);
 
