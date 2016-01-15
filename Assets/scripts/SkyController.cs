@@ -55,6 +55,7 @@ public class SkyController : MonoBehaviour {
 		tRange = 1 - minAmbientPoint;
 		dot = Mathf.Clamp01 ((Vector3.Dot (mainLight.transform.forward, Vector3.down) - minAmbientPoint) / tRange);
 		i = ((maxAmbient - minAmbient) * dot) + minAmbient;
+		Debug.Log ("ambient intensity = " + i);
 		RenderSettings.ambientIntensity = i;
 
 		mainLight.color = nightDayColor.Evaluate (dot);
