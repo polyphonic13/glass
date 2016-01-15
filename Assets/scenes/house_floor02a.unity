@@ -1241,6 +1241,22 @@ Transform:
   - {fileID: 1834650818}
   m_Father: {fileID: 1642581762}
   m_RootOrder: 9
+--- !u!1 &192004330 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100004, guid: bc2a9584cda834ce7ab58a485d9ccd88, type: 3}
+  m_PrefabInternal: {fileID: 1381133413}
+--- !u!114 &192004331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 192004330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfaaf3fadf14f464e8b1dc47cd6b53f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _defaultAnimation: {fileID: 0}
 --- !u!1 &193602622
 GameObject:
   m_ObjectHideFlags: 0
@@ -12513,6 +12529,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11100000, guid: bc2a9584cda834ce7ab58a485d9ccd88, type: 3}
+      propertyPath: m_Animation
+      value: 
+      objectReference: {fileID: 7400008, guid: bc2a9584cda834ce7ab58a485d9ccd88, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bc2a9584cda834ce7ab58a485d9ccd88, type: 3}
   m_IsPrefabParent: 0
@@ -17549,6 +17569,81 @@ Transform:
 Transform:
   m_PrefabParentObject: {fileID: 400098, guid: b2bb87aa7ab9840f1abf7eb04a059197, type: 3}
   m_PrefabInternal: {fileID: 1889229964}
+--- !u!1 &2055260134
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 2055260135}
+  - 33: {fileID: 2055260138}
+  - 65: {fileID: 2055260137}
+  - 114: {fileID: 2055260136}
+  m_Layer: 0
+  m_Name: secret_room_e_door_trigger
+  m_TagString: persistent
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2055260135
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2055260134}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: .140000001, y: 1.01999998, z: -2.08999991}
+  m_LocalScale: {x: .425011635, y: .512500048, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2078678533}
+  m_RootOrder: 0
+--- !u!114 &2055260136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2055260134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 809a167fa8b484b0eb84b17bb95d31c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
+  Thumbnail: {fileID: 0}
+  ItemName: Secret Door
+  _interactDistance: 3
+  _containingRoom: 
+  _pops: {fileID: 192004331}
+  _parentBone: {fileID: 2078678533}
+  _mainClip: {fileID: 7400010, guid: bc2a9584cda834ce7ab58a485d9ccd88, type: 3}
+  _closeClip: {fileID: 7400006, guid: bc2a9584cda834ce7ab58a485d9ccd88, type: 3}
+  _keyName: 
+  IsLocked: 0
+--- !u!65 &2055260137
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2055260134}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &2055260138
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2055260134}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &2078678533 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400016, guid: bc2a9584cda834ce7ab58a485d9ccd88, type: 3}
+  m_PrefabInternal: {fileID: 1381133413}
 --- !u!1 &2089102972 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100012, guid: 4e665738224084b31ade8dc25303dc90, type: 3}
