@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using UnitySampleAssets.CrossPlatformInput;
+using Rewired;
 
 public class InventoryUI : MonoBehaviour {
 
@@ -33,6 +34,8 @@ public class InventoryUI : MonoBehaviour {
 
 	private Canvas _canvas;
 
+	private Rewired.Player _controls; 
+
     public void OnInventoryAdded(string itemName) {
     	_setItem(itemName);	
     }
@@ -46,6 +49,8 @@ public class InventoryUI : MonoBehaviour {
 	}
 
 	private void Awake() {
+		_controls = ReInput.players.GetPlayer(0);
+
 		_items = new ArrayList();
 		_canvas = gameObject.transform.parent.GetComponent<Canvas>();
 		_buildUI();
@@ -133,7 +138,6 @@ public class InventoryUI : MonoBehaviour {
 			RectTransform rect = item.GetComponent<RectTransform>();
 
 			item.name = itemName;
-//			itemUI.SetName(itemName);
 
 			rect.localPosition = new Vector3(x, y, 0);
 
@@ -148,7 +152,7 @@ public class InventoryUI : MonoBehaviour {
     }
 
     private void _checkInput() {
-		if(CrossPlatformInputManager.GetButtonDown("Cancel")) {
+		if(_controls.GetButtonDown("cancel")) {
 			if(!_isInspectingItem) {
 				if(_isSelectingItem) {
 					if(_selectedInventoryItemUI != null) {
@@ -161,7 +165,12 @@ public class InventoryUI : MonoBehaviour {
 			}
 		}
 		if(_occupiedItems > 0 && !_isInspectingItem) {
-			if(CrossPlatformInputManager.GetButtonDown("Fire1")) {
+			var up = _controls.GetButton("up");
+			var down = _controls.GetButton("down");
+			var left = _controls.GetButton("left");
+			var right = _controls.GetButton("right");
+			Debug.Log ("up = " + up + ", down = " + down + ", left = " + left + ", right = " + right);
+			if(_controls.GetButtonDown("confirm")) {
 				if(!_isSelectingItem) {
 					_selectedInventoryItemUI = _items[_currentItemIndex] as InventoryItemUI;
 					if(_selectedInventoryItemUI != null) {
@@ -174,17 +183,56 @@ public class InventoryUI : MonoBehaviour {
 					}
 				}
 			} else if(_isSelectingItem) {
-				if(DelayedAxisInput.Check("vertical", out _horizontal, out _vertical)) {
-					var setFocus = true;
-					if(_vertical > 0) {
-						setFocus = false;
-					}
+//				if(DelayedAxisInput.Check("vertical", out _horizontal, out _vertical)) {
+//					var setFocus = true;
+//					if(_vertical > 0) {
+//						setFocus = false;
+//					}
+//					if(_selectedInventoryItemUI != null) {
+//						_selectedInventoryItemUI.IncrementControlButtonFocus(setFocus);
+//					}
+//				}
+				if(up) {
 					if(_selectedInventoryItemUI != null) {
-						_selectedInventoryItemUI.IncrementControlButtonFocus(setFocus);
+						_selectedInventoryItemUI.IncrementControlButtonFocus(false);
+					}
+				} else if(down) {
+					if(_selectedInventoryItemUI != null) {
+						_selectedInventoryItemUI.IncrementControlButtonFocus(true);
 					}
 				}
 			} else if(!_isSelectingItem) {
-				if(DelayedAxisInput.Check("both", out _horizontal, out _vertical)) {
+//				if(DelayedAxisInput.Check("both", out _horizontal, out _vertical)) {
+//					if(_horizontal != 0) {
+//						_calculateCol(_horizontal);
+//					} else if(_vertical != 0) {
+//						_calculateRow(_vertical);
+//					}
+//					_currentItemIndex = (_currentRow * _numColumns) + _currentColumn;
+//					var item = _items[_currentItemIndex] as InventoryItemUI;
+//
+//					if(item != null) {
+//						item.SetFocus(true);
+//					}
+//					var prevItem = _items[_previousItemIndex] as InventoryItemUI;
+//					if(prevItem != null) {
+//						prevItem.SetFocus(false);
+//					}
+//					_previousItemIndex = _currentItemIndex;
+//				}
+				_horizontal = 0;
+				_vertical = 0;
+				if(up) {
+					_vertical = 1;
+				} else if(down) {
+					_vertical = -1;
+				} else if(left) {
+					_horizontal = -1;
+				} else if(right) {
+					_horizontal = 1;
+				}
+
+				if(_horizontal != 0 || _vertical != 0) {
 					if(_horizontal != 0) {
 						_calculateCol(_horizontal);
 					} else if(_vertical != 0) {

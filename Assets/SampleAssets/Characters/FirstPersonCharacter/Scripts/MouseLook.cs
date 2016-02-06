@@ -1,14 +1,15 @@
 using System;
 using UnityEngine;
 using UnitySampleAssets.CrossPlatformInput;
+using Rewired;
 
 namespace UnitySampleAssets.Characters.FirstPerson
 {
     [Serializable]
     public class MouseLook
     {
-        public float XSensitivity = 2f;
-        public float YSensitivity = 2f;
+        public float XSensitivity = 4f;
+        public float YSensitivity = 4f;
         public bool clampVerticalRotation = true;
         public float MinimumX = -90F;
         public float MaximumX = 90F;
@@ -19,9 +20,12 @@ namespace UnitySampleAssets.Characters.FirstPerson
         private Quaternion m_CharacterTargetRot;
         private Quaternion m_CameraTargetRot;
 
+		private Rewired.Player _controls;
 
         public void Init(Transform character, Transform camera)
         {
+			_controls = ReInput.players.GetPlayer(0);
+			Debug.Log("_controls for mouse look = " + _controls);
             m_CharacterTargetRot = character.localRotation;
             m_CameraTargetRot = camera.localRotation;
         }
@@ -29,9 +33,12 @@ namespace UnitySampleAssets.Characters.FirstPerson
 
         public void LookRotation(Transform character, Transform camera)
         {
-            float yRot = CrossPlatformInputManager.GetAxis("Mouse X") * XSensitivity;
+/*            float yRot = CrossPlatformInputManager.GetAxis("Mouse X") * XSensitivity;
             float xRot = CrossPlatformInputManager.GetAxis("Mouse Y") * YSensitivity;
-
+*/
+			float yRot = _controls.GetAxis("look_horizontal") * XSensitivity;
+			float xRot = _controls.GetAxis("look_vertical") * YSensitivity;
+			
             m_CharacterTargetRot *= Quaternion.Euler (0f, yRot, 0f);
             m_CameraTargetRot *= Quaternion.Euler (-xRot, 0f, 0f);
 

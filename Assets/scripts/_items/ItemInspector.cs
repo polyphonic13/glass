@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 using UnitySampleAssets.CrossPlatformInput;
+using Rewired;
 
 public class ItemInspector : MonoBehaviour {
 
@@ -48,7 +49,9 @@ public class ItemInspector : MonoBehaviour {
 
 	private static ItemInspector _instance;
 	private ItemInspector() {}
-	
+
+	private Rewired.Player _controls; 
+
 	public static ItemInspector Instance {
 		get {
 			if(_instance == null) {
@@ -104,6 +107,8 @@ public class ItemInspector : MonoBehaviour {
 	}
 
 	void Awake() {
+		_controls = ReInput.players.GetPlayer(0);
+
 		_camera = gameObject.GetComponent<Camera> ();
 		_camera.enabled = false;
 		_initialFieldOfView = _camera.fieldOfView;
@@ -122,21 +127,21 @@ public class ItemInspector : MonoBehaviour {
 	void LateUpdate() {
 		// based on: http://answers.unity3d.com/questions/463704/smooth-orbit-round-object-with-adjustable-orbit-ra.html
 		if (_item) {
-			if(CrossPlatformInputManager.GetButtonDown("Cancel")) {
+			if(_controls.GetButtonDown("cancel")) {
 				EventCenter.Instance.InspectItem(false, _item.name);
-			} else if(CrossPlatformInputManager.GetButtonDown("Fire1")) {
+			} else if(_controls.GetButtonDown("zoom_in")) {
 				if(_currentZoom < maxZoom) {
 					_camera.fieldOfView += zoomAmount;
 					_currentZoom++;
 				}
-			} else if(CrossPlatformInputManager.GetButtonDown("Fire2")) {
+			} else if(_controls.GetButtonDown("zoom_out")) {
 				if(_currentZoom > minZoom) {
 					_camera.fieldOfView -= zoomAmount;
 					_currentZoom--;
 				}
 			} else {
-				float horizontal = CrossPlatformInputManager.GetAxis("Horizontal");
-				float vertical = CrossPlatformInputManager.GetAxis("Vertical");
+				float horizontal = _controls.GetAxis("move_horizontal");
+				float vertical = _controls.GetAxis("move_vertical");
 
 				_velocityX = xSpeed * horizontal * 0.01f;
 				_velocityY = ySpeed * vertical * 0.01f;

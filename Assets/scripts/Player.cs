@@ -1,7 +1,8 @@
- using UnityEngine;
+using UnityEngine;
 using UnitySampleAssets.CrossPlatformInput;
 using UnitySampleAssets.Utility;
 using Random = UnityEngine.Random;
+using Rewired;
 
 namespace UnitySampleAssets.Characters.FirstPerson
 {
@@ -70,6 +71,8 @@ namespace UnitySampleAssets.Characters.FirstPerson
 
         private InteractiveItem _elementInProximity;
 
+		private Rewired.Player _controls;
+
 		private Transform[] _childTransforms; 
 
 		public bool IsUIOpen() {
@@ -123,6 +126,8 @@ namespace UnitySampleAssets.Characters.FirstPerson
 		#region awake
         private void Awake()
         {
+			_controls = ReInput.players.GetPlayer(0);
+			Debug.Log ("_controls = " + _controls);
 			_menuUI.enabled = false;
 			_inventoryUI.enabled = false;
 			_interactiveItemUI.enabled = false;
@@ -180,12 +185,21 @@ namespace UnitySampleAssets.Characters.FirstPerson
 		#region update		
 		private void Update()
         {
+//			var horizontal = _controls.GetAxis("move_horizontal");
+//			var vertical = _controls.GetAxis("move_vertical");
+//			Debug.Log ("move_horizontal = " + horizontal + ", vertical = " + vertical);
 			if (!_isInspectorOpen) {
-				if(CrossPlatformInputManager.GetButtonDown("Fire3")) {
+				if(_controls.GetButtonDown ("cancel")) {
+					if(_isMenuOpen) {
+						_isMenuOpen = !_isMenuOpen;
+						_menuUI.enabled = _isMenuOpen;
+						_closeMenuUI();
+					}
+				} else if(_controls.GetButtonDown("open_menu")) {
 					_isMenuOpen = !_isMenuOpen;
 					_menuUI.enabled = _isMenuOpen;
 					_closeInventoryUI();
-				} else if(CrossPlatformInputManager.GetButtonDown("Fire2")) {
+				} else if(_controls.GetButtonDown("open_inventory")) {
 					_isInventoryOpen = !_isInventoryOpen;
 					_inventoryUI.enabled = _isInventoryOpen;
 					_closeMenuUI();
@@ -195,21 +209,21 @@ namespace UnitySampleAssets.Characters.FirstPerson
 				if(!_isMenuOpen && !_isInventoryOpen) {
 					RotateView();
 					
-					if(CrossPlatformInputManager.GetButtonDown("Fire1")) {
+					if(_controls.GetButtonDown("actuate")) {
 //						Debug.Log("Player fire1 pressed, _elementInProximity = " + _elementInProximity);
 						if(_elementInProximity != null) {
 							_elementInProximity.Actuate();
 						}
 					}
 					// allow to Dive if Swimming 
-					if(CrossPlatformInputManager.GetButtonDown("Crouch")) {
+					if(_controls.GetButtonDown("dive")) {
 						if(_currentMovementState == _movementStates.Swim || _currentMovementState == _movementStates.Dive) {
 							_gravity = _underWaterGravity;
 							_currentMovementState = _movementStates.Dive;
 						}
 					}
 					// toggle Crawl if walking/Crawling
-					if(CrossPlatformInputManager.GetButtonDown("Crouch")) {
+					if(_controls.GetButtonDown("crouch")) {
 						if(_currentMovementState == _movementStates.Normal && m_CharacterController.isGrounded) {
 							_currentMovementState = _movementStates.Crawl;
 							_switchToCrawling(true);
@@ -226,7 +240,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
 					// the jump state needs to read here to make sure it is not missed
 					if (!m_Jump)
 					{
-						m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
+						m_Jump = _controls.GetButtonDown("jump");
 					}
 					
 					if (!m_PreviouslyGrounded && m_CharacterController.isGrounded)
@@ -440,10 +454,10 @@ namespace UnitySampleAssets.Characters.FirstPerson
         private void GetInput(out float speed)
         {
             // Read input
-            float horizontal = CrossPlatformInputManager.GetAxis("Horizontal");
-            float vertical = CrossPlatformInputManager.GetAxis("Vertical");
+            float horizontal = _controls.GetAxis("move_horizontal");
+            float vertical = _controls.GetAxis("move_vertical");
 
-            bool waswalking = m_IsWalking;
+            bool wasWalking = m_IsWalking;
 
 #if !MOBILE_INPUT
             // On standalone builds, walk/run speed is modified by a key press.
@@ -463,7 +477,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
 
             // handle speed change to give an fov kick
             // only if the player is going to a run, is running and the fovkick is to be used
-            if (m_IsWalking != waswalking && m_UseFovKick && m_CharacterController.velocity.sqrMagnitude > 0)
+            if (m_IsWalking != wasWalking && m_UseFovKick && m_CharacterController.velocity.sqrMagnitude > 0)
             {
                 StopAllCoroutines();
                 StartCoroutine(!m_IsWalking ? m_FovKick.FOVKickUp() : m_FovKick.FOVKickDown());
@@ -489,7 +503,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
             {
                 return;
             }
-            body.AddForceAtPosition(m_CharacterController.velocity*0.1f, hit.point, ForceMode.Impulse);
+            body.AddForceAtPosition(m_CharacterController.velocity * 0.1f, hit.point, ForceMode.Impulse);
         }
     }
 }
