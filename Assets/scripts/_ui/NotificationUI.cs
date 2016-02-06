@@ -3,6 +3,8 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class NotificationUI : MonoBehaviour {
+	public float fadeTime = 1.5f;
+	public float fadeSpeed = 0.015f;
 
 	[SerializeField] private Text _message;
 
@@ -59,7 +61,7 @@ public class NotificationUI : MonoBehaviour {
 	}
 
 	private IEnumerator _fade() {
-		for (float f = 1.5f; f >= 0; f -= 0.015f) {
+		for (float f = fadeTime; f >= 0; f -= fadeSpeed) {
 			if(f <= 1f) {
 				if(f < 0.1f) {
 					f = 0;
