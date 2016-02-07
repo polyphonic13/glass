@@ -1451,7 +1451,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400046, guid: 9f0a3ef76f916493ab5c6812ff29aa3b, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 400088, guid: 9f0a3ef76f916493ab5c6812ff29aa3b, type: 3}
       propertyPath: m_LocalRotation.x
@@ -1533,6 +1533,34 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 170608059}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &175917903
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 175917904}
+  m_Layer: 0
+  m_Name: door_holder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &175917904
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 175917903}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1300588630}
+  m_Father: {fileID: 1042508668}
+  m_RootOrder: 0
 --- !u!1 &180726139
 GameObject:
   m_ObjectHideFlags: 0
@@ -4118,15 +4146,15 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1042508668}
+    m_TransformParent: {fileID: 175917904}
     m_Modifications:
     - target: {fileID: 400000, guid: ccd6922a4c0764c1a9cac766f709cff1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.891
+      value: 6.890991
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ccd6922a4c0764c1a9cac766f709cff1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -16.875076
+      value: -16.875061
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ccd6922a4c0764c1a9cac766f709cff1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9994,7 +10022,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _defaultAnimation: {fileID: 7400004, guid: ccd6922a4c0764c1a9cac766f709cff1, type: 3}
-  animationClip: {fileID: 7400002, guid: ccd6922a4c0764c1a9cac766f709cff1, type: 3}
+  animationClip: {fileID: 7400008, guid: ccd6922a4c0764c1a9cac766f709cff1, type: 3}
   eventName: rabbit_hunt_completed
   singleUse: 1
 --- !u!1 &794202953
@@ -12148,7 +12176,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1300588630}
+  - {fileID: 175917904}
   - {fileID: 734607255}
   m_Father: {fileID: 1642581762}
   m_RootOrder: 10
@@ -16347,10 +16375,6 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400012, guid: e68378bdf2e8344668440323ad3fe1d7, type: 3}
   m_PrefabInternal: {fileID: 1451880766}
---- !u!4 &1453007940 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 400010, guid: ccd6922a4c0764c1a9cac766f709cff1, type: 3}
-  m_PrefabInternal: {fileID: 463584187}
 --- !u!1 &1453430119
 GameObject:
   m_ObjectHideFlags: 0
@@ -22370,81 +22394,6 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2109428917}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &2112207170
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 2112207171}
-  - 33: {fileID: 2112207174}
-  - 65: {fileID: 2112207173}
-  - 114: {fileID: 2112207172}
-  m_Layer: 0
-  m_Name: trigger
-  m_TagString: interactive
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2112207171
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2112207170}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.125, y: 1.417, z: -0}
-  m_LocalScale: {x: 0.26752073, y: 2.9710433, z: 1.4559128}
-  m_Children: []
-  m_Father: {fileID: 1453007940}
-  m_RootOrder: 0
---- !u!114 &2112207172
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2112207170}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f934b2b9d08343799d6119139d646a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: 2ee4da8354ff444ee932fa51f99d830b, type: 3}
-  Thumbnail: {fileID: 0}
-  ItemName: Secret Door
-  _interactDistance: 2
-  _containingRoom: bedroom_nw
-  _pops: {fileID: 786408788}
-  _parentBone: {fileID: 1453007940}
-  _mainClip: {fileID: 7400008, guid: ccd6922a4c0764c1a9cac766f709cff1, type: 3}
-  _closeClip: {fileID: 0}
-  _keyName: 
-  IsLocked: 1
-  unlockClip: {fileID: 7400002, guid: ccd6922a4c0764c1a9cac766f709cff1, type: 3}
-  isUnlockEventOpens: 1
-  unlockEvent: rabbit_hunt_completed
-  unlockMessage: A mechanical click comes from the room next door
---- !u!65 &2112207173
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2112207170}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!33 &2112207174
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2112207170}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &2120110737
 GameObject:
