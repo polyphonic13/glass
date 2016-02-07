@@ -32,9 +32,9 @@ public class CollectableItem : InteractiveItem {
 	}
 
 	public virtual void ItemUpdate() {
-		if(IsEnabled && !IsCollected) {
+//		if(IsEnabled && !IsCollected) {
 //			CheckProximity();
-		}
+//		}
 	}
 	
 	public override void Actuate () {

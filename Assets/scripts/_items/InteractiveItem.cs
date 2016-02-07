@@ -22,15 +22,15 @@ public class InteractiveItem : MonoBehaviour {
 		Init();
 	}
 
-	void Update() {
-		ItemUpdate ();
-	}
+//	void Update() {
+//		ItemUpdate ();
+//	}
 
 	public virtual void ItemUpdate() {
-		if(IsEnabled && IsRoomActive) {
+//		if(IsEnabled && IsRoomActive) {
 //			Debug.Log("going to check proximity for: " + this.name);
 //			CheckProximity();
-		}
+//		}
 	}
 
 	public void Init() {

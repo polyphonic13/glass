@@ -20,11 +20,9 @@ public class Inventory : MonoBehaviour {
 
 	public void InitPlayer() {
 		Transform player = GameObject.Find ("player").transform;
-//		_backpack = this.transform;
 		_backpack = player.Find ("backpack");
 		_leftHand = player.Find ("player_head_camera/left_hand");
 		_rightHand = player.Find ("player_head_camera/right_hand");
-		Debug.Log ("_backpack = " + _backpack);
 		EventCenter.Instance.OnInspectItem += OnInspectItem;
 	}
 
@@ -50,7 +48,6 @@ public class Inventory : MonoBehaviour {
 			_items.Add(item.name, item);
 			item.Collect(_backpack, _rightHand);
 			EventCenter.Instance.AddNote(item.ItemName + " Added to inventory");
-//			EventCenter.Instance.AddNote(item.ItemName + " Added to inventory");
 			EventCenter.Instance.AddInventory(item.name);
 		} else {
 			isAdded = false;

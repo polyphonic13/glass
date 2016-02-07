@@ -71,7 +71,7 @@ public class NotificationUI : MonoBehaviour {
 					_clearQueue();
 				}
 			}
-			yield return null;
+			yield return new WaitForSeconds(0.2f);
 		}
 	}
 }
