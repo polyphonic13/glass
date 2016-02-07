@@ -1560,7 +1560,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 422572, guid: 4ef7166ccc45443dfbc1e8edb98dc233, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -77.4505
+      value: -77.4505005
       objectReference: {fileID: 0}
     - target: {fileID: 422572, guid: 4ef7166ccc45443dfbc1e8edb98dc233, type: 2}
       propertyPath: m_LocalRotation.x
@@ -1981,15 +1981,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 465450, guid: d6632904813824ff889b1c963b5a9b20, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 8.559998
+      value: 8.55999756
       objectReference: {fileID: 0}
     - target: {fileID: 465450, guid: d6632904813824ff889b1c963b5a9b20, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.20199585
+      value: .20199585
       objectReference: {fileID: 0}
     - target: {fileID: 465450, guid: d6632904813824ff889b1c963b5a9b20, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -39.650494
+      value: -39.6504936
       objectReference: {fileID: 0}
     - target: {fileID: 465450, guid: d6632904813824ff889b1c963b5a9b20, type: 2}
       propertyPath: m_LocalRotation.x
@@ -3546,34 +3546,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 412770708}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &418343839 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 145236, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
-  m_PrefabInternal: {fileID: 1353304640}
---- !u!114 &418343840
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 418343839}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e50e925fb93c78246bf995d9dc3a2330, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 3
-  adaptiveTextureSize: 256
-  remapCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-  exposureAdjustment: 1.5
-  middleGrey: .400000006
-  white: 2
-  adaptionSpeed: 1.5
-  tonemapper: {fileID: 4800000, guid: 003377fc2620a44939dadde6fe3f8190, type: 3}
-  validRenderTextureFormat: 1
 --- !u!1 &423332153
 GameObject:
   m_ObjectHideFlags: 0
@@ -13858,6 +13830,24 @@ MonoBehaviour:
       _behaviorId: 0
       _userAssignable: 1
       _categoryId: 5
+    - _id: 21
+      _name: zoom
+      _type: 1
+      _descriptiveName: Zoom
+      _positiveDescriptiveName: 
+      _negativeDescriptiveName: 
+      _behaviorId: 0
+      _userAssignable: 1
+      _categoryId: 2
+    - _id: 22
+      _name: run
+      _type: 1
+      _descriptiveName: Run
+      _positiveDescriptiveName: 
+      _negativeDescriptiveName: 
+      _behaviorId: 0
+      _userAssignable: 1
+      _categoryId: 1
     actionCategories:
     - _name: Default
       _descriptiveName: Default
@@ -13894,9 +13884,9 @@ MonoBehaviour:
       - categoryId: 0
         actionIds: 
       - categoryId: 1
-        actionIds: 010000000200000012000000050000000d000000
+        actionIds: 01000000020000001600000012000000050000000d000000
       - categoryId: 2
-        actionIds: 0300000004000000
+        actionIds: 030000000400000015000000
       - categoryId: 3
         actionIds: 0c00000010000000
       - categoryId: 4
@@ -13913,7 +13903,7 @@ MonoBehaviour:
       _digitalAxisSensitivity: 3
       _mouseXYAxisMode: 0
       _mouseOtherAxisMode: 0
-      _mouseXYAxisSensitivity: 1
+      _mouseXYAxisSensitivity: .100000001
       _mouseXYAxisDeltaCalc: 0
       _mouseOtherAxisSensitivity: 1
       _customControllerAxisSensitivity: 1
@@ -14118,7 +14108,7 @@ MonoBehaviour:
         _modifierKey2: 0
         _modifierKey3: 0
       - _actionCategoryId: 1
-        _actionId: 13
+        _actionId: 22
         _elementType: 1
         _elementIdentifierId: 11
         _axisRange: 0
@@ -14130,6 +14120,17 @@ MonoBehaviour:
         _modifierKey3: 0
       - _actionCategoryId: 1
         _actionId: 5
+        _elementType: 1
+        _elementIdentifierId: 13
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 0
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
+      - _actionCategoryId: 1
+        _actionId: 13
         _elementType: 1
         _elementIdentifierId: 13
         _axisRange: 0
@@ -14154,6 +14155,17 @@ MonoBehaviour:
         _actionId: 20
         _elementType: 1
         _elementIdentifierId: 13
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 0
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
+      - _actionCategoryId: 2
+        _actionId: 21
+        _elementType: 1
+        _elementIdentifierId: 18
         _axisRange: 0
         _invert: 0
         _axisContribution: 0
@@ -14210,6 +14222,17 @@ MonoBehaviour:
         _invert: 0
         _axisContribution: 1
         _keyboardKeyCode: 115
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
+      - _actionCategoryId: 1
+        _actionId: 22
+        _elementType: 1
+        _elementIdentifierId: -1
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 304
         _modifierKey1: 0
         _modifierKey2: 0
         _modifierKey3: 0
@@ -14297,7 +14320,7 @@ MonoBehaviour:
         _axisRange: 0
         _invert: 0
         _axisContribution: 0
-        _keyboardKeyCode: 304
+        _keyboardKeyCode: 306
         _modifierKey1: 0
         _modifierKey2: 0
         _modifierKey3: 0
@@ -14356,6 +14379,17 @@ MonoBehaviour:
         _modifierKey1: 0
         _modifierKey2: 0
         _modifierKey3: 0
+      - _actionCategoryId: 2
+        _actionId: 21
+        _elementType: 1
+        _elementIdentifierId: -1
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 122
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
     mouseMaps:
     - id: 0
       categoryId: 0
@@ -14389,7 +14423,7 @@ MonoBehaviour:
     customControllerMaps: []
     customControllers: []
     playerIdCounter: 2
-    actionIdCounter: 21
+    actionIdCounter: 23
     actionCategoryIdCounter: 6
     inputBehaviorIdCounter: 1
     mapCategoryIdCounter: 1
@@ -15114,15 +15148,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 405650, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -635.92
+      value: -635.919983
       objectReference: {fileID: 0}
     - target: {fileID: 405650, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 112.19199
+      value: 112.191994
       objectReference: {fileID: 0}
     - target: {fileID: 405650, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -63.020493
+      value: -63.0204926
       objectReference: {fileID: 0}
     - target: {fileID: 405650, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_LocalRotation.x
@@ -15138,11 +15172,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 405650, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_LocalRotation.w
-      value: -0.00000016292068
+      value: -1.62920685e-07
       objectReference: {fileID: 0}
     - target: {fileID: 405650, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 134008, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
+      propertyPath: m_Name
+      value: player
       objectReference: {fileID: 0}
     - target: {fileID: 22470362, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_AnchorMin.y
@@ -15239,122 +15277,6 @@ Prefab:
     - target: {fileID: 22489610, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_SizeDelta.y
       value: 64
-      objectReference: {fileID: 0}
-    - target: {fileID: 11472334, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
-      propertyPath: m_StepInterval
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2019354, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
-      propertyPath: m_RenderingPath
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 10849182, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 10849182, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
-      propertyPath: m_Color.g
-      value: 0.98039216
-      objectReference: {fileID: 0}
-    - target: {fileID: 10849182, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
-      propertyPath: m_Color.b
-      value: 0.95686275
-      objectReference: {fileID: 0}
-    - target: {fileID: 10849182, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
-      propertyPath: m_Type
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 10849182, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
-      propertyPath: m_Lightmapping
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 11465200, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11465200, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
-      propertyPath: _normalStartDistance
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 134008, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
-      propertyPath: m_Name
-      value: player
-      objectReference: {fileID: 0}
-    - target: {fileID: 134008, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 10849182, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
-      propertyPath: m_Cookie
-      value: 
-      objectReference: {fileID: 2800000, guid: 2c29c08dd1c0b6749b7cd0fcff7a29fd, type: 3}
-    - target: {fileID: 2019354, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
-      propertyPath: m_HDR
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 10849182, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
-      propertyPath: m_SpotAngle
-      value: 66
-      objectReference: {fileID: 0}
-    - target: {fileID: 10849182, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
-      propertyPath: m_Range
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2019354, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
-      propertyPath: m_CullingMask.m_Bits
-      value: 4294917087
-      objectReference: {fileID: 0}
-    - target: {fileID: 418898, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 443992, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 446862, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 480604, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 10849182, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
-      propertyPath: m_Intensity
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 11472382, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11472382, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
-      propertyPath: heightFog
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11472382, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
-      propertyPath: startDistance
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 11472382, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
-      propertyPath: useRadialDistance
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11402526, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
-      propertyPath: fadeSpeed
-      value: .200000003
-      objectReference: {fileID: 0}
-    - target: {fileID: 11472334, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
-      propertyPath: m_MouseLook.YSensitivity
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 11472334, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
-      propertyPath: m_MouseLook.XSensitivity
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 11472334, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
-      propertyPath: m_MouseLook.smooth
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
@@ -17452,11 +17374,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11450820, guid: 018c0e47872ab447e876e9422d675226, type: 2}
       propertyPath: nightDayFogColor.key0.rgba
-      value: 3525912873
+      value: 3524331785
       objectReference: {fileID: 0}
     - target: {fileID: 11450820, guid: 018c0e47872ab447e876e9422d675226, type: 2}
       propertyPath: nightDayFogColor.key1.rgba
-      value: 1378823983
+      value: 1377111310
       objectReference: {fileID: 0}
     - target: {fileID: 11450820, guid: 018c0e47872ab447e876e9422d675226, type: 2}
       propertyPath: nightDayFogColor.key2.rgba
@@ -17464,7 +17386,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11450820, guid: 018c0e47872ab447e876e9422d675226, type: 2}
       propertyPath: nightDayFogColor.key3.rgba
-      value: 4568248
+      value: 6857919
       objectReference: {fileID: 0}
     - target: {fileID: 11450820, guid: 018c0e47872ab447e876e9422d675226, type: 2}
       propertyPath: nightDayFogColor.key4.rgba
@@ -17504,11 +17426,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11450820, guid: 018c0e47872ab447e876e9422d675226, type: 2}
       propertyPath: fogDensityCurve.m_Curve.Array.data[1].time
-      value: 1.0014881
+      value: 1.00148809
       objectReference: {fileID: 0}
     - target: {fileID: 11450820, guid: 018c0e47872ab447e876e9422d675226, type: 2}
       propertyPath: fogDensityCurve.m_Curve.Array.data[1].value
-      value: 0.9645702
+      value: .964570224
       objectReference: {fileID: 0}
     - target: {fileID: 11450820, guid: 018c0e47872ab447e876e9422d675226, type: 2}
       propertyPath: fogDensityCurve.m_Curve.Array.data[1].inSlope
@@ -17556,7 +17478,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11450820, guid: 018c0e47872ab447e876e9422d675226, type: 2}
       propertyPath: minAmbient
-      value: 0.5
+      value: .5
       objectReference: {fileID: 0}
     - target: {fileID: 439482, guid: 018c0e47872ab447e876e9422d675226, type: 2}
       propertyPath: m_RootOrder
@@ -17564,7 +17486,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11450820, guid: 018c0e47872ab447e876e9422d675226, type: 2}
       propertyPath: dayAtmosphereThickness
-      value: 0.4
+      value: .400000006
       objectReference: {fileID: 0}
     - target: {fileID: 439482, guid: 018c0e47872ab447e876e9422d675226, type: 2}
       propertyPath: m_LocalPosition.x
@@ -17596,11 +17518,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11450820, guid: 018c0e47872ab447e876e9422d675226, type: 2}
       propertyPath: nightAtmosphereThickness
-      value: 0.6
+      value: .600000024
       objectReference: {fileID: 0}
     - target: {fileID: 11450820, guid: 018c0e47872ab447e876e9422d675226, type: 2}
       propertyPath: fogScale
-      value: 0.01
+      value: .00999999978
       objectReference: {fileID: 0}
     - target: {fileID: 11450820, guid: 018c0e47872ab447e876e9422d675226, type: 2}
       propertyPath: nightRotationSpeed.x
@@ -17608,7 +17530,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11450820, guid: 018c0e47872ab447e876e9422d675226, type: 2}
       propertyPath: minIntensity
-      value: 0.1
+      value: .100000001
       objectReference: {fileID: 0}
     - target: {fileID: 11450820, guid: 018c0e47872ab447e876e9422d675226, type: 2}
       propertyPath: fogDensityCurve.m_RotationOrder
@@ -17644,7 +17566,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11450820, guid: 018c0e47872ab447e876e9422d675226, type: 2}
       propertyPath: minPoint
-      value: -0.8
+      value: -.100000001
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11419142, guid: 018c0e47872ab447e876e9422d675226, type: 2}

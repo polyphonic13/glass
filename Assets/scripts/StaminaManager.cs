@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Rewired;
 
 public class StaminaManager : MonoBehaviour {
 
@@ -9,15 +10,19 @@ public class StaminaManager : MonoBehaviour {
 	private float _maxStamina;
 	private float _remainingStamina; 
 
+	private Rewired.Player _controls;
+
 	public static bool IsBoosted { get; set; }
 
 	void Awake() {
+		_controls = ReInput.players.GetPlayer(0);
+
 		_remainingStamina = _maxStamina = GameControl.Instance.RemainingStamina;
 		GameControl.Instance.UpdateStamina(_remainingStamina);
 	}
 
 	void Update() {
-		if(Input.GetKey(KeyCode.LeftShift)) {
+		if(_controls.GetButton("run")) {
 			if(_remainingStamina > 0) {
 				IsBoosted = true;
 				_remainingStamina -= Time.deltaTime;

@@ -1,19 +1,23 @@
 using UnityEngine;
+using Rewired;
 
 public class CameraZoom : MonoBehaviour {
 
 	public float _zoom = 10;
 
 	public Camera _camera;
-	float _normal;
-	bool _isZoomed;
+	private float _normal;
+	private bool _isZoomed;
 
-	void Start() {
+	private Rewired.Player _controls; 
+
+	void Awake() {
+		_controls = ReInput.players.GetPlayer(0);
 		_normal = _camera.fieldOfView;
 	}
 	
 	void Update() {
-		if(Input.GetKeyDown(KeyCode.Z)) {
+		if(_controls.GetButtonDown("zoom")) {
 			_zoomCamera();
 		}
 	}
