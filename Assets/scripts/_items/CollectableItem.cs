@@ -75,11 +75,15 @@ public class CollectableItem : InteractiveItem {
 	}
 
 	public virtual void Collect(Transform backpack, Transform rightHand) {
-		IsCollected = true;
-		_backpack = backpack;
-		_rightHand = rightHand;
-		Store ();
-		EventCenter.Instance.NearInteractiveItem(this, false);
+//		if (this.name == "flashlight") {
+//			
+//		} else {
+			IsCollected = true;
+			_backpack = backpack;
+			_rightHand = rightHand;
+			Store ();
+			EventCenter.Instance.NearInteractiveItem (this, false);
+//		}
 	}
 	
 	public virtual void Equip(Transform rightHand) {

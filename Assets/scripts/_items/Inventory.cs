@@ -45,9 +45,17 @@ public class Inventory : MonoBehaviour {
 		if(HasItem(item.name)) {
 			// increment count of item type
 		} else if(_items.Count < _maxItems) {
-			_items.Add(item.name, item);
+			string message;
+
+			if (item.name != "flashlight") {
+				_items.Add (item.name, item);
+				message = item.ItemName + " Added to inventory";
+			} else {
+				message = item.ItemName + " Collected";
+			}
 			item.Collect(_backpack, _rightHand);
-			EventCenter.Instance.AddNote(item.ItemName + " Added to inventory");
+			
+			EventCenter.Instance.AddNote(message);
 			EventCenter.Instance.AddInventory(item.name);
 		} else {
 			isAdded = false;

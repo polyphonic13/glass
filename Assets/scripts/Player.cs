@@ -13,6 +13,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
 		[SerializeField] private Canvas _menuUI; 
 		[SerializeField] private Canvas _inventoryUI; 
 		[SerializeField] private Canvas _interactiveItemUI; 
+		[SerializeField] private Flashlight _flashLight; 
 
 		[SerializeField] private bool _damageFromFall;
 		[SerializeField] private float _underWaterGravity;
@@ -53,6 +54,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
 		private bool _isMenuOpen = false;
 		private bool _isInventoryOpen = false;
 		private bool _isInspectorOpen = false;
+		private bool _hasFlashlight = false;
 
 		private Camera _mainCamera;
         private bool m_Jump;
@@ -118,6 +120,19 @@ namespace UnitySampleAssets.Characters.FirstPerson
 			_closeInventoryUI();
 		}
 
+		public void OnInventoryItemAdded(string name) {
+			Debug.Log ("OnInventoryItemAdded, name = " + name);
+			if (name == "flashlight") {
+				_hasFlashlight = true;
+			}
+		}
+
+		public void OnInventoryItemRemoved(string name) {
+			if (name == "flashlight") {
+				_hasFlashlight = false;
+			}
+		}
+
 		public void OnCloseMenuUI() {
 			_closeMenuUI();
 		}
@@ -127,12 +142,10 @@ namespace UnitySampleAssets.Characters.FirstPerson
         private void Awake()
         {
 			_controls = ReInput.players.GetPlayer(0);
-			Debug.Log ("_controls = " + _controls);
 			_menuUI.enabled = false;
 			_inventoryUI.enabled = false;
 			_interactiveItemUI.enabled = false;
 			_isInspectorOpen = _isMenuOpen = _isInventoryOpen = false;
-//			_collider = GameObject.Find("collider").transform;
 
             m_CharacterController = GetComponent<CharacterController>();
             _mainCamera = Camera.main;
@@ -169,6 +182,8 @@ namespace UnitySampleAssets.Characters.FirstPerson
 			ec.OnInspectItem += OnInspectItem;
 			ec.OnCloseInventoryUI += OnCloseInventoryUI;
 			ec.OnCloseMenuUI += OnCloseMenuUI;
+			ec.OnInventoryAdded += OnInventoryItemAdded;
+			ec.OnInventoryRemoved += OnInventoryItemAdded;
 		}
 		#endregion
 
@@ -185,9 +200,6 @@ namespace UnitySampleAssets.Characters.FirstPerson
 		#region update		
 		private void Update()
         {
-//			var horizontal = _controls.GetAxis("move_horizontal");
-//			var vertical = _controls.GetAxis("move_vertical");
-//			Debug.Log ("move_horizontal = " + horizontal + ", vertical = " + vertical);
 			if (!_isInspectorOpen) {
 				if(_controls.GetButtonDown ("cancel")) {
 					if(_isMenuOpen) {
@@ -269,6 +281,10 @@ namespace UnitySampleAssets.Characters.FirstPerson
 					m_PreviouslyGrounded = m_CharacterController.isGrounded;
 				}
 				
+			}
+
+			if (_hasFlashlight && _controls.GetButtonDown ("flashlight")) {
+				_flashLight.Actuate ();
 			}
 		}
 		#endregion

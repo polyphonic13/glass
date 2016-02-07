@@ -37,7 +37,9 @@ public class InventoryUI : MonoBehaviour {
 	private Rewired.Player _controls; 
 
     public void OnInventoryAdded(string itemName) {
-    	_setItem(itemName);	
+		if (itemName != "flashlight") {
+			_setItem (itemName);	
+		}
     }
 
 	public void OnInventoryRemoved(string itemName) {
