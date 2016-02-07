@@ -17,7 +17,7 @@ public class CameraZoom : MonoBehaviour {
 	}
 	
 	void Update() {
-		if(_controls.GetButtonDown("zoom")) {
+		if(_controls.GetButtonDown("zoom_view")) {
 			_zoomCamera();
 		}
 	}
