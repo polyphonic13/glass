@@ -1679,8 +1679,8 @@ GameObject:
   - 65: {fileID: 188014577}
   - 114: {fileID: 188014576}
   m_Layer: 0
-  m_Name: bedroom_nw_endtable_drawer_bottom_trigger (1)
-  m_TagString: Untagged
+  m_Name: bedroom_nw_endtable_drawer_top_trigger
+  m_TagString: interactive
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1692,7 +1692,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 188014574}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.511, y: -0, z: 0.412}
+  m_LocalPosition: {x: -0.511, y: 0, z: -0.022}
   m_LocalScale: {x: 0.08140338, y: 0.750584, z: 0.23023784}
   m_Children: []
   m_Father: {fileID: 558470144}
@@ -1710,13 +1710,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   Thumbnail: {fileID: 0}
-  ItemName: Bottom Drawer
-  _interactDistance: 2
+  ItemName: Top Drawer
+  _interactDistance: 1
   _containingRoom: bedroom_nw
   _pops: {fileID: 1604245748}
-  _parentBone: {fileID: 2038356144}
-  _mainClip: {fileID: 7400016, guid: e68378bdf2e8344668440323ad3fe1d7, type: 3}
-  _closeClip: {fileID: 7400014, guid: e68378bdf2e8344668440323ad3fe1d7, type: 3}
+  _parentBone: {fileID: 558470144}
+  _mainClip: {fileID: 7400020, guid: e68378bdf2e8344668440323ad3fe1d7, type: 3}
+  _closeClip: {fileID: 7400018, guid: e68378bdf2e8344668440323ad3fe1d7, type: 3}
   _keyName: 
   IsLocked: 0
 --- !u!65 &188014577
@@ -2945,7 +2945,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: eba27aadbf5eb41148986f42a446ef22, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eba27aadbf5eb41148986f42a446ef22, type: 3}
@@ -4334,7 +4334,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 37f5c486d029d4d08a090f9b278580aa, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 37f5c486d029d4d08a090f9b278580aa, type: 3}
@@ -12199,11 +12199,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: 5b2fa1cc7bc784626ac43e03c64a5227, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.832
+      value: -0.589
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5b2fa1cc7bc784626ac43e03c64a5227, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5b2fa1cc7bc784626ac43e03c64a5227, type: 3}
       propertyPath: m_LocalPosition.z
@@ -16495,51 +16495,51 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1818193564}
+    m_TransformParent: {fileID: 558470144}
     m_Modifications:
     - target: {fileID: 400000, guid: 268c382de21214df4bf5d6abc725a1b4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.054
+      value: -0.15
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 268c382de21214df4bf5d6abc725a1b4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.588
+      value: -0.026
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 268c382de21214df4bf5d6abc725a1b4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.06
+      value: 0.078
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 268c382de21214df4bf5d6abc725a1b4, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: 0.0000009387732
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 268c382de21214df4bf5d6abc725a1b4, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 268c382de21214df4bf5d6abc725a1b4, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0.000000029802326
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 268c382de21214df4bf5d6abc725a1b4, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 268c382de21214df4bf5d6abc725a1b4, type: 3}
-      propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 268c382de21214df4bf5d6abc725a1b4, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 268c382de21214df4bf5d6abc725a1b4, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 0.40838337
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 268c382de21214df4bf5d6abc725a1b4, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.4
+      value: 0.4314593
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 268c382de21214df4bf5d6abc725a1b4, type: 3}
       propertyPath: m_LocalScale.z
-      value: 2
+      value: 0.21710913
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 268c382de21214df4bf5d6abc725a1b4, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -16711,7 +16711,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400012, guid: e68378bdf2e8344668440323ad3fe1d7, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 11100000, guid: e68378bdf2e8344668440323ad3fe1d7, type: 3}
       propertyPath: m_Animation
@@ -17061,8 +17061,8 @@ GameObject:
   - 65: {fileID: 1484462075}
   - 114: {fileID: 1484462074}
   m_Layer: 0
-  m_Name: bedroom_nw_endtable_drawer_top_trigger
-  m_TagString: Untagged
+  m_Name: bedroom_nw_endtable_drawer_bottom_trigger
+  m_TagString: interactive
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17074,7 +17074,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1484462072}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.511, y: 0, z: -0.333}
+  m_LocalPosition: {x: -0.511, y: -0, z: 0.052}
   m_LocalScale: {x: 0.08140338, y: 0.750584, z: 0.25113168}
   m_Children: []
   m_Father: {fileID: 2038356144}
@@ -17092,13 +17092,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   Thumbnail: {fileID: 0}
-  ItemName: Top Drawer
-  _interactDistance: 2
+  ItemName: Bottom Drawer
+  _interactDistance: 1.5
   _containingRoom: bedroom_nw
   _pops: {fileID: 1604245748}
   _parentBone: {fileID: 2038356144}
-  _mainClip: {fileID: 7400020, guid: e68378bdf2e8344668440323ad3fe1d7, type: 3}
-  _closeClip: {fileID: 7400018, guid: e68378bdf2e8344668440323ad3fe1d7, type: 3}
+  _mainClip: {fileID: 7400016, guid: e68378bdf2e8344668440323ad3fe1d7, type: 3}
+  _closeClip: {fileID: 7400014, guid: e68378bdf2e8344668440323ad3fe1d7, type: 3}
   _keyName: 
   IsLocked: 0
 --- !u!65 &1484462075
@@ -17845,11 +17845,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11450820, guid: 018c0e47872ab447e876e9422d675226, type: 2}
       propertyPath: nightDayColor.key0.rgba
-      value: 4287194159
+      value: 4278190080
       objectReference: {fileID: 0}
     - target: {fileID: 11450820, guid: 018c0e47872ab447e876e9422d675226, type: 2}
       propertyPath: nightDayColor.key1.rgba
-      value: 4288185897
+      value: 4278190080
       objectReference: {fileID: 0}
     - target: {fileID: 11450820, guid: 018c0e47872ab447e876e9422d675226, type: 2}
       propertyPath: nightDayColor.key2.rgba
@@ -17873,19 +17873,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11450820, guid: 018c0e47872ab447e876e9422d675226, type: 2}
       propertyPath: nightDayColor.ctime1
-      value: 15806
+      value: 6554
       objectReference: {fileID: 0}
     - target: {fileID: 11450820, guid: 018c0e47872ab447e876e9422d675226, type: 2}
       propertyPath: nightDayColor.ctime2
-      value: 20971
+      value: 16384
       objectReference: {fileID: 0}
     - target: {fileID: 11450820, guid: 018c0e47872ab447e876e9422d675226, type: 2}
       propertyPath: nightDayColor.ctime3
-      value: 23593
+      value: 22937
       objectReference: {fileID: 0}
     - target: {fileID: 11450820, guid: 018c0e47872ab447e876e9422d675226, type: 2}
       propertyPath: nightDayColor.ctime4
-      value: 30069
+      value: 33346
       objectReference: {fileID: 0}
     - target: {fileID: 11450820, guid: 018c0e47872ab447e876e9422d675226, type: 2}
       propertyPath: nightDayColor.ctime5
@@ -17921,19 +17921,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11450820, guid: 018c0e47872ab447e876e9422d675226, type: 2}
       propertyPath: nightDayFogColor.ctime1
-      value: 15794
+      value: 6554
       objectReference: {fileID: 0}
     - target: {fileID: 11450820, guid: 018c0e47872ab447e876e9422d675226, type: 2}
       propertyPath: nightDayFogColor.ctime2
-      value: 20971
+      value: 16384
       objectReference: {fileID: 0}
     - target: {fileID: 11450820, guid: 018c0e47872ab447e876e9422d675226, type: 2}
       propertyPath: nightDayFogColor.ctime3
-      value: 23593
+      value: 22937
       objectReference: {fileID: 0}
     - target: {fileID: 11450820, guid: 018c0e47872ab447e876e9422d675226, type: 2}
       propertyPath: nightDayFogColor.ctime4
-      value: 42983
+      value: 33924
       objectReference: {fileID: 0}
     - target: {fileID: 11450820, guid: 018c0e47872ab447e876e9422d675226, type: 2}
       propertyPath: nightDayFogColor.m_NumColorKeys
@@ -17953,11 +17953,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11450820, guid: 018c0e47872ab447e876e9422d675226, type: 2}
       propertyPath: fogDensityCurve.m_Curve.Array.data[1].time
-      value: 1.0014881
+      value: 0.99403656
       objectReference: {fileID: 0}
     - target: {fileID: 11450820, guid: 018c0e47872ab447e876e9422d675226, type: 2}
       propertyPath: fogDensityCurve.m_Curve.Array.data[1].value
-      value: 0.9645702
+      value: 1.0002096
       objectReference: {fileID: 0}
     - target: {fileID: 11450820, guid: 018c0e47872ab447e876e9422d675226, type: 2}
       propertyPath: fogDensityCurve.m_Curve.Array.data[1].inSlope
@@ -20014,10 +20014,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1815545810}
   m_Mesh: {fileID: 4300124, guid: 40b1902f8fb0a47069e6e2c2130e754c, type: 3}
---- !u!4 &1818193564 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 400046, guid: 0aa2ea97033494b1aab5a11699695777, type: 3}
-  m_PrefabInternal: {fileID: 1570987322}
 --- !u!1 &1818598394
 GameObject:
   m_ObjectHideFlags: 0
