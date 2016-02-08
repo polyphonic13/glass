@@ -1455,7 +1455,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400046, guid: 9f0a3ef76f916493ab5c6812ff29aa3b, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400088, guid: 9f0a3ef76f916493ab5c6812ff29aa3b, type: 3}
       propertyPath: m_LocalRotation.x
@@ -3660,7 +3660,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   Thumbnail: {fileID: 0}
-  ItemName: Bedroom E Door
+  ItemName: Bedroom Door
   _interactDistance: 1.5
   _containingRoom: 
   _pops: {fileID: 1602718690}
@@ -13325,7 +13325,7 @@ Transform:
   m_LocalScale: {x: 0.10084201, y: 2.176648, z: 0.9739468}
   m_Children: []
   m_Father: {fileID: 1284509747}
-  m_RootOrder: 6
+  m_RootOrder: 5
 --- !u!65 &1169829833
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14803,6 +14803,106 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1219536307}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &1238614794
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 734607255}
+    m_Modifications:
+    - target: {fileID: 400006, guid: 04c446a2d72bb4b2483d8dab0688d6b0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.014343262
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: 04c446a2d72bb4b2483d8dab0688d6b0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.5319977
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: 04c446a2d72bb4b2483d8dab0688d6b0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.3008575
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: 04c446a2d72bb4b2483d8dab0688d6b0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.35622993
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: 04c446a2d72bb4b2483d8dab0688d6b0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.14045586
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: 04c446a2d72bb4b2483d8dab0688d6b0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.3386851
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: 04c446a2d72bb4b2483d8dab0688d6b0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.8594561
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: 04c446a2d72bb4b2483d8dab0688d6b0, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 04c446a2d72bb4b2483d8dab0688d6b0, type: 3}
+      propertyPath: m_Name
+      value: bedroom_nw_door_key
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 04c446a2d72bb4b2483d8dab0688d6b0, type: 3}
+      propertyPath: m_TagString
+      value: interactive
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 04c446a2d72bb4b2483d8dab0688d6b0, type: 3}
+  m_IsPrefabParent: 0
+--- !u!1 &1238614795 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100006, guid: 04c446a2d72bb4b2483d8dab0688d6b0, type: 3}
+  m_PrefabInternal: {fileID: 1238614794}
+--- !u!65 &1238614799
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1238614795}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 0.5, z: 0.5}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1238614800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1238614795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ce40afb30ab94cb7ae1dc284e229caf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Icon: {fileID: 21300000, guid: fb95dcee818d24ef28010358f7fdfaf7, type: 3}
+  Thumbnail: {fileID: 21300000, guid: f5c110bb204a343728ac2e1b128cd0f3, type: 3}
+  ItemName: Key
+  _interactDistance: 1
+  _containingRoom: bedroom_nw
+  description: An antique
+  targetContainerName: 
+  _weight: {fileID: 11484862, guid: ed5b67beeb2f34409b9e0764fc6167fb, type: 2}
+  target: {fileID: 1734458663}
+--- !u!114 &1238614801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1238614795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b0ca0c7e80994db6a1499e2fcbe512b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target1: {fileID: 1353304641}
+  target2: {fileID: 1990975873}
+  usableDistance: 2
 --- !u!1 &1239078141
 GameObject:
   m_ObjectHideFlags: 0
@@ -14932,39 +15032,39 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1284509747}
+    m_TransformParent: {fileID: 998078184}
     m_Modifications:
     - target: {fileID: 400000, guid: ece5e70c2a1ba42a098d8385764dd18c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.45732462
+      value: -0.274
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ece5e70c2a1ba42a098d8385764dd18c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.88912964
+      value: -0.312
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ece5e70c2a1ba42a098d8385764dd18c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.19396965
+      value: -0.017
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ece5e70c2a1ba42a098d8385764dd18c, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.5
+      value: 0.5786181
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ece5e70c2a1ba42a098d8385764dd18c, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.4999996
+      value: -0.4064497
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ece5e70c2a1ba42a098d8385764dd18c, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.5000004
+      value: 0.5786179
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ece5e70c2a1ba42a098d8385764dd18c, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.5000001
+      value: 0.4064493
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ece5e70c2a1ba42a098d8385764dd18c, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: ece5e70c2a1ba42a098d8385764dd18c, type: 3}
       propertyPath: m_TagString
@@ -14976,11 +15076,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ece5e70c2a1ba42a098d8385764dd18c, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.17053904
+      value: 0.15700795
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ece5e70c2a1ba42a098d8385764dd18c, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 0.7893984
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ece5e70c2a1ba42a098d8385764dd18c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.16937897
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ece5e70c2a1ba42a098d8385764dd18c, type: 3}
@@ -15143,23 +15247,23 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400046, guid: eb8633cf2774c46aaab8c4c57b96c7c8, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 400026, guid: eb8633cf2774c46aaab8c4c57b96c7c8, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 400022, guid: eb8633cf2774c46aaab8c4c57b96c7c8, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 400018, guid: eb8633cf2774c46aaab8c4c57b96c7c8, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: eb8633cf2774c46aaab8c4c57b96c7c8, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eb8633cf2774c46aaab8c4c57b96c7c8, type: 3}
@@ -15747,7 +15851,7 @@ Transform:
   m_LocalScale: {x: 0.100842014, y: 2.176648, z: 0.97394687}
   m_Children: []
   m_Father: {fileID: 1284509747}
-  m_RootOrder: 7
+  m_RootOrder: 6
 --- !u!65 &1363330383
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17369,8 +17473,8 @@ MonoBehaviour:
   _parentBone: {fileID: 104483794}
   _mainClip: {fileID: 7400010, guid: 8e01fa68f9de24409b0124ab1e80d980, type: 3}
   _closeClip: {fileID: 7400008, guid: 8e01fa68f9de24409b0124ab1e80d980, type: 3}
-  _keyName: 
-  IsLocked: 0
+  _keyName: bedroom_n_door_key
+  IsLocked: 1
 --- !u!65 &1520766668
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19356,15 +19460,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   Thumbnail: {fileID: 0}
-  ItemName: Bedroom NW Door
+  ItemName: Bedroom Door
   _interactDistance: 1.5
-  _containingRoom: 
+  _containingRoom: bedroom_nw
   _pops: {fileID: 1990975876}
   _parentBone: {fileID: 1990975874}
   _mainClip: {fileID: 7400010, guid: 8e01fa68f9de24409b0124ab1e80d980, type: 3}
   _closeClip: {fileID: 7400008, guid: 8e01fa68f9de24409b0124ab1e80d980, type: 3}
-  _keyName: 
-  IsLocked: 0
+  _keyName: bedroom_nw_door_key
+  IsLocked: 1
 --- !u!65 &1734458664
 BoxCollider:
   m_ObjectHideFlags: 0

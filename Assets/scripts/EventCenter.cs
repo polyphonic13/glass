@@ -190,7 +190,7 @@ public class EventCenter : MonoBehaviour {
 	}
 	
 	public void NearInteractiveItem(InteractiveItem item, bool isInProximity) {
-		Debug.Log ("EventCenter/NearInteractiveItem, item = " + item.name + ", isInProximity = " + isInProximity);
+//		Debug.Log ("EventCenter/NearInteractiveItem, item = " + item.name + ", isInProximity = " + isInProximity);
 		if(OnNearInteractiveItem != null) {
 			OnNearInteractiveItem(item, isInProximity);
 		}

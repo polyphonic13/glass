@@ -171,7 +171,7 @@ public class InventoryUI : MonoBehaviour {
 			var down = _controls.GetButton("down");
 			var left = _controls.GetButton("left");
 			var right = _controls.GetButton("right");
-			Debug.Log ("up = " + up + ", down = " + down + ", left = " + left + ", right = " + right);
+//			Debug.Log ("up = " + up + ", down = " + down + ", left = " + left + ", right = " + right);
 			if(_controls.GetButtonDown("confirm")) {
 				if(!_isSelectingItem) {
 					_selectedInventoryItemUI = _items[_currentItemIndex] as InventoryItemUI;

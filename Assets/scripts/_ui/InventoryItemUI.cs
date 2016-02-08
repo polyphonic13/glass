@@ -88,7 +88,7 @@ public class InventoryItemUI : MonoBehaviour {
 
 	public void SelectControlButton() {
 		switch(_focusedControlButton) {
-			case 0:
+		case 0:
 				Inventory.Instance.UseItem(this.name);
 			break;
 

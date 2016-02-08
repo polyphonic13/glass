@@ -26,14 +26,22 @@ public class LockableArmatureTrigger : OpenCloseArmatureTrigger {
 		if(!IsLocked) {
 			HandleOpenClose();
 		} else {
-			 if(Inventory.Instance.HasItem(_keyName)) {
-				IsLocked = false;
-				HandleOpenClose();
-			 } else {
-				 EventCenter.Instance.AddNote(this.ItemName + " is locked");
-			 }
+//			 if(Inventory.Instance.HasItem(_keyName)) {
+//				_unlock ();
+//			 } else {
+				 EventCenter.Instance.AddNote("The " + this.ItemName + " is locked");
+//			 }
 		}
 	}
 
+	public void Unlock() {
+		_unlock ();
+	}
+
+	private void _unlock() {
+		IsLocked = false;
+		EventCenter.Instance.AddNote("The " + this.ItemName + " was unlocked");
+		HandleOpenClose();
+	}
 }
 

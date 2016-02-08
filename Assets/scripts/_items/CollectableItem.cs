@@ -94,7 +94,7 @@ public class CollectableItem : InteractiveItem {
 	}
 
 	public virtual void Use() {
-//		Debug.Log("CollectableItem[ " + name + " ]/Use");
+		Debug.Log("CollectableItem[ " + name + " ]/Use");
 	}
 	
 	public virtual void UnEquip() {

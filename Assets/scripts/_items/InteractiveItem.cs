@@ -64,14 +64,14 @@ public class InteractiveItem : MonoBehaviour {
 
 	public virtual void OnRoomEntered(string room) {
 		if(room == _containingRoom) {
-			Debug.Log("activating: " + room);
+//			Debug.Log("activating: " + room);
 			IsRoomActive = true;
 		}
 	}
 
 	public void OnRoomExited(string room) {
 		if(room == _containingRoom) {
-			Debug.Log("deactivating: " + room);
+//			Debug.Log("deactivating: " + room);
 			IsRoomActive = false;
 		}
 	}
