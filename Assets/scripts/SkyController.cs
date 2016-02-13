@@ -49,7 +49,10 @@ public class SkyController : MonoBehaviour {
 		float tRange = 1 - minPoint;
 		float dot = Mathf.Clamp01 ((Vector3.Dot (mainLight.transform.forward, Vector3.down) - minPoint) / tRange);
 		float i = ((maxIntensity - minIntensity) * dot) + minIntensity;
-//		Debug.Log ("light intensity = " + i);
+		Debug.Log ("dot forward,down = " + Vector3.Dot (mainLight.transform.forward, Vector3.down)
+			+ " - minPoint = " + (Vector3.Dot (mainLight.transform.forward, Vector3.down) - minPoint)
+			+ ", dot = " + dot + ", tRange = " + tRange
+			+ ", light intensity = " + i);
 		mainLight.intensity = i;
 
 		tRange = 1 - minAmbientPoint;

@@ -1,0 +1,112 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &100000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 3
+  m_Component:
+  - 4: {fileID: 400000}
+  - 114: {fileID: 11400000}
+  m_Layer: 0
+  m_Name: Sunshine
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &400000
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 825d4aba1785e470ea5a72f75b191a35, type: 1}
+  m_Name: 
+  ForwardShadowsInstalled: 0
+  SunLight: {fileID: 0}
+  Occluders:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  UsePerCascadeOccluders: 0
+  Occluders1:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  Occluders2:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  Occluders3:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  ShaderSet: 0
+  UpdateInterval: 0
+  UpdateIntervalFrames: 2
+  UpdateIntervalPadding: 0
+  UpdateIntervalMovement: 1
+  CustomLightBoundsOrigin: {fileID: 0}
+  CustomLightBoundsRadius: 1
+  LightmapResolution: 1
+  CustomLightmapResolution: 512
+  UseOcclusionCulling: 1
+  LightPaddingZ: 100
+  LightFadeRatio: .100000001
+  CascadeSpacing: .425000012
+  CascadeFade: .100000001
+  TerrainLODTweak: 0
+  ShadowFilter: 3
+  ScatterResolution: 1
+  ScatterSamplingQuality: 1
+  ScatterBlur: 1
+  ScatterBlurDepthTollerance: .0500000007
+  ScatterAnimateNoise: 1
+  ScatterAnimateNoiseSpeed: .100000001
+  ScatterColor: {r: .600000024, g: .600000024, b: .600000024, a: 1}
+  ScatterEnabled: 1
+  ScatterIntensity: .5
+  ScatterExaggeration: .5
+  ScatterSky: 0
+  OvercastTexture: {fileID: 0}
+  OvercastScale: 10
+  OvercastMovement: {x: 1, y: .5}
+  OvercastPlaneHeight: 100
+  OvercastAffectsScatter: 0
+  CustomScatterOvercast: 0
+  ScatterOvercastTexture: {fileID: 0}
+  ScatterOvercastScale: 10
+  ScatterOvercastMovement: {x: 1, y: .5}
+  ScatterOvercastPlaneHeight: 100
+  BlankOvercastTexture: {fileID: 2800000, guid: f7bb5d2323daf424891853dde5788140,
+    type: 1}
+  OccluderShader: {fileID: 4800000, guid: 3e331ecd1fe394a21b9df7c08c177d40, type: 1}
+  PostScatterShader: {fileID: 4800000, guid: df676a0dd783d4da1a264428adc6b62d, type: 1}
+  PostBlurShader: {fileID: 4800000, guid: 0ac471b903840401caf50ba37f406814, type: 1}
+  PostDebugShader: {fileID: 4800000, guid: a6a793eaed75049bbaf6da02965c1da8, type: 1}
+  DebugView: 0
+  CustomCascadeCount: 1
+  CustomLightDistance: 40
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 100000}
+  m_IsPrefabParent: 1
+  m_IsExploded: 1
