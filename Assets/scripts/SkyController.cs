@@ -97,9 +97,9 @@ public class SkyController : MonoBehaviour {
 		}
 
 		this.transform.Rotate(speed * Time.deltaTime * skySpeed);
-		if (moon != null) {
-			moon.UpdateCycle (speed, skySpeed);
-		}
+//		if (moon != null) {
+//			moon.UpdateCycle (speed, skySpeed);
+//		}
 
 		if (_currentState != _previousState) {
 			// dispatch new state
