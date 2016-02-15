@@ -3,20 +3,21 @@ using System.Collections;
 
 public class MoonController : MonoBehaviour {
 
-	public bool isNightAtStart = false;
-
+	public Gradient moonlightColor;
+	public float maxMoonlight = 1f;
+	public float minMoonlight = 0;
+	public float sunOffset = 45f;
+		
 	private Light _moon;
 
 	// Use this for initialization
 	void Awake () {
 		_moon = this.gameObject.GetComponent<Light> ();
-//		_moon.enabled = isNightAtStart;
-		EventCenter.Instance.OnDayNightChange += this.OnDayNightChange;
+//		EventCenter.Instance.OnDayNightChange += this.OnDayNightChange;
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
+	public void UpdateCycle (Vector3 speed, float skySpeed) {
+		this.transform.Rotate (speed * Time.deltaTime * skySpeed);
 	}
 
 	private void OnDayNightChange(string state) {

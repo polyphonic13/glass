@@ -4,13 +4,19 @@ using System.Collections;
 public class SkyController : MonoBehaviour {
 
 	public Transform stars;
-	public Transform moon;
+	public MoonController moon; 
+
+	public bool usingSunshine;
+	public AnimationCurve sunshineCurve; 
 
 	public Gradient nightDayColor;
 
 	public float maxIntensity = 3f;
 	public float minIntensity = 0f;
 	public float minPoint = -0.2f; 
+
+	public float daySkyExposure = 1.6f;
+	public float nightSkyExposure = 0.1f;
 
 	public float maxAmbient = 1f;
 	public float minAmbient = 0f;
@@ -26,6 +32,7 @@ public class SkyController : MonoBehaviour {
 	public Vector3 dayRotationSpeed = new Vector3(-2, 0, 0);
 	public Vector3 nightRotationSpeed = new Vector3(-2, 0, 0); 
 
+	private Vector3 speed; 
 	private float skySpeed = 1f;
 
 	private Light mainLight;
@@ -41,7 +48,6 @@ public class SkyController : MonoBehaviour {
 	void Start () {
 		mainLight = GetComponent<Light> ();
 		skyMat = RenderSettings.skybox;
-
 	}
 	
 	// Update is called once per frame
@@ -49,16 +55,17 @@ public class SkyController : MonoBehaviour {
 		float tRange = 1 - minPoint;
 		float dot = Mathf.Clamp01 ((Vector3.Dot (mainLight.transform.forward, Vector3.down) - minPoint) / tRange);
 		float i = ((maxIntensity - minIntensity) * dot) + minIntensity;
+		/*
 		Debug.Log ("dot forward,down = " + Vector3.Dot (mainLight.transform.forward, Vector3.down)
 			+ " - minPoint = " + (Vector3.Dot (mainLight.transform.forward, Vector3.down) - minPoint)
 			+ ", dot = " + dot + ", tRange = " + tRange
 			+ ", light intensity = " + i);
+		*/
 		mainLight.intensity = i;
 
 		tRange = 1 - minAmbientPoint;
 		dot = Mathf.Clamp01 ((Vector3.Dot (mainLight.transform.forward, Vector3.down) - minAmbientPoint) / tRange);
 		i = ((maxAmbient - minAmbient) * dot) + minAmbient;
-//		Debug.Log ("ambient intensity = " + i);
 		RenderSettings.ambientIntensity = i;
 
 		mainLight.color = nightDayColor.Evaluate (dot);
@@ -67,18 +74,29 @@ public class SkyController : MonoBehaviour {
 		RenderSettings.fogColor = nightDayFogColor.Evaluate (dot);
 		RenderSettings.fogDensity = fogDensityCurve.Evaluate (dot) * fogScale;
 	
+//		Debug.Log ("ss curve = " + sunshineCurve.Evaluate (dot) + ", i = " + i + ", dot = " + dot);
+		if (usingSunshine) {
+			Sunshine.Instance.ScatterIntensity = sunshineCurve.Evaluate (dot);
+			Sunshine.Instance.ScatterColor = RenderSettings.fogColor;
+		}
+
 		i = (((dayAtmosphereThickness - nightAtmosphereThickness) * dot) + nightAtmosphereThickness);
 		skyMat.SetFloat("_AtmosphereThickness", i);
+//		skyMat.SetColor ("_Tint", Color.red);
 
-//		Debug.Log ("dot = " + dot + " rot = " + (dayRotationSpeed * Time.deltaTime * skySpeed));
 		if(dot > 0) {
 			_currentState = "day";
-
-			this.transform.Rotate(dayRotationSpeed * Time.deltaTime * skySpeed);
+			skyMat.SetFloat ("_Exposure", daySkyExposure);
+			speed = dayRotationSpeed;
 		} else {
 			_currentState = "night";
+			skyMat.SetFloat ("_Exposure", nightSkyExposure);
+			speed = nightRotationSpeed;
+		}
 
-			this.transform.Rotate(nightRotationSpeed * Time.deltaTime * skySpeed);
+		this.transform.Rotate(speed * Time.deltaTime * skySpeed);
+		if (moon != null) {
+			moon.UpdateCycle (speed, skySpeed);
 		}
 
 		if (_currentState != _previousState) {
