@@ -9,14 +9,13 @@ public class SkyController : MonoBehaviour {
 	public bool usingSunshine;
 	public AnimationCurve sunshineCurve; 
 
+	public AnimationCurve skyExposureCurve; 
+
 	public Gradient nightDayColor;
 
 	public float maxIntensity = 3f;
 	public float minIntensity = 0f;
 	public float minPoint = -0.2f; 
-
-	public float daySkyExposure = 1.6f;
-	public float nightSkyExposure = 0.1f;
 
 	public float maxAmbient = 1f;
 	public float minAmbient = 0f;
@@ -35,6 +34,7 @@ public class SkyController : MonoBehaviour {
 	private Vector3 speed; 
 	private float skySpeed = 1f;
 
+	private float exposure;
 	private Light mainLight;
 	private Skybox sky;
 	private Material skyMat;
@@ -82,15 +82,17 @@ public class SkyController : MonoBehaviour {
 
 		i = (((dayAtmosphereThickness - nightAtmosphereThickness) * dot) + nightAtmosphereThickness);
 		skyMat.SetFloat("_AtmosphereThickness", i);
-//		skyMat.SetColor ("_Tint", Color.red);
+
+		exposure = skyExposureCurve.Evaluate (dot);
+		Debug.Log("exposure = " + exposure + ", atmosphere thickness = " + i);
+	
+		skyMat.SetFloat("_Exposure", exposure);
 
 		if(dot > 0) {
 			_currentState = "day";
-			skyMat.SetFloat ("_Exposure", daySkyExposure);
 			speed = dayRotationSpeed;
 		} else {
 			_currentState = "night";
-			skyMat.SetFloat ("_Exposure", nightSkyExposure);
 			speed = nightRotationSpeed;
 		}
 
