@@ -72,8 +72,9 @@ public class SkyController : MonoBehaviour {
 		RenderSettings.ambientLight = mainLight.color;
 
 		RenderSettings.fogColor = nightDayFogColor.Evaluate (dot);
-		RenderSettings.fogDensity = fogDensityCurve.Evaluate (dot) * fogScale;
-	
+//		RenderSettings.fogDensity = fogDensityCurve.Evaluate (dot) * fogScale;
+		RenderSettings.fogDensity = 1 * fogScale;
+
 //		Debug.Log ("ss curve = " + sunshineCurve.Evaluate (dot) + ", i = " + i + ", dot = " + dot);
 		if (usingSunshine) {
 			Sunshine.Instance.ScatterIntensity = sunshineCurve.Evaluate (dot);
