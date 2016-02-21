@@ -238,4 +238,8 @@ public class EventCenter : MonoBehaviour {
 			OnDayNightChange (state);
 		}
 	}
+
+	public void ActivatePortal() {
+
+	}
 }
