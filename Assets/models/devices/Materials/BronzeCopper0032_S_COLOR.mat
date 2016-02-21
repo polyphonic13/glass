@@ -6,12 +6,13 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: skybox
-  m_Shader: {fileID: 106, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: _SUNDISK_HIGH_QUALITY
+  m_Name: BronzeCopper0032_S_COLOR
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: _ALPHAPREMULTIPLY_ON
   m_LightmapFlags: 5
-  m_CustomRenderQueue: 1000
-  stringTagMap: {}
+  m_CustomRenderQueue: 3000
+  stringTagMap:
+    RenderType: Transparent
   m_SavedProperties:
     serializedVersion: 2
     m_TexEnvs:
@@ -19,7 +20,7 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 0}
+          m_Texture: {fileID: 2800000, guid: 4785b9af0a4e84f87b39c66f019750c5, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -86,27 +87,11 @@ Material:
       data:
         first:
           name: _DstBlend
-        second: 0
+        second: 10
       data:
         first:
           name: _Cutoff
         second: 0.5
-      data:
-        first:
-          name: _Exposure
-        second: 1.9687095
-      data:
-        first:
-          name: _SunDisk
-        second: 2
-      data:
-        first:
-          name: _SunSize
-        second: 0.057
-      data:
-        first:
-          name: _AtmosphereThickness
-        second: 0.40221715
       data:
         first:
           name: _Parallax
@@ -114,7 +99,7 @@ Material:
       data:
         first:
           name: _ZWrite
-        second: 1
+        second: 0
       data:
         first:
           name: _Glossiness
@@ -138,7 +123,7 @@ Material:
       data:
         first:
           name: _Mode
-        second: 0
+        second: 3
       data:
         first:
           name: _Metallic
@@ -151,12 +136,4 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: 1, g: 1, b: 0.99607843, a: 1}
-      data:
-        first:
-          name: _SkyTint
-        second: {r: 0.46666667, g: 0.46666667, b: 0.46666667, a: 1}
-      data:
-        first:
-          name: _GroundColor
-        second: {r: 0, g: 0, b: 0, a: 1}
+        second: {r: 0.3463, g: 0.8, b: 0.4057, a: 0.14999998}

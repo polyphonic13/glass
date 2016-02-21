@@ -27,7 +27,6 @@ public class CollectableItem : InteractiveItem {
 	public void InitCollectableItem() {
 		Init();
 		IsCollected = IsEquipped = IsInspected = false;
-		// _player = GameObject.Find("player").GetComponent<Player>();
 		_originalSize = transform.localScale;
 	}
 
@@ -56,7 +55,7 @@ public class CollectableItem : InteractiveItem {
 	}
 	 
 	public void AttachToBackpack() {
-//		transform.localScale = new Vector3(0, 0, 0);
+		transform.localScale = new Vector3(0, 0, 0);
 		AttachToObject(_backpack);
 	}
 	
@@ -75,15 +74,11 @@ public class CollectableItem : InteractiveItem {
 	}
 
 	public virtual void Collect(Transform backpack, Transform rightHand) {
-//		if (this.name == "flashlight") {
-//			
-//		} else {
-			IsCollected = true;
-			_backpack = backpack;
-			_rightHand = rightHand;
-			Store ();
-			EventCenter.Instance.NearInteractiveItem (this, false);
-//		}
+		IsCollected = true;
+		_backpack = backpack;
+		_rightHand = rightHand;
+		Store ();
+		EventCenter.Instance.NearInteractiveItem (this, false);
 	}
 	
 	public virtual void Equip(Transform rightHand) {

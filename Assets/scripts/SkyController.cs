@@ -85,7 +85,7 @@ public class SkyController : MonoBehaviour {
 		skyMat.SetFloat("_AtmosphereThickness", i);
 
 		exposure = skyExposureCurve.Evaluate (dot);
-		Debug.Log("exposure = " + exposure + ", atmosphere thickness = " + i);
+//		Debug.Log("exposure = " + exposure + ", atmosphere thickness = " + i);
 	
 		skyMat.SetFloat("_Exposure", exposure);
 
