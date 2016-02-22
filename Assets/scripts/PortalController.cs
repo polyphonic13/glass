@@ -8,7 +8,11 @@ public class PortalController : MonoBehaviour {
 	public ParticleSystem up;
 	public ParticleSystem down; 
 
+	public ArmatureParent shellAnimator; 
+
 	private bool _isActive; 
+
+	private const string OPEN_ANIMATION_CLIP = "portal00_open";
 
 	void Awake () {
 		if (!startActivated) {
@@ -18,6 +22,8 @@ public class PortalController : MonoBehaviour {
 
 	public void Activate() {
 		if (!_isActive) {
+//			Debug.Log ("activating portal");
+			shellAnimator.PlayAnimation (OPEN_ANIMATION_CLIP);
 			_toggleParticleSystemStart (true);
 			_isActive = true;
 		}

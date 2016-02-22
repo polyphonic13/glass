@@ -31,6 +31,32 @@ ModelImporter:
     100046: crystals
     100048: Cube
     100050: frame_metal
+    100052: portal_frame
+    100054: shell
+    100056: shell_001
+    100058: shell_002
+    100060: shell_003
+    100062: shell_004
+    100064: shell_005
+    100066: shell_006
+    100068: shell_007
+    100070: shell_008
+    100072: Armature
+    100074: shell_L001
+    100076: shell_L002
+    100078: shell_L003
+    100080: shell_L004
+    100082: shell_L1
+    100084: shell_L2
+    100086: shell_L3
+    100088: shell_R001
+    100090: shell_R002
+    100092: shell_R003
+    100094: shell_R004
+    100096: shell_R1
+    100098: shell_R2
+    100100: shell_R3
+    100102: portal_back
     400000: //RootNode
     400002: base
     400004: base_001
@@ -57,6 +83,32 @@ ModelImporter:
     400046: crystals
     400048: Cube
     400050: frame_metal
+    400052: portal_frame
+    400054: shell
+    400056: shell_001
+    400058: shell_002
+    400060: shell_003
+    400062: shell_004
+    400064: shell_005
+    400066: shell_006
+    400068: shell_007
+    400070: shell_008
+    400072: Armature
+    400074: shell_L001
+    400076: shell_L002
+    400078: shell_L003
+    400080: shell_L004
+    400082: shell_L1
+    400084: shell_L2
+    400086: shell_L3
+    400088: shell_R001
+    400090: shell_R002
+    400092: shell_R003
+    400094: shell_R004
+    400096: shell_R1
+    400098: shell_R2
+    400100: shell_R3
+    400102: portal_back
     2300000: //RootNode
     2300002: base
     2300004: base_001
@@ -82,6 +134,17 @@ ModelImporter:
     2300044: crystal_structure01_001
     2300046: Cube
     2300048: frame_metal
+    2300050: shell_001
+    2300052: shell_002
+    2300054: shell_003
+    2300056: shell_004
+    2300058: shell_005
+    2300060: shell_006
+    2300062: shell_007
+    2300064: shell_008
+    2300066: shell_L004
+    2300068: shell_R004
+    2300070: portal_back
     3300000: //RootNode
     3300002: base
     3300004: base_001
@@ -107,6 +170,17 @@ ModelImporter:
     3300044: crystal_structure01_001
     3300046: Cube
     3300048: frame_metal
+    3300050: shell_001
+    3300052: shell_002
+    3300054: shell_003
+    3300056: shell_004
+    3300058: shell_005
+    3300060: shell_006
+    3300062: shell_007
+    3300064: shell_008
+    3300066: shell_L004
+    3300068: shell_R004
+    3300070: portal_back
     4300000: Cube
     4300002: crystal04_003
     4300004: crystal02_002
@@ -131,8 +205,34 @@ ModelImporter:
     4300042: crystal03
     4300044: crystal04
     4300046: frame_metal
+    4300048: shell_008
+    4300050: shell_007
+    4300052: shell_006
+    4300054: shell_005
+    4300056: shell_004
+    4300058: shell_003
+    4300060: shell_002
+    4300062: shell_001
+    4300064: shell_R003
+    4300066: shell_R002
+    4300068: shell_R001
+    4300070: shell_L001
+    4300072: shell_L002
+    4300074: shell_L003
+    4300076: shell_R004
+    4300078: shell_L004
+    4300080: portal_back
     7400000: Default Take
+    7400002: portal00_default
+    7400004: portal00_open
     9500000: //RootNode
+    11100000: //RootNode
+    13700000: shell_L001
+    13700002: shell_L002
+    13700004: shell_L003
+    13700006: shell_R001
+    13700008: shell_R002
+    13700010: shell_R003
   materials:
     importMaterials: 1
     materialName: 0
@@ -153,7 +253,235 @@ ModelImporter:
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: portal00_default
+      takeName: portal00_default
+      firstFrame: 0
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/shell_L1
+        weight: 1
+      - path: Armature/shell_L2
+        weight: 1
+      - path: Armature/shell_L3
+        weight: 1
+      - path: Armature/shell_R1
+        weight: 1
+      - path: Armature/shell_R2
+        weight: 1
+      - path: Armature/shell_R3
+        weight: 1
+      - path: portal_back
+        weight: 1
+      - path: portal_frame
+        weight: 1
+      - path: portal_frame/crystals
+        weight: 1
+      - path: portal_frame/crystals/base
+        weight: 1
+      - path: portal_frame/crystals/base_001
+        weight: 1
+      - path: portal_frame/crystals/base_002
+        weight: 1
+      - path: portal_frame/crystals/base_003
+        weight: 1
+      - path: portal_frame/crystals/base_004
+        weight: 1
+      - path: portal_frame/crystals/base_005
+        weight: 1
+      - path: portal_frame/crystals/base_006
+        weight: 1
+      - path: portal_frame/crystals/base_007
+        weight: 1
+      - path: portal_frame/crystals/crystal01
+        weight: 1
+      - path: portal_frame/crystals/crystal01_001
+        weight: 1
+      - path: portal_frame/crystals/crystal02
+        weight: 1
+      - path: portal_frame/crystals/crystal02_001
+        weight: 1
+      - path: portal_frame/crystals/crystal02_002
+        weight: 1
+      - path: portal_frame/crystals/crystal03
+        weight: 1
+      - path: portal_frame/crystals/crystal03_001
+        weight: 1
+      - path: portal_frame/crystals/crystal03_002
+        weight: 1
+      - path: portal_frame/crystals/crystal04
+        weight: 1
+      - path: portal_frame/crystals/crystal04_001
+        weight: 1
+      - path: portal_frame/crystals/crystal04_002
+        weight: 1
+      - path: portal_frame/crystals/crystal04_003
+        weight: 1
+      - path: portal_frame/crystals/crystal_structure01
+        weight: 1
+      - path: portal_frame/crystals/crystal_structure01_001
+        weight: 1
+      - path: portal_frame/frame_metal
+        weight: 1
+      - path: shell
+        weight: 1
+      - path: shell/shell_L004
+        weight: 1
+      - path: shell/shell_R004
+        weight: 1
+      - path: shell_L001
+        weight: 1
+      - path: shell_L002
+        weight: 1
+      - path: shell_L003
+        weight: 1
+      - path: shell_R001
+        weight: 1
+      - path: shell_R002
+        weight: 1
+      - path: shell_R003
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: portal00_open
+      takeName: portal00_open
+      firstFrame: 0
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/shell_L1
+        weight: 1
+      - path: Armature/shell_L2
+        weight: 1
+      - path: Armature/shell_L3
+        weight: 1
+      - path: Armature/shell_R1
+        weight: 1
+      - path: Armature/shell_R2
+        weight: 1
+      - path: Armature/shell_R3
+        weight: 1
+      - path: portal_back
+        weight: 1
+      - path: portal_frame
+        weight: 1
+      - path: portal_frame/crystals
+        weight: 1
+      - path: portal_frame/crystals/base
+        weight: 1
+      - path: portal_frame/crystals/base_001
+        weight: 1
+      - path: portal_frame/crystals/base_002
+        weight: 1
+      - path: portal_frame/crystals/base_003
+        weight: 1
+      - path: portal_frame/crystals/base_004
+        weight: 1
+      - path: portal_frame/crystals/base_005
+        weight: 1
+      - path: portal_frame/crystals/base_006
+        weight: 1
+      - path: portal_frame/crystals/base_007
+        weight: 1
+      - path: portal_frame/crystals/crystal01
+        weight: 1
+      - path: portal_frame/crystals/crystal01_001
+        weight: 1
+      - path: portal_frame/crystals/crystal02
+        weight: 1
+      - path: portal_frame/crystals/crystal02_001
+        weight: 1
+      - path: portal_frame/crystals/crystal02_002
+        weight: 1
+      - path: portal_frame/crystals/crystal03
+        weight: 1
+      - path: portal_frame/crystals/crystal03_001
+        weight: 1
+      - path: portal_frame/crystals/crystal03_002
+        weight: 1
+      - path: portal_frame/crystals/crystal04
+        weight: 1
+      - path: portal_frame/crystals/crystal04_001
+        weight: 1
+      - path: portal_frame/crystals/crystal04_002
+        weight: 1
+      - path: portal_frame/crystals/crystal04_003
+        weight: 1
+      - path: portal_frame/crystals/crystal_structure01
+        weight: 1
+      - path: portal_frame/crystals/crystal_structure01_001
+        weight: 1
+      - path: portal_frame/frame_metal
+        weight: 1
+      - path: shell
+        weight: 1
+      - path: shell/shell_L004
+        weight: 1
+      - path: shell/shell_R004
+        weight: 1
+      - path: shell_L001
+        weight: 1
+      - path: shell_L002
+        weight: 1
+      - path: shell_L003
+        weight: 1
+      - path: shell_R001
+        weight: 1
+      - path: shell_R002
+        weight: 1
+      - path: shell_R003
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -191,7 +519,7 @@ ModelImporter:
     rootMotionBoneName: 
     hasTranslationDoF: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 1
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
