@@ -315,8 +315,8 @@ GameObject:
   - 114: {fileID: 11456384}
   - 114: {fileID: 11419738}
   - 114: {fileID: 11496762}
-  - 114: {fileID: 11421610}
-  - 114: {fileID: 11463950}
+  - 114: {fileID: 11469406}
+  - 114: {fileID: 11487096}
   m_Layer: 0
   m_Name: player_head_camera
   m_TagString: MainCamera
@@ -1255,18 +1255,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactDistance: 2
---- !u!114 &11421610
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 145236}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99e2fae5766b74c51b3339ce88fe228e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  StereoscopicMasterCamera: {fileID: 0}
 --- !u!114 &11423748
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1615,17 +1603,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &11463950
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 145236}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2377fadf0e6054631b74f535e3ef9f9a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11465200
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1732,6 +1709,17 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &11469406
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 145236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2377fadf0e6054631b74f535e3ef9f9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11472334
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1749,7 +1737,7 @@ MonoBehaviour:
   _flashLight: {fileID: 11483978}
   _damageFromFall: 0
   _underWaterGravity: -0.1
-  _CrawlSpeed: 2
+  _CrawlSpeed: 0.33
   _DiveSpeed: 3
   _SwimSpeed: 2
   m_IsWalking: 0
@@ -2086,6 +2074,18 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Menu
+--- !u!114 &11487096
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 145236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99e2fae5766b74c51b3339ce88fe228e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StereoscopicMasterCamera: {fileID: 0}
 --- !u!114 &11496020
 MonoBehaviour:
   m_ObjectHideFlags: 1
