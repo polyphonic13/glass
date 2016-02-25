@@ -5,14 +5,15 @@ public class SceneChanger : MonoBehaviour {
 	public string _targetScene;
 	public int _targetRoom;
 
-	private bool activated { get; set; }
+	private bool isActive { get; set; }
 
 	void Awake() {
-		activated = true;
+		isActive = false;
 	}
 
 	void OnTriggerEnter(Collider tgt) {
-		if(activated) {
+		Debug.Log ("SceneChanger/OnTriggerEnter, tgt = " + tgt.gameObject.tag + ", isActive = " + isActive);
+		if(isActive) {
 //			Debug.Log("scene changer trigger, tgt.tag = " + tgt.gameObject.tag);
 			if(tgt.gameObject.tag == "Player") {
 				GameControl.Instance.ChangeScene(_targetScene, _targetRoom);
@@ -21,6 +22,7 @@ public class SceneChanger : MonoBehaviour {
 	}
 
 	public void SetActive(bool active) {
-		activated = active;
+		Debug.Log ("SceneChanger/SetActive, active = " + active);
+		isActive = active;
 	}
 }

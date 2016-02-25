@@ -12,9 +12,14 @@ public class PortalController : MonoBehaviour {
 
 	private bool _isActive; 
 
+	private SceneChanger sceneChanger;
+
 	private const string OPEN_ANIMATION_CLIP = "portal00_open";
 
 	void Awake () {
+		sceneChanger = GameObject.Find("collider_back").GetComponent<SceneChanger> ();
+		Debug.Log ("sceneChanger = " + sceneChanger);
+
 		if (!startActivated) {
 			_toggleParticleSystemStart (false);
 		}
@@ -39,5 +44,6 @@ public class PortalController : MonoBehaviour {
 	private void _toggleParticleSystemStart(bool enable) {
 		up.enableEmission = enable;
 		down.enableEmission = enable;
+		sceneChanger.SetActive (enable);
 	}
 }
