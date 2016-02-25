@@ -23,6 +23,7 @@ public class StaminaManager : MonoBehaviour {
 
 	void Update() {
 		if(_controls.GetButton("run")) {
+			Debug.Log ("StaminaManager/Update, run control, _remaininStamina = " + _remainingStamina);
 			if(_remainingStamina > 0) {
 				IsBoosted = true;
 				_remainingStamina -= Time.deltaTime;

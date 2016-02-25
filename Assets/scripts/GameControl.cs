@@ -93,6 +93,7 @@ public class GameControl : MonoBehaviour {
 	}
 
 	public void UpdateHealth(float val) {
+		Debug.Log ("GameControl/UpdateHealth, val = " + +val);
 		_health = val; 
 		_postHealthUpdate();
 	}
