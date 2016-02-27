@@ -50,6 +50,7 @@ public class Inventory : MonoBehaviour {
 			if (item.name != "flashlight") {
 				_items.Add (item.name, item);
 				message = item.ItemName + " Added to inventory";
+				GameControl.Instance.hasFlashlight = true;
 			} else {
 				message = item.ItemName + " Collected";
 			}

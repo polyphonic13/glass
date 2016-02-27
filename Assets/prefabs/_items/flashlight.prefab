@@ -1,0 +1,127 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &130238
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 499488}
+  - 33: {fileID: 3365984}
+  - 23: {fileID: 2302860}
+  - 95: {fileID: 9503486}
+  - 65: {fileID: 6506112}
+  - 114: {fileID: 11454830}
+  m_Layer: 0
+  m_Name: flashlight
+  m_TagString: interactive
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &499488
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 130238}
+  m_LocalRotation: {x: 0.57861817, y: -0.40644974, z: 0.57861793, w: 0.40644932}
+  m_LocalPosition: {x: -0.274, y: -0.312, z: -0.017}
+  m_LocalScale: {x: 0.16937897, y: 0.15700795, z: 0.7893984}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!23 &2302860
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 130238}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_Materials:
+  - {fileID: 2100000, guid: f21dfbb7482444c2da9b32d2cf8f8f9b, type: 2}
+  - {fileID: 2100000, guid: 89119dfb824b74bfc84d07748646e12a, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 1
+  m_ReflectionProbeUsage: 1
+  m_ProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!33 &3365984
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 130238}
+  m_Mesh: {fileID: 4300000, guid: ece5e70c2a1ba42a098d8385764dd18c, type: 3}
+--- !u!65 &6506112
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 130238}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.3683479, y: 1.3683913, z: 0.8352572}
+  m_Center: {x: 0.004090519, y: -0.0032325701, z: -0.048842512}
+--- !u!95 &9503486
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 130238}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: ece5e70c2a1ba42a098d8385764dd18c, type: 3}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11454830
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 130238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d5685fee4ef64e078f6725eb7c9cc65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Icon: {fileID: 21300000, guid: fb95dcee818d24ef28010358f7fdfaf7, type: 3}
+  Thumbnail: {fileID: 21300000, guid: ee2c5c086d03b49c3898c8727f724cf4, type: 3}
+  ItemName: Flashlight
+  _interactDistance: 1.5
+  _containingRoom: bedroom_nw
+  description: An antique flashlight
+  targetContainerName: 
+  _weight: {fileID: 11484862, guid: ed5b67beeb2f34409b9e0764fc6167fb, type: 2}
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 130238}
+  m_IsPrefabParent: 1

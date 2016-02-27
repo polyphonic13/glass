@@ -6,6 +6,8 @@ public class GameControl : MonoBehaviour {
 	public float _breath = 120f;
 	public float _stamina = 5f;
 
+	public bool hasFlashlight = false; 
+
 	public int targetRoom = -1;
 
 	public float RemainingHealth { get; set; }

@@ -3,7 +3,7 @@ guid: 761ae4e7460ab4b4f900eb807f6673bd
 timeCreated: 1429386352
 licenseType: Pro
 ModelImporter:
-  serializedVersion: 18
+  serializedVersion: 19
   fileIDToRecycleName:
     100000: room02a
     100002: room02a_001
@@ -14,6 +14,16 @@ ModelImporter:
     100012: room02a_006
     100014: room02b
     100016: //RootNode
+    100018: 02a_009_ledge_000
+    100020: 02a_009_room
+    100022: 02a_009_stalag_000
+    100024: 02a_009_stalag_001
+    100026: 02a_009_step_000
+    100028: 02a_009_step_001
+    100030: 02a_009_step_002
+    100032: 02a_009_step_003
+    100034: 02a_009_step_004
+    100036: 02a_009_step_005
     400000: room02a
     400002: room02a_001
     400004: room02a_002
@@ -23,6 +33,16 @@ ModelImporter:
     400012: room02a_006
     400014: room02b
     400016: //RootNode
+    400018: 02a_009_ledge_000
+    400020: 02a_009_room
+    400022: 02a_009_stalag_000
+    400024: 02a_009_stalag_001
+    400026: 02a_009_step_000
+    400028: 02a_009_step_001
+    400030: 02a_009_step_002
+    400032: 02a_009_step_003
+    400034: 02a_009_step_004
+    400036: 02a_009_step_005
     2300000: room02a
     2300002: room02a_001
     2300004: room02a_002
@@ -31,6 +51,16 @@ ModelImporter:
     2300010: room02a_005
     2300012: room02a_006
     2300014: room02b
+    2300016: 02a_009_ledge_000
+    2300018: 02a_009_room
+    2300020: 02a_009_stalag_000
+    2300022: 02a_009_stalag_001
+    2300024: 02a_009_step_000
+    2300026: 02a_009_step_001
+    2300028: 02a_009_step_002
+    2300030: 02a_009_step_003
+    2300032: 02a_009_step_004
+    2300034: 02a_009_step_005
     3300000: room02a
     3300002: room02a_001
     3300004: room02a_002
@@ -39,6 +69,16 @@ ModelImporter:
     3300010: room02a_005
     3300012: room02a_006
     3300014: room02b
+    3300016: 02a_009_ledge_000
+    3300018: 02a_009_room
+    3300020: 02a_009_stalag_000
+    3300022: 02a_009_stalag_001
+    3300024: 02a_009_step_000
+    3300026: 02a_009_step_001
+    3300028: 02a_009_step_002
+    3300030: 02a_009_step_003
+    3300032: 02a_009_step_004
+    3300034: 02a_009_step_005
     4300000: room02a_006
     4300002: room02a_005
     4300004: room02a_004
@@ -47,6 +87,26 @@ ModelImporter:
     4300010: room02a_002
     4300012: room02a
     4300014: room02b
+    4300016: 02a_009_step_005
+    4300018: 02a_009_ledge_000
+    4300020: 02a_009_stalag_001
+    4300022: 02a_009_stalag_000
+    4300024: 02a_009_room
+    4300026: 02a_009_step_003
+    4300028: 02a_009_step_002
+    4300030: 02a_009_step_001
+    4300032: 02a_009_step_000
+    4300034: 02a_009_step_004
+    6400000: 02a_009_ledge_000
+    6400002: 02a_009_room
+    6400004: 02a_009_stalag_000
+    6400006: 02a_009_stalag_001
+    6400008: 02a_009_step_000
+    6400010: 02a_009_step_001
+    6400012: 02a_009_step_002
+    6400014: 02a_009_step_003
+    6400016: 02a_009_step_004
+    6400018: 02a_009_step_005
     7400000: Default Take
     9500000: //RootNode
   materials:
@@ -56,12 +116,17 @@ ModelImporter:
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
+    resampleRotations: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
     animationCompression: 1
-    animationRotationError: .5
-    animationPositionError: .5
-    animationScaleError: .5
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
     clipAnimations: []
@@ -70,10 +135,10 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importBlendShapes: 1
     swapUVChannels: 0
-    generateSecondaryUV: 0
+    generateSecondaryUV: 1
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0
@@ -85,24 +150,25 @@ ModelImporter:
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
-    splitTangentsAcrossUV: 1
     normalImportMode: 0
-    tangentImportMode: 1
+    tangentImportMode: 4
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
     human: []
     skeleton: []
-    armTwist: .5
-    foreArmTwist: .5
-    upperLegTwist: .5
-    legTwist: .5
-    armStretch: .0500000007
-    legStretch: .0500000007
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
+    hasTranslationDoF: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 2
+  humanoidOversampling: 1
   additionalBone: 0
   userData: 
   assetBundleName: 

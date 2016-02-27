@@ -54,7 +54,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
 		private bool _isMenuOpen = false;
 		private bool _isInventoryOpen = false;
 		private bool _isInspectorOpen = false;
-		private bool _hasFlashlight = false;
+		private bool _hasFlashlight = true;
 
 		private Camera _mainCamera;
         private bool m_Jump;
@@ -121,15 +121,9 @@ namespace UnitySampleAssets.Characters.FirstPerson
 		}
 
 		public void OnInventoryItemAdded(string name) {
-			Debug.Log ("OnInventoryItemAdded, name = " + name);
+//			Debug.Log ("OnInventoryItemAdded, name = " + name);
 			if (name == "flashlight") {
 				_hasFlashlight = true;
-			}
-		}
-
-		public void OnInventoryItemRemoved(string name) {
-			if (name == "flashlight") {
-				_hasFlashlight = false;
 			}
 		}
 
@@ -175,6 +169,8 @@ namespace UnitySampleAssets.Characters.FirstPerson
 				_childTransforms [i++] = t;
 			}
 
+//			_hasFlashlight = GameControl.Instance.hasFlashlight;
+				
 			var ec = EventCenter.Instance;
 			ec.OnAboveWater += OnAboveWater;
 			ec.OnPlayerDamaged += OnPlayerDamaged;
