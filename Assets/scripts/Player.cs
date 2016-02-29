@@ -54,7 +54,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
 		private bool _isMenuOpen = false;
 		private bool _isInventoryOpen = false;
 		private bool _isInspectorOpen = false;
-		private bool _hasFlashlight = true;
+		private bool _hasFlashlight = false;
 
 		private Camera _mainCamera;
         private bool m_Jump;
