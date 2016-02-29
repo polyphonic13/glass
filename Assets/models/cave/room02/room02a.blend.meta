@@ -31,6 +31,27 @@ ModelImporter:
     100046: scorpio_frame_002
     100048: tunnel02_door
     100050: tunnel02_door_001
+    100052: elevator
+    100054: elevator_frame
+    100056: elevator_platform
+    100058: Armature
+    100060: bone_elevator_platform
+    100062: bone_leo_L1
+    100064: bone_leo_L2
+    100066: bone_leo_R1
+    100068: bone_leo_R2
+    100070: bone_scorpio_L1
+    100072: bone_scorpio_L2
+    100074: bone_scorpio_R1
+    100076: bone_scorpio_R2
+    100078: leo_center_000
+    100080: leo_center_001
+    100082: leo_center_002
+    100084: leo_center_003
+    100086: scorpio_center_000
+    100088: scorpio_center_001
+    100090: scorpio_center_002
+    100092: scorpio_center_003
     400000: 02a_001
     400002: 02a_001_room
     400004: 02a_001_room_001
@@ -57,6 +78,27 @@ ModelImporter:
     400046: scorpio_frame_002
     400048: tunnel02_door
     400050: tunnel02_door_001
+    400052: elevator
+    400054: elevator_frame
+    400056: elevator_platform
+    400058: Armature
+    400060: bone_elevator_platform
+    400062: bone_leo_L1
+    400064: bone_leo_L2
+    400066: bone_leo_R1
+    400068: bone_leo_R2
+    400070: bone_scorpio_L1
+    400072: bone_scorpio_L2
+    400074: bone_scorpio_R1
+    400076: bone_scorpio_R2
+    400078: leo_center_000
+    400080: leo_center_001
+    400082: leo_center_002
+    400084: leo_center_003
+    400086: scorpio_center_000
+    400088: scorpio_center_001
+    400090: scorpio_center_002
+    400092: scorpio_center_003
     2300000: 02a_001_room
     2300002: 02a_001_room_001
     2300004: Cube
@@ -79,6 +121,8 @@ ModelImporter:
     2300038: scorpio_frame_002
     2300040: tunnel02_door
     2300042: tunnel02_door_001
+    2300044: elevator_frame
+    2300046: elevator_platform
     3300000: 02a_001_room
     3300002: 02a_001_room_001
     3300004: Cube
@@ -101,6 +145,8 @@ ModelImporter:
     3300038: scorpio_frame_002
     3300040: tunnel02_door
     3300042: tunnel02_door_001
+    3300044: elevator_frame
+    3300046: elevator_platform
     4300000: Cube_001
     4300002: Cube
     4300004: 02a_001_room_001
@@ -123,6 +169,16 @@ ModelImporter:
     4300038: tunnel02_door
     4300040: portal_gate
     4300042: scorpio_frame_002
+    4300044: elevator_platform
+    4300046: elevator_frame
+    4300048: scorpio_center_000
+    4300050: scorpio_center_001
+    4300052: scorpio_center_002
+    4300054: scorpio_center_003
+    4300056: leo_center_003
+    4300058: leo_center_002
+    4300060: leo_center_001
+    4300062: leo_center_000
     6400000: 02a_001_room
     6400002: 02a_001_room_001
     6400004: Cube
@@ -145,8 +201,25 @@ ModelImporter:
     6400038: scorpio_frame_002
     6400040: tunnel02_door
     6400042: tunnel02_door_001
+    6400044: elevator_frame
+    6400046: elevator_platform
     7400000: Default Take
+    7400002: room02a_default
+    7400004: room02a_elevator_down
+    7400006: room02a_elevator_up
+    7400008: room02a_leo_door_open
+    7400010: room02a_scorpio_door_open
     9500000: //RootNode
+    11100000: //RootNode
+    13700000: elevator_platform
+    13700002: leo_center_000
+    13700004: leo_center_001
+    13700006: leo_center_002
+    13700008: leo_center_003
+    13700010: scorpio_center_000
+    13700012: scorpio_center_001
+    13700014: scorpio_center_002
+    13700016: scorpio_center_003
   materials:
     importMaterials: 1
     materialName: 0
@@ -167,7 +240,547 @@ ModelImporter:
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: room02a_default
+      takeName: room02a_default
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: 02a_001
+        weight: 1
+      - path: 02a_001/02a_000_room
+        weight: 1
+      - path: 02a_001/02a_001_room
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/bone_elevator_platform
+        weight: 1
+      - path: Armature/bone_leo_L1
+        weight: 1
+      - path: Armature/bone_leo_L2
+        weight: 1
+      - path: Armature/bone_leo_R1
+        weight: 1
+      - path: Armature/bone_leo_R2
+        weight: 1
+      - path: Armature/bone_scorpio_L1
+        weight: 1
+      - path: Armature/bone_scorpio_L2
+        weight: 1
+      - path: Armature/bone_scorpio_R1
+        weight: 1
+      - path: Armature/bone_scorpio_R2
+        weight: 1
+      - path: curved_wall_000
+        weight: 1
+      - path: curved_wall_001
+        weight: 1
+      - path: elevator
+        weight: 1
+      - path: elevator/elevator_frame
+        weight: 1
+      - path: elevator_platform
+        weight: 1
+      - path: leo_center_000
+        weight: 1
+      - path: leo_center_001
+        weight: 1
+      - path: leo_center_002
+        weight: 1
+      - path: leo_center_003
+        weight: 1
+      - path: leo_door
+        weight: 1
+      - path: leo_door/leo_frame
+        weight: 1
+      - path: portal_gate
+        weight: 1
+      - path: scorpio_center_000
+        weight: 1
+      - path: scorpio_center_001
+        weight: 1
+      - path: scorpio_center_002
+        weight: 1
+      - path: scorpio_center_003
+        weight: 1
+      - path: scorpio_door
+        weight: 1
+      - path: scorpio_door/scorpio_frame
+        weight: 1
+      - path: scorpio_door/scorpio_frame_001
+        weight: 1
+      - path: scorpio_door/scorpio_frame_002
+        weight: 1
+      - path: stalag_000
+        weight: 1
+      - path: stalag_001
+        weight: 1
+      - path: stalag_002
+        weight: 1
+      - path: stalag_003
+        weight: 1
+      - path: tunnel02_door
+        weight: 1
+      - path: tunnel02_door_001
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: room02a_elevator_down
+      takeName: room02a_elevator_down
+      firstFrame: 0
+      lastFrame: 20
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: 02a_001
+        weight: 1
+      - path: 02a_001/02a_000_room
+        weight: 1
+      - path: 02a_001/02a_001_room
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/bone_elevator_platform
+        weight: 1
+      - path: Armature/bone_leo_L1
+        weight: 1
+      - path: Armature/bone_leo_L2
+        weight: 1
+      - path: Armature/bone_leo_R1
+        weight: 1
+      - path: Armature/bone_leo_R2
+        weight: 1
+      - path: Armature/bone_scorpio_L1
+        weight: 1
+      - path: Armature/bone_scorpio_L2
+        weight: 1
+      - path: Armature/bone_scorpio_R1
+        weight: 1
+      - path: Armature/bone_scorpio_R2
+        weight: 1
+      - path: curved_wall_000
+        weight: 1
+      - path: curved_wall_001
+        weight: 1
+      - path: elevator
+        weight: 1
+      - path: elevator/elevator_frame
+        weight: 1
+      - path: elevator_platform
+        weight: 1
+      - path: leo_center_000
+        weight: 1
+      - path: leo_center_001
+        weight: 1
+      - path: leo_center_002
+        weight: 1
+      - path: leo_center_003
+        weight: 1
+      - path: leo_door
+        weight: 1
+      - path: leo_door/leo_frame
+        weight: 1
+      - path: portal_gate
+        weight: 1
+      - path: scorpio_center_000
+        weight: 1
+      - path: scorpio_center_001
+        weight: 1
+      - path: scorpio_center_002
+        weight: 1
+      - path: scorpio_center_003
+        weight: 1
+      - path: scorpio_door
+        weight: 1
+      - path: scorpio_door/scorpio_frame
+        weight: 1
+      - path: scorpio_door/scorpio_frame_001
+        weight: 1
+      - path: scorpio_door/scorpio_frame_002
+        weight: 1
+      - path: stalag_000
+        weight: 1
+      - path: stalag_001
+        weight: 1
+      - path: stalag_002
+        weight: 1
+      - path: stalag_003
+        weight: 1
+      - path: tunnel02_door
+        weight: 1
+      - path: tunnel02_door_001
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: room02a_elevator_up
+      takeName: room02a_elevator_up
+      firstFrame: 0
+      lastFrame: 20
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: 02a_001
+        weight: 1
+      - path: 02a_001/02a_000_room
+        weight: 1
+      - path: 02a_001/02a_001_room
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/bone_elevator_platform
+        weight: 1
+      - path: Armature/bone_leo_L1
+        weight: 1
+      - path: Armature/bone_leo_L2
+        weight: 1
+      - path: Armature/bone_leo_R1
+        weight: 1
+      - path: Armature/bone_leo_R2
+        weight: 1
+      - path: Armature/bone_scorpio_L1
+        weight: 1
+      - path: Armature/bone_scorpio_L2
+        weight: 1
+      - path: Armature/bone_scorpio_R1
+        weight: 1
+      - path: Armature/bone_scorpio_R2
+        weight: 1
+      - path: curved_wall_000
+        weight: 1
+      - path: curved_wall_001
+        weight: 1
+      - path: elevator
+        weight: 1
+      - path: elevator/elevator_frame
+        weight: 1
+      - path: elevator_platform
+        weight: 1
+      - path: leo_center_000
+        weight: 1
+      - path: leo_center_001
+        weight: 1
+      - path: leo_center_002
+        weight: 1
+      - path: leo_center_003
+        weight: 1
+      - path: leo_door
+        weight: 1
+      - path: leo_door/leo_frame
+        weight: 1
+      - path: portal_gate
+        weight: 1
+      - path: scorpio_center_000
+        weight: 1
+      - path: scorpio_center_001
+        weight: 1
+      - path: scorpio_center_002
+        weight: 1
+      - path: scorpio_center_003
+        weight: 1
+      - path: scorpio_door
+        weight: 1
+      - path: scorpio_door/scorpio_frame
+        weight: 1
+      - path: scorpio_door/scorpio_frame_001
+        weight: 1
+      - path: scorpio_door/scorpio_frame_002
+        weight: 1
+      - path: stalag_000
+        weight: 1
+      - path: stalag_001
+        weight: 1
+      - path: stalag_002
+        weight: 1
+      - path: stalag_003
+        weight: 1
+      - path: tunnel02_door
+        weight: 1
+      - path: tunnel02_door_001
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: room02a_leo_door_open
+      takeName: room02a_leo_door_open
+      firstFrame: 0
+      lastFrame: 20
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: 02a_001
+        weight: 1
+      - path: 02a_001/02a_000_room
+        weight: 1
+      - path: 02a_001/02a_001_room
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/bone_elevator_platform
+        weight: 1
+      - path: Armature/bone_leo_L1
+        weight: 1
+      - path: Armature/bone_leo_L2
+        weight: 1
+      - path: Armature/bone_leo_R1
+        weight: 1
+      - path: Armature/bone_leo_R2
+        weight: 1
+      - path: Armature/bone_scorpio_L1
+        weight: 1
+      - path: Armature/bone_scorpio_L2
+        weight: 1
+      - path: Armature/bone_scorpio_R1
+        weight: 1
+      - path: Armature/bone_scorpio_R2
+        weight: 1
+      - path: curved_wall_000
+        weight: 1
+      - path: curved_wall_001
+        weight: 1
+      - path: elevator
+        weight: 1
+      - path: elevator/elevator_frame
+        weight: 1
+      - path: elevator_platform
+        weight: 1
+      - path: leo_center_000
+        weight: 1
+      - path: leo_center_001
+        weight: 1
+      - path: leo_center_002
+        weight: 1
+      - path: leo_center_003
+        weight: 1
+      - path: leo_door
+        weight: 1
+      - path: leo_door/leo_frame
+        weight: 1
+      - path: portal_gate
+        weight: 1
+      - path: scorpio_center_000
+        weight: 1
+      - path: scorpio_center_001
+        weight: 1
+      - path: scorpio_center_002
+        weight: 1
+      - path: scorpio_center_003
+        weight: 1
+      - path: scorpio_door
+        weight: 1
+      - path: scorpio_door/scorpio_frame
+        weight: 1
+      - path: scorpio_door/scorpio_frame_001
+        weight: 1
+      - path: scorpio_door/scorpio_frame_002
+        weight: 1
+      - path: stalag_000
+        weight: 1
+      - path: stalag_001
+        weight: 1
+      - path: stalag_002
+        weight: 1
+      - path: stalag_003
+        weight: 1
+      - path: tunnel02_door
+        weight: 1
+      - path: tunnel02_door_001
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: room02a_scorpio_door_open
+      takeName: room02a_scorpio_door_open
+      firstFrame: 0
+      lastFrame: 20
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: 02a_001
+        weight: 1
+      - path: 02a_001/02a_000_room
+        weight: 1
+      - path: 02a_001/02a_001_room
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/bone_elevator_platform
+        weight: 1
+      - path: Armature/bone_leo_L1
+        weight: 1
+      - path: Armature/bone_leo_L2
+        weight: 1
+      - path: Armature/bone_leo_R1
+        weight: 1
+      - path: Armature/bone_leo_R2
+        weight: 1
+      - path: Armature/bone_scorpio_L1
+        weight: 1
+      - path: Armature/bone_scorpio_L2
+        weight: 1
+      - path: Armature/bone_scorpio_R1
+        weight: 1
+      - path: Armature/bone_scorpio_R2
+        weight: 1
+      - path: curved_wall_000
+        weight: 1
+      - path: curved_wall_001
+        weight: 1
+      - path: elevator
+        weight: 1
+      - path: elevator/elevator_frame
+        weight: 1
+      - path: elevator_platform
+        weight: 1
+      - path: leo_center_000
+        weight: 1
+      - path: leo_center_001
+        weight: 1
+      - path: leo_center_002
+        weight: 1
+      - path: leo_center_003
+        weight: 1
+      - path: leo_door
+        weight: 1
+      - path: leo_door/leo_frame
+        weight: 1
+      - path: portal_gate
+        weight: 1
+      - path: scorpio_center_000
+        weight: 1
+      - path: scorpio_center_001
+        weight: 1
+      - path: scorpio_center_002
+        weight: 1
+      - path: scorpio_center_003
+        weight: 1
+      - path: scorpio_door
+        weight: 1
+      - path: scorpio_door/scorpio_frame
+        weight: 1
+      - path: scorpio_door/scorpio_frame_001
+        weight: 1
+      - path: scorpio_door/scorpio_frame_002
+        weight: 1
+      - path: stalag_000
+        weight: 1
+      - path: stalag_001
+        weight: 1
+      - path: stalag_002
+        weight: 1
+      - path: stalag_003
+        weight: 1
+      - path: tunnel02_door
+        weight: 1
+      - path: tunnel02_door_001
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -205,7 +818,7 @@ ModelImporter:
     rootMotionBoneName: 
     hasTranslationDoF: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 1
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

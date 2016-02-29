@@ -26,6 +26,8 @@ public class EventCenter : MonoBehaviour {
 	public delegate void TriggerEventHandler(string evt);
 	public delegate void TriggerCollectedEventHandler(string evt);
 
+	public delegate void CrystalKeyHandler(string name); 
+
 	public delegate void InteractiveItemProximityHandler(InteractiveItem item, bool isInProximity);
 
 	public delegate void AddNoteHandler(string message = "", bool fadeOut = true);
@@ -62,7 +64,9 @@ public class EventCenter : MonoBehaviour {
 	
 	public event TriggerEventHandler OnTriggerEvent;
 	public event TriggerCollectedEventHandler OnTriggerCollectedEvent; 
-	
+
+	public event CrystalKeyHandler OnCrystalKeyUsed; 
+
 	public event InteractiveItemProximityHandler OnNearInteractiveItem;
 
 	public event AddNoteHandler OnAddNote; 
@@ -179,6 +183,12 @@ public class EventCenter : MonoBehaviour {
 	public void TriggerCollectedEvent(string evt) {
 		if(OnTriggerCollectedEvent != null) {
 			OnTriggerCollectedEvent(evt);
+		}
+	}
+
+	public void UseCrystalKey(string name) {
+		if (OnCrystalKeyUsed != null) {
+			OnCrystalKeyUsed (name);
 		}
 	}
 
