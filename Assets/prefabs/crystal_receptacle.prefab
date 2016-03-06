@@ -11,10 +11,9 @@ GameObject:
   - 95: {fileID: 9584718}
   - 65: {fileID: 6568654}
   - 114: {fileID: 11467498}
-  - 114: {fileID: 11420896}
   m_Layer: 0
   m_Name: crystal_receptacle
-  m_TagString: Untagged
+  m_TagString: interactive
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -274,24 +273,6 @@ Light:
   m_ShadowRadius: 0
   m_ShadowAngle: 0
   m_AreaSize: {x: 1, y: 1}
---- !u!114 &11420896
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 107442}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15725ebbb138d4ca9b411776763f29fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: 766854d3fb11b4471aca3a8d1bda1a22, type: 3}
-  Thumbnail: {fileID: 0}
-  ItemName: Cylinder
-  _interactDistance: 1.5
-  _containingRoom: 
-  description: A metal cylinder with glowing contents
-  singleUse: 1
 --- !u!114 &11467498
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -303,9 +284,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eae31bc15b68f4149b23835def9f1a73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
+  Thumbnail: {fileID: 0}
+  ItemName: Crystal Receptacle
+  _interactDistance: 1.5
+  _containingRoom: room02a
   target: {fileID: 0}
   bone: {fileID: 0}
   unlockClip: {fileID: 7400008, guid: 18db5bebeebe341869a285daeced51e9, type: 3}
+  closeClip: {fileID: 7400010, guid: 18db5bebeebe341869a285daeced51e9, type: 3}
   key: {fileID: 0}
   crystal: {fileID: 154866}
 --- !u!1001 &100100000

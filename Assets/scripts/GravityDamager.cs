@@ -15,12 +15,12 @@ public class GravityDamager : MonoBehaviour {
 	}
 
 	public void BeginFall() {
-		Debug.Log("GravitytDamager/BeginFall");
+//		Debug.Log("GravitytDamager/BeginFall");
 		_isFalling = true;
 	}
 
 	public float EndFall() {
-		Debug.Log("GravityDamager/EndFall, damageMultiplier = " + _damageForFallSeconds + ", _timeInAir = " + _timeInAir);
+//		Debug.Log("GravityDamager/EndFall, damageMultiplier = " + _damageForFallSeconds + ", _timeInAir = " + _timeInAir);
 		float damage = 0f;
 		if(_isFalling) {
 			if(_timeInAir > _minDamagingFall) {
