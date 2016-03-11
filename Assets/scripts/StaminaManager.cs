@@ -23,17 +23,17 @@ public class StaminaManager : MonoBehaviour {
 
 	void Update() {
 		if(_controls.GetButton("run")) {
-			Debug.Log ("StaminaManager/Update, run control, _remaininStamina = " + _remainingStamina);
-			if(_remainingStamina > 0) {
-				IsBoosted = true;
-				_remainingStamina -= Time.deltaTime;
-				GameControl.Instance.UpdateStamina(_remainingStamina);
-			} else {
-//				Debug.Log("out of stamina");
-				IsBoosted = false;
-				_remainingStamina = 0;
-			}
-			_nextActionTime = Time.time + RECHARGE_DELAY;
+			IsBoosted = true;
+//			Debug.Log ("StaminaManager/Update, run control, _remaininStamina = " + _remainingStamina);
+//			if(_remainingStamina > 0) {
+//				IsBoosted = true;
+//				_remainingStamina -= Time.deltaTime;
+//				GameControl.Instance.UpdateStamina(_remainingStamina);
+//			} else {
+//				IsBoosted = false;
+//				_remainingStamina = 0;
+//			}
+//			_nextActionTime = Time.time + RECHARGE_DELAY;
 		} else {
 			IsBoosted = false;
 			if(_remainingStamina < _maxStamina) {

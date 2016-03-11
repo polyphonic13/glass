@@ -4,7 +4,6 @@ using UnitySampleAssets.CrossPlatformInput;
 public class InteractiveItem : MonoBehaviour {
 
 	public Sprite Icon;
-	public Sprite Thumbnail;
 	public string ItemName;
 
 	public float _interactDistance = 3f;

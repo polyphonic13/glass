@@ -5,44 +5,33 @@ public class CrystalReceptacle : InteractiveItem {
 
 	public bool startEnabled = false;
 
-	public ArmatureParent target;
-	public Transform bone;
-	public AnimationClip unlockClip; 
-	public AnimationClip closeClip;
-
+	public TargetController target;
 	public CrystalKey key;
 
-	public GameObject crystal;
+	private GameObject _crystal;
 
 	private bool _isOpen = false;
 
 	void Awake() {
+		_crystal = this.transform.FindChild("crystal").gameObject;
 		EventCenter.Instance.OnCrystalKeyUsed += OnCrystalKeyUsed;
-		crystal.SetActive (false);
+		_crystal.SetActive (startEnabled);
 		this.IsEnabled = startEnabled;
-		if (startEnabled) {
-			crystal.SetActive (true);
-		}
 	}
 
 	public void OnCrystalKeyUsed(string name) {
-		if (name == key.name) {
-			this.IsEnabled = true;
-			crystal.SetActive (true);
+		if (key != null) {
+			if (name == key.name) {
+				this.IsEnabled = true;
+				_crystal.SetActive (true);
+			}
 		}
 	}
 
 	public override void Actuate() {
 		if (this.IsEnabled) {
-			if (closeClip != null) {
-				if (!_isOpen) {
-					target.PlayAnimation (unlockClip.name, bone);
-				} else {
-					target.PlayAnimation (closeClip.name, bone);
-				}
-				_isOpen = !_isOpen;
-			} else {
-				target.PlayAnimation (unlockClip.name, bone);
+			if (!target.GetIsActive ()) {
+				target.Actuate ();
 			}
 		} else {
 			EventCenter.Instance.AddNote ("Crystal required to activate");

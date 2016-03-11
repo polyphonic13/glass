@@ -9,9 +9,12 @@ public class ArmatureParent : MonoBehaviour {
 	public AnimationClip _defaultAnimation; 
 	
 	public Animation _animation { get; set; }
-	
+
+	public bool isOpen { get; set; }
+
 	public virtual void PlayAnimation(string clip, Transform bone = null) {
 //		Debug.Log("ArmatureParent[ " + name + " ]/PlayAnimation, clip = " + clip);
+		isOpen = !isOpen;
 		AnimateArmatureBone(clip, bone);
 	}
 	
@@ -25,6 +28,7 @@ public class ArmatureParent : MonoBehaviour {
 	}
 
 	public virtual void Init() {
+		isOpen = false;
 		_animation = GetComponent<Animation>();
 //		Debug.Log("ArmatureParent[ " + name + " ]/Init, _animation = " + _animation);
 		PlayDefaultAnimation();
@@ -46,7 +50,11 @@ public class ArmatureParent : MonoBehaviour {
 			OnAnimationPlayed(bone);
 		}
 	}
-	
+
+	public bool GetIsActive() { 
+		return _animation.isPlaying;
+	}
+
 	void Awake() {
 		Init();
 	}

@@ -3,6 +3,7 @@ using UnityEngine;
 public class CollectableItem : InteractiveItem {
 
 	public string description = "";
+	public Sprite Thumbnail;
 	// TBD: extend class with ContainableItem:
 	public string targetContainerName = "";
 
