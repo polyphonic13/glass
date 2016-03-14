@@ -41,7 +41,7 @@ RenderSettings:
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 6
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_LightmapsMode: 1
   m_GISettings:
     serializedVersion: 2
@@ -122,7 +122,7 @@ Transform:
   - {fileID: 1409878102}
   - {fileID: 1617811974}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
 --- !u!4 &97950186 stripped
 Transform:
   m_PrefabParentObject: {fileID: 422572, guid: 4ef7166ccc45443dfbc1e8edb98dc233, type: 2}
@@ -197,6 +197,80 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1641086370}
   m_RootOrder: 0
+--- !u!1001 &168235269
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 401154, guid: 64ff5bb1028884ffdab70a164ea56133, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.9517388
+      objectReference: {fileID: 0}
+    - target: {fileID: 401154, guid: 64ff5bb1028884ffdab70a164ea56133, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.71
+      objectReference: {fileID: 0}
+    - target: {fileID: 401154, guid: 64ff5bb1028884ffdab70a164ea56133, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.8213978
+      objectReference: {fileID: 0}
+    - target: {fileID: 401154, guid: 64ff5bb1028884ffdab70a164ea56133, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 401154, guid: 64ff5bb1028884ffdab70a164ea56133, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 401154, guid: 64ff5bb1028884ffdab70a164ea56133, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 401154, guid: 64ff5bb1028884ffdab70a164ea56133, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 401154, guid: 64ff5bb1028884ffdab70a164ea56133, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400940, guid: 64ff5bb1028884ffdab70a164ea56133, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.53305584
+      objectReference: {fileID: 0}
+    - target: {fileID: 400940, guid: 64ff5bb1028884ffdab70a164ea56133, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.5176598
+      objectReference: {fileID: 0}
+    - target: {fileID: 400940, guid: 64ff5bb1028884ffdab70a164ea56133, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.4834153
+      objectReference: {fileID: 0}
+    - target: {fileID: 400940, guid: 64ff5bb1028884ffdab70a164ea56133, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.4628062
+      objectReference: {fileID: 0}
+    - target: {fileID: 400934, guid: 64ff5bb1028884ffdab70a164ea56133, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.53305584
+      objectReference: {fileID: 0}
+    - target: {fileID: 400934, guid: 64ff5bb1028884ffdab70a164ea56133, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.5176598
+      objectReference: {fileID: 0}
+    - target: {fileID: 400934, guid: 64ff5bb1028884ffdab70a164ea56133, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.4834153
+      objectReference: {fileID: 0}
+    - target: {fileID: 400934, guid: 64ff5bb1028884ffdab70a164ea56133, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.4628062
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 64ff5bb1028884ffdab70a164ea56133, type: 3}
+  m_IsPrefabParent: 0
 --- !u!1001 &183189941
 Prefab:
   m_ObjectHideFlags: 0
@@ -267,11 +341,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: fb95dcee818d24ef28010358f7fdfaf7, type: 3}
-  Thumbnail: {fileID: 21300000, guid: c402bbc52eb6e41ef864637ccd0ab453, type: 3}
   ItemName: Aries Coin
   _interactDistance: 2
   _containingRoom: 
   description: Antique, pewter coin with astrological sign and Ram image
+  Thumbnail: {fileID: 21300000, guid: c402bbc52eb6e41ef864637ccd0ab453, type: 3}
   targetContainerName: 
   _weight: {fileID: 11484862, guid: ed5b67beeb2f34409b9e0764fc6167fb, type: 2}
   piggyBank: {fileID: 1698124936}
@@ -645,11 +719,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: fb95dcee818d24ef28010358f7fdfaf7, type: 3}
-  Thumbnail: {fileID: 21300000, guid: 6c028ec325df243ed80e805af215685f, type: 3}
   ItemName: Leo Coin
   _interactDistance: 2
   _containingRoom: 
   description: Antique, pewter coin with astrological sign and Lion image
+  Thumbnail: {fileID: 21300000, guid: 6c028ec325df243ed80e805af215685f, type: 3}
   targetContainerName: 
   _weight: {fileID: 11484862, guid: ed5b67beeb2f34409b9e0764fc6167fb, type: 2}
   piggyBank: {fileID: 1698124936}
@@ -708,7 +782,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 2ee4da8354ff444ee932fa51f99d830b, type: 3}
-  Thumbnail: {fileID: 0}
   ItemName: Top Drawer
   _interactDistance: 2
   _containingRoom: 
@@ -885,11 +958,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: fb95dcee818d24ef28010358f7fdfaf7, type: 3}
-  Thumbnail: {fileID: 21300000, guid: aa72a8c90c5084fc8812fb44d723f031, type: 3}
   ItemName: Lead Acetate
   _interactDistance: 1.5
   _containingRoom: 
   description: Lab bottle containing lead acetate. Half full.
+  Thumbnail: {fileID: 21300000, guid: aa72a8c90c5084fc8812fb44d723f031, type: 3}
   targetContainerName: 
   _weight: {fileID: 11484862, guid: ed5b67beeb2f34409b9e0764fc6167fb, type: 2}
 --- !u!65 &460816373
@@ -996,11 +1069,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: fb95dcee818d24ef28010358f7fdfaf7, type: 3}
-  Thumbnail: {fileID: 21300000, guid: b59ddc408f7da41879b3a91083ae0811, type: 3}
   ItemName: Wooden Cube
   _interactDistance: 3
   _containingRoom: 
   description: A wooden cube with a nice, dark finish
+  Thumbnail: {fileID: 21300000, guid: b59ddc408f7da41879b3a91083ae0811, type: 3}
   targetContainerName: 
   _weight: {fileID: 11484862, guid: ed5b67beeb2f34409b9e0764fc6167fb, type: 2}
 --- !u!1 &535583448
@@ -1092,11 +1165,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: fb95dcee818d24ef28010358f7fdfaf7, type: 3}
-  Thumbnail: {fileID: 21300000, guid: 173e0529f7b5f41d89e0a4bd0cb27036, type: 3}
   ItemName: Paper Sphere
   _interactDistance: 1
   _containingRoom: 
   description: Sphere made of wallpaper
+  Thumbnail: {fileID: 21300000, guid: 173e0529f7b5f41d89e0a4bd0cb27036, type: 3}
   targetContainerName: 
   _weight: {fileID: 11484862, guid: ed5b67beeb2f34409b9e0764fc6167fb, type: 2}
 --- !u!65 &535583455
@@ -1377,7 +1450,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 2ee4da8354ff444ee932fa51f99d830b, type: 3}
-  Thumbnail: {fileID: 0}
   ItemName: Bottom Drawer
   _interactDistance: 3
   _containingRoom: 
@@ -1619,11 +1691,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: fb95dcee818d24ef28010358f7fdfaf7, type: 3}
-  Thumbnail: {fileID: 21300000, guid: 6c028ec325df243ed80e805af215685f, type: 3}
   ItemName: Scorpio Coin
   _interactDistance: 2
   _containingRoom: 
   description: Antique, pewter coin with astrological sign and Scorpion image
+  Thumbnail: {fileID: 21300000, guid: 6c028ec325df243ed80e805af215685f, type: 3}
   targetContainerName: 
   _weight: {fileID: 11484862, guid: ed5b67beeb2f34409b9e0764fc6167fb, type: 2}
   piggyBank: {fileID: 1698124936}
@@ -1655,11 +1727,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: fb95dcee818d24ef28010358f7fdfaf7, type: 3}
-  Thumbnail: {fileID: 21300000, guid: 631175c1326e94dd6a5c3d2a1625515a, type: 3}
   ItemName: Leo Crystal
   _interactDistance: 1.5
   _containingRoom: 
   description: A large crystal with the Leo symbol etched into it
+  Thumbnail: {fileID: 21300000, guid: 631175c1326e94dd6a5c3d2a1625515a, type: 3}
   targetContainerName: 
   _weight: {fileID: 11484862, guid: ed5b67beeb2f34409b9e0764fc6167fb, type: 2}
 --- !u!65 &1016357175
@@ -1717,7 +1789,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 2ee4da8354ff444ee932fa51f99d830b, type: 3}
-  Thumbnail: {fileID: 0}
   ItemName: Top Drawer
   _interactDistance: 2
   _containingRoom: 
@@ -2026,7 +2097,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 2ee4da8354ff444ee932fa51f99d830b, type: 3}
-  Thumbnail: {fileID: 0}
   ItemName: Bottom Drawer
   _interactDistance: 3
   _containingRoom: 
@@ -2101,11 +2171,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: fb95dcee818d24ef28010358f7fdfaf7, type: 3}
-  Thumbnail: {fileID: 21300000, guid: a9d37252a199d409b85c34722aba70ff, type: 3}
   ItemName: Aries Crystal
   _interactDistance: 3
   _containingRoom: 
   description: A large crystal with the Aries symbol etched into it
+  Thumbnail: {fileID: 21300000, guid: a9d37252a199d409b85c34722aba70ff, type: 3}
   targetContainerName: 
   _weight: {fileID: 11484862, guid: ed5b67beeb2f34409b9e0764fc6167fb, type: 2}
 --- !u!65 &1297768599
@@ -2150,7 +2220,7 @@ Transform:
   - {fileID: 1193282929}
   - {fileID: 1502482911}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!1 &1392834836 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100020, guid: bebdae0b8648c44bd9c8ae78d1319eb4, type: 3}
@@ -2521,11 +2591,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: fb95dcee818d24ef28010358f7fdfaf7, type: 3}
-  Thumbnail: {fileID: 21300000, guid: b18700d7f690e4a02ab1d1c7fe412588, type: 3}
   ItemName: Scorpio Crystal
   _interactDistance: 1.5
   _containingRoom: 
   description: A large crystal with the Scorpio symbol etched into it
+  Thumbnail: {fileID: 21300000, guid: b18700d7f690e4a02ab1d1c7fe412588, type: 3}
   targetContainerName: 
   _weight: {fileID: 11484862, guid: ed5b67beeb2f34409b9e0764fc6167fb, type: 2}
 --- !u!65 &1539505474
@@ -2583,7 +2653,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 2ee4da8354ff444ee932fa51f99d830b, type: 3}
-  Thumbnail: {fileID: 0}
   ItemName: Middle Drawer
   _interactDistance: 3
   _containingRoom: 
@@ -2730,7 +2799,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 766854d3fb11b4471aca3a8d1bda1a22, type: 3}
-  Thumbnail: {fileID: 21300000, guid: d05d1899bb57141cba41406d32cea704, type: 3}
   ItemName: Bronze Capsule
   _interactDistance: 2
   _containingRoom: 
@@ -2770,7 +2838,7 @@ Transform:
   - {fileID: 2039505838}
   - {fileID: 850721003}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
 --- !u!1 &1698124933 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100010, guid: 14225a85883a54b108e4a83c71c8003b, type: 3}
@@ -2791,7 +2859,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
-  Thumbnail: {fileID: 0}
   ItemName: Piggy Bank
   _interactDistance: 1.5
   _containingRoom: 
@@ -2853,7 +2920,7 @@ Transform:
   - {fileID: 1855999619}
   - {fileID: 2033412527}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
 --- !u!4 &1796396308 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400104, guid: bebdae0b8648c44bd9c8ae78d1319eb4, type: 3}
@@ -2979,7 +3046,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 2ee4da8354ff444ee932fa51f99d830b, type: 3}
-  Thumbnail: {fileID: 0}
   ItemName: Middle Drawer
   _interactDistance: 3
   _containingRoom: 
@@ -3174,12 +3240,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: fb95dcee818d24ef28010358f7fdfaf7, type: 3}
-  Thumbnail: {fileID: 21300000, guid: 315f0752b7e994ceb90ceab53f8d2cc5, type: 3}
   ItemName: Tiled Cylinder
   _interactDistance: 4
   _containingRoom: 
   description: A cylinder with most of its yellow tiles. It looks like it is made
     of concrete.
+  Thumbnail: {fileID: 21300000, guid: 315f0752b7e994ceb90ceab53f8d2cc5, type: 3}
   targetContainerName: 
   _weight: {fileID: 11484862, guid: ed5b67beeb2f34409b9e0764fc6167fb, type: 2}
 --- !u!65 &1991839694
