@@ -378,13 +378,13 @@ namespace UnitySampleAssets.Characters.FirstPerson
 				}
 				
 				// turn on fog when first diving, remove when not diving
-				if(_currentMovementState == _movementStates.Dive) {
-					if(_previousMovementState != _movementStates.Dive) {
-						//					_globalFog.enabled = true;
-					}
-				} else {
-					//				_globalFog.enabled = false;
-				}
+//				if(_currentMovementState == _movementStates.Dive) {
+//					if(_previousMovementState != _movementStates.Dive) {
+//						//					_globalFog.enabled = true;
+//					}
+//				} else {
+//					//				_globalFog.enabled = false;
+//				}
 				
 				_previousMovementState = _currentMovementState;
 				
