@@ -65,7 +65,7 @@ public class MovingPlatform : MonoBehaviour {
 				_rigidBody.position = _destination.position;
 				_isActive = false;
 				_destination = null;
-				if (_currentDestination < destinations.Length) {
+				if (_currentDestination < (destinations.Length - 1)) {
 					_currentDestination++;
 				} else if(loops) {
 					_currentDestination = 0;
