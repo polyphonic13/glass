@@ -8,7 +8,7 @@ public class MovingPlatform : MonoBehaviour {
 	[SerializeField] Transform platform;
 
 	[SerializeField] float speed = 2.0f;
-	[SerializeField] bool loops = true; 
+	[SerializeField] bool isAuto = true; 
 
 	private int _currentDestination = 0; 
 
@@ -17,25 +17,30 @@ public class MovingPlatform : MonoBehaviour {
 	Vector3 _direction; 
 
 	bool _isActive = false; 
+	bool _isMoving = false;
 
 	public bool GetIsActive() {
 		return _isActive;
 	}
 
-	public void SetDestination() {
+	public void SetDestination(bool setActive = false) {
 		_destination = destinations [_currentDestination];
 		_direction = (_destination.position - _rigidBody.position).normalized;
+		_isActive = setActive;
 	}
 
 	public void StartMovement() {
 		Debug.Log ("MovingPlatform/StartMovement, _destination = " + _destination.position);
 		if (_destination != null) {
 			_isActive = true;
+			_isMoving = true;
 		}
 	}
 
 	public void Actuate() {
-		StartMovement ();
+		if (!_isMoving) {
+			StartMovement ();
+		}
 	}
 		
 	void Awake () {
@@ -59,19 +64,25 @@ public class MovingPlatform : MonoBehaviour {
 
 	void FixedUpdate () {
 		if (_isActive) {
-			Debug.Log ("MovingPlatform/FixedUpdate, position = " + _rigidBody.position + ", dest = " + _destination.position);
+//			Debug.Log ("MovingPlatform/FixedUpdate, position = " + _rigidBody.position + ", dest = " + _destination.position);
 			_rigidBody.MovePosition (_rigidBody.position + (_direction * speed * Time.fixedDeltaTime));
 			if (Vector3.Distance (_rigidBody.position, _destination.position) < speed * Time.fixedDeltaTime) {
 				_rigidBody.position = _destination.position;
 				_isActive = false;
+				_isMoving = false;	
 				_destination = null;
+				Debug.Log ("reached destination");
 				if (_currentDestination < (destinations.Length - 1)) {
 					_currentDestination++;
-				} else if(loops) {
+				} else {
 					_currentDestination = 0;
 				}
-				SetDestination ();
-				// trigger something via event center? 
+
+				if (isAuto) {
+					SetDestination (true);
+				} else {
+					SetDestination (false);
+				}
 			}
 		}
 	}
