@@ -46,6 +46,17 @@ public class InventoryUI : MonoBehaviour {
 		_resetItems(itemName);
 	}
 
+	public void OnCloseInventoryUI() {
+		if(_isSelectingItem) {
+			if(_selectedInventoryItemUI != null) {
+				_selectedInventoryItemUI.Deselect();
+			}
+			_isSelectingItem = false;
+		} else {
+			EventCenter.Instance.CloseInventoryUI();
+		}
+	}
+
 	public void OnInspectItem(bool isInspecting, string item) {
 		_isInspectingItem = isInspecting;
 	}
@@ -61,6 +72,7 @@ public class InventoryUI : MonoBehaviour {
 		ec.OnInventoryAdded += OnInventoryAdded;
 		ec.OnInventoryRemoved += OnInventoryRemoved;
 		ec.OnInspectItem += OnInspectItem;
+		ec.OnCloseInventoryUI += OnCloseInventoryUI;
 	}
 
 	private void FixedUpdate() {
@@ -156,14 +168,14 @@ public class InventoryUI : MonoBehaviour {
     private void _checkInput() {
 		if(_controls.GetButtonDown("cancel")) {
 			if(!_isInspectingItem) {
-				if(_isSelectingItem) {
-					if(_selectedInventoryItemUI != null) {
-						_selectedInventoryItemUI.Deselect();
-					}
-					_isSelectingItem = false;
-				} else {
+//				if(_isSelectingItem) {
+//					if(_selectedInventoryItemUI != null) {
+//						_selectedInventoryItemUI.Deselect();
+//					}
+//					_isSelectingItem = false;
+//				} else {
 					EventCenter.Instance.CloseInventoryUI();
-				}
+//				}
 			}
 		}
 		if(_occupiedItems > 0 && !_isInspectingItem) {

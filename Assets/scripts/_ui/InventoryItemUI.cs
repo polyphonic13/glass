@@ -56,6 +56,7 @@ public class InventoryItemUI : MonoBehaviour {
 
 	public void Deselect() {
 		_controlPanel.alpha = 0;
+		_focusedControlButton = 0;
 	}
 
 	public void IncrementControlButtonFocus(bool increment) {

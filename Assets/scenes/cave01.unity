@@ -7158,7 +7158,7 @@ Transform:
   - {fileID: 1404828912}
   - {fileID: 961449097}
   - {fileID: 679657142}
-  - {fileID: 1614004416}
+  - {fileID: 2002335867}
   m_Father: {fileID: 0}
   m_RootOrder: 2
 --- !u!1 &961449096
@@ -8661,7 +8661,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 405650, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 13.2
+      value: 44.7
       objectReference: {fileID: 0}
     - target: {fileID: 405650, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_LocalPosition.y
@@ -8669,7 +8669,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 405650, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 72.32
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 405650, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_LocalRotation.x
@@ -10843,53 +10843,6 @@ MonoBehaviour:
 Transform:
   m_PrefabParentObject: {fileID: 400008, guid: 3bde35ba28af84a929c4baa332a7342f, type: 3}
   m_PrefabInternal: {fileID: 130955135}
---- !u!1 &1614004415
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1614004416}
-  - 220: {fileID: 1614004417}
-  m_Layer: 0
-  m_Name: Light Probe Group
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1614004416
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1614004415}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 124.3, y: -2.89, z: 63.09}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 926131326}
-  m_RootOrder: 5
---- !u!220 &1614004417
-LightProbeGroup:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1614004415}
-  m_Enabled: 1
-  m_SourcePositions:
-  - {x: 1, y: 1, z: 1}
-  - {x: 1, y: 1, z: -1}
-  - {x: 1, y: -1, z: 1}
-  - {x: 1, y: -1, z: -1}
-  - {x: -1, y: 1, z: 1}
-  - {x: -1, y: 1, z: -1}
-  - {x: -1, y: -1, z: 1}
-  - {x: -1, y: -1, z: -1}
-  - {x: 0, y: 0, z: 22.085789}
-  - {x: 0, y: 0, z: -30.882423}
-  - {x: -31.925705, y: 0, z: 0}
 --- !u!1001 &1618668700
 Prefab:
   m_ObjectHideFlags: 0
@@ -12263,7 +12216,7 @@ MonoBehaviour:
   - {fileID: 365231452}
   platform: {fileID: 1701849736}
   speed: 2
-  isAuto: 1
+  isAuto: 0
 --- !u!1 &1804256032
 GameObject:
   m_ObjectHideFlags: 0
@@ -14503,6 +14456,61 @@ Transform:
   - {fileID: 240453234}
   m_Father: {fileID: 2034904711}
   m_RootOrder: 1
+--- !u!1 &2002335866
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 2002335867}
+  - 220: {fileID: 2002335868}
+  m_Layer: 0
+  m_Name: Light Probe Group
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2002335867
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2002335866}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 126.2, y: 0, z: 35.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 926131326}
+  m_RootOrder: 5
+--- !u!220 &2002335868
+LightProbeGroup:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2002335866}
+  m_Enabled: 1
+  m_SourcePositions:
+  - {x: 1, y: 1, z: 1}
+  - {x: 1, y: 1, z: -1}
+  - {x: 1, y: -1, z: 1}
+  - {x: 1, y: -1, z: -1}
+  - {x: -1, y: 1, z: 1}
+  - {x: -1, y: 1, z: -1}
+  - {x: -1, y: -1, z: 1}
+  - {x: -1, y: -1, z: -1}
+  - {x: -1.8999939, y: -0.7093191, z: 27.89}
+  - {x: -1.8999939, y: -2.89, z: 59.473347}
+  - {x: -1.8999939, y: -2.89, z: 94.0892}
+  - {x: 10.359848, y: -17.145695, z: 94.89148}
+  - {x: 41.427902, y: -18.963112, z: 94.97739}
+  - {x: 69.73053, y: -20.011353, z: 92.18208}
+  - {x: 87.90024, y: -20.01136, z: 58.987804}
+  - {x: 65.72124, y: -45.57354, z: 147.30795}
+  - {x: -33.37393, y: -2.89, z: 27.89}
+  - {x: -47.17842, y: 0.59299374, z: 51.0955}
+  - {x: -34.988083, y: -7.25039, z: 75.9812}
 --- !u!4 &2006140689 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400006, guid: 09ad743a3fbf04ea3b4162a788c0e4b8, type: 3}
