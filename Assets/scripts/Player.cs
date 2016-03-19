@@ -92,7 +92,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
 			} else {
 				_elementInProximity = null;
 			}
-			_interactiveItemUI.enabled = isFocused;
+//			_interactiveItemUI.enabled = isFocused;
 		}
 
 		public void OnPlayerDamaged(float damage) {

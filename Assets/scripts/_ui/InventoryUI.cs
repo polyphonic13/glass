@@ -63,7 +63,7 @@ public class InventoryUI : MonoBehaviour {
 		ec.OnInspectItem += OnInspectItem;
 	}
 
-	private void Update() {
+	private void FixedUpdate() {
 		if(_canvas.enabled) {
 			_checkInput();
         }
@@ -167,10 +167,10 @@ public class InventoryUI : MonoBehaviour {
 			}
 		}
 		if(_occupiedItems > 0 && !_isInspectingItem) {
-			var up = _controls.GetButton("up");
-			var down = _controls.GetButton("down");
-			var left = _controls.GetButton("left");
-			var right = _controls.GetButton("right");
+			var up = _controls.GetButtonDown("up");
+			var down = _controls.GetButtonDown("down");
+			var left = _controls.GetButtonDown("left");
+			var right = _controls.GetButtonDown("right");
 //			Debug.Log ("up = " + up + ", down = " + down + ", left = " + left + ", right = " + right);
 			if(_controls.GetButtonDown("confirm")) {
 				if(!_isSelectingItem) {
