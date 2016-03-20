@@ -218,7 +218,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
 					RotateView();
 					
 					if(_controls.GetButtonDown("actuate")) {
-//						Debug.Log("Player fire1 pressed, _elementInProximity = " + _elementInProximity);
+						Debug.Log("Player fire1 pressed, _elementInProximity = " + _elementInProximity);
 						if(_elementInProximity != null) {
 							_elementInProximity.Actuate();
 						}

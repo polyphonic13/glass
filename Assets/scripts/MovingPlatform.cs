@@ -12,7 +12,6 @@ public class MovingPlatform : MonoBehaviour {
 
 	private int _currentDestination = 0; 
 
-	Rigidbody _rigidBody;
 	Transform _destination;
 	Vector3 _direction; 
 
@@ -25,12 +24,12 @@ public class MovingPlatform : MonoBehaviour {
 
 	public void SetDestination(bool setActive = false) {
 		_destination = destinations [_currentDestination];
-		_direction = (_destination.position - _rigidBody.position).normalized;
+		_direction = (_destination.position - platform.transform.position).normalized;
 		_isActive = setActive;
 	}
 
 	public void StartMovement() {
-		Debug.Log ("MovingPlatform/StartMovement, _destination = " + _destination.position);
+//		Debug.Log ("MovingPlatform/StartMovement, _destination = " + _destination.position);
 		if (_destination != null) {
 			_isActive = true;
 			_isMoving = true;
@@ -44,15 +43,8 @@ public class MovingPlatform : MonoBehaviour {
 	}
 		
 	void Awake () {
-		_rigidBody = platform.GetComponent<Rigidbody> ();
-//		platform.position = new Vector3(0, 0, 0);
 		SetDestination ();
-//		Debug.Log ("startingPosition = " + startingPosition.position + ", platform = " + platform.position + ", _rigidbody = " + _rigidBody.position);
 	}
-
-//	void OnCollisionEnter(Collision col) {
-//		Debug.Log ("MovingPlatform/OnCollisionEnter, col = " + col.gameObject.name);
-//	}
 
 	void OnDrawGizmos() {
 		for (int i = 0; i < destinations.Length; i++) {
@@ -64,10 +56,9 @@ public class MovingPlatform : MonoBehaviour {
 
 	void FixedUpdate () {
 		if (_isActive) {
-//			Debug.Log ("MovingPlatform/FixedUpdate, position = " + _rigidBody.position + ", dest = " + _destination.position);
-			_rigidBody.MovePosition (_rigidBody.position + (_direction * speed * Time.fixedDeltaTime));
-			if (Vector3.Distance (_rigidBody.position, _destination.position) < speed * Time.fixedDeltaTime) {
-				_rigidBody.position = _destination.position;
+			platform.transform.Translate(_direction * speed * Time.fixedDeltaTime);
+			if (Vector3.Distance (platform.transform.position, _destination.position) < speed * Time.fixedDeltaTime) {
+				platform.transform.position = _destination.position;
 				_isActive = false;
 				_isMoving = false;	
 				_destination = null;
