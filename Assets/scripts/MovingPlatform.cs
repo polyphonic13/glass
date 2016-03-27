@@ -24,6 +24,7 @@ public class MovingPlatform : MonoBehaviour {
 
 	public void SetDestination(bool setActive = false) {
 		_destination = destinations [_currentDestination];
+		Debug.Log ("MovingPlatform[" + this.name + "]/SetDestination, pos = " + platform.transform.position + ", dest = " + _destination.position);
 		_direction = (_destination.position - platform.transform.position).normalized;
 		_isActive = setActive;
 	}
@@ -43,7 +44,10 @@ public class MovingPlatform : MonoBehaviour {
 	}
 		
 	void Awake () {
-		SetDestination ();
+		SetDestination (isAuto);
+		if (isAuto) {
+			StartMovement ();
+		}
 	}
 
 	void OnDrawGizmos() {
@@ -57,6 +61,7 @@ public class MovingPlatform : MonoBehaviour {
 	void FixedUpdate () {
 		if (_isActive) {
 			platform.transform.Translate(_direction * speed * Time.fixedDeltaTime);
+
 			if (Vector3.Distance (platform.transform.position, _destination.position) < speed * Time.fixedDeltaTime) {
 				platform.transform.position = _destination.position;
 				_isActive = false;

@@ -8,11 +8,11 @@ public class MoonController : MonoBehaviour {
 	public float minMoonlight = 0;
 	public float sunOffset = 45f;
 		
-	private Light _moon;
+//	private Light _moon;
 
 	// Use this for initialization
 	void Awake () {
-		_moon = this.gameObject.GetComponent<Light> ();
+//		_moon = this.gameObject.GetComponent<Light> ();
 //		EventCenter.Instance.OnDayNightChange += this.OnDayNightChange;
 	}
 	

@@ -36,7 +36,7 @@ public class InventoryUI : MonoBehaviour {
 
 	private Rewired.Player _controls; 
 
-	private bool wasJustClosed = true;
+//	private bool wasJustClosed = true;
 
     public void OnInventoryAdded(string itemName) {
 		if (itemName != "flashlight") {
