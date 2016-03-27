@@ -284,9 +284,13 @@ namespace UnitySampleAssets.Characters.FirstPerson
 						m_MoveDir.y = 0f;
 					}
 					
-					if(_damageFromFall && _currentMovementState != MovementStates.Climb) {
-						if(!m_CharacterController.isGrounded && m_PreviouslyGrounded) {
-							_gravityDamager.BeginFall();
+					if(_damageFromFall) {
+						if (_currentMovementState != MovementStates.Climb) {
+							if(!m_CharacterController.isGrounded && m_PreviouslyGrounded) {
+								_gravityDamager.BeginFall();
+							}
+						} else {
+							_gravityDamager.CancelFall ();
 						}
 					}
 					m_PreviouslyGrounded = m_CharacterController.isGrounded;
