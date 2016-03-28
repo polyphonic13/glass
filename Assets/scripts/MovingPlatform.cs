@@ -24,7 +24,7 @@ public class MovingPlatform : MonoBehaviour {
 
 	public void SetDestination(bool setActive = false) {
 		_destination = destinations [_currentDestination];
-		Debug.Log ("MovingPlatform[" + this.name + "]/SetDestination, pos = " + platform.transform.position + ", dest = " + _destination.position);
+//		Debug.Log ("MovingPlatform[" + this.name + "]/SetDestination, pos = " + platform.transform.position + ", dest = " + _destination.position);
 		_direction = (_destination.position - platform.transform.position).normalized;
 		_isActive = setActive;
 	}
@@ -67,7 +67,7 @@ public class MovingPlatform : MonoBehaviour {
 				_isActive = false;
 				_isMoving = false;	
 				_destination = null;
-				Debug.Log ("reached destination");
+//				Debug.Log ("reached destination");
 				if (_currentDestination < (destinations.Length - 1)) {
 					_currentDestination++;
 				} else {
