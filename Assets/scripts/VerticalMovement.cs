@@ -104,6 +104,7 @@ public class VerticalMovement : MonoBehaviour {
 	}
 
 	private void _attachToVerticalMovementArea(GameObject tgt) {
+		Debug.Log ("Attaching player");
 		_currentVerticalMovementArea = tgt.GetComponent<VerticalMovementArea> ();
 		_isUpDownEnabled = _currentVerticalMovementArea.GetIsUpDownEnabled ();
 		_isLeftRightEnabled = _currentVerticalMovementArea.GetIsLeftRightEnabled ();
