@@ -126,7 +126,11 @@ public class VerticalMovement : MonoBehaviour {
 		_movement.z = 0;
 		if (_isUpDownEnabled) {
 			_movement.y = vertical;
-//			_movement.y *= (_mainCamera.transform.forward.y > climbDownThreshold && vertical > 0) ? 1 : -1;
+
+			// forward movement based on looking up / down
+			if (vertical > 0) {
+				_movement.y *= (_mainCamera.transform.forward.y > climbDownThreshold) ? 1 : -1;
+			}
 
 		} else {
 			_movement.y = 0;
