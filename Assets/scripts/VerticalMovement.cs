@@ -38,7 +38,7 @@ public class VerticalMovement : MonoBehaviour {
 				if (isClimbPressed) {
 					// move vertically
 //					Debug.Log("in climb trigger, move vertically");
-					_moveVertically (horizontal, vertical);
+					_moveVertically (horizontal, vertical, true);
 				} else {
 					// move normally
 //					Debug.Log("in climb trigger, move normally");
@@ -50,7 +50,7 @@ public class VerticalMovement : MonoBehaviour {
 				// move vertically
 //				Debug.Log("move vertically");
 				if (isClimbPressed) {
-					_moveVertically (horizontal, vertical);
+					_moveVertically (horizontal, vertical, false);
 //				} else {
 //					if (_isAttachedToVerticalMovementArea) {
 //						_detachFromVerticalMovementArea ();
@@ -121,11 +121,11 @@ public class VerticalMovement : MonoBehaviour {
 	}
 	#endregion
 
-	private void _moveVertically(float horizontal, float vertical) {
+	private void _moveVertically(float horizontal, float vertical, bool inTrigger) {
 		_movement.z = 0;
 		if (_isUpDownEnabled) {
 			_movement.y = vertical;
-			_movement.y *= (_mainCamera.transform.forward.y > climbDownThreshold) ? 1 : -1;
+//			_movement.y *= (_mainCamera.transform.forward.y > climbDownThreshold && vertical > 0) ? 1 : -1;
 
 		} else {
 			_movement.y = 0;
@@ -134,6 +134,9 @@ public class VerticalMovement : MonoBehaviour {
 			_movement.x = horizontal;
 		} else {
 			_movement.x = 0;
+		}
+		if (inTrigger) {
+			_movement = transform.TransformDirection (_movement);
 		}
 	}
 
