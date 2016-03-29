@@ -45,16 +45,17 @@ public class VerticalMovement : MonoBehaviour {
 					_movement.y = 0;
 					_movement.x = horizontal;
 					_movement.z = vertical;
+					_movement = transform.TransformDirection (_movement);
 				}
 			} else {
 				// move vertically
 //				Debug.Log("move vertically");
 				if (isClimbPressed) {
 					_moveVertically (horizontal, vertical, false);
-//				} else {
-//					if (_isAttachedToVerticalMovementArea) {
-//						_detachFromVerticalMovementArea ();
-//					}
+				} else {
+					if (_isAttachedToVerticalMovementArea) {
+						_detachFromVerticalMovementArea ();
+					}
 				}
 			}
 		}
