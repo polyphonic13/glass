@@ -10,18 +10,33 @@ public class VerticalMovementArea : MonoBehaviour {
 	private bool _isUpDownEnabled = false;
 	private bool _isLeftRightEnabled = false; 
 
-//	private Vector3 _climbDirection; 
-
 	void Start () {
 		if (top != null && bottom != null) {
 			_isUpDownEnabled = true;
-//			_climbDirection = top.transform.position - bottom.transform.position;
 		}
 		if (left != null && right != null) {
 			_isLeftRightEnabled = true;
 		}
 
 	}
+
+//	void OnDrawGizmos() {
+//		Gizmos.color = Color.red;
+//		if (top != null) {
+//			Gizmos.DrawWireCube (top.position, top.localScale);
+//		}
+//		if (bottom != null) {
+//			Gizmos.DrawWireCube (bottom.position, bottom.localScale);
+//		}
+//		if (left != null) {
+//			Gizmos.DrawWireCube (left.position, left.localScale);
+//		}
+//		if (right != null) {
+//			Gizmos.DrawWireCube (right.position, right.localScale);
+//		}
+//		Gizmos.color = Color.blue;
+//		Gizmos.DrawWireCube (this.transform.position, this.transform.localScale);
+//	}
 
 	public bool GetIsUpDownEnabled() {
 		return _isUpDownEnabled;

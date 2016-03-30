@@ -5,9 +5,6 @@ using UnitySampleAssets.Characters.FirstPerson;
 public class VerticalMovement : MonoBehaviour {
 	public float climbDownThreshold = -0.4f;
 
-	private float _verticalMovement = 0;
-	private float _horizontalMovement = 0;
-
 	private VerticalMovementArea _currentVerticalMovementArea;
 
 	private Vector3 _climbDirection = Vector3.zero;
@@ -24,7 +21,7 @@ public class VerticalMovement : MonoBehaviour {
 	private Vector3 _movement;
 
 	public Vector3 GetMovement(float horizontal, float vertical, bool isJumpPressed, bool isClimbPressed) {
-//		Debug.Log("VerticalMovement/Move, horizontal = " + horizontal + ", vertical = " + vertical + ", isJumpPressed = " + isJumpPressed + ", isClimbPressed = " + isClimbPressed);
+		Debug.Log("VerticalMovement/Move, horizontal = " + horizontal + ", vertical = " + vertical + ", isJumpPressed = " + isJumpPressed + ", isClimbPressed = " + isClimbPressed);
 		// stop vertical movement is jump was pressed
 		_movement = Vector3.zero;
 
