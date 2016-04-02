@@ -21,7 +21,7 @@ public class VerticalMovement : MonoBehaviour {
 	private Vector3 _movement;
 
 	public Vector3 GetMovement(float horizontal, float vertical, bool isJumpPressed, bool isClimbPressed) {
-		Debug.Log("VerticalMovement/Move, horizontal = " + horizontal + ", vertical = " + vertical + ", isJumpPressed = " + isJumpPressed + ", isClimbPressed = " + isClimbPressed);
+//		Debug.Log("VerticalMovement/Move, horizontal = " + horizontal + ", vertical = " + vertical + ", isJumpPressed = " + isJumpPressed + ", isClimbPressed = " + isClimbPressed);
 		// stop vertical movement is jump was pressed
 		_movement = Vector3.zero;
 
@@ -84,14 +84,14 @@ public class VerticalMovement : MonoBehaviour {
 		}
 
 		if (tgt.gameObject.tag == "verticalMovementArea") {
-//			Debug.Log ("triggered vertical movement area");
+			Debug.Log ("triggered vertical movement area: " + tgt.gameObject.name);
 			_attachToVerticalMovementArea (tgt.gameObject);
 		}
 	}
 
 	private void OnTriggerExit(Collider tgt) {
 		if(tgt.gameObject.tag == "verticalMovementTrigger") {
-			Debug.Log ("exited vertical movement trigger");
+//			Debug.Log ("exited vertical movement trigger");
 			_isInClimbTrigger = false;
 		}
 
@@ -102,7 +102,7 @@ public class VerticalMovement : MonoBehaviour {
 	}
 
 	private void _attachToVerticalMovementArea(GameObject tgt) {
-		Debug.Log ("Attaching player");
+//		Debug.Log ("Attaching player");
 		_currentVerticalMovementArea = tgt.GetComponent<VerticalMovementArea> ();
 		_isUpDownEnabled = _currentVerticalMovementArea.GetIsUpDownEnabled ();
 		_isLeftRightEnabled = _currentVerticalMovementArea.GetIsLeftRightEnabled ();
@@ -119,7 +119,7 @@ public class VerticalMovement : MonoBehaviour {
 	}
 	#endregion
 
-	private void _moveVertically(float horizontal, float vertical, bool inTrigger) {
+	private void _moveVertically(float horizontal, float vertical, bool isInTrigger) {
 		_movement.z = 0;
 		if (_isUpDownEnabled) {
 			_movement.y = vertical;
@@ -137,7 +137,7 @@ public class VerticalMovement : MonoBehaviour {
 		} else {
 			_movement.x = 0;
 		}
-		if (inTrigger) {
+		if (isInTrigger) {
 			_movement = transform.TransformDirection (_movement);
 		}
 	}
