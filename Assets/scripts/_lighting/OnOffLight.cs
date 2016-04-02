@@ -1,40 +1,21 @@
 using UnityEngine;
 
-public class OnOffLight : InteractiveItem {
+public class OnOffLight : Toggler {
 
-	public Light bulb; 
-	public bool enabled = false;
+	public Light light; 
+
+	public override void Toggle() {
+		isOn = !isOn;
+		ToggleTarget(isOn);
+	}
+	
+	public override void ToggleTarget(bool turnOn) {
+		isOn = turnOn;
+//		Debug.Log ("ToggleTarget[" + this.name + "], isOn = " + isOn);
+		light.enabled = isOn;
+	}
 
 	void Awake() {
-		InitOnOffLight();
-		Init();
-	}
-	
-	public void InitOnOffLight() {
-		bulb.enabled = enabled;
-	}
-
-	public void OnActuate() {
-		Actuate();
-	}
-
-	public override void Actuate() {
-		if(IsRoomActive) {
-			if(CheckProximity()) {
-				Toggle();
-			}
-		}
-	}
-
-	public virtual void Toggle() {
-		ToggleBulb(bulb);
-	}
-	
-	public void ToggleBulb(Light light) {
-		light.enabled = !light.enabled;
-	}
-	
-	public bool GetIsOn() {
-		return bulb.enabled;
+		ToggleTarget (isOn);
 	}
 }
