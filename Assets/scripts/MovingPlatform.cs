@@ -9,6 +9,7 @@ public class MovingPlatform : MonoBehaviour {
 
 	[SerializeField] float speed = 2.0f;
 	[SerializeField] bool isAuto = true; 
+	[SerializeField] bool isLooping = false;
 
 	private int _currentDestination = 0; 
 
@@ -74,7 +75,7 @@ public class MovingPlatform : MonoBehaviour {
 					_currentDestination = 0;
 				}
 
-				if (isAuto) {
+				if (isAuto || isLooping) {
 					SetDestination (true);
 				} else {
 					SetDestination (false);
