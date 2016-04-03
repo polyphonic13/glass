@@ -5,6 +5,8 @@ public class ArmatureTrigger : InteractiveItem {
 	public Transform _parentBone;
 	public AnimationClip _mainClip;
 
+	public bool isLooping = false;
+
 	void Awake() {
 		Init();
 	}
@@ -16,6 +18,7 @@ public class ArmatureTrigger : InteractiveItem {
 	}
 
 	public override void Actuate() {
+		Debug.Log ("ArmatureTrigger[" + this.name + "]/Actuate");
 		HandleAnimation();
 	}
 
@@ -24,6 +27,6 @@ public class ArmatureTrigger : InteractiveItem {
 	}
 	
 	public void SendAnimationToPops(string clipName, Transform bone = null) {
-		_pops.PlayAnimation(clipName, bone);
+		_pops.PlayAnimation(clipName, bone, isLooping);
 	}
 }

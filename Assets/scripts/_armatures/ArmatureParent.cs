@@ -12,18 +12,22 @@ public class ArmatureParent : MonoBehaviour {
 
 	public bool isOpen { get; set; }
 
-	public virtual void PlayAnimation(string clip, Transform bone = null) {
-//		Debug.Log("ArmatureParent[ " + name + " ]/PlayAnimation, clip = " + clip);
+	public virtual void PlayAnimation(string clip, Transform bone = null, bool isLooping = false) {
+		Debug.Log("ArmatureParent[ " + name + " ]/PlayAnimation, clip = " + clip);
 		isOpen = !isOpen;
-		AnimateArmatureBone(clip, bone);
+		AnimateArmatureBone(clip, bone, isLooping);
 	}
 	
-	public void AnimateArmatureBone(string clip, Transform bone = null) {
+	public void AnimateArmatureBone(string clip, Transform bone = null, bool isLooping = false) {
 //		Debug.Log("  AnimateArmatureBone, clip = " + clip);
 		if(bone != null) {
 			_animation [clip].AddMixingTransform(bone);
 		}
-		_animation [clip].wrapMode = WrapMode.Once;
+		if (isLooping) {
+			_animation [clip].wrapMode = WrapMode.Loop;
+		} else {
+			_animation [clip].wrapMode = WrapMode.Once;
+		}
 		_animation.Play(clip);
 	}
 

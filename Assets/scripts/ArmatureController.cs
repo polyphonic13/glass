@@ -9,7 +9,7 @@ public class ArmatureController : TargetController {
 
 	public override void Actuate() {
 		if (closeClip != null) {
-			Debug.Log ("ArmatureController/Actuate, closeClip.name = " + closeClip.name + ", isOpen = " + target.isOpen);
+//			Debug.Log ("ArmatureController/Actuate, closeClip.name = " + closeClip.name + ", isOpen = " + target.isOpen);
 			if (!target.isOpen) {
 				target.PlayAnimation (unlockClip.name);
 			} else {

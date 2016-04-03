@@ -695,6 +695,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &179922
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 422386}
+  - 33: {fileID: 3320740}
+  - 65: {fileID: 6563372}
+  - 23: {fileID: 2365868}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
 --- !u!1 &183370
 GameObject:
   m_ObjectHideFlags: 1
@@ -1058,6 +1076,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 449918}
   m_RootOrder: 15
+--- !u!4 &422386
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 179922}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.93}
+  m_LocalScale: {x: 2.875016, y: 4.075004, z: 1}
+  m_Children: []
+  m_Father: {fileID: 441406}
+  m_RootOrder: 5
 --- !u!4 &422486
 Transform:
   m_ObjectHideFlags: 1
@@ -1259,15 +1289,16 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 164538}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -640.97, y: 112.5605, z: -8.661}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: -0.00000016292068}
+  m_LocalPosition: {x: 23.927002, y: -538.96, z: 2.4500084}
+  m_LocalScale: {x: 1.064892, y: 1, z: 1}
   m_Children:
   - {fileID: 423438}
   - {fileID: 446392}
   - {fileID: 438746}
   - {fileID: 479252}
   - {fileID: 435788}
+  - {fileID: 422386}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &442528
@@ -2119,6 +2150,32 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
+--- !u!23 &2365868
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 179922}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 4497a12232e8246c2a0c8341080908f1, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 1
+  m_ReflectionProbeUsage: 1
+  m_ProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
 --- !u!23 &2371880
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -2383,6 +2440,13 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 138872}
   m_Mesh: {fileID: 4300034, guid: 62f207a25421049e39e65332df089416, type: 3}
+--- !u!33 &3320740
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 179922}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &3324462
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -2656,6 +2720,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &6563372
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 179922}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &6566370
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -2719,7 +2795,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db432368e5dc84fa9a650b75a40f6e0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _targetScene: cave01
+  _targetScene: house_floor02a
   _targetRoom: 0
 --- !u!114 &11490934
 MonoBehaviour:
@@ -3040,7 +3116,7 @@ ParticleSystem:
   speed: 1
   randomSeed: 0
   looping: 1
-  prewarm: 1
+  prewarm: 0
   playOnAwake: 1
   moveWithTransform: 1
   scalingMode: 1
@@ -4539,7 +4615,7 @@ ParticleSystem:
   speed: 1
   randomSeed: 0
   looping: 1
-  prewarm: 1
+  prewarm: 0
   playOnAwake: 1
   moveWithTransform: 1
   scalingMode: 1
