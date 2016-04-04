@@ -22,7 +22,7 @@ public class OnOffEmissive : Toggler {
 		Color baseColor = (isOn) ? _onColor : _offColor;
 
 		Color finalColor = baseColor * Mathf.LinearToGammaSpace (emission);
-		Debug.Log ("finalColor = " + finalColor + ", emission = " + emission + ", baseColor = " + _onColor);
+//		Debug.Log ("finalColor = " + finalColor + ", emission = " + emission + ", baseColor = " + _onColor);
 		_material.SetColor ("_EmissionColor", finalColor);
 	}
 

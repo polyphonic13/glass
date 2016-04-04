@@ -18,7 +18,7 @@ public class ArmatureTrigger : InteractiveItem {
 	}
 
 	public override void Actuate() {
-		Debug.Log ("ArmatureTrigger[" + this.name + "]/Actuate");
+//		Debug.Log ("ArmatureTrigger[" + this.name + "]/Actuate");
 		HandleAnimation();
 	}
 

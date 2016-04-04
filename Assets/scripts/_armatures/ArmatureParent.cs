@@ -13,7 +13,7 @@ public class ArmatureParent : MonoBehaviour {
 	public bool isOpen { get; set; }
 
 	public virtual void PlayAnimation(string clip, Transform bone = null, bool isLooping = false) {
-		Debug.Log("ArmatureParent[ " + name + " ]/PlayAnimation, clip = " + clip);
+//		Debug.Log("ArmatureParent[ " + name + " ]/PlayAnimation, clip = " + clip);
 		isOpen = !isOpen;
 		AnimateArmatureBone(clip, bone, isLooping);
 	}
