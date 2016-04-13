@@ -16,9 +16,10 @@ public class MinerRobot : MonoBehaviour {
 		} else {
 			_currentMovement = 0;
 		}
+		Debug.Log ("MinerRobot/PlayNextMovement, _currentMovement = " + _currentMovement);
 		string clip = movementAnimations [_currentMovement].name;
 		Transform bone = movementBones [_currentMovement];
-		Debug.Log ("MinerRobot/PlayNextMovement, clip = " + clip);
+		Debug.Log ("clip = " + clip);
 		if(bone != null) {
 			_animation [clip].AddMixingTransform(bone);
 		}
