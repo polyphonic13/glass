@@ -14,11 +14,6 @@ public class RoomElement : MonoBehaviour {
 		var ec = EventCenter.Instance;
 
 		ec.OnRoomEntered += OnRoomEntered;
-		ec.OnRoomExited	 += OnRoomExited;
-	}
-
-	void Update() {
-	
 	}
 
 	public void OnRoomEntered(string room) {

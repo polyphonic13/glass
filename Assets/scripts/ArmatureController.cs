@@ -20,13 +20,11 @@ public class ArmatureController : TargetController {
 		}
 	}
 
-	public override void Pause ()
-	{
+	public override void Pause () {
 		target.Pause();
 	}
 
-	public override void Resume ()
-	{
+	public override void Resume () {
 		target.Resume ();
 	}
 

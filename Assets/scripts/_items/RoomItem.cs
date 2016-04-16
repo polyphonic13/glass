@@ -16,26 +16,16 @@ public class RoomItem : MonoBehaviour {
 
 			var eventCenter = EventCenter.Instance;
 			eventCenter.OnRoomEntered += OnRoomEntered;
-//			eventCenter.OnRoomExited += OnRoomExited;
 		}
 	}
 
 	public virtual void OnRoomEntered(string room) {
-		Debug.Log ("RoomItem[" + this.name + "]/OnRoomEntered");
 		if (room == _containingRoom) {
-//			Debug.Log("activating: " + room);
 			IsRoomActive = true;
 		} else {
 			IsRoomActive = false;
 		}
 	}
-
-//	public virtual void OnRoomExited(string room) {
-//		if(room == _containingRoom) {
-//			Debug.Log("deactivating: " + room);
-//			IsRoomActive = false;
-//		}
-//	}
 
 	private void Awake () {
 		Init ();

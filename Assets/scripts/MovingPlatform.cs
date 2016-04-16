@@ -27,7 +27,7 @@ public class MovingPlatform : MonoBehaviour {
 		_destination = destinations [_currentDestination];
 //		Debug.Log ("MovingPlatform[" + this.name + "]/SetDestination, pos = " + platform.transform.position + ", dest = " + _destination.position);
 		_direction = (_destination.position - platform.transform.position).normalized;
-		_isActive = setActive;
+		_isActive = _isMoving = setActive;
 	}
 
 	public void StartMovement() {
@@ -39,11 +39,14 @@ public class MovingPlatform : MonoBehaviour {
 	}
 
 	public void Pause() {
-		_isActive = false;
+//		_isActive = false;
+		_isMoving = false;
 	}
 
 	public void Resume() {
-		_isActive = true;
+		Debug.Log ("MovingPlatform[" + this.name + "]/Resume");
+//		_isActive = true;
+		_isMoving = true;
 	}
 
 	public void Actuate() {
@@ -60,13 +63,12 @@ public class MovingPlatform : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
-		if (_isActive) {
+		if (_isActive && _isMoving) {
 			platform.transform.Translate(_direction * speed * Time.fixedDeltaTime);
 
 			if (Vector3.Distance (platform.transform.position, _destination.position) < speed * Time.fixedDeltaTime) {
 				platform.transform.position = _destination.position;
 				_isActive = false;
-				_isMoving = false;	
 				_destination = null;
 //				Debug.Log ("reached destination");
 				if (_currentDestination < (destinations.Length - 1)) {

@@ -8,7 +8,7 @@ public class LegacyAnimationRoomController : RoomItem {
 	public override void OnRoomEntered (string room)
 	{
 		base.OnRoomEntered (room);
-		Debug.Log ("LegacyAnimationRoomController/OnRoomEntered, room = " + room + ", IsRoomActive = " + IsRoomActive);
+//		Debug.Log ("LegacyAnimationRoomController/OnRoomEntered, room = " + room + ", IsRoomActive = " + IsRoomActive);
 		if (IsRoomActive) {
 			_roomEntered ();
 		} else {
