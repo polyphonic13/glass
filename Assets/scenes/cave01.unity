@@ -78490,6 +78490,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1905326354}
+  - 114: {fileID: 1905326355}
   m_Layer: 0
   m_Name: room02f
   m_TagString: Untagged
@@ -78513,6 +78514,20 @@ Transform:
   - {fileID: 2105928061}
   m_Father: {fileID: 198092835}
   m_RootOrder: 5
+--- !u!114 &1905326355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1905326353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6e1b84ca8c8f42ed8995812c3403b16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _containingRoom: room02f
+  targetControllers:
+  - {fileID: 2004787475}
 --- !u!1001 &1909530451
 Prefab:
   m_ObjectHideFlags: 0
@@ -83085,18 +83100,6 @@ MonoBehaviour:
 Transform:
   m_PrefabParentObject: {fileID: 400168, guid: 3ad07af2fb980434d95c46eb6c680c24, type: 3}
   m_PrefabInternal: {fileID: 2004787472}
---- !u!114 &2004787478
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2004787473}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3fb9b3c0d1cc441ebce8b32557b1376, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _containingRoom: room02f
 --- !u!4 &2006140689 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400006, guid: 09ad743a3fbf04ea3b4162a788c0e4b8, type: 3}
