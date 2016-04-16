@@ -1,15 +1,13 @@
 ﻿using UnityEngine;
 using UnitySampleAssets.CrossPlatformInput;
 
-public class InteractiveItem : MonoBehaviour {
+public class InteractiveItem : RoomItem {
 
 	public Sprite Icon;
 	public string ItemName;
 
 	public float _interactDistance = 3f;
-	public string _containingRoom; 
-	
-	public bool IsRoomActive { get; set; } 
+
 	public bool IsEnabled { get; set; }
 	public bool IsFocused { get; set; }
 
@@ -32,21 +30,14 @@ public class InteractiveItem : MonoBehaviour {
 //		}
 	}
 
-	public void Init() {
+	public override void Init() {
+		base.Init ();
+
 		IsEnabled = true;
 		IsFocused = false;
 
 		MainCamera = Camera.main;
 
-		if(transform.tag == "persistentItem" || _containingRoom == "") {
-			IsRoomActive = true;
-		} else {
-			IsRoomActive = false;
-	
-			var eventCenter = EventCenter.Instance;
-			eventCenter.OnRoomEntered += OnRoomEntered;
-			eventCenter.OnRoomExited += OnRoomExited;
-		}
 	}
 
 	public virtual void Actuate() {
@@ -59,20 +50,6 @@ public class InteractiveItem : MonoBehaviour {
 
 	public Camera GetCamera() {
 		return MainCamera;
-	}
-
-	public virtual void OnRoomEntered(string room) {
-		if(room == _containingRoom) {
-//			Debug.Log("activating: " + room);
-			IsRoomActive = true;
-		}
-	}
-
-	public void OnRoomExited(string room) {
-		if(room == _containingRoom) {
-//			Debug.Log("deactivating: " + room);
-			IsRoomActive = false;
-		}
 	}
 
 	public void SetFocus(bool isFocused) {

@@ -66,7 +66,7 @@ LightmapSettings:
     m_FinalGather: 0
     m_FinalGatherRayCount: 1024
     m_ReflectionCompression: 2
-  m_LightingDataAsset: {fileID: 112000111, guid: 97f3c8f4d0126464985e1e7e79a72be9,
+  m_LightingDataAsset: {fileID: 112000427, guid: 97f3c8f4d0126464985e1e7e79a72be9,
     type: 2}
   m_RuntimeCPUUsage: 25
 --- !u!196 &5
@@ -5116,10 +5116,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eae31bc15b68f4149b23835def9f1a73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: 
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   ItemName: Platform Control
   _interactDistance: 4
-  _containingRoom: 
   startEnabled: 1
   target: {fileID: 120316980}
   key: {fileID: 0}
@@ -9457,10 +9457,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eae31bc15b68f4149b23835def9f1a73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: 
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   ItemName: Door Control
   _interactDistance: 3
-  _containingRoom: 
   startEnabled: 0
   target: {fileID: 215006623}
   key: {fileID: 353632615}
@@ -11954,7 +11954,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 442754, guid: 1918cd2b888ac43edbb543075b084c17, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 59.2
+      value: 51.2
       objectReference: {fileID: 0}
     - target: {fileID: 442754, guid: 1918cd2b888ac43edbb543075b084c17, type: 2}
       propertyPath: m_LocalPosition.y
@@ -15693,10 +15693,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e961cf80bba864078b615c4a4fda8f78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: 
   Icon: {fileID: 21300000, guid: fb95dcee818d24ef28010358f7fdfaf7, type: 3}
   ItemName: Scorpio Crystal
   _interactDistance: 1
-  _containingRoom: 
   description: A purple crystal
   Thumbnail: {fileID: 21300000, guid: a9d37252a199d409b85c34722aba70ff, type: 3}
   targetContainerName: 
@@ -15875,6 +15875,10 @@ Transform:
   - {fileID: 1249508065}
   m_Father: {fileID: 1068138028}
   m_RootOrder: 1
+--- !u!4 &362752407 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 475884, guid: e060e153f9c0640cb9cfde1820c4d94a, type: 2}
+  m_PrefabInternal: {fileID: 396184196}
 --- !u!1 &365231451
 GameObject:
   m_ObjectHideFlags: 0
@@ -16472,6 +16476,73 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400034, guid: 75823213227884022b03ccfda354772d, type: 3}
   m_PrefabInternal: {fileID: 386868180}
+--- !u!1001 &396184196
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 977462837}
+    m_Modifications:
+    - target: {fileID: 475884, guid: e060e153f9c0640cb9cfde1820c4d94a, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 129.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 475884, guid: e060e153f9c0640cb9cfde1820c4d94a, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -14.59
+      objectReference: {fileID: 0}
+    - target: {fileID: 475884, guid: e060e153f9c0640cb9cfde1820c4d94a, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 110
+      objectReference: {fileID: 0}
+    - target: {fileID: 475884, guid: e060e153f9c0640cb9cfde1820c4d94a, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 475884, guid: e060e153f9c0640cb9cfde1820c4d94a, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 475884, guid: e060e153f9c0640cb9cfde1820c4d94a, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 475884, guid: e060e153f9c0640cb9cfde1820c4d94a, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 475884, guid: e060e153f9c0640cb9cfde1820c4d94a, type: 2}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 475884, guid: e060e153f9c0640cb9cfde1820c4d94a, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 14.210671
+      objectReference: {fileID: 0}
+    - target: {fileID: 475884, guid: e060e153f9c0640cb9cfde1820c4d94a, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 21.457169
+      objectReference: {fileID: 0}
+    - target: {fileID: 129348, guid: e060e153f9c0640cb9cfde1820c4d94a, type: 2}
+      propertyPath: m_Name
+      value: room02e_trigger2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445688, guid: e060e153f9c0640cb9cfde1820c4d94a, type: 2}
+      propertyPath: roomName
+      value: room04a
+      objectReference: {fileID: 0}
+    - target: {fileID: 475884, guid: e060e153f9c0640cb9cfde1820c4d94a, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 0.1498894
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445688, guid: e060e153f9c0640cb9cfde1820c4d94a, type: 2}
+      propertyPath: _roomName
+      value: room02e
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2398166, guid: e060e153f9c0640cb9cfde1820c4d94a, type: 2}
+  m_ParentPrefab: {fileID: 100100000, guid: e060e153f9c0640cb9cfde1820c4d94a, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &397029802
 Prefab:
   m_ObjectHideFlags: 0
@@ -27042,15 +27113,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 475884, guid: e060e153f9c0640cb9cfde1820c4d94a, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -29.79
+      value: 130.38
       objectReference: {fileID: 0}
     - target: {fileID: 475884, guid: e060e153f9c0640cb9cfde1820c4d94a, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -43.58
+      value: -14.59
       objectReference: {fileID: 0}
     - target: {fileID: 475884, guid: e060e153f9c0640cb9cfde1820c4d94a, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 58.15
+      value: 110
       objectReference: {fileID: 0}
     - target: {fileID: 475884, guid: e060e153f9c0640cb9cfde1820c4d94a, type: 2}
       propertyPath: m_LocalRotation.x
@@ -27058,7 +27129,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 475884, guid: e060e153f9c0640cb9cfde1820c4d94a, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0.7071068
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 475884, guid: e060e153f9c0640cb9cfde1820c4d94a, type: 2}
       propertyPath: m_LocalRotation.z
@@ -27066,11 +27137,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 475884, guid: e060e153f9c0640cb9cfde1820c4d94a, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 0.7071067
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 475884, guid: e060e153f9c0640cb9cfde1820c4d94a, type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 475884, guid: e060e153f9c0640cb9cfde1820c4d94a, type: 2}
       propertyPath: m_LocalScale.y
@@ -27082,7 +27153,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 129348, guid: e060e153f9c0640cb9cfde1820c4d94a, type: 2}
       propertyPath: m_Name
-      value: room04a_trigger2
+      value: room02f_trigger1
       objectReference: {fileID: 0}
     - target: {fileID: 11445688, guid: e060e153f9c0640cb9cfde1820c4d94a, type: 2}
       propertyPath: roomName
@@ -27092,7 +27163,12 @@ Prefab:
       propertyPath: m_LocalScale.x
       value: 0.1498894
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 11445688, guid: e060e153f9c0640cb9cfde1820c4d94a, type: 2}
+      propertyPath: _roomName
+      value: room02f
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2398166, guid: e060e153f9c0640cb9cfde1820c4d94a, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: e060e153f9c0640cb9cfde1820c4d94a, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &647048722 stripped
@@ -30175,10 +30251,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eae31bc15b68f4149b23835def9f1a73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: 
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   ItemName: Platform Control
   _interactDistance: 4
-  _containingRoom: 
   startEnabled: 1
   target: {fileID: 750555480}
   key: {fileID: 0}
@@ -36616,10 +36692,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e961cf80bba864078b615c4a4fda8f78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: 
   Icon: {fileID: 21300000, guid: fb95dcee818d24ef28010358f7fdfaf7, type: 3}
   ItemName: Leo Crystal
   _interactDistance: 1
-  _containingRoom: 
   description: A purple crystal
   Thumbnail: {fileID: 21300000, guid: a9d37252a199d409b85c34722aba70ff, type: 3}
   targetContainerName: 
@@ -40271,7 +40347,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &977462837
 Transform:
   m_ObjectHideFlags: 0
@@ -40290,11 +40366,12 @@ Transform:
   - {fileID: 420598278}
   - {fileID: 813490384}
   - {fileID: 42878246}
-  - {fileID: 647048722}
   - {fileID: 1939612859}
   - {fileID: 1213925537}
   - {fileID: 1730122611}
   - {fileID: 1989821491}
+  - {fileID: 647048722}
+  - {fileID: 362752407}
   m_Father: {fileID: 593159720}
   m_RootOrder: 0
 --- !u!1001 &988188515
@@ -50462,10 +50539,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eae31bc15b68f4149b23835def9f1a73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: 
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   ItemName: Platform Control
   _interactDistance: 1
-  _containingRoom: 
   startEnabled: 1
   target: {fileID: 1209543712}
   key: {fileID: 0}
@@ -50579,7 +50656,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 475884, guid: e060e153f9c0640cb9cfde1820c4d94a, type: 2}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 475884, guid: e060e153f9c0640cb9cfde1820c4d94a, type: 2}
       propertyPath: m_LocalScale.y
@@ -52989,10 +53066,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e961cf80bba864078b615c4a4fda8f78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: 
   Icon: {fileID: 21300000, guid: fb95dcee818d24ef28010358f7fdfaf7, type: 3}
   ItemName: Elevator Crystal
   _interactDistance: 1.5
-  _containingRoom: 
   description: A purple crystal
   Thumbnail: {fileID: 21300000, guid: a9d37252a199d409b85c34722aba70ff, type: 3}
   targetContainerName: 
@@ -59986,10 +60063,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e961cf80bba864078b615c4a4fda8f78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: 
   Icon: {fileID: 21300000, guid: fb95dcee818d24ef28010358f7fdfaf7, type: 3}
   ItemName: Lift Crystal
   _interactDistance: 1
-  _containingRoom: 
   description: A purple crystal
   Thumbnail: {fileID: 21300000, guid: a9d37252a199d409b85c34722aba70ff, type: 3}
   targetContainerName: 
@@ -67902,10 +67979,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eae31bc15b68f4149b23835def9f1a73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: 
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   ItemName: Lift Control
   _interactDistance: 4
-  _containingRoom: 
   startEnabled: 1
   target: {fileID: 1660579789}
   key: {fileID: 1512676968}
@@ -68967,10 +69044,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eae31bc15b68f4149b23835def9f1a73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: 
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   ItemName: Door Control
   _interactDistance: 3
-  _containingRoom: 
   startEnabled: 0
   target: {fileID: 1678901310}
   key: {fileID: 920620367}
@@ -71734,7 +71811,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 475884, guid: e060e153f9c0640cb9cfde1820c4d94a, type: 2}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 475884, guid: e060e153f9c0640cb9cfde1820c4d94a, type: 2}
       propertyPath: m_LocalScale.y
@@ -73469,10 +73546,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eae31bc15b68f4149b23835def9f1a73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: 
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   ItemName: Lift Control
   _interactDistance: 4
-  _containingRoom: 
   startEnabled: 0
   target: {fileID: 1758367405}
   key: {fileID: 1512676968}
@@ -79567,7 +79644,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 475884, guid: e060e153f9c0640cb9cfde1820c4d94a, type: 2}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 475884, guid: e060e153f9c0640cb9cfde1820c4d94a, type: 2}
       propertyPath: m_LocalScale.y
@@ -79713,10 +79790,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e961cf80bba864078b615c4a4fda8f78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: 
   Icon: {fileID: 21300000, guid: fb95dcee818d24ef28010358f7fdfaf7, type: 3}
   ItemName: Aries Crystal
   _interactDistance: 1
-  _containingRoom: 
   description: A purple crystal
   Thumbnail: {fileID: 21300000, guid: a9d37252a199d409b85c34722aba70ff, type: 3}
   targetContainerName: 
@@ -80430,10 +80507,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eae31bc15b68f4149b23835def9f1a73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: 
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   ItemName: Door Control
   _interactDistance: 1.5
-  _containingRoom: 
   startEnabled: 0
   target: {fileID: 1976656940}
   key: {fileID: 1953255915}
@@ -81391,7 +81468,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 475884, guid: e060e153f9c0640cb9cfde1820c4d94a, type: 2}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 475884, guid: e060e153f9c0640cb9cfde1820c4d94a, type: 2}
       propertyPath: m_LocalScale.y
@@ -82454,7 +82531,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 11100000, guid: 3ad07af2fb980434d95c46eb6c680c24, type: 3}
       propertyPath: m_Animations.Array.size
-      value: 7
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 400168, guid: 3ad07af2fb980434d95c46eb6c680c24, type: 3}
       propertyPath: m_LocalPosition.x
@@ -82924,16 +83001,40 @@ Prefab:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 11100000, guid: 3ad07af2fb980434d95c46eb6c680c24, type: 3}
+      propertyPath: m_Animations.Array.data[2]
+      value: 
+      objectReference: {fileID: 7400018, guid: 3ad07af2fb980434d95c46eb6c680c24, type: 3}
+    - target: {fileID: 11100000, guid: 3ad07af2fb980434d95c46eb6c680c24, type: 3}
+      propertyPath: m_Animations.Array.data[3]
+      value: 
+      objectReference: {fileID: 7400020, guid: 3ad07af2fb980434d95c46eb6c680c24, type: 3}
+    - target: {fileID: 11100000, guid: 3ad07af2fb980434d95c46eb6c680c24, type: 3}
+      propertyPath: m_Animations.Array.data[4]
+      value: 
+      objectReference: {fileID: 7400022, guid: 3ad07af2fb980434d95c46eb6c680c24, type: 3}
+    - target: {fileID: 11100000, guid: 3ad07af2fb980434d95c46eb6c680c24, type: 3}
+      propertyPath: m_Animations.Array.data[5]
+      value: 
+      objectReference: {fileID: 7400024, guid: 3ad07af2fb980434d95c46eb6c680c24, type: 3}
+    - target: {fileID: 11100000, guid: 3ad07af2fb980434d95c46eb6c680c24, type: 3}
+      propertyPath: m_Animations.Array.data[6]
+      value: 
+      objectReference: {fileID: 7400034, guid: 3ad07af2fb980434d95c46eb6c680c24, type: 3}
+    - target: {fileID: 11100000, guid: 3ad07af2fb980434d95c46eb6c680c24, type: 3}
+      propertyPath: m_Animations.Array.data[0]
+      value: 
+      objectReference: {fileID: 7400002, guid: 3ad07af2fb980434d95c46eb6c680c24, type: 3}
+    - target: {fileID: 11100000, guid: 3ad07af2fb980434d95c46eb6c680c24, type: 3}
+      propertyPath: m_Animations.Array.data[1]
+      value: 
+      objectReference: {fileID: 7400034, guid: 3ad07af2fb980434d95c46eb6c680c24, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3ad07af2fb980434d95c46eb6c680c24, type: 3}
   m_IsPrefabParent: 0
 --- !u!1 &2004787473 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100168, guid: 3ad07af2fb980434d95c46eb6c680c24, type: 3}
-  m_PrefabInternal: {fileID: 2004787472}
---- !u!4 &2004787474 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 400170, guid: 3ad07af2fb980434d95c46eb6c680c24, type: 3}
   m_PrefabInternal: {fileID: 2004787472}
 --- !u!114 &2004787475
 MonoBehaviour:
@@ -82946,14 +83047,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d34086fec8842474e9341be639fe6f3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementAnimations:
+  animationClips:
   - {fileID: 7400034, guid: 3ad07af2fb980434d95c46eb6c680c24, type: 3}
-  movementBones:
-  - {fileID: 2004787474}
+  isAutoStart: 1
+  loopAnimations: 1
 --- !u!4 &2004787477 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400168, guid: 3ad07af2fb980434d95c46eb6c680c24, type: 3}
   m_PrefabInternal: {fileID: 2004787472}
+--- !u!114 &2004787478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2004787473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3fb9b3c0d1cc441ebce8b32557b1376, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _containingRoom: room02f
 --- !u!4 &2006140689 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400006, guid: 09ad743a3fbf04ea3b4162a788c0e4b8, type: 3}
@@ -85043,10 +85156,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d35658dd9fe54a8caf94ac9d400a9ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: room02c
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   ItemName: 
   _interactDistance: 3
-  _containingRoom: room02c
   _pops: {fileID: 722767599}
   _parentBone: {fileID: 0}
   _mainClip: {fileID: 7400004, guid: 72797f5002b974599aede5015e8b955f, type: 3}
