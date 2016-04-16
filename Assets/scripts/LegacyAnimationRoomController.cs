@@ -22,13 +22,13 @@ public class LegacyAnimationRoomController : RoomItem {
 	}
 
 	private void _roomEntered() {
-		if (_animationController.GetIsPlaying()) {
+		if (_animationController.GetIsActive()) {
 			_animationController.Resume();
 		}
 	}
 
 	private void _roomExited() {
-		if(_animationController.GetIsPlaying()) {
+		if(_animationController.GetIsActive()) {
 			_animationController.Pause();
 		}
 	}

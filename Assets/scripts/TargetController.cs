@@ -10,4 +10,12 @@ public class TargetController : MonoBehaviour {
 	public virtual bool GetIsActive() {
 		return false;
 	}
+
+	public virtual void Pause() {
+
+	}
+
+	public virtual void Resume() {
+
+	}
 }

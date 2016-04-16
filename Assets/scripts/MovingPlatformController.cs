@@ -12,6 +12,16 @@ public class MovingPlatformController : TargetController {
 		}
 	}
 
+	public override void Pause ()
+	{
+		target.Pause ();
+	}
+
+	public override void Resume ()
+	{
+		target.Resume ();
+	}
+
 	public override bool GetIsActive() {
 		return target.GetIsActive ();
 	}

@@ -38,6 +38,14 @@ public class MovingPlatform : MonoBehaviour {
 		}
 	}
 
+	public void Pause() {
+		_isActive = false;
+	}
+
+	public void Resume() {
+		_isActive = true;
+	}
+
 	public void Actuate() {
 		if (!_isMoving) {
 			StartMovement ();
@@ -48,14 +56,6 @@ public class MovingPlatform : MonoBehaviour {
 		SetDestination (isAuto);
 		if (isAuto) {
 			StartMovement ();
-		}
-	}
-
-	void OnDrawGizmos() {
-		for (int i = 0; i < destinations.Length; i++) {
-			if(destinations[i] != null && platform != null) {
-				Gizmos.DrawWireCube (destinations [i].position, platform.localScale);
-			}
 		}
 	}
 
@@ -80,6 +80,14 @@ public class MovingPlatform : MonoBehaviour {
 				} else {
 					SetDestination (false);
 				}
+			}
+		}
+	}
+
+	void OnDrawGizmos() {
+		for (int i = 0; i < destinations.Length; i++) {
+			if(destinations[i] != null && platform != null) {
+				Gizmos.DrawWireCube (destinations [i].position, platform.localScale);
 			}
 		}
 	}

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LegacyAnimationController : MonoBehaviour {
+public class LegacyAnimationController : TargetController {
 
 	public AnimationClip[] animationClips;
 	public bool isAutoStart = false; 
@@ -15,7 +15,7 @@ public class LegacyAnimationController : MonoBehaviour {
 	private Animation _animation; 
 	private bool _isPlaying = false; 
 
-	public void StartAnimation() {
+	public override void Actuate() {
 		string clip = animationClips [_currentAnimation].name;
 		_animation [clip].wrapMode = WrapMode.Loop;
 		_animation [clip].speed = PLAY_SPEED;
@@ -23,34 +23,34 @@ public class LegacyAnimationController : MonoBehaviour {
 		_isPlaying = true;
 	}
 
+	public override void Pause() {
+		_adjustSpeed (PAUSE_SPEED);
+	}
+
+	public override void Resume() {
+		_adjustSpeed (PLAY_SPEED);
+	}
+
+	public override bool GetIsActive() {
+		return _animation.isPlaying;
+	}
+
 	public void AnimationEnded() {
 		if (_currentAnimation < animationClips.Length - 1) {
 			_currentAnimation++;
-			StartAnimation ();
+			Actuate ();
 		} else if (loopAnimations) {
 			_currentAnimation = 0;
-			StartAnimation ();
+			Actuate ();
 		} else {
 			_isPlaying = false;
 		}
 	}
 
-	public void Pause() {
-		_adjustSpeed (PAUSE_SPEED);
-	}
-
-	public void Resume() {
-		_adjustSpeed (PLAY_SPEED);
-	}
-
-	public bool GetIsPlaying() {
-		return _animation.isPlaying;
-	}
-
 	private void Awake() {
 		_animation = GetComponent<Animation> ();
 		if (isAutoStart) {
-			StartAnimation ();
+			Actuate ();
 		}
 	}
 

@@ -8,5 +8,4 @@ public class RoomTrigger : MonoBehaviour {
 //		Debug.Log("RoomTrigger/OnTriggerEnter, _roomName = " + _roomName + " tgt tag = " + tgt.gameObject.tag);
 		EventCenter.Instance.EnterRoom(_roomName);
 	}
-
 }

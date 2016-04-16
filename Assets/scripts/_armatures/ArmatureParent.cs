@@ -8,7 +8,8 @@ public class ArmatureParent : MonoBehaviour {
 	
 	public AnimationClip _defaultAnimation; 
 	
-	public Animation _animation { get; set; }
+	private Animation _animation;
+	private string _currentClip; 
 
 	public bool isOpen { get; set; }
 
@@ -20,6 +21,7 @@ public class ArmatureParent : MonoBehaviour {
 	
 	public void AnimateArmatureBone(string clip, Transform bone = null, bool isLooping = false) {
 //		Debug.Log("  AnimateArmatureBone, clip = " + clip);
+		_currentClip = clip;
 		if(bone != null) {
 			_animation [clip].AddMixingTransform(bone);
 		}
@@ -29,6 +31,18 @@ public class ArmatureParent : MonoBehaviour {
 			_animation [clip].wrapMode = WrapMode.Once;
 		}
 		_animation.Play(clip);
+	}
+
+	public virtual void Pause() {
+		if (_animation.isPlaying) {
+			_animation [_currentClip].speed = 0;
+		}
+	}
+
+	public virtual void Resume() {
+		if (!_animation.isPlaying) {
+			_animation [_currentClip].speed = 1;
+		}
 	}
 
 	public virtual void Init() {
