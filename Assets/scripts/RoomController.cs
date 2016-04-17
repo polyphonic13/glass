@@ -8,7 +8,7 @@ public class RoomController : RoomItem {
 	public override void OnRoomEntered (string room)
 	{
 		base.OnRoomEntered (room);
-		Debug.Log ("RoomController/OnRoomEntered, room = " + room + ", IsRoomActive = " + IsRoomActive);
+//		Debug.Log ("RoomController/OnRoomEntered, room = " + room + ", IsRoomActive = " + IsRoomActive);
 		if (IsRoomActive) {
 			_resumeTargets ();
 		} else {
