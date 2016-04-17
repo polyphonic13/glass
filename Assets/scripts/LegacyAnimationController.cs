@@ -5,7 +5,8 @@ public class LegacyAnimationController : TargetController {
 
 	public AnimationClip[] animationClips;
 	public bool isAutoStart = false; 
-	public bool loopAnimations = false;
+	public bool isAutoAdvance = true;
+	public bool isLoopPlayback = false;
 
 	private const float PLAY_SPEED = 1f;
 	private const float PAUSE_SPEED = 0f; 
@@ -36,14 +37,15 @@ public class LegacyAnimationController : TargetController {
 	}
 
 	public void AnimationEnded() {
-		if (_currentAnimation < animationClips.Length - 1) {
-			_currentAnimation++;
-			Actuate ();
-		} else if (loopAnimations) {
-			_currentAnimation = 0;
+		if (isAutoAdvance) {
+			if (_currentAnimation < animationClips.Length - 1) {
+				_currentAnimation++;
+			} else {
+				_currentAnimation = 0;
+			}
 			Actuate ();
 		} else {
-			_isPlaying = false;
+			_isPlaying = false; 
 		}
 	}
 
