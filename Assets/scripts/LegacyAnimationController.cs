@@ -25,10 +25,12 @@ public class LegacyAnimationController : TargetController {
 	}
 
 	public override void Pause() {
+		Debug.Log ("LegacyAnimationController[" + this.name + "]/Pause");
 		_adjustSpeed (PAUSE_SPEED);
 	}
 
 	public override void Resume() {
+		Debug.Log ("LegacyAnimationController[" + this.name + "]/Resume");
 		_adjustSpeed (PLAY_SPEED);
 	}
 

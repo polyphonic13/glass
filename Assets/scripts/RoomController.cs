@@ -5,6 +5,8 @@ public class RoomController : RoomItem {
 
 	public TargetController[] targetControllers; 
 
+	private bool _isPaused = false;
+
 	public override void OnRoomEntered (string room)
 	{
 		base.OnRoomEntered (room);
@@ -13,8 +15,10 @@ public class RoomController : RoomItem {
 			Debug.Log ("RoomController[" + this.name + "] _resumeTargets");
 			_resumeTargets ();
 		} else {
-			Debug.Log ("RoomController[" + this.name + "] _resumeTargets");
-			_pauseTargets ();
+			if (!_isPaused) {
+				Debug.Log ("RoomController[" + this.name + "] _pauseTargets");
+				_pauseTargets ();
+			}
 		}
 	}
 
@@ -28,6 +32,7 @@ public class RoomController : RoomItem {
 				targetControllers [i].Pause ();
 			}
 		}
+		_isPaused = true;
 	}
 
 	private void _resumeTargets() {
@@ -38,5 +43,6 @@ public class RoomController : RoomItem {
 				targetControllers [i].Resume ();
 			}
 		}
+		_isPaused = false;
 	}
 }
