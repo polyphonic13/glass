@@ -10,8 +10,10 @@ public class RoomController : RoomItem {
 		base.OnRoomEntered (room);
 //		Debug.Log ("RoomController/OnRoomEntered, room = " + room + ", IsRoomActive = " + IsRoomActive);
 		if (IsRoomActive) {
+			Debug.Log ("RoomController[" + this.name + "] _resumeTargets");
 			_resumeTargets ();
 		} else {
+			Debug.Log ("RoomController[" + this.name + "] _resumeTargets");
 			_pauseTargets ();
 		}
 	}
