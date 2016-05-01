@@ -185,13 +185,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809a167fa8b484b0eb84b17bb95d31c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: bedroom_se
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   ItemName: Right Door
   _interactDistance: 1.5
-  _containingRoom: bedroom_se
   _pops: {fileID: 1151147732}
   _parentBone: {fileID: 1151147729}
   _mainClip: {fileID: 7400010, guid: cccf637e729e74d93866de6d7295cf73, type: 3}
+  isLooping: 0
   _closeClip: {fileID: 7400008, guid: cccf637e729e74d93866de6d7295cf73, type: 3}
   _keyName: 
   IsLocked: 0
@@ -255,13 +256,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d35658dd9fe54a8caf94ac9d400a9ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: secret_room_ne
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   ItemName: Toolbox
   _interactDistance: 3
-  _containingRoom: secret_room_ne
   _pops: {fileID: 2018777674}
   _parentBone: {fileID: 462828228}
   _mainClip: {fileID: 7400006, guid: 5808aed587e8c4c38934d11dd24c8296, type: 3}
+  isLooping: 0
   _closeClip: {fileID: 7400004, guid: 5808aed587e8c4c38934d11dd24c8296, type: 3}
 --- !u!65 &28154829
 BoxCollider:
@@ -323,13 +325,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809a167fa8b484b0eb84b17bb95d31c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: 
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   ItemName: Bathroom N Door
   _interactDistance: 1.5
-  _containingRoom: 
   _pops: {fileID: 1294299002}
   _parentBone: {fileID: 1294299000}
   _mainClip: {fileID: 7400006, guid: 8e01fa68f9de24409b0124ab1e80d980, type: 3}
+  isLooping: 0
   _closeClip: {fileID: 7400004, guid: 8e01fa68f9de24409b0124ab1e80d980, type: 3}
   _keyName: bathroom_n_key
   IsLocked: 1
@@ -731,13 +734,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d35658dd9fe54a8caf94ac9d400a9ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: bathroom_n
   Icon: {fileID: 0}
   ItemName: Cabinet Door
   _interactDistance: 2
-  _containingRoom: bathroom_n
   _pops: {fileID: 1107605407}
   _parentBone: {fileID: 2126739861}
   _mainClip: {fileID: 7400006, guid: 6dcca064e984b4a388b9130a4ee0be15, type: 3}
+  isLooping: 0
   _closeClip: {fileID: 7400004, guid: 33daf0d64b1d94152a0f1351b725f103, type: 3}
 --- !u!65 &98923521
 BoxCollider:
@@ -1334,10 +1338,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15725ebbb138d4ca9b411776763f29fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: bedroom_e
   Icon: {fileID: 21300000, guid: 766854d3fb11b4471aca3a8d1bda1a22, type: 3}
   ItemName: Piggy Bank
   _interactDistance: 1.5
-  _containingRoom: bedroom_e
   description: A ceramic piggy bank attached to the dresser
   singleUse: 1
 --- !u!65 &155942575
@@ -1704,13 +1708,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809a167fa8b484b0eb84b17bb95d31c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: bedroom_nw
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   ItemName: Top Drawer
   _interactDistance: 1
-  _containingRoom: bedroom_nw
   _pops: {fileID: 1604245748}
   _parentBone: {fileID: 558470144}
   _mainClip: {fileID: 7400020, guid: e68378bdf2e8344668440323ad3fe1d7, type: 3}
+  isLooping: 0
   _closeClip: {fileID: 7400018, guid: e68378bdf2e8344668440323ad3fe1d7, type: 3}
   _keyName: 
   IsLocked: 0
@@ -1801,6 +1806,18 @@ Prefab:
     - target: {fileID: 441406, guid: 9fa7620939153451999736afb1f143aa, type: 2}
       propertyPath: m_RootOrder
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11473622, guid: 9fa7620939153451999736afb1f143aa, type: 2}
+      propertyPath: _targetScene
+      value: cave01
+      objectReference: {fileID: 0}
+    - target: {fileID: 179922, guid: 9fa7620939153451999736afb1f143aa, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 435788, guid: 9fa7620939153451999736afb1f143aa, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0.061
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9fa7620939153451999736afb1f143aa, type: 2}
@@ -2441,13 +2458,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809a167fa8b484b0eb84b17bb95d31c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: 
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   ItemName: Bathroom E Door
   _interactDistance: 1.5
-  _containingRoom: 
   _pops: {fileID: 1635047548}
   _parentBone: {fileID: 1635047546}
   _mainClip: {fileID: 7400006, guid: 8e01fa68f9de24409b0124ab1e80d980, type: 3}
+  isLooping: 0
   _closeClip: {fileID: 7400004, guid: 8e01fa68f9de24409b0124ab1e80d980, type: 3}
   _keyName: bathroom_e_key
   IsLocked: 1
@@ -2587,13 +2605,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809a167fa8b484b0eb84b17bb95d31c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: bedroom_sw
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   ItemName: Right Door
   _interactDistance: 1.5
-  _containingRoom: bedroom_sw
   _pops: {fileID: 723815834}
   _parentBone: {fileID: 226840444}
   _mainClip: {fileID: 7400010, guid: ccd614c57a8e0441584e77643b47c4db, type: 3}
+  isLooping: 0
   _closeClip: {fileID: 7400008, guid: cccf637e729e74d93866de6d7295cf73, type: 3}
   _keyName: 
   IsLocked: 0
@@ -3462,13 +3481,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f934b2b9d08343799d6119139d646a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: bedroom_e
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   ItemName: Top Drawer
   _interactDistance: 1.5
-  _containingRoom: bedroom_e
   _pops: {fileID: 292313905}
   _parentBone: {fileID: 881142785}
   _mainClip: {fileID: 7400014, guid: bebdae0b8648c44bd9c8ae78d1319eb4, type: 3}
+  isLooping: 0
   _closeClip: {fileID: 7400012, guid: bebdae0b8648c44bd9c8ae78d1319eb4, type: 3}
   _keyName: 
   IsLocked: 1
@@ -3588,13 +3608,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809a167fa8b484b0eb84b17bb95d31c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: bedroom_se
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   ItemName: Left Door
   _interactDistance: 1.5
-  _containingRoom: bedroom_se
   _pops: {fileID: 1151147732}
   _parentBone: {fileID: 1151147730}
   _mainClip: {fileID: 7400006, guid: cccf637e729e74d93866de6d7295cf73, type: 3}
+  isLooping: 0
   _closeClip: {fileID: 7400004, guid: cccf637e729e74d93866de6d7295cf73, type: 3}
   _keyName: 
   IsLocked: 0
@@ -3828,13 +3849,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809a167fa8b484b0eb84b17bb95d31c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: 
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   ItemName: Bedroom Door
   _interactDistance: 1.5
-  _containingRoom: 
   _pops: {fileID: 1602718690}
   _parentBone: {fileID: 1602718688}
   _mainClip: {fileID: 7400006, guid: 8e01fa68f9de24409b0124ab1e80d980, type: 3}
+  isLooping: 0
   _closeClip: {fileID: 7400004, guid: 8e01fa68f9de24409b0124ab1e80d980, type: 3}
   _keyName: 
   IsLocked: 0
@@ -3898,13 +3920,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d35658dd9fe54a8caf94ac9d400a9ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: bedroom_n
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   ItemName: Right Door
   _interactDistance: 1.5
-  _containingRoom: bedroom_n
   _pops: {fileID: 2106354304}
   _parentBone: {fileID: 2106354301}
   _mainClip: {fileID: 7400018, guid: eb8633cf2774c46aaab8c4c57b96c7c8, type: 3}
+  isLooping: 0
   _closeClip: {fileID: 7400014, guid: eb8633cf2774c46aaab8c4c57b96c7c8, type: 3}
 --- !u!65 &428949692
 BoxCollider:
@@ -4036,13 +4059,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809a167fa8b484b0eb84b17bb95d31c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: 
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   ItemName: Bathroom W Door
   _interactDistance: 1.5
-  _containingRoom: 
   _pops: {fileID: 1518899989}
   _parentBone: {fileID: 1518899987}
   _mainClip: {fileID: 7400010, guid: 8e01fa68f9de24409b0124ab1e80d980, type: 3}
+  isLooping: 0
   _closeClip: {fileID: 7400008, guid: 8e01fa68f9de24409b0124ab1e80d980, type: 3}
   _keyName: bedroom_sw_door_key
   IsLocked: 0
@@ -4684,10 +4708,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63d5745fe386d4ee7aff4bb9b0003fd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: bedroom_n
   Icon: {fileID: 21300000, guid: fb95dcee818d24ef28010358f7fdfaf7, type: 3}
   ItemName: Rabbit
   _interactDistance: 1
-  _containingRoom: bedroom_n
   description: Worn, old stuffed rabbit
   Thumbnail: {fileID: 21300000, guid: 8d947ab6660b547ddbc0d498c74d2c51, type: 3}
   targetContainerName: toychest02_armature
@@ -5022,13 +5046,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809a167fa8b484b0eb84b17bb95d31c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: bedroom_n
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   ItemName: Balcony Door
   _interactDistance: 1.5
-  _containingRoom: bedroom_n
   _pops: {fileID: 516699484}
   _parentBone: {fileID: 1604463673}
   _mainClip: {fileID: 7400006, guid: 01661ed7405834520b9eb66ca374166d, type: 3}
+  isLooping: 0
   _closeClip: {fileID: 7400004, guid: 01661ed7405834520b9eb66ca374166d, type: 3}
   _keyName: 
   IsLocked: 0
@@ -5227,13 +5252,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809a167fa8b484b0eb84b17bb95d31c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: bedroom_sw
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   ItemName: Middle Drawer
   _interactDistance: 1.5
-  _containingRoom: bedroom_sw
   _pops: {fileID: 1277788357}
   _parentBone: {fileID: 1277788354}
   _mainClip: {fileID: 7400010, guid: e449f647f82454a2b9e55a9afd3b1705, type: 3}
+  isLooping: 0
   _closeClip: {fileID: 7400008, guid: e449f647f82454a2b9e55a9afd3b1705, type: 3}
   _keyName: 
   IsLocked: 0
@@ -5297,13 +5323,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809a167fa8b484b0eb84b17bb95d31c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: bedroom_se
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   ItemName: Right Door
   _interactDistance: 1.5
-  _containingRoom: bedroom_se
   _pops: {fileID: 991763284}
   _parentBone: {fileID: 991763281}
   _mainClip: {fileID: 7400010, guid: cccf637e729e74d93866de6d7295cf73, type: 3}
+  isLooping: 0
   _closeClip: {fileID: 7400008, guid: cccf637e729e74d93866de6d7295cf73, type: 3}
   _keyName: 
   IsLocked: 0
@@ -9472,103 +9499,103 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22470362, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22470362, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22470362, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 128
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22470362, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -32
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22470362, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 256
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22470362, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 64
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22430304, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22430304, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22430304, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 128
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22430304, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -128
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22430304, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 256
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22430304, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 64
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22440250, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22440250, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22440250, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 128
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22440250, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -224
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22440250, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 256
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22440250, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 64
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22489610, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22489610, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22489610, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 128
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22489610, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -320
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22489610, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 256
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22489610, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 64
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11469406, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 66ffdadeba17840e4a4760329357f26c, type: 2}
@@ -9931,13 +9958,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809a167fa8b484b0eb84b17bb95d31c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: bedroom_n
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   ItemName: Endtable Drawer
   _interactDistance: 1
-  _containingRoom: bedroom_n
   _pops: {fileID: 637774977}
   _parentBone: {fileID: 1376614757}
   _mainClip: {fileID: 7400006, guid: dcb4ffab9c23c447e9ab4c73f8f03940, type: 3}
+  isLooping: 0
   _closeClip: {fileID: 7400004, guid: dcb4ffab9c23c447e9ab4c73f8f03940, type: 3}
   _keyName: 
   IsLocked: 1
@@ -10127,13 +10155,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d35658dd9fe54a8caf94ac9d400a9ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: bedroom_nw
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   ItemName: Middle Drawer
   _interactDistance: 1
-  _containingRoom: bedroom_nw
   _pops: {fileID: 998078187}
   _parentBone: {fileID: 998078184}
   _mainClip: {fileID: 7400010, guid: 4e665738224084b31ade8dc25303dc90, type: 3}
+  isLooping: 0
   _closeClip: {fileID: 7400008, guid: 4e665738224084b31ade8dc25303dc90, type: 3}
 --- !u!65 &757198738
 BoxCollider:
@@ -10245,10 +10274,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce6bf44d7dcaf4c3d9331ba1aef06185, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: bedroom_n
   Icon: {fileID: 21300000, guid: fb95dcee818d24ef28010358f7fdfaf7, type: 3}
   ItemName: Aries Coin
   _interactDistance: 3
-  _containingRoom: bedroom_n
   description: An antique, pewter Aries coin
   Thumbnail: {fileID: 21300000, guid: c402bbc52eb6e41ef864637ccd0ab453, type: 3}
   targetContainerName: 
@@ -10676,10 +10705,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce6bf44d7dcaf4c3d9331ba1aef06185, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: bedroom_e
   Icon: {fileID: 21300000, guid: fb95dcee818d24ef28010358f7fdfaf7, type: 3}
   ItemName: Scorpio Coin
   _interactDistance: 2
-  _containingRoom: bedroom_e
   description: An antique, pewter Scorpio coin
   Thumbnail: {fileID: 21300000, guid: 5583b75dbe6d24c1ba31f940e80d2e08, type: 3}
   targetContainerName: Piggy Bank
@@ -10813,10 +10842,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15725ebbb138d4ca9b411776763f29fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: bedroom_nw
   Icon: {fileID: 21300000, guid: 766854d3fb11b4471aca3a8d1bda1a22, type: 3}
   ItemName: Painting
   _interactDistance: 2
-  _containingRoom: bedroom_nw
   description: A painting of a rabbit hunt
   singleUse: 1
 --- !u!1 &820151933 stripped
@@ -10988,13 +11017,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809a167fa8b484b0eb84b17bb95d31c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: bedroom_sw
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   ItemName: Top Drawer
   _interactDistance: 1.5
-  _containingRoom: bedroom_sw
   _pops: {fileID: 201834572}
   _parentBone: {fileID: 907688817}
   _mainClip: {fileID: 7400014, guid: e449f647f82454a2b9e55a9afd3b1705, type: 3}
+  isLooping: 0
   _closeClip: {fileID: 7400012, guid: e449f647f82454a2b9e55a9afd3b1705, type: 3}
   _keyName: 
   IsLocked: 0
@@ -11122,13 +11152,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d35658dd9fe54a8caf94ac9d400a9ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: bedroom_nw
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   ItemName: Left Door
   _interactDistance: 1.5
-  _containingRoom: bedroom_nw
   _pops: {fileID: 866985001}
   _parentBone: {fileID: 750938565}
   _mainClip: {fileID: 7400016, guid: eb8633cf2774c46aaab8c4c57b96c7c8, type: 3}
+  isLooping: 0
   _closeClip: {fileID: 7400012, guid: eb8633cf2774c46aaab8c4c57b96c7c8, type: 3}
 --- !u!65 &868826512
 BoxCollider:
@@ -11278,10 +11309,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d5685fee4ef64e078f6725eb7c9cc65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: bedroom_e
   Icon: {fileID: 21300000, guid: fb95dcee818d24ef28010358f7fdfaf7, type: 3}
   ItemName: Scorpio Crystal
   _interactDistance: 1.5
-  _containingRoom: bedroom_e
   description: A crystal with a Scorpio symbol etched into it
   Thumbnail: {fileID: 21300000, guid: b18700d7f690e4a02ab1d1c7fe412588, type: 3}
   targetContainerName: 
@@ -11331,13 +11362,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d35658dd9fe54a8caf94ac9d400a9ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: bedroom_nw
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   ItemName: Right Door
   _interactDistance: 1.5
-  _containingRoom: bedroom_nw
   _pops: {fileID: 866985001}
   _parentBone: {fileID: 1153905823}
   _mainClip: {fileID: 7400018, guid: eb8633cf2774c46aaab8c4c57b96c7c8, type: 3}
+  isLooping: 0
   _closeClip: {fileID: 7400014, guid: eb8633cf2774c46aaab8c4c57b96c7c8, type: 3}
 --- !u!65 &897121777
 BoxCollider:
@@ -11403,13 +11435,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d35658dd9fe54a8caf94ac9d400a9ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: bedroom_nw
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   ItemName: Top Left Drawer
   _interactDistance: 1
-  _containingRoom: bedroom_nw
   _pops: {fileID: 998078187}
   _parentBone: {fileID: 998078181}
   _mainClip: {fileID: 7400018, guid: 4e665738224084b31ade8dc25303dc90, type: 3}
+  isLooping: 0
   _closeClip: {fileID: 7400016, guid: 4e665738224084b31ade8dc25303dc90, type: 3}
 --- !u!65 &909738322
 BoxCollider:
@@ -11555,10 +11588,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d5685fee4ef64e078f6725eb7c9cc65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: bedroom_e
   Icon: {fileID: 21300000, guid: fb95dcee818d24ef28010358f7fdfaf7, type: 3}
   ItemName: Aries Crystal
   _interactDistance: 1.5
-  _containingRoom: bedroom_e
   description: A crystal with an Aries symbol etched into it
   Thumbnail: {fileID: 21300000, guid: a9d37252a199d409b85c34722aba70ff, type: 3}
   targetContainerName: 
@@ -11633,13 +11666,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809a167fa8b484b0eb84b17bb95d31c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: 
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   ItemName: Bedroom SE Door
   _interactDistance: 1.5
-  _containingRoom: 
   _pops: {fileID: 805884437}
   _parentBone: {fileID: 805884435}
   _mainClip: {fileID: 7400006, guid: 8e01fa68f9de24409b0124ab1e80d980, type: 3}
+  isLooping: 0
   _closeClip: {fileID: 7400004, guid: 8e01fa68f9de24409b0124ab1e80d980, type: 3}
   _keyName: 
   IsLocked: 0
@@ -11974,13 +12008,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809a167fa8b484b0eb84b17bb95d31c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: 
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   ItemName: Bedroom SE Door
   _interactDistance: 1.5
-  _containingRoom: 
   _pops: {fileID: 350565571}
   _parentBone: {fileID: 1742036037}
   _mainClip: {fileID: 7400010, guid: 8e01fa68f9de24409b0124ab1e80d980, type: 3}
+  isLooping: 0
   _closeClip: {fileID: 7400008, guid: 8e01fa68f9de24409b0124ab1e80d980, type: 3}
   _keyName: 
   IsLocked: 0
@@ -12044,13 +12079,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809a167fa8b484b0eb84b17bb95d31c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: 
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   ItemName: Secret Door
   _interactDistance: 3
-  _containingRoom: 
   _pops: {fileID: 54492228}
   _parentBone: {fileID: 1020927232}
   _mainClip: {fileID: 7400002, guid: b12148dd3c1af478f88fff541dfb8d65, type: 3}
+  isLooping: 0
   _closeClip: {fileID: 7400004, guid: b12148dd3c1af478f88fff541dfb8d65, type: 3}
   _keyName: 
   IsLocked: 0
@@ -12355,13 +12391,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d35658dd9fe54a8caf94ac9d400a9ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: bedroom_n
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   ItemName: Vanity Drawer
   _interactDistance: 1
-  _containingRoom: bedroom_n
   _pops: {fileID: 200910261}
   _parentBone: {fileID: 600226721}
   _mainClip: {fileID: 7400006, guid: 43d5efe8ef86d4231b5ca1cf7eea2748, type: 3}
+  isLooping: 0
   _closeClip: {fileID: 7400004, guid: 43d5efe8ef86d4231b5ca1cf7eea2748, type: 3}
 --- !u!65 &999302642
 BoxCollider:
@@ -13104,13 +13141,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d35658dd9fe54a8caf94ac9d400a9ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: bedroom_n
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   ItemName: Top Center Drawer
   _interactDistance: 1
-  _containingRoom: bedroom_n
   _pops: {fileID: 2089102973}
   _parentBone: {fileID: 1541368802}
   _mainClip: {fileID: 7400014, guid: 4e665738224084b31ade8dc25303dc90, type: 3}
+  isLooping: 0
   _closeClip: {fileID: 7400012, guid: 4e665738224084b31ade8dc25303dc90, type: 3}
 --- !u!65 &1111610351
 BoxCollider:
@@ -13220,13 +13258,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d35658dd9fe54a8caf94ac9d400a9ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: bedroom_n
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   ItemName: Left Door
   _interactDistance: 1.5
-  _containingRoom: bedroom_n
   _pops: {fileID: 2106354304}
   _parentBone: {fileID: 2106354302}
   _mainClip: {fileID: 7400016, guid: eb8633cf2774c46aaab8c4c57b96c7c8, type: 3}
+  isLooping: 0
   _closeClip: {fileID: 7400012, guid: eb8633cf2774c46aaab8c4c57b96c7c8, type: 3}
 --- !u!65 &1120554509
 BoxCollider:
@@ -13462,13 +13501,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809a167fa8b484b0eb84b17bb95d31c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: bedroom_se
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   ItemName: Left Door
   _interactDistance: 1.5
-  _containingRoom: bedroom_se
   _pops: {fileID: 991763284}
   _parentBone: {fileID: 991763282}
   _mainClip: {fileID: 7400006, guid: cccf637e729e74d93866de6d7295cf73, type: 3}
+  isLooping: 0
   _closeClip: {fileID: 7400004, guid: cccf637e729e74d93866de6d7295cf73, type: 3}
   _keyName: 
   IsLocked: 0
@@ -13752,13 +13792,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809a167fa8b484b0eb84b17bb95d31c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: 
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   ItemName: Bedroom SW Door
   _interactDistance: 1.5
-  _containingRoom: 
   _pops: {fileID: 1011566093}
   _parentBone: {fileID: 1011566091}
   _mainClip: {fileID: 7400002, guid: 73450c5347794413b84dcbeb0206d606, type: 3}
+  isLooping: 0
   _closeClip: {fileID: 7400004, guid: 8e01fa68f9de24409b0124ab1e80d980, type: 3}
   _keyName: bedroom_sw_door_key
   IsLocked: 1
@@ -14210,10 +14251,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce40afb30ab94cb7ae1dc284e229caf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: bedroom_nw
   Icon: {fileID: 21300000, guid: fb95dcee818d24ef28010358f7fdfaf7, type: 3}
   ItemName: Key
   _interactDistance: 1
-  _containingRoom: bedroom_nw
   description: An antique key
   Thumbnail: {fileID: 21300000, guid: f5c110bb204a343728ac2e1b128cd0f3, type: 3}
   targetContainerName: 
@@ -14329,13 +14370,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d35658dd9fe54a8caf94ac9d400a9ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: bedroom_n
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   ItemName: Top Left Drawer
   _interactDistance: 1
-  _containingRoom: bedroom_n
   _pops: {fileID: 2089102973}
   _parentBone: {fileID: 597139519}
   _mainClip: {fileID: 7400018, guid: 4e665738224084b31ade8dc25303dc90, type: 3}
+  isLooping: 0
   _closeClip: {fileID: 7400016, guid: 4e665738224084b31ade8dc25303dc90, type: 3}
 --- !u!65 &1248026217
 BoxCollider:
@@ -14789,13 +14831,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c71d9fb585235433b88d206efdd0855e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: bedroom_n
   Icon: {fileID: 21300000, guid: 2ee4da8354ff444ee932fa51f99d830b, type: 3}
   ItemName: Pillow
   _interactDistance: 2
-  _containingRoom: bedroom_n
   _pops: {fileID: 1405822785}
   _parentBone: {fileID: 708955834}
   _mainClip: {fileID: 7400004, guid: 588fa861f8e2a41659802826ae0fb5e3, type: 3}
+  isLooping: 0
 --- !u!65 &1330577408
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14856,13 +14899,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809a167fa8b484b0eb84b17bb95d31c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: bedroom_sw
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   ItemName: Middle Drawer
   _interactDistance: 1.5
-  _containingRoom: bedroom_sw
   _pops: {fileID: 201834572}
   _parentBone: {fileID: 1794502849}
   _mainClip: {fileID: 7400010, guid: e449f647f82454a2b9e55a9afd3b1705, type: 3}
+  isLooping: 0
   _closeClip: {fileID: 7400008, guid: e449f647f82454a2b9e55a9afd3b1705, type: 3}
   _keyName: 
   IsLocked: 0
@@ -15042,13 +15086,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d35658dd9fe54a8caf94ac9d400a9ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: bedroom_n
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   ItemName: Top Right Drawer
   _interactDistance: 1
-  _containingRoom: bedroom_n
   _pops: {fileID: 2089102973}
   _parentBone: {fileID: 1994317102}
   _mainClip: {fileID: 7400022, guid: 4e665738224084b31ade8dc25303dc90, type: 3}
+  isLooping: 0
   _closeClip: {fileID: 7400020, guid: 4e665738224084b31ade8dc25303dc90, type: 3}
 --- !u!65 &1366590227
 BoxCollider:
@@ -15446,13 +15491,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809a167fa8b484b0eb84b17bb95d31c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: bedroom_sw
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   ItemName: Left Door
   _interactDistance: 1.5
-  _containingRoom: bedroom_sw
   _pops: {fileID: 723815834}
   _parentBone: {fileID: 807318640}
   _mainClip: {fileID: 7400006, guid: ccd614c57a8e0441584e77643b47c4db, type: 3}
+  isLooping: 0
   _closeClip: {fileID: 7400004, guid: cccf637e729e74d93866de6d7295cf73, type: 3}
   _keyName: 
   IsLocked: 0
@@ -15677,10 +15723,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce6bf44d7dcaf4c3d9331ba1aef06185, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: bedroom_nw
   Icon: {fileID: 21300000, guid: fb95dcee818d24ef28010358f7fdfaf7, type: 3}
   ItemName: Leo Coin
   _interactDistance: 2
-  _containingRoom: bedroom_nw
   description: An antique, pewter Leo coin
   Thumbnail: {fileID: 21300000, guid: 850ada5c976d7489d84c8d7e0f00fc18, type: 3}
   targetContainerName: 
@@ -15981,13 +16027,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809a167fa8b484b0eb84b17bb95d31c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: bedroom_sw
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   ItemName: Bottom Drawer
   _interactDistance: 1.5
-  _containingRoom: bedroom_sw
   _pops: {fileID: 1277788357}
   _parentBone: {fileID: 1277788353}
   _mainClip: {fileID: 7400004, guid: e449f647f82454a2b9e55a9afd3b1705, type: 3}
+  isLooping: 0
   _closeClip: {fileID: 7400002, guid: e449f647f82454a2b9e55a9afd3b1705, type: 3}
   _keyName: 
   IsLocked: 0
@@ -16051,13 +16098,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d35658dd9fe54a8caf94ac9d400a9ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: bedroom_n
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   ItemName: Bottom Drawer
   _interactDistance: 2
-  _containingRoom: bedroom_n
   _pops: {fileID: 998078187}
   _parentBone: {fileID: 998078185}
   _mainClip: {fileID: 7400004, guid: 4e665738224084b31ade8dc25303dc90, type: 3}
+  isLooping: 0
   _closeClip: {fileID: 7400002, guid: 4e665738224084b31ade8dc25303dc90, type: 3}
 --- !u!65 &1474834592
 BoxCollider:
@@ -16117,6 +16165,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 11487440, guid: d328a1d00963643d4a90ee92cfe511f5, type: 2}
+      propertyPath: _userData.inputBehaviors.Array.data[0]._buttonDownBuffer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d328a1d00963643d4a90ee92cfe511f5, type: 2}
   m_IsPrefabParent: 0
@@ -16161,13 +16213,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809a167fa8b484b0eb84b17bb95d31c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: bedroom_nw
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   ItemName: Bottom Drawer
   _interactDistance: 1.5
-  _containingRoom: bedroom_nw
   _pops: {fileID: 1604245748}
   _parentBone: {fileID: 2038356144}
   _mainClip: {fileID: 7400016, guid: e68378bdf2e8344668440323ad3fe1d7, type: 3}
+  isLooping: 0
   _closeClip: {fileID: 7400014, guid: e68378bdf2e8344668440323ad3fe1d7, type: 3}
   _keyName: 
   IsLocked: 0
@@ -16325,6 +16378,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 31f9f3b5e67424608b396ec1d232972b, type: 2}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 31f9f3b5e67424608b396ec1d232972b, type: 2}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -16441,13 +16498,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d35658dd9fe54a8caf94ac9d400a9ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: bedroom_nw
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   ItemName: Top Right Drawer
   _interactDistance: 1
-  _containingRoom: bedroom_nw
   _pops: {fileID: 998078187}
   _parentBone: {fileID: 998078182}
   _mainClip: {fileID: 7400022, guid: 4e665738224084b31ade8dc25303dc90, type: 3}
+  isLooping: 0
   _closeClip: {fileID: 7400020, guid: 4e665738224084b31ade8dc25303dc90, type: 3}
 --- !u!65 &1501488147
 BoxCollider:
@@ -16591,13 +16649,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809a167fa8b484b0eb84b17bb95d31c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: bedroom_n
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   ItemName: Bedroom Door
   _interactDistance: 1.5
-  _containingRoom: bedroom_n
   _pops: {fileID: 104483796}
   _parentBone: {fileID: 104483794}
   _mainClip: {fileID: 7400010, guid: 8e01fa68f9de24409b0124ab1e80d980, type: 3}
+  isLooping: 0
   _closeClip: {fileID: 7400008, guid: 8e01fa68f9de24409b0124ab1e80d980, type: 3}
   _keyName: bedroom_n_door_key
   IsLocked: 0
@@ -16827,13 +16886,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f934b2b9d08343799d6119139d646a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: bedroom_e
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   ItemName: Middle Drawer
   _interactDistance: 1.5
-  _containingRoom: bedroom_e
   _pops: {fileID: 292313905}
   _parentBone: {fileID: 1214770119}
   _mainClip: {fileID: 7400010, guid: bebdae0b8648c44bd9c8ae78d1319eb4, type: 3}
+  isLooping: 0
   _closeClip: {fileID: 7400008, guid: bebdae0b8648c44bd9c8ae78d1319eb4, type: 3}
   _keyName: 
   IsLocked: 1
@@ -16990,7 +17050,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11450820, guid: 018c0e47872ab447e876e9422d675226, type: 2}
       propertyPath: usingSunshine
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11450820, guid: 018c0e47872ab447e876e9422d675226, type: 2}
       propertyPath: ambientColor.key2.rgba
@@ -17094,15 +17154,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11450820, guid: 018c0e47872ab447e876e9422d675226, type: 2}
       propertyPath: maxIntensity
-      value: 3.5
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 11450820, guid: 018c0e47872ab447e876e9422d675226, type: 2}
       propertyPath: fogDensityCurve.m_Curve.Array.data[1].value
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11450820, guid: 018c0e47872ab447e876e9422d675226, type: 2}
       propertyPath: fogDensityCurve.m_Curve.Array.data[1].time
-      value: 1.0011904
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11450820, guid: 018c0e47872ab447e876e9422d675226, type: 2}
       propertyPath: nightDayColor.ctime1
@@ -17138,15 +17198,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11450820, guid: 018c0e47872ab447e876e9422d675226, type: 2}
       propertyPath: fogDensityCurve.m_Curve.Array.data[0].value
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11450820, guid: 018c0e47872ab447e876e9422d675226, type: 2}
       propertyPath: fogDensityCurve.m_Curve.Array.data[0].time
-      value: 0.0045404998
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11450820, guid: 018c0e47872ab447e876e9422d675226, type: 2}
       propertyPath: nightDayFogColor.key1.rgba
-      value: 2552110621
+      value: 2250120733
       objectReference: {fileID: 0}
     - target: {fileID: 11450820, guid: 018c0e47872ab447e876e9422d675226, type: 2}
       propertyPath: nightDayFogColor.key0.rgba
@@ -17174,7 +17234,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11450820, guid: 018c0e47872ab447e876e9422d675226, type: 2}
       propertyPath: nightDayFogColor.key2.rgba
-      value: 8302840
+      value: 998158584
       objectReference: {fileID: 0}
     - target: {fileID: 11450820, guid: 018c0e47872ab447e876e9422d675226, type: 2}
       propertyPath: dayRotationSpeed.x
@@ -17190,11 +17250,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11450820, guid: 018c0e47872ab447e876e9422d675226, type: 2}
       propertyPath: nightDayFogColor.key3.rgba
-      value: 15663103
+      value: 562005897
       objectReference: {fileID: 0}
     - target: {fileID: 11450820, guid: 018c0e47872ab447e876e9422d675226, type: 2}
       propertyPath: nightDayFogColor.key4.rgba
-      value: 15532031
+      value: 8163215
       objectReference: {fileID: 0}
     - target: {fileID: 11450820, guid: 018c0e47872ab447e876e9422d675226, type: 2}
       propertyPath: nightDayFogColor.ctime3
@@ -17207,6 +17267,38 @@ Prefab:
     - target: {fileID: 11450820, guid: 018c0e47872ab447e876e9422d675226, type: 2}
       propertyPath: nightDayFogColor.m_NumColorKeys
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 11450820, guid: 018c0e47872ab447e876e9422d675226, type: 2}
+      propertyPath: nightDayFogColor.key5.rgba
+      value: 8157561
+      objectReference: {fileID: 0}
+    - target: {fileID: 11450820, guid: 018c0e47872ab447e876e9422d675226, type: 2}
+      propertyPath: nightDayFogColor.key6.rgba
+      value: 8223354
+      objectReference: {fileID: 0}
+    - target: {fileID: 11450820, guid: 018c0e47872ab447e876e9422d675226, type: 2}
+      propertyPath: nightDayFogColor.atime1
+      value: 22937
+      objectReference: {fileID: 0}
+    - target: {fileID: 11450820, guid: 018c0e47872ab447e876e9422d675226, type: 2}
+      propertyPath: nightDayFogColor.atime2
+      value: 32960
+      objectReference: {fileID: 0}
+    - target: {fileID: 11450820, guid: 018c0e47872ab447e876e9422d675226, type: 2}
+      propertyPath: nightDayFogColor.m_NumAlphaKeys
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11450820, guid: 018c0e47872ab447e876e9422d675226, type: 2}
+      propertyPath: nightDayFogColor.atime3
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 11450820, guid: 018c0e47872ab447e876e9422d675226, type: 2}
+      propertyPath: fogDensityCurve.m_Curve.Array.data[0].inSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11450820, guid: 018c0e47872ab447e876e9422d675226, type: 2}
+      propertyPath: fogDensityCurve.m_Curve.Array.data[0].outSlope
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 018c0e47872ab447e876e9422d675226, type: 2}
@@ -17500,13 +17592,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d35658dd9fe54a8caf94ac9d400a9ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: bedroom_n
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   ItemName: Bottom Drawer
   _interactDistance: 2
-  _containingRoom: bedroom_n
   _pops: {fileID: 2089102973}
   _parentBone: {fileID: 1405924028}
   _mainClip: {fileID: 7400004, guid: 4e665738224084b31ade8dc25303dc90, type: 3}
+  isLooping: 0
   _closeClip: {fileID: 7400002, guid: 4e665738224084b31ade8dc25303dc90, type: 3}
 --- !u!65 &1595357385
 BoxCollider:
@@ -17977,10 +18070,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63d5745fe386d4ee7aff4bb9b0003fd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: bedroom_nw
   Icon: {fileID: 21300000, guid: fb95dcee818d24ef28010358f7fdfaf7, type: 3}
   ItemName: Toy Dog
   _interactDistance: 1.5
-  _containingRoom: bedroom_nw
   description: An antique toy dog
   Thumbnail: {fileID: 21300000, guid: a0ef85fe3ebe2419a9a678e476f066c9, type: 3}
   targetContainerName: toychest02_armature
@@ -18278,13 +18371,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809a167fa8b484b0eb84b17bb95d31c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: 
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   ItemName: Balcony Door
   _interactDistance: 1.5
-  _containingRoom: 
   _pops: {fileID: 512552690}
   _parentBone: {fileID: 1686294439}
   _mainClip: {fileID: 7400010, guid: 01661ed7405834520b9eb66ca374166d, type: 3}
+  isLooping: 0
   _closeClip: {fileID: 7400008, guid: 01661ed7405834520b9eb66ca374166d, type: 3}
   _keyName: 
   IsLocked: 0
@@ -18492,13 +18586,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809a167fa8b484b0eb84b17bb95d31c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: bedroom_nw
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   ItemName: Bedroom Door
   _interactDistance: 1.5
-  _containingRoom: bedroom_nw
   _pops: {fileID: 1990975876}
   _parentBone: {fileID: 1990975874}
   _mainClip: {fileID: 7400010, guid: 8e01fa68f9de24409b0124ab1e80d980, type: 3}
+  isLooping: 0
   _closeClip: {fileID: 7400008, guid: 8e01fa68f9de24409b0124ab1e80d980, type: 3}
   _keyName: bedroom_nw_door_key
   IsLocked: 1
@@ -19114,10 +19209,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d5685fee4ef64e078f6725eb7c9cc65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: bedroom_nw
   Icon: {fileID: 21300000, guid: fb95dcee818d24ef28010358f7fdfaf7, type: 3}
   ItemName: Gas Can
   _interactDistance: 1
-  _containingRoom: bedroom_nw
   description: A half full gas can
   Thumbnail: {fileID: 21300000, guid: 24cceaa1c0df844a4b585c3fe440377a, type: 3}
   targetContainerName: 
@@ -19548,13 +19643,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d35658dd9fe54a8caf94ac9d400a9ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: bedroom_n
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   ItemName: Middle Drawer
   _interactDistance: 1
-  _containingRoom: bedroom_n
   _pops: {fileID: 2089102973}
   _parentBone: {fileID: 1762748409}
   _mainClip: {fileID: 7400010, guid: 4e665738224084b31ade8dc25303dc90, type: 3}
+  isLooping: 0
   _closeClip: {fileID: 7400008, guid: 4e665738224084b31ade8dc25303dc90, type: 3}
 --- !u!65 &1876354982
 BoxCollider:
@@ -19729,13 +19825,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f934b2b9d08343799d6119139d646a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: bedroom_e
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   ItemName: Bottom Drawer
   _interactDistance: 2
-  _containingRoom: bedroom_e
   _pops: {fileID: 292313905}
   _parentBone: {fileID: 1918796299}
   _mainClip: {fileID: 7400004, guid: bebdae0b8648c44bd9c8ae78d1319eb4, type: 3}
+  isLooping: 0
   _closeClip: {fileID: 7400002, guid: bebdae0b8648c44bd9c8ae78d1319eb4, type: 3}
   _keyName: 
   IsLocked: 1
@@ -20089,10 +20186,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15725ebbb138d4ca9b411776763f29fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: bedroom_n
   Icon: {fileID: 21300000, guid: 766854d3fb11b4471aca3a8d1bda1a22, type: 3}
   ItemName: Toychest
   _interactDistance: 2
-  _containingRoom: bedroom_n
   description: The toychest is connected to mechanics in the floor
   singleUse: 1
 --- !u!65 &1905744729
@@ -20328,81 +20425,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1935307741}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1936335589
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1936335593}
-  - 33: {fileID: 1936335592}
-  - 64: {fileID: 1936335591}
-  - 23: {fileID: 1936335590}
-  m_Layer: 0
-  m_Name: Plane
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!23 &1936335590
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1936335589}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_Materials:
-  - {fileID: 2100000, guid: f46112e0c1ca04575ad901131e6e71fa, type: 2}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 1
-  m_ReflectionProbeUsage: 1
-  m_ProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 1
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
---- !u!64 &1936335591
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1936335589}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!33 &1936335592
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1936335589}
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &1936335593
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1936335589}
-  m_LocalRotation: {x: -0.5075422, y: 0.48076728, z: 0.491533, w: 0.51928705}
-  m_LocalPosition: {x: -639.59, y: 112.840996, z: -22.971}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
 --- !u!1 &1938456947
 GameObject:
   m_ObjectHideFlags: 0
@@ -20628,13 +20650,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d35658dd9fe54a8caf94ac9d400a9ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: bedroom_n
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   ItemName: Toychest
   _interactDistance: 1.5
-  _containingRoom: bedroom_n
   _pops: {fileID: 256914215}
   _parentBone: {fileID: 579164513}
   _mainClip: {fileID: 7400004, guid: a4d6cb0d53b76436ab5c75e2b5e50218, type: 3}
+  isLooping: 0
   _closeClip: {fileID: 7400002, guid: a4d6cb0d53b76436ab5c75e2b5e50218, type: 3}
 --- !u!65 &1954123056
 BoxCollider:
@@ -20700,13 +20723,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809a167fa8b484b0eb84b17bb95d31c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: bedroom_sw
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   ItemName: Bottom Drawer
   _interactDistance: 1.5
-  _containingRoom: bedroom_sw
   _pops: {fileID: 201834572}
   _parentBone: {fileID: 1368877436}
   _mainClip: {fileID: 7400004, guid: e449f647f82454a2b9e55a9afd3b1705, type: 3}
+  isLooping: 0
   _closeClip: {fileID: 7400002, guid: e449f647f82454a2b9e55a9afd3b1705, type: 3}
   _keyName: 
   IsLocked: 0
@@ -21088,13 +21112,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809a167fa8b484b0eb84b17bb95d31c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: bedroom_sw
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   ItemName: Top Drawer
   _interactDistance: 1.5
-  _containingRoom: bedroom_sw
   _pops: {fileID: 1277788357}
   _parentBone: {fileID: 1277788355}
   _mainClip: {fileID: 7400014, guid: e449f647f82454a2b9e55a9afd3b1705, type: 3}
+  isLooping: 0
   _closeClip: {fileID: 7400012, guid: e449f647f82454a2b9e55a9afd3b1705, type: 3}
   _keyName: 
   IsLocked: 0
@@ -21458,10 +21483,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d5685fee4ef64e078f6725eb7c9cc65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: bedroom_e
   Icon: {fileID: 21300000, guid: fb95dcee818d24ef28010358f7fdfaf7, type: 3}
   ItemName: Leo Crystal
   _interactDistance: 1.5
-  _containingRoom: bedroom_e
   description: A crystal with a Leo symbol etched into it
   Thumbnail: {fileID: 21300000, guid: 631175c1326e94dd6a5c3d2a1625515a, type: 3}
   targetContainerName: 
@@ -21515,13 +21540,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809a167fa8b484b0eb84b17bb95d31c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: 
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   ItemName: Secret Door
   _interactDistance: 3
-  _containingRoom: 
   _pops: {fileID: 192004331}
   _parentBone: {fileID: 2078678533}
   _mainClip: {fileID: 7400010, guid: bc2a9584cda834ce7ab58a485d9ccd88, type: 3}
+  isLooping: 0
   _closeClip: {fileID: 7400006, guid: bc2a9584cda834ce7ab58a485d9ccd88, type: 3}
   _keyName: 
   IsLocked: 0
@@ -21840,13 +21866,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d35658dd9fe54a8caf94ac9d400a9ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _containingRoom: bedroom_nw
   Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
   ItemName: Top Center Drawer
   _interactDistance: 1
-  _containingRoom: bedroom_nw
   _pops: {fileID: 998078187}
   _parentBone: {fileID: 998078183}
   _mainClip: {fileID: 7400014, guid: 4e665738224084b31ade8dc25303dc90, type: 3}
+  isLooping: 0
   _closeClip: {fileID: 7400012, guid: 4e665738224084b31ade8dc25303dc90, type: 3}
 --- !u!65 &2109428920
 BoxCollider:
