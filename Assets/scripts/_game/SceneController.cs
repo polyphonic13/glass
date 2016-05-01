@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SceneManager : MonoBehaviour {
+public class SceneController : MonoBehaviour {
 
 	public Room[] rooms;
 
@@ -9,10 +9,10 @@ public class SceneManager : MonoBehaviour {
 
 	void Awake() {
 		int targetRoom = GameControl.Instance.targetRoom;
-		Debug.Log ("scene manager awake, targetRoom = " + targetRoom);
+//		Debug.Log ("scene manager awake, targetRoom = " + targetRoom);
 		if(targetRoom > -1 && targetRoom < rooms.Length) {
 			Room room = rooms[targetRoom];
-			Debug.Log("entering room: " + room.name);
+//			Debug.Log("entering room: " + room.name);
 			EventCenter.Instance.EnterRoom(room.name);
 
 			PositionAtStart(room);
@@ -21,7 +21,7 @@ public class SceneManager : MonoBehaviour {
 
 	public void PositionAtStart(Room room) {
 		Transform player = GameObject.Find ("player").transform;
-		Debug.Log("starting position = " + room.startingPosition + ", starting rotation = " + room.startingRotation);
+//		Debug.Log("starting position = " + room.startingPosition + ", starting rotation = " + room.startingRotation);
 		player.position = room.startingPosition;
 		player.rotation = room.startingRotation;
 	}

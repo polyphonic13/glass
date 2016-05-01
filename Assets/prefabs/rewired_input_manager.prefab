@@ -1,14 +1,14 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &108200
+--- !u!1 &169484
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 429582}
-  - 114: {fileID: 11487440}
+  - 4: {fileID: 437584}
+  - 114: {fileID: 11441394}
   m_Layer: 0
   m_Name: rewired_input_manager
   m_TagString: Untagged
@@ -16,24 +16,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &429582
+--- !u!4 &437584
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 108200}
+  m_GameObject: {fileID: 169484}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.559998, y: 0.20199585, z: -39.650494}
+  m_LocalPosition: {x: 144.56, y: 0.20199585, z: 22.349506}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!114 &11487440
+--- !u!114 &11441394
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 108200}
+  m_GameObject: {fileID: 169484}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 581b3e3c96df0ef42aef16b63b27b87f, type: 3}
@@ -282,6 +282,15 @@ MonoBehaviour:
       _behaviorId: 0
       _userAssignable: 1
       _categoryId: 1
+    - _id: 23
+      _name: climb
+      _type: 1
+      _descriptiveName: Climb
+      _positiveDescriptiveName: 
+      _negativeDescriptiveName: 
+      _behaviorId: 0
+      _userAssignable: 1
+      _categoryId: 1
     actionCategories:
     - _name: Default
       _descriptiveName: Default
@@ -318,7 +327,7 @@ MonoBehaviour:
       - categoryId: 0
         actionIds: 
       - categoryId: 1
-        actionIds: 01000000020000001600000012000000050000000d000000
+        actionIds: 01000000020000001600000012000000050000000d00000017000000
       - categoryId: 2
         actionIds: 030000000400000015000000
       - categoryId: 3
@@ -343,7 +352,7 @@ MonoBehaviour:
       _customControllerAxisSensitivity: 1
       _buttonDoublePressSpeed: 0.3
       _buttonDeadZone: 0.5
-      _buttonDownBuffer: 0.01
+      _buttonDownBuffer: 0
     mapCategories:
     - _name: Default
       _descriptiveName: Default
@@ -377,7 +386,7 @@ MonoBehaviour:
       customControllerUid: 0
       actionElementMaps:
       - _actionCategoryId: 1
-        _actionId: 1
+        _actionId: 23
         _elementType: 0
         _elementIdentifierId: 0
         _axisRange: 0
@@ -607,6 +616,17 @@ MonoBehaviour:
         _modifierKey1: 0
         _modifierKey2: 0
         _modifierKey3: 0
+      - _actionCategoryId: 1
+        _actionId: 23
+        _elementType: 1
+        _elementIdentifierId: 10
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 0
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
     keyboardMaps:
     - id: 0
       categoryId: 0
@@ -678,6 +698,17 @@ MonoBehaviour:
         _invert: 0
         _axisContribution: 0
         _keyboardKeyCode: 32
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
+      - _actionCategoryId: 1
+        _actionId: 23
+        _elementType: 1
+        _elementIdentifierId: -1
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 98
         _modifierKey1: 0
         _modifierKey2: 0
         _modifierKey3: 0
@@ -879,7 +910,7 @@ MonoBehaviour:
     customControllerMaps: []
     customControllers: []
     playerIdCounter: 2
-    actionIdCounter: 23
+    actionIdCounter: 24
     actionCategoryIdCounter: 6
     inputBehaviorIdCounter: 1
     mapCategoryIdCounter: 1
@@ -903,5 +934,5 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 108200}
+  m_RootGameObject: {fileID: 169484}
   m_IsPrefabParent: 1

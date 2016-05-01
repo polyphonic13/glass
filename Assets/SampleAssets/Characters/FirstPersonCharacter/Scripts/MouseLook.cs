@@ -25,7 +25,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
         public void Init(Transform character, Transform camera)
         {
 			_controls = ReInput.players.GetPlayer(0);
-			Debug.Log("_controls for mouse look = " + _controls);
+//			Debug.Log("_controls for mouse look = " + _controls);
             m_CharacterTargetRot = character.localRotation;
             m_CameraTargetRot = camera.localRotation;
         }

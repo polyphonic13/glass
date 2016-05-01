@@ -18,7 +18,7 @@ public class PortalController : MonoBehaviour {
 
 	void Awake () {
 		sceneChanger = GameObject.Find("collider_back").GetComponent<SceneChanger> ();
-		Debug.Log ("sceneChanger = " + sceneChanger);
+//		Debug.Log ("sceneChanger = " + sceneChanger);
 
 		if (!startActivated) {
 			_toggleParticleSystemStart (false);
