@@ -15,9 +15,24 @@ public class Inventory : MonoBehaviour {
 	private Inventory() {}
 
 	private void Awake() {
-		if (GameControl.Instance != null && GameControl.Instance.inventoryItems != null) {
-			Debug.Log ("getting inventory from GameControl");
-			_items = GameControl.Instance.inventoryItems;
+//		if (GameControl.Instance != null && GameControl.Instance.inventoryItems != null) {
+//			Debug.Log ("getting inventory from GameControl");
+//			_items = GameControl.Instance.inventoryItems;
+//		} else {
+//			_items = new Hashtable ();
+//		}
+	}
+
+	public void Init() {
+		if (GameControl.Instance.inventoryItems != null) {
+			Debug.Log ("Inventory/Init, getting items from GameControl");
+			_items = GameControl.Instance.inventoryItems as Hashtable;
+			Debug.Log("_items.Count = " + _items.Count);
+			if (_items.Count > 0) {
+				foreach(CollectableItem item in _items.Values) {
+					EventCenter.Instance.AddInventory(item.name);
+				}
+			}
 		} else {
 			_items = new Hashtable ();
 		}

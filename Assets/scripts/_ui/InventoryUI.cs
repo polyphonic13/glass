@@ -272,6 +272,7 @@ public class InventoryUI : MonoBehaviour {
     	}
     }
 
+	#region ui nav
 	private void _calculateCol(float horizontal) {
 		if(horizontal < 0) {
 			_decrementCol(true);
@@ -331,6 +332,7 @@ public class InventoryUI : MonoBehaviour {
 			}
 		}
 	}
+
 	private bool _increment(int counter, int max, bool isCalcCalled = false) {
 		if(counter < (max - 1)) {
 			counter++;
@@ -350,5 +352,5 @@ public class InventoryUI : MonoBehaviour {
 			return true;
 		}
 	}
-	
+	#endregion
  }

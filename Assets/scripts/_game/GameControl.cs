@@ -53,7 +53,7 @@ public class GameControl : MonoBehaviour {
 		} else {
 			for (int i = 0; i < _playerScenes.Length; i++) {
 				if(_playerScenes[i] == currentScene.name) {
-					_initPlayer();
+					_initPlayerScene();
 					break;
 				}
 			}
@@ -67,7 +67,9 @@ public class GameControl : MonoBehaviour {
 		_loadScene (toLoad);
 	}
 
-	private void _initPlayer() {
+	private void _initPlayerScene() {
+		Inventory.Instance.Init ();
+
 		RemainingHealth = health;
 		RemainingBreath = breath;
 		RemainingStamina = stamina;
@@ -108,6 +110,7 @@ public class GameControl : MonoBehaviour {
 
 	public void ChangeScene(string scene, int room = -1) {
 		Instance.inventoryItems = Inventory.Instance.GetAll ();
+		Debug.Log ("inventoryItems.count = " + Instance.inventoryItems.Count);
 		Instance.currentTargetScene = scene;
 //		Debug.Log ("GameControl/ChangeScene, currentTargetScene = " + Instance.currentTargetScene);
 		targetRoom = room;
