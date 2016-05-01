@@ -15,7 +15,12 @@ public class Inventory : MonoBehaviour {
 	private Inventory() {}
 
 	private void Awake() {
-		_items = new Hashtable();
+		if (GameControl.Instance != null && GameControl.Instance.inventoryItems != null) {
+			Debug.Log ("getting inventory from GameControl");
+			_items = GameControl.Instance.inventoryItems;
+		} else {
+			_items = new Hashtable ();
+		}
 	}
 
 	public void InitPlayer() {

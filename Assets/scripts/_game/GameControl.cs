@@ -14,6 +14,8 @@ public class GameControl : MonoBehaviour {
 
 	public int targetRoom = -1;
 
+	public Hashtable inventoryItems; 
+
 	public float RemainingHealth { get; set; }
 	public float RemainingBreath { get; set; }
 	public float RemainingStamina { get; set; } 
@@ -28,18 +30,7 @@ public class GameControl : MonoBehaviour {
 	};
 
 	public static GameControl Instance;
-//	private static GameControl _instance;
-//	private GameControl() {}
-//	
-//	public static GameControl Instance {
-//		get {
-//			if(_instance == null) {
-//				_instance = GameObject.FindObjectOfType(typeof(GameControl)) as GameControl;      
-//			}
-//			return _instance;
-//		}
-//	}
-	
+
 	private Vector3[] _startingPositions = new [] {
 		new Vector3(133f, 4f, 1.4f),
 		new Vector3(-4f, 15.5f, -30f)
@@ -53,14 +44,12 @@ public class GameControl : MonoBehaviour {
 			Destroy(gameObject);
 		}
 
-		Instance.health += 10;
-
 		Cursor.visible = false;
+
 		Scene currentScene = SceneManager.GetActiveScene ();
 
-		Debug.Log ("GameControl/Awake, loadedSceneName = " + currentScene.name + ", currentTargetScene = " + Instance.currentTargetScene + ", health = " + health);
 		if (currentScene.name == LOADING_SCENE && Instance.currentTargetScene != "") {
-			StartCoroutine ("_pauseDuringLoading");
+			Instance.StartCoroutine(_pauseDuringLoading());
 		} else {
 			for (int i = 0; i < _playerScenes.Length; i++) {
 				if(_playerScenes[i] == currentScene.name) {
@@ -72,9 +61,7 @@ public class GameControl : MonoBehaviour {
 	}
 
 	private IEnumerator _pauseDuringLoading() {
-		Debug.Log ("going to pause for " + _loadingPause + " seconds");
-		yield return new WaitForSeconds(5f);
-		Debug.Log ("after pause");
+		yield return new WaitForSeconds (_loadingPause);
 		string toLoad = Instance.currentTargetScene;
 		Instance.currentTargetScene = "";
 		_loadScene (toLoad);
@@ -94,7 +81,7 @@ public class GameControl : MonoBehaviour {
 	}
 
 	private void _loadScene(string scene) {
-		Debug.Log ("going to load: " + scene);
+//		Debug.Log ("going to load: " + scene);
 		SceneManager.LoadScene (scene);
 	}
 
@@ -120,8 +107,9 @@ public class GameControl : MonoBehaviour {
 
 
 	public void ChangeScene(string scene, int room = -1) {
+		Instance.inventoryItems = Inventory.Instance.GetAll ();
 		Instance.currentTargetScene = scene;
-		Debug.Log ("GameControl/ChangeScene, currentTargetScene = " + Instance.currentTargetScene);
+//		Debug.Log ("GameControl/ChangeScene, currentTargetScene = " + Instance.currentTargetScene);
 		targetRoom = room;
 		_loadScene (LOADING_SCENE);
 	}

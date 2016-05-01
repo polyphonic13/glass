@@ -8,6 +8,7 @@ public class SceneController : MonoBehaviour {
 	private int _startingRoom;
 
 	void Awake() {
+		/*
 		int targetRoom = GameControl.Instance.targetRoom;
 //		Debug.Log ("scene manager awake, targetRoom = " + targetRoom);
 		if(targetRoom > -1 && targetRoom < rooms.Length) {
@@ -17,6 +18,7 @@ public class SceneController : MonoBehaviour {
 
 			PositionAtStart(room);
 		}
+		*/
 	}
 
 	public void PositionAtStart(Room room) {

@@ -12,12 +12,12 @@ public class PortalController : MonoBehaviour {
 
 	private bool _isActive; 
 
-	private SceneChanger sceneChanger;
+	private SceneChangeTrigger sceneChanger;
 
 	private const string OPEN_ANIMATION_CLIP = "portal00_open";
 
 	void Awake () {
-		sceneChanger = GameObject.Find("collider_back").GetComponent<SceneChanger> ();
+		sceneChanger = GameObject.Find("collider_back").GetComponent<SceneChangeTrigger> ();
 //		Debug.Log ("sceneChanger = " + sceneChanger);
 
 		if (!startActivated) {
