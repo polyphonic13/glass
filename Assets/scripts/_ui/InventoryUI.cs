@@ -27,7 +27,6 @@ public class InventoryUI : MonoBehaviour {
 	private int _currentItemIndex; 
 	private int _previousItemIndex;
 
-	private bool _isSelectingItem;
 	private bool _isInspectingItem;
 
 	private InventoryItemUI _selectedInventoryItemUI; 
@@ -49,30 +48,8 @@ public class InventoryUI : MonoBehaviour {
 	}
 
 	public void OnCloseInventoryUI() {
-		Debug.Log ("InventoryUI/OnCloseInventoryUI, _isSelectingItem = " + _isSelectingItem + ", item = " + _selectedInventoryItemUI);
-		if(_isSelectingItem) {
-			if(_selectedInventoryItemUI != null) {
-				_selectedInventoryItemUI.Deselect();
-				_selectedInventoryItemUI = null;
-			}
-			_isSelectingItem = false;
-		}
-
-//		var item = _items [_currentItemIndex] as InventoryItemUI;
-//
-//		if (item != null) {
-//			if (_currentItemIndex > 0) {
-//				item.SetFocus (false);
-//			} else {
-//				item.SetFocus (true);
-//			}
-//		}
-//			_currentItemIndex = 0;
-//
-//		_currentColumn = 0;
-//		_currentRow = 0;
-//		_currentItemIndex = 0; 
-//		_previousItemIndex = 0;
+		Debug.Log ("InventoryUI/OnCloseInventoryUI, item = " + _selectedInventoryItemUI);
+		_reset();
 	}
 
 	public void OnInspectItem(bool isInspecting, string item) {
@@ -95,20 +72,13 @@ public class InventoryUI : MonoBehaviour {
 
 	private void FixedUpdate() {
 		if (_canvas.enabled) {
-//			if (wasJustClosed) {
-//				_reset();
-//				wasJustClosed = false;
-//			}
 			_checkInput ();
-//		} else if (!wasJustClosed) {
-//			wasJustClosed = true;
 		}
     }
 
 	private void _reset() {
-		if (_isSelectingItem) {
+		if (_selectedInventoryItemUI != null) {
 			_selectedInventoryItemUI.Deselect ();
-			_isSelectingItem = false;
 			_selectedInventoryItemUI = null;
 		}
 		_currentItemIndex = 0;
@@ -124,7 +94,7 @@ public class InventoryUI : MonoBehaviour {
     	}
     	var item = Inventory.Instance.GetItem(itemName);
     	var itemUI = _items[_occupiedItems] as InventoryItemUI;
-//		Debug.Log("_items["+_occupiedItems+"] = " + itemUI);
+
 		itemUI.name = itemName;
 		itemUI.SetName(item.GetName());
    		itemUI.SetCount(0);
@@ -140,7 +110,6 @@ public class InventoryUI : MonoBehaviour {
 	private void _resetItems(string itemName) {
 		InventoryItemUI itemUI;
 
-		_isSelectingItem = false;
 		_occupiedItems = 0;
 		_previousItemIndex = _currentItemIndex = 0;
 
@@ -205,7 +174,12 @@ public class InventoryUI : MonoBehaviour {
     private void _checkInput() {
 		if(_controls.GetButtonDown("cancel")) {
 			if(!_isInspectingItem) {
-				EventCenter.Instance.CloseInventoryUI();
+				if(_selectedInventoryItemUI != null) {
+					EventCenter.Instance.CloseInventoryUI();
+				} else {
+					_selectedInventoryItemUI.Deselect();
+					_selectedInventoryItemUI = null;
+				}
 			}
 		}
 		if(_occupiedItems > 0 && !_isInspectingItem) {
@@ -215,18 +189,17 @@ public class InventoryUI : MonoBehaviour {
 			var right = _controls.GetButtonDown("right");
 //			Debug.Log ("up = " + up + ", down = " + down + ", left = " + left + ", right = " + right);
 			if(_controls.GetButtonDown("confirm")) {
-				if(!_isSelectingItem) {
+				if(_selectedInventoryItemUI == null) {
 					_selectedInventoryItemUI = _items[_currentItemIndex] as InventoryItemUI;
 					if(_selectedInventoryItemUI != null) {
 						_selectedInventoryItemUI.Select();
-						_isSelectingItem = true;
 					}
 				} else {
 					if(_selectedInventoryItemUI != null) {
 						_selectedInventoryItemUI.SelectControlButton();
 					}
 				}
-			} else if(_isSelectingItem) {
+			} else if(_selectedInventoryItemUI != null) {
 				if(up) {
 					if(_selectedInventoryItemUI != null) {
 						_selectedInventoryItemUI.IncrementControlButtonFocus(false);
@@ -236,7 +209,7 @@ public class InventoryUI : MonoBehaviour {
 						_selectedInventoryItemUI.IncrementControlButtonFocus(true);
 					}
 				}
-			} else if(!_isSelectingItem) {
+			} else if(_selectedInventoryItemUI == null) {
 				_horizontal = 0;
 				_vertical = 0;
 				if(up) {
