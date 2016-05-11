@@ -1,4 +1,5 @@
 using UnityEngine;
+using Polyworks;
 
 public class CollectableItem : InteractiveItem {
 
@@ -31,7 +32,11 @@ public class CollectableItem : InteractiveItem {
 		_originalSize = transform.localScale;
 	}
 
-	public virtual void ItemUpdate() {
+	public void Clone() {
+		
+	}
+
+	public override void ItemUpdate() {
 //		if(IsEnabled && !IsCollected) {
 //			CheckProximity();
 //		}

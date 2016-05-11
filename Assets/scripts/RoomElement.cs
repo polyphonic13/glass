@@ -17,7 +17,7 @@ public class RoomElement : MonoBehaviour {
 	}
 
 	public void OnRoomEntered(string room) {
-		IsRoomActive =(room == _containingRoom);
+		IsRoomActive = (room == _containingRoom);
 	}
 
 	public void OnRoomExited(string room) {

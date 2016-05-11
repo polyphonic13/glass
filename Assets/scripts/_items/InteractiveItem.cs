@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 using UnitySampleAssets.CrossPlatformInput;
+using Polyworks;
 
-public class InteractiveItem : RoomItem {
+public class InteractiveItem : Item {
 
 	public Sprite Icon;
 	public string ItemName;
 
 	public float _interactDistance = 3f;
 
-	public bool IsEnabled { get; set; }
 	public bool IsFocused { get; set; }
 
 	protected Camera MainCamera;
@@ -19,25 +19,14 @@ public class InteractiveItem : RoomItem {
 		Init();
 	}
 
-//	void Update() {
-//		ItemUpdate ();
-//	}
-
 	public virtual void ItemUpdate() {
-//		if(IsEnabled && IsRoomActive) {
-//			Debug.Log("going to check proximity for: " + this.name);
-//			CheckProximity();
-//		}
 	}
 
-	public override void Init() {
-		base.Init ();
-
+	public virtual void Init() {
 		IsEnabled = true;
 		IsFocused = false;
 
 		MainCamera = Camera.main;
-
 	}
 
 	public virtual void Actuate() {

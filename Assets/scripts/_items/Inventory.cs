@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Polyworks;
 
 public class Inventory : MonoBehaviour {
 
@@ -10,6 +11,7 @@ public class Inventory : MonoBehaviour {
 	private Transform _rightHand;
 
 	private Hashtable _items;
+	private Hashtable _itemList;
 
 	private static Inventory _instance;
 	private Inventory() {}
@@ -26,6 +28,7 @@ public class Inventory : MonoBehaviour {
 			}
 		} else {
 			_items = new Hashtable ();
+			_itemList = new Hashtable ();
 		}
 	}
 
@@ -49,7 +52,7 @@ public class Inventory : MonoBehaviour {
 	public bool HasItem(string key) {
 		return(_items.Contains(key)) ? true : false;
 	}
-	
+
 	public bool AddItem(CollectableItem item) {
 		var isAdded = true;
 		 Debug.Log("Inventory/AddItem, item = " + item.name);

@@ -12,7 +12,7 @@ public class ArmatureTrigger : InteractiveItem {
 	}
 	
 	public void OnActuate() {
-		if(IsRoomActive && IsEnabled) {
+		if(IsEnabled) {
 			Actuate();
 		}
 	}
