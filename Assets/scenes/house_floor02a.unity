@@ -1326,7 +1326,7 @@ MonoBehaviour:
   crystalKeys:
   - {fileID: 872667270}
   - {fileID: 2033770017}
-  - {fileID: 949269716}
+  - {fileID: 0}
 --- !u!114 &155942574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10864,31 +10864,31 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: f47d4f7cc5f874d15a69dc36b17f18e6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.276
+      value: -0.67
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f47d4f7cc5f874d15a69dc36b17f18e6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.003
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f47d4f7cc5f874d15a69dc36b17f18e6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.186
+      value: -0.19
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f47d4f7cc5f874d15a69dc36b17f18e6, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.675639
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f47d4f7cc5f874d15a69dc36b17f18e6, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.2085959
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f47d4f7cc5f874d15a69dc36b17f18e6, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.20859508
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f47d4f7cc5f874d15a69dc36b17f18e6, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.67563885
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f47d4f7cc5f874d15a69dc36b17f18e6, type: 3}
       propertyPath: m_RootOrder
@@ -10896,11 +10896,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f47d4f7cc5f874d15a69dc36b17f18e6, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f47d4f7cc5f874d15a69dc36b17f18e6, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: f47d4f7cc5f874d15a69dc36b17f18e6, type: 3}
       propertyPath: m_TagString
@@ -10923,8 +10923,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.2418846, y: 0.093928196, z: 1.0576456}
-  m_Center: {x: -0.006187692, y: 0.0029320992, z: -0.02678486}
+  m_Size: {x: 0.2, y: 1.2, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &872667270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10934,6 +10934,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4d5685fee4ef64e078f6725eb7c9cc65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _containingRoom: bedroom_e
+  Icon: {fileID: 21300000, guid: fb95dcee818d24ef28010358f7fdfaf7, type: 3}
+  ItemName: Scorpio Crystal
+  _interactDistance: 1.5
+  description: A crystal with a Scorpio symbol etched into it
+  Thumbnail: {fileID: 21300000, guid: b18700d7f690e4a02ab1d1c7fe412588, type: 3}
+  targetContainerName: 
+  _weight: {fileID: 11484862, guid: ed5b67beeb2f34409b9e0764fc6167fb, type: 2}
+--- !u!114 &872667271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 872667268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e961cf80bba864078b615c4a4fda8f78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _containingRoom: bedroom_e
@@ -11188,41 +11207,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 946993188}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &949269714 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 100000, guid: 5b2fa1cc7bc784626ac43e03c64a5227, type: 3}
-  m_PrefabInternal: {fileID: 1047456304}
---- !u!65 &949269715
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 949269714}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.24771461, y: 0.09705118, z: 1.1334614}
-  m_Center: {x: -0.009285919, y: 0.0030825264, z: 0.011061887}
---- !u!114 &949269716
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 949269714}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d5685fee4ef64e078f6725eb7c9cc65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _containingRoom: bedroom_e
-  Icon: {fileID: 21300000, guid: fb95dcee818d24ef28010358f7fdfaf7, type: 3}
-  ItemName: Aries Crystal
-  _interactDistance: 1.5
-  description: A crystal with an Aries symbol etched into it
-  Thumbnail: {fileID: 21300000, guid: a9d37252a199d409b85c34722aba70ff, type: 3}
-  targetContainerName: 
-  _weight: {fileID: 11484862, guid: ed5b67beeb2f34409b9e0764fc6167fb, type: 2}
 --- !u!1 &950873329
 GameObject:
   m_ObjectHideFlags: 0
@@ -12160,56 +12144,40 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1918796299}
     m_Modifications:
-    - target: {fileID: 400000, guid: 5b2fa1cc7bc784626ac43e03c64a5227, type: 3}
+    - target: {fileID: 486368, guid: 83b545800be8e43e19ad2d431e92bc27, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -0.589
+      value: -0.879
       objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 5b2fa1cc7bc784626ac43e03c64a5227, type: 3}
+    - target: {fileID: 486368, guid: 83b545800be8e43e19ad2d431e92bc27, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.222
       objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 5b2fa1cc7bc784626ac43e03c64a5227, type: 3}
+    - target: {fileID: 486368, guid: 83b545800be8e43e19ad2d431e92bc27, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -0.25
+      value: -0.258
       objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 5b2fa1cc7bc784626ac43e03c64a5227, type: 3}
+    - target: {fileID: 486368, guid: 83b545800be8e43e19ad2d431e92bc27, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0.10183297
+      value: 0.008802022
       objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 5b2fa1cc7bc784626ac43e03c64a5227, type: 3}
+    - target: {fileID: 486368, guid: 83b545800be8e43e19ad2d431e92bc27, type: 2}
       propertyPath: m_LocalRotation.y
-      value: -0.6997357
+      value: 0.008649723
       objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 5b2fa1cc7bc784626ac43e03c64a5227, type: 3}
+    - target: {fileID: 486368, guid: 83b545800be8e43e19ad2d431e92bc27, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0.6997357
+      value: 0.008649723
       objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 5b2fa1cc7bc784626ac43e03c64a5227, type: 3}
+    - target: {fileID: 486368, guid: 83b545800be8e43e19ad2d431e92bc27, type: 2}
       propertyPath: m_LocalRotation.w
-      value: -0.10183345
+      value: 0.99988645
       objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 5b2fa1cc7bc784626ac43e03c64a5227, type: 3}
+    - target: {fileID: 486368, guid: 83b545800be8e43e19ad2d431e92bc27, type: 2}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 5b2fa1cc7bc784626ac43e03c64a5227, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 5b2fa1cc7bc784626ac43e03c64a5227, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.5000001
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 5b2fa1cc7bc784626ac43e03c64a5227, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 5b2fa1cc7bc784626ac43e03c64a5227, type: 3}
-      propertyPath: m_TagString
-      value: interactive
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 5b2fa1cc7bc784626ac43e03c64a5227, type: 3}
+  m_ParentPrefab: {fileID: 100100000, guid: 83b545800be8e43e19ad2d431e92bc27, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1058990987
 GameObject:
@@ -18746,7 +18714,7 @@ Transform:
   m_PrefabParentObject: {fileID: 400156, guid: 40b1902f8fb0a47069e6e2c2130e754c, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1785307085}
-  m_LocalRotation: {x: -0.1313012, y: 0.69480926, z: 0.6948094, w: 0.13130112}
+  m_LocalRotation: {x: -0.13130121, y: 0.6948093, z: 0.69480944, w: 0.13130113}
   m_LocalPosition: {x: 4.66, y: 0.3099823, z: -3.69}
   m_LocalScale: {x: 0.9, y: 0.9000002, z: 0.9000002}
   m_Children:
@@ -21136,92 +21104,47 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1214770119}
     m_Modifications:
-    - target: {fileID: 400000, guid: e8f3dff92fcb44d7c8fdc595285f24b7, type: 3}
+    - target: {fileID: 436432, guid: eb5cf2156fd214b728d2d4ee5c3d699c, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -0.671
+      value: -0.848
       objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: e8f3dff92fcb44d7c8fdc595285f24b7, type: 3}
+    - target: {fileID: 436432, guid: eb5cf2156fd214b728d2d4ee5c3d699c, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.001
+      value: 0.186
       objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: e8f3dff92fcb44d7c8fdc595285f24b7, type: 3}
+    - target: {fileID: 436432, guid: eb5cf2156fd214b728d2d4ee5c3d699c, type: 2}
       propertyPath: m_LocalPosition.z
       value: -0.213
       objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: e8f3dff92fcb44d7c8fdc595285f24b7, type: 3}
+    - target: {fileID: 436432, guid: eb5cf2156fd214b728d2d4ee5c3d699c, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -0.70217216
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: e8f3dff92fcb44d7c8fdc595285f24b7, type: 3}
+    - target: {fileID: 436432, guid: eb5cf2156fd214b728d2d4ee5c3d699c, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0.08339263
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: e8f3dff92fcb44d7c8fdc595285f24b7, type: 3}
+    - target: {fileID: 436432, guid: eb5cf2156fd214b728d2d4ee5c3d699c, type: 2}
       propertyPath: m_LocalRotation.z
-      value: -0.08339235
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: e8f3dff92fcb44d7c8fdc595285f24b7, type: 3}
+    - target: {fileID: 436432, guid: eb5cf2156fd214b728d2d4ee5c3d699c, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 0.7021721
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: e8f3dff92fcb44d7c8fdc595285f24b7, type: 3}
+    - target: {fileID: 436432, guid: eb5cf2156fd214b728d2d4ee5c3d699c, type: 2}
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: e8f3dff92fcb44d7c8fdc595285f24b7, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: e8f3dff92fcb44d7c8fdc595285f24b7, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: e8f3dff92fcb44d7c8fdc595285f24b7, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: e8f3dff92fcb44d7c8fdc595285f24b7, type: 3}
-      propertyPath: m_TagString
-      value: interactive
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: e8f3dff92fcb44d7c8fdc595285f24b7, type: 3}
+  m_ParentPrefab: {fileID: 100100000, guid: eb5cf2156fd214b728d2d4ee5c3d699c, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &2033770015 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 100000, guid: e8f3dff92fcb44d7c8fdc595285f24b7, type: 3}
-  m_PrefabInternal: {fileID: 2033770014}
---- !u!65 &2033770016
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2033770015}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.24771456, y: 0.09705067, z: 1.1158317}
-  m_Center: {x: -0.0092248805, y: 0.003051998, z: 0.002247246}
---- !u!114 &2033770017
+--- !u!114 &2033770017 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2033770015}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
+  m_PrefabParentObject: {fileID: 11462356, guid: eb5cf2156fd214b728d2d4ee5c3d699c,
+    type: 2}
+  m_PrefabInternal: {fileID: 2033770014}
   m_Script: {fileID: 11500000, guid: 4d5685fee4ef64e078f6725eb7c9cc65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _containingRoom: bedroom_e
-  Icon: {fileID: 21300000, guid: fb95dcee818d24ef28010358f7fdfaf7, type: 3}
-  ItemName: Leo Crystal
-  _interactDistance: 1.5
-  description: A crystal with a Leo symbol etched into it
-  Thumbnail: {fileID: 21300000, guid: 631175c1326e94dd6a5c3d2a1625515a, type: 3}
-  targetContainerName: 
-  _weight: {fileID: 11484862, guid: ed5b67beeb2f34409b9e0764fc6167fb, type: 2}
 --- !u!4 &2038356144 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400024, guid: e68378bdf2e8344668440323ad3fe1d7, type: 3}
