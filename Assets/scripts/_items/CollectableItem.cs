@@ -31,7 +31,7 @@ public class CollectableItem : InteractiveItem {
 		_originalSize = transform.localScale;
 	}
 
-	public virtual void ItemUpdate() {
+	public override void ItemUpdate() {
 //		if(IsEnabled && !IsCollected) {
 //			CheckProximity();
 //		}
