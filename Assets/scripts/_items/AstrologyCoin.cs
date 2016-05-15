@@ -7,7 +7,7 @@ public class AstrologyCoin : CollectableItem {
 
 	public override void Use() {
 //		Debug.Log ("AstrologyCoin[" + this.name + "]/Use");
-		piggyBank.InsertCoin (this.name, this.ItemName);
+		piggyBank.InsertCoin (this.name, this.itemName);
 		Inventory.Instance.RemoveItem (this.name);
 		Destroy (this.gameObject);
 	}

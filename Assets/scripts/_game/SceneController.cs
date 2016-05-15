@@ -9,7 +9,7 @@ public class SceneController : MonoBehaviour {
 
 	void Awake() {
 		/*
-		int targetRoom = GameControl.Instance.targetRoom;
+		int targetRoom = GameController.Instance.targetRoom;
 //		Debug.Log ("scene manager awake, targetRoom = " + targetRoom);
 		if(targetRoom > -1 && targetRoom < rooms.Length) {
 			Room room = rooms[targetRoom];

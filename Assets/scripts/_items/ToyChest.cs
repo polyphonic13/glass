@@ -43,7 +43,7 @@ public class ToyChest : MonoBehaviour {
 				toy.IsEnabled = false;
 
 				EventCenter.Instance.CloseInventoryUI ();
-				EventCenter.Instance.AddNote (toy.ItemName + " added to Toy Chest");
+				EventCenter.Instance.AddNote (toy.itemName + " added to Toy Chest");
 				break;
 			}
 		}

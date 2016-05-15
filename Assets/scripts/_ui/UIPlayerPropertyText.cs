@@ -22,10 +22,10 @@ public class UIPlayer_propertyText : MonoBehaviour {
 	}
 
 	void updateText() {
-		var value = Mathf.Round(GameControl.Instance.GetProperty(_property));
-		if(value < 0) {
-			value = 0;
-		}
-		_text.text = _prefix + value;
+//		var value = Mathf.Round(GameController.Instance.GetProperty(_property));
+//		if(value < 0) {
+//			value = 0;
+//		}
+//		_text.text = _prefix + value;
 	}
 }

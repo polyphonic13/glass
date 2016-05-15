@@ -1,12 +1,11 @@
-﻿using System;
-using System.Runtime.Serialization.Formatters.Binary;
+﻿using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 
-namespace Polyworks
-{
-	public class SaveLoadItemData
-	{
-		public void Save(string url, ItemData data) {
+namespace Polyworks {
+	
+	public class DataIOController {
+
+		public void Save(string url, GameData data) {
 			BinaryFormatter bf = new BinaryFormatter ();
 			FileStream file = File.Create (url);
 
@@ -14,12 +13,12 @@ namespace Polyworks
 			file.Close ();
 		}
 
-		public ItemData Load(string url) {
+		public GameData Load(string url) {
 			if (File.Exists (url)) {
 				BinaryFormatter bf = new BinaryFormatter ();
 				FileStream file = File.Open (url, FileMode.Open);
 
-				ItemData data = (ItemData)bf.Deserialize (file);
+				GameData data = (GameData)bf.Deserialize (file);
 				file.Close ();
 
 				return data;
@@ -29,4 +28,3 @@ namespace Polyworks
 		}
 	}
 }
-

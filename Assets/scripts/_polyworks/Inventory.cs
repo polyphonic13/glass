@@ -10,29 +10,38 @@ namespace Polyworks {
 		private static Inventory _instance;
 		private Inventory() {}
 
-		public void Init() {
-			if (GameControl.Instance.inventoryItems != null) {
-				_items = GameControl.Instance.inventoryItems as Hashtable;
+		public static Inventory Instance {
+			get {
+				if(_instance == null) {
+					_instance = GameObject.FindObjectOfType(typeof(Inventory)) as Inventory;      
+				}
+				return _instance;
+			}
+		}
+
+		public void Init(Hashtable items = null) {
+			if (items != null) {
+				_items = items as Hashtable;
 				if (_items.Count > 0) {
 					foreach(ItemData item in _items.Values) {
-						EventCenter.Instance.AddInventory(item.ItemName);
+						InsertItem(item);
 					}
 				}
 			} else {
+				Debug.Log ("creating new items Hashtable");
 				_items = new Hashtable ();
 			}
 		}
 
 		public virtual void Add(ItemData item) {
-			string message;
+			InsertItem (item);
+			EventCenter.Instance.AddNote(item.itemName + " Collected");
+		}
 
-			item.IsCollected = true;
-			_items.Add (item.ItemName, item);
-
-			message = item.ItemName + " Collected";
-
-			EventCenter.Instance.AddNote(message);
-			EventCenter.Instance.AddInventory(item.ItemName);
+		public virtual void InsertItem(ItemData item) {
+			item.isCollected = true;
+			_items.Add (item.itemName, item);
+			EventCenter.Instance.AddInventory(item.itemName);
 		}
 
 		public virtual void Remove(string name) {
@@ -40,14 +49,18 @@ namespace Polyworks {
 				var data = _items [name] as ItemData;
 				_items.Remove (name);
 
-				if (data.IsDroppable && data.ItemObject != null) {
-					GameObject itemObject = (GameObject) Instantiate (data.ItemObject, transform.position, transform.rotation);
+				if (data.isDroppable && data.itemObject != null) {
+					GameObject itemObject = (GameObject) Instantiate (data.itemObject, transform.position, transform.rotation);
 				}
 			}
 		}
 
 		public bool Contains(string key) {
 			return(_items.Contains(key)) ? true : false;
+		}
+
+		public Hashtable GetAll() {
+			return _items;
 		}
 	}
 }

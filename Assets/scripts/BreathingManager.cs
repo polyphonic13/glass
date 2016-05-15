@@ -11,18 +11,18 @@ public class BreathingManager : MonoBehaviour {
 
 	void Awake() {
 		EventCenter.Instance.OnUnderWater += OnUnderWater;
-		_breathHoldTime = GameControl.Instance.RemainingBreath;
+//		_breathHoldTime = GameController.Instance.RemainingBreath;
 	}
 	
 	void Update() {
 		if(_isUnderWater) {
 
 			_timeUnderWater += Time.deltaTime;
-			GameControl.Instance.UpdateHeldBreathTime(_timeUnderWater);
+//			GameController.Instance.UpdateHeldBreathTime(_timeUnderWater);
 
 			if(_timeUnderWater > _breathHoldTime) {
 				var damage = _timeUnderWater - _breathHoldTime;
-				GameControl.Instance.DamagePlayer(damage/100);
+//				GameController.Instance.DamagePlayer(damage/100);
 			}
 		}
 	}
@@ -31,7 +31,7 @@ public class BreathingManager : MonoBehaviour {
 		_isUnderWater = under;
 		if(!under) {
 			_timeUnderWater = 0;
-			GameControl.Instance.ResetBreath();
+//			GameController.Instance.ResetBreath();
 		}
 	}
 }

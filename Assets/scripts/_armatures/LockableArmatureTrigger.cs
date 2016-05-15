@@ -29,7 +29,7 @@ public class LockableArmatureTrigger : OpenCloseArmatureTrigger {
 //			 if(Inventory.Instance.HasItem(_keyName)) {
 //				_unlock ();
 //			 } else {
-				 EventCenter.Instance.AddNote("The " + this.ItemName + " is locked");
+				 EventCenter.Instance.AddNote("The " + this.itemName + " is locked");
 //			 }
 		}
 	}
@@ -40,7 +40,7 @@ public class LockableArmatureTrigger : OpenCloseArmatureTrigger {
 
 	private void _unlock() {
 		IsLocked = false;
-		EventCenter.Instance.AddNote("The " + this.ItemName + " was unlocked");
+		EventCenter.Instance.AddNote("The " + this.itemName + " was unlocked");
 		HandleOpenClose();
 	}
 }

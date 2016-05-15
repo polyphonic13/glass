@@ -17,19 +17,19 @@ public class Inventory : MonoBehaviour {
 	private Inventory() {}
 
 	public void Init() {
-		if (GameControl.Instance.inventoryItems != null) {
-			Debug.Log ("Inventory/Init, getting items from GameControl");
-			_items = GameControl.Instance.inventoryItems as Hashtable;
-			Debug.Log("_items.Count = " + _items.Count);
-			if (_items.Count > 0) {
-				foreach(CollectableItem item in _items.Values) {
-					EventCenter.Instance.AddInventory(item.name);
-				}
-			}
-		} else {
-			_items = new Hashtable ();
-			_itemList = new Hashtable ();
-		}
+//		if (GameController.Instance.gameData.items != null) {
+//			Debug.Log ("Inventory/Init, getting items from GameControl");
+//			_items = GameController.Instance.gameData.items as Hashtable;
+//			Debug.Log("_items.Count = " + _items.Count);
+//			if (_items.Count > 0) {
+//				foreach(CollectableItem item in _items.Values) {
+//					EventCenter.Instance.AddInventory(item.name);
+//				}
+//			}
+//		} else {
+//			_items = new Hashtable ();
+//			_itemList = new Hashtable ();
+//		}
 	}
 
 	public void InitPlayer() {
@@ -63,10 +63,10 @@ public class Inventory : MonoBehaviour {
 
 			if (item.name != "flashlight") {
 				_items.Add (item.name, item);
-				message = item.ItemName + " Added to inventory";
-				GameControl.Instance.hasFlashlight = true;
+				message = item.itemName + " Added to inventory";
+//				GameController.Instance.hasFlashlight = true;
 			} else {
-				message = item.ItemName + " Collected";
+				message = item.itemName + " Collected";
 			}
 			item.Collect(_backpack, _rightHand);
 			
@@ -74,7 +74,7 @@ public class Inventory : MonoBehaviour {
 			EventCenter.Instance.AddInventory(item.name);
 		} else {
 			isAdded = false;
-			EventCenter.Instance.AddNote("No more room for: " + item.ItemName);
+			EventCenter.Instance.AddNote("No more room for: " + item.itemName);
 		}
 		return isAdded;
 	}
@@ -83,7 +83,7 @@ public class Inventory : MonoBehaviour {
 		if (HasItem (key)) {
 			var item = _items[key] as CollectableItem;
 			if (isInspecting) {
-				ItemInspector.Instance.AddTarget (item.transform, item.ItemName, item.description);
+				ItemInspector.Instance.AddTarget (item.transform, item.itemName, item.description);
 			} else {
 				ItemInspector.Instance.RemoveTarget ();
 			}
@@ -98,7 +98,7 @@ public class Inventory : MonoBehaviour {
 				item.Use();
 			} else {
 				EventCenter.Instance.CloseInventoryUI ();
-				EventCenter.Instance.AddNote(item.ItemName + " can not be used here");
+				EventCenter.Instance.AddNote(item.itemName + " can not be used here");
 			}
 		}
 	}
@@ -107,7 +107,7 @@ public class Inventory : MonoBehaviour {
 //		Debug.Log("Inventory/RemoveItem, key = " + key);
 		if(HasItem(key)) {
 			var item = _items[key] as CollectableItem;
-//			item.IsCollected = false;
+//			item.isCollected = false;
 			item.Drop(useGravity);
 			_items.Remove(key);
 			EventCenter.Instance.RemoveInventory(item.name);

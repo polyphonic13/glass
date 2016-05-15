@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace AssemblyCSharp
+namespace Polyworks
 {
 	public class EventCenter: MonoBehaviour
 	{
@@ -9,6 +9,9 @@ namespace AssemblyCSharp
 
 		public delegate void NoteAdder(string message);
 		public event NoteAdder OnNoteAdded;
+
+		public delegate void SceneChanger(string scene);
+		public event SceneChanger OnChangeScene;
 
 		#region singleton
 		private static EventCenter _instance;
@@ -33,6 +36,12 @@ namespace AssemblyCSharp
 		public void AddNote(string message) {
 			if (OnNoteAdded != null) {
 				OnNoteAdded (message);
+			}
+		}
+
+		public void ChangeScene(string scene) {
+			if (OnChangeScene != null) {
+				OnChangeScene (scene);
 			}
 		}
 	}

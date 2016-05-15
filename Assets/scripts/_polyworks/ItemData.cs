@@ -3,18 +3,18 @@ using UnityEngine;
 
 namespace Polyworks
 {
-	[System.Serializable]
+	[Serializable]
 	public class ItemData
 	{
-		public string ContainingRoom; 
-		public string ItemName;
+		public string containingRoom; 
+		public string itemName;
 		public Sprite Icon; 
 
-		public bool IsCollectable = false;
-		public bool IsCollected = false;
-		public bool IsDroppable = false; 
+		public bool isCollectable = false;
+		public bool isCollected = false;
+		public bool isDroppable = false; 
 
-		public GameObject ItemObject; 
+		public GameObject itemObject; 
 
 		public ItemData ()
 		{
@@ -22,11 +22,11 @@ namespace Polyworks
 
 		public ItemData Clone() {
 			var clone = new ItemData ();
-			clone.ContainingRoom = this.ContainingRoom;
-			clone.ItemName = this.ItemName;
-			clone.IsCollectable = this.IsCollectable;
-			clone.IsCollected = this.IsCollected;
-			clone.ItemObject = this.ItemObject;
+			clone.containingRoom = this.containingRoom;
+			clone.itemName = this.itemName;
+			clone.isCollectable = this.isCollectable;
+			clone.isCollected = this.isCollected;
+			clone.itemObject = this.itemObject;
 
 			return clone;
 		}

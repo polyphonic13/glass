@@ -3,6 +3,7 @@ using UnitySampleAssets.CrossPlatformInput;
 using UnitySampleAssets.Utility;
 using Random = UnityEngine.Random;
 using Rewired;
+using Polyworks;
 
 namespace UnitySampleAssets.Characters.FirstPerson
 {
@@ -109,8 +110,8 @@ namespace UnitySampleAssets.Characters.FirstPerson
 		}
 
 		public void OnPlayerDamaged(float damage) {
-			float health = GameControl.Instance.RemainingHealth - damage;
-			GameControl.Instance.UpdateHealth(health);
+//			float health = GameController.Instance.RemainingHealth - damage;
+//			GameController.Instance.UpdateHealth(health);
 		}
 
 		public void OnAboveWater(bool water, Transform tgt) {
@@ -184,7 +185,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
 				_childTransforms [i++] = t;
 			}
 
-//			_hasFlashlight = GameControl.Instance.hasFlashlight;
+//			_hasFlashlight = GameController.Instance.hasFlashlight;
 				
 			var ec = EventCenter.Instance;
 			ec.OnAboveWater += OnAboveWater;
@@ -274,8 +275,8 @@ namespace UnitySampleAssets.Characters.FirstPerson
 						m_Jumping = false;
 						
 						if(_damageFromFall && (_currentMovementState == MovementStates.Normal || _currentMovementState == MovementStates.Crawl)) {
-							float health = GameControl.Instance.RemainingHealth - _gravityDamager.EndFall();
-							GameControl.Instance.UpdateHealth(health);
+//							float health = GameController.Instance.RemainingHealth - _gravityDamager.EndFall();
+//							GameController.Instance.UpdateHealth(health);
 						}
 						
 					}

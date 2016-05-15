@@ -8,9 +8,9 @@ public class CollectableItem : InteractiveItem {
 	// TBD: extend class with ContainableItem:
 	public string targetContainerName = "";
 
-	public bool IsCollected { get; set; }
+	public bool isCollected { get; set; }
 	public bool IsEquipped { get; set; }
-	public bool IsDroppable { get; set; }
+	public bool isDroppable { get; set; }
 	public bool IsEquipable { get; set; }
 	public bool IsInspected { get; set; }
 	public bool IsUsable { get; set; }
@@ -28,7 +28,7 @@ public class CollectableItem : InteractiveItem {
 	
 	public void InitCollectableItem() {
 		Init();
-		IsCollected = IsEquipped = IsInspected = false;
+		isCollected = IsEquipped = IsInspected = false;
 		_originalSize = transform.localScale;
 	}
 
@@ -37,13 +37,13 @@ public class CollectableItem : InteractiveItem {
 	}
 
 	public override void ItemUpdate() {
-//		if(IsEnabled && !IsCollected) {
+//		if(IsEnabled && !isCollected) {
 //			CheckProximity();
 //		}
 	}
 	
 	public override void Actuate () {
-		if(!IsCollected) {
+		if(!isCollected) {
 //			base.Actuate();
 			AddToInventory();
 		}
@@ -52,7 +52,7 @@ public class CollectableItem : InteractiveItem {
 	public void AddToInventory() {
 		var isAdded = Inventory.Instance.AddItem(this);
 		if(isAdded) {
-			IsCollected = true;
+			isCollected = true;
 		}
 	}
 
@@ -80,7 +80,7 @@ public class CollectableItem : InteractiveItem {
 	}
 
 	public virtual void Collect(Transform backpack, Transform rightHand) {
-		IsCollected = true;
+		isCollected = true;
 		_backpack = backpack;
 		_rightHand = rightHand;
 		Store ();

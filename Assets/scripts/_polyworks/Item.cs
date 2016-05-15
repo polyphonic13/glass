@@ -10,7 +10,7 @@ namespace Polyworks {
 		public ItemData Data;
 
 		public void Collect(Inventory inventory) {
-			if (Data.IsCollectable && !Data.IsCollected) {
+			if (Data.isCollectable && !Data.isCollected) {
 				inventory.Add (Data.Clone ());
 				GameObject.Destroy (gameObject);
 			}

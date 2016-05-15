@@ -5,7 +5,7 @@ using Polyworks;
 public class InteractiveItem : Item {
 
 	public Sprite Icon;
-	public string ItemName;
+	public string itemName;
 
 	public float _interactDistance = 3f;
 
@@ -34,7 +34,7 @@ public class InteractiveItem : Item {
 	}
 
 	public string GetName() {
-		return ItemName;
+		return itemName;
 	}
 
 	public Camera GetCamera() {
