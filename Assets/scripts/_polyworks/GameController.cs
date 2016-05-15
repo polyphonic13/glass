@@ -32,15 +32,18 @@ namespace Polyworks {
 			if (isCursorless) {
 				Cursor.visible = false;
 			}
+			if (Instance.gameData.items == null) {
+				Instance.gameData.items = new Hashtable ();
+			}
 
 			Scene currentScene = SceneManager.GetActiveScene ();
 
 			if (currentScene.name == Instance.loadingScene && Instance.gameData.currentTargetScene != "") {
 				Instance.StartCoroutine(_pauseDuringLoading());
 			} else {
-				Debug.Log ("currentScene = " + currentScene);
+				Debug.Log ("currentScene = " + currentScene.name);
 				for (int i = 0; i < Instance.playerScenes.Length; i++) {
-					Debug.Log ("playerScenes[" + i + "] = " + playerScenes [i]);
+//					Debug.Log ("playerScenes[" + i + "] = " + playerScenes [i]);
 					if(Instance.playerScenes[i] == currentScene.name) {
 						_initPlayerScene();
 						break;
@@ -66,14 +69,18 @@ namespace Polyworks {
 		}
 
 		public void ChangeScene(string scene) {
-			Instance.gameData.items = Inventory.Instance.GetAll();
-			Debug.Log ("gameData.items.Count = " + Instance.gameData.items.Count);
-			Instance.gameData.currentTargetScene = scene;
+			Debug.Log ("ChangeScene, scene = " + scene + ", gameData.items.Count = " + Instance.gameData.items.Count);
+			Scene currentScene = SceneManager.GetActiveScene ();
 
-			if (Instance.loadingScene != "") {
-				_loadScene (Instance.loadingScene);
-			} else {
-				_loadScene (scene);
+			if (scene != currentScene.name) {
+				Instance.gameData.items = Inventory.Instance.GetAll ();
+				Instance.gameData.currentTargetScene = scene;
+
+				if (Instance.loadingScene != "") {
+					_loadScene (Instance.loadingScene);
+				} else {
+					_loadScene (scene);
+				}
 			}
 		}
 
