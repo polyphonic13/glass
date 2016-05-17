@@ -7,6 +7,8 @@ namespace Polyworks {
 		public string objectName = "serialized_data";
 		public string currentTargetScene = "";
 
+		public int count = 0;
+
 		public Hashtable items;
 	}
 }

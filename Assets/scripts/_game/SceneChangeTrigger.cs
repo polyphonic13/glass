@@ -25,4 +25,5 @@ public class SceneChangeTrigger : MonoBehaviour {
 //		Debug.Log ("SceneChangeTrigger/SetActive, active = " + active);
 		isActive = active;
 	}
+
 }

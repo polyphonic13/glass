@@ -20,6 +20,7 @@ namespace Polyworks {
 		}
 
 		public void Init(Hashtable items = null) {
+			Debug.Log ("Inventory/Init, _items = " + _items);
 			if (items != null) {
 				_items = items as Hashtable;
 				if (_items.Count > 0) {

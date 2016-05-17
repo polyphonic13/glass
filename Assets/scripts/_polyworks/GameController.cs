@@ -20,9 +20,11 @@ namespace Polyworks {
 
 		void Awake() {
 			if(Instance == null) {
+				Debug.Log ("THIS is the instance");
 				DontDestroyOnLoad(gameObject);
 				Instance = this;
 			} else if(this != Instance) {
+				Debug.Log ("this is NOT the instance");
 				Destroy(gameObject);
 			}
 			Init ();
@@ -69,7 +71,7 @@ namespace Polyworks {
 		}
 
 		public void ChangeScene(string scene) {
-			Debug.Log ("ChangeScene, scene = " + scene + ", gameData.items.Count = " + Instance.gameData.items.Count);
+			Debug.Log ("GameController/ChangeScene, scene = " + scene + ", gameData.items.Count = " + Instance.gameData.items.Count);
 			Scene currentScene = SceneManager.GetActiveScene ();
 
 			if (scene != currentScene.name) {
@@ -85,7 +87,12 @@ namespace Polyworks {
 		}
 
 		public void OnChangeScene(string scene) {
+//			Debug.Log ("GameController/OnChangeScene, scene = " + scene);
 			ChangeScene (scene);
+		}
+
+		public void Increment() {
+			Instance.gameData.count++;
 		}
 	}
 }
