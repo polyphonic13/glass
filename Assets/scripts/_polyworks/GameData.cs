@@ -11,20 +11,20 @@ namespace Polyworks {
 
 		public Hashtable items;
 
-		public ScenePrefabCollection[] scenePrefabs;
+//		public ScenePrefabCollection[] scenePrefabs;
 	}
 
-	[System.Serializable]
-	public struct ScenePrefabCollection {
-		public string sceneName;
-		public Prefab[] prefabs;
-	}
-
-	[System.Serializable]
-	public struct Prefab {
-		public string name;
-		public Vector3 location;
-		public Quaternion rotation;
-	}
+//	[System.Serializable]
+//	public struct ScenePrefabCollection {
+//		public string sceneName;
+//		public Prefab[] prefabs;
+//	}
+//
+//	[System.Serializable]
+//	public struct Prefab {
+//		public string name;
+//		[SerializeField] public Vector3 location;
+//		[SerializeField] public Quaternion rotation;
+//	}
 }
 

@@ -7,6 +7,8 @@ namespace Polyworks {
 
 		public GameData gameData;
 
+		public string dataFilename = "game_data.dat"; 
+
 		public string loadingScene = ""; 
 		public int loadingScenePause = 2;
 
@@ -18,7 +20,40 @@ namespace Polyworks {
 
 		public static GameController Instance;
 
-		void Awake() {
+		public virtual void Init() {
+			Scene currentScene = SceneManager.GetActiveScene ();
+
+			_dataIOController = new DataIOController ();
+
+			if (isCursorless) {
+				Cursor.visible = false;
+			}
+			Debug.Log ("currentScene.name = " + currentScene.name + "Instance.loadingScene = " + Instance.loadingScene + "Instance.gameData.currentTargetScene = " + Instance.gameData.currentTargetScene);
+			if (currentScene.name == Instance.loadingScene && Instance.gameData.currentTargetScene != "") {
+				Debug.Log ("it is the loading scene, we'll pause");
+				Instance.StartCoroutine(_pauseDuringLoading());
+			} else {
+				Debug.Log ("currentScene = " + currentScene.name);
+				for (int i = 0; i < Instance.playerScenes.Length; i++) {
+//					Debug.Log ("playerScenes[" + i + "] = " + playerScenes [i]);
+					if(Instance.playerScenes[i] == currentScene.name) {
+						_initPlayerScene(currentScene.name);
+						break;
+					}
+				}
+			}
+			EventCenter.Instance.OnChangeScene += OnChangeScene;
+		}
+
+		public void Save() {
+			_dataIOController.Save (Application.persistentDataPath + dataFilename, Instance.gameData);
+		}
+
+		public void Load() {
+			Instance.gameData = _dataIOController.Load (Application.persistentDataPath + dataFilename);
+		}
+
+		private void Awake() {
 			if(Instance == null) {
 				Debug.Log ("THIS is the instance");
 				DontDestroyOnLoad(gameObject);
@@ -30,13 +65,16 @@ namespace Polyworks {
 			Init ();
 		}
 
-		public virtual void Init() {
-			Scene currentScene = SceneManager.GetActiveScene ();
+		private IEnumerator _pauseDuringLoading() {
+			yield return new WaitForSeconds (Instance.loadingScenePause);
 
-			if (isCursorless) {
-				Cursor.visible = false;
-			}
+			string toLoad = Instance.gameData.currentTargetScene;
+			Debug.Log ("toLoad = " + toLoad);
+			Instance.gameData.currentTargetScene = "";
+			_loadScene (toLoad);
+		}
 
+		private void _initPlayerScene(string currentSceneName) {
 			if (Instance.gameData.items == null) {
 				Instance.gameData.items = new Hashtable ();
 			} else {
@@ -45,73 +83,29 @@ namespace Polyworks {
 				}
 			}
 
-			if (Instance.gameData.scenePrefabs.Length > 0) {
-				_findScenePrefabCollection (Instance.gameData.scenePrefabs, currentScene.name);
-			}
-
-
-			if (currentScene.name == Instance.loadingScene && Instance.gameData.currentTargetScene != "") {
-				Instance.StartCoroutine(_pauseDuringLoading());
-			} else {
-				Debug.Log ("currentScene = " + currentScene.name);
-				for (int i = 0; i < Instance.playerScenes.Length; i++) {
-//					Debug.Log ("playerScenes[" + i + "] = " + playerScenes [i]);
-					if(Instance.playerScenes[i] == currentScene.name) {
-						_initPlayerScene();
-						break;
-					}
-				}
-			}
-			EventCenter.Instance.OnChangeScene += OnChangeScene;
-		}
-
-		private void _findScenePrefabCollection(ScenePrefabCollection[] collection, string currentScene) {
-			ScenePrefabCollection scenePrefabs;
-			int i;
-
-			for (i = 0; i < collection.Length; i++) {
-				if (collection[i].sceneName == currentScene) {
-					scenePrefabs = collection[i];
-					if (scenePrefabs.prefabs.Length > 0) {
-						Prefab[] prefabs = scenePrefabs.prefabs;
-						for (i = 0; i < prefabs.Length; i++) {
-							Debug.Log ("prefabs ["+i+"].name = " + prefabs [i].name);
-							bool isAddable = true; 
-
-							if (Instance.gameData.items.Contains (prefabs [i].name)) {
-								Debug.Log ("gameData.items contains " + prefabs [i].name);
-								isAddable = false;
-//								Item gameDataItem = Instance.gameData.items [prefabs [i]] as Item;
-//								if (gameDataItem.Data.isCollected) {
-//									isAddable = false;
-//								}
-							}
-
-							if(isAddable) {
-								Debug.Log ("isAddable: " + isAddable);
-								GameObject go = Instantiate (Resources.Load (prefabs [i].name, typeof(GameObject)), prefabs [i].location, prefabs [i].rotation) as GameObject;
-//								Item item = go.GetComponent<Item> ();
-//								if (item != null) {
-//	
-//								}
-							}
-						}
-					}
-				}
-			}
-
-		}
-
-		private IEnumerator _pauseDuringLoading() {
-			yield return new WaitForSeconds (Instance.loadingScenePause);
-			string toLoad = Instance.gameData.currentTargetScene;
-			Instance.gameData.currentTargetScene = "";
-			_loadScene (toLoad);
-		}
-
-		private void _initPlayerScene() {
 			Inventory.Instance.Init (Instance.gameData.items);
 
+			ScenePrefabData scenePrefabData = GetComponent<ScenePrefabData> ();
+			if (scenePrefabData != null && scenePrefabData.prefabs.Length > 0) {
+				_initScenePrefabs (scenePrefabData.prefabs, currentSceneName);
+			}
+		}
+
+		private void _initScenePrefabs(Prefab[] prefabs, string currentScene) {
+			for (int i = 0; i < prefabs.Length; i++) {
+				Debug.Log ("prefabs ["+i+"].name = " + prefabs [i].name);
+				bool isAddable = true; 
+
+				if (Instance.gameData.items.Contains (prefabs [i].name)) {
+					Debug.Log ("gameData.items contains " + prefabs [i].name);
+					isAddable = false;
+				}
+
+				if(isAddable) {
+					Debug.Log ("isAddable: " + isAddable);
+					GameObject go = Instantiate (Resources.Load (prefabs [i].name, typeof(GameObject)), prefabs [i].location, prefabs [i].rotation) as GameObject;
+				}
+			}
 		}
 
 		private void _loadScene(string scene) {

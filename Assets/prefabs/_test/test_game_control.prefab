@@ -11,6 +11,7 @@ GameObject:
   - 114: {fileID: 11424740}
   - 114: {fileID: 11439898}
   - 114: {fileID: 11460078}
+  - 114: {fileID: 11445460}
   m_Layer: 0
   m_Name: test_game_control
   m_TagString: Untagged
@@ -56,23 +57,32 @@ MonoBehaviour:
     objectName: serialized_data
     currentTargetScene: 
     count: 0
-    scenePrefabs:
-    - sceneName: game_control_test01
-      prefabs:
-      - name: wooden_cube
-        location: {x: 1, y: 0, z: -6.2}
-        rotation: {x: 0, y: 0, z: 0, w: 0}
-    - sceneName: game_control_test02
-      prefabs:
-      - name: 
-        location: {x: 0, y: 0, z: 0}
-        rotation: {x: 0, y: 0, z: 0, w: 0}
-  loadingScene: 
+  scenePrefabData:
+  - {fileID: 0}
+  - {fileID: 0}
+  dataFilename: game_data.dat
+  loadingScene: loading
   loadingScenePause: 2
   isCursorless: 0
   playerScenes:
   - game_control_test01
   - game_control_test02
+--- !u!114 &11445460
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 162886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 088a330177bea4cdd9145f9dda2c5eaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneName: 
+  prefabs:
+  - name: wooden_cube
+    location: {x: 1.4, y: 0, z: -6.6}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &11460078
 MonoBehaviour:
   m_ObjectHideFlags: 1

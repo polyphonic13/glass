@@ -7,13 +7,13 @@ public class Temp : MonoBehaviour {
 	public void Increment() {
 		GameController.Instance.Increment ();
 	}
-	// Use this for initialization
-	void Start () {
-	
+
+	public void Save() {
+
+		GameController.Instance.Save ();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+	public void Load() {
+		GameController.Instance.Load ();
 	}
 }
