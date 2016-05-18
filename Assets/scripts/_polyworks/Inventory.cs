@@ -20,18 +20,26 @@ namespace Polyworks {
 		}
 
 		public void Init(Hashtable items = null) {
-			Debug.Log ("Inventory/Init, _items = " + _items);
-			if (items != null) {
-				_items = items as Hashtable;
-				if (_items.Count > 0) {
-					foreach(ItemData item in _items.Values) {
-						InsertItem(item);
-					}
-				}
-			} else {
-				Debug.Log ("creating new items Hashtable");
+			if (_items == null) {
 				_items = new Hashtable ();
 			}
+			foreach (ItemData item in items.Values) {
+				if (!Contains (item.itemName)) {
+					InsertItem (item);
+				}
+			}
+//			Debug.Log ("Inventory/Init, _items = " + _items + ", items = " + items.Count);
+//			if (items != null && items.Count > 0) {
+////				_items = items as Hashtable;
+//				if (_items.Count > 0) {
+//					foreach(ItemData item in _items.Values) {
+//						InsertItem(item);
+//					}
+//				}
+//			} else {
+//				Debug.Log ("creating new items Hashtable");
+//				_items = new Hashtable ();
+//			}
 		}
 
 		public virtual void Add(ItemData item) {
@@ -40,6 +48,7 @@ namespace Polyworks {
 		}
 
 		public virtual void InsertItem(ItemData item) {
+			Debug.Log ("Inventory/InsertItem, item.itemName = " + item.itemName + ", has? " + Contains(item.itemName));
 			item.isCollected = true;
 			_items.Add (item.itemName, item);
 			EventCenter.Instance.AddInventory(item.itemName);
