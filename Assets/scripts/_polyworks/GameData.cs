@@ -5,7 +5,8 @@ namespace Polyworks {
 	[System.Serializable]
 	public class GameData {
 		public string objectName = "serialized_data";
-		public string currentTargetScene = ""; 
+		public string currentScene;
+		public string currentTargetScene; 
 
 		public int count = 0;
 

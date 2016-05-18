@@ -9,14 +9,12 @@ namespace Polyworks
 		public string containingRoom; 
 		public string itemName;
 		public string displayName;
-
-		public Sprite Icon; 
+		public string prefabName; 
 
 		public bool isCollectable = false;
 		public bool isCollected = false;
 		public bool isDroppable = false; 
 
-		public GameObject itemObject; 
 
 		public ItemData () {}
 
@@ -25,10 +23,11 @@ namespace Polyworks
 			clone.containingRoom = this.containingRoom;
 			clone.itemName = this.itemName;
 			clone.displayName = this.displayName;
+			clone.prefabName = this.prefabName;
+
 			clone.isCollectable = this.isCollectable;
 			clone.isCollected = this.isCollected;
 			clone.isDroppable = this.isDroppable;
-			clone.itemObject = this.itemObject;
 
 			return clone;
 		}

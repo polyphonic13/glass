@@ -59,8 +59,8 @@ namespace Polyworks {
 				var data = _items [name] as ItemData;
 				_items.Remove (name);
 
-				if (data.isDroppable && data.itemObject != null) {
-					GameObject itemObject = (GameObject) Instantiate (data.itemObject, transform.position, transform.rotation);
+				if (data.isDroppable && data.prefabName != null) {
+					GameObject itemObject = Instantiate (Resources.Load(data.prefabName, typeof(GameObject)), transform.position, transform.rotation) as GameObject;
 				}
 			}
 		}

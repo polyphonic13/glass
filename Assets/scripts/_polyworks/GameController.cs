@@ -30,12 +30,15 @@ namespace Polyworks {
 			}
 			Debug.Log ("currentScene.name = " + currentScene.name + "Instance.loadingScene = " + Instance.loadingScene + "Instance.gameData.currentTargetScene = " + Instance.gameData.currentTargetScene);
 			if (currentScene.name == Instance.loadingScene && Instance.gameData.currentTargetScene != "") {
-				Debug.Log ("it is the loading scene, we'll pause");
 				Instance.StartCoroutine(_pauseDuringLoading());
 			} else {
-				Debug.Log ("currentScene = " + currentScene.name);
+				if (Instance.gameData.items == null) {
+					Instance.gameData.items = new Hashtable ();
+				}
+
+				Instance.gameData.currentScene = currentScene.name; 
+
 				for (int i = 0; i < Instance.playerScenes.Length; i++) {
-//					Debug.Log ("playerScenes[" + i + "] = " + playerScenes [i]);
 					if(Instance.playerScenes[i] == currentScene.name) {
 						_initPlayerScene(currentScene.name);
 						break;
@@ -46,11 +49,13 @@ namespace Polyworks {
 		}
 
 		public void Save() {
-			_dataIOController.Save (Application.persistentDataPath + dataFilename, Instance.gameData);
+			Debug.Log ("pre save");
+			_dataIOController.Save (Application.persistentDataPath + "/" + dataFilename, Instance.gameData);
+			Debug.Log ("post save");
 		}
 
 		public void Load() {
-			Instance.gameData = _dataIOController.Load (Application.persistentDataPath + dataFilename);
+			Instance.gameData = _dataIOController.Load (Application.persistentDataPath + "/" + dataFilename);
 		}
 
 		private void Awake() {
@@ -75,14 +80,6 @@ namespace Polyworks {
 		}
 
 		private void _initPlayerScene(string currentSceneName) {
-			if (Instance.gameData.items == null) {
-				Instance.gameData.items = new Hashtable ();
-			} else {
-				foreach (ItemData item in Instance.gameData.items.Values) {
-					Debug.Log ("Item: " + item.itemName);
-				}
-			}
-
 			Inventory.Instance.Init (Instance.gameData.items);
 
 			ScenePrefabData scenePrefabData = GetComponent<ScenePrefabData> ();
