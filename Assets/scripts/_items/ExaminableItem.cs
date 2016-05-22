@@ -17,7 +17,7 @@ public class ExaminableItem : InteractiveItem {
 	}
 	
 	public override void Actuate() {
-		if(IsEnabled) {
+		if(isEnabled) {
 			if(CheckProximity()) {
 				if(!singleUse || !_isUsedOnce) {
 					_isUsedOnce = true;

@@ -60,7 +60,7 @@ namespace Polyworks {
 				_items.Remove (name);
 
 				if (data.isDroppable && data.prefabName != null) {
-					GameObject itemObject = Instantiate (Resources.Load(data.prefabName, typeof(GameObject)), transform.position, transform.rotation) as GameObject;
+					GameObject itemObject = (GameObject) Instantiate (Resources.Load(data.prefabName, typeof(GameObject)), transform.position, transform.rotation);
 				}
 			}
 		}

@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Polyworks;
 
-public class CrystalKey : CollectableItem {
+public class CrystalKey : Item {
 
 	public override void Use() {
 		EventCenter ec = EventCenter.Instance;

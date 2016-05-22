@@ -96,7 +96,7 @@ public class InventoryUI : MonoBehaviour {
     	var itemUI = _items[_occupiedItems] as InventoryItemUI;
 
 		itemUI.name = itemName;
-		itemUI.SetName(item.GetName());
+		itemUI.SetName(item.data.itemName);
    		itemUI.SetCount(0);
     	if(item.Thumbnail != null) {
 	    	itemUI.SetThumbnail(item.Thumbnail);
@@ -150,7 +150,7 @@ public class InventoryUI : MonoBehaviour {
 			float y = START_Y + -(_height * row);
 
 			string itemName = "item" + i;
-			var item = Instantiate(_inventoryItem);
+			var item = (GameObject) Instantiate(_inventoryItem);
 	
 			item.transform.SetParent(gameObject.transform, false);
 

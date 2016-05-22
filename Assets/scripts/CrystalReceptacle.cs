@@ -16,20 +16,20 @@ public class CrystalReceptacle : InteractiveItem {
 		_crystal = this.transform.FindChild("crystal").gameObject;
 		EventCenter.Instance.OnCrystalKeyUsed += OnCrystalKeyUsed;
 		_crystal.SetActive (startEnabled);
-		this.IsEnabled = startEnabled;
+		this.isEnabled = startEnabled;
 	}
 
 	public void OnCrystalKeyUsed(string name) {
 		if (key != null) {
 			if (name == key.name) {
-				this.IsEnabled = true;
+				this.isEnabled = true;
 				_crystal.SetActive (true);
 			}
 		}
 	}
 
 	public override void Actuate() {
-		if (this.IsEnabled) {
+		if (this.isEnabled) {
 			if (!target.GetIsActive ()) {
 				target.Actuate ();
 			}

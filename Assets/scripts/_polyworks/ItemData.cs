@@ -14,11 +14,11 @@ namespace Polyworks
 		public bool isCollectable = false;
 		public bool isCollected = false;
 		public bool isDroppable = false; 
-
+		public bool isUsable = false;
 
 		public ItemData () {}
 
-		public ItemData Clone() {
+		public virutal ItemData Clone() {
 			var clone = new ItemData ();
 			clone.containingRoom = this.containingRoom;
 			clone.itemName = this.itemName;
@@ -28,7 +28,8 @@ namespace Polyworks
 			clone.isCollectable = this.isCollectable;
 			clone.isCollected = this.isCollected;
 			clone.isDroppable = this.isDroppable;
-
+			clone.isUsable = this.isUsable;
+			
 			return clone;
 		}
 	}

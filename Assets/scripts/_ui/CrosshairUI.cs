@@ -4,18 +4,19 @@ using System.Collections;
 
 public class CrosshairUI : MonoBehaviour {
 
-	[SerializeField] private Image _icon;
-	[SerializeField] private Sprite _defaultSprite;
-
+	public Image image;
+	public Sprite[] icons;
+	public int defaultIcon;
+	
 	void Awake () {
 		EventCenter.Instance.OnNearInteractiveItem += this.OnNearInteractiveItem;
 	}
 
-	void OnNearInteractiveItem(InteractiveItem item, bool isFocused) {
-		if (isFocused && item.Icon != null) {
-			_icon.sprite = item.Icon;
+	void OnNearInteractiveItem(Item item, bool isFocused) {
+		if (isFocused && item.data.icon != null) {
+			image.sprite = item.data.icon;
 		} else {
-			_icon.sprite = _defaultSprite;
+			image.sprite = defaultIcon;
 		}
 	}
 }

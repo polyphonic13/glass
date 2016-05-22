@@ -118,7 +118,7 @@ namespace Polyworks {
 
 				if(isAddable) {
 					Debug.Log ("isAddable: " + isAddable);
-					GameObject go = Instantiate (Resources.Load (prefabs [i].name, typeof(GameObject)), prefabs [i].location, prefabs [i].rotation) as GameObject;
+					GameObject go = (GameObject) Instantiate (Resources.Load (prefabs [i].name, typeof(GameObject)), prefabs [i].location, prefabs [i].rotation);
 				}
 			}
 		}

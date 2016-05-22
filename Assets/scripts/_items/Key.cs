@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Polyworks;
 
-public class Key : CollectableItem {
+public class Key : Item {
 
 	public LockableArmatureTrigger target;
 

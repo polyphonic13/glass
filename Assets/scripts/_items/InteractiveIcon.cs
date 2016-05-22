@@ -16,14 +16,14 @@ public class InteractiveIcon : MonoBehaviour {
 
 		if(interactiveIcon != null) {
 			interactiveIcon.SetActive(false);
-			_itemNameText.text = _interactiveItem.GetName();
+			_itemNameText.text = _interactiveItem.data.itemName;
 		} else {
 			_itemNameText.text = "";
 		}
 	}
 	
 	void Update() {
-		if(_interactiveItem.IsEnabled) {
+		if(_interactiveItem.isEnabled) {
 			interactiveIcon.transform.rotation = Quaternion.LookRotation(interactiveIcon.transform.position - _interactiveItem.GetCamera().transform.position);
 			if(_interactiveItem.CheckProximity()) {
 				_turnOnIcon();

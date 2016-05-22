@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Polyworks;
 
-public class RabbitHuntToy : CollectableItem {
+public class RabbitHuntToy : Item {
 	public ToyChest toyChest;
 
 	public override void Use() {

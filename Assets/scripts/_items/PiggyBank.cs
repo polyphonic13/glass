@@ -19,7 +19,7 @@ public class PiggyBank : MonoBehaviour {
 	public void InsertCoin(string coin, string coinName) {
 		for(int i = 0; i < _coins.Length; i++) {
 			if(_coins[i] == coin) {
-				crystalKeys[i].IsEnabled = true;
+				crystalKeys[i].isEnabled = true;
 				EventCenter.Instance.TriggerEvent(_unlockEvents[i]);
 				break;
 			}
@@ -30,7 +30,7 @@ public class PiggyBank : MonoBehaviour {
 
 	private void Awake() {
 		foreach (CollectableItem crystalKey in crystalKeys) {
-			crystalKey.IsEnabled = false;
+			crystalKey.isEnabled = false;
 		}
 	}
 }

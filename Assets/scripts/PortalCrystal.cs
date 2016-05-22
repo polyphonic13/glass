@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Polyworks;
 
-public class PortalCrystal : CollectableItem {
+public class PortalCrystal : Item {
 
 	public PortalController portal;
 

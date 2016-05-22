@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Polyworks;
 
-public class AstrologyCoin : CollectableItem {
+public class AstrologyCoin : Item {
 
 	public PiggyBank piggyBank;
 

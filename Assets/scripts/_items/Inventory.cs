@@ -87,14 +87,13 @@ public class Inventory : MonoBehaviour {
 			} else {
 				ItemInspector.Instance.RemoveTarget ();
 			}
-			item.IsInspected = !item.IsInspected;
 		}
 	}
 
 	public void UseItem(string key) {
 		if (HasItem (key)) {
 			var item = _items[key] as CollectableItem;
-			if(item.IsUsable) {
+			if(item.data.isUsable) {
 				item.Use();
 			} else {
 				EventCenter.Instance.CloseInventoryUI ();

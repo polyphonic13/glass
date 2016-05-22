@@ -13,10 +13,10 @@ public class MenuUI : MonoBehaviour {
 	
 	public string type;
 	
-	public bool IsEnabled { get; set; }
+	public bool isEnabled { get; set; }
 	
 	public void SetEnabled(bool enable) {
-		IsEnabled = enable;
+		isEnabled = enable;
 		if(!enable) {
 			DeactivateButtons();
 			_controlPanel.alpha = 0;
@@ -36,12 +36,12 @@ public class MenuUI : MonoBehaviour {
 	private void Awake() {
 		_controlPanel = gameObject.GetComponent<CanvasGroup>();
 		_controlPanel.alpha = 0;
-		IsEnabled = false;
+		isEnabled = false;
 		uiButtons = new ArrayList();
 	}
 	
 	private void Update() {
-		if(IsEnabled) {
+		if(isEnabled) {
 			if(CrossPlatformInputManager.GetButtonDown("Fire1")) {
 				ButtonUI button = uiButtons[_currentIndex] as ButtonUI;
 				button.Activate();

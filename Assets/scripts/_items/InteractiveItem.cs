@@ -2,16 +2,14 @@
 using UnitySampleAssets.CrossPlatformInput;
 using Polyworks;
 
-public class InteractiveItem : Item {
+public class InteractiveItem : MonoBehaviour {
 
 	public Sprite Icon;
 	public string itemName;
 
-	public float _interactDistance = 3f;
-
-	public bool IsFocused { get; set; }
-
-	protected Camera MainCamera;
+	public float interactDistance = 2f;
+	
+	protected Camera _mainCamera;
 
 	private bool _wasJustFocused;
 
@@ -23,22 +21,17 @@ public class InteractiveItem : Item {
 	}
 
 	public virtual void Init() {
-		IsEnabled = true;
-		IsFocused = false;
+		isEnabled = true;
 
-		MainCamera = Camera.main;
+		_mainCamera = Camera.main;
 	}
 
 	public virtual void Actuate() {
-		Debug.Log (this.name + "/Actuate");
-	}
-
-	public string GetName() {
-		return itemName;
+		// Debug.Log (this.name + "/Actuate");
 	}
 
 	public Camera GetCamera() {
-		return MainCamera;
+		return _mainCamera;
 	}
 
 	public void SetFocus(bool isFocused) {
@@ -47,19 +40,17 @@ public class InteractiveItem : Item {
 			if (!_wasJustFocused) {
 				EventCenter.Instance.NearInteractiveItem(this, true);
 				_wasJustFocused = true;
-				IsFocused = true;
 			}
 		} else if (_wasJustFocused) {
 			EventCenter.Instance.NearInteractiveItem(this, false);
 			_wasJustFocused = false;
-			IsFocused = false;
 		}
 	}
 
 	public bool CheckProximity() {
 		bool isInProximity = false;
-		var difference = Vector3.Distance(MainCamera.transform.position, transform.position);
-		if(difference < _interactDistance) {
+		var difference = Vector3.Distance(_mainCamera.transform.position, transform.position);
+		if(difference < interactDistance) {
 			isInProximity = true;
 //			Debug.Log("InteractiveItem["+this.name+"]/CheckProximity: " + isInProximity);
 			EventCenter.Instance.NearInteractiveItem(this, isInProximity);

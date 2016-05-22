@@ -15,10 +15,10 @@ public class RoomItem : MonoBehaviour {
 
 		if(transform.tag == "persistentItem" || containingRoom == "") {
 //			IsRoomActive = true;
-			_item.IsEnabled = true;
+			_item.isEnabled = true;
 		} else {
 //			IsRoomActive = false;
-			_item.IsEnabled = false;
+			_item.isEnabled = false;
 			var eventCenter = EventCenter.Instance;
 			eventCenter.OnRoomEntered += OnRoomEntered;
 		}
@@ -27,9 +27,9 @@ public class RoomItem : MonoBehaviour {
 	public virtual void OnRoomEntered(string room) {
 		if (room == containingRoom) {
 //			IsRoomActive = true;
-			_item.IsEnabled = true;
+			_item.isEnabled = true;
 		} else {
-			_item.IsEnabled = false;
+			_item.isEnabled = false;
 //			IsRoomActive = false;
 		}
 	}

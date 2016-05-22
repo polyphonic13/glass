@@ -1,50 +1,24 @@
 using UnityEngine;
 using Polyworks;
 
-public class CollectableItem : InteractiveItem {
+public class CollectableItem : Item {
 
 	public string description = "";
 	public Sprite Thumbnail;
-	// TBD: extend class with ContainableItem:
-	public string targetContainerName = "";
 
-	public bool isCollected { get; set; }
-	public bool IsEquipped { get; set; }
-	public bool isDroppable { get; set; }
-	public bool IsEquipable { get; set; }
-	public bool IsInspected { get; set; }
-	public bool IsUsable { get; set; }
-
-	public ItemWeight _weight; 
-
-	private Transform _backpack;
-	private Transform _rightHand;
-
-	private Vector3 _originalSize;
-
+	private const string ITEM_WEIGHT = "item_weight";
+	
 	void Awake() {
 		InitCollectableItem();
 	}
 	
 	public void InitCollectableItem() {
 		Init();
-		isCollected = IsEquipped = IsInspected = false;
-		_originalSize = transform.localScale;
+		data.isCollected = false;
 	}
 
-	public void Clone() {
-		
-	}
-
-	public override void ItemUpdate() {
-//		if(IsEnabled && !isCollected) {
-//			CheckProximity();
-//		}
-	}
-	
 	public override void Actuate () {
 		if(!isCollected) {
-//			base.Actuate();
 			AddToInventory();
 		}
 	}
@@ -52,77 +26,32 @@ public class CollectableItem : InteractiveItem {
 	public void AddToInventory() {
 		var isAdded = Inventory.Instance.AddItem(this);
 		if(isAdded) {
-			isCollected = true;
+			data.isCollected = true;
 		}
 	}
 
-	public virtual void Attach() {
-		AttachToBackpack();
-	}
-	 
-	public void AttachToBackpack() {
-		transform.localScale = new Vector3(0, 0, 0);
-		AttachToObject(_backpack);
-	}
-	
-	public void AttachToRightHand() {
-		transform.localScale = _originalSize;
-		AttachToObject (_rightHand);
-	}
-	
-	public void AttachToObject(Transform target) {
-		 Debug.Log("CollectableItem[" + name + "]/AttachToObject, target = " + target);
-		if (target != null) {
-
-			transform.position = target.transform.position;
-			transform.parent = target;
-		}
-	}
-
-	public virtual void Collect(Transform backpack, Transform rightHand) {
-		isCollected = true;
-		_backpack = backpack;
-		_rightHand = rightHand;
+	public virtual void Collect() {
+		data.isCollected = true;
 		Store ();
 		EventCenter.Instance.NearInteractiveItem (this, false);
 	}
 	
-	public virtual void Equip(Transform rightHand) {
-		IsEquipped = true;
-		transform.localScale = _originalSize;
-		_rightHand = rightHand;
-		AttachToRightHand();
-	}
-
 	public virtual void Use() {
 		Debug.Log("CollectableItem[ " + name + " ]/Use");
 	}
 	
-	public virtual void UnEquip() {
-		Store();
-	}
-
-	public void Store() {
-		IsEquipped = false;
-		AttachToBackpack();
-	}
-
 	public virtual void Drop(bool useGravity = true) {
-//		Debug.Log ("CollectableItem[" + this.name + "]/Drop, useGravity = " + useGravity);
 		if (useGravity) {
-			AttachToRightHand ();
-			transform.parent = null;
-
 			BoxCollider collider = gameObject.GetComponent<BoxCollider> ();
 
 			var scale = collider.transform.localScale;
 			//		Debug.Log (this.name + " local scale = " + scale);
-			var __weightClone = (ItemWeight)Instantiate (_weight, collider.transform.position, collider.transform.rotation);
+			var _weightClone = (ItemWeight) Instantiate (Resources.load(ITEM_WEIGHT), collider.transform.position, collider.transform.rotation);
 			__weightClone.transform.localScale = scale;
 			__weightClone.collectableItem = this;
 			__weightClone.transform.parent = collider.transform;
 		}
-		IsEquipped = IsUsable = false;
+		data.isUsable = false;
 	}
 
 }

@@ -7,7 +7,7 @@ public class TargetTrigger : InteractiveItem {
 	public string disabledMessage = ""; 
 
 	public override void Actuate() {
-		if (this.IsEnabled) {
+		if (this.isEnabled) {
 			if (!target.GetIsActive ()) {
 				target.Actuate ();
 			}

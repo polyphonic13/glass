@@ -31,7 +31,7 @@ public class PlayerHead : MonoBehaviour {
 //				Debug.Log("hit name = " + hit.transform.name);
 				if (hit.transform.name != _itemJustHit) {
 					InteractiveItem item = hit.transform.gameObject.GetComponent<InteractiveItem> ();
-//					if(item.IsEnabled) {
+//					if(item.isEnabled) {
 					if(item != null) {
 						item.SetFocus (true);
 						_itemJustHit = hit.transform.name;

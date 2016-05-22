@@ -40,7 +40,7 @@ public class ToyChest : MonoBehaviour {
 				toyTransform.rotation = _toyRotations[i];
 				_collected++;
 
-				toy.IsEnabled = false;
+				toy.isEnabled = false;
 
 				EventCenter.Instance.CloseInventoryUI ();
 				EventCenter.Instance.AddNote (toy.itemName + " added to Toy Chest");
