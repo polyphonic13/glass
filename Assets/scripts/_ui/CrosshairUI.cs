@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using Polyworks;
 
 public class CrosshairUI : MonoBehaviour {
 
@@ -9,14 +10,14 @@ public class CrosshairUI : MonoBehaviour {
 	public int defaultIcon;
 	
 	void Awake () {
-		EventCenter.Instance.OnNearInteractiveItem += this.OnNearInteractiveItem;
+		EventCenter.Instance.OnNearItem += this.OnNearItem;
 	}
 
-	void OnNearInteractiveItem(Item item, bool isFocused) {
-		if (isFocused && item.data.icon != null) {
-			image.sprite = item.data.icon;
+	void OnNearItem(Item item, bool isFocused) {
+		if (isFocused && item.icon != null) {
+			image.sprite = icons[item.icon];
 		} else {
-			image.sprite = defaultIcon;
+			image.sprite = icons[defaultIcon];
 		}
 	}
 }

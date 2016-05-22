@@ -18,6 +18,8 @@ namespace Polyworks {
 			}
 		}
 
+		public virtual void Actuate() {}
+
 		public virtual void Use() {}
 
 		public void SetData(ItemData d) {

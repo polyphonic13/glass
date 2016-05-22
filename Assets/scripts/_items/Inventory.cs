@@ -63,18 +63,18 @@ public class Inventory : MonoBehaviour {
 
 			if (item.name != "flashlight") {
 				_items.Add (item.name, item);
-				message = item.itemName + " Added to inventory";
+				message = item.data.itemName + " Added to inventory";
 //				GameController.Instance.hasFlashlight = true;
 			} else {
-				message = item.itemName + " Collected";
+				message = item.data.itemName + " Collected";
 			}
-			item.Collect(_backpack, _rightHand);
+			item.Collect();
 			
 			EventCenter.Instance.AddNote(message);
 			EventCenter.Instance.AddInventory(item.name);
 		} else {
 			isAdded = false;
-			EventCenter.Instance.AddNote("No more room for: " + item.itemName);
+			EventCenter.Instance.AddNote("No more room for: " + item.data.itemName);
 		}
 		return isAdded;
 	}
@@ -83,7 +83,7 @@ public class Inventory : MonoBehaviour {
 		if (HasItem (key)) {
 			var item = _items[key] as CollectableItem;
 			if (isInspecting) {
-				ItemInspector.Instance.AddTarget (item.transform, item.itemName, item.description);
+				ItemInspector.Instance.AddTarget (item.transform, item.data.itemName, item.description);
 			} else {
 				ItemInspector.Instance.RemoveTarget ();
 			}
@@ -97,7 +97,7 @@ public class Inventory : MonoBehaviour {
 				item.Use();
 			} else {
 				EventCenter.Instance.CloseInventoryUI ();
-				EventCenter.Instance.AddNote(item.itemName + " can not be used here");
+				EventCenter.Instance.AddNote(item.data.itemName + " can not be used here");
 			}
 		}
 	}

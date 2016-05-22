@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Polyworks;
 
-public class TargetTrigger : InteractiveItem {
+public class TargetTrigger : Item {
 
 	public TargetController target;
 	public string disabledMessage = ""; 

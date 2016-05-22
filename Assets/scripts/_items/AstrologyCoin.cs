@@ -8,7 +8,7 @@ public class AstrologyCoin : Item {
 
 	public override void Use() {
 //		Debug.Log ("AstrologyCoin[" + this.name + "]/Use");
-		piggyBank.InsertCoin (this.name, this.itemName);
+		piggyBank.InsertCoin (this.name, this.data.itemName);
 		Inventory.Instance.RemoveItem (this.name);
 		Destroy (this.gameObject);
 	}

@@ -1,4 +1,5 @@
 using UnityEngine;
+using Polyworks; 
 
 public class EventCenter : MonoBehaviour {
 
@@ -28,7 +29,7 @@ public class EventCenter : MonoBehaviour {
 
 	public delegate void CrystalKeyHandler(string name); 
 
-	public delegate void InteractiveItemProximityHandler(InteractiveItem item, bool isInProximity);
+	public delegate void ItemProximityHandler(Item item, bool isInProximity);
 
 	public delegate void AddNoteHandler(string message = "", bool fadeOut = true);
 	public delegate void RemoveNoteHandler(string message = "");
@@ -67,7 +68,7 @@ public class EventCenter : MonoBehaviour {
 
 	public event CrystalKeyHandler OnCrystalKeyUsed; 
 
-	public event InteractiveItemProximityHandler OnNearInteractiveItem;
+	public event ItemProximityHandler OnNearItem;
 
 	public event AddNoteHandler OnAddNote; 
 	public event RemoveNoteHandler OnRemoveNote; 
@@ -199,10 +200,10 @@ public class EventCenter : MonoBehaviour {
 		}
 	}
 	
-	public void NearInteractiveItem(InteractiveItem item, bool isInProximity) {
+	public void NearInteractiveItem(Item item, bool isInProximity) {
 //		Debug.Log ("EventCenter/NearInteractiveItem, item = " + item.name + ", isInProximity = " + isInProximity);
-		if(OnNearInteractiveItem != null) {
-			OnNearInteractiveItem(item, isInProximity);
+		if(OnNearItem != null) {
+			OnNearItem(item, isInProximity);
 		}
 	}
 

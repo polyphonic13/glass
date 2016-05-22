@@ -1,25 +1,24 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Polyworks; 
 
-public class ExaminableItem : InteractiveItem {
+public class ExaminableItem : Item {
 
 	public string description = "";
-	public bool singleUse = true;
+	public bool isSingleUse = true;
 
 	private bool _isUsedOnce = false;
 
+	private ProximityController _proximityController; 
+	
 	void Awake() {
-		InitInteractiveItem();
+		_proximityController = GetComponent<ProximityController>();
 	}
 
-	public void InitInteractiveItem() {
-		Init();
-	}
-	
 	public override void Actuate() {
 		if(isEnabled) {
-			if(CheckProximity()) {
-				if(!singleUse || !_isUsedOnce) {
+			if(_proximityController.Check()) {
+				if(!isSingleUse || !_isUsedOnce) {
 					_isUsedOnce = true;
 					EventCenter.Instance.AddNote(description);
 				}

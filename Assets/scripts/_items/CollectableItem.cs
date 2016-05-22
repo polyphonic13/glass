@@ -13,12 +13,11 @@ public class CollectableItem : Item {
 	}
 	
 	public void InitCollectableItem() {
-		Init();
 		data.isCollected = false;
 	}
 
 	public override void Actuate () {
-		if(!isCollected) {
+		if(!data.isCollected) {
 			AddToInventory();
 		}
 	}
@@ -32,7 +31,6 @@ public class CollectableItem : Item {
 
 	public virtual void Collect() {
 		data.isCollected = true;
-		Store ();
 		EventCenter.Instance.NearInteractiveItem (this, false);
 	}
 	
@@ -45,11 +43,10 @@ public class CollectableItem : Item {
 			BoxCollider collider = gameObject.GetComponent<BoxCollider> ();
 
 			var scale = collider.transform.localScale;
-			//		Debug.Log (this.name + " local scale = " + scale);
-			var _weightClone = (ItemWeight) Instantiate (Resources.load(ITEM_WEIGHT), collider.transform.position, collider.transform.rotation);
-			__weightClone.transform.localScale = scale;
-			__weightClone.collectableItem = this;
-			__weightClone.transform.parent = collider.transform;
+			var _weightClone = (ItemWeight) Instantiate (Resources.Load(ITEM_WEIGHT), collider.transform.position, collider.transform.rotation);
+			_weightClone.transform.localScale = scale;
+			_weightClone.collectableItem = this;
+			_weightClone.transform.parent = collider.transform;
 		}
 		data.isUsable = false;
 	}

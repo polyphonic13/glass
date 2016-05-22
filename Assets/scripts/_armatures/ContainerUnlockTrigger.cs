@@ -10,7 +10,6 @@ public class ContainerUnlockTrigger : EventUnlockTrigger
 	
 	void InitContainerUnlockTrigger() {
 		EventCenter.Instance.OnTriggerCollectedEvent += onUnlockEvent;
-		Init();
 	}
 	
 	public override void houseKeeping() {

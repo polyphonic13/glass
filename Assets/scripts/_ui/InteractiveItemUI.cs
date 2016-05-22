@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using Polyworks;
 
 public class InteractiveItemUI : MonoBehaviour {
 
@@ -9,14 +10,14 @@ public class InteractiveItemUI : MonoBehaviour {
 
 	void Awake() {
 		_group = GetComponent<CanvasGroup> ();
-		EventCenter.Instance.OnNearInteractiveItem += this.OnNearInteractiveItem;
+		EventCenter.Instance.OnNearItem += this.OnNearItem;
 	}
 	
-	void OnNearInteractiveItem(InteractiveItem item, bool isFocused) {
-		if (isFocused && item.itemName != null) {
-//			Debug.Log ("InteractiveItemUI/OnNearInteractiveItem, item = " + item.itemName + ", isFocused = " + isFocused + ", _message.text = " + _message.text);
+	void OnNearItem(Item item, bool isFocused) {
+		if (isFocused && item.data.itemName != null) {
+//			Debug.Log ("InteractiveItemUI/OnNearItem, item = " + item.itemName + ", isFocused = " + isFocused + ", _message.text = " + _message.text);
 			_group.alpha = 1;
-			_message.text = item.itemName;
+			_message.text = item.data.itemName;
 		} else {
 			_group.alpha = 0;
 			_message.text = "";

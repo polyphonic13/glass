@@ -1,16 +1,13 @@
 using UnityEngine;
+using Polyworks; 
 
-public class ArmatureTrigger : InteractiveItem {
+public class ArmatureTrigger : Item {
 	public ArmatureParent _pops;
 	public Transform _parentBone;
 	public AnimationClip _mainClip;
 
 	public bool isLooping = false;
 
-	void Awake() {
-		Init();
-	}
-	
 	public void OnActuate() {
 		if(isEnabled) {
 			Actuate();

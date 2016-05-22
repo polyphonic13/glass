@@ -77,7 +77,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
         private bool m_Jumping;
         private AudioSource m_AudioSource;
 
-        private InteractiveItem _elementInProximity;
+        private Item _elementInProximity;
 
 		private Rewired.Player _controls;
 
@@ -100,7 +100,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
 		#endregion
 
 		#region delegate handlers
- 		public void OnNearInteractiveItem(InteractiveItem item, bool isFocused) {
+ 		public void OnNearItem(Item item, bool isFocused) {
 			if(isFocused) {
 				_elementInProximity = item;
 			} else {
@@ -190,7 +190,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
 			var ec = EventCenter.Instance;
 			ec.OnAboveWater += OnAboveWater;
 			ec.OnPlayerDamaged += OnPlayerDamaged;
-			ec.OnNearInteractiveItem += OnNearInteractiveItem;
+			ec.OnNearItem += OnNearItem;
 			ec.OnInspectItem += OnInspectItem;
 			ec.OnCloseInventoryUI += OnCloseInventoryUI;
 			ec.OnCloseMenuUI += OnCloseMenuUI;

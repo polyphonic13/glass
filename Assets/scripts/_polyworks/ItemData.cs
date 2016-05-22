@@ -18,7 +18,7 @@ namespace Polyworks
 
 		public ItemData () {}
 
-		public virutal ItemData Clone() {
+		public virtual ItemData Clone() {
 			var clone = new ItemData ();
 			clone.containingRoom = this.containingRoom;
 			clone.itemName = this.itemName;

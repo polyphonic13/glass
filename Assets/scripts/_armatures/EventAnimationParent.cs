@@ -6,7 +6,7 @@ public class EventAnimationParent : ArmatureParent {
 	public AnimationClip animationClip;
 	public string eventName = "";
 
-	public bool singleUse = false;
+	public bool isSingleUse = false;
 
 	void Awake() {
 		InitEventAnimationParent();
@@ -23,7 +23,7 @@ public class EventAnimationParent : ArmatureParent {
 		Debug.Log("EventAnimationParent[ " + name + " ]/OnTriggerEvent, evt = " + evt + ", eventName = " + eventName + ", animationClip = " + animationClip.name);
 		if(evt == eventName && animationClip != null) {
 			PlayAnimation(animationClip.name);
-			if(singleUse) {
+			if(isSingleUse) {
 				EventCenter.Instance.OnTriggerEvent -= OnTriggerEvent;
 			}
 		}

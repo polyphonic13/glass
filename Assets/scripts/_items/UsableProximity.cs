@@ -14,7 +14,7 @@ public class UsableProximity : MonoBehaviour {
 	}
 	
 	void Update () {
-		if (_collectableItem.isCollected) {
+		if (_collectableItem.data.isCollected) {
 			var difference = Vector3.Distance(target1.position, target2.position);
 			if(difference < usableDistance) {
 				if(!_collectableItem.data.isUsable) {

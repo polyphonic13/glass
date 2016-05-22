@@ -15,7 +15,6 @@ public class EventUnlockTrigger : LockableArmatureTrigger {
 	
 	public void InitEventUnlockTrigger() {
 		EventCenter.Instance.OnTriggerEvent += onUnlockEvent;
-		Init();	
 		isEnabled = false;
 	}
 

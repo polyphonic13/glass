@@ -27,7 +27,7 @@ public class ItemWeight : MonoBehaviour {
 
 	public void KillSelf() {
 		Debug.Log("ItemWeight/KillSelf");
-		collectableItem.isCollected = false;
+		collectableItem.data.isCollected = false;
 		Destroy(gameObject);
 	}
 }
