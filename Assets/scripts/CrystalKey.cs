@@ -2,7 +2,7 @@
 using System.Collections;
 using Polyworks;
 
-public class CrystalKey : Item {
+public class CrystalKey : CollectableItem {
 
 	public override void Use() {
 		EventCenter ec = EventCenter.Instance;

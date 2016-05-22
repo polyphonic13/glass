@@ -1,28 +1,29 @@
 ﻿using UnityEngine;
 using System.Collections;
- 
+using Polyworks;
+
 public class UsableProximity : MonoBehaviour {
 
 	public Transform target1;
 	public Transform target2;
 	public float usableDistance = 2f;
 
-	private CollectableItem _collectableItem;
+	private Item _item;
 
 	void Awake () {
-		_collectableItem = gameObject.GetComponent<CollectableItem> ();
+		_item = gameObject.GetComponent<Item> ();
 	}
 	
 	void Update () {
-		if (_collectableItem.data.isCollected) {
+		if (_item.data.isCollected) {
 			var difference = Vector3.Distance(target1.position, target2.position);
 			if(difference < usableDistance) {
-				if(!_collectableItem.data.isUsable) {
+				if(!_item.data.isUsable) {
 					Debug.Log (this.name + " is enabled, proximity difference = " + difference);
-					_collectableItem.data.isUsable = true;
+					_item.data.isUsable = true;
 				}
-			} else if(_collectableItem.data.isUsable) {
-				_collectableItem.data.isUsable = false;
+			} else if(_item.data.isUsable) {
+				_item.data.isUsable = false;
 			}
 		}
 	}
