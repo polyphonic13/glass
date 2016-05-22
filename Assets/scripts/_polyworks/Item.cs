@@ -7,17 +7,17 @@ namespace Polyworks {
 	{
 		public bool IsEnabled { get; set; }
 
-		public ItemData Data;
+		public ItemData data;
 
 		public void Collect(Inventory inventory) {
-			if (Data.isCollectable && !Data.isCollected) {
-				inventory.Add (Data.Clone ());
+			if (data.isCollectable && !data.isCollected) {
+				inventory.Add (data.Clone ());
 				GameObject.Destroy (gameObject);
 			}
 		}
 
-		public void SetData(ItemData data) {
-			Data = data;
+		public void SetData(ItemData d) {
+			data = d;
 		}
 	}
 }

@@ -16,8 +16,7 @@ namespace Polyworks {
 		void Update ()
 		{
 			if (Input.GetKeyDown ("m")) {
-				Debug.Log ("m down");
-				if (_item != null && _item.Data.isCollectable && !_item.Data.isCollected) {
+				if (_item != null && _item.data.isCollectable && !_item.data.isCollected) {
 					_item.Collect (Inventory.Instance);
 				}
 			}

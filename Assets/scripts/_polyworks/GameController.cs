@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using System.Reflection;
+using System;
 
 namespace Polyworks {
 	public class GameController : MonoBehaviour {
@@ -24,6 +26,7 @@ namespace Polyworks {
 			Scene currentScene = SceneManager.GetActiveScene ();
 
 			_dataIOController = new DataIOController ();
+//			Load ();
 
 			if (isCursorless) {
 				Cursor.visible = false;
@@ -46,16 +49,31 @@ namespace Polyworks {
 				}
 			}
 			EventCenter.Instance.OnChangeScene += OnChangeScene;
+			Iterate (Instance.gameData, "count", 14);
+		}
+
+		public void Iterate(object p, string propName, object value) {
+			Type type = p.GetType ();
+			Debug.Log ("Iterate/propName = " + propName + ", value = " + value + ", type = " + type);
+			foreach (PropertyInfo info in type.GetProperties()) {
+				Debug.Log ("name = " + info.Name);
+				if (info.Name == propName && info.CanWrite) {
+//					info.SetValue (p, value, null);
+					Debug.Log("writable name match on " + info.Name);
+				}
+			}
 		}
 
 		public void Save() {
-			Debug.Log ("pre save");
 			_dataIOController.Save (Application.persistentDataPath + "/" + dataFilename, Instance.gameData);
-			Debug.Log ("post save");
 		}
 
 		public void Load() {
-			Instance.gameData = _dataIOController.Load (Application.persistentDataPath + "/" + dataFilename);
+			GameData data = _dataIOController.Load (Application.persistentDataPath + "/" + dataFilename);
+			Debug.Log ("post load");
+			if (data != null) {
+				Debug.Log ("loaded count = " + data.count + ", items  = " + data.items.Count);
+			}
 		}
 
 		private void Awake() {
