@@ -72,7 +72,13 @@ namespace Polyworks {
 			GameData data = _dataIOController.Load (Application.persistentDataPath + "/" + dataFilename);
 			Debug.Log ("post load");
 			if (data != null) {
+				Instance.gameData = data;
 				Debug.Log ("loaded count = " + data.count + ", items  = " + data.items.Count);
+				Scene currentScene = SceneManager.GetActiveScene ();
+				if (data.currentScene != "" && data.currentScene != currentScene.name) {
+					Debug.Log ("switching to last scene");
+					ChangeScene (data.currentScene);
+				}
 			}
 		}
 

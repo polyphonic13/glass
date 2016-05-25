@@ -9,7 +9,6 @@ public class Temp : MonoBehaviour {
 	}
 
 	public void Save() {
-
 		GameController.Instance.Save ();
 	}
 
