@@ -12,6 +12,8 @@ namespace Polyworks {
 
 		public Hashtable items;
 
+		public bool[] completedTasks;
+
 //		public ScenePrefabCollection[] scenePrefabs;
 	}
 

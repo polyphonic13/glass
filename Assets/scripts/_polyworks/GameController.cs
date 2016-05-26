@@ -18,6 +18,8 @@ namespace Polyworks {
 
 		public string[] playerScenes;
 
+		public CompletedTaskController[] tasks;
+
 		private DataIOController _dataIOController; 
 
 		public static GameController Instance;
