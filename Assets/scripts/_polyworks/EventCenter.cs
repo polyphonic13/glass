@@ -13,6 +13,15 @@ namespace Polyworks
 		public delegate void SceneChanger(string scene);
 		public event SceneChanger OnChangeScene;
 
+		public delegate void CountTaskUpdater(string task, int count);
+		public event CountTaskUpdater OnCountTaskUpdated; 
+		
+		public delegate void ValueTaskUpdater(string task, float value);
+		public event ValueTaskUpdater OnValueTaskUpdated;
+		
+		public delegate void GoalTaskUpdater(string, task, string goal);
+		public event GoalTaskUpdater OnGoalTaskUpdated;
+			
 		#region singleton
 		private static EventCenter _instance;
 		private EventCenter() {}
@@ -43,6 +52,24 @@ namespace Polyworks
 			Debug.Log ("EventCenter/ChangeScene, scene = " + scene + ", OnChangeScene = " + OnChangeScene);
 			if (OnChangeScene != null) {
 				OnChangeScene (scene);
+			}
+		}
+		
+		public void UpdateCountTask(string task, int count) {
+			if(OnCountTaskUpdated != null) {
+				OnCountTaskUpdated(task, count);
+			}
+		}
+
+		public void UpdateValueTask(string task, float value) {
+			if(OnValueTaskUpdated != null) {
+				OnValueTaskUpdated(task, value);
+			}
+		}
+
+		public void UpdateGoalTask(string task, string goal) {
+			if(OnGoalTaskUpdated != null) {
+				OnGoalTaskUpdated(task, goal);
 			}
 		}
 	}

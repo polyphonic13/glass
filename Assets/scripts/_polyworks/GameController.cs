@@ -18,16 +18,18 @@ namespace Polyworks {
 
 		public string[] playerScenes;
 
-		public CompletedTaskController[] tasks;
+		// public CompletedTaskController[] tasks;
 
 		private DataIOController _dataIOController; 
-
+		private TaskController _taskController; 
+		
 		public static GameController Instance;
 
 		public virtual void Init() {
 			Scene currentScene = SceneManager.GetActiveScene ();
 
 			_dataIOController = new DataIOController ();
+			_taskController = GameObject.GetComponent<TaskController>();
 //			Load ();
 
 			if (isCursorless) {
