@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace Polyworks {
 	public static class Positioner {
@@ -9,12 +10,12 @@ namespace Polyworks {
 		
 		public static void SetY(this Transform transform, float y) {
 			Vector3 newPosition = new Vector3(transform.position.x, y, transform.position.z);
-			tranforms.position = newPosition;
+			transform.position = newPosition;
 		}
 
 		public static void SetZ(this Transform transform, float z) {
 			Vector3 newPosition = new Vector3(transform.position.x, transform.position.y, z);
-			tranforms.position = newPosition;
+			transform.position = newPosition;
 		}
 	}
 }

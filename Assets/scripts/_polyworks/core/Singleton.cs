@@ -1,7 +1,7 @@
 using UnityEngine;
 
 namespace Polyworks {
-	public class Singleton<T>: Monobehaviour where T: Monobehaviour {
+	public class Singleton<T>: MonoBehaviour where T: MonoBehaviour {
 		protected static T instance;
 		
 		public static T Instance {
