@@ -18,24 +18,19 @@ namespace Polyworks {
 
 		public string[] playerScenes;
 
-		// public CompletedTaskController[] tasks;
-
 		private DataIOController _dataIOController; 
-		private TaskController _taskController; 
-		
+
 		public static GameController Instance;
 
 		public virtual void Init() {
 			Scene currentScene = SceneManager.GetActiveScene ();
 
 			_dataIOController = new DataIOController ();
-			_taskController = GameObject.GetComponent<TaskController>();
-//			Load ();
 
 			if (isCursorless) {
 				Cursor.visible = false;
 			}
-			Debug.Log ("currentScene.name = " + currentScene.name + "Instance.loadingScene = " + Instance.loadingScene + "Instance.gameData.currentTargetScene = " + Instance.gameData.currentTargetScene);
+//			Debug.Log ("currentScene.name = " + currentScene.name + "Instance.loadingScene = " + Instance.loadingScene + "Instance.gameData.currentTargetScene = " + Instance.gameData.currentTargetScene);
 			if (currentScene.name == Instance.loadingScene && Instance.gameData.currentTargetScene != "") {
 				Instance.StartCoroutine(_pauseDuringLoading());
 			} else {
@@ -84,6 +79,43 @@ namespace Polyworks {
 					ChangeScene (data.currentScene);
 				}
 			}
+		}
+
+		public void ChangeScene(string scene) {
+			Debug.Log ("GameController/ChangeScene, scene = " + scene + ", gameData.items.Count = " + Instance.gameData.items.Count);
+			Scene currentScene = SceneManager.GetActiveScene ();
+
+			if (scene != currentScene.name) {
+				Instance.gameData.items = Inventory.Instance.GetAll ();
+				Instance.gameData.currentTargetScene = scene;
+
+				if (Instance.loadingScene != "") {
+					_loadScene (Instance.loadingScene);
+				} else {
+					_loadScene (scene);
+				}
+			}
+		}
+
+		public void OnChangeScene(string scene) {
+			//			Debug.Log ("GameController/OnChangeScene, scene = " + scene);
+			ChangeScene (scene);
+		}
+
+		public void Increment() {
+			Instance.gameData.count++;
+		}
+
+		public void CompleteCountTask(string name) {
+
+		}
+
+		public void CompleteValueTask(string name) {
+
+		}
+
+		public void CompleteGoalTask(string name) {
+
 		}
 
 		private void Awake() {
@@ -137,29 +169,5 @@ namespace Polyworks {
 			SceneManager.LoadScene (scene);
 		}
 
-		public void ChangeScene(string scene) {
-			Debug.Log ("GameController/ChangeScene, scene = " + scene + ", gameData.items.Count = " + Instance.gameData.items.Count);
-			Scene currentScene = SceneManager.GetActiveScene ();
-
-			if (scene != currentScene.name) {
-				Instance.gameData.items = Inventory.Instance.GetAll ();
-				Instance.gameData.currentTargetScene = scene;
-
-				if (Instance.loadingScene != "") {
-					_loadScene (Instance.loadingScene);
-				} else {
-					_loadScene (scene);
-				}
-			}
-		}
-
-		public void OnChangeScene(string scene) {
-//			Debug.Log ("GameController/OnChangeScene, scene = " + scene);
-			ChangeScene (scene);
-		}
-
-		public void Increment() {
-			Instance.gameData.count++;
-		}
 	}
 }

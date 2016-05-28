@@ -19,7 +19,7 @@ namespace Polyworks
 		public delegate void ValueTaskUpdater(string task, float value);
 		public event ValueTaskUpdater OnValueTaskUpdated;
 		
-		public delegate void GoalTaskUpdater(string, task, string goal);
+		public delegate void GoalTaskUpdater(string task, string goal);
 		public event GoalTaskUpdater OnGoalTaskUpdated;
 			
 		#region singleton
