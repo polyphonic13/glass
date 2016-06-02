@@ -13,7 +13,7 @@ __Legend__
 __Structure__
 
 - GameController%#
-	- ## Game~=
+	- Game~=
 		- GameData^
 			-1
 			-2
@@ -39,7 +39,7 @@ __II. Scene__
 
 1. Scene Load
 2. [Game](#Game) checks GameData for current scene name key, assigning `sceneData`
-3. [Game](.#Game) calls SceneController.Init, passing `sceneData`
+3. [Game](#Game) calls SceneController.Init, passing `sceneData`
 4. [SceneController][2] Init calls ScenePrefabController.Init passing `scenePrefabData`
 5. 
 
