@@ -1,12 +1,12 @@
 ==================================
 Legend
 
-^ 		Serializable
-=		Singleton
-~ 		MonoBehaviour
-* 		Prefab
-+		Persistent
--_n_	References 
+\^ 		Serializable
+\=		Singleton
+\~ 		MonoBehaviour
+\* 		Prefab
+\+		Persistent
+\-_n_	References 
 
 ==================================
 
