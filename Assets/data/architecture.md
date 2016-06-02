@@ -13,7 +13,7 @@ __Legend__
 __Structure__
 
 - GameController%#
-	- Game~=
+	- # Game~=
 		- GameData^
 			-1
 			-2
