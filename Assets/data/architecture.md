@@ -1,5 +1,5 @@
 ==================================
-Legend
+__Legend__
 
 * ^ 	Serializable
 * =		Singleton
@@ -10,9 +10,10 @@ Legend
 
 ==================================
 
+__Structure__
 
 - GameController%#
-	- Game~=
+	- [Game][1]~=
 		- GameData^
 			-1
 			-2
@@ -23,7 +24,7 @@ Legend
 			- ItemData^ -1
 	
 - SceneController*
-	- SceneController~=
+	- [SceneController][2]~=
 		- ScenePrefabController~
 			- ScenePrefabData
 				- Prefab
@@ -37,9 +38,9 @@ __I. Game Start__
 __II. Scene__
 
 1. Scene Load
-2. [Game] checks GameData for current scene name key, assigning `sceneData`
-3. [Game] calls SceneController.Init, passing `sceneData`
-4. [SceneController] Init calls ScenePrefabController
+2. [1]: [Game] checks GameData for current scene name key, assigning `sceneData`
+3. [1]: [Game] calls SceneController.Init, passing `sceneData`
+4. [2]: [SceneController] Init calls ScenePrefabController
 
 __III. Scene Change__
 
