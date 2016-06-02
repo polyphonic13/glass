@@ -142,10 +142,10 @@ namespace Polyworks {
 		private void _initPlayerScene(string currentSceneName) {
 			Inventory.Instance.Init (Instance.gameData.items);
 
-			ScenePrefabData scenePrefabData = GetComponent<ScenePrefabData> ();
-			if (scenePrefabData != null && scenePrefabData.prefabs.Length > 0) {
-				_initScenePrefabs (scenePrefabData.prefabs, currentSceneName);
-			}
+//			ScenePrefabData scenePrefabData = GetComponent<ScenePrefabData> ();
+//			if (scenePrefabData != null && scenePrefabData.prefabs.Length > 0) {
+//				_initScenePrefabs (scenePrefabData.prefabs, currentSceneName);
+//			}
 		}
 
 		private void _initScenePrefabs(Prefab[] prefabs, string currentScene) {

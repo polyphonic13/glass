@@ -12,22 +12,6 @@ namespace Polyworks {
 
 		public Hashtable items;
 
-		public bool[] completedTasks;
-
-//		public ScenePrefabCollection[] scenePrefabs;
 	}
-
-//	[System.Serializable]
-//	public struct ScenePrefabCollection {
-//		public string sceneName;
-//		public Prefab[] prefabs;
-//	}
-//
-//	[System.Serializable]
-//	public struct Prefab {
-//		public string name;
-//		[SerializeField] public Vector3 location;
-//		[SerializeField] public Quaternion rotation;
-//	}
 }
 

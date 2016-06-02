@@ -13,10 +13,7 @@ namespace Polyworks
 		private int _totalTasks;
 		private int _completedTasks; 
 
-		public TaskController() {
-			
-		}
-		
+		#region handlers
 		public void OnCountTaskUpdated(string name, int count) {
 			CountTask task = _findTask(name, countTasks) as CountTask;
 
@@ -49,6 +46,7 @@ namespace Polyworks
 				GameController.Instance.CompleteGoalTask(task.name);
 			}
 		}
+		#endregion
 
 		private Task _findTask(string name, Task[] tasks) {
 			Task task = null;
@@ -66,8 +64,7 @@ namespace Polyworks
 	public class Task {
 		public string name;
 		public string scene;
-		
-		public bool isComplete { get; set; }
+		public bool isComplete = false;
 	}
 	
 	public class CountTask: Task {

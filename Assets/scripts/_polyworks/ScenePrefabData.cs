@@ -3,8 +3,7 @@ using UnityEngine;
 
 namespace Polyworks
 {
-	public class ScenePrefabData: MonoBehaviour {
-		public string sceneName;
+	public class ScenePrefabData {
 		public Prefab[] prefabs;
 	}
 
