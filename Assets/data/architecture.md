@@ -32,18 +32,17 @@ Legend
 			- Task -3
 		- SceneData -4
 		
-I. Game Start
+__I. Game Start__
 		
-II. Scene
+__II. Scene__
 
 1. Scene Load
 2. [Game] checks GameData for current scene name key, assigning `sceneData`
 3. [Game] calls SceneController.Init, passing `sceneData`
 4. [SceneController] Init calls ScenePrefabController
 
-III. Scene Change
+__III. Scene Change__
 
+__IV. Load__
 
-IV. Load
-
-V. 	Save
+__V. Save__
