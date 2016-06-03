@@ -1,4 +1,4 @@
-==================================
+------------------------
 __Legend__
 
 * ^ 	Serializable
@@ -8,43 +8,52 @@ __Legend__
 + #		Persistent
 * -_n_	References 
 
-==================================
+------------------------
 
-__Structure__
+## Structure
 
-- GameController%#
-	- [1]: Game~=
-		- GameData^
+* GameController%#
+	* Game~=
+		* GameData^
 			-1
 			-2
 			-3
 			-4
-	- Inventory~=
-		- Item~
-			- ItemData^ -1
+	* Inventory~=
+		* Item~
+			* ItemData^ -1
 	
-- SceneController*
-	- [2]: SceneController~=
-		- ScenePrefabController~
-			- ScenePrefabData
-				- Prefab
+* SceneController%
+	* SceneController~=
+		* ScenePrefabController~
+			* ScenePrefabData
+				* Prefab
 					-2
-		- TaskController~
-			- Task -3
-		- SceneData -4
+		* TaskController~
+			* Task -3
+		* SceneData -4
 		
-__I. Game Start__
+## I. Game Start
 		
-__II. Scene__
+## II. Scene
 
 1. Scene Load
-2. [Game](1) checks GameData for current scene name key, assigning `sceneData`
-3. [Game](#Game) calls SceneController.Init, passing `sceneData`
-4. [SceneController][2] Init calls ScenePrefabController.Init passing `scenePrefabData`
-5. 
+2. [Game] checks GameData for current scene name key, assigning `sceneData`
+3. [Game] calls SceneController.Init, passing `sceneData`
+4. [SceneController] calls TaskController.Init, passing `gameData.compeletedTasks`
+5. [SceneController] Init calls ScenePrefabController.Init passing `scenePrefabData`
+6. 
 
-__III. Scene Change__
+## III. Scene Change
 
-__IV. Load__
+## IV. Load
 
-__V. Save__
+## V. Save
+
+	gameData
+		sceneData
+			prefabData
+			completedTasks
+		items
+		scenes
+		

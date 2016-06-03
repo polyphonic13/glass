@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 namespace Polyworks
 {
@@ -54,7 +55,7 @@ namespace Polyworks
 				OnChangeScene (scene);
 			}
 		}
-		
+
 		public void UpdateCountTask(string task, int count) {
 			if(OnCountTaskUpdated != null) {
 				OnCountTaskUpdated(task, count);

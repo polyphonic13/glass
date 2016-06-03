@@ -11,7 +11,6 @@ namespace Polyworks
 		public bool isCleared;
 
 		public Prefab[] prefabs;
-		public Task[] tasks;
 	}
 }
 

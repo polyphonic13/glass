@@ -6,10 +6,11 @@ namespace Polyworks {
 	public class GameData {
 		public string objectName = "serialized_data";
 		public string currentScene;
-		public string currentTargetScene; 
 
 		public int count = 0;
 
+		public Hashtable scenes;
+		public Hashtable completedTasks;
 		public Hashtable items;
 
 	}

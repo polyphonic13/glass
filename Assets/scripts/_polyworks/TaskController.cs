@@ -1,84 +1,108 @@
 ﻿using System;
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace Polyworks
 {
 	public class TaskController: MonoBehaviour
 	{
-		[SerializeField] public CountTask[] countTasks;
-		[SerializeField] public ValueTask[] valueTasks;
-		[SerializeField] public GoalTask[] goalTasks;
+		[SerializeField] public TaskCollection<int> countTasks;
+		[SerializeField] public TaskCollection<float> valueTasks;
+		[SerializeField] public TaskCollection<string> goalTasks;
 		
-		private bool _isComplete = false;
-		private int _totalTasks;
-		private int _completedTasks; 
+		private GameData _gameData;
+
+		public void Init(Hashtable completedTasks) {
+			_gameData = GameController.Instance.gameData;
+		}
 
 		#region handlers
-		public void OnCountTaskUpdated(string name, int count) {
-			CountTask task = _findTask(name, countTasks) as CountTask;
+		public void OnCountTaskUpdated(string name, int value) {
+			Task<int> task = countTasks.Find (name) as Task<int>;
 
-			if(task != null) {
-				task.count++;
-				if(task.count >= task.total) {
-					task.isComplete = true;
-					GameController.Instance.CompleteCountTask(task.name);
+			if (task != null) {
+				task.SetValue (value);
+
+				if (task.isComplete) {
+					_gameData.completedTasks.Add (task.name, true);
 				}
 			}
 		}
 
 		public void OnValueTaskUpdated(string name, float value) {
-			ValueTask task = _findTask(name, countTasks) as ValueTask;
+			Task<float> task = valueTasks.Find (name) as Task<float>;
 
-			if(task != null) {
-				task.value += value;
-				if(task.value >= task.total) {
-					task.isComplete = true;
-					GameController.Instance.CompleteValueTask(task.name);
+			if (task != null) {
+				task.SetValue (value);
+
+				if (task.isComplete) {
+					_gameData.completedTasks.Add (task.name, true);
 				}
 			}
 		}
+		public void OnCountTaskUpdated(string name, string value) {
+			Task<string> task = goalTasks.Find (name) as Task<string>;
 
-		public void OnGoalTaskUpdated(string name, string goal) {
-			GoalTask task = _findTask(name, countTasks) as GoalTask;
+			if (task != null) {
+				task.SetValue (value);
 
-			if(task != null && goal == task.goal) {
-				task.isComplete = true;
-				GameController.Instance.CompleteGoalTask(task.name);
+				if (task.isComplete) {
+					_gameData.completedTasks.Add (task.name, true);
+				}
 			}
 		}
 		#endregion
 
-		private Task _findTask(string name, Task[] tasks) {
-			Task task = null;
-
-			for(int i = 0; i < tasks.Length; i++) {
-				if(tasks[i].name == name) {
-					task = tasks[i];
-					break;
-				}
-			}
-			return task;
+		private void _initTasks() {
+			countTasks.InitCompleted (_gameData.completedTasks);
+			valueTasks.InitCompleted (_gameData.completedTasks);
+			goalTasks.InitCompleted (_gameData.completedTasks);
 		}
 	}
-	
-	public class Task {
-		public string name;
-		public string scene;
-		public bool isComplete = false;
-	}
-	
-	public class CountTask: Task {
-		public int count;
-		public int total;
-	}
-	
-	public class ValueTask: Task {
-		public float value; 
-		public float total;
+
+	public class TaskCollection<T> where T: IComparable{
+		public Task<T>[] tasks;
+
+		public bool isAllComplete = false;
+
+		private int _completed = 0; 
+
+		public Task<T> Find(string name) {
+			for (int i = 0; i < tasks.Length; i++) {
+				if (tasks [i].name == name) {
+					return tasks [i];
+				}
+			}
+			return null;
+		}
+
+		public void InitCompleted(Hashtable completedTasks) {
+			for (int i = 0; i < tasks.Length; i++) {
+				if (completedTasks.Contains (tasks [i].name)) {
+					tasks [i].isComplete = true;
+					_completed++;
+				}
+			}
+			if (_completed == tasks.Length) {
+				isAllComplete = true;
+			}
+		}
 	}
 
-	public class GoalTask: Task {
-		public string goal; 
+	public class Task<T> where T: IComparable{
+		public string name;
+		public bool isComplete = false;
+
+		public T value;
+		public T goal;
+
+		public void SetValue(T val) {
+			value = val;
+			if (value.CompareTo (goal) == 0) {
+				isComplete = true;
+			}
+		}
 	}
 }
 

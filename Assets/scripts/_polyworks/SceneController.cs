@@ -4,23 +4,17 @@ using System.Collections;
 namespace Polyworks {
 	public class SceneController : Singleton<SceneController>
 	{
-		[SerializeField] public ScenePrefabData prefabs;
+		[SerializeField] private SceneData sceneData;
 
-		private SceneData sceneData;
+		public void Init(GameData gameData) {
 
-		public void Init(SceneData data) {
-			sceneData = data;
+			TaskController taskController = GetComponent<TaskController> ();
+			taskController.Init (gameData.completedTasks);
+
+			ScenePrefabController scenePrefabController = GetComponent<ScenePrefabController> ();
+			scenePrefabController.Init (sceneData.prefabs, gameData.items);
 		}
 
-		void Start ()
-		{
-
-		}
-
-		void Update ()
-		{
-
-		}
 	}
 }
 

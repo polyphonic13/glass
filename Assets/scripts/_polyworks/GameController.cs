@@ -11,6 +11,7 @@ namespace Polyworks {
 
 		public string dataFilename = "game_data.dat"; 
 
+		public string currentTargetScene = "";
 		public string loadingScene = ""; 
 		public int loadingScenePause = 2;
 
@@ -30,10 +31,18 @@ namespace Polyworks {
 			if (isCursorless) {
 				Cursor.visible = false;
 			}
-//			Debug.Log ("currentScene.name = " + currentScene.name + "Instance.loadingScene = " + Instance.loadingScene + "Instance.gameData.currentTargetScene = " + Instance.gameData.currentTargetScene);
-			if (currentScene.name == Instance.loadingScene && Instance.gameData.currentTargetScene != "") {
+//			Debug.Log ("currentScene.name = " + currentScene.name + "Instance.loadingScene = " + Instance.loadingScene + "Instance.currentTargetScene= " + Instance.gameData.currentTargetScene);
+			if (currentScene.name == Instance.loadingScene && Instance.currentTargetScene!= "") {
 				Instance.StartCoroutine(_pauseDuringLoading());
 			} else {
+				if (Instance.gameData.scenes == null) {
+					Instance.gameData.scenes = new Hashtable ();
+				}
+
+				if (Instance.gameData.completedTasks == null) {
+					Instance.gameData.completedTasks = new Hashtable ();
+				}
+
 				if (Instance.gameData.items == null) {
 					Instance.gameData.items = new Hashtable ();
 				}
@@ -87,7 +96,7 @@ namespace Polyworks {
 
 			if (scene != currentScene.name) {
 				Instance.gameData.items = Inventory.Instance.GetAll ();
-				Instance.gameData.currentTargetScene = scene;
+				Instance.currentTargetScene= scene;
 
 				if (Instance.loadingScene != "") {
 					_loadScene (Instance.loadingScene);
@@ -106,18 +115,6 @@ namespace Polyworks {
 			Instance.gameData.count++;
 		}
 
-		public void CompleteCountTask(string name) {
-
-		}
-
-		public void CompleteValueTask(string name) {
-
-		}
-
-		public void CompleteGoalTask(string name) {
-
-		}
-
 		private void Awake() {
 			if(Instance == null) {
 				Debug.Log ("THIS is the instance");
@@ -133,35 +130,19 @@ namespace Polyworks {
 		private IEnumerator _pauseDuringLoading() {
 			yield return new WaitForSeconds (Instance.loadingScenePause);
 
-			string toLoad = Instance.gameData.currentTargetScene;
+			string toLoad = Instance.currentTargetScene;
 			Debug.Log ("toLoad = " + toLoad);
-			Instance.gameData.currentTargetScene = "";
+			Instance.currentTargetScene= "";
 			_loadScene (toLoad);
 		}
 
 		private void _initPlayerScene(string currentSceneName) {
-			Inventory.Instance.Init (Instance.gameData.items);
+			Hashtable items = Instance.gameData.items;
+			Inventory.Instance.Init (items);
 
-//			ScenePrefabData scenePrefabData = GetComponent<ScenePrefabData> ();
-//			if (scenePrefabData != null && scenePrefabData.prefabs.Length > 0) {
-//				_initScenePrefabs (scenePrefabData.prefabs, currentSceneName);
-//			}
-		}
-
-		private void _initScenePrefabs(Prefab[] prefabs, string currentScene) {
-			for (int i = 0; i < prefabs.Length; i++) {
-				Debug.Log ("prefabs ["+i+"].name = " + prefabs [i].name);
-				bool isAddable = true; 
-
-				if (Instance.gameData.items.Contains (prefabs [i].name)) {
-					Debug.Log ("gameData.items contains " + prefabs [i].name);
-					isAddable = false;
-				}
-
-				if(isAddable) {
-					Debug.Log ("isAddable: " + isAddable);
-					GameObject go = (GameObject) Instantiate (Resources.Load (prefabs [i].name, typeof(GameObject)), prefabs [i].location, prefabs [i].rotation);
-				}
+			if (Instance.gameData.scenes.Contains (currentSceneName)) {
+				SceneController sceneController = GetComponent<SceneController> ();
+				sceneController.Init (Instance.gameData);
 			}
 		}
 
