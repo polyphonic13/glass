@@ -57,6 +57,10 @@ namespace Polyworks
 		}
 		#endregion
 
+		public void _updateTask(Task task) {
+
+		}
+
 	}
 
 	[Serializable]
@@ -94,6 +98,9 @@ namespace Polyworks
 		public string name;
 		public bool isComplete = false;
 
+		public enum TaskType { COUNT, VALUE, GOAL };
+		public TaskType type; 
+
 		public T value;
 		public T goal;
 
@@ -104,5 +111,6 @@ namespace Polyworks
 			}
 		}
 	}
+
 }
 

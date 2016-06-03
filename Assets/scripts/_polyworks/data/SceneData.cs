@@ -10,7 +10,7 @@ namespace Polyworks
 		public bool isPlayerLevel;
 		public bool isCleared;
 
-		public TaskCollection<int> countTasks;
+		public Task<int>[] countTasks;
 		public TaskCollection<float> valueTasks;
 		public TaskCollection<string> goalTasks;
 

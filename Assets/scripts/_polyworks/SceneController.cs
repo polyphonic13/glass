@@ -12,6 +12,8 @@ namespace Polyworks {
 			ScenePrefabController scenePrefabController = GetComponent<ScenePrefabController> ();
 			scenePrefabController.Init (sceneData.prefabs, gameData.items);
 
+			GoalController goalController = GetComponent<GoalController> ();
+
 //			TaskController taskController = GetComponent<TaskController> ();
 //			taskController.Init (gameData.completedTasks);
 		}
