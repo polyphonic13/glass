@@ -35,8 +35,8 @@ namespace Polyworks {
 			if (currentScene.name == Instance.loadingScene && Instance.currentTargetScene!= "") {
 				Instance.StartCoroutine(_pauseDuringLoading());
 			} else {
-				if (Instance.gameData.completedTasks == null) {
-					Instance.gameData.completedTasks = new Hashtable ();
+				if (Instance.gameData.tasks == null) {
+					Instance.gameData.tasks = new Hashtable ();
 				}
 
 				if (Instance.gameData.items == null) {

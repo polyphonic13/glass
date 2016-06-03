@@ -8,9 +8,18 @@ namespace Polyworks {
 
 		public int count = 0;
 
-		public Hashtable completedTasks;
+		public Hashtable tasks;
 		public Hashtable items;
 
+		/*
+		 * tasks = {
+		 * 	sceneA: {
+		 * 		countTaskData[],
+		 * 		valueTaskData[],
+		 * 		goalTaskData[]
+		 * 	}
+		 * }
+		 */
 	}
 }
 

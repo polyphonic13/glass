@@ -8,11 +8,11 @@ namespace Polyworks
 	{
 		public string sceneName;
 		public bool isPlayerLevel;
-		public bool isCleared;
+		public bool isCleared { get; set; }
 
-		public Task<int>[] countTasks;
-		public TaskCollection<float> valueTasks;
-		public TaskCollection<string> goalTasks;
+		public CountTaskData[] countTasks; 
+		public ValueTaskData[] valueTasks;
+		public GoalTaskData[] goalTasks;
 
 		public Prefab[] prefabs;
 	}

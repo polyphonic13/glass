@@ -8,109 +8,174 @@ namespace Polyworks
 	[Serializable]
 	public class TaskController: MonoBehaviour
 	{
-		[SerializeField] public TaskCollection<int> countTasks;
-		[SerializeField] public TaskCollection<float> valueTasks;
-		[SerializeField] public TaskCollection<string> goalTasks;
+		#region members
+		private Hashtable _countTasks;
+		private Hashtable _valueTasks;
+		private Hashtable _goalTasks;
 
-		private GameData _gameData;
+		private int _countTasksCompleted = 0;
+		private int _valueTasksCompleted = 0;
+		private int _goalTasksCompleted = 0;
 
-		public void Init(Hashtable completedTasks) {
-			countTasks.InitCompleted (completedTasks);
-			valueTasks.InitCompleted (completedTasks);
-			goalTasks.InitCompleted (completedTasks);
+		private bool _isCountTasksCompleted = false; 
+		private bool _isValueTasksCompleted = false; 
+		private bool _isGoalTasksCompleted = false; 
+
+		private Hashtable _gameDataTasks; 
+		#endregion
+
+		#region initialization
+		public void Init(SceneData d) {
+			_initCountTasks (d.countTasks);
+			_initValueTasks (d.valueTasks);
+			_initGoalTasks (d.goalTasks);
 		}
+
+		private void _initCountTasks(CountTaskData[] data) {
+			_countTasks = new Hashtable ();
+			for (int i = 0; i < data.Length; i++) {
+				_countTasks.Add(data[i].name, new CountTask(data[i]));
+				if (data [i].isCompleted) {
+					_countTasksCompleted++;
+				}
+			}
+			if (_countTasksCompleted == data.Length) {
+				_allTasksCompletedCheck ();
+			}
+		}
+
+		private void _initValueTasks(ValueTaskData[] data) {
+			_valueTasks = new Hashtable ();
+			for (int i = 0; i < data.Length; i++) {
+				_valueTasks.Add(data[i].name, new ValueTask(data[i]));
+				if (data [i].isCompleted) {
+					_valueTasksCompleted++;
+				}
+			}
+			if (_valueTasksCompleted == data.Length) {
+				_allTasksCompletedCheck ();
+			}
+		}
+
+		private void _initGoalTasks(GoalTaskData[] data) {
+			_goalTasks = new Hashtable ();
+			for (int i = 0; i < data.Length; i++) {
+				_goalTasks.Add(data[i].name, new GoalTask(data[i]));
+				if (data [i].isCompleted) {
+					_goalTasksCompleted++;
+				}
+			}
+			if (_goalTasksCompleted == data.Length) {
+				_allTasksCompletedCheck ();
+			}
+		}
+		#endregion
 
 		#region handlers
 		public void OnCountTaskUpdated(string name, int value) {
-			Task<int> task = countTasks.Find (name) as Task<int>;
+			if (_countTasks.Contains (name)) {
+				CountTask task = _countTasks [name] as CountTask;
+				task.Update ();
 
-			if (task != null) {
-				task.SetValue (value);
+				if (task.data.isCompleted) {
+					_countTasksCompleted++;
 
-				if (task.isComplete) {
-					_gameData.completedTasks.Add (task.name, true);
+					if (_countTasksCompleted == _countTasks.Count) {
+						_allTasksCompletedCheck ();
+					}
 				}
 			}
 		}
 
 		public void OnValueTaskUpdated(string name, float value) {
-			Task<float> task = valueTasks.Find (name) as Task<float>;
+			if (_valueTasks.Contains (name)) {
+				ValueTask task = _valueTasks [name] as ValueTask;
+				task.Update (value);
 
-			if (task != null) {
-				task.SetValue (value);
+				if (task.data.isCompleted) {
+					_valueTasksCompleted++;
 
-				if (task.isComplete) {
-					_gameData.completedTasks.Add (task.name, true);
+					if (_valueTasksCompleted == _valueTasks.Count) {
+						_allTasksCompletedCheck ();
+					}
 				}
 			}
 		}
+
 		public void OnCountTaskUpdated(string name, string value) {
-			Task<string> task = goalTasks.Find (name) as Task<string>;
+			if (_goalTasks.Contains (name)) {
+				GoalTask task = _goalTasks [name] as GoalTask;
+				task.Update (value);
 
-			if (task != null) {
-				task.SetValue (value);
+				if (task.data.isCompleted) {
+					_goalTasksCompleted++;
 
-				if (task.isComplete) {
-					_gameData.completedTasks.Add (task.name, true);
+					if (_goalTasksCompleted == _goalTasks.Count) {
+						_allTasksCompletedCheck ();
+					}
 				}
 			}
 		}
 		#endregion
 
-		public void _updateTask(Task task) {
-
-		}
-
-	}
-
-	[Serializable]
-	public class TaskCollection<T> where T: IComparable{
-		public Task<T>[] tasks;
-
-		public bool isAllComplete = false;
-
-		private int _completed = 0; 
-
-		public Task<T> Find(string name) {
-			for (int i = 0; i < tasks.Length; i++) {
-				if (tasks [i].name == name) {
-					return tasks [i];
-				}
-			}
-			return null;
-		}
-
-		public void InitCompleted(Hashtable completedTasks) {
-			for (int i = 0; i < tasks.Length; i++) {
-				if (completedTasks.Contains (tasks [i].name)) {
-					tasks [i].isComplete = true;
-					_completed++;
-				}
-			}
-			if (_completed == tasks.Length) {
-				isAllComplete = true;
+		private void _allTasksCompletedCheck() {
+			if (_isCountTasksCompleted && _isValueTasksCompleted && _isGoalTasksCompleted) {
+				EventCenter.Instance.UpdateSceneTasksCompleted ();
 			}
 		}
 	}
 
-	[Serializable]
-	public class Task<T> where T: IComparable{
-		public string name;
-		public bool isComplete = false;
+	#region task definitions
+	public class Task {
 
-		public enum TaskType { COUNT, VALUE, GOAL };
-		public TaskType type; 
+		public TaskData data;
 
-		public T value;
-		public T goal;
+	}
 
-		public void SetValue(T val) {
-			value = val;
-			if (value.CompareTo (goal) == 0) {
-				isComplete = true;
+	public class CountTask: Task {
+		public CountTaskData data; 
+
+		public CountTask(CountTaskData d) {
+			data = d;
+		}
+
+		public void Update() {
+			data.current++;
+			if (data.current == data.goal) {
+				data.isCompleted = true;
 			}
 		}
 	}
 
+	public class ValueTask: Task {
+		public ValueTaskData data; 
+
+		public ValueTask(ValueTaskData d) {
+			data = d;
+		}
+
+		public void Update(float val) {
+			data.current = val;
+			if (data.current == data.goal) {
+				data.isCompleted = true;
+			}
+		}
+	}
+
+	public class GoalTask: Task {
+		public GoalTaskData data; 
+
+		public GoalTask(GoalTaskData d) {
+			data = d;
+		}
+
+		public void Update(string val) {
+			data.current = val;
+			if (data.current == data.goal) {
+				data.isCompleted = true;
+			}
+		}
+	}
+	#endregion
 }
 

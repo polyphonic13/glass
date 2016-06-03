@@ -14,10 +14,27 @@ namespace Polyworks {
 
 			GoalController goalController = GetComponent<GoalController> ();
 
-//			TaskController taskController = GetComponent<TaskController> ();
-//			taskController.Init (gameData.completedTasks);
 		}
 
+		private void _initTasks(GameData gameData) {
+			if (gameData.tasks [sceneData.sceneName] == null) {
+				Hashtable taskData = new Hashtable ();
+				taskData.Add("countTasks", sceneData.countTasks);
+				taskData.Add("valueTasks", sceneData.valueTasks);
+				taskData.Add("goalTasks",  sceneData.goalTasks);
+
+				gameData.tasks [sceneData.sceneName] = taskData;
+			} else {
+				Hashtable taskData = gameData.tasks [sceneData.sceneName] as Hashtable;
+				sceneData.countTasks = taskData["countTasks"] as CountTaskData[];
+				sceneData.valueTasks = taskData["valueTasks"] as ValueTaskData[];
+				sceneData.goalTasks = taskData["goalTasks"] as GoalTaskData[];
+			}
+
+			TaskController taskController = GetComponent<TaskController> ();
+			taskController.Init (sceneData);
+
+		}
 	}
 }
 
