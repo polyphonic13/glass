@@ -17,8 +17,8 @@ public class StaminaManager : MonoBehaviour {
 	void Awake() {
 		_controls = ReInput.players.GetPlayer(0);
 
-//		_remainingStamina = _maxStamina = GameController.Instance.RemainingStamina;
-//		GameController.Instance.UpdateStamina(_remainingStamina);
+//		_remainingStamina = _maxStamina = Game.Instance.RemainingStamina;
+//		Game.Instance.UpdateStamina(_remainingStamina);
 	}
 
 	void Update() {
@@ -28,7 +28,7 @@ public class StaminaManager : MonoBehaviour {
 //			if(_remainingStamina > 0) {
 //				IsBoosted = true;
 //				_remainingStamina -= Time.deltaTime;
-//				GameController.Instance.UpdateStamina(_remainingStamina);
+//				Game.Instance.UpdateStamina(_remainingStamina);
 //			} else {
 //				IsBoosted = false;
 //				_remainingStamina = 0;
@@ -46,7 +46,7 @@ public class StaminaManager : MonoBehaviour {
 					if(_remainingStamina > _maxStamina) {
 						_remainingStamina = _maxStamina;
 					}
-//					GameController.Instance.UpdateStamina(_remainingStamina);
+//					Game.Instance.UpdateStamina(_remainingStamina);
 				}
 			}
 		}

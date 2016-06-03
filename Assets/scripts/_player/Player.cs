@@ -110,8 +110,8 @@ namespace UnitySampleAssets.Characters.FirstPerson
 		}
 
 		public void OnPlayerDamaged(float damage) {
-//			float health = GameController.Instance.RemainingHealth - damage;
-//			GameController.Instance.UpdateHealth(health);
+//			float health = Game.Instance.RemainingHealth - damage;
+//			Game.Instance.UpdateHealth(health);
 		}
 
 		public void OnAboveWater(bool water, Transform tgt) {
@@ -185,7 +185,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
 				_childTransforms [i++] = t;
 			}
 
-//			_hasFlashlight = GameController.Instance.hasFlashlight;
+//			_hasFlashlight = Game.Instance.hasFlashlight;
 				
 			var ec = EventCenter.Instance;
 			ec.OnAboveWater += OnAboveWater;
@@ -275,8 +275,8 @@ namespace UnitySampleAssets.Characters.FirstPerson
 						m_Jumping = false;
 						
 						if(_damageFromFall && (_currentMovementState == MovementStates.Normal || _currentMovementState == MovementStates.Crawl)) {
-//							float health = GameController.Instance.RemainingHealth - _gravityDamager.EndFall();
-//							GameController.Instance.UpdateHealth(health);
+//							float health = Game.Instance.RemainingHealth - _gravityDamager.EndFall();
+//							Game.Instance.UpdateHealth(health);
 						}
 						
 					}

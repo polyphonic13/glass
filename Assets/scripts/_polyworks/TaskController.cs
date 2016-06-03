@@ -14,7 +14,7 @@ namespace Polyworks
 		private GameData _gameData;
 
 		public void Init(Hashtable completedTasks) {
-			_gameData = GameController.Instance.gameData;
+			_gameData = Game.Instance.gameData;
 		}
 
 		#region handlers

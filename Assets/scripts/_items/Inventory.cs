@@ -17,9 +17,9 @@ public class Inventory : MonoBehaviour {
 	private Inventory() {}
 
 	public void Init() {
-//		if (GameController.Instance.gameData.items != null) {
+//		if (Game.Instance.gameData.items != null) {
 //			Debug.Log ("Inventory/Init, getting items from GameControl");
-//			_items = GameController.Instance.gameData.items as Hashtable;
+//			_items = Game.Instance.gameData.items as Hashtable;
 //			Debug.Log("_items.Count = " + _items.Count);
 //			if (_items.Count > 0) {
 //				foreach(CollectableItem item in _items.Values) {
@@ -64,7 +64,7 @@ public class Inventory : MonoBehaviour {
 			if (item.name != "flashlight") {
 				_items.Add (item.name, item);
 				message = item.data.itemName + " Added to inventory";
-//				GameController.Instance.hasFlashlight = true;
+//				Game.Instance.hasFlashlight = true;
 			} else {
 				message = item.data.itemName + " Collected";
 			}

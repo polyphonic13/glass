@@ -5,14 +5,14 @@ using Polyworks;
 public class Temp : MonoBehaviour {
 
 	public void Increment() {
-		GameController.Instance.Increment ();
+		Game.Instance.Increment ();
 	}
 
 	public void Save() {
-		GameController.Instance.Save ();
+		Game.Instance.Save ();
 	}
 
 	public void Load() {
-		GameController.Instance.Load ();
+		Game.Instance.Load ();
 	}
 }

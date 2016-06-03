@@ -5,7 +5,7 @@ using System.Reflection;
 using System;
 
 namespace Polyworks {
-	public class GameController : MonoBehaviour {
+	public class Game : MonoBehaviour {
 
 		public GameData gameData;
 
@@ -21,7 +21,7 @@ namespace Polyworks {
 
 		private DataIOController _dataIOController; 
 
-		public static GameController Instance;
+		public static Game Instance;
 
 		public virtual void Init() {
 			Scene currentScene = SceneManager.GetActiveScene ();
@@ -91,7 +91,7 @@ namespace Polyworks {
 		}
 
 		public void ChangeScene(string scene) {
-			Debug.Log ("GameController/ChangeScene, scene = " + scene + ", gameData.items.Count = " + Instance.gameData.items.Count);
+			Debug.Log ("Game/ChangeScene, scene = " + scene + ", gameData.items.Count = " + Instance.gameData.items.Count);
 			Scene currentScene = SceneManager.GetActiveScene ();
 
 			if (scene != currentScene.name) {
@@ -107,7 +107,7 @@ namespace Polyworks {
 		}
 
 		public void OnChangeScene(string scene) {
-			//			Debug.Log ("GameController/OnChangeScene, scene = " + scene);
+			//			Debug.Log ("Game/OnChangeScene, scene = " + scene);
 			ChangeScene (scene);
 		}
 
