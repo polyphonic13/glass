@@ -7,12 +7,13 @@ namespace Polyworks {
 		[SerializeField] private SceneData sceneData;
 
 		public void Init(GameData gameData) {
-
-			TaskController taskController = GetComponent<TaskController> ();
-			taskController.Init (gameData.completedTasks);
+			Debug.Log ("SceneController/Init");
 
 			ScenePrefabController scenePrefabController = GetComponent<ScenePrefabController> ();
 			scenePrefabController.Init (sceneData.prefabs, gameData.items);
+
+//			TaskController taskController = GetComponent<TaskController> ();
+//			taskController.Init (gameData.completedTasks);
 		}
 
 	}

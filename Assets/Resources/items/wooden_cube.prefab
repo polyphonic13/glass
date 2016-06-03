@@ -13,6 +13,7 @@ GameObject:
   - 23: {fileID: 2303734}
   - 114: {fileID: 11458764}
   - 114: {fileID: 11467628}
+  - 114: {fileID: 11452286}
   m_Layer: 0
   m_Name: wooden_cube
   m_TagString: interactive
@@ -27,7 +28,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 154290}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -3.3497374, y: 8.105627e-19, z: -3.65045}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -77,6 +78,29 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &11452286
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 154290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d5685fee4ef64e078f6725eb7c9cc65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+    containingRoom: 
+    itemName: 
+    displayName: 
+    prefabName: 
+    isCollectable: 0
+    isCollected: 0
+    isDroppable: 0
+    isUsable: 0
+  icon: 0
+  description: 
+  Thumbnail: {fileID: 0}
 --- !u!114 &11458764
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -90,7 +114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data:
     containingRoom: scene1
-    itemName: wooden_cube
+    itemName: wooden_cube01
     displayName: Wooden Cube
     prefabName: wooden_cube
     isCollectable: 1
@@ -104,9 +128,9 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 154290}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 417299635af6a44e7b821e9f37bc464d, type: 3}
+  m_Script: {fileID: 11500000, guid: e47ee724ff87748cb8eeaff986248ae9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &100100000

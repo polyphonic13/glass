@@ -10,6 +10,10 @@ namespace Polyworks
 		public bool isPlayerLevel;
 		public bool isCleared;
 
+		public TaskCollection<int> countTasks;
+		public TaskCollection<float> valueTasks;
+		public TaskCollection<string> goalTasks;
+
 		public Prefab[] prefabs;
 	}
 }

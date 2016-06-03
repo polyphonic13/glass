@@ -35,10 +35,6 @@ namespace Polyworks {
 			if (currentScene.name == Instance.loadingScene && Instance.currentTargetScene!= "") {
 				Instance.StartCoroutine(_pauseDuringLoading());
 			} else {
-				if (Instance.gameData.scenes == null) {
-					Instance.gameData.scenes = new Hashtable ();
-				}
-
 				if (Instance.gameData.completedTasks == null) {
 					Instance.gameData.completedTasks = new Hashtable ();
 				}
@@ -57,20 +53,19 @@ namespace Polyworks {
 				}
 			}
 			EventCenter.Instance.OnChangeScene += OnChangeScene;
-			Iterate (Instance.gameData, "count", 14);
+//			Iterate (Instance.gameData, "count", 14);
 		}
 
-		public void Iterate(object p, string propName, object value) {
-			Type type = p.GetType ();
-			Debug.Log ("Iterate/propName = " + propName + ", value = " + value + ", type = " + type);
-			foreach (PropertyInfo info in type.GetProperties()) {
-				Debug.Log ("name = " + info.Name);
-				if (info.Name == propName && info.CanWrite) {
-//					info.SetValue (p, value, null);
-					Debug.Log("writable name match on " + info.Name);
-				}
-			}
-		}
+//		public void Iterate(object p, string propName, object value) {
+//			Type type = p.GetType ();
+//			Debug.Log ("Iterate/propName = " + propName + ", value = " + value + ", type = " + type);
+//			foreach (PropertyInfo info in type.GetProperties()) {
+//				Debug.Log ("name = " + info.Name);
+//				if (info.Name == propName && info.CanWrite) {
+//					Debug.Log("writable name match on " + info.Name);
+//				}
+//			}
+//		}
 
 		public void Save() {
 			_dataIOController.Save (Application.persistentDataPath + "/" + dataFilename, Instance.gameData);
@@ -138,12 +133,10 @@ namespace Polyworks {
 
 		private void _initPlayerScene(string currentSceneName) {
 			Hashtable items = Instance.gameData.items;
-			Inventory.Instance.Init (items);
+//			Inventory.Instance.Init (items);
 
-			if (Instance.gameData.scenes.Contains (currentSceneName)) {
-				SceneController sceneController = GetComponent<SceneController> ();
-				sceneController.Init (Instance.gameData);
-			}
+			SceneController sceneController = GameObject.Find("scene_controller").GetComponent<SceneController> ();
+			sceneController.Init (Instance.gameData);
 		}
 
 		private void _loadScene(string scene) {

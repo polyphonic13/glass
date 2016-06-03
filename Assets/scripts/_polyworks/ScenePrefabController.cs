@@ -6,10 +6,7 @@ namespace Polyworks {
 	public class ScenePrefabController : MonoBehaviour
 	{
 		public void Init(Prefab[] prefabs, Hashtable items) {
-			_initScenePrefabs (prefabs, items);
-		}
-
-		private void _initScenePrefabs(Prefab[] prefabs, Hashtable items) {
+			Debug.Log ("ScenePrefabController/Init, prefabs.Length = " + prefabs.Length);
 			for (int i = 0; i < prefabs.Length; i++) {
 				Debug.Log ("prefabs ["+i+"].name = " + prefabs [i].name);
 				bool isAddable = true; 

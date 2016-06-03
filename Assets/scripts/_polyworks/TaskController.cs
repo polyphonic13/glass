@@ -5,16 +5,19 @@ using System.Collections.Generic;
 
 namespace Polyworks
 {
+	[Serializable]
 	public class TaskController: MonoBehaviour
 	{
 		[SerializeField] public TaskCollection<int> countTasks;
 		[SerializeField] public TaskCollection<float> valueTasks;
 		[SerializeField] public TaskCollection<string> goalTasks;
-		
+
 		private GameData _gameData;
 
 		public void Init(Hashtable completedTasks) {
-			_gameData = Game.Instance.gameData;
+			countTasks.InitCompleted (completedTasks);
+			valueTasks.InitCompleted (completedTasks);
+			goalTasks.InitCompleted (completedTasks);
 		}
 
 		#region handlers
@@ -54,13 +57,9 @@ namespace Polyworks
 		}
 		#endregion
 
-		private void _initTasks() {
-			countTasks.InitCompleted (_gameData.completedTasks);
-			valueTasks.InitCompleted (_gameData.completedTasks);
-			goalTasks.InitCompleted (_gameData.completedTasks);
-		}
 	}
 
+	[Serializable]
 	public class TaskCollection<T> where T: IComparable{
 		public Task<T>[] tasks;
 
@@ -90,6 +89,7 @@ namespace Polyworks
 		}
 	}
 
+	[Serializable]
 	public class Task<T> where T: IComparable{
 		public string name;
 		public bool isComplete = false;

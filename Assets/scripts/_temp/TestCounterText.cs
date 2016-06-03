@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
-using Polyworks; 
 using UnityEngine.UI;
+using Polyworks; 
 
 public class TestCounterText : MonoBehaviour {
 
@@ -11,11 +11,11 @@ public class TestCounterText : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		_text = GetComponent<Text> ();
-		_text.text = BASE_TEXT + (GameController.Instance.gameData.count.ToString());	
+		_text.text = BASE_TEXT + (Game.Instance.gameData.count.ToString());	
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		_text.text = BASE_TEXT + (GameController.Instance.gameData.count.ToString());	
+		_text.text = BASE_TEXT + (Game.Instance.gameData.count.ToString());	
 	}
 }
