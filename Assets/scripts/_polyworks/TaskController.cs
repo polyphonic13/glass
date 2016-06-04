@@ -9,9 +9,9 @@ namespace Polyworks
 	public class TaskController: MonoBehaviour
 	{
 		#region members
-		private Hashtable _countTasks;
-		private Hashtable _valueTasks;
-		private Hashtable _goalTasks;
+		private CountTaskData[] _countTasks;
+		private ValueTaskData[] _valueTasks;
+		private GoalTaskData[] _goalTasks;
 
 		private int _countTasksCompleted = 0;
 		private int _valueTasksCompleted = 0;
@@ -24,158 +24,81 @@ namespace Polyworks
 		private Hashtable _gameDataTasks; 
 		#endregion
 
-		#region initialization
-		public void Init(SceneData d) {
-			_initCountTasks (d.countTasks);
-			_initValueTasks (d.valueTasks);
-			_initGoalTasks (d.goalTasks);
+		#region public methods
+		public void Init(SceneData sceneData, Hashtable taskData) {
+			_countTasks = taskData["countTasks"] as CountTaskData[];
+			_valueTasks = taskData["valueTasks"] as ValueTaskData[];
+			_goalTasks = taskData["goalTasks"] as GoalTaskData[];
 		}
 
-		private void _initCountTasks(CountTaskData[] data) {
-			_countTasks = new Hashtable ();
-			for (int i = 0; i < data.Length; i++) {
-				_countTasks.Add(data[i].name, new CountTask(data[i]));
-				if (data [i].isCompleted) {
-					_countTasksCompleted++;
-				}
-			}
-			if (_countTasksCompleted == data.Length) {
-				_allTasksCompletedCheck ();
-			}
-		}
-
-		private void _initValueTasks(ValueTaskData[] data) {
-			_valueTasks = new Hashtable ();
-			for (int i = 0; i < data.Length; i++) {
-				_valueTasks.Add(data[i].name, new ValueTask(data[i]));
-				if (data [i].isCompleted) {
-					_valueTasksCompleted++;
-				}
-			}
-			if (_valueTasksCompleted == data.Length) {
-				_allTasksCompletedCheck ();
-			}
-		}
-
-		private void _initGoalTasks(GoalTaskData[] data) {
-			_goalTasks = new Hashtable ();
-			for (int i = 0; i < data.Length; i++) {
-				_goalTasks.Add(data[i].name, new GoalTask(data[i]));
-				if (data [i].isCompleted) {
-					_goalTasksCompleted++;
-				}
-			}
-			if (_goalTasksCompleted == data.Length) {
-				_allTasksCompletedCheck ();
-			}
+		public Hashtable GetData() {
+			Hashtable taskData = new Hashtable ();
+			taskData.Add("countTasks", _countTasks);
+			taskData.Add("valueTasks", _valueTasks);
+			taskData.Add("goalTasks",  _goalTasks);
+			return taskData;
 		}
 		#endregion
 
 		#region handlers
 		public void OnCountTaskUpdated(string name, int value) {
-			if (_countTasks.Contains (name)) {
-				CountTask task = _countTasks [name] as CountTask;
-				task.Update ();
-
-				if (task.data.isCompleted) {
-					_countTasksCompleted++;
-
-					if (_countTasksCompleted == _countTasks.Count) {
-						_allTasksCompletedCheck ();
-					}
-				}
+			CountTaskData task = _findTask (_countTasks, name) as CountTaskData;
+			task.current = value;
+			if (task.current == task.goal) {
+				_taskCompleted (task, _countTasks);
 			}
 		}
 
 		public void OnValueTaskUpdated(string name, float value) {
-			if (_valueTasks.Contains (name)) {
-				ValueTask task = _valueTasks [name] as ValueTask;
-				task.Update (value);
-
-				if (task.data.isCompleted) {
-					_valueTasksCompleted++;
-
-					if (_valueTasksCompleted == _valueTasks.Count) {
-						_allTasksCompletedCheck ();
-					}
-				}
+			ValueTaskData task = _findTask (_valueTasks, name) as ValueTaskData;
+			task.current = value;
+			if (task.current == task.goal) {
+				_taskCompleted (task, _valueTasks);
 			}
 		}
 
-		public void OnCountTaskUpdated(string name, string value) {
-			if (_goalTasks.Contains (name)) {
-				GoalTask task = _goalTasks [name] as GoalTask;
-				task.Update (value);
-
-				if (task.data.isCompleted) {
-					_goalTasksCompleted++;
-
-					if (_goalTasksCompleted == _goalTasks.Count) {
-						_allTasksCompletedCheck ();
-					}
-				}
+		public void OnGoalTaskUpdated(string name, string value) {
+			GoalTaskData task = _findTask (_goalTasks, name) as GoalTaskData;
+			task.current = value;
+			if (task.current == task.goal) {
+				_taskCompleted (task, _goalTasks);
 			}
 		}
 		#endregion
+
+		#region private methods
+		private TaskData _findTask(TaskData[] tasks, string name) {
+			for(int i = 0; i < tasks.Length; i++) {
+				if(tasks[i].name == name) {
+					return tasks[i];
+				}
+			}
+			return null;
+		}				
+
+		private void _taskCompleted(TaskData task, TaskData[] tasks) {
+			task.isCompleted = true;
+
+			bool isAllCompleted = true;
+			for (int i = 0; i < tasks.Length; i++) {
+				if (!tasks [i].isCompleted) {
+					isAllCompleted = false;
+					break;
+				}
+			}
+
+			if (isAllCompleted) {
+				_allTasksCompletedCheck ();
+			}
+		}
 
 		private void _allTasksCompletedCheck() {
 			if (_isCountTasksCompleted && _isValueTasksCompleted && _isGoalTasksCompleted) {
 				EventCenter.Instance.UpdateSceneTasksCompleted ();
 			}
 		}
+		#endregion
 	}
 
-	#region task definitions
-	public class Task {
-
-		public TaskData data;
-
-	}
-
-	public class CountTask: Task {
-		public CountTaskData data; 
-
-		public CountTask(CountTaskData d) {
-			data = d;
-		}
-
-		public void Update() {
-			data.current++;
-			if (data.current == data.goal) {
-				data.isCompleted = true;
-			}
-		}
-	}
-
-	public class ValueTask: Task {
-		public ValueTaskData data; 
-
-		public ValueTask(ValueTaskData d) {
-			data = d;
-		}
-
-		public void Update(float val) {
-			data.current = val;
-			if (data.current == data.goal) {
-				data.isCompleted = true;
-			}
-		}
-	}
-
-	public class GoalTask: Task {
-		public GoalTaskData data; 
-
-		public GoalTask(GoalTaskData d) {
-			data = d;
-		}
-
-		public void Update(string val) {
-			data.current = val;
-			if (data.current == data.goal) {
-				data.isCompleted = true;
-			}
-		}
-	}
-	#endregion
 }
 

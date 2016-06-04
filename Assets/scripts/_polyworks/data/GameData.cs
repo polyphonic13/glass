@@ -11,6 +11,8 @@ namespace Polyworks {
 		public Hashtable tasks;
 		public Hashtable items;
 
+		public Hashtable clearedScenes;
+
 		/*
 		 * tasks = {
 		 * 	sceneA: {

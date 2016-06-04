@@ -12,28 +12,22 @@ namespace Polyworks {
 			ScenePrefabController scenePrefabController = GetComponent<ScenePrefabController> ();
 			scenePrefabController.Init (sceneData.prefabs, gameData.items);
 
-			GoalController goalController = GetComponent<GoalController> ();
-
-		}
-
-		private void _initTasks(GameData gameData) {
-			if (gameData.tasks [sceneData.sceneName] == null) {
-				Hashtable taskData = new Hashtable ();
-				taskData.Add("countTasks", sceneData.countTasks);
-				taskData.Add("valueTasks", sceneData.valueTasks);
-				taskData.Add("goalTasks",  sceneData.goalTasks);
-
-				gameData.tasks [sceneData.sceneName] = taskData;
-			} else {
+			if (gameData.clearedScenes [sceneData] == null && gameData.tasks[sceneData.sceneName] != null) {
+				TaskController taskController = GetComponent<TaskController> ();
 				Hashtable taskData = gameData.tasks [sceneData.sceneName] as Hashtable;
-				sceneData.countTasks = taskData["countTasks"] as CountTaskData[];
-				sceneData.valueTasks = taskData["valueTasks"] as ValueTaskData[];
-				sceneData.goalTasks = taskData["goalTasks"] as GoalTaskData[];
+				taskController.Init (sceneData, taskData);
 			}
 
-			TaskController taskController = GetComponent<TaskController> ();
-			taskController.Init (sceneData);
+			EventCenter.Instance.OnSceneTasksCompleted += OnSceneTasksCompleted;
+		}
 
+		public void OnSceneTasksCompleted() {
+			Game.Instance.gameData.clearedScenes.Add (sceneData.sceneName, true);
+		}
+
+		public Hashtable GetData() {
+			TaskController taskController = GetComponent<TaskController> ();
+			return taskController.GetData ();
 		}
 	}
 }

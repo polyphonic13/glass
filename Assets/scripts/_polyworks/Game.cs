@@ -43,6 +43,10 @@ namespace Polyworks {
 					Instance.gameData.items = new Hashtable ();
 				}
 
+				if (Instance.gameData.clearedScenes == null) {
+					Instance.gameData.clearedScenes = new Hashtable ();
+				}
+
 				Instance.gameData.currentScene = currentScene.name; 
 
 				for (int i = 0; i < Instance.playerScenes.Length; i++) {
@@ -92,6 +96,9 @@ namespace Polyworks {
 			if (scene != currentScene.name) {
 				Instance.gameData.items = Inventory.Instance.GetAll ();
 				Instance.currentTargetScene= scene;
+
+				SceneController sceneController = GameObject.Find("scene_controller").GetComponent<SceneController> ();
+				Instance.gameData.tasks [currentScene.name] = sceneController.GetData ();
 
 				if (Instance.loadingScene != "") {
 					_loadScene (Instance.loadingScene);
