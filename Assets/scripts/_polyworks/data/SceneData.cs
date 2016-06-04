@@ -9,9 +9,9 @@ namespace Polyworks
 		public string sceneName;
 		public bool isPlayerLevel;
 
-		public CountTaskData[] countTasks; 
-		public ValueTaskData[] valueTasks;
-		public GoalTaskData[] goalTasks;
+		public IntTaskData[] intTasks; 
+		public FloatTaskData[] floatTasks;
+		public StringTaskData[] stringTasks;
 
 		public Prefab[] prefabs;
 

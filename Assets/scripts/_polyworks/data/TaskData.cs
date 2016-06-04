@@ -11,14 +11,14 @@ namespace Polyworks
 	}
 
 	[Serializable]
-	public class CountTaskData: TaskData {
+	public class IntTaskData: TaskData {
 		public int goal;
 		public int current { get; set; }
 
-		public CountTaskData() {}
+		public IntTaskData() {}
 
-		public CountTaskData Clone() {
-			CountTaskData clone = new CountTaskData ();
+		public IntTaskData Clone() {
+			IntTaskData clone = new IntTaskData ();
 			clone.name = this.name;
 			clone.isCompleted = this.isCompleted;
 			clone.goal = this.goal;
@@ -28,14 +28,14 @@ namespace Polyworks
 	}
 
 	[Serializable]
-	public class ValueTaskData: TaskData {
+	public class FloatTaskData: TaskData {
 		public float goal;
 		public float current { get; set; }
 
-		public ValueTaskData() {}
+		public FloatTaskData() {}
 
-		public ValueTaskData Clone() {
-			ValueTaskData clone = new ValueTaskData ();
+		public FloatTaskData Clone() {
+			FloatTaskData clone = new FloatTaskData ();
 			clone.name = this.name;
 			clone.isCompleted = this.isCompleted;
 			clone.goal = this.goal;
@@ -45,14 +45,14 @@ namespace Polyworks
 	}
 
 	[Serializable]
-	public class GoalTaskData: TaskData {
+	public class StringTaskData: TaskData {
 		public string goal;
 		public string current { get; set; }
 
-		public GoalTaskData() {}
+		public StringTaskData() {}
 
-		public GoalTaskData Clone() {
-			GoalTaskData clone = new GoalTaskData ();
+		public StringTaskData Clone() {
+			StringTaskData clone = new StringTaskData ();
 			clone.name = this.name;
 			clone.isCompleted = this.isCompleted;
 			clone.goal = this.goal;

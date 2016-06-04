@@ -16,9 +16,9 @@ namespace Polyworks {
 		/*
 		 * tasks = {
 		 * 	sceneA: {
-		 * 		countTaskData[],
-		 * 		valueTaskData[],
-		 * 		goalTaskData[]
+		 * 		intTaskData[],
+		 * 		floatTaskData[],
+		 * 		stringTaskData[]
 		 * 	}
 		 * }
 		 */

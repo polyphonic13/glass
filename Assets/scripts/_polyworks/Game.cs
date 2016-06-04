@@ -107,7 +107,7 @@ namespace Polyworks {
 
 		public void Increment() {
 			Instance.gameData.count++;
-			EventCenter.Instance.UpdateCountTask ("countTest", Instance.gameData.count);
+			EventCenter.Instance.UpdateIntTask ("countTest", Instance.gameData.count);
 		}
 
 		private void Awake() {

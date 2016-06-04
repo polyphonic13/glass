@@ -14,14 +14,14 @@ namespace Polyworks
 		public delegate void SceneChanger(string scene);
 		public event SceneChanger OnChangeScene;
 
-		public delegate void CountTaskUpdater(string task, int count);
-		public event CountTaskUpdater OnCountTaskUpdated; 
+		public delegate void IntTaskUpdater(string task, int count);
+		public event IntTaskUpdater OnIntTaskUpdated; 
 		
-		public delegate void ValueTaskUpdater(string task, float value);
-		public event ValueTaskUpdater OnValueTaskUpdated;
+		public delegate void FloatTaskUpdater(string task, float value);
+		public event FloatTaskUpdater OnFloatTaskUpdated;
 		
-		public delegate void GoalTaskUpdater(string task, string goal);
-		public event GoalTaskUpdater OnGoalTaskUpdated;
+		public delegate void StringTaskUpdater(string task, string goal);
+		public event StringTaskUpdater OnStringTaskUpdated;
 			
 		public delegate void SceneTasksCompleteNotifier ();
 		public event SceneTasksCompleteNotifier OnSceneTasksCompleted;
@@ -59,21 +59,21 @@ namespace Polyworks
 			}
 		}
 
-		public void UpdateCountTask(string task, int count) {
-			if(OnCountTaskUpdated != null) {
-				OnCountTaskUpdated(task, count);
+		public void UpdateIntTask(string task, int count) {
+			if(OnIntTaskUpdated != null) {
+				OnIntTaskUpdated(task, count);
 			}
 		}
 
-		public void UpdateValueTask(string task, float value) {
-			if(OnValueTaskUpdated != null) {
-				OnValueTaskUpdated(task, value);
+		public void UpdateFloatTask(string task, float value) {
+			if(OnFloatTaskUpdated != null) {
+				OnFloatTaskUpdated(task, value);
 			}
 		}
 
-		public void UpdateGoalTask(string task, string goal) {
-			if(OnGoalTaskUpdated != null) {
-				OnGoalTaskUpdated(task, goal);
+		public void UpdateStringTask(string task, string goal) {
+			if(OnStringTaskUpdated != null) {
+				OnStringTaskUpdated(task, goal);
 			}
 		}
 
