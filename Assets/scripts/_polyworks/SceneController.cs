@@ -12,7 +12,7 @@ namespace Polyworks {
 			ScenePrefabController scenePrefabController = GetComponent<ScenePrefabController> ();
 			scenePrefabController.Init (sceneData.prefabs, gameData.items);
 
-			if (gameData.clearedScenes [sceneData] == null && gameData.tasks[sceneData.sceneName] != null) {
+			if (gameData.clearedScenes [sceneData] == null) {
 				TaskController taskController = GetComponent<TaskController> ();
 				Hashtable taskData = gameData.tasks [sceneData.sceneName] as Hashtable;
 				taskController.Init (sceneData, taskData);
@@ -22,6 +22,7 @@ namespace Polyworks {
 		}
 
 		public void OnSceneTasksCompleted() {
+			Debug.Log ("SceneController/OnSceneTasksCompleted");
 			Game.Instance.gameData.clearedScenes.Add (sceneData.sceneName, true);
 		}
 

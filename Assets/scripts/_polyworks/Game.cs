@@ -49,29 +49,21 @@ namespace Polyworks {
 
 				Instance.gameData.currentScene = currentScene.name; 
 
-				for (int i = 0; i < Instance.playerScenes.Length; i++) {
-					if(Instance.playerScenes[i] == currentScene.name) {
-						_initPlayerScene(currentScene.name);
-						break;
-					}
+				if(_getIsPlayerScene(currentScene.name)) {
+					_initPlayerScene(currentScene.name);
 				}
 			}
 			EventCenter.Instance.OnChangeScene += OnChangeScene;
 //			Iterate (Instance.gameData, "count", 14);
 		}
 
-//		public void Iterate(object p, string propName, object value) {
-//			Type type = p.GetType ();
-//			Debug.Log ("Iterate/propName = " + propName + ", value = " + value + ", type = " + type);
-//			foreach (PropertyInfo info in type.GetProperties()) {
-//				Debug.Log ("name = " + info.Name);
-//				if (info.Name == propName && info.CanWrite) {
-//					Debug.Log("writable name match on " + info.Name);
-//				}
-//			}
-//		}
-
 		public void Save() {
+			Scene currentScene = SceneManager.GetActiveScene ();
+
+			if (_getIsPlayerScene (currentScene.name)) {
+				SceneController sceneController = GameObject.Find("scene_controller").GetComponent<SceneController> ();
+				Instance.gameData.tasks [currentScene.name] = sceneController.GetData ();
+			}
 			_dataIOController.Save (Application.persistentDataPath + "/" + dataFilename, Instance.gameData);
 		}
 
@@ -115,6 +107,7 @@ namespace Polyworks {
 
 		public void Increment() {
 			Instance.gameData.count++;
+			EventCenter.Instance.UpdateCountTask ("countTest", Instance.gameData.count);
 		}
 
 		private void Awake() {
@@ -150,5 +143,14 @@ namespace Polyworks {
 			SceneManager.LoadScene (scene);
 		}
 
+		private bool _getIsPlayerScene(string sceneName) {
+			string[] playerScenes = Instance.playerScenes;
+			for (int i = 0; i < playerScenes.Length; i++) {
+				if (sceneName == playerScenes [i]) {
+					return true;
+				}
+			}
+			return false;
+		}
 	}
 }

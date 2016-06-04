@@ -26,9 +26,34 @@ namespace Polyworks
 
 		#region public methods
 		public void Init(SceneData sceneData, Hashtable taskData) {
-			_countTasks = taskData["countTasks"] as CountTaskData[];
-			_valueTasks = taskData["valueTasks"] as ValueTaskData[];
-			_goalTasks = taskData["goalTasks"] as GoalTaskData[];
+			Debug.Log ("TaskController/Init");
+//			_countTasks = taskData["countTasks"] as CountTaskData[];
+//			_valueTasks = taskData["valueTasks"] as ValueTaskData[];
+//			_goalTasks = taskData["goalTasks"] as GoalTaskData[];
+
+			if (taskData != null && taskData.Contains ("countTasks")) {
+				_countTasks = taskData ["countTasks"] as CountTaskData[];
+			} else {
+				_countTasks = sceneData.countTasks;
+			}
+
+			if (taskData != null && taskData.Contains ("valueTasks")) {
+				_valueTasks = taskData ["valueTasks"] as ValueTaskData[];
+			} else {
+				_valueTasks = sceneData.valueTasks;
+			}
+
+			if (taskData != null && taskData.Contains ("goalTasks")) {
+				_goalTasks = taskData ["goalTasks"] as GoalTaskData[];
+			} else {
+				_goalTasks = sceneData.goalTasks;
+			}
+
+			EventCenter ec = EventCenter.Instance;
+			ec.OnCountTaskUpdated += OnCountTaskUpdated;
+			ec.OnValueTaskUpdated += OnValueTaskUpdated;
+			ec.OnGoalTaskUpdated += OnGoalTaskUpdated;
+
 		}
 
 		public Hashtable GetData() {
@@ -42,6 +67,7 @@ namespace Polyworks
 
 		#region handlers
 		public void OnCountTaskUpdated(string name, int value) {
+			Debug.Log ("TaskController/OnCountTaskUpdated, name = " + name);
 			CountTaskData task = _findTask (_countTasks, name) as CountTaskData;
 			task.current = value;
 			if (task.current == task.goal) {
@@ -67,6 +93,7 @@ namespace Polyworks
 		#endregion
 
 		#region private methods
+
 		private TaskData _findTask(TaskData[] tasks, string name) {
 			for(int i = 0; i < tasks.Length; i++) {
 				if(tasks[i].name == name) {
@@ -77,6 +104,7 @@ namespace Polyworks
 		}				
 
 		private void _taskCompleted(TaskData task, TaskData[] tasks) {
+			Debug.Log ("TaskController/_taskCompleted");
 			task.isCompleted = true;
 
 			bool isAllCompleted = true;
@@ -93,6 +121,7 @@ namespace Polyworks
 		}
 
 		private void _allTasksCompletedCheck() {
+			Debug.Log ("TaskController/_addTasksCompletedCheck");
 			if (_isCountTasksCompleted && _isValueTasksCompleted && _isGoalTasksCompleted) {
 				EventCenter.Instance.UpdateSceneTasksCompleted ();
 			}
