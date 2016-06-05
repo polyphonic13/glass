@@ -78,7 +78,6 @@ namespace Polyworks
 
 		#region handlers
 		public void OnIntTaskUpdated(string name, int value) {
-			Debug.Log ("TaskController/OnIntTaskUpdated, name = " + name);
 			IntTaskData task = _findTask (_intTasks, name) as IntTaskData;
 			task.current = value;
 			if (task.current == task.goal) {
@@ -115,7 +114,7 @@ namespace Polyworks
 		}				
 
 		private void _taskCompleted(TaskData task, TaskData[] tasks, out bool isTypeCompleted) {
-			Debug.Log ("TaskController/_taskCompleted");
+//			Debug.Log ("TaskController/_taskCompleted, task = " + task.name);
 			task.isCompleted = true;
 
 			isTypeCompleted = true;
@@ -132,7 +131,6 @@ namespace Polyworks
 		}
 
 		private void _allTasksCompletedCheck() {
-			Debug.Log ("TaskController/_addTasksCompletedCheck, int = " + _isIntTasksCompleted + ", float = " + _isFloatTasksCompleted + ", string = " + _isStringTasksCompleted);
 			if (_isIntTasksCompleted && _isFloatTasksCompleted && _isStringTasksCompleted) {
 				EventCenter.Instance.UpdateSceneTasksCompleted ();
 			}

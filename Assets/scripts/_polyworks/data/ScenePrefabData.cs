@@ -10,6 +10,7 @@ namespace Polyworks
 	[Serializable]
 	public struct Prefab {
 		public string name;
+		public string path;
 		public Vector3 location;
 		public Quaternion rotation;
 	}

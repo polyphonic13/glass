@@ -133,7 +133,7 @@ namespace Polyworks {
 
 		private void _initPlayerScene(string currentSceneName) {
 			Hashtable items = Instance.gameData.items;
-//			Inventory.Instance.Init (items);
+			Inventory.Instance.Init (items);
 
 			SceneController sceneController = GameObject.Find("scene_controller").GetComponent<SceneController> ();
 			sceneController.Init (Instance.gameData);
