@@ -35,6 +35,7 @@ namespace Polyworks {
 			}
 
 			if (Instance.gameData.items == null) {
+				Debug.Log ("have to make a new hashtable for Instance.gameData.items");
 				Instance.gameData.items = new Hashtable ();
 			}
 
@@ -54,7 +55,8 @@ namespace Polyworks {
 
 		public void Save() {
 			Scene currentScene = SceneManager.GetActiveScene ();
-
+			Instance.gameData.items = Inventory.Instance.GetAll ();
+			Debug.Log ("Game/Save, item count = " + Instance.gameData.items.Count);
 			if (_getIsPlayerScene (currentScene.name)) {
 				SceneController sceneController = GameObject.Find("scene_controller").GetComponent<SceneController> ();
 				Instance.gameData.tasks [currentScene.name] = sceneController.GetData ();
@@ -68,10 +70,21 @@ namespace Polyworks {
 			if (data != null) {
 				Instance.gameData = data;
 				Debug.Log ("loaded count = " + data.count + ", items  = " + data.items.Count);
-				Scene currentScene = SceneManager.GetActiveScene ();
-				if (data.currentScene != "" && data.currentScene != currentScene.name) {
-					Debug.Log ("switching to last scene");
+//				Scene currentScene = SceneManager.GetActiveScene ();
+//				string currentSceneName = currentScene.name;
+//				if (data.currentScene != "" && data.currentScene != currentSceneName) {
+//					Debug.Log ("switching to last scene");
+//					ChangeScene (data.currentScene);
+//				} else if (_getIsPlayerScene (currentSceneName)) {
+//					Debug.Log ("(re)initializing player scene, items count = " + Instance.gameData.items.Count);
+//					_initPlayerScene (currentSceneName);
+//				}
+				if (data.currentScene != "") {
 					ChangeScene (data.currentScene);
+				} else {
+					Scene currentScene = SceneManager.GetActiveScene ();
+					string currentSceneName = currentScene.name;
+					ChangeScene (currentSceneName);
 				}
 			}
 		}
@@ -82,12 +95,14 @@ namespace Polyworks {
 
 			if (scene != currentScene.name) {
 				Instance.gameData.items = Inventory.Instance.GetAll ();
-				Instance.currentTargetScene= scene;
+				Instance.currentTargetScene = scene;
 
-				SceneController sceneController = GameObject.Find("scene_controller").GetComponent<SceneController> ();
+				SceneController sceneController = GameObject.Find ("scene_controller").GetComponent<SceneController> ();
 				Instance.gameData.tasks [currentScene.name] = sceneController.GetData ();
 
 				_loadScene (scene);
+			} else if (_getIsPlayerScene (currentScene.name)) {
+				_initPlayerScene (currentScene.name);
 			}
 		}
 
@@ -110,7 +125,7 @@ namespace Polyworks {
 				DontDestroyOnLoad(gameObject);
 				Instance = this;
 			} else if(this != Instance) {
-				Debug.Log ("this is NOT the instance");
+				Debug.Log ("this is NOT the instance, items count = ");
 				Destroy(gameObject);
 			}
 			Init ();

@@ -13,10 +13,6 @@ namespace Polyworks
 		private FloatTaskData[] _floatTasks;
 		private StringTaskData[] _stringTasks;
 
-		private int _intTasksCompleted = 0;
-		private int _floatTasksCompleted = 0;
-		private int _stringTasksCompleted = 0;
-
 		private bool _isIntTasksCompleted = false; 
 		private bool _isFloatTasksCompleted = false; 
 		private bool _isStringTasksCompleted = false; 
@@ -26,10 +22,6 @@ namespace Polyworks
 
 		#region public methods
 		public void Init(SceneData sceneData, Hashtable taskData) {
-			Debug.Log ("TaskController/Init");
-//			_intTasks = taskData["intTasks"] as IntTaskData[];
-//			_floatTasks = taskData["floatTasks"] as FloatTaskData[];
-//			_stringTasks = taskData["stringTasks"] as StringTaskData[];
 			if (sceneData.intTasks.Length == 0) {
 				_isIntTasksCompleted = true;
 			} else {

@@ -49,7 +49,6 @@ namespace Polyworks {
 
 		public virtual void InsertItem(ItemData item) {
 			Debug.Log ("Inventory/InsertItem, item.itemName = " + item.itemName + ", has? " + Contains(item.itemName));
-			item.isCollected = true;
 			_items.Add (item.itemName, item);
 			EventCenter.Instance.AddInventory(item.itemName);
 		}

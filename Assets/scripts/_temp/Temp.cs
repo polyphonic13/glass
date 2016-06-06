@@ -24,20 +24,18 @@ public class Temp : MonoBehaviour {
 	}
 
 	public void OnSceneInitialized(string scene) {
-		Debug.Log ("Temp/OnSceneInitialized");
-		_updateCameras (true, false);
+//		_updateCameras (true, false);
 	}
 
 	private void Awake() {
 
-		_updateCameras (false, true);
+//		_updateCameras (false, true);
 
 		Polyworks.EventCenter.Instance.OnSceneInitialized += OnSceneInitialized;
 
 	}
 
 	private void _updateCameras(bool main, bool loading) {
-		Debug.Log ("Temp/_updateCameras, main = " + main + ", loading = " + loading);
 		GameObject mainCamera = GameObject.Find("main_camera");
 		GameObject loadingCamera = GameObject.Find ("loading_camera");
 

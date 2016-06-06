@@ -13,6 +13,7 @@ namespace Polyworks {
 
 		public virtual void Collect(Inventory inventory) {
 			if (data.isCollectable && !data.isCollected) {
+				data.isCollected = true;
 				inventory.Add (data.Clone ());
 				GameObject.Destroy (gameObject);
 			}
