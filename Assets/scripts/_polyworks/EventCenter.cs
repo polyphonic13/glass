@@ -14,6 +14,9 @@ namespace Polyworks
 		public delegate void SceneChanger(string scene);
 		public event SceneChanger OnChangeScene;
 
+		public delegate void SceneInitializer(string scene);
+		public event SceneInitializer OnSceneInitialized;
+
 		public delegate void IntTaskUpdater(string task, int count);
 		public event IntTaskUpdater OnIntTaskUpdated; 
 		
@@ -56,6 +59,12 @@ namespace Polyworks
 			Debug.Log ("EventCenter/ChangeScene, scene = " + scene + ", OnChangeScene = " + OnChangeScene);
 			if (OnChangeScene != null) {
 				OnChangeScene (scene);
+			}
+		}
+
+		public void SceneInitializationComplete(string scene) {
+			if (OnSceneInitialized != null) {
+				OnSceneInitialized (scene);
 			}
 		}
 
