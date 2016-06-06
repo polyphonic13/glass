@@ -25,31 +25,30 @@ public class Temp : MonoBehaviour {
 
 	public void OnSceneInitialized(string scene) {
 		Debug.Log ("Temp/OnSceneInitialized");
-		_mainCamera = GameObject.Find("main_camera").GetComponent<Camera>();
-		_loadingCamera = GameObject.Find ("loading_camera").GetComponent<Camera>();
-
-		if (_mainCamera != null) {
-			_mainCamera.enabled = true;
-		}
-
-		if (_loadingCamera != null) {
-			_loadingCamera.enabled = false;
-		}
+		_updateCameras (true, false);
 	}
 
-	void Awake() {
-		_mainCamera = GameObject.Find("main_camera").GetComponent<Camera>();
-		_loadingCamera = GameObject.Find ("loading_camera").GetComponent<Camera>();
+	private void Awake() {
 
-		if (_mainCamera != null) {
-			_mainCamera.enabled = false;
-		}
-
-		if (_loadingCamera != null) {
-			_loadingCamera.enabled = true;
-		}
+		_updateCameras (false, true);
 
 		Polyworks.EventCenter.Instance.OnSceneInitialized += OnSceneInitialized;
 
+	}
+
+	private void _updateCameras(bool main, bool loading) {
+		Debug.Log ("Temp/_updateCameras, main = " + main + ", loading = " + loading);
+		GameObject mainCamera = GameObject.Find("main_camera");
+		GameObject loadingCamera = GameObject.Find ("loading_camera");
+
+		if (mainCamera != null) {
+			_mainCamera = mainCamera.GetComponent<Camera>();
+			_mainCamera.enabled = main;
+		}
+
+		if (loadingCamera != null) {
+			_loadingCamera = loadingCamera.GetComponent<Camera>();
+			_loadingCamera.enabled = loading;
+		}
 	}
 }

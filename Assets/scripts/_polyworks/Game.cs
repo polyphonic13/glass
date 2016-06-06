@@ -97,7 +97,11 @@ namespace Polyworks {
 
 		public void Increment() {
 			Instance.gameData.count++;
-			EventCenter.Instance.UpdateIntTask ("countTest", Instance.gameData.count);
+
+			Scene currentScene = SceneManager.GetActiveScene ();
+			if (currentScene.name == "game_control_test02") {
+				EventCenter.Instance.UpdateIntTask ("countTest", Instance.gameData.count);
+			}
 		}
 
 		private void Awake() {
