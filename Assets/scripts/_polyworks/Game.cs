@@ -94,7 +94,7 @@ namespace Polyworks {
 			Scene currentScene = SceneManager.GetActiveScene ();
 
 			if (scene != currentScene.name) {
-				Instance.gameData.items = Inventory.Instance.GetAll ();
+//				Instance.gameData.items = Inventory.Instance.GetAll ();
 				Instance.currentTargetScene = scene;
 
 				SceneController sceneController = GameObject.Find ("scene_controller").GetComponent<SceneController> ();
