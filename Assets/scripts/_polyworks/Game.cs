@@ -17,11 +17,14 @@ namespace Polyworks {
 
 		public string[] playerScenes;
 
+		private Inventory _inventory; 
 		private DataIOController _dataIOController; 
 
 		public static Game Instance;
 
 		public virtual void Init() {
+			_inventory = GetComponent<Inventory> ();
+
 			Scene currentScene = SceneManager.GetActiveScene ();
 			string currentSceneName = currentScene.name;
 
@@ -44,6 +47,8 @@ namespace Polyworks {
 			}
 
 			Instance.gameData.currentScene = currentSceneName; 
+			Hashtable items = Instance.gameData.items;
+			_inventory.Init (items);
 
 			if (_getIsPlayerScene (currentSceneName)) {
 				_initPlayerScene (currentSceneName);
@@ -53,9 +58,16 @@ namespace Polyworks {
 			EventCenter.Instance.OnChangeScene += OnChangeScene;
 		}
 
+		public virtual Inventory GetInventory() {
+			if (_inventory == null) {
+				_inventory = GetComponent<Inventory> ();
+			}
+			return _inventory;
+		}
+
 		public void Save() {
 			Scene currentScene = SceneManager.GetActiveScene ();
-			Instance.gameData.items = Inventory.Instance.GetAll ();
+			Instance.gameData.items = _inventory.GetAll ();
 			Debug.Log ("Game/Save, item count = " + Instance.gameData.items.Count);
 			if (_getIsPlayerScene (currentScene.name)) {
 				SceneController sceneController = GameObject.Find("scene_controller").GetComponent<SceneController> ();
@@ -94,7 +106,7 @@ namespace Polyworks {
 			Scene currentScene = SceneManager.GetActiveScene ();
 
 			if (scene != currentScene.name) {
-//				Instance.gameData.items = Inventory.Instance.GetAll ();
+				Instance.gameData.items = _inventory.GetAll ();
 				Instance.currentTargetScene = scene;
 
 				SceneController sceneController = GameObject.Find ("scene_controller").GetComponent<SceneController> ();
@@ -132,8 +144,8 @@ namespace Polyworks {
 		}
 
 		private void _initPlayerScene(string currentSceneName) {
-			Hashtable items = Instance.gameData.items;
-			Inventory.Instance.Init (items);
+//			Hashtable items = Instance.gameData.items;
+//			_inventory.Init (items);
 
 			SceneController sceneController = GameObject.Find("scene_controller").GetComponent<SceneController> ();
 			sceneController.Init (Instance.gameData);

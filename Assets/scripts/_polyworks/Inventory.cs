@@ -7,39 +7,41 @@ namespace Polyworks {
 	{
 		private Hashtable _items;
 
-		private static Inventory _instance;
-		private Inventory() {}
-
-		public static Inventory Instance {
-			get {
-				if(_instance == null) {
-					_instance = GameObject.FindObjectOfType(typeof(Inventory)) as Inventory;      
-				}
-				return _instance;
-			}
-		}
+//		private static Inventory _instance;
+//		private Inventory() {}
+//
+//		public static Inventory Instance {
+//			get {
+//				if(_instance == null) {
+//					_instance = GameObject.FindObjectOfType(typeof(Inventory)) as Inventory;      
+//				}
+//				return _instance;
+//			}
+//		}
 
 		public void Init(Hashtable items = null) {
-			if (_items == null) {
-				_items = new Hashtable ();
-			}
-			foreach (ItemData item in items.Values) {
-				if (!Contains (item.itemName)) {
-					InsertItem (item);
-				}
-			}
-//			Debug.Log ("Inventory/Init, _items = " + _items + ", items = " + items.Count);
-//			if (items != null && items.Count > 0) {
-////				_items = items as Hashtable;
-//				if (_items.Count > 0) {
-//					foreach(ItemData item in _items.Values) {
-//						InsertItem(item);
-//					}
-//				}
-//			} else {
-//				Debug.Log ("creating new items Hashtable");
+//			Debug.Log ("Inventory/Init");
+//			if (_items == null) {
+//				Debug.Log ("making a new hashtable");
 //				_items = new Hashtable ();
 //			}
+//			foreach (ItemData item in items.Values) {
+//				if (!Contains (item.itemName)) {
+//					InsertItem (item);
+//				}
+//			}
+			Debug.Log ("Inventory/Init, _items = " + _items + ", items = " + items.Count);
+			if (items != null && items.Count > 0) {
+//				_items = items as Hashtable;
+				if (_items.Count > 0) {
+					foreach(ItemData item in _items.Values) {
+						InsertItem(item);
+					}
+				}
+			} else {
+				Debug.Log ("creating new items Hashtable");
+				_items = new Hashtable ();
+			}
 		}
 
 		public virtual void Add(ItemData item) {
@@ -48,9 +50,9 @@ namespace Polyworks {
 		}
 
 		public virtual void InsertItem(ItemData item) {
-			Debug.Log ("Inventory/InsertItem, item.itemName = " + item.itemName + ", has? " + Contains(item.itemName));
+			Debug.Log ("Inventory/InsertItem, item.itemName = " + item.itemName + ", _items = " + _items);
 			_items.Add (item.itemName, item);
-			EventCenter.Instance.AddInventory(item.itemName);
+			EventCenter.Instance.AddInventory (item.itemName);
 		}
 
 		public virtual void Remove(string name) {
