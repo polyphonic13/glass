@@ -56,7 +56,7 @@ namespace Polyworks
 		}
 
 		public void ChangeScene(string scene) {
-			Debug.Log ("EventCenter/ChangeScene, scene = " + scene + ", OnChangeScene = " + OnChangeScene);
+			// Debug.Log ("EventCenter/ChangeScene, scene = " + scene + ", OnChangeScene = " + OnChangeScene);
 			if (OnChangeScene != null) {
 				OnChangeScene (scene);
 			}

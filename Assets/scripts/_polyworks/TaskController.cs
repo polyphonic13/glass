@@ -22,36 +22,44 @@ namespace Polyworks
 
 		#region public methods
 		public void Init(SceneData sceneData, Hashtable taskData) {
-			if (sceneData.intTasks.Length == 0) {
+			Debug.Log ("TaskController/Init, sceneData = " + sceneData + ", taskData = " + taskData);
+			if (sceneData.tasks.intTasks.Length == 0) {
 				_isIntTasksCompleted = true;
 			} else {
 				if (taskData != null && taskData.Contains ("intTasks")) {
 					_intTasks = taskData ["intTasks"] as IntTaskData[];
+					Debug.Log ("taskData intTasks = " + (taskData ["intTasks"]));
 				} else {
-					_intTasks = sceneData.intTasks;
+					_intTasks = sceneData.tasks.intTasks;
 				}
 			}
 
-			if (sceneData.floatTasks.Length == 0) {
+			if (sceneData.tasks.floatTasks.Length == 0) {
 				_isFloatTasksCompleted = true;
 			} else {
 				if (taskData != null && taskData.Contains ("floatTasks")) {
 					_floatTasks = taskData ["floatTasks"] as FloatTaskData[];
 				} else {
-					_floatTasks = sceneData.floatTasks;
+					_floatTasks = sceneData.tasks.floatTasks;
 				}
 			}
 
-			if (sceneData.stringTasks.Length == 0) {
+			if (sceneData.tasks.stringTasks.Length == 0) {
 				_isStringTasksCompleted = true;
 			} else {
 				if (taskData != null && taskData.Contains ("stringTasks")) {
 					_stringTasks = taskData ["stringTasks"] as StringTaskData[];
 				} else {
-					_stringTasks = sceneData.stringTasks;
+					_stringTasks = sceneData.tasks.stringTasks;
 				}
 			}
 
+			if (_intTasks != null) {
+				Debug.Log (" END OF INIT, _intTasks.Length = " + _intTasks.Length);
+				for (int i = 0; i < _intTasks.Length; i++) {
+					Debug.Log ("  _intTasks[" + i + "].name = " + _intTasks [i].name + ", current = " + _intTasks [i].current);
+				}
+			}
 			EventCenter ec = EventCenter.Instance;
 			ec.OnIntTaskUpdated += OnIntTaskUpdated;
 			ec.OnFloatTaskUpdated += OnFloatTaskUpdated;
@@ -59,12 +67,18 @@ namespace Polyworks
 
 		}
 
-		public Hashtable GetData() {
-			Hashtable taskData = new Hashtable ();
-			taskData.Add("intTasks", _intTasks);
-			taskData.Add("floatTasks", _floatTasks);
-			taskData.Add("stringTasks",  _stringTasks);
-			return taskData;
+		public SceneTaskData GetData() {
+			SceneTaskData data = new SceneTaskData ();
+			data.intTasks = _intTasks;
+			data.floatTasks = _floatTasks;
+			data.stringTasks = _stringTasks;
+			Debug.Log ("GET DATA");
+			if (_intTasks != null) {
+				for (int i = 0; i < _intTasks.Length; i++) {
+					Debug.Log ("  _intTasks[" + i + "].name = " + _intTasks [i].name + ", current = " + _intTasks [i].current);
+				}
+			}
+			return data;
 		}
 		#endregion
 
@@ -95,7 +109,6 @@ namespace Polyworks
 		#endregion
 
 		#region private methods
-
 		private TaskData _findTask(TaskData[] tasks, string name) {
 			for(int i = 0; i < tasks.Length; i++) {
 				if(tasks[i].name == name) {
@@ -106,7 +119,7 @@ namespace Polyworks
 		}				
 
 		private void _taskCompleted(TaskData task, TaskData[] tasks, out bool isTypeCompleted) {
-//			Debug.Log ("TaskController/_taskCompleted, task = " + task.name);
+//			// Debug.Log ("TaskController/_taskCompleted, task = " + task.name);
 			task.isCompleted = true;
 
 			isTypeCompleted = true;

@@ -10,7 +10,7 @@ namespace Polyworks {
 					instance = (T) FindObjectOfType(typeof(T));
 					
 					if(instance == null) {
-						Debug.LogError("An instance of " + typeof(T) + " is needed in scene, but not found");
+						// Debug.LogError("An instance of " + typeof(T) + " is needed in scene, but not found");
 					}
 				}
 				return instance;

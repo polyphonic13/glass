@@ -7,8 +7,6 @@ namespace Polyworks {
 		[SerializeField] private SceneData sceneData;
 
 		public void Init(GameData gameData) {
-//			Debug.Log ("SceneController/Init");
-
 			ScenePrefabController scenePrefabController = GetComponent<ScenePrefabController> ();
 			scenePrefabController.Init (sceneData.prefabs, gameData.items);
 
@@ -16,6 +14,8 @@ namespace Polyworks {
 				TaskController taskController = GetComponent<TaskController> ();
 				Hashtable taskData = gameData.tasks [sceneData.sceneName] as Hashtable;
 				taskController.Init (sceneData, taskData);
+			} else {
+				Debug.Log ("SceneController/Init, scene already cleared");
 			}
 
 			EventCenter.Instance.OnSceneTasksCompleted += OnSceneTasksCompleted;
@@ -26,7 +26,7 @@ namespace Polyworks {
 			Game.Instance.gameData.clearedScenes.Add (sceneData.sceneName, true);
 		}
 
-		public Hashtable GetData() {
+		public SceneTaskData GetData() {
 			TaskController taskController = GetComponent<TaskController> ();
 			return taskController.GetData ();
 		}

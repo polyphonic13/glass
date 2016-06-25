@@ -43,6 +43,7 @@ namespace Polyworks {
 			}
 
 			if (Instance.gameData.clearedScenes == null) {
+				Debug.Log ("CLEARED SCENES IS NULL");
 				Instance.gameData.clearedScenes = new Hashtable ();
 			}
 
@@ -129,7 +130,7 @@ namespace Polyworks {
 
 			Scene currentScene = SceneManager.GetActiveScene ();
 			if (currentScene.name == "game_control_test02") {
-				EventCenter.Instance.UpdateIntTask ("countTest", Instance.gameData.count);
+				EventCenter.Instance.UpdateIntTask ("incrementCount", Instance.gameData.count);
 			}
 		}
 
@@ -146,9 +147,6 @@ namespace Polyworks {
 		}
 
 		private void _initPlayerScene(string currentSceneName) {
-//			Hashtable items = Instance.gameData.items;
-//			_inventory.Init (items);
-
 			SceneController sceneController = GameObject.Find("scene_controller").GetComponent<SceneController> ();
 			sceneController.Init (Instance.gameData);
 

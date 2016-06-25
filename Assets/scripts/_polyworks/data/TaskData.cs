@@ -4,16 +4,24 @@ using System.Collections.Generic;
 namespace Polyworks
 {
 	[Serializable]
+	public class SceneTaskData
+	{
+		public IntTaskData[] intTasks; 
+		public FloatTaskData[] floatTasks;
+		public StringTaskData[] stringTasks;
+	}
+
+	[Serializable]
 	public class TaskData
 	{
 		public string name;
-		public bool isCompleted { get; set; }
+		public bool isCompleted = false;
 	}
 
 	[Serializable]
 	public class IntTaskData: TaskData {
 		public int goal;
-		public int current { get; set; }
+		public int current = 0;
 
 		public IntTaskData() {}
 
@@ -30,7 +38,7 @@ namespace Polyworks
 	[Serializable]
 	public class FloatTaskData: TaskData {
 		public float goal;
-		public float current { get; set; }
+		public float current = 0;
 
 		public FloatTaskData() {}
 
@@ -47,7 +55,7 @@ namespace Polyworks
 	[Serializable]
 	public class StringTaskData: TaskData {
 		public string goal;
-		public string current { get; set; }
+		public string current = "";
 
 		public StringTaskData() {}
 
