@@ -20,9 +20,9 @@ namespace Polyworks {
 //		}
 
 		public void Init(Hashtable items = null) {
-//			Debug.Log ("Inventory/Init");
+//			// Debug.Log ("Inventory/Init");
 //			if (_items == null) {
-//				Debug.Log ("making a new hashtable");
+//				// Debug.Log ("making a new hashtable");
 //				_items = new Hashtable ();
 //			}
 //			foreach (ItemData item in items.Values) {
@@ -30,18 +30,22 @@ namespace Polyworks {
 //					InsertItem (item);
 //				}
 //			}
-			Debug.Log ("Inventory/Init, _items = " + _items + ", items = " + items.Count);
+			// Debug.Log ("Inventory/Init, _items = " + _items + ", items = " + items.Count);
+//			if (_items == null) {
+//				_items = new Hashtable ();
+//			}
+
 			if (items != null && items.Count > 0) {
-//				_items = items as Hashtable;
-				if (_items.Count > 0) {
-					foreach(ItemData item in _items.Values) {
-						InsertItem(item);
-					}
-				}
-			} else {
-				Debug.Log ("creating new items Hashtable");
+				_items = items as Hashtable;
+//				if (_items.Count > 0) {
+//					foreach(ItemData item in _items.Values) {
+//						InsertItem(item);
+//					}
+//				}
+			} else if (_items == null) {
 				_items = new Hashtable ();
 			}
+			// Debug.Log ("end of inventory init, _items.Count = " + _items.Count);
 		}
 
 		public virtual void Add(ItemData item) {
@@ -50,7 +54,7 @@ namespace Polyworks {
 		}
 
 		public virtual void InsertItem(ItemData item) {
-			Debug.Log ("Inventory/InsertItem, item.itemName = " + item.itemName + ", _items = " + _items);
+			// Debug.Log ("Inventory/InsertItem, item.itemName = " + item.itemName + ", _items = " + _items);
 			_items.Add (item.itemName, item);
 			EventCenter.Instance.AddInventory (item.itemName);
 		}
@@ -71,6 +75,7 @@ namespace Polyworks {
 		}
 
 		public Hashtable GetAll() {
+			// Debug.Log ("Inventory/GetAll, _items.Count = " + _items.Count);
 			return _items;
 		}
 	}

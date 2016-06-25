@@ -38,7 +38,7 @@ namespace Polyworks {
 			}
 
 			if (Instance.gameData.items == null) {
-				Debug.Log ("have to make a new hashtable for Instance.gameData.items");
+				// Debug.Log ("have to make a new hashtable for Instance.gameData.items");
 				Instance.gameData.items = new Hashtable ();
 			}
 
@@ -68,7 +68,7 @@ namespace Polyworks {
 		public void Save() {
 			Scene currentScene = SceneManager.GetActiveScene ();
 			Instance.gameData.items = _inventory.GetAll ();
-			Debug.Log ("Game/Save, item count = " + Instance.gameData.items.Count);
+			// Debug.Log ("Game/Save, item count = " + Instance.gameData.items.Count);
 			if (_getIsPlayerScene (currentScene.name)) {
 				SceneController sceneController = GameObject.Find("scene_controller").GetComponent<SceneController> ();
 				Instance.gameData.tasks [currentScene.name] = sceneController.GetData ();
@@ -78,17 +78,18 @@ namespace Polyworks {
 
 		public void Load() {
 			GameData data = _dataIOController.Load (Application.persistentDataPath + "/" + dataFilename);
-			Debug.Log ("post load");
+			// Debug.Log ("post load");
 			if (data != null) {
 				Instance.gameData = data;
-				Debug.Log ("loaded count = " + data.count + ", items  = " + data.items.Count);
+				// Debug.Log ("loaded count = " + data.count + ", items  = " + data.items.Count);
+				_inventory.Init (data.items);
 //				Scene currentScene = SceneManager.GetActiveScene ();
 //				string currentSceneName = currentScene.name;
 //				if (data.currentScene != "" && data.currentScene != currentSceneName) {
-//					Debug.Log ("switching to last scene");
+//					// Debug.Log ("switching to last scene");
 //					ChangeScene (data.currentScene);
 //				} else if (_getIsPlayerScene (currentSceneName)) {
-//					Debug.Log ("(re)initializing player scene, items count = " + Instance.gameData.items.Count);
+//					// Debug.Log ("(re)initializing player scene, items count = " + Instance.gameData.items.Count);
 //					_initPlayerScene (currentSceneName);
 //				}
 				if (data.currentScene != "") {
@@ -102,11 +103,12 @@ namespace Polyworks {
 		}
 
 		public void ChangeScene(string scene) {
-			Debug.Log ("Game/ChangeScene, scene = " + scene + ", gameData.items.Count = " + Instance.gameData.items.Count);
+			// Debug.Log ("Game/ChangeScene, scene = " + scene + ", gameData.items.Count = " + Instance.gameData.items.Count);
 			Scene currentScene = SceneManager.GetActiveScene ();
 
 			if (scene != currentScene.name) {
 				Instance.gameData.items = _inventory.GetAll ();
+				// Debug.Log ("items.Count now = " + Instance.gameData.items.Count);
 				Instance.currentTargetScene = scene;
 
 				SceneController sceneController = GameObject.Find ("scene_controller").GetComponent<SceneController> ();
@@ -133,11 +135,11 @@ namespace Polyworks {
 
 		private void Awake() {
 			if(Instance == null) {
-				Debug.Log ("THIS is the instance");
+				// Debug.Log ("THIS is the instance");
 				DontDestroyOnLoad(gameObject);
 				Instance = this;
 			} else if(this != Instance) {
-				Debug.Log ("this is NOT the instance, items count = ");
+				// Debug.Log ("this is NOT the instance, items count = ");
 				Destroy(gameObject);
 			}
 			Init ();
