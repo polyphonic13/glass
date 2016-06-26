@@ -8,11 +8,10 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 409092}
-  - 114: {fileID: 11421826}
-  - 114: {fileID: 11453534}
-  - 114: {fileID: 11400088}
+  - 114: {fileID: 11494250}
+  - 114: {fileID: 11458178}
   m_Layer: 0
-  m_Name: scene_controller
+  m_Name: level_controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +29,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!114 &11400088
+--- !u!114 &11458178
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -41,7 +40,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d8ded5dd415d4566b882838136055d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &11421826
+--- !u!114 &11494250
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -49,28 +48,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 162112}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: caddb8f8caf884150a96de0fd58a1fde, type: 3}
+  m_Script: {fileID: 11500000, guid: 3d67ed5c135054bf9a4453fb9d112ccc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sceneData:
-    sceneName: game_control_test01
-    isPlayerLevel: 1
-    isCleared: 0
-    prefabs:
-    - name: items/wooden_cube
-      location: {x: 1, y: 1, z: -10}
-      rotation: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &11453534
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 162112}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4a8bb1864e5d4a688390b742006e35a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+    sceneName: game_control_test00
+    prefabs: []
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

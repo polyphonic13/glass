@@ -178,9 +178,35 @@ Prefab:
       propertyPath: sceneData.prefabs.Array.data[0].path
       value: items/wooden_cube
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11400088, guid: 811005ab4c6954152a4162869ef2c947, type: 2}
+    - {fileID: 11453534, guid: 811005ab4c6954152a4162869ef2c947, type: 2}
+    - {fileID: 11421826, guid: 811005ab4c6954152a4162869ef2c947, type: 2}
+    - {fileID: 11494250, guid: 811005ab4c6954152a4162869ef2c947, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 811005ab4c6954152a4162869ef2c947, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &520828731 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 162112, guid: 811005ab4c6954152a4162869ef2c947, type: 2}
+  m_PrefabInternal: {fileID: 520828730}
+--- !u!114 &520828732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 520828731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d67ed5c135054bf9a4453fb9d112ccc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneData:
+    sceneName: game_control_test01
+    prefabs:
+    - name: wooden_cube
+      path: items/wooden_cube
+      location: {x: 1, y: 1, z: -10}
+      rotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &706752332
 GameObject:
   m_ObjectHideFlags: 0

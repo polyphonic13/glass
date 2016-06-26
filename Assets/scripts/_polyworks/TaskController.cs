@@ -9,9 +9,7 @@ namespace Polyworks
 	public class TaskController: MonoBehaviour
 	{
 		#region members
-		private IntTaskData[] _intTasks;
-		private FloatTaskData[] _floatTasks;
-		private StringTaskData[] _stringTasks;
+		private LevelTaskData _tasks;
 
 		private bool _isIntTasksCompleted = false; 
 		private bool _isFloatTasksCompleted = false; 
@@ -21,89 +19,60 @@ namespace Polyworks
 		#endregion
 
 		#region public methods
-		public void Init(SceneData sceneData, Hashtable taskData) {
-			Debug.Log ("TaskController/Init, sceneData = " + sceneData + ", taskData = " + taskData);
-			if (sceneData.tasks.intTasks.Length == 0) {
+		public void Init(LevelTaskData tasks) {
+			// Debug.Log ("TaskController/Init, tasks = " + tasks);
+			_tasks = tasks;
+
+			if (_tasks.intTasks.Length == 0) {
 				_isIntTasksCompleted = true;
-			} else {
-				if (taskData != null && taskData.Contains ("intTasks")) {
-					_intTasks = taskData ["intTasks"] as IntTaskData[];
-					Debug.Log ("taskData intTasks = " + (taskData ["intTasks"]));
-				} else {
-					_intTasks = sceneData.tasks.intTasks;
-				}
 			}
-
-			if (sceneData.tasks.floatTasks.Length == 0) {
+			if (_tasks.floatTasks.Length == 0) {
 				_isFloatTasksCompleted = true;
-			} else {
-				if (taskData != null && taskData.Contains ("floatTasks")) {
-					_floatTasks = taskData ["floatTasks"] as FloatTaskData[];
-				} else {
-					_floatTasks = sceneData.tasks.floatTasks;
-				}
 			}
-
-			if (sceneData.tasks.stringTasks.Length == 0) {
+			if (_tasks.stringTasks.Length == 0) {
 				_isStringTasksCompleted = true;
-			} else {
-				if (taskData != null && taskData.Contains ("stringTasks")) {
-					_stringTasks = taskData ["stringTasks"] as StringTaskData[];
-				} else {
-					_stringTasks = sceneData.tasks.stringTasks;
-				}
 			}
 
-			if (_intTasks != null) {
-				Debug.Log (" END OF INIT, _intTasks.Length = " + _intTasks.Length);
-				for (int i = 0; i < _intTasks.Length; i++) {
-					Debug.Log ("  _intTasks[" + i + "].name = " + _intTasks [i].name + ", current = " + _intTasks [i].current);
-				}
-			}
 			EventCenter ec = EventCenter.Instance;
 			ec.OnIntTaskUpdated += OnIntTaskUpdated;
 			ec.OnFloatTaskUpdated += OnFloatTaskUpdated;
 			ec.OnStringTaskUpdated += OnStringTaskUpdated;
-
 		}
 
-		public SceneTaskData GetData() {
-			SceneTaskData data = new SceneTaskData ();
-			data.intTasks = _intTasks;
-			data.floatTasks = _floatTasks;
-			data.stringTasks = _stringTasks;
-			Debug.Log ("GET DATA");
-			if (_intTasks != null) {
-				for (int i = 0; i < _intTasks.Length; i++) {
-					Debug.Log ("  _intTasks[" + i + "].name = " + _intTasks [i].name + ", current = " + _intTasks [i].current);
-				}
-			}
-			return data;
+		public void Cleanup() {
+			EventCenter ec = EventCenter.Instance;
+			ec.OnIntTaskUpdated -= OnIntTaskUpdated;
+			ec.OnFloatTaskUpdated -= OnFloatTaskUpdated;
+			ec.OnStringTaskUpdated -= OnStringTaskUpdated;
 		}
 		#endregion
 
 		#region handlers
 		public void OnIntTaskUpdated(string name, int value) {
-			IntTaskData task = _findTask (_intTasks, name) as IntTaskData;
-			task.current = value;
-			if (task.current == task.goal) {
-				_taskCompleted (task, _intTasks, out _isIntTasksCompleted);
+			// Debug.Log ("TaskController/OnIntTaskUpdated, name = " + name + ", value = " + value);
+			IntTaskData task = _findTask (_tasks.intTasks, name) as IntTaskData;
+			if (task != null) {
+				// Debug.Log (" task = " + task + ", goal = " + task.goal);
+				task.current = value;
+				if (task.current == task.goal) {
+					_taskCompleted (task, _tasks.intTasks, out _isIntTasksCompleted);
+				}
 			}
 		}
 
 		public void OnFloatTaskUpdated(string name, float value) {
-			FloatTaskData task = _findTask (_floatTasks, name) as FloatTaskData;
+			FloatTaskData task = _findTask (_tasks.floatTasks, name) as FloatTaskData;
 			task.current = value;
 			if (task.current == task.goal) {
-				_taskCompleted (task, _floatTasks, out _isFloatTasksCompleted);
+				_taskCompleted (task, _tasks.floatTasks, out _isFloatTasksCompleted);
 			}
 		}
 
 		public void OnStringTaskUpdated(string name, string value) {
-			StringTaskData task = _findTask (_stringTasks, name) as StringTaskData;
+			StringTaskData task = _findTask (_tasks.stringTasks, name) as StringTaskData;
 			task.current = value;
 			if (task.current == task.goal) {
-				_taskCompleted (task, _stringTasks, out _isStringTasksCompleted);
+				_taskCompleted (task, _tasks.stringTasks, out _isStringTasksCompleted);
 			}
 		}
 		#endregion
@@ -119,7 +88,7 @@ namespace Polyworks
 		}				
 
 		private void _taskCompleted(TaskData task, TaskData[] tasks, out bool isTypeCompleted) {
-//			// Debug.Log ("TaskController/_taskCompleted, task = " + task.name);
+			// Debug.Log ("TaskController/_taskCompleted, task = " + task.name);
 			task.isCompleted = true;
 
 			isTypeCompleted = true;
@@ -129,17 +98,13 @@ namespace Polyworks
 					break;
 				}
 			}
-
-			if (isTypeCompleted) {
-				_allTasksCompletedCheck ();
+			// Debug.Log (" isTypeCompleted = " + isTypeCompleted);
+			if (isTypeCompleted && _isIntTasksCompleted && _isFloatTasksCompleted && _isStringTasksCompleted) {
+				// Debug.Log ("TaskController/_allTasksCompletedCheck");
+				EventCenter.Instance.UpdateLevelTasksCompleted ();
 			}
 		}
 
-		private void _allTasksCompletedCheck() {
-			if (_isIntTasksCompleted && _isFloatTasksCompleted && _isStringTasksCompleted) {
-				EventCenter.Instance.UpdateSceneTasksCompleted ();
-			}
-		}
 		#endregion
 	}
 

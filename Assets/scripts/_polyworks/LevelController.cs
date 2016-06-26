@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace Polyworks {
-	public class SceneController : Singleton<SceneController>
+namespace Polyworks
+{
+	public class LevelController : Singleton<SceneController>
 	{
 		[SerializeField] private SceneData sceneData;
 
@@ -10,11 +11,15 @@ namespace Polyworks {
 //			ScenePrefabController scenePrefabController = GetComponent<ScenePrefabController> ();
 			ScenePrefabController.Init (sceneData.prefabs, gameData.items);
 			bool isCleared = LevelUtils.GetIsCleared (sceneData.sceneName, Game.Instance.gameData.levels);
-			// Debug.Log ("SceneController/Init, isCleared = " + isCleared);
+			// Debug.Log ("LevelController/Init, isCleared = " + isCleared);
 			if (!isCleared) {
 				TaskController taskController = GetComponent<TaskController> ();
-				Hashtable taskData = gameData.tasks [sceneData.sceneName] as Hashtable;
-//				taskController.Init (sceneData, taskData);
+				LevelData level = LevelUtils.GetLevel (sceneData.sceneName, gameData.levels);
+				if (level != null) {
+					// Debug.Log (" level not null, going to init task controller");
+					LevelTaskData taskData = level.tasks as LevelTaskData;
+					taskController.Init (taskData);
+				}
 			} else {
 				// Debug.Log (" scene already cleared");
 			}
@@ -23,14 +28,16 @@ namespace Polyworks {
 		}
 
 		public void OnLevelTasksCompleted() {
-			// Debug.Log ("SceneController/OnLevelTasksCompleted");
+			// Debug.Log ("LevelController/OnLevelTasksCompleted, sceneData.sceneName = " + sceneData.sceneName);
 			LevelUtils.SetIsCleared (sceneData.sceneName, Game.Instance.gameData.levels);
 		}
 
-//		public LevelTaskData GetData() {
-//			TaskController taskController = GetComponent<TaskController> ();
-//			return taskController.GetData ();
-//		}
+		public void Cleanup() {
+			EventCenter.Instance.OnLevelTasksCompleted -= OnLevelTasksCompleted;
+
+			TaskController taskController = GetComponent<TaskController> ();
+			taskController.Cleanup ();
+		}
 	}
 }
 

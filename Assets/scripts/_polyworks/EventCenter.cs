@@ -26,8 +26,8 @@ namespace Polyworks
 		public delegate void StringTaskUpdater(string task, string goal);
 		public event StringTaskUpdater OnStringTaskUpdated;
 			
-		public delegate void SceneTasksCompleteNotifier ();
-		public event SceneTasksCompleteNotifier OnSceneTasksCompleted;
+		public delegate void LevelTasksCompleteNotifier ();
+		public event LevelTasksCompleteNotifier OnLevelTasksCompleted;
 
 		#region singleton
 		private static EventCenter _instance;
@@ -86,9 +86,9 @@ namespace Polyworks
 			}
 		}
 
-		public void UpdateSceneTasksCompleted() {
-			if (OnSceneTasksCompleted != null) {
-				OnSceneTasksCompleted ();
+		public void UpdateLevelTasksCompleted() {
+			if (OnLevelTasksCompleted != null) {
+				OnLevelTasksCompleted ();
 			}
 		}
 	}

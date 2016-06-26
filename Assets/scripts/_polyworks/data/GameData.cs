@@ -12,6 +12,7 @@ namespace Polyworks {
 		public Hashtable items;
 
 		public Hashtable clearedScenes;
+		public LevelData[] levels; 
 
 		/*
 		 * tasks = {
@@ -25,5 +26,6 @@ namespace Polyworks {
 		 * }
 		 */
 	}
+
 }
 

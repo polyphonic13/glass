@@ -224,9 +224,39 @@ Prefab:
       propertyPath: sceneData.tasks.intTasks.Array.data[0].goal
       value: 5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11453534, guid: 811005ab4c6954152a4162869ef2c947, type: 2}
+    - {fileID: 11400088, guid: 811005ab4c6954152a4162869ef2c947, type: 2}
+    - {fileID: 11421826, guid: 811005ab4c6954152a4162869ef2c947, type: 2}
+    - {fileID: 11494250, guid: 811005ab4c6954152a4162869ef2c947, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 811005ab4c6954152a4162869ef2c947, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &73036 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 162112, guid: 811005ab4c6954152a4162869ef2c947, type: 2}
+  m_PrefabInternal: {fileID: 73035}
+--- !u!114 &73037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 73036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d67ed5c135054bf9a4453fb9d112ccc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneData:
+    sceneName: game_control_test02
+    prefabs:
+    - name: wallpaper_sphere
+      path: items/wallpaper_sphere
+      location: {x: -5, y: 1, z: -3}
+      rotation: {x: 0, y: 0, z: 0, w: 0}
+    - name: brick_cube
+      path: items/brick_cube
+      location: {x: 3, y: 1, z: -6}
+      rotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &359950254
 GameObject:
   m_ObjectHideFlags: 0
@@ -320,6 +350,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11439898, guid: 64a1d9da74ce64b7f8bfe91e743cd4c0, type: 2}
+      propertyPath: gameData.levels.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 419950, guid: 64a1d9da74ce64b7f8bfe91e743cd4c0, type: 2}
       propertyPath: m_LocalPosition.x
       value: -659.3914

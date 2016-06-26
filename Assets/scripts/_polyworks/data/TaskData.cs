@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Polyworks
 {
 	[Serializable]
-	public class SceneTaskData
+	public class LevelTaskData
 	{
 		public IntTaskData[] intTasks; 
 		public FloatTaskData[] floatTasks;

@@ -7,9 +7,6 @@ namespace Polyworks
 	public class SceneData
 	{
 		public string sceneName;
-		public bool isPlayerLevel;
-
-		public SceneTaskData tasks; 
 
 		public Prefab[] prefabs;
 

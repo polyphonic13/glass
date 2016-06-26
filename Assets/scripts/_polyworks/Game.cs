@@ -15,8 +15,6 @@ namespace Polyworks {
 
 		public bool isCursorless = true;
 
-		public string[] playerScenes;
-
 		private Inventory _inventory; 
 		private DataIOController _dataIOController; 
 
@@ -43,7 +41,7 @@ namespace Polyworks {
 			}
 
 			if (Instance.gameData.clearedScenes == null) {
-				Debug.Log ("CLEARED SCENES IS NULL");
+				// Debug.Log ("CLEARED SCENES IS NULL");
 				Instance.gameData.clearedScenes = new Hashtable ();
 			}
 
@@ -51,8 +49,8 @@ namespace Polyworks {
 			Hashtable items = Instance.gameData.items;
 			_inventory.Init (items);
 
-			if (_getIsPlayerScene (currentSceneName)) {
-				_initPlayerScene (currentSceneName);
+			if (_getIsLevel(currentSceneName)) {
+				_initLevel (currentSceneName);
 			} else {
 				EventCenter.Instance.SceneInitializationComplete (currentSceneName);
 			}
@@ -70,10 +68,10 @@ namespace Polyworks {
 			Scene currentScene = SceneManager.GetActiveScene ();
 			Instance.gameData.items = _inventory.GetAll ();
 			// Debug.Log ("Game/Save, item count = " + Instance.gameData.items.Count);
-			if (_getIsPlayerScene (currentScene.name)) {
-				SceneController sceneController = GameObject.Find("scene_controller").GetComponent<SceneController> ();
-				Instance.gameData.tasks [currentScene.name] = sceneController.GetData ();
-			}
+//			if (_getIsLevel(currentScene.name)) {
+//				SceneController sceneController = GameObject.Find("scene_controller").GetComponent<SceneController> ();
+//				Instance.gameData.tasks [currentScene.name] = sceneController.GetData ();
+//			}
 			_dataIOController.Save (Application.persistentDataPath + "/" + dataFilename, Instance.gameData);
 		}
 
@@ -91,7 +89,7 @@ namespace Polyworks {
 //					ChangeScene (data.currentScene);
 //				} else if (_getIsPlayerScene (currentSceneName)) {
 //					// Debug.Log ("(re)initializing player scene, items count = " + Instance.gameData.items.Count);
-//					_initPlayerScene (currentSceneName);
+//					_initLevel (currentSceneName);
 //				}
 				if (data.currentScene != "") {
 					ChangeScene (data.currentScene);
@@ -111,13 +109,15 @@ namespace Polyworks {
 				Instance.gameData.items = _inventory.GetAll ();
 				// Debug.Log ("items.Count now = " + Instance.gameData.items.Count);
 				Instance.currentTargetScene = scene;
+				LevelController levelController = GameObject.Find("level_controller").GetComponent<LevelController>();
+				levelController.Cleanup();
 
-				SceneController sceneController = GameObject.Find ("scene_controller").GetComponent<SceneController> ();
-				Instance.gameData.tasks [currentScene.name] = sceneController.GetData ();
+//				SceneController sceneController = GameObject.Find ("scene_controller").GetComponent<SceneController> ();
+//				Instance.gameData.tasks [currentScene.name] = sceneController.GetData ();
 
 				_loadScene (scene);
-			} else if (_getIsPlayerScene (currentScene.name)) {
-				_initPlayerScene (currentScene.name);
+			} else if (_getIsLevel (currentScene.name)) {
+				_initLevel (currentScene.name);
 			}
 		}
 
@@ -146,10 +146,11 @@ namespace Polyworks {
 			Init ();
 		}
 
-		private void _initPlayerScene(string currentSceneName) {
-			SceneController sceneController = GameObject.Find("scene_controller").GetComponent<SceneController> ();
-			sceneController.Init (Instance.gameData);
-
+		private void _initLevel(string currentSceneName) {
+//			SceneController sceneController = GameObject.Find("scene_controller").GetComponent<SceneController> ();
+//			sceneController.Init (Instance.gameData);
+			LevelController levelController = GameObject.Find("level_controller").GetComponent<LevelController>();
+			levelController.Init (Instance.gameData);
 			EventCenter.Instance.SceneInitializationComplete (currentSceneName);
 		}
 
@@ -157,14 +158,8 @@ namespace Polyworks {
 			SceneManager.LoadScene (scene);
 		}
 
-		private bool _getIsPlayerScene(string sceneName) {
-			string[] playerScenes = Instance.playerScenes;
-			for (int i = 0; i < playerScenes.Length; i++) {
-				if (sceneName == playerScenes [i]) {
-					return true;
-				}
-			}
-			return false;
+		private bool _getIsLevel(string sceneName) {
+			return LevelUtils.Has (sceneName, Instance.gameData.levels);
 		}
 	}
 }
