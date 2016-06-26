@@ -53,17 +53,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameData:
-    objectName: serialized_data
     currentScene: 
     count: 0
+    levels:
+    - name: game_control_test02
+      isCleared: 0
+      tasks:
+        intTasks:
+        - name: incrementCount
+          isCompleted: 0
+          goal: 5
+          current: 0
+        floatTasks: []
+        stringTasks:
+        - name: itemCollection
+          isCompleted: 0
+          goal: wallpaper_sphere(Clone)
+          current: 
+        - name: itemCollection
+          isCompleted: 0
+          goal: brick_cube(Clone)
+          current: 
+    - name: game_control_test01
+      isCleared: 0
+      tasks:
+        intTasks: []
+        floatTasks: []
+        stringTasks:
+        - name: itemCollection
+          isCompleted: 0
+          goal: wooden_cube01(Clone)
+          current: 
   dataFilename: glass.dat
   currentTargetScene: 
-  loadingScene: loading
-  loadingScenePause: 1
   isCursorless: 0
-  playerScenes:
-  - game_control_test01
-  - game_control_test02
 --- !u!114 &11460078
 MonoBehaviour:
   m_ObjectHideFlags: 1

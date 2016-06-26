@@ -3,7 +3,7 @@ using System.Collections;
 
 namespace Polyworks
 {
-	public class LevelController : Singleton<SceneController>
+	public class LevelController : Singleton<LevelController>
 	{
 		[SerializeField] private SceneData sceneData;
 

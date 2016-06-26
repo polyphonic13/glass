@@ -67,30 +67,15 @@ namespace Polyworks {
 		public void Save() {
 			Scene currentScene = SceneManager.GetActiveScene ();
 			Instance.gameData.items = _inventory.GetAll ();
-			// Debug.Log ("Game/Save, item count = " + Instance.gameData.items.Count);
-//			if (_getIsLevel(currentScene.name)) {
-//				SceneController sceneController = GameObject.Find("scene_controller").GetComponent<SceneController> ();
-//				Instance.gameData.tasks [currentScene.name] = sceneController.GetData ();
-//			}
 			_dataIOController.Save (Application.persistentDataPath + "/" + dataFilename, Instance.gameData);
 		}
 
 		public void Load() {
 			GameData data = _dataIOController.Load (Application.persistentDataPath + "/" + dataFilename);
-			// Debug.Log ("post load");
 			if (data != null) {
 				Instance.gameData = data;
-				// Debug.Log ("loaded count = " + data.count + ", items  = " + data.items.Count);
+
 				_inventory.Init (data.items);
-//				Scene currentScene = SceneManager.GetActiveScene ();
-//				string currentSceneName = currentScene.name;
-//				if (data.currentScene != "" && data.currentScene != currentSceneName) {
-//					// Debug.Log ("switching to last scene");
-//					ChangeScene (data.currentScene);
-//				} else if (_getIsPlayerScene (currentSceneName)) {
-//					// Debug.Log ("(re)initializing player scene, items count = " + Instance.gameData.items.Count);
-//					_initLevel (currentSceneName);
-//				}
 				if (data.currentScene != "") {
 					ChangeScene (data.currentScene);
 				} else {
@@ -107,14 +92,9 @@ namespace Polyworks {
 
 			if (scene != currentScene.name) {
 				Instance.gameData.items = _inventory.GetAll ();
-				// Debug.Log ("items.Count now = " + Instance.gameData.items.Count);
 				Instance.currentTargetScene = scene;
 				LevelController levelController = GameObject.Find("level_controller").GetComponent<LevelController>();
 				levelController.Cleanup();
-
-//				SceneController sceneController = GameObject.Find ("scene_controller").GetComponent<SceneController> ();
-//				Instance.gameData.tasks [currentScene.name] = sceneController.GetData ();
-
 				_loadScene (scene);
 			} else if (_getIsLevel (currentScene.name)) {
 				_initLevel (currentScene.name);
@@ -136,19 +116,15 @@ namespace Polyworks {
 
 		private void Awake() {
 			if(Instance == null) {
-				// Debug.Log ("THIS is the instance");
 				DontDestroyOnLoad(gameObject);
 				Instance = this;
 			} else if(this != Instance) {
-				// Debug.Log ("this is NOT the instance, items count = ");
 				Destroy(gameObject);
 			}
 			Init ();
 		}
 
 		private void _initLevel(string currentSceneName) {
-//			SceneController sceneController = GameObject.Find("scene_controller").GetComponent<SceneController> ();
-//			sceneController.Init (Instance.gameData);
 			LevelController levelController = GameObject.Find("level_controller").GetComponent<LevelController>();
 			levelController.Init (Instance.gameData);
 			EventCenter.Instance.SceneInitializationComplete (currentSceneName);

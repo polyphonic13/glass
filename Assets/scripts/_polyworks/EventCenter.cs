@@ -68,9 +68,9 @@ namespace Polyworks
 			}
 		}
 
-		public void UpdateIntTask(string task, int count) {
+		public void UpdateIntTask(string task, int value) {
 			if(OnIntTaskUpdated != null) {
-				OnIntTaskUpdated(task, count);
+				OnIntTaskUpdated(task, value);
 			}
 		}
 
@@ -80,9 +80,9 @@ namespace Polyworks
 			}
 		}
 
-		public void UpdateStringTask(string task, string goal) {
+		public void UpdateStringTask(string task, string value) {
 			if(OnStringTaskUpdated != null) {
-				OnStringTaskUpdated(task, goal);
+				OnStringTaskUpdated(task, value);
 			}
 		}
 
