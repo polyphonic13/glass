@@ -37,13 +37,13 @@ public class InventoryUI : MonoBehaviour {
 
 //	private bool wasJustClosed = true;
 
-    public void OnInventoryAdded(string itemName) {
+	public void OnInventoryAdded(string itemName, int count) {
 		if (itemName != "flashlight") {
 			_setItem (itemName);	
 		}
     }
 
-	public void OnInventoryRemoved(string itemName) {
+	public void OnInventoryRemoved(string itemName, int count) {
 		_resetItems(itemName);
 	}
 

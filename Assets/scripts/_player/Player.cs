@@ -134,8 +134,8 @@ namespace UnitySampleAssets.Characters.FirstPerson
 			_closeInventoryUI();
 		}
 
-		public void OnInventoryItemAdded(string name) {
-//			Debug.Log ("OnInventoryItemAdded, name = " + name);
+		public void OnInventoryChanged(string name, int count) {
+//			Debug.Log ("OnInventoryChanged, name = " + name);
 			if (name == "flashlight") {
 				_hasFlashlight = true;
 			}
@@ -194,8 +194,8 @@ namespace UnitySampleAssets.Characters.FirstPerson
 			ec.OnInspectItem += OnInspectItem;
 			ec.OnCloseInventoryUI += OnCloseInventoryUI;
 			ec.OnCloseMenuUI += OnCloseMenuUI;
-			ec.OnInventoryAdded += OnInventoryItemAdded;
-			ec.OnInventoryRemoved += OnInventoryItemAdded;
+			ec.OnInventoryAdded += OnInventoryChanged;
+			ec.OnInventoryRemoved += OnInventoryChanged;
 		}
 		#endregion
 

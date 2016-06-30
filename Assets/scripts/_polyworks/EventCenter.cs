@@ -5,8 +5,11 @@ namespace Polyworks
 {
 	public class EventCenter: MonoBehaviour
 	{
-		public delegate void InventoryAdder(string item);
+		public delegate void InventoryAdder(string item, int count);
 		public event InventoryAdder OnInventoryAdded;
+
+		public delegate void InventoryRemover(string item, int count);
+		public event InventoryRemover OnInventoryRemoved;
 
 		public delegate void NoteAdder(string message);
 		public event NoteAdder OnNoteAdded;
@@ -43,9 +46,16 @@ namespace Polyworks
 		}
 		#endregion
 
-		public void AddInventory(string item) {
+		public void InventoryAdded(string item, int count) {
+			Debug.Log ("EventCenter/InventoryAdded, item = " + item + ", count = " + count);
 			if (OnInventoryAdded != null) {
-				OnInventoryAdded (item);
+				OnInventoryAdded (item, count);
+			}
+		}
+
+		public void InventoryRemoved(string item, int count) {
+			if(OnInventoryRemoved != null) {
+				OnInventoryRemoved(item, count);
 			}
 		}
 

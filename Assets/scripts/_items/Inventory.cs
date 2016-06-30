@@ -23,7 +23,7 @@ public class Inventory : MonoBehaviour {
 //			Debug.Log("_items.Count = " + _items.Count);
 //			if (_items.Count > 0) {
 //				foreach(CollectableItem item in _items.Values) {
-//					EventCenter.Instance.AddInventory(item.name);
+//					EventCenter.Instance.InventoryAdded(item.name);
 //				}
 //			}
 //		} else {
@@ -71,7 +71,7 @@ public class Inventory : MonoBehaviour {
 			item.Collect();
 			
 			EventCenter.Instance.AddNote(message);
-			EventCenter.Instance.AddInventory(item.name);
+			EventCenter.Instance.InventoryAdded(item.name, 1);
 		} else {
 			isAdded = false;
 			EventCenter.Instance.AddNote("No more room for: " + item.data.itemName);
@@ -109,7 +109,7 @@ public class Inventory : MonoBehaviour {
 //			item.isCollected = false;
 			item.Drop(useGravity);
 			_items.Remove(key);
-			EventCenter.Instance.RemoveInventory(item.name);
+			EventCenter.Instance.InventoryRemoved(item.name, 1);
 		}
 	}
 

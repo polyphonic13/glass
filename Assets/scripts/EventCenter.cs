@@ -20,8 +20,8 @@ public class EventCenter : MonoBehaviour {
 
 	public delegate void ActuateHandler(string name); 
 
-	public delegate void InventoryAdder(string item);
-	public delegate void InventoryRemover(string item);
+	public delegate void InventoryAdder(string item, int count);
+	public delegate void InventoryRemover(string item, int count);
 	public delegate void InventoryIncrementer(string item);
 	
 	public delegate void TriggerEventHandler(string evt);
@@ -157,15 +157,15 @@ public class EventCenter : MonoBehaviour {
 		}
 	}
 
-	public void AddInventory(string item) {
+	public void InventoryAdded(string item, int count) {
 		if(OnInventoryAdded != null) {
-			OnInventoryAdded(item);
+			OnInventoryAdded(item, count);
 		}
 	}
 
-	public void RemoveInventory(string item) {
+	public void InventoryRemoved(string item, int count) {
 		if(OnInventoryRemoved != null) {
-			OnInventoryRemoved(item);
+			OnInventoryRemoved(item, count);
 		}
 	}
 

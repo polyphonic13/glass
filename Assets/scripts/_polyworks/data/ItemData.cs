@@ -16,6 +16,8 @@ namespace Polyworks
 		public bool isDroppable = false; 
 		public bool isUsable = false;
 
+		public int count = 0;
+
 		public ItemData () {}
 
 		public virtual ItemData Clone() {
@@ -29,7 +31,8 @@ namespace Polyworks
 			clone.isCollected = this.isCollected;
 			clone.isDroppable = this.isDroppable;
 			clone.isUsable = this.isUsable;
-			
+
+			clone.count = this.count;
 			return clone;
 		}
 	}
