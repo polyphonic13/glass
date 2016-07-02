@@ -11,6 +11,7 @@ namespace Polyworks
 	public struct Prefab {
 		public string name;
 		public string path;
+		public string addTo;
 		public Vector3 location;
 		public Quaternion rotation;
 	}
