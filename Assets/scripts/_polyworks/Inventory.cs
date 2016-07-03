@@ -31,8 +31,10 @@ namespace Polyworks {
 			EventCenter.Instance.InventoryAdded (item.itemName, item.count);
 		}
 
-		public virtual void Remove(string name) {
-			if (Contains (name)) {
+		public virtual GameObject Remove(string name) {
+			if (!Contains (name)) {
+				return null;
+			} else {
 				var data = _items [name] as ItemData;
 
 				if (data != null && data.count > 0) {
@@ -43,9 +45,12 @@ namespace Polyworks {
 					}
 					if (data.isDroppable && data.prefabName != null) {
 						GameObject itemObject = (GameObject) Instantiate (Resources.Load(data.prefabName, typeof(GameObject)), transform.position, transform.rotation);
+						return itemObject;
+					} else {
+						return null;
 					}
 				}
-			}
+			} 
 		}
 
 		public bool Contains(string key) {
