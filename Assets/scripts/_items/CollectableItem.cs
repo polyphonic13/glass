@@ -23,7 +23,8 @@ public class CollectableItem : Item {
 	}
 
 	public void AddToInventory() {
-		var isAdded = Inventory.Instance.AddItem(this);
+		Inventory playerInventory = Game.Instance.GetPlayerInventory();
+		var isAdded = playerInventory.AddItem(this);
 		if(isAdded) {
 			data.isCollected = true;
 		}

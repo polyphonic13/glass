@@ -57,7 +57,7 @@ namespace Polyworks {
 			EventCenter.Instance.OnChangeScene += OnChangeScene;
 		}
 
-		public virtual Inventory GetInventory() {
+		public virtual Inventory GetPlayerInventory() {
 			if (_inventory == null) {
 				_inventory = GetComponent<Inventory> ();
 			}

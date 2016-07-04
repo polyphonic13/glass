@@ -8,7 +8,8 @@ public class RabbitHuntToy : Item {
 	public override void Use() {
 		Debug.Log ("RabbitHuntToy/Use");
 
-		Inventory.Instance.RemoveItem (this.name, false);
+		Inventory playerInventory = Game.Instance.GetPlayerInventory();
+		playerInventory.RemoveItem (this.name, false);
 		toyChest.AddToy(this);
 	}
 }

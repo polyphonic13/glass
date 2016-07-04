@@ -8,7 +8,8 @@ public class Key : Item {
 
 	public override void Use() {
 		EventCenter.Instance.CloseInventoryUI ();
-		Inventory.Instance.RemoveItem (this.name, false);
+		Inventory playerInventory = Game.Instance.GetPlayerInventory();
+		playerInventory.RemoveItem (this.name, false);
 		target.Unlock ();
 	}
 }

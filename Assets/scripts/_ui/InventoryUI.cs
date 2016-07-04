@@ -92,7 +92,8 @@ public class InventoryUI : MonoBehaviour {
     	if(_occupiedItems == (_numColumns * _numRows)) {
     		return;
     	}
-    	var item = Inventory.Instance.GetItem(itemName);
+		Inventory playerInventory = Game.Instance.GetPlayerInventory();
+    	var item = playerInventory.GetItem(itemName);
     	var itemUI = _items[_occupiedItems] as InventoryItemUI;
 
 		itemUI.name = itemName;
@@ -122,7 +123,8 @@ public class InventoryUI : MonoBehaviour {
 	}
 
 	private void _buildInventoryItems() {
-		Hashtable hash = Inventory.Instance.GetAll();
+		Inventory playerInventory = Game.Instance.GetPlayerInventory();
+		Hashtable hash = playerInventory.GetAll();
 		var inventory = new ArrayList(hash.Values);
 		int total = _numColumns * _numRows;
 		CollectableItem item;

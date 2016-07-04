@@ -26,7 +26,8 @@ public class LockableArmatureTrigger : OpenCloseArmatureTrigger {
 		if(!IsLocked) {
 			HandleOpenClose();
 		} else {
-//			 if(Inventory.Instance.HasItem(_keyName)) {
+			Inventory playerInventory = Game.Instance.GetPlayerInventory();
+//			 if(playerInventory.HasItem(_keyName)) {
 //				_unlock ();
 //			 } else {
 			EventCenter.Instance.AddNote("The " + this.data.itemName + " is locked");

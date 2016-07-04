@@ -88,9 +88,11 @@ public class InventoryItemUI : MonoBehaviour {
 	}
 
 	public void SelectControlButton() {
+		Inventory playerInventory = Game.Instance.GetPlayerInventory();
+
 		switch(_focusedControlButton) {
 			case 0:
-				Inventory.Instance.UseItem(this.name);
+				playerInventory.UseItem(this.name);
 			break;
 
 			case 1:
@@ -98,7 +100,7 @@ public class InventoryItemUI : MonoBehaviour {
 			break;
 
 			case 2:
-				Inventory.Instance.RemoveItem(this.name);
+				playerInventory.RemoveItem(this.name);
 			break;
 
 			default:
