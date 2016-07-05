@@ -11,7 +11,6 @@ namespace Polyworks
 		public string displayName;
 		public string prefabName; 
 
-		public bool isCollectable = false;
 		public bool isCollected = false;
 		public bool isDroppable = false; 
 		public bool isUsable = false;
@@ -27,7 +26,6 @@ namespace Polyworks
 			clone.displayName = this.displayName;
 			clone.prefabName = this.prefabName;
 
-			clone.isCollectable = this.isCollectable;
 			clone.isCollected = this.isCollected;
 			clone.isDroppable = this.isDroppable;
 			clone.isUsable = this.isUsable;

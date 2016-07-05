@@ -5,6 +5,9 @@ namespace Polyworks
 {
 	public class EventCenter: MonoBehaviour
 	{
+		public delegate void ItemProximityHandler(Item item, bool isNear); 
+		public event ItemProximityHandler OnNearItem;
+		
 		public delegate void InventoryAdder(string item, int count);
 		public event InventoryAdder OnInventoryAdded;
 
@@ -46,6 +49,12 @@ namespace Polyworks
 		}
 		#endregion
 
+		public void ChangeItemProximity(Item item, bool isNear) {
+			if(OnNearItem != null) {
+				OnNearItem(item, isNear);
+			}
+		}
+		
 		public void InventoryAdded(string item, int count) {
 			Debug.Log ("EventCenter/InventoryAdded, item = " + item + ", count = " + count);
 			if (OnInventoryAdded != null) {

@@ -21,8 +21,6 @@ public class VerticalMovement : MonoBehaviour {
 	private Vector3 _movement;
 
 	public Vector3 GetMovement(float horizontal, float vertical, bool isJumpPressed, bool isClimbPressed) {
-//		Debug.Log("VerticalMovement/Move, horizontal = " + horizontal + ", vertical = " + vertical + ", isJumpPressed = " + isJumpPressed + ", isClimbPressed = " + isClimbPressed);
-		// stop vertical movement is jump was pressed
 		_movement = Vector3.zero;
 
 		if (isJumpPressed) {
@@ -65,7 +63,6 @@ public class VerticalMovement : MonoBehaviour {
 	}
 
 	public void Detach() {
-		Debug.Log ("VerticalMovement/Detach");
 		if (_currentVerticalMovementArea != null) {
 			_detachFromVerticalMovementArea ();
 		}
@@ -91,23 +88,20 @@ public class VerticalMovement : MonoBehaviour {
 
 	private void OnTriggerExit(Collider tgt) {
 		if(tgt.gameObject.tag == "verticalMovementTrigger") {
-//			Debug.Log ("exited vertical movement trigger");
 			_isInClimbTrigger = false;
 		}
 
 		if (tgt.gameObject.tag == "verticalMovementArea") {
-//			Debug.Log ("exited vertical movement area");
 			_detachFromVerticalMovementArea ();
 		}
 	}
 
 	private void _attachToVerticalMovementArea(GameObject tgt) {
-//		Debug.Log ("Attaching player");
 		_currentVerticalMovementArea = tgt.GetComponent<VerticalMovementArea> ();
 		_isUpDownEnabled = _currentVerticalMovementArea.GetIsUpDownEnabled ();
 		_isLeftRightEnabled = _currentVerticalMovementArea.GetIsLeftRightEnabled ();
 		_isAttachedToVerticalMovementArea = true;
-		_player.SetClimbing (true);
+		_player.SetClimbState (true);
 	}
 
 	private void _detachFromVerticalMovementArea() {
@@ -115,7 +109,7 @@ public class VerticalMovement : MonoBehaviour {
 		_isUpDownEnabled = false;
 		_isUpDownEnabled = false;
 		_isAttachedToVerticalMovementArea = false;
-		_player.SetClimbing (false);
+		_player.SetClimbState (false);
 	}
 	#endregion
 

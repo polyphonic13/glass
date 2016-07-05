@@ -6,6 +6,8 @@ namespace Polyworks {
 	public class Inventory : MonoBehaviour
 	{
 		private Hashtable _items;
+		private EventCenter _eventCenter; 
+
 
 		public void Init(Hashtable items = null) {
 			if (items != null && items.Count > 0) {
@@ -17,18 +19,13 @@ namespace Polyworks {
 
 		public virtual void Add(ItemData item) {
 			if (!Contains (item.itemName)) {
-				InsertItem (item);
+				_items.Add (item.itemName, item);
 			}
 			ItemData itemData = Get (item.itemName) as ItemData;
 			itemData.count++;
-			EventCenter.Instance.InventoryAdded (itemData.itemName, itemData.count);
-			EventCenter.Instance.AddNote (itemData.itemName + " Added");
-		}
 
-		public virtual void InsertItem(ItemData item) {
-			// Debug.Log ("Inventory/InsertItem, item.itemName = " + item.itemName + ", _items = " + _items);
-			_items.Add (item.itemName, item);
-			EventCenter.Instance.InventoryAdded (item.itemName, item.count);
+			_eventCenter.InventoryAdded (itemData.itemName, itemData.count);
+			_eventCenter.AddNote (itemData.itemName + " Added");
 		}
 
 		public virtual GameObject Remove(string name) {
@@ -67,6 +64,10 @@ namespace Polyworks {
 		public Hashtable GetAll() {
 			// Debug.Log ("Inventory/GetAll, _items.Count = " + _items.Count);
 			return _items;
+		}
+
+		private void Awake() {
+			_eventCenter = EventCenter.Instance;
 		}
 	}
 }

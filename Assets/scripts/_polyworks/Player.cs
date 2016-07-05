@@ -3,9 +3,9 @@ using UnitySampleAssets.CrossPlatformInput;
 using UnitySampleAssets.Utility;
 using Random = UnityEngine.Random;
 using Rewired;
-using Polyworks;
+using UnitySampleAssets.Characters.FirstPerson;
 
-namespace UnitySampleAssets.Characters.FirstPerson
+namespace Polyworks
 {
     [RequireComponent(typeof (CharacterController))]
     [RequireComponent(typeof (AudioSource))]
@@ -28,7 +28,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
         [SerializeField] private float m_WalkSpeed;
         [SerializeField] private float m_RunSpeed;
         [SerializeField] [Range(0f, 1f)] private float m_RunstepLenghten;
-        [SerializeField] private float _isJumpingSpeed;
+        [SerializeField] private float m_JumpSpeed;
         [SerializeField] private float m_StickToGroundForce;
         [SerializeField] private float m_GravityMultiplier;
 		[SerializeField] private MouseLook m_MouseLook;
@@ -36,10 +36,10 @@ namespace UnitySampleAssets.Characters.FirstPerson
         [SerializeField] private FOVKick m_FovKick = new FOVKick();
         [SerializeField] private bool m_UseHeadBob;
         [SerializeField] private CurveControlledBob m_HeadBob = new CurveControlledBob();
-        [SerializeField] private LerpControlledBob _isJumpingBob = new LerpControlledBob();
+        [SerializeField] private LerpControlledBob m_JumpBob = new LerpControlledBob();
         [SerializeField] private float m_StepInterval;
         [SerializeField] private AudioClip[] m_FootstepSounds;    // an array of footstep sounds that will be randomly selected from.
-        [SerializeField] private AudioClip _isJumpingSound;           // the sound played when character leaves the ground.
+        [SerializeField] private AudioClip m_JumpSound;           // the sound played when character leaves the ground.
         [SerializeField] private AudioClip m_LandSound;           // the sound played when character touches back on ground.
 		#endregion
 
@@ -47,7 +47,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
 		private enum MovementStates { Normal, Crawl, Climb, Swim, Dive };
 		static MovementStates _currentMovementState;
 		static MovementStates _previousMovementState; 
-		private VerticalMovement __verticalMovement; 
+		private VerticalMovement _verticalMovement; 
 
 		private GravityDamager _gravityDamager;
 		private float _gravity; 
@@ -63,11 +63,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
 		private bool _hasFlashlight = false;
 
 		private Camera _mainCamera;
-		
-        private bool _isJumping;
-        private bool _isClimbing;
-        private bool _isDiving;
-
+        private bool m_Jump;
         private float m_YRotation;
         private CameraRefocus _mainCameraRefocus;
         private Vector2 m_Input;
@@ -78,7 +74,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
         private Vector3 m_OriginalCameraPosition;
         private float m_StepCycle;
         private float m_NextStep;
-        private bool _isJumpinging;
+        private bool m_Jumping;
         private AudioSource m_AudioSource;
 
         private Item _elementInProximity;
@@ -89,38 +85,30 @@ namespace UnitySampleAssets.Characters.FirstPerson
 		#endregion
 
 		#region public methods
-		public void SetHorizontal(float _horizontal) {
-			__horizontal = _horizontal;
-		}
-		
-		public void SetVertical(float _vertical) {
-			__vertical = _vertical;
-		}
-		
-		public void SetJumping() {
-			if (!_isJumping) {
-				_isJumping = true;
+		public bool IsUIOpen() {
+			var isOpen = false;
+			if (_isMenuOpen || _isInventoryOpen) {
+				isOpen = true;
 			}
-		}
-
-		public void SetClimbState(bool isClimbing) {
-			_currentMovementState = (isClimbing) ? MovementStates.Climb : MovementStates.Normal;
+			return isOpen;
 		}
 
 		public void SetClimbing(bool isClimbing) {
-			_isClimbing = isClimbing;
-		}
-
-		public void SetDiving(bool isDiving) {
-			_isDiving = isDiving;
-		}
-		
-		public void SetCrawling(bool isCrawling) {
-			_isCrawling = isCrawling;
+//			Debug.Log ("Player/SetClimbing, isClimbing = " + isClimbing);
+			_currentMovementState = (isClimbing) ? MovementStates.Climb : MovementStates.Normal;
 		}
 		#endregion
 
 		#region delegate handlers
+ 		public void OnNearItem(Item item, bool isFocused) {
+			if(isFocused) {
+				_elementInProximity = item;
+			} else {
+				_elementInProximity = null;
+			}
+//			_interactiveItemUI.enabled = isFocused;
+		}
+
 		public void OnPlayerDamaged(float damage) {
 //			float health = Game.Instance.RemainingHealth - damage;
 //			Game.Instance.UpdateHealth(health);
@@ -159,9 +147,10 @@ namespace UnitySampleAssets.Characters.FirstPerson
 		#endregion
 
 		#region awake
-        private void Awake() {
+        private void Awake()
+        {
 			_controls = ReInput.players.GetPlayer(0);
-			__verticalMovement = GetComponent<VerticalMovement> ();
+			_verticalMovement = GetComponent<VerticalMovement> ();
 
 			_menuUI.enabled = false;
 			_inventoryUI.enabled = false;
@@ -176,7 +165,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
             m_HeadBob.Setup(_mainCamera, m_StepInterval);
             m_StepCycle = 0f;
             m_NextStep = m_StepCycle/2f;
-            _isJumpinging = false;
+            m_Jumping = false;
             m_AudioSource = GetComponent<AudioSource>();
 			m_MouseLook.Init(transform , _mainCamera.transform);
 
@@ -221,7 +210,8 @@ namespace UnitySampleAssets.Characters.FirstPerson
 		#endregion
 
 		#region update		
-		private void Update() {
+		private void Update()
+        {
 			if (!_isInspectorOpen) {
 				if(_controls.GetButtonDown ("cancel")) {
 					if(_isMenuOpen) {
@@ -241,7 +231,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
 
 				// player updates only happen when menus are closed
 				if(!_isMenuOpen && !_isInventoryOpen) {
-					_rotateView();
+					RotateView();
 					
 					if(_controls.GetButtonDown("actuate")) {
 //						Debug.Log("Player fire1 pressed, _elementInProximity = " + _elementInProximity);
@@ -250,39 +240,39 @@ namespace UnitySampleAssets.Characters.FirstPerson
 						}
 					}
 					// allow to Dive if Swimming 
-					// if(_controls.GetButtonDown("dive")) {
-					// }
-					if(_isDiving) {
-						_currentMovementState = MovementStates.Dive;
+					if(_controls.GetButtonDown("dive")) {
+						if(_currentMovementState == MovementStates.Swim || _currentMovementState == MovementStates.Dive) {
+							_gravity = _underWaterGravity;
+							_currentMovementState = MovementStates.Dive;
+						}
 					}
-					if(_currentMovementState == MovementStates.Swim || _currentMovementState == MovementStates.Dive) {
-						_gravity = _underWaterGravity;
-					}
-
 					// toggle Crawl if walking/Crawling
-					// if(_controls.GetButtonDown("crouch")) {
-					// }
-					if(_isCrawling) {
+					if(_controls.GetButtonDown("crouch")) {
 						if(_currentMovementState == MovementStates.Normal && m_CharacterController.isGrounded) {
 							_currentMovementState = MovementStates.Crawl;
 							_switchToCrawling(true);
+							_justCrouched = true;
+//							Debug.Log("Crawl");
 						} else if(_currentMovementState == MovementStates.Crawl) {
 							_currentMovementState = MovementStates.Normal;
 							_switchToCrawling(false);
+							_justCrouched = true;
+//							Debug.Log("walk");
 						}
-						_justCrouched = true;
 					}
-
-					// the jump state needs to read here to make sure it is not missed
-					// if (!_isJumping) {
-					// 	_isJumping = _controls.GetButtonDown("jump");
-					// }
 					
-					if (!m_PreviouslyGrounded && m_CharacterController.isGrounded) {
-						StartCoroutine(_isJumpingBob.DoBobCycle());
+					// the jump state needs to read here to make sure it is not missed
+					if (!m_Jump)
+					{
+						m_Jump = _controls.GetButtonDown("jump");
+					}
+					
+					if (!m_PreviouslyGrounded && m_CharacterController.isGrounded)
+					{
+						StartCoroutine(m_JumpBob.DoBobCycle());
 						//                PlayLandingSound();
 						m_MoveDir.y = 0f;
-						_isJumpinging = false;
+						m_Jumping = false;
 						
 						if(_damageFromFall && (_currentMovementState == MovementStates.Normal || _currentMovementState == MovementStates.Crawl)) {
 //							float health = Game.Instance.RemainingHealth - _gravityDamager.EndFall();
@@ -290,7 +280,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
 						}
 						
 					}
-					if (!m_CharacterController.isGrounded && !_isJumpinging && m_PreviouslyGrounded)
+					if (!m_CharacterController.isGrounded && !m_Jumping && m_PreviouslyGrounded)
 					{
 						m_MoveDir.y = 0f;
 					}
@@ -313,146 +303,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
 				_flashLight.Actuate ();
 			}
 		}
-
-        private void FixedUpdate() {
-			if(!_isMenuOpen && !_isInventoryOpen && !_isInspectorOpen) {
-				float speed;
-				// Read input
-				// float _horizontal = _controls.GetAxis("move__horizontal");
-				// float _vertical = _controls.GetAxis("move__vertical");
-
-				_getMovement(out speed, _horizontal, _vertical);
-				// always move along the camera forward as it is the direction that it being aimed at
-				Vector3 desiredMove = _mainCamera.transform.forward*m_Input.y + _mainCamera.transform.right*m_Input.x;
-				
-				// get a Normal for the surface that is being touched to move along it
-				RaycastHit hitInfo;
-				Physics.SphereCast(transform.position, m_CharacterController.radius, Vector3.down, out hitInfo,  m_CharacterController.height/2f);
-				desiredMove = Vector3.ProjectOnPlane(desiredMove, hitInfo.normal).normalized;
-				
-				switch(_currentMovementState) {
-					case MovementStates.Crawl:
-						speed *= _crawlSpeedMultiplier;
-						if(m_CharacterController.isGrounded) {
-							m_MoveDir.y = -m_StickToGroundForce;
-						} else {
-							m_MoveDir += Physics.gravity*_gravity*Time.fixedDeltaTime;
-						}
-					break;
-					
-					case MovementStates.Normal:
-						// Normal WALK/FALL
-						if (m_CharacterController.isGrounded) {
-							m_MoveDir.y = -m_StickToGroundForce;
-						
-							if (_isJumping) {
-								m_MoveDir.y = _isJumpingSpeed;
-								//                    PlayJumpSound();
-								_isJumping = false;
-								_isJumpinging = true;
-							}
-						} else {
-							// Normal fall to ground
-							m_MoveDir += Physics.gravity*_gravity*Time.fixedDeltaTime;
-						}
-					break;
-					
-					case MovementStates.Climb:
-						speed *= _climbSpeedMultiplier;
-
-						Vector3 move = __verticalMovement._getMovement (_horizontal, _vertical, _isJumping, _isClimbing);
-						m_MoveDir.x = move.x * speed;
-						m_MoveDir.y = move.y * speed;
-						m_MoveDir.z = move.z * speed;
-
-	//					Debug.Log ("move = " + move);
-					break;
-					
-					case MovementStates.Swim:
-						//					Debug.Log("Swimming, _isUnderWater = ");
-						// SwimMING
-						// do not move y -- stay on surface of water
-						m_MoveDir.y = 0f;
-						speed *= _swimSpeedMultiplier;
-					
-					break;
-					
-					case MovementStates.Dive:
-						// DIVING
-						speed *= _swimSpeedMultiplier;
-						if(_controls.GetButton("dive")) {
-							// dive down
-							m_MoveDir += Physics.gravity*(-(_gravity*_diveSpeedMultiplier))*Time.fixedDeltaTime;
-						} else {
-							// rise towards surface
-							m_MoveDir += Physics.gravity*_gravity*Time.fixedDeltaTime;
-						}
-					break;
-				}
-				
-				// turn on fog when first diving, remove when not diving
-//				if(_currentMovementState == MovementStates.Dive) {
-//					if(_previousMovementState != MovementStates.Dive) {
-//						//					_globalFog.enabled = true;
-//					}
-//				} else {
-//					//				_globalFog.enabled = false;
-//				}
-				
-				_previousMovementState = _currentMovementState;
-
-				if (_currentMovementState != MovementStates.Climb) {
-					m_MoveDir.x = desiredMove.x * speed;
-					m_MoveDir.z = desiredMove.z * speed;
-				}
-				m_CollisionFlags = m_CharacterController.Move(m_MoveDir*Time.fixedDeltaTime);
-				
-				_progressStepCycle(speed);
-				_updateCameraPosition(speed);
-			}
-        }
 		#endregion
-
-        private void _progressStepCycle(float speed) {
-            if (m_CharacterController.velocity.sqrMagnitude > 0 && (m_Input.x != 0 || m_Input.y != 0))
-            {
-                m_StepCycle += (m_CharacterController.velocity.magnitude + (speed*(m_IsWalking ? 1f : m_RunstepLenghten)))*
-                             Time.fixedDeltaTime;
-            }
-
-            if (!(m_StepCycle > m_NextStep))
-            {
-                return;
-            }
-
-            m_NextStep = m_StepCycle + m_StepInterval;
-
-//            PlayFootStepAudio();
-        }
-
-		private void _updateCameraPosition(float speed) {
-            Vector3 newCameraPosition;
-            if (!m_UseHeadBob)
-            {
-                return;
-            }
-            if (m_CharacterController.velocity.magnitude > 0 && m_CharacterController.isGrounded)
-            {
-                _mainCamera.transform.localPosition =
-                    m_HeadBob.DoHeadBob(m_CharacterController.velocity.magnitude +
-                                      (speed*(m_IsWalking ? 1f : m_RunstepLenghten)));
-                newCameraPosition = _mainCamera.transform.localPosition;
-                newCameraPosition.y = _mainCamera.transform.localPosition.y - _isJumpingBob.Offset();
-            }
-            else
-            {
-                newCameraPosition = _mainCamera.transform.localPosition;
-                newCameraPosition.y = m_OriginalCameraPosition.y - _isJumpingBob.Offset();
-            }
-            _mainCamera.transform.localPosition = newCameraPosition;
-
-            _mainCameraRefocus.SetFocusPoint();
-        }
 
 		private void _switchToCrawling(bool isCrawling) {
 
@@ -473,7 +324,152 @@ namespace UnitySampleAssets.Characters.FirstPerson
 			}
 		}
 
-		private void _getMovement(out float speed, float horizontal, float vertical) {
+        private void FixedUpdate()
+        {
+			if(!_isMenuOpen && !_isInventoryOpen && !_isInspectorOpen) {
+				float speed;
+				// Read input
+				float horizontal = _controls.GetAxis("move_horizontal");
+				float vertical = _controls.GetAxis("move_vertical");
+				bool isClimbPressed = _controls.GetButton ("climb");
+
+				GetInput(out speed, horizontal, vertical);
+				// always move along the camera forward as it is the direction that it being aimed at
+				Vector3 desiredMove = _mainCamera.transform.forward*m_Input.y + _mainCamera.transform.right*m_Input.x;
+				
+				// get a Normal for the surface that is being touched to move along it
+				RaycastHit hitInfo;
+				Physics.SphereCast(transform.position, m_CharacterController.radius, Vector3.down, out hitInfo,
+				                   m_CharacterController.height/2f);
+				desiredMove = Vector3.ProjectOnPlane(desiredMove, hitInfo.normal).normalized;
+				
+				switch(_currentMovementState) {
+				case MovementStates.Crawl:
+					speed *= _crawlSpeedMultiplier;
+					if(m_CharacterController.isGrounded) {
+						m_MoveDir.y = -m_StickToGroundForce;
+					} else {
+						m_MoveDir += Physics.gravity*_gravity*Time.fixedDeltaTime;
+					}
+					break;
+					
+				case MovementStates.Normal:
+					// Normal WALK/FALL
+					if (m_CharacterController.isGrounded) {
+						m_MoveDir.y = -m_StickToGroundForce;
+						
+						if (m_Jump) {
+							m_MoveDir.y = m_JumpSpeed;
+							//                    PlayJumpSound();
+							m_Jump = false;
+							m_Jumping = true;
+						}
+					} else {
+						// Normal fall to ground
+						m_MoveDir += Physics.gravity*_gravity*Time.fixedDeltaTime;
+					}
+					break;
+					
+				case MovementStates.Climb:
+					speed *= _climbSpeedMultiplier;
+
+					Vector3 move = _verticalMovement.GetMovement (horizontal, vertical, m_Jump, isClimbPressed);
+					m_MoveDir.x = move.x * speed;
+					m_MoveDir.y = move.y * speed;
+					m_MoveDir.z = move.z * speed;
+
+//					Debug.Log ("move = " + move);
+					break;
+					
+				case MovementStates.Swim:
+					//					Debug.Log("Swimming, _isUnderWater = ");
+					// SwimMING
+					// do not move y -- stay on surface of water
+					m_MoveDir.y = 0f;
+					speed *= _swimSpeedMultiplier;
+					
+					break;
+					
+				case MovementStates.Dive:
+					// DIVING
+					speed *= _swimSpeedMultiplier;
+					if(_controls.GetButton("dive")) {
+						// dive down
+						m_MoveDir += Physics.gravity*(-(_gravity*_diveSpeedMultiplier))*Time.fixedDeltaTime;
+					} else {
+						// rise towards surface
+						m_MoveDir += Physics.gravity*_gravity*Time.fixedDeltaTime;
+					}
+					break;
+				}
+				
+				// turn on fog when first diving, remove when not diving
+//				if(_currentMovementState == MovementStates.Dive) {
+//					if(_previousMovementState != MovementStates.Dive) {
+//						//					_globalFog.enabled = true;
+//					}
+//				} else {
+//					//				_globalFog.enabled = false;
+//				}
+				
+				_previousMovementState = _currentMovementState;
+
+				if (_currentMovementState != MovementStates.Climb) {
+					m_MoveDir.x = desiredMove.x * speed;
+					m_MoveDir.z = desiredMove.z * speed;
+				}
+				m_CollisionFlags = m_CharacterController.Move(m_MoveDir*Time.fixedDeltaTime);
+				
+				ProgressStepCycle(speed);
+				UpdateCameraPosition(speed);
+			}
+        }
+
+        private void ProgressStepCycle(float speed)
+        {
+            if (m_CharacterController.velocity.sqrMagnitude > 0 && (m_Input.x != 0 || m_Input.y != 0))
+            {
+                m_StepCycle += (m_CharacterController.velocity.magnitude + (speed*(m_IsWalking ? 1f : m_RunstepLenghten)))*
+                             Time.fixedDeltaTime;
+            }
+
+            if (!(m_StepCycle > m_NextStep))
+            {
+                return;
+            }
+
+            m_NextStep = m_StepCycle + m_StepInterval;
+
+//            PlayFootStepAudio();
+        }
+
+		private void UpdateCameraPosition(float speed)
+        {
+            Vector3 newCameraPosition;
+            if (!m_UseHeadBob)
+            {
+                return;
+            }
+            if (m_CharacterController.velocity.magnitude > 0 && m_CharacterController.isGrounded)
+            {
+                _mainCamera.transform.localPosition =
+                    m_HeadBob.DoHeadBob(m_CharacterController.velocity.magnitude +
+                                      (speed*(m_IsWalking ? 1f : m_RunstepLenghten)));
+                newCameraPosition = _mainCamera.transform.localPosition;
+                newCameraPosition.y = _mainCamera.transform.localPosition.y - m_JumpBob.Offset();
+            }
+            else
+            {
+                newCameraPosition = _mainCamera.transform.localPosition;
+                newCameraPosition.y = m_OriginalCameraPosition.y - m_JumpBob.Offset();
+            }
+            _mainCamera.transform.localPosition = newCameraPosition;
+
+            _mainCameraRefocus.SetFocusPoint();
+        }
+
+		private void GetInput(out float speed, float horizontal, float vertical)
+        {
             bool wasWalking = m_IsWalking;
 
 #if !MOBILE_INPUT
@@ -484,7 +480,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
 #endif
             // set the desired speed to be walking or running
             speed = m_IsWalking ? m_WalkSpeed : m_RunSpeed;
-            m_Input = new Vector2(_horizontal, _vertical);
+            m_Input = new Vector2(horizontal, vertical);
 
             // Normalize input if it exceeds 1 in combined length:
             if (m_Input.sqrMagnitude > 1)
@@ -501,9 +497,26 @@ namespace UnitySampleAssets.Characters.FirstPerson
             }
         }
 
-        private void _rotateView() {
+        private void RotateView()
+        {
             m_MouseLook.LookRotation (transform, _mainCamera.transform);
             _mainCameraRefocus.GetFocusPoint();
+        }
+
+        private void OnControllerColliderHit(ControllerColliderHit hit)
+        {
+            Rigidbody body = hit.collider.attachedRigidbody;
+            //dont move the rigidbody if the character is on top of it
+            if (m_CollisionFlags == CollisionFlags.Below)
+            {
+                return;
+            }
+
+            if (body == null || body.isKinematic)
+            {
+                return;
+            }
+            body.AddForceAtPosition(m_CharacterController.velocity * 0.1f, hit.point, ForceMode.Impulse);
         }
 
 		#region audio
@@ -525,7 +538,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
 
 		private void PlayJumpSound()
 		{
-			m_AudioSource.clip = _isJumpingSound;
+			m_AudioSource.clip = m_JumpSound;
 			// m_AudioSource.Play();
 		}
 
