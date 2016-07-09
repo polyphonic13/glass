@@ -4,12 +4,10 @@ using Polyworks;
 
 public class Key : Item {
 
-	public LockableArmatureTrigger target;
+	public string targetName; 
 
 	public override void Use() {
-		EventCenter.Instance.CloseInventoryUI ();
-		Inventory playerInventory = Game.Instance.GetPlayerInventory();
-		playerInventory.RemoveItem (this.name, false);
+		LockableArmatureTrigger target = GameObject.Find (targetName).GetComponent<LockableArmatureTrigger> ();
 		target.Unlock ();
 	}
 }

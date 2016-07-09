@@ -1,0 +1,331 @@
+﻿using UnityEngine;
+using System.Collections;
+using Rewired;
+
+namespace Polyworks {
+	public class InventoryUI : MonoBehaviour {
+
+		public GameObject inventoryItem; 
+
+		public int numColumns = 6;
+		public int numRows = 2;
+
+		private const float startX = -430f;
+		private const float startY = 85f;
+
+		private ArrayList _items;
+		private int _occupiedItems;
+
+		private float _width; 
+		private float _height; 
+
+		private float _horizontal;
+		private float _vertical;
+
+		private int _currentColumn;
+		private int _currentRow;
+		private int _currentItemIndex; 
+		private int _previousItemIndex;
+
+		private bool _isInspectingItem;
+
+		private InventoryItemUI _selectedInventoryItemUI; 
+
+		private Canvas _canvas;
+
+		private Rewired.Player _controls; 
+
+		public void OnInventoryAdded(string itemName, int count) {
+			if (itemName != "flashlight") {
+				_setItem (itemName);	
+			}
+		}
+
+		public void OnInventoryRemoved(string itemName, int count) {
+			_resetItems(itemName);
+		}
+
+		public void OnCloseInventoryUI() {
+			_reset();
+		}
+
+		public void OnInspectItem(bool isInspecting, string item) {
+			_isInspectingItem = isInspecting;
+		}
+
+		private void Awake() {
+			_controls = ReInput.players.GetPlayer(0);
+
+			_items = new ArrayList();
+			_canvas = gameObject.transform.parent.GetComponent<Canvas>();
+			_buildUI();
+
+			var ec = EventCenter.Instance;
+			ec.OnInventoryAdded += OnInventoryAdded;
+			ec.OnInventoryRemoved += OnInventoryRemoved;
+			ec.OnInspectItem += OnInspectItem;
+			ec.OnCloseInventoryUI += OnCloseInventoryUI;
+		}
+
+		private void FixedUpdate() {
+			if (_canvas.enabled) {
+				_checkInput ();
+			}
+		}
+
+		private void _reset() {
+			if (_selectedInventoryItemUI != null) {
+				_selectedInventoryItemUI.Deselect ();
+				_selectedInventoryItemUI = null;
+			}
+			_currentItemIndex = 0;
+			_currentColumn = 0;
+			_currentRow = 0;
+			_currentItemIndex = 0; 
+			_previousItemIndex = 0;
+		}
+
+		private void _setItem(string itemName) {
+			if(_occupiedItems == (numColumns * numRows)) {
+				return;
+			}
+			Inventory playerInventory = Game.Instance.GetPlayerInventory();
+			var itemData = playerInventory.Get(itemName);
+			var itemUI = _items[_occupiedItems] as InventoryItemUI;
+
+			itemUI.name = itemName;
+			itemUI.SetName(itemData.itemName);
+			itemUI.SetCount(0);
+			if(itemData.thumbnail != null) {
+				GameObject itemObj = (GameObject)Instantiate (Resources.Load (itemData.thumbnail, typeof(GameObject)), transform.position, transform.rotation);
+				Sprite thumbnail = itemObj.GetComponent<Sprite> ();
+				itemUI.SetThumbnail(thumbnail);
+			}
+			if(_occupiedItems == 0) {
+				itemUI.SetFocus(true);
+			}
+			_occupiedItems++;
+		}
+
+		private void _resetItems(string itemName) {
+			InventoryItemUI itemUI;
+
+			_occupiedItems = 0;
+			_previousItemIndex = _currentItemIndex = 0;
+
+			for(int i = 0; i < _items.Count; i++) {
+				itemUI = _items[i] as InventoryItemUI;
+				itemUI.Reset();
+			}
+
+			_buildInventoryItems();
+		}
+
+		private void _buildInventoryItems() {
+			Inventory playerInventory = Game.Instance.GetPlayerInventory();
+			Hashtable hash = playerInventory.GetAll();
+			var inventory = new ArrayList(hash.Values);
+			int total = numColumns * numRows;
+			CollectableItem item;
+
+			for(int i = 0; i < inventory.Count; i++) {
+				if(i < total) {
+					item = inventory[i] as CollectableItem;
+					_setItem(item.name);
+				}
+			}
+
+		}
+
+		private void _buildUI() {
+			RectTransform containerRectTransform = GetComponent<RectTransform>();
+			int total = numColumns * numRows;
+			int row = 0;
+			int col = 0;
+
+			_width = containerRectTransform.rect.width / numColumns;
+			_height = containerRectTransform.rect.height / numRows;
+
+			for(int i = 0; i < total; i++) {
+				float x = startX + (_width * col);
+				float y = startY + -(_height * row);
+
+				string itemName = "item" + i;
+				var item = (GameObject) Instantiate(inventoryItem);
+
+				item.transform.SetParent(gameObject.transform, false);
+
+				InventoryItemUI itemUI = item.GetComponent<InventoryItemUI>();
+				RectTransform rect = item.GetComponent<RectTransform>();
+
+				item.name = itemName;
+
+				rect.localPosition = new Vector3(x, y, 0);
+
+				_items.Add(itemUI);
+
+				col++;
+				if(col % numColumns == 0) {
+					row++;
+					col = 0;
+				}
+			}
+		}
+
+		private void _checkInput() {
+			if(_controls.GetButtonDown("cancel")) {
+				if(!_isInspectingItem) {
+					if(_selectedInventoryItemUI != null) {
+						EventCenter.Instance.CloseInventoryUI();
+					} else {
+						_selectedInventoryItemUI.Deselect();
+						_selectedInventoryItemUI = null;
+					}
+				}
+			}
+			if(_occupiedItems > 0 && !_isInspectingItem) {
+				var up = _controls.GetButtonDown("up");
+				var down = _controls.GetButtonDown("down");
+				var left = _controls.GetButtonDown("left");
+				var right = _controls.GetButtonDown("right");
+				//			Debug.Log ("up = " + up + ", down = " + down + ", left = " + left + ", right = " + right);
+				if(_controls.GetButtonDown("confirm")) {
+					if(_selectedInventoryItemUI == null) {
+						_selectedInventoryItemUI = _items[_currentItemIndex] as InventoryItemUI;
+						if(_selectedInventoryItemUI != null) {
+							_selectedInventoryItemUI.Select();
+						}
+					} else {
+						if(_selectedInventoryItemUI != null) {
+							_selectedInventoryItemUI.SelectControlButton();
+						}
+					}
+				} else if(_selectedInventoryItemUI != null) {
+					if(up) {
+						if(_selectedInventoryItemUI != null) {
+							_selectedInventoryItemUI.IncrementControlButtonFocus(false);
+						}
+					} else if(down) {
+						if(_selectedInventoryItemUI != null) {
+							_selectedInventoryItemUI.IncrementControlButtonFocus(true);
+						}
+					}
+				} else if(_selectedInventoryItemUI == null) {
+					_horizontal = 0;
+					_vertical = 0;
+					if(up) {
+						_vertical = 1;
+					} else if(down) {
+						_vertical = -1;
+					} else if(left) {
+						_horizontal = -1;
+					} else if(right) {
+						_horizontal = 1;
+					}
+
+					if(_horizontal != 0 || _vertical != 0) {
+						if(_horizontal != 0) {
+							_calculateCol(_horizontal);
+						} else if(_vertical != 0) {
+							_calculateRow(_vertical);
+						}
+						_currentItemIndex = (_currentRow * numColumns) + _currentColumn;
+						var item = _items[_currentItemIndex] as InventoryItemUI;
+
+						if(item != null) {
+							item.SetFocus(true);
+						}
+						var prevItem = _items[_previousItemIndex] as InventoryItemUI;
+						if(prevItem != null) {
+							prevItem.SetFocus(false);
+						}
+						_previousItemIndex = _currentItemIndex;
+					}
+				}
+
+			}
+		}
+
+		#region ui nav
+		private void _calculateCol(float horizontal) {
+			if(horizontal < 0) {
+				_decrementCol(true);
+			} else  {
+				_incrementCol(true);
+			}
+		}
+
+		private void _calculateRow(float vertical) {
+			if(vertical > 0) {
+				_decrementRow(true);
+			} else if(vertical < 0) {
+				_incrementRow(true);
+			}
+		}
+
+		private void _incrementCol(bool isCalcCalled) {
+			if(_currentColumn < (numColumns - 1)) {
+				_currentColumn++;
+			} else {
+				_currentColumn = 0;
+				if(isCalcCalled) {
+					_incrementRow(false);
+				}
+			}
+		}
+
+		private void _decrementCol(bool isCalcCalled) {
+			if(_currentColumn > 0) {
+				_currentColumn--;
+			} else {
+				_currentColumn = (numColumns - 1);
+				if(isCalcCalled) {
+					_decrementRow(false);
+				}
+			}
+		}
+
+		private void _incrementRow(bool isCalcCalled) {
+			if(_currentRow < (numRows - 1)) {
+				_currentRow++;
+			} else {
+				_currentRow = 0;
+				if(isCalcCalled) {
+					_incrementCol(false);
+				}
+			}
+		}
+
+		private void _decrementRow(bool isCalcCalled) {
+			if(_currentRow > 0) {
+				_currentRow--;
+			} else {
+				_currentRow = (numRows - 1);
+				if(isCalcCalled) {
+					_decrementCol(false);
+				}
+			}
+		}
+
+		private bool _increment(int counter, int max, bool isCalcCalled = false) {
+			if(counter < (max - 1)) {
+				counter++;
+				return false;
+			} else {
+				counter = 0;
+				return true;
+			}
+		}
+
+		private bool _decrement(int counter, int max, bool isCalcCalled = false) {
+			if(counter > 0) {
+				counter--;
+				return false;
+			} else {
+				counter = (max - 1);
+				return true;
+			}
+		}
+		#endregion
+	}
+}

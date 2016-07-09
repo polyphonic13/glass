@@ -47,7 +47,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
 		private enum MovementStates { Normal, Crawl, Climb, Swim, Dive };
 		static MovementStates _currentMovementState;
 		static MovementStates _previousMovementState; 
-		private VerticalMovement __verticalMovement; 
+		private VerticalMovement _verticalMovement; 
 
 		private GravityDamager _gravityDamager;
 		private float _gravity; 
@@ -67,6 +67,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
         private bool _isJumping;
         private bool _isClimbing;
         private bool _isDiving;
+		private bool _isCrawling; 
 
         private float m_YRotation;
         private CameraRefocus _mainCameraRefocus;
@@ -81,6 +82,9 @@ namespace UnitySampleAssets.Characters.FirstPerson
         private bool _isJumpinging;
         private AudioSource m_AudioSource;
 
+		private float _horizontal;
+		private float _vertical;
+
         private Item _elementInProximity;
 
 		private Rewired.Player _controls;
@@ -89,12 +93,12 @@ namespace UnitySampleAssets.Characters.FirstPerson
 		#endregion
 
 		#region public methods
-		public void SetHorizontal(float _horizontal) {
-			__horizontal = _horizontal;
+		public void SetHorizontal(float horizontal) {
+			_horizontal = horizontal;
 		}
 		
-		public void SetVertical(float _vertical) {
-			__vertical = _vertical;
+		public void SetVertical(float vertical) {
+			_vertical = vertical;
 		}
 		
 		public void SetJumping() {
@@ -121,6 +125,15 @@ namespace UnitySampleAssets.Characters.FirstPerson
 		#endregion
 
 		#region delegate handlers
+		public void OnNearItem(Item item, bool isFocused) {
+			if(isFocused) {
+				_elementInProximity = item;
+			} else {
+				_elementInProximity = null;
+			}
+			//			_interactiveItemUI.enabled = isFocused;
+		}
+
 		public void OnPlayerDamaged(float damage) {
 //			float health = Game.Instance.RemainingHealth - damage;
 //			Game.Instance.UpdateHealth(health);
@@ -161,7 +174,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
 		#region awake
         private void Awake() {
 			_controls = ReInput.players.GetPlayer(0);
-			__verticalMovement = GetComponent<VerticalMovement> ();
+			_verticalMovement = GetComponent<VerticalMovement> ();
 
 			_menuUI.enabled = false;
 			_inventoryUI.enabled = false;
@@ -360,7 +373,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
 					case MovementStates.Climb:
 						speed *= _climbSpeedMultiplier;
 
-						Vector3 move = __verticalMovement._getMovement (_horizontal, _vertical, _isJumping, _isClimbing);
+						Vector3 move = _verticalMovement.GetMovement (_horizontal, _vertical, _isJumping, _isClimbing);
 						m_MoveDir.x = move.x * speed;
 						m_MoveDir.y = move.y * speed;
 						m_MoveDir.z = move.z * speed;

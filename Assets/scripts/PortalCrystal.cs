@@ -4,12 +4,11 @@ using Polyworks;
 
 public class PortalCrystal : Item {
 
-	public PortalController portal;
+//	public PortalController portal;
+	public string targetName;
 
 	public override void Use() {
-		EventCenter.Instance.CloseInventoryUI ();
-		Inventory playerInventory = Game.Instance.GetPlayerInventory();
-		playerInventory.RemoveItem (this.name, false);
+		PortalController portal = GameObject.Find (targetName).GetComponent<PortalController> ();
 		portal.Activate ();
 	}
 }

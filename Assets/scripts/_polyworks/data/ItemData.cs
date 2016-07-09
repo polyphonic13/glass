@@ -14,8 +14,11 @@ namespace Polyworks
 		public bool isCollected = false;
 		public bool isDroppable = false; 
 		public bool isUsable = false;
+		public bool isDestroyedOnUse = false; 
 
 		public int count = 0;
+
+		public string thumbnail; 
 
 		public ItemData () {}
 
@@ -29,8 +32,12 @@ namespace Polyworks
 			clone.isCollected = this.isCollected;
 			clone.isDroppable = this.isDroppable;
 			clone.isUsable = this.isUsable;
+			clone.isDestroyedOnUse = this.isDestroyedOnUse;
 
 			clone.count = this.count;
+
+			clone.thumbnail = this.thumbnail;
+
 			return clone;
 		}
 	}

@@ -79,7 +79,13 @@ namespace Polyworks
 
         private Item _elementInProximity;
 
-		private Rewired.Player _controls;
+		private float _horizontal;
+		private float _vertical;
+
+		private bool _isJumping;
+		private bool _isClimbing;
+		private bool _isDiving;
+		private bool _isCrawling; 
 
 		private Transform[] _childTransforms; 
 		#endregion
@@ -93,9 +99,32 @@ namespace Polyworks
 			return isOpen;
 		}
 
-		public void SetClimbing(bool isClimbing) {
-//			Debug.Log ("Player/SetClimbing, isClimbing = " + isClimbing);
+		public void SetHorizontal(float horizontal) {
+			_horizontal = horizontal;
+		}
+
+		public void SetVertical(float vertical) {
+			_vertical = vertical;
+		}
+
+		public void SetJumping(bool isJumping) {
+			_isJumping = isJumping;
+		}
+
+		public void SetClimbState(bool isClimbing) {
 			_currentMovementState = (isClimbing) ? MovementStates.Climb : MovementStates.Normal;
+		}
+
+		public void SetClimbing(bool isClimbing) {
+			_isClimbing = isClimbing;
+		}
+
+		public void SetDiving(bool isDiving) {
+			_isDiving = isDiving;
+		}
+
+		public void SetCrawling(bool isCrawling) {
+			_isCrawling = isCrawling;
 		}
 		#endregion
 
@@ -149,7 +178,6 @@ namespace Polyworks
 		#region awake
         private void Awake()
         {
-			_controls = ReInput.players.GetPlayer(0);
 			_verticalMovement = GetComponent<VerticalMovement> ();
 
 			_menuUI.enabled = false;
@@ -188,8 +216,8 @@ namespace Polyworks
 //			_hasFlashlight = Game.Instance.hasFlashlight;
 				
 			var ec = EventCenter.Instance;
-			ec.OnAboveWater += OnAboveWater;
-			ec.OnPlayerDamaged += OnPlayerDamaged;
+//			ec.OnAboveWater += OnAboveWater;
+//			ec.OnPlayerDamaged += OnPlayerDamaged;
 			ec.OnNearItem += OnNearItem;
 			ec.OnInspectItem += OnInspectItem;
 			ec.OnCloseInventoryUI += OnCloseInventoryUI;
@@ -212,96 +240,53 @@ namespace Polyworks
 		#region update		
 		private void Update()
         {
-			if (!_isInspectorOpen) {
-				if(_controls.GetButtonDown ("cancel")) {
-					if(_isMenuOpen) {
-						_isMenuOpen = !_isMenuOpen;
-						_menuUI.enabled = _isMenuOpen;
-						_closeMenuUI();
-					}
-				} else if(_controls.GetButtonDown("open_menu")) {
-					_isMenuOpen = !_isMenuOpen;
-					_menuUI.enabled = _isMenuOpen;
-					_closeInventoryUI();
-				} else if(_controls.GetButtonDown("open_inventory")) {
-					_isInventoryOpen = !_isInventoryOpen;
-					_inventoryUI.enabled = _isInventoryOpen;
-					_closeMenuUI();
+			RotateView ();
+			if (_isDiving) {
+				if(_currentMovementState == MovementStates.Swim || _currentMovementState == MovementStates.Dive) {
+					_gravity = _underWaterGravity;
+					_currentMovementState = MovementStates.Dive;
 				}
-
-				// player updates only happen when menus are closed
-				if(!_isMenuOpen && !_isInventoryOpen) {
-					RotateView();
-					
-					if(_controls.GetButtonDown("actuate")) {
-//						Debug.Log("Player fire1 pressed, _elementInProximity = " + _elementInProximity);
-						if(_elementInProximity != null) {
-							_elementInProximity.Actuate();
-						}
-					}
-					// allow to Dive if Swimming 
-					if(_controls.GetButtonDown("dive")) {
-						if(_currentMovementState == MovementStates.Swim || _currentMovementState == MovementStates.Dive) {
-							_gravity = _underWaterGravity;
-							_currentMovementState = MovementStates.Dive;
-						}
-					}
-					// toggle Crawl if walking/Crawling
-					if(_controls.GetButtonDown("crouch")) {
-						if(_currentMovementState == MovementStates.Normal && m_CharacterController.isGrounded) {
-							_currentMovementState = MovementStates.Crawl;
-							_switchToCrawling(true);
-							_justCrouched = true;
-//							Debug.Log("Crawl");
-						} else if(_currentMovementState == MovementStates.Crawl) {
-							_currentMovementState = MovementStates.Normal;
-							_switchToCrawling(false);
-							_justCrouched = true;
-//							Debug.Log("walk");
-						}
-					}
-					
-					// the jump state needs to read here to make sure it is not missed
-					if (!m_Jump)
-					{
-						m_Jump = _controls.GetButtonDown("jump");
-					}
-					
-					if (!m_PreviouslyGrounded && m_CharacterController.isGrounded)
-					{
-						StartCoroutine(m_JumpBob.DoBobCycle());
-						//                PlayLandingSound();
-						m_MoveDir.y = 0f;
-						m_Jumping = false;
-						
-						if(_damageFromFall && (_currentMovementState == MovementStates.Normal || _currentMovementState == MovementStates.Crawl)) {
-//							float health = Game.Instance.RemainingHealth - _gravityDamager.EndFall();
-//							Game.Instance.UpdateHealth(health);
-						}
-						
-					}
-					if (!m_CharacterController.isGrounded && !m_Jumping && m_PreviouslyGrounded)
-					{
-						m_MoveDir.y = 0f;
-					}
-					
-					if(_damageFromFall) {
-						if (_currentMovementState != MovementStates.Climb) {
-							if(!m_CharacterController.isGrounded && m_PreviouslyGrounded) {
-								_gravityDamager.BeginFall();
-							}
-						} else {
-							_gravityDamager.CancelFall ();
-						}
-					}
-					m_PreviouslyGrounded = m_CharacterController.isGrounded;
+			}
+			if (_isCrawling) {
+				if(_currentMovementState == MovementStates.Normal && m_CharacterController.isGrounded) {
+					_currentMovementState = MovementStates.Crawl;
+					_switchToCrawling(true);
+					_justCrouched = true;
+//					Debug.Log("Crawl");
+				} else if(_currentMovementState == MovementStates.Crawl) {
+					_currentMovementState = MovementStates.Normal;
+					_switchToCrawling(false);
+					_justCrouched = true;
+//					Debug.Log("walk");
 				}
-				
 			}
 
-			if (_hasFlashlight && _controls.GetButtonDown ("flashlight")) {
-				_flashLight.Actuate ();
+			if (!m_PreviouslyGrounded && m_CharacterController.isGrounded) {
+				StartCoroutine(m_JumpBob.DoBobCycle());
+				//                PlayLandingSound();
+				m_MoveDir.y = 0f;
+				m_Jumping = false;
+
+				if(_damageFromFall && (_currentMovementState == MovementStates.Normal || _currentMovementState == MovementStates.Crawl)) {
+//					float health = Game.Instance.RemainingHealth - _gravityDamager.EndFall();
+//					Game.Instance.UpdateHealth(health);
+				}
+
 			}
+			if (!m_CharacterController.isGrounded && !m_Jumping && m_PreviouslyGrounded) {
+				m_MoveDir.y = 0f;
+			}
+
+			if(_damageFromFall) {
+				if (_currentMovementState != MovementStates.Climb) {
+					if(!m_CharacterController.isGrounded && m_PreviouslyGrounded) {
+						_gravityDamager.BeginFall();
+					}
+				} else {
+					_gravityDamager.CancelFall ();
+				}
+			}
+			m_PreviouslyGrounded = m_CharacterController.isGrounded;
 		}
 		#endregion
 
@@ -328,12 +313,8 @@ namespace Polyworks
         {
 			if(!_isMenuOpen && !_isInventoryOpen && !_isInspectorOpen) {
 				float speed;
-				// Read input
-				float horizontal = _controls.GetAxis("move_horizontal");
-				float vertical = _controls.GetAxis("move_vertical");
-				bool isClimbPressed = _controls.GetButton ("climb");
 
-				GetInput(out speed, horizontal, vertical);
+				GetInput(out speed, _horizontal, _vertical);
 				// always move along the camera forward as it is the direction that it being aimed at
 				Vector3 desiredMove = _mainCamera.transform.forward*m_Input.y + _mainCamera.transform.right*m_Input.x;
 				
@@ -373,7 +354,7 @@ namespace Polyworks
 				case MovementStates.Climb:
 					speed *= _climbSpeedMultiplier;
 
-					Vector3 move = _verticalMovement.GetMovement (horizontal, vertical, m_Jump, isClimbPressed);
+					Vector3 move = _verticalMovement.GetMovement (_horizontal, _vertical, m_Jump, _isClimbing);
 					m_MoveDir.x = move.x * speed;
 					m_MoveDir.y = move.y * speed;
 					m_MoveDir.z = move.z * speed;
@@ -382,7 +363,7 @@ namespace Polyworks
 					break;
 					
 				case MovementStates.Swim:
-					//					Debug.Log("Swimming, _isUnderWater = ");
+					// Debug.Log("Swimming, _isUnderWater = ");
 					// SwimMING
 					// do not move y -- stay on surface of water
 					m_MoveDir.y = 0f;
@@ -393,7 +374,7 @@ namespace Polyworks
 				case MovementStates.Dive:
 					// DIVING
 					speed *= _swimSpeedMultiplier;
-					if(_controls.GetButton("dive")) {
+					if(_isDiving) {
 						// dive down
 						m_MoveDir += Physics.gravity*(-(_gravity*_diveSpeedMultiplier))*Time.fixedDeltaTime;
 					} else {

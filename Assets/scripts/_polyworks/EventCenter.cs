@@ -5,6 +5,7 @@ namespace Polyworks
 {
 	public class EventCenter: MonoBehaviour
 	{
+		#region delegates
 		public delegate void ItemProximityHandler(Item item, bool isNear); 
 		public event ItemProximityHandler OnNearItem;
 		
@@ -35,6 +36,19 @@ namespace Polyworks
 		public delegate void LevelTasksCompleteNotifier ();
 		public event LevelTasksCompleteNotifier OnLevelTasksCompleted;
 
+		public delegate void InspectItemHandler(bool isInspecting, string item);
+		public event InspectItemHandler OnInspectItem; 
+
+		public delegate void CloseMenuHandler();
+		public event CloseMenuHandler OnCloseMenuUI;
+
+		public delegate void CloseInventoryHandler();
+		public event CloseInventoryHandler OnCloseInventoryUI;
+
+		public delegate void FlashlightActuateHandler(); 
+		public event FlashlightActuateHandler OnActuateFlashlight;
+		#endregion
+		
 		#region singleton
 		private static EventCenter _instance;
 		private EventCenter() {}
@@ -49,6 +63,7 @@ namespace Polyworks
 		}
 		#endregion
 
+		#region handlers
 		public void ChangeItemProximity(Item item, bool isNear) {
 			if(OnNearItem != null) {
 				OnNearItem(item, isNear);
@@ -110,6 +125,31 @@ namespace Polyworks
 				OnLevelTasksCompleted ();
 			}
 		}
+
+		public void InspectItem(bool isInspecting, string item) {
+			if (OnInspectItem != null) {
+				OnInspectItem (isInspecting, item);
+			}
+		}
+
+		public void CloseMenuUI() {
+			if(OnCloseMenuUI != null) {
+				OnCloseMenuUI();
+			}
+		}
+
+		public void CloseInventoryUI() {
+			if(OnCloseInventoryUI != null) {
+				OnCloseInventoryUI();
+			}
+		}
+		
+		public void ActuateFlashlight() {
+			if(OnActuateFlashlight != null) {
+				OnActuateFlashlight();
+			}
+		}
+		#endregion
 	}
 }
 

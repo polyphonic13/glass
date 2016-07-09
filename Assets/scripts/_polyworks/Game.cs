@@ -15,13 +15,17 @@ namespace Polyworks {
 
 		public bool isCursorless = true;
 
-		private Inventory _inventory; 
+		private Player _player;
+		private Inventory _playerInventory; 
+
 		private DataIOController _dataIOController; 
 
 		public static Game Instance;
 
 		public virtual void Init() {
-			_inventory = GetComponent<Inventory> ();
+			GameObject playerObj = GameObject.Find("player");
+			_player = playerObj.GetComponent<Player>();
+			_playerInventory = playerObj.GetComponent<Inventory> ();
 
 			Scene currentScene = SceneManager.GetActiveScene ();
 			string currentSceneName = currentScene.name;
@@ -47,7 +51,7 @@ namespace Polyworks {
 
 			Instance.gameData.currentScene = currentSceneName; 
 			Hashtable items = Instance.gameData.items;
-			_inventory.Init (items);
+			_playerInventory.Init (items);
 
 			if (_getIsLevel(currentSceneName)) {
 				_initLevel (currentSceneName);
@@ -58,15 +62,15 @@ namespace Polyworks {
 		}
 
 		public virtual Inventory GetPlayerInventory() {
-			if (_inventory == null) {
-				_inventory = GetComponent<Inventory> ();
+			if (_playerInventory == null) {
+				_playerInventory = GetComponent<Inventory> ();
 			}
-			return _inventory;
+			return _playerInventory;
 		}
 
 		public void Save() {
 			Scene currentScene = SceneManager.GetActiveScene ();
-			Instance.gameData.items = _inventory.GetAll ();
+			Instance.gameData.items = _playerInventory.GetAll ();
 			_dataIOController.Save (Application.persistentDataPath + "/" + dataFilename, Instance.gameData);
 		}
 
@@ -75,7 +79,7 @@ namespace Polyworks {
 			if (data != null) {
 				Instance.gameData = data;
 
-				_inventory.Init (data.items);
+				_playerInventory.Init (data.items);
 				if (data.currentScene != "") {
 					ChangeScene (data.currentScene);
 				} else {
@@ -91,7 +95,7 @@ namespace Polyworks {
 			Scene currentScene = SceneManager.GetActiveScene ();
 
 			if (scene != currentScene.name) {
-				Instance.gameData.items = _inventory.GetAll ();
+				Instance.gameData.items = _playerInventory.GetAll ();
 				Instance.currentTargetScene = scene;
 				LevelController levelController = GameObject.Find("level_controller").GetComponent<LevelController>();
 				levelController.Cleanup();

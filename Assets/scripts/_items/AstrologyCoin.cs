@@ -3,13 +3,10 @@ using System.Collections;
 using Polyworks;
 
 public class AstrologyCoin : Item {
-
-	public PiggyBank piggyBank;
+	public string targetName; 
 
 	public override void Use() {
-//		Debug.Log ("AstrologyCoin[" + this.name + "]/Use");
+		PiggyBank piggyBank = GameObject.Find (targetName).GetComponent<PiggyBank> ();
 		piggyBank.InsertCoin (this.name, this.data.itemName);
-		EventCenter.Instance.RemoveItem(this.name);
-		Destroy (this.gameObject);
 	}
 }

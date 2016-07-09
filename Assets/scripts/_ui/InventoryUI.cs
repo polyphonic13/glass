@@ -92,16 +92,16 @@ public class InventoryUI : MonoBehaviour {
     	if(_occupiedItems == (_numColumns * _numRows)) {
     		return;
     	}
-		Inventory playerInventory = Game.Instance.GetPlayerInventory();
-    	var item = playerInventory.GetItem(itemName);
+//		Inventory playerInventory = Game.Instance.GetPlayerInventory();
+//    	var item = playerInventory.GetItem(itemName);
     	var itemUI = _items[_occupiedItems] as InventoryItemUI;
 
 		itemUI.name = itemName;
-		itemUI.SetName(item.data.itemName);
+//		itemUI.SetName(item.data.itemName);
    		itemUI.SetCount(0);
-    	if(item.Thumbnail != null) {
-	    	itemUI.SetThumbnail(item.Thumbnail);
-    	}
+//    	if(item.Thumbnail != null) {
+//	    	itemUI.SetThumbnail(item.Thumbnail);
+//    	}
     	if(_occupiedItems == 0) {
     		itemUI.SetFocus(true);
     	}
@@ -123,18 +123,18 @@ public class InventoryUI : MonoBehaviour {
 	}
 
 	private void _buildInventoryItems() {
-		Inventory playerInventory = Game.Instance.GetPlayerInventory();
-		Hashtable hash = playerInventory.GetAll();
-		var inventory = new ArrayList(hash.Values);
+//		Inventory playerInventory = Game.Instance.GetPlayerInventory();
+//		Hashtable hash = playerInventory.GetAll();
+//		var inventory = new ArrayList(hash.Values);
 		int total = _numColumns * _numRows;
 		CollectableItem item;
 		
-		for(int i = 0; i < inventory.Count; i++) {
-			if(i < total) {
-				item = inventory[i] as CollectableItem;
-				_setItem(item.name);
-			}
-		}
+//		for(int i = 0; i < inventory.Count; i++) {
+//			if(i < total) {
+//				item = inventory[i] as CollectableItem;
+//				_setItem(item.name);
+//			}
+//		}
 
 	}
 

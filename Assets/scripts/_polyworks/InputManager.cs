@@ -24,7 +24,7 @@ namespace Polyworks {
 		
 		private void Awake() {
 			_controls = ReInput.players.GetPlayer(0);
-			_player = GameObject.GetComponent<Player>();
+			_player = GetComponent<Player>();
 			
 			EventCenter ec = EventCenter.Instance;
 			ec.OnNearItem += this.OnNearItem;

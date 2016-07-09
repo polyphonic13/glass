@@ -28,7 +28,7 @@ namespace Polyworks {
 			_eventCenter.AddNote (itemData.itemName + " Added");
 		}
 
-		public virtual GameObject Remove(string name) {
+		public virtual ItemData Remove(string name) {
 			if (!Contains (name)) {
 				return null;
 			} else {
@@ -40,14 +40,26 @@ namespace Polyworks {
 					if (data.count == 0) {
 						_items.Remove (name);
 					}
-					if (data.isDroppable && data.prefabName != null) {
-						GameObject itemObject = (GameObject) Instantiate (Resources.Load(data.prefabName, typeof(GameObject)), transform.position, transform.rotation);
-						return itemObject;
-					} else {
-						return null;
-					}
+					return data;
+
+				} else {
+					return null;
 				}
 			} 
+		}
+
+		public virtual void Use(string name) {
+			ItemData data = Remove (name);
+			if (data != null) {
+				GameObject itemObj = (GameObject)Instantiate (Resources.Load (data.prefabName, typeof(GameObject)), transform.position, transform.rotation);
+				Item item = itemObj.GetComponent<Item> ();
+				item.data = data;
+				item.Use ();
+
+				if (data.isDestroyedOnUse) {
+					Destroy (itemObj);
+				}
+			}
 		}
 
 		public bool Contains(string key) {
@@ -62,7 +74,6 @@ namespace Polyworks {
 		}
 
 		public Hashtable GetAll() {
-			// Debug.Log ("Inventory/GetAll, _items.Count = " + _items.Count);
 			return _items;
 		}
 

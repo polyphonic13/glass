@@ -3,13 +3,10 @@ using System.Collections;
 using Polyworks;
 
 public class RabbitHuntToy : Item {
-	public ToyChest toyChest;
+	public string targetName = "toychest"; 
 
 	public override void Use() {
-		Debug.Log ("RabbitHuntToy/Use");
-
-		Inventory playerInventory = Game.Instance.GetPlayerInventory();
-		playerInventory.RemoveItem (this.name, false);
+		ToyChest toyChest = GameObject.Find (targetName).GetComponent<ToyChest> ();
 		toyChest.AddToy(this);
 	}
 }
