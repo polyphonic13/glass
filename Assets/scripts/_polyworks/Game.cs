@@ -23,9 +23,6 @@ namespace Polyworks {
 		public static Game Instance;
 
 		public virtual void Init() {
-			GameObject playerObj = GameObject.Find("player");
-			_player = playerObj.GetComponent<Player>();
-			_playerInventory = playerObj.GetComponent<Inventory> ();
 
 			Scene currentScene = SceneManager.GetActiveScene ();
 			string currentSceneName = currentScene.name;
@@ -129,6 +126,12 @@ namespace Polyworks {
 		}
 
 		private void _initLevel(string currentSceneName) {
+			GameObject playerObj = GameObject.Find("player");
+			if (_player != null) {
+				_player = playerObj.GetComponent<Player> ();
+				_playerInventory = playerObj.GetComponent<Inventory> ();
+			}
+
 			LevelController levelController = GameObject.Find("level_controller").GetComponent<LevelController>();
 			levelController.Init (Instance.gameData);
 			EventCenter.Instance.SceneInitializationComplete (currentSceneName);

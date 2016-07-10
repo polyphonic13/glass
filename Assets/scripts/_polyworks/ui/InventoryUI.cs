@@ -3,7 +3,7 @@ using System.Collections;
 using Rewired;
 
 namespace Polyworks {
-	public class InventoryUI : MonoBehaviour {
+	public class InventoryUI : UIController {
 
 		public GameObject inventoryItem; 
 
@@ -35,6 +35,8 @@ namespace Polyworks {
 
 		private Rewired.Player _controls; 
 
+
+		#region handlers
 		public void OnInventoryAdded(string itemName, int count) {
 			if (itemName != "flashlight") {
 				_setItem (itemName);	
@@ -52,12 +54,13 @@ namespace Polyworks {
 		public void OnInspectItem(bool isInspecting, string item) {
 			_isInspectingItem = isInspecting;
 		}
+		#endregion
 
 		private void Awake() {
 			_controls = ReInput.players.GetPlayer(0);
-
+			base.Init ();
 			_items = new ArrayList();
-			_canvas = gameObject.transform.parent.GetComponent<Canvas>();
+//			_canvas = gameObject.transform.parent.GetComponent<Canvas>();
 			_buildUI();
 
 			var ec = EventCenter.Instance;

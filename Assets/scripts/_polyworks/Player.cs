@@ -43,6 +43,8 @@ namespace Polyworks
         [SerializeField] private AudioClip m_LandSound;           // the sound played when character touches back on ground.
 		#endregion
 
+		public bool isActive = true; 
+
 		#region private members
 		private enum MovementStates { Normal, Crawl, Climb, Swim, Dive };
 		static MovementStates _currentMovementState;
@@ -240,53 +242,55 @@ namespace Polyworks
 		#region update		
 		private void Update()
         {
-			RotateView ();
-			if (_isDiving) {
-				if(_currentMovementState == MovementStates.Swim || _currentMovementState == MovementStates.Dive) {
-					_gravity = _underWaterGravity;
-					_currentMovementState = MovementStates.Dive;
-				}
-			}
-			if (_isCrawling) {
-				if(_currentMovementState == MovementStates.Normal && m_CharacterController.isGrounded) {
-					_currentMovementState = MovementStates.Crawl;
-					_switchToCrawling(true);
-					_justCrouched = true;
-//					Debug.Log("Crawl");
-				} else if(_currentMovementState == MovementStates.Crawl) {
-					_currentMovementState = MovementStates.Normal;
-					_switchToCrawling(false);
-					_justCrouched = true;
-//					Debug.Log("walk");
-				}
-			}
-
-			if (!m_PreviouslyGrounded && m_CharacterController.isGrounded) {
-				StartCoroutine(m_JumpBob.DoBobCycle());
-				//                PlayLandingSound();
-				m_MoveDir.y = 0f;
-				m_Jumping = false;
-
-				if(_damageFromFall && (_currentMovementState == MovementStates.Normal || _currentMovementState == MovementStates.Crawl)) {
-//					float health = Game.Instance.RemainingHealth - _gravityDamager.EndFall();
-//					Game.Instance.UpdateHealth(health);
-				}
-
-			}
-			if (!m_CharacterController.isGrounded && !m_Jumping && m_PreviouslyGrounded) {
-				m_MoveDir.y = 0f;
-			}
-
-			if(_damageFromFall) {
-				if (_currentMovementState != MovementStates.Climb) {
-					if(!m_CharacterController.isGrounded && m_PreviouslyGrounded) {
-						_gravityDamager.BeginFall();
+			if (isActive) {
+				RotateView ();
+				if (_isDiving) {
+					if(_currentMovementState == MovementStates.Swim || _currentMovementState == MovementStates.Dive) {
+						_gravity = _underWaterGravity;
+						_currentMovementState = MovementStates.Dive;
 					}
-				} else {
-					_gravityDamager.CancelFall ();
 				}
+				if (_isCrawling) {
+					if(_currentMovementState == MovementStates.Normal && m_CharacterController.isGrounded) {
+						_currentMovementState = MovementStates.Crawl;
+						_switchToCrawling(true);
+						_justCrouched = true;
+						//					Debug.Log("Crawl");
+					} else if(_currentMovementState == MovementStates.Crawl) {
+						_currentMovementState = MovementStates.Normal;
+						_switchToCrawling(false);
+						_justCrouched = true;
+						//					Debug.Log("walk");
+					}
+				}
+
+				if (!m_PreviouslyGrounded && m_CharacterController.isGrounded) {
+					StartCoroutine(m_JumpBob.DoBobCycle());
+					//                PlayLandingSound();
+					m_MoveDir.y = 0f;
+					m_Jumping = false;
+
+					if(_damageFromFall && (_currentMovementState == MovementStates.Normal || _currentMovementState == MovementStates.Crawl)) {
+						//					float health = Game.Instance.RemainingHealth - _gravityDamager.EndFall();
+						//					Game.Instance.UpdateHealth(health);
+					}
+
+				}
+				if (!m_CharacterController.isGrounded && !m_Jumping && m_PreviouslyGrounded) {
+					m_MoveDir.y = 0f;
+				}
+
+				if(_damageFromFall) {
+					if (_currentMovementState != MovementStates.Climb) {
+						if(!m_CharacterController.isGrounded && m_PreviouslyGrounded) {
+							_gravityDamager.BeginFall();
+						}
+					} else {
+						_gravityDamager.CancelFall ();
+					}
+				}
+				m_PreviouslyGrounded = m_CharacterController.isGrounded;
 			}
-			m_PreviouslyGrounded = m_CharacterController.isGrounded;
 		}
 		#endregion
 
@@ -311,7 +315,7 @@ namespace Polyworks
 
         private void FixedUpdate()
         {
-			if(!_isMenuOpen && !_isInventoryOpen && !_isInspectorOpen) {
+			if(isActive) {
 				float speed;
 
 				GetInput(out speed, _horizontal, _vertical);
