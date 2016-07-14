@@ -48,10 +48,12 @@ namespace Polyworks {
 
 			Instance.gameData.currentScene = currentSceneName; 
 			Hashtable items = Instance.gameData.items;
-			_playerInventory.Init (items);
 
 			if (_getIsLevel(currentSceneName)) {
 				_initLevel (currentSceneName);
+				if (_playerInventory != null) {
+					_playerInventory.Init (items);
+				}
 			} else {
 				EventCenter.Instance.SceneInitializationComplete (currentSceneName);
 			}
@@ -60,7 +62,10 @@ namespace Polyworks {
 
 		public virtual Inventory GetPlayerInventory() {
 			if (_playerInventory == null) {
-				_playerInventory = GetComponent<Inventory> ();
+				GameObject playerObj = GameObject.Find ("player");
+				if (playerObj != null) {
+					_playerInventory = playerObj.GetComponent<Inventory> ();
+				}
 			}
 			return _playerInventory;
 		}
@@ -90,14 +95,17 @@ namespace Polyworks {
 		public void ChangeScene(string scene) {
 			// Debug.Log ("Game/ChangeScene, scene = " + scene + ", gameData.items.Count = " + Instance.gameData.items.Count);
 			Scene currentScene = SceneManager.GetActiveScene ();
+			bool isLevel = _getIsLevel (currentScene.name);
 
 			if (scene != currentScene.name) {
-				Instance.gameData.items = _playerInventory.GetAll ();
+				if (isLevel) {
+					Instance.gameData.items = _playerInventory.GetAll ();
+					LevelController levelController = GameObject.Find("level_controller").GetComponent<LevelController>();
+					levelController.Cleanup();
+				}
 				Instance.currentTargetScene = scene;
-				LevelController levelController = GameObject.Find("level_controller").GetComponent<LevelController>();
-				levelController.Cleanup();
 				_loadScene (scene);
-			} else if (_getIsLevel (currentScene.name)) {
+			} else if (isLevel) {
 				_initLevel (currentScene.name);
 			}
 		}
@@ -127,9 +135,11 @@ namespace Polyworks {
 
 		private void _initLevel(string currentSceneName) {
 			GameObject playerObj = GameObject.Find("player");
-			if (_player != null) {
+			Debug.Log ("playerObj = " + playerObj);
+			if (playerObj != null) {
 				_player = playerObj.GetComponent<Player> ();
 				_playerInventory = playerObj.GetComponent<Inventory> ();
+				Debug.Log ("_playerInventory = " + _playerInventory);
 			}
 
 			LevelController levelController = GameObject.Find("level_controller").GetComponent<LevelController>();

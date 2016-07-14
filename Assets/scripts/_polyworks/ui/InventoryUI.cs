@@ -31,8 +31,6 @@ namespace Polyworks {
 
 		private InventoryItemUI _selectedInventoryItemUI; 
 
-		private Canvas _canvas;
-
 		private Rewired.Player _controls; 
 
 
@@ -60,7 +58,6 @@ namespace Polyworks {
 			_controls = ReInput.players.GetPlayer(0);
 			base.Init ();
 			_items = new ArrayList();
-//			_canvas = gameObject.transform.parent.GetComponent<Canvas>();
 			_buildUI();
 
 			var ec = EventCenter.Instance;
@@ -71,7 +68,7 @@ namespace Polyworks {
 		}
 
 		private void FixedUpdate() {
-			if (_canvas.enabled) {
+			if (canvas.enabled) {
 				_checkInput ();
 			}
 		}

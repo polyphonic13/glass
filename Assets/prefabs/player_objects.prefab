@@ -148,8 +148,9 @@ GameObject:
   - 222: {fileID: 22288954}
   - 114: {fileID: 11467300}
   - 114: {fileID: 11464216}
+  - 114: {fileID: 11496376}
   m_Layer: 5
-  m_Name: inventory_items_holder
+  m_Name: 
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -412,6 +413,7 @@ GameObject:
   - 223: {fileID: 22340874}
   - 114: {fileID: 11405068}
   - 114: {fileID: 11490734}
+  - 114: {fileID: 11485140}
   m_Layer: 14
   m_Name: menu_ui
   m_TagString: Untagged
@@ -507,6 +509,8 @@ GameObject:
   - 114: {fileID: 11471246}
   - 114: {fileID: 11432966}
   - 114: {fileID: 11424298}
+  - 114: {fileID: 11459496}
+  - 114: {fileID: 11434314}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -934,7 +938,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 178560}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 136, y: 0, z: 62}
+  m_LocalPosition: {x: 0, y: -13, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 455824}
@@ -1717,6 +1721,17 @@ MonoBehaviour:
   m_Text: 'Move
 
 '
+--- !u!114 &11434314
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 156930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a40c5dae2c3e54b58ad96dba16f69908, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11434888
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1955,8 +1970,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37a159ebdbb0546558f70a8bb29c4ea5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _icon: {fileID: 11446602}
-  _defaultSprite: {fileID: 21300000, guid: 1d22c2b3d3c30498da2ec3c83308c237, type: 3}
+  image: {fileID: 0}
+  icons: []
+  defaultIcon: 0
 --- !u!114 &11454898
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2023,6 +2039,99 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &11459496
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 156930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 434bca719d7854672a3760d2a37ee6a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _menuUI: {fileID: 22340874}
+  _inventoryUI: {fileID: 22352806}
+  _interactiveItemUI: {fileID: 22325608}
+  _flashLight: {fileID: 11480874}
+  _damageFromFall: 1
+  _underWaterGravity: -0.1
+  _crawlSpeedMultiplier: 0.5
+  _diveSpeedMultiplier: 0.5
+  _swimSpeedMultiplier: 0.5
+  _climbSpeedMultiplier: 0.3
+  m_IsWalking: 1
+  m_WalkSpeed: 3
+  m_RunSpeed: 6
+  m_RunstepLenghten: 0.7
+  m_JumpSpeed: 0
+  m_StickToGroundForce: 10
+  m_GravityMultiplier: 2
+  m_MouseLook:
+    XSensitivity: 4
+    YSensitivity: 4
+    clampVerticalRotation: 1
+    MinimumX: -90
+    MaximumX: 90
+    smooth: 0
+    smoothTime: 5
+  m_UseFovKick: 0
+  m_FovKick:
+    Camera: {fileID: 0}
+    originalFov: 0
+    FOVIncrease: 3
+    TimeToIncrease: 1
+    TimeToDecrease: 1
+    IncreaseCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  m_UseHeadBob: 0
+  m_HeadBob:
+    HorizontalBobRange: 0.33
+    VerticalBobRange: 0.33
+    Bobcurve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 0.5
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 1.5
+        value: -1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 2
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    VerticaltoHorizontalRatio: 1
+  m_JumpBob:
+    BobDuration: 0
+    BobAmount: 0
+  m_StepInterval: 0
+  m_FootstepSounds: []
+  m_JumpSound: {fileID: 0}
+  m_LandSound: {fileID: 0}
+  isActive: 1
 --- !u!114 &11463104
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2068,7 +2177,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 113682}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b7e915539eeb44963be9597b02f780e3, type: 3}
   m_Name: 
@@ -2346,7 +2455,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 156930}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 83af97b41e5814a888b35eb3fa792394, type: 3}
   m_Name: 
@@ -2365,7 +2474,7 @@ MonoBehaviour:
   m_WalkSpeed: 3
   m_RunSpeed: 6
   m_RunstepLenghten: 0.7
-  m_JumpSpeed: 8
+  _isJumpingSpeed: 0
   m_StickToGroundForce: 10
   m_GravityMultiplier: 2
   m_MouseLook:
@@ -2425,12 +2534,12 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     VerticaltoHorizontalRatio: 1
-  m_JumpBob:
+  _isJumpingBob:
     BobDuration: 0
     BobAmount: 0
   m_StepInterval: 5
   m_FootstepSounds: []
-  m_JumpSound: {fileID: 8300000, guid: 5897aeed9b676024fbb8c694b421a861, type: 3}
+  _isJumpingSound: {fileID: 0}
   m_LandSound: {fileID: 8300000, guid: 3b09d59f4499d45428baa7a21e954296, type: 3}
 --- !u!114 &11483732
 MonoBehaviour:
@@ -2465,6 +2574,18 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Examine
+--- !u!114 &11485140
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 147500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13dffdac41f0a4db585a49cd48bba838, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 0}
 --- !u!114 &11485270
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2626,6 +2747,21 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &11496376
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 113682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b26a9374d7494493fb0674bda7629c16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 22352806}
+  inventoryItem: {fileID: 173432, guid: 54d9bc79e66e845ef85821afeedcea64, type: 2}
+  numColumns: 6
+  numRows: 2
 --- !u!114 &11496656
 MonoBehaviour:
   m_ObjectHideFlags: 1

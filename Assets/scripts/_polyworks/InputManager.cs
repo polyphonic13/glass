@@ -8,8 +8,6 @@ using Polyworks;
 namespace Polyworks {
 	
 	public class InputManager : MonoBehaviour {
-		public bool isPlayerActive; 
-
 		private Rewired.Player _controls;
 		private Player _player;
 	
@@ -17,6 +15,7 @@ namespace Polyworks {
 		private InventoryUI _inventoryUI;
 
 		private bool _isUIOpen = false; 
+		private bool _isInventoryOpen = false;
 
 		private Item _itemInProximity = null; 
 		
@@ -34,12 +33,13 @@ namespace Polyworks {
 
 			GameObject menuObj = GameObject.Find ("menu_ui");
 			if (menuObj != null) {
-				_menuUI.GetComponent<MenuUI> ();
+				_menuUI = menuObj.GetComponent<MenuUI> ();
 			}
 
-			GameObject inventoryObj = GameObject.Find ("inventory_ui");
+			GameObject inventoryObj = GameObject.Find ("inventory_ui/inventory_canvas");
 			if (inventoryObj != null) {
 				_inventoryUI = inventoryObj.GetComponent<InventoryUI> ();
+				Debug.Log ("_intventoryUI = " + _inventoryUI);
 			}
 
 			EventCenter ec = EventCenter.Instance;
@@ -50,6 +50,7 @@ namespace Polyworks {
 			if(_isUIOpen) {
 				if(_controls.GetButton("cancel")) {
 					_isUIOpen = false;
+					_isInventoryOpen = false;
 					_player.isActive = true;
 					_inventoryUI.SetActive(false);
 					_menuUI.SetActive (false);
@@ -57,11 +58,13 @@ namespace Polyworks {
 			} else {
 				if(_controls.GetButton("open_menu")) {
 					_isUIOpen = true;
+					_isInventoryOpen = false;
 					_player.isActive = false;
 					_inventoryUI.SetActive(false);
 					_menuUI.SetActive (true);
 				} else if(_controls.GetButton("open_inventory")) {
 					_isUIOpen = true;
+					_isInventoryOpen = true;
 					_player.isActive = false;
 					_inventoryUI.SetActive(true);
 					_menuUI.SetActive (false);
@@ -89,11 +92,16 @@ namespace Polyworks {
 		private void FixedUpdate() {
 			float horizontal = _controls.GetAxis("move_horizontal");
 			float vertical = _controls.GetAxis("move_vertical");
+//			Debug.Log ("InputManager/FixedUpdate, horizontal/vertical = " + horizontal + "/" + vertical + ", isUIOpen = " + _isUIOpen);
 			if (!_isUIOpen) {
 				_player.SetHorizontal (horizontal);
 				_player.SetVertical (vertical);
-			} else if (_inventoryCanvas.enabled) {
-
+			} else if(_isInventoryOpen) {
+				_inventoryUI.SetHorizontal (horizontal);
+				_inventoryUI.SetVertical (vertical);
+			} else {
+				_menuUI.SetHorizontal (horizontal);
+				_menuUI.SetVertical (vertical);
 			}
 		}
 

@@ -17,20 +17,20 @@ namespace Polyworks
 		[SerializeField] private Canvas _interactiveItemUI; 
 		[SerializeField] private Flashlight _flashLight; 
 
-		[SerializeField] private bool _damageFromFall;
-		[SerializeField] private float _underWaterGravity;
-		[SerializeField] private float _crawlSpeedMultiplier;
-		[SerializeField] private float _diveSpeedMultiplier; 
-		[SerializeField] private float _swimSpeedMultiplier; 
-		[SerializeField] private float _climbSpeedMultiplier; 
+		[SerializeField] private bool _damageFromFall = true;
+		[SerializeField] private float _underWaterGravity = -0.1f;
+		[SerializeField] private float _crawlSpeedMultiplier = 0.5f;
+		[SerializeField] private float _diveSpeedMultiplier = 0.5f; 
+		[SerializeField] private float _swimSpeedMultiplier = 0.5f; 
+		[SerializeField] private float _climbSpeedMultiplier = 0.3f; 
 
-		[SerializeField] private bool m_IsWalking;
-        [SerializeField] private float m_WalkSpeed;
-        [SerializeField] private float m_RunSpeed;
-        [SerializeField] [Range(0f, 1f)] private float m_RunstepLenghten;
+		[SerializeField] private bool m_IsWalking = true;
+        [SerializeField] private float m_WalkSpeed = 3;
+        [SerializeField] private float m_RunSpeed = 6;
+        [SerializeField] [Range(0f, 1f)] private float m_RunstepLenghten = 0.7f;
         [SerializeField] private float m_JumpSpeed;
-        [SerializeField] private float m_StickToGroundForce;
-        [SerializeField] private float m_GravityMultiplier;
+        [SerializeField] private float m_StickToGroundForce = 10;
+        [SerializeField] private float m_GravityMultiplier = 2;
 		[SerializeField] private MouseLook m_MouseLook;
         [SerializeField] private bool m_UseFovKick;
         [SerializeField] private FOVKick m_FovKick = new FOVKick();
@@ -339,18 +339,16 @@ namespace Polyworks
 					break;
 					
 				case MovementStates.Normal:
-					// Normal WALK/FALL
 					if (m_CharacterController.isGrounded) {
 						m_MoveDir.y = -m_StickToGroundForce;
 						
 						if (m_Jump) {
 							m_MoveDir.y = m_JumpSpeed;
-							//                    PlayJumpSound();
+//		                    PlayJumpSound();
 							m_Jump = false;
 							m_Jumping = true;
 						}
 					} else {
-						// Normal fall to ground
 						m_MoveDir += Physics.gravity*_gravity*Time.fixedDeltaTime;
 					}
 					break;

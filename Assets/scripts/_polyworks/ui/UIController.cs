@@ -6,8 +6,8 @@ namespace Polyworks {
 	{
 		public Canvas canvas;
 
-		public float horizontal;
-		public float vertical; 
+		public float horizontal { get; set; }
+		public float vertical { get; set; }
 
 		#region public methods
 		public virtual void Init() {
