@@ -148,11 +148,11 @@ namespace Polyworks {
 			Hashtable hash = playerInventory.GetAll();
 			var inventory = new ArrayList(hash.Values);
 			int total = numColumns * numRows;
-			CollectableItem item;
+			Item item;
 
 			for(int i = 0; i < inventory.Count; i++) {
 				if(i < total) {
-					item = inventory[i] as CollectableItem;
+					item = inventory[i] as Item;
 					_setItem(item.name);
 				}
 			}

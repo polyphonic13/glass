@@ -21,6 +21,7 @@ namespace Polyworks {
 
 		#region public methods
 		public virtual void Init() {
+			Debug.Log ("UIController/Init, canvas = " + canvas);
 			canvas.enabled = isActiveOnAwake;
 		}
 
