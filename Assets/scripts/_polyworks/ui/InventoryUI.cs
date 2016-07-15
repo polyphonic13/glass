@@ -145,18 +145,16 @@ namespace Polyworks {
 		#region build
 		private void _buildInventoryItems() {
 			Inventory playerInventory = Game.Instance.GetPlayerInventory();
-			Hashtable hash = playerInventory.GetAll();
-			var inventory = new ArrayList(hash.Values);
 			int total = numColumns * numRows;
-			Item item;
+			int count = 0;
 
-			for(int i = 0; i < inventory.Count; i++) {
-				if(i < total) {
-					item = inventory[i] as Item;
-					_setItem(item.name);
+			Hashtable items = playerInventory.GetAll();
+			foreach(ItemData itemData in items.Values) {
+				if (count < total) {
+					_setItem (itemData.itemName);
 				}
+				count++;
 			}
-
 		}
 
 		private void _buildUI() {

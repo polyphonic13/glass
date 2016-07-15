@@ -64,6 +64,7 @@ namespace Polyworks {
 				GameObject itemObj = (GameObject) Instantiate (Resources.Load (data.prefabName, typeof(GameObject)), transform.position, transform.rotation);
 				Item item = itemObj.GetComponent<Item> ();
 				item.data = data;
+				item.data.isCollected = false;
 				item.Use ();
 
 				if (data.isDestroyedOnUse) {
