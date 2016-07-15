@@ -10,14 +10,20 @@ namespace Polyworks {
 
 
 		public void Init(Hashtable items = null) {
+			Debug.Log ("Inventory/Init, items.Count = " + items.Count);
 			if (items != null && items.Count > 0) {
-				_items = items as Hashtable;
+//				_items = items as Hashtable;
+				_items = new Hashtable();
+				foreach (ItemData itemData in items.Values) {
+					Add (itemData);
+				}
 			} else if (_items == null) {
 				_items = new Hashtable ();
 			}
 		}
 
 		public virtual void Add(ItemData item) {
+			Debug.Log ("Inventory/Add, name = " + item.itemName);
 			if (!Contains (item.itemName)) {
 				_items.Add (item.itemName, item);
 			}
@@ -40,6 +46,7 @@ namespace Polyworks {
 					if (data.count == 0) {
 						_items.Remove (name);
 					}
+					_eventCenter.InventoryRemoved (data.itemName, data.count);
 					return data;
 
 				} else {
@@ -49,14 +56,18 @@ namespace Polyworks {
 		}
 
 		public virtual void Use(string name) {
+			_eventCenter.CloseInventoryUI ();
+
 			ItemData data = Remove (name);
 			if (data != null) {
-				GameObject itemObj = (GameObject)Instantiate (Resources.Load (data.prefabName, typeof(GameObject)), transform.position, transform.rotation);
+				Debug.Log ("Inventory/Use, name = " + name + ", prefab = " + data.prefabName + ", isDestroyedOnUse = " + data.isDestroyedOnUse);
+				GameObject itemObj = (GameObject) Instantiate (Resources.Load (data.prefabName, typeof(GameObject)), transform.position, transform.rotation);
 				Item item = itemObj.GetComponent<Item> ();
 				item.data = data;
 				item.Use ();
 
 				if (data.isDestroyedOnUse) {
+					Debug.Log (" kill " + itemObj);
 					Destroy (itemObj);
 				}
 			}

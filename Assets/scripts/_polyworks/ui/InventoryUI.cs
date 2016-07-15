@@ -16,7 +16,7 @@ namespace Polyworks {
 		private const float startY = 85f;
 
 		private ArrayList _items;
-		private int _itemsIndex = -1;
+		private int _itemsIndex;
 
 		private float _width; 
 		private float _height; 
@@ -30,6 +30,7 @@ namespace Polyworks {
 		private int _previousItemIndex;
 
 		private bool _isInspectingItem = false;
+		private bool _isBuilt = false;
 
 		private InventoryItemUI _selectedInventoryItemUI = null; 
 
@@ -57,18 +58,13 @@ namespace Polyworks {
 		}
 		#endregion
 
-		public override void SetActive(bool isActive) {
-			base.SetActive (isActive);
-
-			if (_itemsIndex > -1) {
-				var item = _items [_currentItemIndex] as InventoryItemUI;
-				item.SetFocus (true);
-			}
-		}
-
-		private void Awake() {
+		#region public methods
+		public override void Init() {
+			Debug.Log ("InventoryUI/Init");
 			base.Init ();
+			_itemsIndex = -1;
 			_items = new ArrayList();
+
 			_buildUI();
 
 			var ec = EventCenter.Instance;
@@ -78,14 +74,22 @@ namespace Polyworks {
 			ec.OnCloseInventoryUI += OnCloseInventoryUI;
 		}
 
-		private void FixedUpdate() {
-			if (canvas.enabled) {
-				_checkInput ();
+		public override void SetActive(bool isActive) {
+			base.SetActive (isActive);
+
+			if (_itemsIndex > -1) {
+				var item = _items [_currentItemIndex] as InventoryItemUI;
+				item.SetFocus (true);
 			}
 		}
+		#endregion
 
+		private void Awake() {
+			Init ();
+		}
+			
 		private void _reset() {
-			Debug.Log ("InventoryUI/_reset, selected = " + _selectedInventoryItemUI);
+//			Debug.Log ("InventoryUI/_reset, selected = " + _selectedInventoryItemUI);
 			if (_selectedInventoryItemUI != null) {
 				_selectedInventoryItemUI.Deselect ();
 				_selectedInventoryItemUI = null;
@@ -101,6 +105,7 @@ namespace Polyworks {
 		}
 
 		private void _setItem(string itemName) {
+			Debug.Log("InventoryUI/_setItem, itemName = " + itemName + ", _itemsIndex = " + _itemsIndex + ", _isBuilt = " + _isBuilt);
 			if(_itemsIndex == (numColumns * numRows) - 1) {
 				return;
 			}
@@ -126,7 +131,7 @@ namespace Polyworks {
 		private void _resetItems(string itemName) {
 			InventoryItemUI itemUI;
 
-			_itemsIndex = 0;
+			_itemsIndex = -1;
 			_previousItemIndex = _currentItemIndex = 0;
 
 			for(int i = 0; i < _items.Count; i++) {
@@ -137,6 +142,7 @@ namespace Polyworks {
 			_buildInventoryItems();
 		}
 
+		#region build
 		private void _buildInventoryItems() {
 			Inventory playerInventory = Game.Instance.GetPlayerInventory();
 			Hashtable hash = playerInventory.GetAll();
@@ -185,6 +191,15 @@ namespace Polyworks {
 					col = 0;
 				}
 			}
+			_isBuilt = true;
+		}
+		#endregion
+
+		#region update
+		private void FixedUpdate() {
+			if (canvas.enabled) {
+				_checkInput ();
+			}
 		}
 
 		private void _checkInput() {
@@ -199,7 +214,7 @@ namespace Polyworks {
 				}
 				cancel = false;
 			} else {
-				if(_itemsIndex > 0 && !_isInspectingItem) {
+				if(_itemsIndex > -1 && !_isInspectingItem) {
 					if(confirm) {
 						if(_selectedInventoryItemUI == null) {
 							if (_currentItemIndex <= _itemsIndex) {
@@ -259,6 +274,7 @@ namespace Polyworks {
 				}
 			}
 		}
+		#endregion
 
 		#region ui nav
 		private void _calculateCol(float horizontal) {
