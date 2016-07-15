@@ -16,7 +16,7 @@ public class UIPlayer_propertyText : MonoBehaviour {
 	
 	void OnPlayerPropertyUpdated(string prop, float val) {
 		if(prop == _property) {
-//			Debug.Log("UIPlayer_propertyText[" + _prefix + "]/OnPlayerPropertyUpdated, prop = " + prop + ", val = " + val);
+//			// Debug.Log("UIPlayer_propertyText[" + _prefix + "]/OnPlayerPropertyUpdated, prop = " + prop + ", val = " + val);
 			updateText();
 		}
 	}

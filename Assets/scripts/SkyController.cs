@@ -56,7 +56,7 @@ public class SkyController : MonoBehaviour {
 		float dot = Mathf.Clamp01 ((Vector3.Dot (mainLight.transform.forward, Vector3.down) - minPoint) / tRange);
 		float i = ((maxIntensity - minIntensity) * dot) + minIntensity;
 		/*
-		Debug.Log ("dot forward,down = " + Vector3.Dot (mainLight.transform.forward, Vector3.down)
+		// Debug.Log ("dot forward,down = " + Vector3.Dot (mainLight.transform.forward, Vector3.down)
 			+ " - minPoint = " + (Vector3.Dot (mainLight.transform.forward, Vector3.down) - minPoint)
 			+ ", dot = " + dot + ", tRange = " + tRange
 			+ ", light intensity = " + i);
@@ -75,7 +75,7 @@ public class SkyController : MonoBehaviour {
 //		RenderSettings.fogDensity = fogDensityCurve.Evaluate (dot) * fogScale;
 		RenderSettings.fogDensity = 1 * fogScale;
 
-//		Debug.Log ("ss curve = " + sunshineCurve.Evaluate (dot) + ", i = " + i + ", dot = " + dot);
+//		// Debug.Log ("ss curve = " + sunshineCurve.Evaluate (dot) + ", i = " + i + ", dot = " + dot);
 		if (usingSunshine) {
 			Sunshine.Instance.ScatterIntensity = sunshineCurve.Evaluate (dot);
 			Sunshine.Instance.ScatterColor = RenderSettings.fogColor;
@@ -85,7 +85,7 @@ public class SkyController : MonoBehaviour {
 		skyMat.SetFloat("_AtmosphereThickness", i);
 
 		exposure = skyExposureCurve.Evaluate (dot);
-//		Debug.Log("exposure = " + exposure + ", atmosphere thickness = " + i);
+//		// Debug.Log("exposure = " + exposure + ", atmosphere thickness = " + i);
 	
 		skyMat.SetFloat("_Exposure", exposure);
 

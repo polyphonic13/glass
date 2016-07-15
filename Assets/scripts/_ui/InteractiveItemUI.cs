@@ -15,7 +15,7 @@ public class InteractiveItemUI : MonoBehaviour {
 	
 	void OnNearItem(Item item, bool isFocused) {
 		if (isFocused && item.data.itemName != null) {
-//			Debug.Log ("InteractiveItemUI/OnNearItem, item = " + item.itemName + ", isFocused = " + isFocused + ", _message.text = " + _message.text);
+//			// Debug.Log ("InteractiveItemUI/OnNearItem, item = " + item.itemName + ", isFocused = " + isFocused + ", _message.text = " + _message.text);
 			_group.alpha = 1;
 			_message.text = item.data.itemName;
 		} else {

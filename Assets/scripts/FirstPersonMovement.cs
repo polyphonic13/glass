@@ -25,21 +25,21 @@ public class FirstPersonMovement : MonoBehaviour {
 	}
 
 	void NormalMove() {
-		Debug.Log("normal move");
+		// Debug.Log("normal move");
 	}
 
 	void ClimbMove() {
-		Debug.Log("climb move");
+		// Debug.Log("climb move");
 
 	}
 
 	void SwimMove() {
-		Debug.Log("swim move");
+		// Debug.Log("swim move");
 
 	}
 	
 	void Crawl() {
-		Debug.Log("crawl move");
+		// Debug.Log("crawl move");
 
 	}
 }

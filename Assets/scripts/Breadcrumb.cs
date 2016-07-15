@@ -12,7 +12,7 @@ public class Breadcrumb : MonoBehaviour {
 	}
 
 	void _killSelf() {
-		//Debug.Log("SlingshotBullet/_killSelf");
+		//// Debug.Log("SlingshotBullet/_killSelf");
 		Destroy(gameObject);	
 	}
 }

@@ -60,7 +60,7 @@ namespace Polyworks {
 
 		#region public methods
 		public override void Init() {
-			Debug.Log ("InventoryUI/Init");
+			// Debug.Log ("InventoryUI/Init");
 			base.Init ();
 			_itemsIndex = -1;
 			_items = new ArrayList();
@@ -89,7 +89,7 @@ namespace Polyworks {
 		}
 			
 		private void _reset() {
-//			Debug.Log ("InventoryUI/_reset, selected = " + _selectedInventoryItemUI);
+//			// Debug.Log ("InventoryUI/_reset, selected = " + _selectedInventoryItemUI);
 			if (_selectedInventoryItemUI != null) {
 				_selectedInventoryItemUI.Deselect ();
 				_selectedInventoryItemUI = null;
@@ -105,7 +105,7 @@ namespace Polyworks {
 		}
 
 		private void _setItem(string itemName) {
-			Debug.Log("InventoryUI/_setItem, itemName = " + itemName + ", _itemsIndex = " + _itemsIndex + ", _isBuilt = " + _isBuilt);
+			// Debug.Log("InventoryUI/_setItem, itemName = " + itemName + ", _itemsIndex = " + _itemsIndex + ", _isBuilt = " + _isBuilt);
 			if(_itemsIndex == (numColumns * numRows) - 1) {
 				return;
 			}
@@ -357,7 +357,7 @@ namespace Polyworks {
 		#endregion
 
 		private void OnDestroy() {
-			Debug.Log ("InventoryUI/OnDestroy");
+			// Debug.Log ("InventoryUI/OnDestroy");
 			var ec = EventCenter.Instance;
 			ec.OnInventoryAdded -= OnInventoryAdded;
 			ec.OnInventoryRemoved -= OnInventoryRemoved;

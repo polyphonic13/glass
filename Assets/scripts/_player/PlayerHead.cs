@@ -29,7 +29,7 @@ public class PlayerHead : MonoBehaviour {
 		if (Physics.Raycast (this.transform.position, this.transform.forward, out hit, interactDistance)) {
 			if (hit.transform != this.transform && (hit.transform.tag == "interactive" || hit.transform.tag == "persistent")) {
 //				Debug.DrawRay(this.transform.position, this.transform.forward, Color.green);
-//				Debug.Log("hit name = " + hit.transform.name);
+//				// Debug.Log("hit name = " + hit.transform.name);
 				if (hit.transform.name != _itemJustHit) {
 					ProximityController item = hit.transform.gameObject.GetComponent<ProximityController> ();
 //					if(item.isEnabled) {

@@ -140,7 +140,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
 		}
 
 		public void OnAboveWater(bool water, Transform tgt) {
-//			Debug.Log("Player/OnAboveWater, water = " + water);
+//			// Debug.Log("Player/OnAboveWater, water = " + water);
 			if(water) {
 				_currentMovementState = _previousMovementState = MovementStates.Swim;
 				_gravity = 0;
@@ -160,7 +160,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
 		}
 
 		public void OnInventoryChanged(string name, int count) {
-//			Debug.Log ("OnInventoryChanged, name = " + name);
+//			// Debug.Log ("OnInventoryChanged, name = " + name);
 			if (name == "flashlight") {
 				_hasFlashlight = true;
 			}
@@ -257,7 +257,7 @@ namespace UnitySampleAssets.Characters.FirstPerson
 					_rotateView();
 					
 					if(_controls.GetButtonDown("actuate")) {
-//						Debug.Log("Player fire1 pressed, _elementInProximity = " + _elementInProximity);
+//						// Debug.Log("Player fire1 pressed, _elementInProximity = " + _elementInProximity);
 						if(_elementInProximity != null) {
 							_elementInProximity.Actuate();
 						}
@@ -378,11 +378,11 @@ namespace UnitySampleAssets.Characters.FirstPerson
 						m_MoveDir.y = move.y * speed;
 						m_MoveDir.z = move.z * speed;
 
-	//					Debug.Log ("move = " + move);
+	//					// Debug.Log ("move = " + move);
 					break;
 					
 					case MovementStates.Swim:
-						//					Debug.Log("Swimming, _isUnderWater = ");
+						//					// Debug.Log("Swimming, _isUnderWater = ");
 						// SwimMING
 						// do not move y -- stay on surface of water
 						m_MoveDir.y = 0f;

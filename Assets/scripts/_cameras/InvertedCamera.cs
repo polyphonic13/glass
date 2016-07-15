@@ -17,7 +17,7 @@ public class InvertedCamera : MonoBehaviour {
 
 	// EXAMPLE WITH CAMERA UPSIDEDOWN
 	void OnPreCull() {
-//		Debug.Log("InvertedCamera/OnPreCull");
+//		// Debug.Log("InvertedCamera/OnPreCull");
 		GetComponent<Camera>().ResetWorldToCameraMatrix();
 		GetComponent<Camera>().ResetProjectionMatrix();
 		GetComponent<Camera>().projectionMatrix = GetComponent<Camera>().projectionMatrix * Matrix4x4.Scale(new Vector3(forward, up, right));
@@ -33,7 +33,7 @@ public class InvertedCamera : MonoBehaviour {
 	
 
 	public virtual void OnRoomEntered(string room) {
-		Debug.Log("InvertedCamera["+name+"]/OnRoomEntered: " + room + ", containingRoom: " + containingRoom);
+		// Debug.Log("InvertedCamera["+name+"]/OnRoomEntered: " + room + ", containingRoom: " + containingRoom);
 		if(room == containingRoom) {
 //			IsRoomActive = true;
 			gameObject.SetActive(true);
@@ -41,7 +41,7 @@ public class InvertedCamera : MonoBehaviour {
 	}
 	
 	public void OnRoomExited(string room) {
-		Debug.Log("InvertedCamera["+name+"]/OnRoomExited: " + room + ", containingRoom: " + containingRoom);
+		// Debug.Log("InvertedCamera["+name+"]/OnRoomExited: " + room + ", containingRoom: " + containingRoom);
 		if(room == containingRoom) {
 //			IsRoomActive = false;
 			gameObject.SetActive(false);

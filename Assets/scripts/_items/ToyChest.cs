@@ -25,7 +25,7 @@ public class ToyChest : MonoBehaviour {
 
 	public void AddToy(RabbitHuntToy toy) {
 
-//		Debug.Log("ToyChest/AddToy, toy = " + toy.name);
+//		// Debug.Log("ToyChest/AddToy, toy = " + toy.name);
 		for(int i = 0; i < _toyNames.Length; i++) {
 
 			if(toy.name == _toyNames[i]) {
@@ -47,9 +47,9 @@ public class ToyChest : MonoBehaviour {
 				break;
 			}
 		}
-//		Debug.Log("_collected = " + _collected + ", _expected = " + _expected);
+//		// Debug.Log("_collected = " + _collected + ", _expected = " + _expected);
 		if(_collected == _expected) {
-//			Debug.Log ("toy box expected all collected");
+//			// Debug.Log ("toy box expected all collected");
 			EventCenter.Instance.TriggerEvent(unlockEvent);
 			EventCenter.Instance.AddNote ("There's a crash in the room next door.");
 		}

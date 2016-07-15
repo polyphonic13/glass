@@ -114,7 +114,7 @@ public class EventCenter : MonoBehaviour {
 	}
 
 	public void UpdatePlayerProperty(string prop, float val) {
-//		Debug.Log("EventCenter/UpdatePlayerProperty, prop = " + prop + ", val = " + val);
+//		// Debug.Log("EventCenter/UpdatePlayerProperty, prop = " + prop + ", val = " + val);
 		if(OnPlayerPropertyUpdated != null) {
 			OnPlayerPropertyUpdated(prop, val);
 		}
@@ -145,7 +145,7 @@ public class EventCenter : MonoBehaviour {
 	}
 
 	public void ChangeMouseSensitivity(float sensitivity) {
-//		Debug.Log("EventCenter/ChangeMouseSensitivity, sensitivity = " + sensitivity + ", OnMouseSensitivityChange = " + OnMouseSensitivityChange);
+//		// Debug.Log("EventCenter/ChangeMouseSensitivity, sensitivity = " + sensitivity + ", OnMouseSensitivityChange = " + OnMouseSensitivityChange);
 		if(OnMouseSensitivityChange != null) {
 			OnMouseSensitivityChange(sensitivity);
 		}
@@ -194,14 +194,14 @@ public class EventCenter : MonoBehaviour {
 	}
 
 	public void Actuate(string name) {
-//		Debug.Log("EventCenter.Actuate, name = " + name);
+//		// Debug.Log("EventCenter.Actuate, name = " + name);
 		if(OnActuate != null) {
 			OnActuate(name);
 		}
 	}
 	
 	public void NearInteractiveItem(Item item, bool isInProximity) {
-//		Debug.Log ("EventCenter/NearInteractiveItem, item = " + item.name + ", isInProximity = " + isInProximity);
+//		// Debug.Log ("EventCenter/NearInteractiveItem, item = " + item.name + ", isInProximity = " + isInProximity);
 		if(OnNearItem != null) {
 			OnNearItem(item, isInProximity);
 		}
@@ -244,7 +244,7 @@ public class EventCenter : MonoBehaviour {
 	}
 
 	public void ChangeDayNightState(string state) {
-		Debug.Log ("ChangeDayNightState, state = " + state);
+		// Debug.Log ("ChangeDayNightState, state = " + state);
 		if (OnDayNightChange != null) {
 			OnDayNightChange (state);
 		}

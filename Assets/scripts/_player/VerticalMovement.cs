@@ -32,11 +32,11 @@ public class VerticalMovement : MonoBehaviour {
 			if (_isInClimbTrigger) {
 				if (isClimbPressed) {
 					// move vertically
-//					Debug.Log("in climb trigger, move vertically");
+//					// Debug.Log("in climb trigger, move vertically");
 					_moveVertically (horizontal, vertical, true);
 				} else {
 					// move normally
-//					Debug.Log("in climb trigger, move normally");
+//					// Debug.Log("in climb trigger, move normally");
 					_movement.y = 0;
 					_movement.x = horizontal;
 					_movement.z = vertical;
@@ -44,7 +44,7 @@ public class VerticalMovement : MonoBehaviour {
 				}
 			} else {
 				// move vertically
-//				Debug.Log("move vertically");
+//				// Debug.Log("move vertically");
 				if (isClimbPressed) {
 					_moveVertically (horizontal, vertical, false);
 				} else {
@@ -76,12 +76,12 @@ public class VerticalMovement : MonoBehaviour {
 	#region trigger handlers
 	private void OnTriggerEnter(Collider tgt) {
 		if(tgt.gameObject.tag == "verticalMovementTrigger") {
-			Debug.Log ("triggered vertical movement trigger");
+			// Debug.Log ("triggered vertical movement trigger");
 			_isInClimbTrigger = true;
 		}
 
 		if (tgt.gameObject.tag == "verticalMovementArea") {
-			Debug.Log ("triggered vertical movement area: " + tgt.gameObject.name);
+			// Debug.Log ("triggered vertical movement area: " + tgt.gameObject.name);
 			_attachToVerticalMovementArea (tgt.gameObject);
 		}
 	}

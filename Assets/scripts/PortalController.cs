@@ -18,7 +18,7 @@ public class PortalController : MonoBehaviour {
 
 	void Awake () {
 		sceneChanger = GameObject.Find("collider_back").GetComponent<SceneChangeTrigger> ();
-//		Debug.Log ("sceneChanger = " + sceneChanger);
+//		// Debug.Log ("sceneChanger = " + sceneChanger);
 
 		if (!startActivated) {
 			_toggleParticleSystemStart (false);
@@ -27,7 +27,7 @@ public class PortalController : MonoBehaviour {
 
 	public void Activate() {
 		if (!_isActive) {
-//			Debug.Log ("activating portal");
+//			// Debug.Log ("activating portal");
 			shellAnimator.PlayAnimation (OPEN_ANIMATION_CLIP);
 			_toggleParticleSystemStart (true);
 			_isActive = true;

@@ -6,14 +6,14 @@ public class PlayerHolder : MonoBehaviour {
 
 	void OnTriggerEnter(Collider col) {
 		if (col.gameObject.tag == "Player") {
-			Debug.Log ("parenting player to " + holder.transform);
+			// Debug.Log ("parenting player to " + holder.transform);
 			col.transform.parent = holder.transform;
 		}
 	}
 
 	void OnTriggerExit(Collider col) {
 		if (col.gameObject.tag == "Player") {
-			Debug.Log ("removing player parenting");
+			// Debug.Log ("removing player parenting");
 			col.transform.parent = null;
 		}
 

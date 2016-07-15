@@ -25,12 +25,12 @@ public class LightFixture : OnOffLight {
 //				_bulbs.Add(transform);
 //			}
 //		}
-//		Debug.Log("LightFixture, _bulbs.length = " + _bulbs);
+//		// Debug.Log("LightFixture, _bulbs.length = " + _bulbs);
 //		ToggleBulbs();
 //	}
 //	
 //	public override void Toggle() {
-//		Debug.Log("LightFixure/Toggle, isOn = " + isOn);
+//		// Debug.Log("LightFixure/Toggle, isOn = " + isOn);
 //		if(_onOffSelfIllums != null) {
 //			if(isOn) {
 //				_toggleSelfIllums(false);
@@ -43,7 +43,7 @@ public class LightFixture : OnOffLight {
 //	}
 //	
 //	public void ToggleBulbs() {
-//		Debug.Log("LightFixture/ToggleBulbs");
+//		// Debug.Log("LightFixture/ToggleBulbs");
 //		foreach(Transform bulb in _bulbs) {
 //			ToggleBulb(bulb.GetComponent<Light>());
 //		}

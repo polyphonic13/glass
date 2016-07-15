@@ -78,7 +78,7 @@ public class MenuUI : MonoBehaviour {
 						break;
 						
 						default:
-						Debug.Log("warning: unknown menu type: " + type);
+						// Debug.Log("warning: unknown menu type: " + type);
 						break;
 					}
 					button = uiButtons[_currentIndex] as ButtonUI;

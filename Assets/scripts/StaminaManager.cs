@@ -24,7 +24,7 @@ public class StaminaManager : MonoBehaviour {
 	void Update() {
 		if(_controls.GetButton("run")) {
 			IsBoosted = true;
-//			Debug.Log ("StaminaManager/Update, run control, _remaininStamina = " + _remainingStamina);
+//			// Debug.Log ("StaminaManager/Update, run control, _remaininStamina = " + _remainingStamina);
 //			if(_remainingStamina > 0) {
 //				IsBoosted = true;
 //				_remainingStamina -= Time.deltaTime;
@@ -39,7 +39,7 @@ public class StaminaManager : MonoBehaviour {
 			if(_remainingStamina < _maxStamina) {
 
 				if(Time.time > _nextActionTime) {
-//					Debug.Log("incrementing _remainingStamina: " + _remainingStamina + ", max = " + _maxStamina);
+//					// Debug.Log("incrementing _remainingStamina: " + _remainingStamina + ", max = " + _maxStamina);
 					_nextActionTime = Time.time + RECHARGE_DELAY;
 
 					Mathf.Floor(_remainingStamina++);

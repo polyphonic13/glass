@@ -48,7 +48,7 @@ namespace Polyworks {
 			GameObject inventoryObj = GameObject.Find ("inventory_ui");
 			if (inventoryObj != null) {
 				_inventoryUI = inventoryObj.GetComponent<InventoryUI> ();
-				Debug.Log ("_inventoryUI = " + _inventoryUI);
+				// Debug.Log ("_inventoryUI = " + _inventoryUI);
 			}
 
 			EventCenter ec = EventCenter.Instance;
@@ -188,5 +188,13 @@ namespace Polyworks {
 			_controls.controllers.maps.SetMapsEnabled (true, activeMap);
 		}
 		#endregion
+
+		private void OnDestroy() {
+			Debug.Log ("InputManager/OnDestroy");
+		
+			EventCenter ec = EventCenter.Instance;
+			ec.OnNearItem -= this.OnNearItem;
+			ec.OnCloseInventoryUI -= this.OnCloseInventoryUI;
+		}
 	}
 }

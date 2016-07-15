@@ -6,7 +6,7 @@ public class MovingPlatformController : TargetController {
 	[SerializeField] MovingPlatform target;
 
 	public override void Actuate() {
-		Debug.Log ("MovingPlatformController/Actuate, is active = " + target.GetIsActive ());
+		// Debug.Log ("MovingPlatformController/Actuate, is active = " + target.GetIsActive ());
 		if (!target.GetIsActive ()) {
 			target.Actuate ();
 		}

@@ -48,7 +48,7 @@ public class InventoryUI : MonoBehaviour {
 	}
 
 	public void OnCloseInventoryUI() {
-		Debug.Log ("InventoryUI/OnCloseInventoryUI, item = " + _selectedInventoryItemUI);
+		// Debug.Log ("InventoryUI/OnCloseInventoryUI, item = " + _selectedInventoryItemUI);
 		_reset();
 	}
 
@@ -189,7 +189,7 @@ public class InventoryUI : MonoBehaviour {
 			var down = _controls.GetButtonDown("down");
 			var left = _controls.GetButtonDown("left");
 			var right = _controls.GetButtonDown("right");
-//			Debug.Log ("up = " + up + ", down = " + down + ", left = " + left + ", right = " + right);
+//			// Debug.Log ("up = " + up + ", down = " + down + ", left = " + left + ", right = " + right);
 			if(_controls.GetButtonDown("confirm")) {
 				if(_selectedInventoryItemUI == null) {
 					_selectedInventoryItemUI = _items[_currentItemIndex] as InventoryItemUI;

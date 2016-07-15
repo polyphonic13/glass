@@ -22,10 +22,10 @@ public class MoonController : MonoBehaviour {
 
 	private void OnDayNightChange(string state) {
 		if (state == "night") {
-			Debug.Log("enabling moon");
+			// Debug.Log("enabling moon");
 //			_moon.enabled = true;
 		} else {
-			Debug.Log("disabling moon");
+			// Debug.Log("disabling moon");
 //			_moon.enabled = false;
 		}
 	}

@@ -104,7 +104,7 @@ public class InventoryItemUI : MonoBehaviour {
 			break;
 
 			default:
-				Debug.LogWarning("Unknown control button");
+				// Debug.LogWarning("Unknown control button");
 			break;
 		}
 	}

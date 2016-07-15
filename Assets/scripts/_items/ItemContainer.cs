@@ -11,13 +11,13 @@ public class ItemContainer : CollidableParent {
 	}
 	
 	public override void OnCollision(GameObject target) {
-		Debug.Log("ItemContainer/onChildCollision, target.transform.parent.name = " + target.transform.parent.name);
+		// Debug.Log("ItemContainer/onChildCollision, target.transform.parent.name = " + target.transform.parent.name);
 		string parentName = target.transform.parent.name;
 		foreach(string ci in _collectableItems) {
-			Debug.Log(" ci = " + ci);
+			// Debug.Log(" ci = " + ci);
 			if(parentName == ci) {
 				string evt = ci + "_Collected";
-				Debug.Log("  triggering: " + evt);
+				// Debug.Log("  triggering: " + evt);
 				EventCenter.Instance.TriggerEvent(evt);
 				_collectedItems++;
 				InitCollidableChild(target.transform.parent.transform.gameObject);
@@ -31,7 +31,7 @@ public class ItemContainer : CollidableParent {
 	}
 
 	public override void PositionChild(GameObject child) {
-		Debug.Log("ItemContainer/PositionChild, child = " + child.name);
+		// Debug.Log("ItemContainer/PositionChild, child = " + child.name);
 		child.transform.parent = transform;
 		child.transform.position = transform.position;
 		child.transform.rotation = transform.rotation; 

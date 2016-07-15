@@ -25,13 +25,13 @@ public class MovingPlatform : MonoBehaviour {
 
 	public void SetDestination(bool setActive = false) {
 		_destination = destinations [_currentDestination];
-//		Debug.Log ("MovingPlatform[" + this.name + "]/SetDestination, pos = " + platform.transform.position + ", dest = " + _destination.position);
+//		// Debug.Log ("MovingPlatform[" + this.name + "]/SetDestination, pos = " + platform.transform.position + ", dest = " + _destination.position);
 		_direction = (_destination.position - platform.transform.position).normalized;
 		_isActive = _isMoving = setActive;
 	}
 
 	public void StartMovement() {
-//		Debug.Log ("MovingPlatform/StartMovement, _destination = " + _destination.position);
+//		// Debug.Log ("MovingPlatform/StartMovement, _destination = " + _destination.position);
 		if (_destination != null) {
 			_isActive = true;
 			_isMoving = true;
@@ -44,7 +44,7 @@ public class MovingPlatform : MonoBehaviour {
 	}
 
 	public void Resume() {
-		Debug.Log ("MovingPlatform[" + this.name + "]/Resume");
+		// Debug.Log ("MovingPlatform[" + this.name + "]/Resume");
 //		_isActive = true;
 		_isMoving = true;
 	}
@@ -70,7 +70,7 @@ public class MovingPlatform : MonoBehaviour {
 				platform.transform.position = _destination.position;
 				_isActive = false;
 				_destination = null;
-//				Debug.Log ("reached destination");
+//				// Debug.Log ("reached destination");
 				if (_currentDestination < (destinations.Length - 1)) {
 					_currentDestination++;
 				} else {
