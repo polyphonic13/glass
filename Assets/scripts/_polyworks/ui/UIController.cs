@@ -21,12 +21,10 @@ namespace Polyworks {
 
 		#region public methods
 		public virtual void Init() {
-			Debug.Log ("UIController/Init, canvas = " + canvas);
 			canvas.enabled = isActiveOnAwake;
 		}
 
 		public virtual void SetActive(bool isActive) {
-//			// Debug.Log ("UIController[" + this.name + "]/SetActive, isActive = " + isActive + ", canvas = " + canvas);
 			canvas.enabled = isActive;
 		}
 

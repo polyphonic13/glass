@@ -4,14 +4,16 @@ using UnityEngine.UI;
 
 namespace Polyworks {
 	public class InventoryUI : UIController {
-
+		#region public members
 		public GameObject inventoryItem; 
 
 		public int numColumns = 6;
 		public int numRows = 2;
 
 		public string[] ignoredItems;
+		#endregion
 
+		#region private members
 		private const float startX = -430f;
 		private const float startY = 85f;
 
@@ -33,6 +35,7 @@ namespace Polyworks {
 		private bool _isBuilt = false;
 
 		private InventoryItemUI _selectedInventoryItemUI = null; 
+		#endregion
 
 		#region handlers
 		public void OnInventoryAdded(string itemName, int count, bool isPlayerInventory) {
@@ -43,12 +46,12 @@ namespace Polyworks {
 						return;
 					}
 				}
-				_setItem (itemName);
+				_resetItems();
 			}
 		}
 
 		public void OnInventoryRemoved(string itemName, int count) {
-			_resetItems(itemName);
+			_resetItems();
 		}
 
 		public void OnCloseInventoryUI() {
@@ -62,7 +65,6 @@ namespace Polyworks {
 
 		#region public methods
 		public override void Init() {
-			// Debug.Log ("InventoryUI/Init");
 			base.Init ();
 			_itemsIndex = -1;
 			_items = new ArrayList();
@@ -91,7 +93,6 @@ namespace Polyworks {
 		}
 			
 		private void _reset() {
-//			// Debug.Log ("InventoryUI/_reset, selected = " + _selectedInventoryItemUI);
 			if (_selectedInventoryItemUI != null) {
 				_selectedInventoryItemUI.Deselect ();
 				_selectedInventoryItemUI = null;
@@ -106,8 +107,8 @@ namespace Polyworks {
 			_previousItemIndex = 0;
 		}
 
-		private void _setItem(string itemName) {
-			// Debug.Log("InventoryUI/_setItem, itemName = " + itemName + ", _itemsIndex = " + _itemsIndex + ", _isBuilt = " + _isBuilt);
+		#region build
+		private void _setItem(string itemName, int count) {
 			if(_itemsIndex == (numColumns * numRows) - 1) {
 				return;
 			}
@@ -130,7 +131,7 @@ namespace Polyworks {
 			}
 		}
 
-		private void _resetItems(string itemName) {
+		private void _resetItems() {
 			InventoryItemUI itemUI;
 
 			_itemsIndex = -1;
@@ -141,11 +142,6 @@ namespace Polyworks {
 				itemUI.Reset();
 			}
 
-			_buildInventoryItems();
-		}
-
-		#region build
-		private void _buildInventoryItems() {
 			Inventory playerInventory = Game.Instance.GetPlayerInventory();
 			int total = numColumns * numRows;
 			int count = 0;
@@ -153,7 +149,7 @@ namespace Polyworks {
 			Hashtable items = playerInventory.GetAll();
 			foreach(ItemData itemData in items.Values) {
 				if (count < total) {
-					_setItem (itemData.itemName);
+					_setItem (itemData.itemName, itemData.count);
 				}
 				count++;
 			}
@@ -359,7 +355,6 @@ namespace Polyworks {
 		#endregion
 
 		private void OnDestroy() {
-			// Debug.Log ("InventoryUI/OnDestroy");
 			var ec = EventCenter.Instance;
 			ec.OnInventoryAdded -= OnInventoryAdded;
 			ec.OnInventoryRemoved -= OnInventoryRemoved;
