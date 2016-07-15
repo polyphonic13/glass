@@ -4,17 +4,17 @@ using System.Collections;
 namespace Polyworks {
 	public class MenuUI : UIController
 	{
-
-		// Use this for initialization
-		void Start ()
-		{
-
+		private void Awake() {
+			base.Init ();
 		}
 
-		// Update is called once per frame
-		void Update ()
-		{
-
+		private void FixedUpdate() {
+			if (canvas.enabled) {
+				if (cancel) {
+					cancel = false;
+					SetActive (false);
+				}
+			}
 		}
 	}
 }

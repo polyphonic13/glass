@@ -10,6 +10,8 @@ namespace Polyworks {
 		public int numColumns = 6;
 		public int numRows = 2;
 
+		public string[] ignoredItems;
+
 		private const float startX = -430f;
 		private const float startY = 85f;
 
@@ -27,18 +29,19 @@ namespace Polyworks {
 		private int _currentItemIndex; 
 		private int _previousItemIndex;
 
-		private bool _isInspectingItem;
+		private bool _isInspectingItem = false;
 
-		private InventoryItemUI _selectedInventoryItemUI; 
-
-		private Rewired.Player _controls; 
-
+		private InventoryItemUI _selectedInventoryItemUI = null; 
 
 		#region handlers
 		public void OnInventoryAdded(string itemName, int count) {
-			if (itemName != "flashlight") {
-				_setItem (itemName);	
+			bool isIgnored = false;
+			for (int i = 0; i < ignoredItems.Length; i++) {
+				if (itemName == ignoredItems [i]) {
+					return;
+				}
 			}
+			_setItem (itemName);
 		}
 
 		public void OnInventoryRemoved(string itemName, int count) {
@@ -55,7 +58,6 @@ namespace Polyworks {
 		#endregion
 
 		private void Awake() {
-			_controls = ReInput.players.GetPlayer(0);
 			base.Init ();
 			_items = new ArrayList();
 			_buildUI();
@@ -138,10 +140,12 @@ namespace Polyworks {
 		}
 
 		private void _buildUI() {
-			RectTransform containerRectTransform = GetComponent<RectTransform>();
+			RectTransform containerRectTransform = canvas.GetComponent<RectTransform>();
 			int total = numColumns * numRows;
 			int row = 0;
 			int col = 0;
+
+			Debug.Log ("InventoryUI/_buildUI, containerRectTransform = " + containerRectTransform);
 
 			_width = containerRectTransform.rect.width / numColumns;
 			_height = containerRectTransform.rect.height / numRows;
@@ -153,7 +157,7 @@ namespace Polyworks {
 				string itemName = "item" + i;
 				var item = (GameObject) Instantiate(inventoryItem);
 
-				item.transform.SetParent(gameObject.transform, false);
+				item.transform.SetParent(canvas.gameObject.transform, false);
 
 				InventoryItemUI itemUI = item.GetComponent<InventoryItemUI>();
 				RectTransform rect = item.GetComponent<RectTransform>();
@@ -161,7 +165,7 @@ namespace Polyworks {
 				item.name = itemName;
 
 				rect.localPosition = new Vector3(x, y, 0);
-
+				Debug.Log (" adding " + itemUI + "[" + i + "] to _items, x/y = " + x + "/" + y);
 				_items.Add(itemUI);
 
 				col++;
@@ -173,76 +177,73 @@ namespace Polyworks {
 		}
 
 		private void _checkInput() {
-			if(_controls.GetButtonDown("cancel")) {
-				if(!_isInspectingItem) {
-					if(_selectedInventoryItemUI != null) {
-						EventCenter.Instance.CloseInventoryUI();
-					} else {
-						_selectedInventoryItemUI.Deselect();
-						_selectedInventoryItemUI = null;
+//			Debug.Log ("InventoryUI/_checkInput, cancel = " + cancel);
+			if (cancel) {
+				if (!_isInspectingItem) {
+//					if (_selectedInventoryItemUI == null) {
+						EventCenter.Instance.CloseInventoryUI ();
+//					} else {
+//						_selectedInventoryItemUI.Deselect ();
+//						_selectedInventoryItemUI = null;
+//					}
+				}
+				cancel = false;
+			} else {
+				if(_occupiedItems > 0 && !_isInspectingItem) {
+					if(confirm) {
+						if(_selectedInventoryItemUI == null) {
+							_selectedInventoryItemUI = _items[_currentItemIndex] as InventoryItemUI;
+							if(_selectedInventoryItemUI != null) {
+								_selectedInventoryItemUI.Select();
+							}
+						} else {
+							if(_selectedInventoryItemUI != null) {
+								_selectedInventoryItemUI.SelectControlButton();
+							}
+						}
+					} else if(_selectedInventoryItemUI != null) {
+						if(up) {
+							if(_selectedInventoryItemUI != null) {
+								_selectedInventoryItemUI.IncrementControlButtonFocus(false);
+							}
+						} else if(down) {
+							if(_selectedInventoryItemUI != null) {
+								_selectedInventoryItemUI.IncrementControlButtonFocus(true);
+							}
+						}
+					} else if(_selectedInventoryItemUI == null) {
+						_horizontal = 0;
+						_vertical = 0;
+						if(up) {
+							_vertical = 1;
+						} else if(down) {
+							_vertical = -1;
+						} else if(left) {
+							_horizontal = -1;
+						} else if(right) {
+							_horizontal = 1;
+						}
+
+						if(_horizontal != 0 || _vertical != 0) {
+							if(_horizontal != 0) {
+								_calculateCol(_horizontal);
+							} else if(_vertical != 0) {
+								_calculateRow(_vertical);
+							}
+							_currentItemIndex = (_currentRow * numColumns) + _currentColumn;
+							var item = _items[_currentItemIndex] as InventoryItemUI;
+
+							if(item != null) {
+								item.SetFocus(true);
+							}
+							var prevItem = _items[_previousItemIndex] as InventoryItemUI;
+							if(prevItem != null) {
+								prevItem.SetFocus(false);
+							}
+							_previousItemIndex = _currentItemIndex;
+						}
 					}
 				}
-			}
-			if(_occupiedItems > 0 && !_isInspectingItem) {
-				var up = _controls.GetButtonDown("up");
-				var down = _controls.GetButtonDown("down");
-				var left = _controls.GetButtonDown("left");
-				var right = _controls.GetButtonDown("right");
-				//			Debug.Log ("up = " + up + ", down = " + down + ", left = " + left + ", right = " + right);
-				if(_controls.GetButtonDown("confirm")) {
-					if(_selectedInventoryItemUI == null) {
-						_selectedInventoryItemUI = _items[_currentItemIndex] as InventoryItemUI;
-						if(_selectedInventoryItemUI != null) {
-							_selectedInventoryItemUI.Select();
-						}
-					} else {
-						if(_selectedInventoryItemUI != null) {
-							_selectedInventoryItemUI.SelectControlButton();
-						}
-					}
-				} else if(_selectedInventoryItemUI != null) {
-					if(up) {
-						if(_selectedInventoryItemUI != null) {
-							_selectedInventoryItemUI.IncrementControlButtonFocus(false);
-						}
-					} else if(down) {
-						if(_selectedInventoryItemUI != null) {
-							_selectedInventoryItemUI.IncrementControlButtonFocus(true);
-						}
-					}
-				} else if(_selectedInventoryItemUI == null) {
-					_horizontal = 0;
-					_vertical = 0;
-					if(up) {
-						_vertical = 1;
-					} else if(down) {
-						_vertical = -1;
-					} else if(left) {
-						_horizontal = -1;
-					} else if(right) {
-						_horizontal = 1;
-					}
-
-					if(_horizontal != 0 || _vertical != 0) {
-						if(_horizontal != 0) {
-							_calculateCol(_horizontal);
-						} else if(_vertical != 0) {
-							_calculateRow(_vertical);
-						}
-						_currentItemIndex = (_currentRow * numColumns) + _currentColumn;
-						var item = _items[_currentItemIndex] as InventoryItemUI;
-
-						if(item != null) {
-							item.SetFocus(true);
-						}
-						var prevItem = _items[_previousItemIndex] as InventoryItemUI;
-						if(prevItem != null) {
-							prevItem.SetFocus(false);
-						}
-						_previousItemIndex = _currentItemIndex;
-					}
-				}
-
 			}
 		}
 
