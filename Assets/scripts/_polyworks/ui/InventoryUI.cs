@@ -355,5 +355,15 @@ namespace Polyworks {
 			}
 		}
 		#endregion
+
+		private void OnDestroy() {
+			Debug.Log ("InventoryUI/OnDestroy");
+			var ec = EventCenter.Instance;
+			ec.OnInventoryAdded -= OnInventoryAdded;
+			ec.OnInventoryRemoved -= OnInventoryRemoved;
+			ec.OnInspectItem -= OnInspectItem;
+			ec.OnCloseInventoryUI -= OnCloseInventoryUI;
+		}
+
 	}
 }

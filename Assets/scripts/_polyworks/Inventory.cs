@@ -92,5 +92,10 @@ namespace Polyworks {
 		private void Awake() {
 			_eventCenter = EventCenter.Instance;
 		}
+
+		private void OnDestroy() {
+			Debug.Log ("Inventory/OnDestroy");
+		}
+
 	}
 }
