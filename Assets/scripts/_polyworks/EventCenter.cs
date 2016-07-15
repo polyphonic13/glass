@@ -9,7 +9,7 @@ namespace Polyworks
 		public delegate void ItemProximityHandler(Item item, bool isNear); 
 		public event ItemProximityHandler OnNearItem;
 		
-		public delegate void InventoryAdder(string item, int count);
+		public delegate void InventoryAdder(string item, int count, bool isPlayerInventory);
 		public event InventoryAdder OnInventoryAdded;
 
 		public delegate void InventoryRemover(string item, int count);
@@ -70,10 +70,10 @@ namespace Polyworks
 			}
 		}
 		
-		public void InventoryAdded(string item, int count) {
+		public void InventoryAdded(string item, int count, bool isPlayerInventory = false) {
 //			// Debug.Log ("EventCenter/InventoryAdded, item = " + item + ", count = " + count);
 			if (OnInventoryAdded != null) {
-				OnInventoryAdded (item, count);
+				OnInventoryAdded (item, count, isPlayerInventory);
 			}
 		}
 

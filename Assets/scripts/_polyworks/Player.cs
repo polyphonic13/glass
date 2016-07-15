@@ -62,7 +62,6 @@ namespace Polyworks
 		private bool _isMenuOpen = false;
 		private bool _isInventoryOpen = false;
 		private bool _isInspectorOpen = false;
-		private bool _hasFlashlight = false;
 
 		private Camera _mainCamera;
         private bool m_Jump;
@@ -161,20 +160,6 @@ namespace Polyworks
 			_isInspectorOpen = isInspecting;
 		}
 
-		public void OnCloseInventoryUI() {
-			_closeInventoryUI();
-		}
-
-		public void OnInventoryChanged(string name, int count) {
-//			// Debug.Log ("OnInventoryChanged, name = " + name);
-			if (name == "flashlight") {
-				_hasFlashlight = true;
-			}
-		}
-
-		public void OnCloseMenuUI() {
-			_closeMenuUI();
-		}
 		#endregion
 
 		#region awake
@@ -215,29 +200,14 @@ namespace Polyworks
 				_childTransforms [i++] = t;
 			}
 
-//			_hasFlashlight = Game.Instance.hasFlashlight;
-				
 			var ec = EventCenter.Instance;
 //			ec.OnAboveWater += OnAboveWater;
 //			ec.OnPlayerDamaged += OnPlayerDamaged;
 			ec.OnNearItem += OnNearItem;
 			ec.OnInspectItem += OnInspectItem;
-			ec.OnCloseInventoryUI += OnCloseInventoryUI;
-			ec.OnCloseMenuUI += OnCloseMenuUI;
-			ec.OnInventoryAdded += OnInventoryChanged;
-			ec.OnInventoryRemoved += OnInventoryChanged;
 		}
 		#endregion
 
-		#region ui
-		private void _closeInventoryUI() {
-			_inventoryUI.enabled = _isInventoryOpen = false;
-		}
-		
-		private void _closeMenuUI() {
-			_menuUI.enabled = _isMenuOpen = false;
-		}
-		#endregion
 
 		#region update		
 		private void Update()
@@ -533,16 +503,12 @@ namespace Polyworks
 		#endregion
 
 		private void OnDestroy() {
-			Debug.Log ("Player/OnDestroy");
+//			Debug.Log ("Player/OnDestroy");
 			var ec = EventCenter.Instance;
 //			ec.OnAboveWater -= OnAboveWater;
 //			ec.OnPlayerDamaged -= OnPlayerDamaged;
 			ec.OnNearItem -= OnNearItem;
 			ec.OnInspectItem -= OnInspectItem;
-			ec.OnCloseInventoryUI -= OnCloseInventoryUI;
-			ec.OnCloseMenuUI -= OnCloseMenuUI;
-			ec.OnInventoryAdded -= OnInventoryChanged;
-			ec.OnInventoryRemoved -= OnInventoryChanged;
 		}
 	}
 }

@@ -35,14 +35,16 @@ namespace Polyworks {
 		private InventoryItemUI _selectedInventoryItemUI = null; 
 
 		#region handlers
-		public void OnInventoryAdded(string itemName, int count) {
-			bool isIgnored = false;
-			for (int i = 0; i < ignoredItems.Length; i++) {
-				if (itemName == ignoredItems [i]) {
-					return;
+		public void OnInventoryAdded(string itemName, int count, bool isPlayerInventory) {
+			if (isPlayerInventory) {
+				bool isIgnored = false;
+				for (int i = 0; i < ignoredItems.Length; i++) {
+					if (itemName == ignoredItems [i]) {
+						return;
+					}
 				}
+				_setItem (itemName);
 			}
-			_setItem (itemName);
 		}
 
 		public void OnInventoryRemoved(string itemName, int count) {

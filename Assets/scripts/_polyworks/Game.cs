@@ -52,7 +52,7 @@ namespace Polyworks {
 			if (_getIsLevel(currentSceneName)) {
 				_initLevel (currentSceneName);
 				if (_playerInventory != null) {
-					_playerInventory.Init (items);
+					_playerInventory.Init (items, true);
 				}
 			} else {
 				EventCenter.Instance.SceneInitializationComplete (currentSceneName);
@@ -81,7 +81,7 @@ namespace Polyworks {
 			if (data != null) {
 				Instance.gameData = data;
 
-				_playerInventory.Init (data.items);
+				_playerInventory.Init (data.items, true);
 				if (data.currentScene != "") {
 					ChangeScene (data.currentScene);
 				} else {

@@ -8,29 +8,34 @@ namespace Polyworks {
 		private Hashtable _items;
 		private EventCenter _eventCenter; 
 
-		public void Init(Hashtable items = null) {
+		private bool _isPlayerInventory; 
+
+		public void Init(Hashtable items = null, bool isPlayerInventory = false) {
 			// Debug.Log ("Inventory/Init, items.Count = " + items.Count);
+			_isPlayerInventory = isPlayerInventory;
+
 			if (items != null && items.Count > 0) {
-//				_items = items as Hashtable;
 				_items = new Hashtable();
 				foreach (ItemData itemData in items.Values) {
-					Add (itemData);
+					Add (itemData, false);
 				}
 			} else if (_items == null) {
 				_items = new Hashtable ();
 			}
 		}
 
-		public virtual void Add(ItemData item) {
-			// Debug.Log ("Inventory/Add, name = " + item.itemName);
+		public virtual void Add(ItemData item, bool increment = true) {
 			if (!Contains (item.itemName)) {
 				_items.Add (item.itemName, item);
 			}
 			ItemData itemData = Get (item.itemName) as ItemData;
-			itemData.count++;
-
-			_eventCenter.InventoryAdded (itemData.itemName, itemData.count);
-			_eventCenter.AddNote (itemData.itemName + " Added");
+			if (increment) {
+				itemData.count++;
+			}
+			if (_isPlayerInventory) {
+				_eventCenter.InventoryAdded (itemData.itemName, itemData.count, _isPlayerInventory);
+				_eventCenter.AddNote (itemData.itemName + " Added");
+			}
 		}
 
 		public virtual ItemData Remove(string name) {
