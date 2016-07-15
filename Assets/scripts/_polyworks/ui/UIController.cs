@@ -24,8 +24,8 @@ namespace Polyworks {
 			canvas.enabled = isActiveOnAwake;
 		}
 
-		public void SetActive(bool isActive) {
-			Debug.Log ("UIController[" + this.name + "]/SetActive, isActive = " + isActive + ", canvas = " + canvas);
+		public virtual void SetActive(bool isActive) {
+//			Debug.Log ("UIController[" + this.name + "]/SetActive, isActive = " + isActive + ", canvas = " + canvas);
 			canvas.enabled = isActive;
 		}
 
@@ -58,7 +58,7 @@ namespace Polyworks {
 		}
 
 		public void SetCancel(bool isPressed) {
-			Debug.Log ("UIController[" + this.name + "]/SetCancel, isPressed = " + isPressed);
+//			Debug.Log ("UIController[" + this.name + "]/SetCancel, isPressed = " + isPressed);
 			cancel = isPressed;
 		}
 		#endregion

@@ -23,37 +23,14 @@ namespace Polyworks {
 
 		private string _initName = ""; 
 
-		void Awake() {
-			_controlPanel.alpha = 0;
-
-			_itemBg = GetComponent<Image>();
-			SetFocus(false);
-			SetThumbnail(null);
-
-			var usePanel = _controlPanel.transform.Find("panel_use").gameObject;
-			var inspectPanel = _controlPanel.transform.Find("panel_inspect").gameObject;
-			var dropPanel = _controlPanel.transform.Find("panel_drop").gameObject;
-
-			var useImage = usePanel.GetComponent<Image>();
-			var inspectImage = inspectPanel.GetComponent<Image>();
-			var dropImage = dropPanel.GetComponent<Image>();
-
-			useImage.color = activeColor;
-			inspectImage.color = controlInactivateColor;
-			dropImage.color = controlInactivateColor;
-
-			_panels = new ArrayList(3);
-			_panels.Add(useImage);
-			_panels.Add(inspectImage);
-			_panels.Add(dropImage);
-		}
-
 		public void Select() {
+//			Debug.Log ("InventoryItemUI/Select");
 			_controlPanel.alpha = 1;
 			SetControlButtonFocus (0);
 		}
 
 		public void Deselect() {
+//			Debug.Log ("InventoryItemUI/Deselect");
 			_controlPanel.alpha = 0;
 			_focusedControlButton = 0;
 		}
@@ -150,6 +127,32 @@ namespace Polyworks {
 			SetFocus(false);
 			Deselect();
 		}
+
+		void Awake() {
+			_controlPanel.alpha = 0;
+
+			_itemBg = GetComponent<Image>();
+			SetFocus(false);
+			SetThumbnail(null);
+
+			var usePanel = _controlPanel.transform.Find("panel_use").gameObject;
+			var inspectPanel = _controlPanel.transform.Find("panel_inspect").gameObject;
+			var dropPanel = _controlPanel.transform.Find("panel_drop").gameObject;
+
+			var useImage = usePanel.GetComponent<Image>();
+			var inspectImage = inspectPanel.GetComponent<Image>();
+			var dropImage = dropPanel.GetComponent<Image>();
+
+			useImage.color = activeColor;
+			inspectImage.color = controlInactivateColor;
+			dropImage.color = controlInactivateColor;
+
+			_panels = new ArrayList(3);
+			_panels.Add(useImage);
+			_panels.Add(inspectImage);
+			_panels.Add(dropImage);
+		}
+
 
 	}
 }

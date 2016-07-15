@@ -135,11 +135,11 @@ namespace Polyworks {
 
 		private void _initLevel(string currentSceneName) {
 			GameObject playerObj = GameObject.Find("player");
-			Debug.Log ("playerObj = " + playerObj);
+			// Debug.Log ("playerObj = " + playerObj);
 			if (playerObj != null) {
 				_player = playerObj.GetComponent<Player> ();
 				_playerInventory = playerObj.GetComponent<Inventory> ();
-				Debug.Log ("_playerInventory = " + _playerInventory);
+				// Debug.Log ("_playerInventory = " + _playerInventory);
 			}
 
 			LevelController levelController = GameObject.Find("level_controller").GetComponent<LevelController>();

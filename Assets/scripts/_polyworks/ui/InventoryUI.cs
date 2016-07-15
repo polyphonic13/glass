@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using Rewired;
+using UnityEngine.UI;
 
 namespace Polyworks {
 	public class InventoryUI : UIController {
@@ -16,7 +16,7 @@ namespace Polyworks {
 		private const float startY = 85f;
 
 		private ArrayList _items;
-		private int _occupiedItems;
+		private int _itemsIndex = -1;
 
 		private float _width; 
 		private float _height; 
@@ -57,6 +57,15 @@ namespace Polyworks {
 		}
 		#endregion
 
+		public override void SetActive(bool isActive) {
+			base.SetActive (isActive);
+
+			if (_itemsIndex > -1) {
+				var item = _items [_currentItemIndex] as InventoryItemUI;
+				item.SetFocus (true);
+			}
+		}
+
 		private void Awake() {
 			base.Init ();
 			_items = new ArrayList();
@@ -76,10 +85,14 @@ namespace Polyworks {
 		}
 
 		private void _reset() {
+			Debug.Log ("InventoryUI/_reset, selected = " + _selectedInventoryItemUI);
 			if (_selectedInventoryItemUI != null) {
 				_selectedInventoryItemUI.Deselect ();
 				_selectedInventoryItemUI = null;
 			}
+			var item = _items[_currentItemIndex] as InventoryItemUI;
+			item.SetFocus (false);
+
 			_currentItemIndex = 0;
 			_currentColumn = 0;
 			_currentRow = 0;
@@ -88,31 +101,32 @@ namespace Polyworks {
 		}
 
 		private void _setItem(string itemName) {
-			if(_occupiedItems == (numColumns * numRows)) {
+			if(_itemsIndex == (numColumns * numRows) - 1) {
 				return;
 			}
+			_itemsIndex++;
+
 			Inventory playerInventory = Game.Instance.GetPlayerInventory();
-			var itemData = playerInventory.Get(itemName);
-			var itemUI = _items[_occupiedItems] as InventoryItemUI;
+			ItemData itemData = playerInventory.Get(itemName);
+			InventoryItemUI itemUI = _items[_itemsIndex] as InventoryItemUI;
 
 			itemUI.name = itemName;
-			itemUI.SetName(itemData.itemName);
-			itemUI.SetCount(0);
+			itemUI.SetName(itemData.displayName);
+			itemUI.SetCount(itemData.count);
 			if(itemData.thumbnail != null) {
 				GameObject itemObj = (GameObject)Instantiate (Resources.Load (itemData.thumbnail, typeof(GameObject)), transform.position, transform.rotation);
-				Sprite thumbnail = itemObj.GetComponent<Sprite> ();
-				itemUI.SetThumbnail(thumbnail);
+				Image thumbnail = itemObj.GetComponent<Image>();
+				itemUI.SetThumbnail(thumbnail.sprite);
 			}
-			if(_occupiedItems == 0) {
+			if(_itemsIndex == 0) {
 				itemUI.SetFocus(true);
 			}
-			_occupiedItems++;
 		}
 
 		private void _resetItems(string itemName) {
 			InventoryItemUI itemUI;
 
-			_occupiedItems = 0;
+			_itemsIndex = 0;
 			_previousItemIndex = _currentItemIndex = 0;
 
 			for(int i = 0; i < _items.Count; i++) {
@@ -145,8 +159,6 @@ namespace Polyworks {
 			int row = 0;
 			int col = 0;
 
-			Debug.Log ("InventoryUI/_buildUI, containerRectTransform = " + containerRectTransform);
-
 			_width = containerRectTransform.rect.width / numColumns;
 			_height = containerRectTransform.rect.height / numRows;
 
@@ -165,7 +177,6 @@ namespace Polyworks {
 				item.name = itemName;
 
 				rect.localPosition = new Vector3(x, y, 0);
-				Debug.Log (" adding " + itemUI + "[" + i + "] to _items, x/y = " + x + "/" + y);
 				_items.Add(itemUI);
 
 				col++;
@@ -177,30 +188,32 @@ namespace Polyworks {
 		}
 
 		private void _checkInput() {
-//			Debug.Log ("InventoryUI/_checkInput, cancel = " + cancel);
 			if (cancel) {
 				if (!_isInspectingItem) {
-//					if (_selectedInventoryItemUI == null) {
+					if (_selectedInventoryItemUI == null) {
 						EventCenter.Instance.CloseInventoryUI ();
-//					} else {
-//						_selectedInventoryItemUI.Deselect ();
-//						_selectedInventoryItemUI = null;
-//					}
+					} else {
+						_selectedInventoryItemUI.Deselect ();
+						_selectedInventoryItemUI = null;
+					}
 				}
 				cancel = false;
 			} else {
-				if(_occupiedItems > 0 && !_isInspectingItem) {
+				if(_itemsIndex > 0 && !_isInspectingItem) {
 					if(confirm) {
 						if(_selectedInventoryItemUI == null) {
-							_selectedInventoryItemUI = _items[_currentItemIndex] as InventoryItemUI;
-							if(_selectedInventoryItemUI != null) {
-								_selectedInventoryItemUI.Select();
+							if (_currentItemIndex <= _itemsIndex) {
+								_selectedInventoryItemUI = _items [_currentItemIndex] as InventoryItemUI;
+								if (_selectedInventoryItemUI != null) {
+									_selectedInventoryItemUI.Select ();
+								}
 							}
 						} else {
 							if(_selectedInventoryItemUI != null) {
 								_selectedInventoryItemUI.SelectControlButton();
 							}
 						}
+						confirm = false;
 					} else if(_selectedInventoryItemUI != null) {
 						if(up) {
 							if(_selectedInventoryItemUI != null) {

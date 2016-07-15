@@ -71,7 +71,7 @@ namespace Polyworks
 		}
 		
 		public void InventoryAdded(string item, int count) {
-			Debug.Log ("EventCenter/InventoryAdded, item = " + item + ", count = " + count);
+//			Debug.Log ("EventCenter/InventoryAdded, item = " + item + ", count = " + count);
 			if (OnInventoryAdded != null) {
 				OnInventoryAdded (item, count);
 			}

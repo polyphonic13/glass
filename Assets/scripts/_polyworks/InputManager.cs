@@ -17,16 +17,20 @@ namespace Polyworks {
 		private bool _isUIOpen = false; 
 		private bool _isInventoryOpen = false;
 
+		private bool _isInventoryButtonPressed = false;
+		private bool _isMenuButtonPressed = false;
+
 		private Item _itemInProximity = null; 
-		
+
+		#region handlers
 		public void OnNearItem(Item item, bool isNear) {
 			_itemInProximity = (isNear) ? item : null;
 		}
 		
 		public void OnCloseInventoryUI() {
-			Debug.Log ("InputManager/OnCloseInventoryUI");
 			_closeInventory ();
 		}
+		#endregion
 
 		private void Awake() {
 			_controls = ReInput.players.GetPlayer(0);
@@ -52,6 +56,24 @@ namespace Polyworks {
 			ec.OnCloseInventoryUI += this.OnCloseInventoryUI;
 		}
 
+		#region open / close ui
+		private void _openInventory() {
+			_openUI ();
+			_isInventoryOpen = true;
+			_inventoryUI.SetActive (true);
+		}
+
+		private void _openMenu() {
+			_openUI ();
+			_isInventoryOpen = false;
+			_menuUI.SetActive (true);
+		}
+
+		private void _openUI() {
+			_isUIOpen = true;
+			_player.isActive = false;
+		}
+
 		private void _closeInventory() {
 			_isInventoryOpen = false;
 			_inventoryUI.SetActive (false);
@@ -67,74 +89,92 @@ namespace Polyworks {
 			_isUIOpen = false;
 			_player.isActive = true;
 		}
+		#endregion
 
-		private void _checkConfirmCancel(UIController controller, string openButton) {
-			if(_controls.GetButton ("confirm")) {
-				controller.SetConfirm (true);
-			} else if (_controls.GetButton ("cancel")) {
-				controller.SetCancel (true);
-			}
+		#region update loop
+		private void _uiUpdate(UIController controller, float horizontal, float vertical) {
+			controller.SetHorizontal (horizontal);
+			controller.SetVertical (vertical);
+			controller.SetConfirm (_controls.GetButtonDown ("confirm"));
+			controller.SetCancel (_controls.GetButtonDown ("cancel"));
+			controller.SetUp(_controls.GetButtonDown("up"));
+			controller.SetDown(_controls.GetButtonDown("down"));
+			controller.SetLeft(_controls.GetButtonDown("left"));
+			controller.SetRight(_controls.GetButtonDown("right"));
 		}
 
-		private void Update() {
-			if(_isUIOpen) {
-				if (_isInventoryOpen) {
-					_checkConfirmCancel (_inventoryUI, "open_inventory");
-				} else {
-					_checkConfirmCancel (_menuUI, "open_menu");
-				}
-			} else {
-				if(_controls.GetButton("open_menu")) {
-//					Debug.Log ("InputManager/Update, open_menu pressed");
-					_isUIOpen = true;
-					_isInventoryOpen = false;
-					_player.isActive = false;
-					_inventoryUI.SetActive(false);
-					_menuUI.SetActive (true);
-				} else if(_controls.GetButton("open_inventory")) {
-//					Debug.Log ("InputManager/Update, open_inventory pressed");
-					_isUIOpen = true;
-					_isInventoryOpen = true;
-					_player.isActive = false;
-					_inventoryUI.SetActive(true);
-					_menuUI.SetActive (false);
-				} else {
-					
-					if(_itemInProximity != null && _controls.GetButton("actuate")) {
-						_itemInProximity.Actuate();
-					}
+		private void _inventoryUpdate(float horizontal, float vertical) {
+			_uiUpdate (_inventoryUI, horizontal, vertical);
+		}
 
-					if(_controls.GetButton("jump")) {
-						_player.SetJumping(true);
-					}
+		private void _menuUpdate(float horizontal, float vertical) {
+			_uiUpdate (_menuUI, horizontal, vertical);
+		}
 
-					_player.SetClimbing(_controls.GetButton("climb"));
-					_player.SetDiving(_controls.GetButton("dive"));
-					_player.SetCrawling(_controls.GetButton("crawl"));
+		private void _playerUpdate(float horizontal, float vertical) {
+			_player.SetHorizontal (horizontal);
+			_player.SetVertical (vertical);
 
-					if(_controls.GetButton("flashlight")) {
-						EventCenter.Instance.ActuateFlashlight();
-					}
-				}
+			if(_controls.GetButtonDown("jump")) {
+				_player.SetJumping(true);
+			}
+
+			_player.SetClimbing(_controls.GetButtonDown("climb"));
+			_player.SetDiving(_controls.GetButtonDown("dive"));
+			_player.SetCrawling(_controls.GetButtonDown("crawl"));
+
+			if(_itemInProximity != null && _controls.GetButtonDown("actuate")) {
+				_itemInProximity.Actuate();
+			}
+
+			if(_controls.GetButtonDown("flashlight")) {
+				EventCenter.Instance.ActuateFlashlight();
 			}
 		}
 
 		private void FixedUpdate() {
 			float horizontal = _controls.GetAxis("move_horizontal");
 			float vertical = _controls.GetAxis("move_vertical");
-//			Debug.Log ("InputManager/FixedUpdate, horizontal/vertical = " + horizontal + "/" + vertical + ", isUIOpen = " + _isUIOpen);
-			if (!_isUIOpen) {
-				_player.SetHorizontal (horizontal);
-				_player.SetVertical (vertical);
-			} else if(_isInventoryOpen) {
-				_inventoryUI.SetHorizontal (horizontal);
-				_inventoryUI.SetVertical (vertical);
+			_isMenuButtonPressed = _controls.GetButtonDown ("open_menu");
+			_isInventoryButtonPressed = _controls.GetButtonDown ("open_inventory");
+
+			if (_isMenuButtonPressed) {
+				if (_isInventoryOpen) {
+//					_closeInventory ();
+					EventCenter.Instance.CloseInventoryUI ();
+
+					_openMenu ();
+				} else if (!_isUIOpen) {
+					_openMenu ();
+				} else {
+					_closeMenu ();
+				}
+			} else if (_isInventoryButtonPressed) {
+				if (!_isUIOpen) {
+					_openInventory ();
+				} else {
+					if (!_isInventoryOpen) {
+						_closeMenu ();
+						_openInventory ();
+					} else {
+						EventCenter.Instance.CloseInventoryUI ();
+
+//						_closeInventory ();
+					}
+				}
 			} else {
-				_menuUI.SetHorizontal (horizontal);
-				_menuUI.SetVertical (vertical);
+				if (!_isUIOpen) {
+					_playerUpdate (horizontal, vertical);
+				} else if (_isInventoryOpen) {
+					_inventoryUpdate (horizontal, vertical);
+				} else {
+					_menuUpdate (horizontal, vertical);
+				}
 			}
 		}
+		#endregion
 
+		#region controller maps
 		private void _activatePlayerMaps() {
 			
 		}
@@ -147,5 +187,6 @@ namespace Polyworks {
 			_controls.controllers.maps.SetAllMapsEnabled (false);
 			_controls.controllers.maps.SetMapsEnabled (true, activeMap);
 		}
+		#endregion
 	}
 }
