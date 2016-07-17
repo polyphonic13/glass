@@ -33,6 +33,9 @@ namespace Polyworks {
 
 		private bool _isInspectingItem = false;
 		private bool _isBuilt = false;
+		private bool _isDirty = false;
+
+		private Inventory _playerInventory; 
 
 		private InventoryItemUI _selectedInventoryItemUI = null; 
 		#endregion
@@ -81,6 +84,12 @@ namespace Polyworks {
 			ec.OnCloseInventoryUI += OnCloseInventoryUI;
 		}
 
+		public void InitInventory(Inventory playerInventory) {
+			_playerInventory = playerInventory;
+			_resetItems ();
+
+		}
+
 		public override void SetActive(bool isActive) {
 			base.SetActive (isActive);
 
@@ -117,8 +126,8 @@ namespace Polyworks {
 			}
 			_itemsIndex++;
 
-			Inventory playerInventory = Game.Instance.GetPlayerInventory();
-			ItemData itemData = playerInventory.Get(itemName);
+//			Inventory playerInventory = Game.Instance.GetPlayerInventory();
+			ItemData itemData = _playerInventory.Get(itemName);
 			InventoryItemUI itemUI = _items[_itemsIndex] as InventoryItemUI;
 
 			itemUI.name = itemName;
@@ -145,12 +154,12 @@ namespace Polyworks {
 				itemUI.Reset();
 			}
 
-			Inventory playerInventory = Game.Instance.GetPlayerInventory();
-			Debug.Log ("InventoryUI/_resetItems, playerInventory = " + playerInventory);
+//			Inventory playerInventory = Game.Instance.GetPlayerInventory();
+			Debug.Log ("InventoryUI/_resetItems, _playerInventory = " + _playerInventory + ", _isBuilt = " + _isBuilt);
 			int total = numColumns * numRows;
 			int count = 0;
 
-			Hashtable items = playerInventory.GetAll();
+			Hashtable items = _playerInventory.GetAll();
 			foreach(ItemData itemData in items.Values) {
 				if (count < total) {
 					_setItem (itemData.itemName);

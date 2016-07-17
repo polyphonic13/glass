@@ -15,10 +15,11 @@ namespace Polyworks {
 			_isPlayerInventory = isPlayerInventory;
 
 			if (items != null && items.Count > 0) {
-				_items = new Hashtable();
-				foreach (ItemData itemData in items.Values) {
-					Add (itemData, false);
-				}
+				_items = items;
+//				_items = new Hashtable();
+//				foreach (ItemData itemData in items.Values) {
+//					Add (itemData, false);
+//				}
 			} else if (_items == null) {
 				_items = new Hashtable ();
 			}

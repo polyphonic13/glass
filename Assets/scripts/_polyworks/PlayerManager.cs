@@ -17,6 +17,14 @@ namespace Polyworks {
 
 			_player.Init (data);
 			_inventory.Init (items, true);
+
+			GameObject inventoryObj = GameObject.Find ("inventory_ui");
+			if (inventoryObj != null) {
+				InventoryUI inventoryUI = inventoryObj.GetComponent<InventoryUI> ();
+				// Debug.Log ("_inventoryUI = " + _inventoryUI);
+				inventoryUI.InitInventory(_inventory);
+			}
+
 		}
 
 		public Player GetPlayer() {
