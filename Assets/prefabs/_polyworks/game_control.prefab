@@ -44,37 +44,27 @@ MonoBehaviour:
     currentScene: 
     count: 0
     levels:
-    - name: game_control_test02
+    - name: house_floor02a
       isCleared: 0
-      tasks:
-        intTasks:
-        - name: incrementCount
-          isCompleted: 0
-          goal: 5
-          current: 0
-        floatTasks: []
-        stringTasks:
-        - name: itemCollection
-          isCompleted: 0
-          goal: wallpaper_sphere(Clone)
-          current: 
-        - name: itemCollection
-          isCompleted: 0
-          goal: brick_cube(Clone)
-          current: 
-    - name: game_control_test01
-      isCleared: 0
+      currentPlayerLocation: 0
       tasks:
         intTasks: []
         floatTasks: []
-        stringTasks:
-        - name: itemCollection
-          isCompleted: 0
-          goal: wooden_cube01(Clone)
-          current: 
+        stringTasks: []
+    - name: cave01
+      isCleared: 0
+      currentPlayerLocation: 0
+      tasks:
+        intTasks: []
+        floatTasks: []
+        stringTasks: []
+    playerData:
+      health: 100
+      stamina: 100
+      breath: 100
   dataFilename: glass.dat
-  currentTargetScene: 
-  isCursorless: 0
+  playerPrefab: player_objects
+  isCursorless: 1
 --- !u!114 &11460078
 MonoBehaviour:
   m_ObjectHideFlags: 1
