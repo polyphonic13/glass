@@ -89,7 +89,7 @@ namespace Polyworks {
 				Instance.gameData = data;
 
 				if (data.currentScene != "") {
-					Debug.Log ("going to change scene to " + data.currentScene);
+//					Debug.Log ("going to change scene to " + data.currentScene);
 					ChangeScene (data.currentScene);
 				} else {
 					Scene currentScene = SceneManager.GetActiveScene ();
@@ -100,13 +100,13 @@ namespace Polyworks {
 		}
 
 		public void ChangeScene(string scene) {
-			Debug.Log ("Game/ChangeScene, scene = " + scene + ", gameData.items.Count = " + Instance.gameData.items.Count);
+//			Debug.Log ("Game/ChangeScene, scene = " + scene + ", gameData.items.Count = " + Instance.gameData.items.Count);
 			Scene currentScene = SceneManager.GetActiveScene ();
 			bool isLevel = _getIsLevel (currentScene.name);
 
 			if (scene != currentScene.name) {
 				if (isLevel) {
-					Debug.Log ("about to get items, _playerInventory = " + _playerInventory);
+//					Debug.Log ("about to get items, _playerInventory = " + _playerInventory);
 					Instance.gameData.items = _playerInventory.GetAll ();
 					LevelController levelController = GameObject.Find("level_controller").GetComponent<LevelController>();
 					levelController.Cleanup();
@@ -122,7 +122,7 @@ namespace Polyworks {
 			_levelController = levelController; 
 			_player = _levelController.GetPlayer ();
 			_playerInventory = _levelController.GetPlayerInventory ();
-			Debug.Log ("Game/LevelInitialized, _playerInventory = " + _playerInventory);
+//			Debug.Log ("Game/LevelInitialized, _playerInventory = " + _playerInventory);
 		}
 
 		public void Increment() {
@@ -147,7 +147,7 @@ namespace Polyworks {
 		}
 
 		private void _initLevel(string currentSceneName, Hashtable items) {
-			Debug.Log ("Game/_initLevel");
+//			Debug.Log ("Game/_initLevel");
 			LevelController levelController = GameObject.Find("level_controller").GetComponent<LevelController>();
 			levelController.Init (Instance.gameData);
 		}

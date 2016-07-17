@@ -11,15 +11,11 @@ namespace Polyworks {
 		private bool _isPlayerInventory; 
 
 		public void Init(Hashtable items = null, bool isPlayerInventory = false) {
-			Debug.Log ("Inventory/Init, items.Count = " + items.Count);
+//			Debug.Log ("Inventory/Init, items.Count = " + items.Count);
 			_isPlayerInventory = isPlayerInventory;
 
 			if (items != null && items.Count > 0) {
 				_items = items;
-//				_items = new Hashtable();
-//				foreach (ItemData itemData in items.Values) {
-//					Add (itemData, false);
-//				}
 			} else if (_items == null) {
 				_items = new Hashtable ();
 			}
@@ -95,7 +91,6 @@ namespace Polyworks {
 		}
 
 		private void Awake() {
-			Debug.Log ("Inventory/Awake");
 			_eventCenter = EventCenter.Instance;
 		}
 

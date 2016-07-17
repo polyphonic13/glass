@@ -42,7 +42,7 @@ namespace Polyworks {
 
 		#region handlers
 		public void OnInventoryAdded(string itemName, int count, bool isPlayerInventory) {
-			Debug.Log ("InventoryUI/OnInventoryAdded, itemName = " + itemName);
+//			Debug.Log ("InventoryUI/OnInventoryAdded, itemName = " + itemName);
 			if (isPlayerInventory) {
 				bool isIgnored = false;
 				for (int i = 0; i < ignoredItems.Length; i++) {
@@ -55,7 +55,7 @@ namespace Polyworks {
 		}
 
 		public void OnInventoryRemoved(string itemName, int count) {
-			Debug.Log ("InventoryUI/OnInventoryRemoved, itemName = " + itemName);
+//			Debug.Log ("InventoryUI/OnInventoryRemoved, itemName = " + itemName);
 			_resetItems();
 		}
 
@@ -70,7 +70,7 @@ namespace Polyworks {
 
 		#region public methods
 		public override void Init() {
-			Debug.Log ("InventoryUI/Init");
+//			Debug.Log ("InventoryUI/Init");
 			base.Init ();
 			_itemsIndex = -1;
 			_items = new ArrayList();
@@ -154,8 +154,6 @@ namespace Polyworks {
 				itemUI.Reset();
 			}
 
-//			Inventory playerInventory = Game.Instance.GetPlayerInventory();
-			Debug.Log ("InventoryUI/_resetItems, _playerInventory = " + _playerInventory + ", _isBuilt = " + _isBuilt);
 			int total = numColumns * numRows;
 			int count = 0;
 

@@ -12,21 +12,22 @@ namespace Polyworks
 		public void Init(GameData gameData) {
 			ScenePrefabController.Init (sceneData.prefabs, gameData.items);
 			bool isCleared = LevelUtils.GetIsCleared (sceneData.sceneName, Game.Instance.gameData.levels);
+			LevelData level = LevelUtils.GetLevel (sceneData.sceneName, gameData.levels);
 
 			if (!isCleared) {
 				TaskController taskController = GetComponent<TaskController> ();
-				LevelData level = LevelUtils.GetLevel (sceneData.sceneName, gameData.levels);
 				if (level != null) {
 					LevelTaskData taskData = level.tasks as LevelTaskData;
 					taskController.Init (taskData);
 
-					PlayerLocation playerLocation = sceneData.playerLocations [level.currentPlayerLocation];
-					_playerManager = GetComponent<PlayerManager> ();
-					_playerManager.Init (playerLocation, gameData.playerData, gameData.items);
 				}
 			} else {
-				Debug.Log (" level already cleared");
+				Debug.Log ("LevelController["+sceneData.sceneName+"]/Initlevel cleared");
 			}
+			PlayerLocation playerLocation = sceneData.playerLocations [level.currentPlayerLocation];
+			_playerManager = GetComponent<PlayerManager> ();
+			_playerManager.Init (playerLocation, gameData.playerData, gameData.items);
+
 			EventCenter ec = EventCenter.Instance;
 			ec.OnLevelTasksCompleted += OnLevelTasksCompleted;
 
