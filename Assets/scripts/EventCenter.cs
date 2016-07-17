@@ -1,4 +1,5 @@
 using UnityEngine;
+using Polyworks; 
 
 public class EventCenter : MonoBehaviour {
 
@@ -19,8 +20,8 @@ public class EventCenter : MonoBehaviour {
 
 	public delegate void ActuateHandler(string name); 
 
-	public delegate void InventoryAdder(string item);
-	public delegate void InventoryRemover(string item);
+	public delegate void InventoryAdder(string item, int count);
+	public delegate void InventoryRemover(string item, int count);
 	public delegate void InventoryIncrementer(string item);
 	
 	public delegate void TriggerEventHandler(string evt);
@@ -28,7 +29,7 @@ public class EventCenter : MonoBehaviour {
 
 	public delegate void CrystalKeyHandler(string name); 
 
-	public delegate void InteractiveItemProximityHandler(InteractiveItem item, bool isInProximity);
+	public delegate void ItemProximityHandler(Item item, bool isInProximity);
 
 	public delegate void AddNoteHandler(string message = "", bool fadeOut = true);
 	public delegate void RemoveNoteHandler(string message = "");
@@ -67,7 +68,7 @@ public class EventCenter : MonoBehaviour {
 
 	public event CrystalKeyHandler OnCrystalKeyUsed; 
 
-	public event InteractiveItemProximityHandler OnNearInteractiveItem;
+	public event ItemProximityHandler OnNearItem;
 
 	public event AddNoteHandler OnAddNote; 
 	public event RemoveNoteHandler OnRemoveNote; 
@@ -113,7 +114,7 @@ public class EventCenter : MonoBehaviour {
 	}
 
 	public void UpdatePlayerProperty(string prop, float val) {
-//		Debug.Log("EventCenter/UpdatePlayerProperty, prop = " + prop + ", val = " + val);
+//		// Debug.Log("EventCenter/UpdatePlayerProperty, prop = " + prop + ", val = " + val);
 		if(OnPlayerPropertyUpdated != null) {
 			OnPlayerPropertyUpdated(prop, val);
 		}
@@ -144,7 +145,7 @@ public class EventCenter : MonoBehaviour {
 	}
 
 	public void ChangeMouseSensitivity(float sensitivity) {
-//		Debug.Log("EventCenter/ChangeMouseSensitivity, sensitivity = " + sensitivity + ", OnMouseSensitivityChange = " + OnMouseSensitivityChange);
+//		// Debug.Log("EventCenter/ChangeMouseSensitivity, sensitivity = " + sensitivity + ", OnMouseSensitivityChange = " + OnMouseSensitivityChange);
 		if(OnMouseSensitivityChange != null) {
 			OnMouseSensitivityChange(sensitivity);
 		}
@@ -156,15 +157,15 @@ public class EventCenter : MonoBehaviour {
 		}
 	}
 
-	public void AddInventory(string item) {
+	public void InventoryAdded(string item, int count) {
 		if(OnInventoryAdded != null) {
-			OnInventoryAdded(item);
+			OnInventoryAdded(item, count);
 		}
 	}
 
-	public void RemoveInventory(string item) {
+	public void InventoryRemoved(string item, int count) {
 		if(OnInventoryRemoved != null) {
-			OnInventoryRemoved(item);
+			OnInventoryRemoved(item, count);
 		}
 	}
 
@@ -193,16 +194,16 @@ public class EventCenter : MonoBehaviour {
 	}
 
 	public void Actuate(string name) {
-//		Debug.Log("EventCenter.Actuate, name = " + name);
+//		// Debug.Log("EventCenter.Actuate, name = " + name);
 		if(OnActuate != null) {
 			OnActuate(name);
 		}
 	}
 	
-	public void NearInteractiveItem(InteractiveItem item, bool isInProximity) {
-//		Debug.Log ("EventCenter/NearInteractiveItem, item = " + item.name + ", isInProximity = " + isInProximity);
-		if(OnNearInteractiveItem != null) {
-			OnNearInteractiveItem(item, isInProximity);
+	public void NearInteractiveItem(Item item, bool isInProximity) {
+//		// Debug.Log ("EventCenter/NearInteractiveItem, item = " + item.name + ", isInProximity = " + isInProximity);
+		if(OnNearItem != null) {
+			OnNearItem(item, isInProximity);
 		}
 	}
 
@@ -243,7 +244,7 @@ public class EventCenter : MonoBehaviour {
 	}
 
 	public void ChangeDayNightState(string state) {
-		Debug.Log ("ChangeDayNightState, state = " + state);
+		// Debug.Log ("ChangeDayNightState, state = " + state);
 		if (OnDayNightChange != null) {
 			OnDayNightChange (state);
 		}

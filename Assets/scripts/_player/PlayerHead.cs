@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Polyworks;
 
 public class PlayerHead : MonoBehaviour {
 
 	public float interactDistance = 2f;
 
-	private InteractiveItem _focusedItem;
+	private ProximityController _focusedItem;
 	private string _itemJustHit;
 
 	void Update () {
@@ -28,10 +29,10 @@ public class PlayerHead : MonoBehaviour {
 		if (Physics.Raycast (this.transform.position, this.transform.forward, out hit, interactDistance)) {
 			if (hit.transform != this.transform && (hit.transform.tag == "interactive" || hit.transform.tag == "persistent")) {
 //				Debug.DrawRay(this.transform.position, this.transform.forward, Color.green);
-//				Debug.Log("hit name = " + hit.transform.name);
+//				// Debug.Log("hit name = " + hit.transform.name);
 				if (hit.transform.name != _itemJustHit) {
-					InteractiveItem item = hit.transform.gameObject.GetComponent<InteractiveItem> ();
-//					if(item.IsEnabled) {
+					ProximityController item = hit.transform.gameObject.GetComponent<ProximityController> ();
+//					if(item.isEnabled) {
 					if(item != null) {
 						item.SetFocus (true);
 						_itemJustHit = hit.transform.name;

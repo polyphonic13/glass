@@ -10,13 +10,13 @@ public class RoomController : RoomItem {
 	public override void OnRoomEntered (string room)
 	{
 		base.OnRoomEntered (room);
-//		Debug.Log ("RoomController/OnRoomEntered, room = " + room + ", IsRoomActive = " + IsRoomActive);
+//		// Debug.Log ("RoomController/OnRoomEntered, room = " + room + ", IsRoomActive = " + IsRoomActive);
 		if (IsRoomActive) {
-			Debug.Log ("RoomController[" + this.name + "] _resumeTargets");
+			// Debug.Log ("RoomController[" + this.name + "] _resumeTargets");
 			_resumeTargets ();
 		} else {
 			if (!_isPaused) {
-				Debug.Log ("RoomController[" + this.name + "] _pauseTargets");
+				// Debug.Log ("RoomController[" + this.name + "] _pauseTargets");
 				_pauseTargets ();
 			}
 		}
@@ -36,9 +36,9 @@ public class RoomController : RoomItem {
 	}
 
 	private void _resumeTargets() {
-		Debug.Log ("RoomController[" + this.name + "]/_resumeTargets");
+		// Debug.Log ("RoomController[" + this.name + "]/_resumeTargets");
 		for (int i = 0; i < targetControllers.Length; i++) {
-			Debug.Log ("\ttargetControllers[" + i + "].GetIsActive = " + targetControllers [i].GetIsActive ());
+			// Debug.Log ("\ttargetControllers[" + i + "].GetIsActive = " + targetControllers [i].GetIsActive ());
 			if (targetControllers [i].GetIsActive ()) {
 				targetControllers [i].Resume ();
 			}

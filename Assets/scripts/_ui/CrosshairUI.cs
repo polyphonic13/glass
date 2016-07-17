@@ -1,21 +1,23 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using Polyworks;
 
 public class CrosshairUI : MonoBehaviour {
 
-	[SerializeField] private Image _icon;
-	[SerializeField] private Sprite _defaultSprite;
-
+	public Image image;
+	public Sprite[] icons;
+	public int defaultIcon;
+	
 	void Awake () {
-		EventCenter.Instance.OnNearInteractiveItem += this.OnNearInteractiveItem;
+		EventCenter.Instance.OnNearItem += this.OnNearItem;
 	}
 
-	void OnNearInteractiveItem(InteractiveItem item, bool isFocused) {
-		if (isFocused && item.Icon != null) {
-			_icon.sprite = item.Icon;
+	void OnNearItem(Item item, bool isFocused) {
+		if (isFocused && item.icon != null) {
+			image.sprite = icons[item.icon];
 		} else {
-			_icon.sprite = _defaultSprite;
+			image.sprite = icons[defaultIcon];
 		}
 	}
 }

@@ -1,14 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Polyworks;
 
-public class AstrologyCoin : CollectableItem {
-
-	public PiggyBank piggyBank;
+public class AstrologyCoin : Item {
+	public string targetName; 
 
 	public override void Use() {
-//		Debug.Log ("AstrologyCoin[" + this.name + "]/Use");
-		piggyBank.InsertCoin (this.name, this.ItemName);
-		Inventory.Instance.RemoveItem (this.name);
-		Destroy (this.gameObject);
+		PiggyBank piggyBank = GameObject.Find (targetName).GetComponent<PiggyBank> ();
+		piggyBank.InsertCoin (this.name, this.data.itemName);
 	}
 }

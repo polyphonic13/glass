@@ -12,17 +12,18 @@ public class SceneChangeTrigger : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider tgt) {
-//		Debug.Log ("SceneChangeTrigger/OnTriggerEnter, tgt = " + tgt.gameObject.tag + ", isActive = " + isActive);
+//		// Debug.Log ("SceneChangeTrigger/OnTriggerEnter, tgt = " + tgt.gameObject.tag + ", isActive = " + isActive);
 		if(isActive) {
-//			Debug.Log("scene changer trigger, tgt.tag = " + tgt.gameObject.tag);
+//			// Debug.Log("scene changer trigger, tgt.tag = " + tgt.gameObject.tag);
 			if(tgt.gameObject.tag == "Player") {
-				GameControl.Instance.ChangeScene(_targetScene, _targetRoom);
+//				Game.Instance.ChangeScene(_targetScene, _targetRoom);
 			}
 		}
 	}
 
 	public void SetActive(bool active) {
-//		Debug.Log ("SceneChangeTrigger/SetActive, active = " + active);
+//		// Debug.Log ("SceneChangeTrigger/SetActive, active = " + active);
 		isActive = active;
 	}
+
 }

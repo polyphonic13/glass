@@ -1,24 +1,21 @@
 using UnityEngine;
+using Polyworks; 
 
-public class ArmatureTrigger : InteractiveItem {
+public class ArmatureTrigger : Item {
 	public ArmatureParent _pops;
 	public Transform _parentBone;
 	public AnimationClip _mainClip;
 
 	public bool isLooping = false;
 
-	void Awake() {
-		Init();
-	}
-	
 	public void OnActuate() {
-		if(IsRoomActive && IsEnabled) {
+		if(isEnabled) {
 			Actuate();
 		}
 	}
 
 	public override void Actuate() {
-//		Debug.Log ("ArmatureTrigger[" + this.name + "]/Actuate");
+//		// Debug.Log ("ArmatureTrigger[" + this.name + "]/Actuate");
 		HandleAnimation();
 	}
 

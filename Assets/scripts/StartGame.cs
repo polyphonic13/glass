@@ -6,7 +6,7 @@ public class StartGame : MonoBehaviour {
 	public int FirstRoom = 0;
 
 	public void Go() {
-		GameControl.Instance.targetRoom = FirstRoom;
+//		Game.Instance.targetRoom = FirstRoom;
 		Application.LoadLevel(FirstLevel);
 	}
 

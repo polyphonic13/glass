@@ -41,7 +41,7 @@ public class MirrorCameraFollow : MonoBehaviour {
 				//Look at and dampen the rotation
 				//Quaternion rotation = Quaternion.LookRotation(target.position - _myTransform.position);
 
-				Debug.Log("rotation = " + rotation + ", reflectedPosition = " + reflectedPosition + ", target = " + target.position);
+				// Debug.Log("rotation = " + rotation + ", reflectedPosition = " + reflectedPosition + ", target = " + target.position);
 
 				_myTransform.rotation = Quaternion.Slerp(_myTransform.rotation, rotation, Time.deltaTime * damping);
 			}

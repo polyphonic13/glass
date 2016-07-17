@@ -15,14 +15,13 @@ public class EventUnlockTrigger : LockableArmatureTrigger {
 	
 	public void InitEventUnlockTrigger() {
 		EventCenter.Instance.OnTriggerEvent += onUnlockEvent;
-		Init();	
-		IsEnabled = false;
+		isEnabled = false;
 	}
 
 	public void onUnlockEvent(string evt) {
 		if(evt == unlockEvent && IsLocked) {
 			IsLocked = false;
-			IsEnabled = true;
+			isEnabled = true;
 			if(unlockClip != null) {
 				SendAnimationToPops(unlockClip.name, _parentBone);
 				if(isUnlockEventOpens) {

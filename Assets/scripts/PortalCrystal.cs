@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Polyworks;
 
-public class PortalCrystal : CollectableItem {
+public class PortalCrystal : Item {
 
-	public PortalController portal;
+//	public PortalController portal;
+	public string targetName;
 
 	public override void Use() {
-		EventCenter.Instance.CloseInventoryUI ();
-		Inventory.Instance.RemoveItem (this.name, false);
+		PortalController portal = GameObject.Find (targetName).GetComponent<PortalController> ();
 		portal.Activate ();
 	}
 }

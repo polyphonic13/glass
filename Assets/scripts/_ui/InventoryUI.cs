@@ -37,18 +37,18 @@ public class InventoryUI : MonoBehaviour {
 
 //	private bool wasJustClosed = true;
 
-    public void OnInventoryAdded(string itemName) {
+	public void OnInventoryAdded(string itemName, int count) {
 		if (itemName != "flashlight") {
 			_setItem (itemName);	
 		}
     }
 
-	public void OnInventoryRemoved(string itemName) {
+	public void OnInventoryRemoved(string itemName, int count) {
 		_resetItems(itemName);
 	}
 
 	public void OnCloseInventoryUI() {
-		Debug.Log ("InventoryUI/OnCloseInventoryUI, item = " + _selectedInventoryItemUI);
+		// Debug.Log ("InventoryUI/OnCloseInventoryUI, item = " + _selectedInventoryItemUI);
 		_reset();
 	}
 
@@ -92,15 +92,16 @@ public class InventoryUI : MonoBehaviour {
     	if(_occupiedItems == (_numColumns * _numRows)) {
     		return;
     	}
-    	var item = Inventory.Instance.GetItem(itemName);
+//		Inventory playerInventory = Game.Instance.GetPlayerInventory();
+//    	var item = playerInventory.GetItem(itemName);
     	var itemUI = _items[_occupiedItems] as InventoryItemUI;
 
 		itemUI.name = itemName;
-		itemUI.SetName(item.GetName());
+//		itemUI.SetName(item.data.itemName);
    		itemUI.SetCount(0);
-    	if(item.Thumbnail != null) {
-	    	itemUI.SetThumbnail(item.Thumbnail);
-    	}
+//    	if(item.Thumbnail != null) {
+//	    	itemUI.SetThumbnail(item.Thumbnail);
+//    	}
     	if(_occupiedItems == 0) {
     		itemUI.SetFocus(true);
     	}
@@ -122,17 +123,18 @@ public class InventoryUI : MonoBehaviour {
 	}
 
 	private void _buildInventoryItems() {
-		Hashtable hash = Inventory.Instance.GetAll();
-		var inventory = new ArrayList(hash.Values);
+//		Inventory playerInventory = Game.Instance.GetPlayerInventory();
+//		Hashtable hash = playerInventory.GetAll();
+//		var inventory = new ArrayList(hash.Values);
 		int total = _numColumns * _numRows;
 		CollectableItem item;
 		
-		for(int i = 0; i < inventory.Count; i++) {
-			if(i < total) {
-				item = inventory[i] as CollectableItem;
-				_setItem(item.name);
-			}
-		}
+//		for(int i = 0; i < inventory.Count; i++) {
+//			if(i < total) {
+//				item = inventory[i] as CollectableItem;
+//				_setItem(item.name);
+//			}
+//		}
 
 	}
 
@@ -150,7 +152,7 @@ public class InventoryUI : MonoBehaviour {
 			float y = START_Y + -(_height * row);
 
 			string itemName = "item" + i;
-			var item = Instantiate(_inventoryItem);
+			var item = (GameObject) Instantiate(_inventoryItem);
 	
 			item.transform.SetParent(gameObject.transform, false);
 
@@ -187,7 +189,7 @@ public class InventoryUI : MonoBehaviour {
 			var down = _controls.GetButtonDown("down");
 			var left = _controls.GetButtonDown("left");
 			var right = _controls.GetButtonDown("right");
-//			Debug.Log ("up = " + up + ", down = " + down + ", left = " + left + ", right = " + right);
+//			// Debug.Log ("up = " + up + ", down = " + down + ", left = " + left + ", right = " + right);
 			if(_controls.GetButtonDown("confirm")) {
 				if(_selectedInventoryItemUI == null) {
 					_selectedInventoryItemUI = _items[_currentItemIndex] as InventoryItemUI;

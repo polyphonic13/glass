@@ -22,6 +22,6 @@ public class ButtonUI : MonoBehaviour {
 	}
 	
 	public virtual void Activate() {
-		Debug.Log("ButtonUI["+this.name+"]/Activate");
+		// Debug.Log("ButtonUI["+this.name+"]/Activate");
 	}
 }

@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Polyworks;
 
-public class Key : CollectableItem {
+public class Key : Item {
 
-	public LockableArmatureTrigger target;
+	public string targetName; 
 
 	public override void Use() {
-		EventCenter.Instance.CloseInventoryUI ();
-		Inventory.Instance.RemoveItem (this.name, false);
+		LockableArmatureTrigger target = GameObject.Find (targetName).GetComponent<LockableArmatureTrigger> ();
 		target.Unlock ();
 	}
 }

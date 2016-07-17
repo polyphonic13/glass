@@ -8,7 +8,6 @@ public class OpenCloseArmatureTrigger : ArmatureTrigger {
 
 	void Awake() {
 		InitOpenCloseArmatureTrigger();
-		Init();
 	}
 	
 	public void InitOpenCloseArmatureTrigger() {

@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Polyworks; 
 
-public class CrystalReceptacle : InteractiveItem {
+public class CrystalReceptacle : Item {
 
-	public bool startEnabled = false;
+	public bool isStartEnabled = false;
 
 	public TargetController target;
 	public CrystalKey key;
@@ -15,21 +16,21 @@ public class CrystalReceptacle : InteractiveItem {
 	void Awake() {
 		_crystal = this.transform.FindChild("crystal").gameObject;
 		EventCenter.Instance.OnCrystalKeyUsed += OnCrystalKeyUsed;
-		_crystal.SetActive (startEnabled);
-		this.IsEnabled = startEnabled;
+		_crystal.SetActive (isStartEnabled);
+		this.isEnabled = isStartEnabled;
 	}
 
 	public void OnCrystalKeyUsed(string name) {
 		if (key != null) {
 			if (name == key.name) {
-				this.IsEnabled = true;
+				this.isEnabled = true;
 				_crystal.SetActive (true);
 			}
 		}
 	}
 
 	public override void Actuate() {
-		if (this.IsEnabled) {
+		if (this.isEnabled) {
 			if (!target.GetIsActive ()) {
 				target.Actuate ();
 			}

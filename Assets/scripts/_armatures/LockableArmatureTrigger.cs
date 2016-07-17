@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Polyworks; 
 
 public class LockableArmatureTrigger : OpenCloseArmatureTrigger {
 
@@ -14,7 +15,6 @@ public class LockableArmatureTrigger : OpenCloseArmatureTrigger {
 	
 	public void InitLockableArmatureTrigger() {
 		InitOpenCloseArmatureTrigger();
-		Init();
 	}
 
 	public override void HandleAnimation() {
@@ -22,15 +22,11 @@ public class LockableArmatureTrigger : OpenCloseArmatureTrigger {
 	}
 	
 	public void HandleLockCheck() {
-//		Debug.Log("LockableArmatureTrigger[ " + name + " ]/HandleLockCheck, IsLocked = " + IsLocked);
+//		// Debug.Log("LockableArmatureTrigger[ " + name + " ]/HandleLockCheck, IsLocked = " + IsLocked);
 		if(!IsLocked) {
 			HandleOpenClose();
 		} else {
-//			 if(Inventory.Instance.HasItem(_keyName)) {
-//				_unlock ();
-//			 } else {
-				 EventCenter.Instance.AddNote("The " + this.ItemName + " is locked");
-//			 }
+			EventCenter.Instance.AddNote("The " + this.data.itemName + " is locked");
 		}
 	}
 
@@ -40,7 +36,7 @@ public class LockableArmatureTrigger : OpenCloseArmatureTrigger {
 
 	private void _unlock() {
 		IsLocked = false;
-		EventCenter.Instance.AddNote("The " + this.ItemName + " was unlocked");
+		EventCenter.Instance.AddNote("The " + this.data.itemName + " was unlocked");
 		HandleOpenClose();
 	}
 }
