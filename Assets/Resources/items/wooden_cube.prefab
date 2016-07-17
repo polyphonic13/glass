@@ -11,9 +11,9 @@ GameObject:
   - 33: {fileID: 3303366}
   - 65: {fileID: 6595572}
   - 23: {fileID: 2303734}
-  - 114: {fileID: 11458764}
   - 114: {fileID: 11467628}
-  - 114: {fileID: 11452286}
+  - 114: {fileID: 11400930}
+  - 114: {fileID: 11422762}
   m_Layer: 0
   m_Name: wooden_cube
   m_TagString: interactive
@@ -78,7 +78,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &11452286
+--- !u!114 &11400930
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -86,45 +86,34 @@ MonoBehaviour:
   m_GameObject: {fileID: 154290}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d5685fee4ef64e078f6725eb7c9cc65, type: 3}
+  m_Script: {fileID: 11500000, guid: bcba8f33e268f4dcfb802180715fdcd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactDistance: 2
+  target: {fileID: 0}
+  isTargetPlayer: 1
+--- !u!114 &11422762
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 154290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b0544eae71c34b30ba5d18acfaf2e06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   data:
     containingRoom: 
-    itemName: 
-    displayName: 
-    prefabName: 
-    isCollected: 0
-    isDroppable: 0
-    isUsable: 0
-    isDestroyedOnUse: 0
-    count: 0
-    thumbnail: 
-  icon: 0
-  description: 
-  Thumbnail: {fileID: 0}
---- !u!114 &11458764
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 154290}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61649c29147dc43ca8ab161ec740176f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  data:
-    containingRoom: scene1
     itemName: wooden_cube
     displayName: Wooden Cube
     prefabName: items/wooden_cube
     isCollected: 0
-    isDroppable: 1
+    isDroppable: 0
     isUsable: 1
-    isDestroyedOnUse: 1
+    isDestroyedOnUse: 0
     count: 0
-    thumbnail: sprites/wooden_cube_sprite
+    thumbnail: sprites/wooden_cube
   icon: 1
 --- !u!114 &11467628
 MonoBehaviour:

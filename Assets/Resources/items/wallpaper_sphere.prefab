@@ -11,8 +11,9 @@ GameObject:
   - 33: {fileID: 3311996}
   - 135: {fileID: 13544324}
   - 23: {fileID: 2335102}
-  - 114: {fileID: 11425834}
   - 114: {fileID: 11489480}
+  - 114: {fileID: 11488162}
+  - 114: {fileID: 11415294}
   m_Layer: 0
   m_Name: wallpaper_sphere
   m_TagString: interactive
@@ -65,7 +66,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 159296}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &11425834
+--- !u!114 &11415294
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -73,20 +74,34 @@ MonoBehaviour:
   m_GameObject: {fileID: 159296}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61649c29147dc43ca8ab161ec740176f, type: 3}
+  m_Script: {fileID: 11500000, guid: bcba8f33e268f4dcfb802180715fdcd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactDistance: 2
+  target: {fileID: 0}
+  isTargetPlayer: 1
+--- !u!114 &11488162
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 159296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b0544eae71c34b30ba5d18acfaf2e06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-    containingRoom: scene2
+    containingRoom: 
     itemName: wallpaper_sphere
     displayName: Wallpaper Sphere
-    prefabName: items/wallpaper_sphere
+    prefabName: items/wallpaper_spher
     isCollected: 0
-    isDroppable: 1
+    isDroppable: 0
     isUsable: 1
     isDestroyedOnUse: 0
     count: 0
-    thumbnail: sprites/wallpaper_sphere_sprite
+    thumbnail: sprites/wallpaper_sphere
   icon: 1
 --- !u!114 &11489480
 MonoBehaviour:
