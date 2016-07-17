@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Polyworks
 {
+	[Serializable]
 	public class ScenePrefabData {
 		public Prefab[] prefabs;
 	}
@@ -15,5 +16,6 @@ namespace Polyworks
 		public Vector3 location;
 		public Quaternion rotation;
 	}
+
 }
 

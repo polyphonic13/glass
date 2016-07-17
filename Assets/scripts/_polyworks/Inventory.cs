@@ -11,7 +11,7 @@ namespace Polyworks {
 		private bool _isPlayerInventory; 
 
 		public void Init(Hashtable items = null, bool isPlayerInventory = false) {
-			// Debug.Log ("Inventory/Init, items.Count = " + items.Count);
+			Debug.Log ("Inventory/Init, items.Count = " + items.Count);
 			_isPlayerInventory = isPlayerInventory;
 
 			if (items != null && items.Count > 0) {
@@ -94,6 +94,7 @@ namespace Polyworks {
 		}
 
 		private void Awake() {
+			Debug.Log ("Inventory/Awake");
 			_eventCenter = EventCenter.Instance;
 		}
 

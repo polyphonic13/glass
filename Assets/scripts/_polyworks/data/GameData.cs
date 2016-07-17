@@ -14,6 +14,7 @@ namespace Polyworks {
 		public Hashtable clearedScenes;
 		public LevelData[] levels; 
 
+		public PlayerData playerData;
 		/*
 		 * tasks = {
 		 * 	sceneA: {

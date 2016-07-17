@@ -12,11 +12,6 @@ namespace Polyworks
     public class Player : MonoBehaviour
     {
 		#region serialized members
-		[SerializeField] private Canvas _menuUI; 
-		[SerializeField] private Canvas _inventoryUI; 
-		[SerializeField] private Canvas _interactiveItemUI; 
-		[SerializeField] private Flashlight _flashLight; 
-
 		[SerializeField] private bool _damageFromFall = true;
 		[SerializeField] private float _underWaterGravity = -0.1f;
 		[SerializeField] private float _crawlSpeedMultiplier = 0.5f;
@@ -43,6 +38,11 @@ namespace Polyworks
         [SerializeField] private AudioClip m_LandSound;           // the sound played when character touches back on ground.
 		#endregion
 
+		public PlayerData data; 
+		public int startingHealth = 100;
+		public int startingStamina = 100;
+		public int startingBreath = 100;
+		public bool isResetOnSceneChange = true;
 		public bool isActive = true; 
 
 		#region private members
@@ -92,12 +92,20 @@ namespace Polyworks
 		#endregion
 
 		#region public methods
-		public bool IsUIOpen() {
-			var isOpen = false;
-			if (_isMenuOpen || _isInventoryOpen) {
-				isOpen = true;
-			}
-			return isOpen;
+		public void Init(PlayerData d) {
+			data = d;
+		}
+
+		public void SetHealth(int health) {
+			data.health = health;
+		}
+
+		public void SetStamina(int stamina) {
+			data.stamina = stamina;
+		}
+
+		public void SetBreath(int breath) {
+			data.breath = breath;
 		}
 
 		public void SetHorizontal(float horizontal) {
@@ -166,11 +174,6 @@ namespace Polyworks
         private void Awake()
         {
 			_verticalMovement = GetComponent<VerticalMovement> ();
-
-			_menuUI.enabled = false;
-			_inventoryUI.enabled = false;
-			_interactiveItemUI.enabled = false;
-			_isInspectorOpen = _isMenuOpen = _isInventoryOpen = false;
 
             m_CharacterController = GetComponent<CharacterController>();
             _mainCamera = Camera.main;
@@ -503,12 +506,13 @@ namespace Polyworks
 		#endregion
 
 		private void OnDestroy() {
-//			Debug.Log ("Player/OnDestroy");
 			var ec = EventCenter.Instance;
-//			ec.OnAboveWater -= OnAboveWater;
-//			ec.OnPlayerDamaged -= OnPlayerDamaged;
-			ec.OnNearItem -= OnNearItem;
-			ec.OnInspectItem -= OnInspectItem;
+			if (ec != null) {
+//				ec.OnAboveWater -= OnAboveWater;
+//				ec.OnPlayerDamaged -= OnPlayerDamaged;
+				ec.OnNearItem -= OnNearItem;
+				ec.OnInspectItem -= OnInspectItem;
+			}
 		}
 	}
 }

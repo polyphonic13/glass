@@ -6,6 +6,9 @@ namespace Polyworks
 	public class EventCenter: MonoBehaviour
 	{
 		#region delegates
+		public delegate void LevelInitializedHandler();
+		public event LevelInitializedHandler OnLevelInitialized; 
+
 		public delegate void ItemProximityHandler(Item item, bool isNear); 
 		public event ItemProximityHandler OnNearItem;
 		
@@ -64,6 +67,12 @@ namespace Polyworks
 		#endregion
 
 		#region handlers
+		public void LevelInitialized() {
+			if (OnLevelInitialized != null) {
+				OnLevelInitialized ();
+			}
+		}
+
 		public void ChangeItemProximity(Item item, bool isNear) {
 			if(OnNearItem != null) {
 				OnNearItem(item, isNear);

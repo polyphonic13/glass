@@ -190,10 +190,11 @@ namespace Polyworks {
 		#endregion
 
 		private void OnDestroy() {
-//			Debug.Log ("InputManager/OnDestroy");
 			EventCenter ec = EventCenter.Instance;
-			ec.OnNearItem -= this.OnNearItem;
-			ec.OnCloseInventoryUI -= this.OnCloseInventoryUI;
+			if (ec != null) {
+				ec.OnNearItem -= this.OnNearItem;
+				ec.OnCloseInventoryUI -= this.OnCloseInventoryUI;
+			}
 		}
 	}
 }

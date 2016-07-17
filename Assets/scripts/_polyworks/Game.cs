@@ -10,13 +10,15 @@ namespace Polyworks {
 		public GameData gameData;
 
 		public string dataFilename = "game_data.dat"; 
-
-		public string currentTargetScene = "";
+		public string playerPrefab = "player_objects";
 
 		public bool isCursorless = true;
 
+		public string currentTargetScene { get; set; }
+
 		private Player _player;
 		private Inventory _playerInventory; 
+		private LevelController _levelController; 
 
 		private DataIOController _dataIOController; 
 
@@ -37,12 +39,10 @@ namespace Polyworks {
 			}
 
 			if (Instance.gameData.items == null) {
-				// Debug.Log ("have to make a new hashtable for Instance.gameData.items");
 				Instance.gameData.items = new Hashtable ();
 			}
 
 			if (Instance.gameData.clearedScenes == null) {
-				// Debug.Log ("CLEARED SCENES IS NULL");
 				Instance.gameData.clearedScenes = new Hashtable ();
 			}
 
@@ -50,23 +50,30 @@ namespace Polyworks {
 			Hashtable items = Instance.gameData.items;
 
 			if (_getIsLevel(currentSceneName)) {
-				_initLevel (currentSceneName);
-				if (_playerInventory != null) {
-					_playerInventory.Init (items, true);
-				}
+				_initLevel (currentSceneName, items);
 			} else {
 				EventCenter.Instance.SceneInitializationComplete (currentSceneName);
 			}
-			EventCenter.Instance.OnChangeScene += OnChangeScene;
+
+			EventCenter ec = EventCenter.Instance;
+			ec.OnChangeScene += OnChangeScene;
+		}
+
+		#region handlers
+		public void OnChangeScene(string scene) {
+			ChangeScene (scene);
+		}
+		#endregion
+	
+		#region public methods
+		public virtual LevelController GetLevelController() {
+			if (_levelController == null) {
+				_levelController = GameObject.Find ("level_controller").GetComponent<LevelController> ();
+			}
+			return _levelController;
 		}
 
 		public virtual Inventory GetPlayerInventory() {
-			if (_playerInventory == null) {
-				GameObject playerObj = GameObject.Find ("player");
-				if (playerObj != null) {
-					_playerInventory = playerObj.GetComponent<Inventory> ();
-				}
-			}
 			return _playerInventory;
 		}
 
@@ -81,8 +88,8 @@ namespace Polyworks {
 			if (data != null) {
 				Instance.gameData = data;
 
-				_playerInventory.Init (data.items, true);
 				if (data.currentScene != "") {
+					Debug.Log ("going to change scene to " + data.currentScene);
 					ChangeScene (data.currentScene);
 				} else {
 					Scene currentScene = SceneManager.GetActiveScene ();
@@ -93,25 +100,29 @@ namespace Polyworks {
 		}
 
 		public void ChangeScene(string scene) {
-			// Debug.Log ("Game/ChangeScene, scene = " + scene + ", gameData.items.Count = " + Instance.gameData.items.Count);
+			Debug.Log ("Game/ChangeScene, scene = " + scene + ", gameData.items.Count = " + Instance.gameData.items.Count);
 			Scene currentScene = SceneManager.GetActiveScene ();
 			bool isLevel = _getIsLevel (currentScene.name);
 
 			if (scene != currentScene.name) {
 				if (isLevel) {
+					Debug.Log ("about to get items, _playerInventory = " + _playerInventory);
 					Instance.gameData.items = _playerInventory.GetAll ();
 					LevelController levelController = GameObject.Find("level_controller").GetComponent<LevelController>();
 					levelController.Cleanup();
 				}
+				_cleanUp ();
+
 				Instance.currentTargetScene = scene;
 				_loadScene (scene);
-			} else if (isLevel) {
-				_initLevel (currentScene.name);
 			}
 		}
 
-		public void OnChangeScene(string scene) {
-			ChangeScene (scene);
+		public void LevelInitialized(LevelController levelController) {
+			_levelController = levelController; 
+			_player = _levelController.GetPlayer ();
+			_playerInventory = _levelController.GetPlayerInventory ();
+			Debug.Log ("Game/LevelInitialized, _playerInventory = " + _playerInventory);
 		}
 
 		public void Increment() {
@@ -122,7 +133,9 @@ namespace Polyworks {
 				EventCenter.Instance.UpdateIntTask ("incrementCount", Instance.gameData.count);
 			}
 		}
+		#endregion
 
+		#region private methods
 		private void Awake() {
 			if(Instance == null) {
 				DontDestroyOnLoad(gameObject);
@@ -133,18 +146,10 @@ namespace Polyworks {
 			Init ();
 		}
 
-		private void _initLevel(string currentSceneName) {
-			GameObject playerObj = GameObject.Find("player");
-			// Debug.Log ("playerObj = " + playerObj);
-			if (playerObj != null) {
-				_player = playerObj.GetComponent<Player> ();
-				_playerInventory = playerObj.GetComponent<Inventory> ();
-				// Debug.Log ("_playerInventory = " + _playerInventory);
-			}
-
+		private void _initLevel(string currentSceneName, Hashtable items) {
+			Debug.Log ("Game/_initLevel");
 			LevelController levelController = GameObject.Find("level_controller").GetComponent<LevelController>();
 			levelController.Init (Instance.gameData);
-			EventCenter.Instance.SceneInitializationComplete (currentSceneName);
 		}
 
 		private void _loadScene(string scene) {
@@ -154,5 +159,11 @@ namespace Polyworks {
 		private bool _getIsLevel(string sceneName) {
 			return LevelUtils.Has (sceneName, Instance.gameData.levels);
 		}
+
+		private void _cleanUp() {
+			EventCenter ec = EventCenter.Instance;
+			ec.OnChangeScene -= OnChangeScene;
+		}
+		#endregion
 	}
 }

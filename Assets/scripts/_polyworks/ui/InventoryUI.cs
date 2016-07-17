@@ -39,6 +39,7 @@ namespace Polyworks {
 
 		#region handlers
 		public void OnInventoryAdded(string itemName, int count, bool isPlayerInventory) {
+			Debug.Log ("InventoryUI/OnInventoryAdded, itemName = " + itemName);
 			if (isPlayerInventory) {
 				bool isIgnored = false;
 				for (int i = 0; i < ignoredItems.Length; i++) {
@@ -51,6 +52,7 @@ namespace Polyworks {
 		}
 
 		public void OnInventoryRemoved(string itemName, int count) {
+			Debug.Log ("InventoryUI/OnInventoryRemoved, itemName = " + itemName);
 			_resetItems();
 		}
 
@@ -65,6 +67,7 @@ namespace Polyworks {
 
 		#region public methods
 		public override void Init() {
+			Debug.Log ("InventoryUI/Init");
 			base.Init ();
 			_itemsIndex = -1;
 			_items = new ArrayList();
@@ -108,7 +111,7 @@ namespace Polyworks {
 		}
 
 		#region build
-		private void _setItem(string itemName, int count) {
+		private void _setItem(string itemName) {
 			if(_itemsIndex == (numColumns * numRows) - 1) {
 				return;
 			}
@@ -143,13 +146,14 @@ namespace Polyworks {
 			}
 
 			Inventory playerInventory = Game.Instance.GetPlayerInventory();
+			Debug.Log ("InventoryUI/_resetItems, playerInventory = " + playerInventory);
 			int total = numColumns * numRows;
 			int count = 0;
 
 			Hashtable items = playerInventory.GetAll();
 			foreach(ItemData itemData in items.Values) {
 				if (count < total) {
-					_setItem (itemData.itemName, itemData.count);
+					_setItem (itemData.itemName);
 				}
 				count++;
 			}
@@ -355,11 +359,14 @@ namespace Polyworks {
 		#endregion
 
 		private void OnDestroy() {
+//			Debug.Log ("Inventory/OnDestroy");
 			var ec = EventCenter.Instance;
-			ec.OnInventoryAdded -= OnInventoryAdded;
-			ec.OnInventoryRemoved -= OnInventoryRemoved;
-			ec.OnInspectItem -= OnInspectItem;
-			ec.OnCloseInventoryUI -= OnCloseInventoryUI;
+			if (ec != null) {
+				ec.OnInventoryAdded -= OnInventoryAdded;
+				ec.OnInventoryRemoved -= OnInventoryRemoved;
+				ec.OnInspectItem -= OnInspectItem;
+				ec.OnCloseInventoryUI -= OnCloseInventoryUI;
+			}
 		}
 
 	}

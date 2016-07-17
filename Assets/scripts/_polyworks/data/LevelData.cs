@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 namespace Polyworks
 {
@@ -6,6 +7,7 @@ namespace Polyworks
 	public class LevelData {
 		public string name;
 		public bool isCleared;
+		public int currentPlayerLocation;
 		public LevelTaskData tasks;
 	}
 

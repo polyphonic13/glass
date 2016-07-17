@@ -53,7 +53,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &102480
 GameObject:
   m_ObjectHideFlags: 1
@@ -72,22 +72,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &103036
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 408070}
-  - 33: {fileID: 3300204}
-  m_Layer: 0
-  m_Name: left_hand
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &103170
 GameObject:
   m_ObjectHideFlags: 1
@@ -100,21 +84,6 @@ GameObject:
   - 114: {fileID: 11478350}
   m_Layer: 14
   m_Name: inventory_title
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &103994
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 481380}
-  m_Layer: 0
-  m_Name: backpack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -253,22 +222,6 @@ GameObject:
   - 114: {fileID: 11434888}
   m_Layer: 5
   m_Name: Text
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &130980
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 452108}
-  - 33: {fileID: 3313316}
-  m_Layer: 0
-  m_Name: right_hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -480,7 +433,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 438196}
   - 143: {fileID: 14344924}
-  - 114: {fileID: 11483416}
   - 54: {fileID: 5475684}
   - 82: {fileID: 8216624}
   - 114: {fileID: 11498964}
@@ -823,18 +775,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &408070
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 103036}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.69, y: -1.02, z: 1.12}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 497680}
-  m_RootOrder: 2
 --- !u!4 &416584
 Transform:
   m_ObjectHideFlags: 1
@@ -889,7 +829,6 @@ Transform:
   m_Children:
   - {fileID: 420584}
   - {fileID: 497680}
-  - {fileID: 481380}
   m_Father: {fileID: 463542}
   m_RootOrder: 1
 --- !u!4 &441890
@@ -917,18 +856,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 459780}
   m_RootOrder: 0
---- !u!4 &452108
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 130980}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.74, y: -1.02, z: 1.12}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 497680}
-  m_RootOrder: 3
 --- !u!4 &455824
 Transform:
   m_ObjectHideFlags: 1
@@ -971,18 +898,6 @@ Transform:
   - {fileID: 438196}
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!4 &481380
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 103994}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.030000687, y: 0.85000014, z: -0.6800003}
-  m_LocalScale: {x: 1, y: 0.8333333, z: 1}
-  m_Children: []
-  m_Father: {fileID: 438196}
-  m_RootOrder: 2
 --- !u!4 &489068
 Transform:
   m_ObjectHideFlags: 1
@@ -1007,8 +922,6 @@ Transform:
   m_Children:
   - {fileID: 429092}
   - {fileID: 489068}
-  - {fileID: 408070}
-  - {fileID: 452108}
   m_Father: {fileID: 438196}
   m_RootOrder: 1
 --- !u!4 &499090
@@ -1194,20 +1107,6 @@ Camera:
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
   m_StereoMirrorMode: 0
---- !u!33 &3300204
-MeshFilter:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 103036}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!33 &3313316
-MeshFilter:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 130980}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!54 &5475684
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -2089,10 +1988,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 434bca719d7854672a3760d2a37ee6a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _menuUI: {fileID: 22340874}
-  _inventoryUI: {fileID: 22352806}
-  _interactiveItemUI: {fileID: 22325608}
-  _flashLight: {fileID: 11480874}
   _damageFromFall: 1
   _underWaterGravity: -0.1
   _crawlSpeedMultiplier: 0.5
@@ -2170,6 +2065,14 @@ MonoBehaviour:
   m_FootstepSounds: []
   m_JumpSound: {fileID: 0}
   m_LandSound: {fileID: 0}
+  data:
+    health: 0
+    stamina: 0
+    breath: 0
+  startingHealth: 100
+  startingStamina: 100
+  startingBreath: 100
+  isResetOnSceneChange: 1
   isActive: 1
 --- !u!114 &11463104
 MonoBehaviour:
@@ -2465,98 +2368,6 @@ MonoBehaviour:
   numRows: 2
   ignoredItems:
   - flashlight
---- !u!114 &11483416
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 156930}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83af97b41e5814a888b35eb3fa792394, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _menuUI: {fileID: 22340874}
-  _inventoryUI: {fileID: 22352806}
-  _interactiveItemUI: {fileID: 22325608}
-  _flashLight: {fileID: 11480874}
-  _damageFromFall: 1
-  _underWaterGravity: -0.1
-  _crawlSpeedMultiplier: 0.5
-  _diveSpeedMultiplier: 0.5
-  _swimSpeedMultiplier: 0.5
-  _climbSpeedMultiplier: 0.3
-  m_IsWalking: 0
-  m_WalkSpeed: 3
-  m_RunSpeed: 6
-  m_RunstepLenghten: 0.7
-  _isJumpingSpeed: 0
-  m_StickToGroundForce: 10
-  m_GravityMultiplier: 2
-  m_MouseLook:
-    XSensitivity: 8
-    YSensitivity: 9
-    clampVerticalRotation: 1
-    MinimumX: -90
-    MaximumX: 90
-    smooth: 1
-    smoothTime: 5
-  m_UseFovKick: 1
-  m_FovKick:
-    Camera: {fileID: 0}
-    originalFov: 0
-    FOVIncrease: 3
-    TimeToIncrease: 1
-    TimeToDecrease: 1
-    IncreaseCurve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-  m_UseHeadBob: 0
-  m_HeadBob:
-    HorizontalBobRange: 0.33
-    VerticalBobRange: 0.33
-    Bobcurve:
-      serializedVersion: 2
-      m_Curve:
-      - time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-      - time: 0.5
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-      - time: 1
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-      - time: 1.5
-        value: -1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-      - time: 2
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    VerticaltoHorizontalRatio: 1
-  _isJumpingBob:
-    BobDuration: 0
-    BobAmount: 0
-  m_StepInterval: 5
-  m_FootstepSounds: []
-  _isJumpingSound: {fileID: 0}
-  m_LandSound: {fileID: 8300000, guid: 3b09d59f4499d45428baa7a21e954296, type: 3}
 --- !u!114 &11483732
 MonoBehaviour:
   m_ObjectHideFlags: 1
