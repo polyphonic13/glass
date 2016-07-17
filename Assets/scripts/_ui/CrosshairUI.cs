@@ -10,7 +10,7 @@ public class CrosshairUI : MonoBehaviour {
 	public int defaultIcon;
 	
 	void Awake () {
-		EventCenter.Instance.OnNearItem += this.OnNearItem;
+//		EventCenter.Instance.OnNearItem += this.OnNearItem;
 	}
 
 	void OnNearItem(Item item, bool isFocused) {

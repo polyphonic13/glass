@@ -10,7 +10,7 @@ public class BreathingManager : MonoBehaviour {
 	private float _timeUnderWater;
 
 	void Awake() {
-		EventCenter.Instance.OnUnderWater += OnUnderWater;
+//		EventCenter.Instance.OnUnderWater += OnUnderWater;
 //		_breathHoldTime = Game.Instance.RemainingBreath;
 	}
 	

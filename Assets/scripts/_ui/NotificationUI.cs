@@ -19,9 +19,9 @@ public class NotificationUI : MonoBehaviour {
 		_canvasGroup = gameObject.GetComponent<CanvasGroup>();
 		_startAlpha = _canvasGroup.alpha;
 		_canvasGroup.alpha = 0;
-		EventCenter ec = EventCenter.Instance;
-		ec.OnAddNote += OnAddNote;
-		ec.OnRemoveNote += OnRemoveNote;
+//		EventCenter ec = EventCenter.Instance;
+//		ec.OnAddNote += OnAddNote;
+//		ec.OnRemoveNote += OnRemoveNote;
 	}
 	
 	public void OnAddNote(string message, bool fadeOut = true) {
