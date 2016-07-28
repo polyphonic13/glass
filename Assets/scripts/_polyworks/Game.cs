@@ -123,6 +123,9 @@ namespace Polyworks {
 			_player = _levelController.GetPlayer ();
 			_playerInventory = _levelController.GetPlayerInventory ();
 //			Debug.Log ("Game/LevelInitialized, _playerInventory = " + _playerInventory);
+			Scene currentScene = SceneManager.GetActiveScene ();
+
+			EventCenter.Instance.SceneInitializationComplete (currentScene.name);
 		}
 
 		public void Increment() {

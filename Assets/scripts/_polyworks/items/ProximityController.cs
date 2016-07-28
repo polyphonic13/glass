@@ -35,12 +35,17 @@ namespace Polyworks {
 			}
 			return isInProximity;
 		}
-	
-		private void Awake() {
+
+		public void OnSceneInitialized(string scene) {
+			Debug.Log ("ProximityController["+this.name+"]/OnSceneInitialized");
 			_item = gameObject.GetComponent<Item> ();
 			if (isTargetPlayer) {
 				target = GameObject.Find ("player").transform;
 			}
+		}
+
+		private void Awake() {
+			EventCenter.Instance.OnSceneInitialized += this.OnSceneInitialized;
 		}
 	}
 }
