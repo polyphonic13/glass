@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Polyworks
 {
-	public class EventCenter: MonoBehaviour
+	public class EventCenter: Singleton<EventCenter>
 	{
 		#region delegates
 		public delegate void LevelInitializedHandler();
@@ -26,6 +26,9 @@ namespace Polyworks
 
 		public delegate void SceneInitializer(string scene);
 		public event SceneInitializer OnSceneInitialized;
+
+		public delegate void SectionChanger(string section);
+		public event SectionChanger OnSectionChanged; 
 
 		public delegate void IntTaskUpdater(string task, int count);
 		public event IntTaskUpdater OnIntTaskUpdated; 
@@ -108,6 +111,12 @@ namespace Polyworks
 		public void SceneInitializationComplete(string scene) {
 			if (OnSceneInitialized != null) {
 				OnSceneInitialized (scene);
+			}
+		}
+
+		public void ChangeSection(string section) {
+			if (OnSectionChanged != null) {
+				OnSectionChanged (section);
 			}
 		}
 

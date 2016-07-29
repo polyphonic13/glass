@@ -2,26 +2,18 @@
 using System.Collections;
 
 namespace Polyworks {
-	public class SceneChangeTrigger : MonoBehaviour
+	public class SceneChangeSwitch : Switch
 	{
 		public string targetScene;
-		public int targetRoom;
+		public int targetRoom = -1;
 
 		private bool isActive { get; set; }
-
-		void OnTriggerEnter(Collider tgt) {
-			if(isActive) {
-				if(tgt.gameObject.tag == "Player") {
-					Trigger ();
-				}
-			}
-		}
 
 		public void SetActive(bool active) {
 			isActive = active;
 		}
 
-		public void Trigger() {
+		public void Actuate() {
 			Game.Instance.ChangeScene(targetScene);
 		}
 	}

@@ -2,9 +2,9 @@
 
 namespace Polyworks
 {
-	public interface ITriggerable
+	public interface ISwitchable
 	{
-		void Trigger();
+		void Actuate();
 	}
 }
 

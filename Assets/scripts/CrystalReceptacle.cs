@@ -21,11 +21,9 @@ public class CrystalReceptacle : Item {
 	}
 
 	public void OnCrystalKeyUsed(string name) {
-		if (key != null) {
-			if (name == key.name) {
-				this.isEnabled = true;
-				_crystal.SetActive (true);
-			}
+		if (key != null && name == key.name) {
+			this.isEnabled = true;
+			_crystal.SetActive (true);
 		}
 	}
 
