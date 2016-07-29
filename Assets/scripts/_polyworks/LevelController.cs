@@ -22,7 +22,7 @@ namespace Polyworks
 
 				}
 			} else {
-				Debug.Log ("LevelController["+sceneData.sceneName+"]/Initlevel cleared");
+				// Debug.Log ("LevelController["+sceneData.sceneName+"]/Initlevel cleared");
 			}
 			PlayerLocation playerLocation = sceneData.playerLocations [level.currentPlayerLocation];
 			_playerManager = GetComponent<PlayerManager> ();

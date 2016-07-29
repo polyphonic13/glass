@@ -144,16 +144,16 @@ namespace Polyworks
 			} else {
 				_elementInProximity = null;
 			}
-//			_interactiveItemUI.enabled = isFocused;
+			// _interactiveItemUI.enabled = isFocused;
 		}
 
 		public void OnPlayerDamaged(float damage) {
-//			float health = Game.Instance.RemainingHealth - damage;
-//			Game.Instance.UpdateHealth(health);
+			// float health = Game.Instance.RemainingHealth - damage;
+			// Game.Instance.UpdateHealth(health);
 		}
 
 		public void OnAboveWater(bool water, Transform tgt) {
-//			// Debug.Log("Player/OnAboveWater, water = " + water);
+			// Debug.Log("Player/OnAboveWater, water = " + water);
 			if(water) {
 				_currentMovementState = _previousMovementState = MovementStates.Swim;
 				_gravity = 0;
@@ -228,12 +228,12 @@ namespace Polyworks
 						_currentMovementState = MovementStates.Crawl;
 						_switchToCrawling(true);
 						_justCrouched = true;
-						//					// Debug.Log("Crawl");
+						// Debug.Log("Crawl");
 					} else if(_currentMovementState == MovementStates.Crawl) {
 						_currentMovementState = MovementStates.Normal;
 						_switchToCrawling(false);
 						_justCrouched = true;
-						//					// Debug.Log("walk");
+						// Debug.Log("walk");
 					}
 				}
 
@@ -317,7 +317,7 @@ namespace Polyworks
 						
 						if (m_Jump) {
 							m_MoveDir.y = m_JumpSpeed;
-//		                    PlayJumpSound();
+		                    // PlayJumpSound();
 							m_Jump = false;
 							m_Jumping = true;
 						}
@@ -334,7 +334,7 @@ namespace Polyworks
 					m_MoveDir.y = move.y * speed;
 					m_MoveDir.z = move.z * speed;
 
-//					// Debug.Log ("move = " + move);
+					// Debug.Log ("move = " + move);
 					break;
 					
 				case MovementStates.Swim:

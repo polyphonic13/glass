@@ -11,7 +11,7 @@ namespace Polyworks {
 		private bool _isPlayerInventory; 
 
 		public void Init(Hashtable items = null, bool isPlayerInventory = false) {
-//			Debug.Log ("Inventory/Init, items.Count = " + items.Count);
+			// Debug.Log ("Inventory/Init, items.Count = " + items.Count);
 			_isPlayerInventory = isPlayerInventory;
 
 			if (items != null && items.Count > 0) {
@@ -74,7 +74,7 @@ namespace Polyworks {
 		}
 
 		public virtual void Drop(string name) {
-			Debug.Log("Inventory/Drop, name = " + name);
+			// Debug.Log("Inventory/Drop, name = " + name);
 			Item item = _pluck(name); 
 			
 			if(item == null) {

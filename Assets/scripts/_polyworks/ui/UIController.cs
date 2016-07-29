@@ -57,7 +57,7 @@ namespace Polyworks {
 		}
 
 		public void SetCancel(bool isPressed) {
-//			// Debug.Log ("UIController[" + this.name + "]/SetCancel, isPressed = " + isPressed);
+			// Debug.Log ("UIController[" + this.name + "]/SetCancel, isPressed = " + isPressed);
 			cancel = isPressed;
 		}
 		#endregion

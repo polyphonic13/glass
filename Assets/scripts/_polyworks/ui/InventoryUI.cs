@@ -42,7 +42,7 @@ namespace Polyworks {
 
 		#region handlers
 		public void OnInventoryAdded(string itemName, int count, bool isPlayerInventory) {
-//			Debug.Log ("InventoryUI/OnInventoryAdded, itemName = " + itemName);
+			// Debug.Log ("InventoryUI/OnInventoryAdded, itemName = " + itemName);
 			if (isPlayerInventory) {
 				bool isIgnored = false;
 				for (int i = 0; i < ignoredItems.Length; i++) {
@@ -55,7 +55,7 @@ namespace Polyworks {
 		}
 
 		public void OnInventoryRemoved(string itemName, int count) {
-//			Debug.Log ("InventoryUI/OnInventoryRemoved, itemName = " + itemName);
+			// Debug.Log ("InventoryUI/OnInventoryRemoved, itemName = " + itemName);
 			_resetItems();
 		}
 
@@ -70,7 +70,7 @@ namespace Polyworks {
 
 		#region public methods
 		public override void Init() {
-//			Debug.Log ("InventoryUI/Init");
+			// Debug.Log ("InventoryUI/Init");
 			base.Init ();
 			_itemsIndex = -1;
 			_items = new ArrayList();
@@ -126,7 +126,7 @@ namespace Polyworks {
 			}
 			_itemsIndex++;
 
-//			Inventory playerInventory = Game.Instance.GetPlayerInventory();
+			// Inventory playerInventory = Game.Instance.GetPlayerInventory();
 			ItemData itemData = _playerInventory.Get(itemName);
 			InventoryItemUI itemUI = _items[_itemsIndex] as InventoryItemUI;
 
@@ -134,7 +134,7 @@ namespace Polyworks {
 			itemUI.SetName(itemData.displayName);
 			itemUI.SetCount(itemData.count);
 			if(itemData.thumbnail != null) {
-				Debug.Log("Inventory/_setItem, itemData.thumbnail = " + itemData.thumbnail);
+				// Debug.Log("Inventory/_setItem, itemData.thumbnail = " + itemData.thumbnail);
 				GameObject itemObj = (GameObject)Instantiate (Resources.Load (itemData.thumbnail, typeof(GameObject)), transform.position, transform.rotation);
 				Image thumbnail = itemObj.GetComponent<Image>();
 				itemUI.SetThumbnail(thumbnail.sprite);
@@ -367,7 +367,7 @@ namespace Polyworks {
 		#endregion
 
 		private void OnDestroy() {
-//			Debug.Log ("Inventory/OnDestroy");
+			// Debug.Log ("Inventory/OnDestroy");
 			var ec = EventCenter.Instance;
 			if (ec != null) {
 				ec.OnInventoryAdded -= OnInventoryAdded;

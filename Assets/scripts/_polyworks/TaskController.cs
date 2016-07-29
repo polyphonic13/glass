@@ -88,7 +88,7 @@ namespace Polyworks
 		}				
 
 		private void _taskCompleted(TaskData task, TaskData[] tasks, out bool isTypeCompleted) {
-//			Debug.Log ("TaskController/_taskCompleted, task = " + task.name);
+			// Debug.Log ("TaskController/_taskCompleted, task = " + task.name);
 			task.isCompleted = true;
 
 			isTypeCompleted = true;
@@ -98,9 +98,9 @@ namespace Polyworks
 					break;
 				}
 			}
-			Debug.Log (" isTypeCompleted = " + isTypeCompleted);
+			// Debug.Log (" isTypeCompleted = " + isTypeCompleted);
 			if (isTypeCompleted && _isIntTasksCompleted && _isFloatTasksCompleted && _isStringTasksCompleted) {
-//				Debug.Log ("TaskController/_allTasksCompletedCheck");
+				// Debug.Log ("TaskController/_allTasksCompletedCheck");
 				EventCenter.Instance.UpdateLevelTasksCompleted ();
 			}
 		}
