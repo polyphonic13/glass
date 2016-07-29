@@ -434,16 +434,16 @@ GameObject:
   - 4: {fileID: 438196}
   - 143: {fileID: 14344924}
   - 54: {fileID: 5475684}
-  - 114: {fileID: 11459496}
-  - 114: {fileID: 11439612}
   - 114: {fileID: 11424298}
   - 114: {fileID: 11406854}
   - 114: {fileID: 11402898}
   - 114: {fileID: 11471246}
   - 114: {fileID: 11434314}
-  - 114: {fileID: 11499736}
   - 114: {fileID: 11432966}
   - 82: {fileID: 8216624}
+  - 114: {fileID: 11429960}
+  - 114: {fileID: 11424186}
+  - 114: {fileID: 11449704}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -1535,6 +1535,103 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &11424186
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 156930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0971b956d55e945ec85b9504755d6fea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damageFromFall: 1
+  _underWaterGravity: -0.1
+  _crawlSpeedMultiplier: 0.5
+  _diveSpeedMultiplier: 0.5
+  _swimSpeedMultiplier: 0.5
+  _climbSpeedMultiplier: 0.3
+  m_IsWalking: 1
+  m_WalkSpeed: 3
+  m_RunSpeed: 6
+  m_RunstepLenghten: 0.7
+  m_JumpSpeed: 0
+  m_StickToGroundForce: 10
+  m_GravityMultiplier: 2
+  m_MouseLook:
+    XSensitivity: 4
+    YSensitivity: 4
+    clampVerticalRotation: 1
+    MinimumX: -90
+    MaximumX: 90
+    smooth: 0
+    smoothTime: 5
+  m_UseFovKick: 0
+  m_FovKick:
+    Camera: {fileID: 0}
+    originalFov: 0
+    FOVIncrease: 3
+    TimeToIncrease: 1
+    TimeToDecrease: 1
+    IncreaseCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  m_UseHeadBob: 0
+  m_HeadBob:
+    HorizontalBobRange: 0.33
+    VerticalBobRange: 0.33
+    Bobcurve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 0.5
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 1.5
+        value: -1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 2
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    VerticaltoHorizontalRatio: 1
+  m_JumpBob:
+    BobDuration: 0
+    BobAmount: 0
+  m_StepInterval: 0
+  m_FootstepSounds: []
+  m_JumpSound: {fileID: 0}
+  m_LandSound: {fileID: 0}
+  data:
+    health: 0
+    stamina: 0
+    breath: 0
+  startingHealth: 100
+  startingStamina: 100
+  startingBreath: 100
+  isResetOnSceneChange: 1
+  isActive: 1
 --- !u!114 &11424298
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1576,6 +1673,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _zoom: 10
   _camera: {fileID: 2071336}
+--- !u!114 &11429960
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 156930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32b363daa9fd4ae5854cdd9465cd405, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactDistance: 2
 --- !u!114 &11430828
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1755,18 +1864,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Menu
---- !u!114 &11439612
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 156930}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12b424faad496471388c2389f24bb01d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactDistance: 2
 --- !u!114 &11442330
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1849,6 +1946,17 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &11449704
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 156930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 906f84a1aac524c138094598ddffe864, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11450196
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1994,103 +2102,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &11459496
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 156930}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 434bca719d7854672a3760d2a37ee6a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _damageFromFall: 1
-  _underWaterGravity: -0.1
-  _crawlSpeedMultiplier: 0.5
-  _diveSpeedMultiplier: 0.5
-  _swimSpeedMultiplier: 0.5
-  _climbSpeedMultiplier: 0.3
-  m_IsWalking: 1
-  m_WalkSpeed: 3
-  m_RunSpeed: 6
-  m_RunstepLenghten: 0.7
-  m_JumpSpeed: 0
-  m_StickToGroundForce: 10
-  m_GravityMultiplier: 2
-  m_MouseLook:
-    XSensitivity: 4
-    YSensitivity: 4
-    clampVerticalRotation: 1
-    MinimumX: -90
-    MaximumX: 90
-    smooth: 0
-    smoothTime: 5
-  m_UseFovKick: 0
-  m_FovKick:
-    Camera: {fileID: 0}
-    originalFov: 0
-    FOVIncrease: 3
-    TimeToIncrease: 1
-    TimeToDecrease: 1
-    IncreaseCurve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-  m_UseHeadBob: 0
-  m_HeadBob:
-    HorizontalBobRange: 0.33
-    VerticalBobRange: 0.33
-    Bobcurve:
-      serializedVersion: 2
-      m_Curve:
-      - time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-      - time: 0.5
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-      - time: 1
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-      - time: 1.5
-        value: -1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-      - time: 2
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    VerticaltoHorizontalRatio: 1
-  m_JumpBob:
-    BobDuration: 0
-    BobAmount: 0
-  m_StepInterval: 0
-  m_FootstepSounds: []
-  m_JumpSound: {fileID: 0}
-  m_LandSound: {fileID: 0}
-  data:
-    health: 0
-    stamina: 0
-    breath: 0
-  startingHealth: 100
-  startingStamina: 100
-  startingBreath: 100
-  isResetOnSceneChange: 1
-  isActive: 1
 --- !u!114 &11463104
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2701,17 +2712,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &11499736
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 156930}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96477785d8939434fb744da33aec4b14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!124 &12407778
 Behaviour:
   m_ObjectHideFlags: 1

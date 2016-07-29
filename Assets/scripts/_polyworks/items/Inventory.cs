@@ -61,7 +61,7 @@ namespace Polyworks {
 
 			ItemData data = Remove (name);
 			if (data != null) {
-				Debug.Log ("Inventory/Use, name = " + name + ", prefab = " + data.prefabName + ", isDestroyedOnUse = " + data.isDestroyedOnUse);
+				// Debug.Log ("Inventory/Use, name = " + name + ", prefab = " + data.prefabName + ", isDestroyedOnUse = " + data.isDestroyedOnUse);
 				GameObject itemObj = (GameObject) Instantiate (Resources.Load (data.prefabName, typeof(GameObject)), transform.position, transform.rotation);
 				Item item = itemObj.GetComponent<Item> ();
 				item.data = data;

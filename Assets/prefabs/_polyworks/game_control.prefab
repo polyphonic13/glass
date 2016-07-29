@@ -46,6 +46,7 @@ MonoBehaviour:
     levels:
     - name: game_control_test02
       isCleared: 0
+      currentPlayerLocation: 0
       tasks:
         intTasks:
         - name: incrementCount
@@ -64,6 +65,7 @@ MonoBehaviour:
           current: 
     - name: game_control_test01
       isCleared: 0
+      currentPlayerLocation: 0
       tasks:
         intTasks: []
         floatTasks: []
@@ -72,8 +74,12 @@ MonoBehaviour:
           isCompleted: 0
           goal: wooden_cube01(Clone)
           current: 
+    playerData:
+      health: 0
+      stamina: 0
+      breath: 0
   dataFilename: glass.dat
-  currentTargetScene: 
+  playerPrefab: player/player_objects
   isCursorless: 0
 --- !u!114 &11460078
 MonoBehaviour:

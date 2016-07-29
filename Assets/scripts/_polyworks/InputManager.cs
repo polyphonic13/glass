@@ -24,10 +24,7 @@ namespace Polyworks {
 
 		#region handlers
 		public void OnNearItem(Item item, bool isNear) {
-			Debug.Log ("InputManager/OnNearItem, isNear = " + isNear);
 			_itemInProximity = (isNear) ? item : null;
-			Debug.Log (" finished input manager on near item");
-
 		}
 		
 		public void OnCloseInventoryUI() {
