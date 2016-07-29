@@ -14,6 +14,7 @@ GameObject:
   - 114: {fileID: 11489480}
   - 114: {fileID: 11415294}
   - 114: {fileID: 11413002}
+  - 114: {fileID: 11446130}
   m_Layer: 0
   m_Name: wallpaper_sphere
   m_TagString: interactive
@@ -78,7 +79,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-    containingRoom: 
+    containingSection: 
     itemName: wallpaper_sphere
     displayName: Wallpaper Sphere
     prefabName: items/wallpaper_sphere
@@ -103,6 +104,18 @@ MonoBehaviour:
   interactDistance: 2
   target: {fileID: 0}
   isTargetPlayer: 1
+--- !u!114 &11446130
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 159296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3df9045043b8d4f1cb143be7d3383c2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sectionName: section01
 --- !u!114 &11489480
 MonoBehaviour:
   m_ObjectHideFlags: 1

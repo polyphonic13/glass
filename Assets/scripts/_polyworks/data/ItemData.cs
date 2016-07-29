@@ -6,7 +6,7 @@ namespace Polyworks
 	[Serializable]
 	public class ItemData
 	{
-		public string containingRoom; 
+		public string containingSection; 
 		public string itemName;
 		public string displayName;
 		public string prefabName; 
@@ -24,7 +24,7 @@ namespace Polyworks
 
 		public virtual ItemData Clone() {
 			var clone = new ItemData ();
-			clone.containingRoom = this.containingRoom;
+			clone.containingSection = this.containingSection;
 			clone.itemName = this.itemName;
 			clone.displayName = this.displayName;
 			clone.prefabName = this.prefabName;

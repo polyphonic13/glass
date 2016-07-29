@@ -5,7 +5,7 @@ namespace Polyworks {
 	public class SceneChangeSwitch : Switch
 	{
 		public string targetScene;
-		public int targetRoom = -1;
+		public int targetSection = -1;
 
 		private bool isActive { get; set; }
 

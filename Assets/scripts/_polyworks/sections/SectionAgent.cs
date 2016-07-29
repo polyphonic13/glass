@@ -9,7 +9,9 @@ namespace Polyworks {
 		private Item _item;
 
 		public void OnSectionChanged(string section) {
+			Debug.Log ("SectionAgent[" + this.name + "]/OnSectionChanged, section = " + section + ", sectionName = " + sectionName);
 			if (section == sectionName) {
+				Debug.Log (" enabling " + this.name);
 				_item.enabled = true;
 			} else {
 				_item.enabled = false;
@@ -18,6 +20,7 @@ namespace Polyworks {
 
 		private void Awake() {
 			_item = this.gameObject.GetComponent<Item> ();
+			_item.enabled = false;
 			if (_item != null) {
 				EventCenter.Instance.OnSectionChanged += this.OnSectionChanged;	
 			}

@@ -29,14 +29,16 @@ namespace Polyworks {
 
 		public bool Check() {
 			bool isInProximity = false;
-			var difference = Vector3.Distance(target.position, transform.position);
-			if(difference < interactDistance) {
-				isInProximity = true;
-				EventCenter.Instance.ChangeItemProximity(_item, isInProximity);
-				_wasJustFocused = true;
-			} else if(_wasJustFocused) {
-				EventCenter.Instance.ChangeItemProximity(_item, isInProximity);
-				_wasJustFocused = false;
+			if (_item.enabled) {
+				var difference = Vector3.Distance (target.position, transform.position);
+				if (difference < interactDistance) {
+					isInProximity = true;
+					EventCenter.Instance.ChangeItemProximity (_item, isInProximity);
+					_wasJustFocused = true;
+				} else if (_wasJustFocused) {
+					EventCenter.Instance.ChangeItemProximity (_item, isInProximity);
+					_wasJustFocused = false;
+				}
 			}
 			return isInProximity;
 		}
