@@ -599,7 +599,7 @@ GameObject:
   - 223: {fileID: 22308056}
   - 114: {fileID: 11485270}
   - 114: {fileID: 11443988}
-  - 114: {fileID: 11453558}
+  - 114: {fileID: 11430828}
   m_Layer: 14
   m_Name: crosshair_ui
   m_TagString: Untagged
@@ -1576,6 +1576,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _zoom: 10
   _camera: {fileID: 2071336}
+--- !u!114 &11430828
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 180512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3443ae8ad56de42fc87119342ab10bb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 11446602}
+  icons:
+  - ui/icons/icon_crosshair
+  - ui/icons/icon_interact
+  - ui/icons/icon_collect
+  - ui/icons/icon_inspect
+  - ui/icons/icon_move
+  defaultIcon: 0
 --- !u!114 &11432966
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1795,7 +1814,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 1d22c2b3d3c30498da2ec3c83308c237, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1909,20 +1928,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &11453558
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 180512}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37a159ebdbb0546558f70a8bb29c4ea5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  image: {fileID: 0}
-  icons: []
-  defaultIcon: 0
 --- !u!114 &11454898
 MonoBehaviour:
   m_ObjectHideFlags: 1

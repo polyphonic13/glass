@@ -11,6 +11,7 @@ namespace Polyworks {
 		private Item _item;
 	
 		public void SetFocus(bool isFocused) {
+			Debug.Log ("ProximityController[" + this.name + "]/SetFocus, isFocused = " + isFocused);
 			if (isFocused) {
 				if (!_wasJustFocused) {
 					EventCenter.Instance.ChangeItemProximity(_item, true);
@@ -37,7 +38,6 @@ namespace Polyworks {
 		}
 
 		public void OnSceneInitialized(string scene) {
-			Debug.Log ("ProximityController["+this.name+"]/OnSceneInitialized");
 			_item = gameObject.GetComponent<Item> ();
 			if (isTargetPlayer) {
 				target = GameObject.Find ("player").transform;
