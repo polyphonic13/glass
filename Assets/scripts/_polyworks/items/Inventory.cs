@@ -71,6 +71,11 @@ namespace Polyworks {
 				if (data.isDestroyedOnUse) {
 					// Debug.Log (" kill " + itemObj);
 					Destroy (itemObj);
+				} else {
+					ProximityController proximityController = itemObj.GetComponent<ProximityController> ();
+					if (proximityController != null) {
+						proximityController.Init ();
+					}
 				}
 			}
 		}

@@ -25,12 +25,9 @@ namespace Polyworks {
 		private void _checkRayCast() {
 			RaycastHit hit;
 
-			//		Debug.DrawRay(this.transform.position, this.transform.forward, Color.red);
 			if (Physics.Raycast (this.transform.position, this.transform.forward, out hit, interactDistance)) {
 				if (hit.transform != this.transform && (hit.transform.tag == "interactive" || hit.transform.tag == "persistent")) {
-					//				Debug.DrawRay(this.transform.position, this.transform.forward, Color.green);
 					if (hit.transform.name != _itemJustHit) {
-						//					Debug.Log("hit name = " + hit.transform.name);
 						ProximityController item = hit.transform.gameObject.GetComponent<ProximityController> ();
 						if(item != null) {
 							item.SetFocus (true);
@@ -47,7 +44,6 @@ namespace Polyworks {
 		}
 
 		bool IsLookingAtObject(Transform obj, Transform targetObj) {
-			//direction of the target as a vector
 			Vector3 direction = targetObj.position - obj.position;
 
 			float ang = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;

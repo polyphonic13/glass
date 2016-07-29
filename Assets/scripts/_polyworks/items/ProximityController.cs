@@ -8,18 +8,22 @@ namespace Polyworks {
 		public bool isTargetPlayer; 
 
 		private bool _wasJustFocused;
+		private bool _isInitialized;
 		private Item _item;
 	
+	
 		public void SetFocus(bool isFocused) {
-//			Debug.Log ("ProximityController[" + this.name + "]/SetFocus, isFocused = " + isFocused);
-			if (isFocused) {
-				if (!_wasJustFocused) {
-					EventCenter.Instance.ChangeItemProximity(_item, true);
-					_wasJustFocused = true;
+			// Debug.Log ("ProximityController[" + this.name + "]/SetFocus, isFocused = " + isFocused + ", item = " + _item);
+			if(_isInitialized) {
+				if (isFocused) {
+					if (!_wasJustFocused) {
+						EventCenter.Instance.ChangeItemProximity(_item, true);
+						_wasJustFocused = true;
+					}
+				} else if (_wasJustFocused) {
+					EventCenter.Instance.ChangeItemProximity(_item, false);
+					_wasJustFocused = false;
 				}
-			} else if (_wasJustFocused) {
-				EventCenter.Instance.ChangeItemProximity(_item, false);
-				_wasJustFocused = false;
 			}
 		}
 
@@ -38,12 +42,19 @@ namespace Polyworks {
 		}
 
 		public void OnSceneInitialized(string scene) {
-			_item = gameObject.GetComponent<Item> ();
-			if (isTargetPlayer) {
-				target = GameObject.Find ("player").transform;
-			}
+			Init();
 		}
 
+		public void Init() {
+			if(!_isInitialized) {
+				_item = gameObject.GetComponent<Item> ();
+				if (isTargetPlayer) {
+					target = GameObject.Find ("player").transform;
+				}
+				_isInitialized = true;
+			}
+		}
+		
 		private void Awake() {
 			EventCenter.Instance.OnSceneInitialized += this.OnSceneInitialized;
 		}
