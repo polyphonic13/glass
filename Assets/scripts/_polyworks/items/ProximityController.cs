@@ -11,7 +11,7 @@ namespace Polyworks {
 		private Item _item;
 	
 		public void SetFocus(bool isFocused) {
-			Debug.Log ("ProximityController[" + this.name + "]/SetFocus, isFocused = " + isFocused);
+//			Debug.Log ("ProximityController[" + this.name + "]/SetFocus, isFocused = " + isFocused);
 			if (isFocused) {
 				if (!_wasJustFocused) {
 					EventCenter.Instance.ChangeItemProximity(_item, true);

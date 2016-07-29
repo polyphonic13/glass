@@ -30,7 +30,7 @@ public class PlayerHead : MonoBehaviour {
 			if (hit.transform != this.transform && (hit.transform.tag == "interactive" || hit.transform.tag == "persistent")) {
 //				Debug.DrawRay(this.transform.position, this.transform.forward, Color.green);
 				if (hit.transform.name != _itemJustHit) {
-					Debug.Log("hit name = " + hit.transform.name);
+//					Debug.Log("hit name = " + hit.transform.name);
 					ProximityController item = hit.transform.gameObject.GetComponent<ProximityController> ();
 					if(item != null) {
 						item.SetFocus (true);

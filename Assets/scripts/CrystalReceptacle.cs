@@ -29,7 +29,7 @@ public class CrystalReceptacle : Item {
 		}
 	}
 
-	public override void Actuate() {
+	public override void Actuate(Inventory inventory) {
 		if (this.isEnabled) {
 			if (!target.GetIsActive ()) {
 				target.Actuate ();

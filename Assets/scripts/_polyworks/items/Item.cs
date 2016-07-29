@@ -11,16 +11,9 @@ namespace Polyworks {
 
 		public int icon;
 
-		public virtual void Collect(Inventory inventory) {
-			if (!data.isCollected) {
-				EventCenter.Instance.ChangeItemProximity (this, false);
-				data.isCollected = true;
-				inventory.Add (data.Clone ());
-				GameObject.Destroy (gameObject);
-			}
+		public virtual void Actuate(Inventory inventory) {
+//			Debug.Log ("Item[" + this.name + "]/Actuate");
 		}
-
-		public virtual void Actuate() {}
 
 		public virtual void Use() {}
 

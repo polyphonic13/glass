@@ -24,7 +24,10 @@ namespace Polyworks {
 
 		#region handlers
 		public void OnNearItem(Item item, bool isNear) {
+			Debug.Log ("InputManager/OnNearItem, isNear = " + isNear);
 			_itemInProximity = (isNear) ? item : null;
+			Debug.Log (" finished input manager on near item");
+
 		}
 		
 		public void OnCloseInventoryUI() {
@@ -123,8 +126,12 @@ namespace Polyworks {
 			_player.SetDiving(_controls.GetButtonDown("dive"));
 			_player.SetCrawling(_controls.GetButtonDown("crawl"));
 
+		}
+
+		private void _itemsUpdate() {
 			if(_itemInProximity != null && _controls.GetButtonDown("actuate")) {
-				_itemInProximity.Actuate();
+				Debug.Log ("InputManager/FixedUpded, item about to be actuated");
+				_itemInProximity.Actuate(Game.Instance.GetPlayerInventory());
 			}
 
 			if(_controls.GetButtonDown("flashlight")) {
@@ -165,6 +172,7 @@ namespace Polyworks {
 			} else {
 				if (!_isUIOpen) {
 					_playerUpdate (horizontal, vertical);
+					_itemsUpdate ();
 				} else if (_isInventoryOpen) {
 					_inventoryUpdate (horizontal, vertical);
 				} else {

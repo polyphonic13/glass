@@ -27,13 +27,10 @@ namespace Polyworks {
 		}
 
 		void OnNearItem(Item item, bool isFocused) {
-			Debug.Log ("CrosshairUI/OnNearItem, item = " + item.name + ", isFocused = " + isFocused + ", icon = " + item.icon);
 			if (isFocused && item.icon != null) {
-//				image.sprite = icons[item.icon];
 				image.sprite = _sprites[item.icon] as Sprite;
 			} else {
 				image.sprite = _sprites [defaultIcon] as Sprite;
-//				image.sprite = icons[defaultIcon];
 			}
 		}
 	}

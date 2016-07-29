@@ -256,12 +256,6 @@ namespace UnitySampleAssets.Characters.FirstPerson
 				if(!_isMenuOpen && !_isInventoryOpen) {
 					_rotateView();
 					
-					if(_controls.GetButtonDown("actuate")) {
-//						// Debug.Log("Player fire1 pressed, _elementInProximity = " + _elementInProximity);
-						if(_elementInProximity != null) {
-							_elementInProximity.Actuate();
-						}
-					}
 					// allow to Dive if Swimming 
 					// if(_controls.GetButtonDown("dive")) {
 					// }

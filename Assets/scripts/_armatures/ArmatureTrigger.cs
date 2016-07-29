@@ -10,11 +10,11 @@ public class ArmatureTrigger : Item {
 
 	public void OnActuate() {
 		if(isEnabled) {
-			Actuate();
+//			Actuate();
 		}
 	}
 
-	public override void Actuate() {
+	public override void Actuate(Inventory inventory) {
 //		// Debug.Log ("ArmatureTrigger[" + this.name + "]/Actuate");
 		HandleAnimation();
 	}
