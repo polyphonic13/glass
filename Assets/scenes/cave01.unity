@@ -1292,13 +1292,14 @@ MonoBehaviour:
     itemName: 
     displayName: 
     prefabName: 
-    isCollectable: 0
     isCollected: 0
     isDroppable: 0
-  Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
-  itemName: 
-  _interactDistance: 1.5
-  startEnabled: 0
+    isUsable: 0
+    isDestroyedOnUse: 0
+    count: 0
+    thumbnail: 
+  icon: 0
+  isStartEnabled: 0
   target: {fileID: 23933220}
   key: {fileID: 237989730}
 --- !u!1001 &26627925
@@ -2532,7 +2533,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 437584, guid: d328a1d00963643d4a90ee92cfe511f5, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d328a1d00963643d4a90ee92cfe511f5, type: 2}
@@ -3587,7 +3588,7 @@ Prefab:
     - target: {fileID: 11488058, guid: 5f3544a1a9938410bb31fc447db65457, type: 2}
       propertyPath: target2
       value: 
-      objectReference: {fileID: 94291260}
+      objectReference: {fileID: 0}
     - target: {fileID: 11438628, guid: 5f3544a1a9938410bb31fc447db65457, type: 2}
       propertyPath: portal
       value: 
@@ -4293,10 +4294,6 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400034, guid: 75823213227884022b03ccfda354772d, type: 3}
   m_PrefabInternal: {fileID: 92444727}
---- !u!4 &94291260 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 438196, guid: 5ccdeae2a8a124a9eb27644ae957bd8d, type: 2}
-  m_PrefabInternal: {fileID: 753530698}
 --- !u!1 &95854309
 GameObject:
   m_ObjectHideFlags: 0
@@ -4328,6 +4325,48 @@ Transform:
   - {fileID: 955831002}
   m_Father: {fileID: 1812013405}
   m_RootOrder: 6
+--- !u!1001 &96081719
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 456028, guid: 84f55014e3cba445ab22685c88725eac, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -659.3914
+      objectReference: {fileID: 0}
+    - target: {fileID: 456028, guid: 84f55014e3cba445ab22685c88725eac, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 111.96619
+      objectReference: {fileID: 0}
+    - target: {fileID: 456028, guid: 84f55014e3cba445ab22685c88725eac, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -3.9059849
+      objectReference: {fileID: 0}
+    - target: {fileID: 456028, guid: 84f55014e3cba445ab22685c88725eac, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 456028, guid: 84f55014e3cba445ab22685c88725eac, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 456028, guid: 84f55014e3cba445ab22685c88725eac, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 456028, guid: 84f55014e3cba445ab22685c88725eac, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 456028, guid: 84f55014e3cba445ab22685c88725eac, type: 2}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 84f55014e3cba445ab22685c88725eac, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &108784688
 Prefab:
   m_ObjectHideFlags: 0
@@ -5348,13 +5387,14 @@ MonoBehaviour:
     itemName: 
     displayName: 
     prefabName: 
-    isCollectable: 0
     isCollected: 0
     isDroppable: 0
-  Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
-  itemName: 
-  _interactDistance: 4
-  startEnabled: 1
+    isUsable: 0
+    isDestroyedOnUse: 0
+    count: 0
+    thumbnail: 
+  icon: 0
+  isStartEnabled: 0
   target: {fileID: 120316980}
   key: {fileID: 0}
 --- !u!65 &120316973
@@ -9766,13 +9806,14 @@ MonoBehaviour:
     itemName: 
     displayName: 
     prefabName: 
-    isCollectable: 0
     isCollected: 0
     isDroppable: 0
-  Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
-  itemName: 
-  _interactDistance: 3
-  startEnabled: 0
+    isUsable: 0
+    isDestroyedOnUse: 0
+    count: 0
+    thumbnail: 
+  icon: 0
+  isStartEnabled: 0
   target: {fileID: 215006623}
   key: {fileID: 353632615}
 --- !u!65 &215006625
@@ -12274,7 +12315,7 @@ Prefab:
     - target: {fileID: 11488058, guid: 5f3544a1a9938410bb31fc447db65457, type: 2}
       propertyPath: target2
       value: 
-      objectReference: {fileID: 94291260}
+      objectReference: {fileID: 0}
     - target: {fileID: 11438628, guid: 5f3544a1a9938410bb31fc447db65457, type: 2}
       propertyPath: portal
       value: 
@@ -12315,16 +12356,15 @@ MonoBehaviour:
     itemName: 
     displayName: 
     prefabName: 
-    isCollectable: 0
     isCollected: 0
     isDroppable: 0
-  Icon: {fileID: 21300000, guid: fb95dcee818d24ef28010358f7fdfaf7, type: 3}
-  itemName: 
-  _interactDistance: 1
+    isUsable: 0
+    isDestroyedOnUse: 0
+    count: 0
+    thumbnail: 
+  icon: 0
   description: A purple crystal
   Thumbnail: {fileID: 21300000, guid: a9d37252a199d409b85c34722aba70ff, type: 3}
-  targetContainerName: 
-  _weight: {fileID: 11484862, guid: ed5b67beeb2f34409b9e0764fc6167fb, type: 2}
 --- !u!1001 &238418178
 Prefab:
   m_ObjectHideFlags: 0
@@ -13928,13 +13968,14 @@ MonoBehaviour:
     itemName: 
     displayName: 
     prefabName: 
-    isCollectable: 0
     isCollected: 0
     isDroppable: 0
-  Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
-  itemName: 
-  _interactDistance: 1.5
-  startEnabled: 0
+    isUsable: 0
+    isDestroyedOnUse: 0
+    count: 0
+    thumbnail: 
+  icon: 0
+  isStartEnabled: 0
   target: {fileID: 245471245}
   key: {fileID: 2044470197}
 --- !u!1001 &250694839
@@ -16163,7 +16204,7 @@ Prefab:
     - target: {fileID: 11488058, guid: 5f3544a1a9938410bb31fc447db65457, type: 2}
       propertyPath: target2
       value: 
-      objectReference: {fileID: 94291260}
+      objectReference: {fileID: 0}
     - target: {fileID: 11438628, guid: 5f3544a1a9938410bb31fc447db65457, type: 2}
       propertyPath: portal
       value: 
@@ -16204,16 +16245,15 @@ MonoBehaviour:
     itemName: 
     displayName: 
     prefabName: 
-    isCollectable: 0
     isCollected: 0
     isDroppable: 0
-  Icon: {fileID: 21300000, guid: fb95dcee818d24ef28010358f7fdfaf7, type: 3}
-  itemName: 
-  _interactDistance: 1
+    isUsable: 0
+    isDestroyedOnUse: 0
+    count: 0
+    thumbnail: 
+  icon: 0
   description: A purple crystal
   Thumbnail: {fileID: 21300000, guid: a9d37252a199d409b85c34722aba70ff, type: 3}
-  targetContainerName: 
-  _weight: {fileID: 11484862, guid: ed5b67beeb2f34409b9e0764fc6167fb, type: 2}
 --- !u!1 &353829424
 GameObject:
   m_ObjectHideFlags: 0
@@ -25980,7 +26020,7 @@ Transform:
   - {fileID: 2034904711}
   - {fileID: 1900398595}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
 --- !u!1001 &605998644
 Prefab:
   m_ObjectHideFlags: 0
@@ -27808,12 +27848,13 @@ MonoBehaviour:
     itemName: 
     displayName: 
     prefabName: 
-    isCollectable: 0
     isCollected: 0
     isDroppable: 0
-  Icon: {fileID: 21300000, guid: 2ee4da8354ff444ee932fa51f99d830b, type: 3}
-  itemName: 
-  _interactDistance: 2
+    isUsable: 0
+    isDestroyedOnUse: 0
+    count: 0
+    thumbnail: 
+  icon: 0
   _pops: {fileID: 2089079634}
   _parentBone: {fileID: 2041163914}
   _mainClip: {fileID: 7400006, guid: f9d3a00d4ddbf45f2b3f27f33eb90a99, type: 3}
@@ -30935,13 +30976,14 @@ MonoBehaviour:
     itemName: 
     displayName: 
     prefabName: 
-    isCollectable: 0
     isCollected: 0
     isDroppable: 0
-  Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
-  itemName: 
-  _interactDistance: 4
-  startEnabled: 1
+    isUsable: 0
+    isDestroyedOnUse: 0
+    count: 0
+    thumbnail: 
+  icon: 0
+  isStartEnabled: 0
   target: {fileID: 750555480}
   key: {fileID: 0}
 --- !u!65 &750555473
@@ -31038,148 +31080,6 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: d5b288dfffc9e44989f770c88ff66223, type: 3}
   m_PrefabInternal: {fileID: 750883327}
---- !u!1001 &753530698
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 463542, guid: 5ccdeae2a8a124a9eb27644ae957bd8d, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 136
-      objectReference: {fileID: 0}
-    - target: {fileID: 463542, guid: 5ccdeae2a8a124a9eb27644ae957bd8d, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 463542, guid: 5ccdeae2a8a124a9eb27644ae957bd8d, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 62
-      objectReference: {fileID: 0}
-    - target: {fileID: 463542, guid: 5ccdeae2a8a124a9eb27644ae957bd8d, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 463542, guid: 5ccdeae2a8a124a9eb27644ae957bd8d, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 463542, guid: 5ccdeae2a8a124a9eb27644ae957bd8d, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 463542, guid: 5ccdeae2a8a124a9eb27644ae957bd8d, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 463542, guid: 5ccdeae2a8a124a9eb27644ae957bd8d, type: 2}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 438196, guid: 5ccdeae2a8a124a9eb27644ae957bd8d, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 1.06
-      objectReference: {fileID: 0}
-    - target: {fileID: 22449490, guid: 5ccdeae2a8a124a9eb27644ae957bd8d, type: 2}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22449490, guid: 5ccdeae2a8a124a9eb27644ae957bd8d, type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22449490, guid: 5ccdeae2a8a124a9eb27644ae957bd8d, type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22449490, guid: 5ccdeae2a8a124a9eb27644ae957bd8d, type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22449490, guid: 5ccdeae2a8a124a9eb27644ae957bd8d, type: 2}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22449490, guid: 5ccdeae2a8a124a9eb27644ae957bd8d, type: 2}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22470760, guid: 5ccdeae2a8a124a9eb27644ae957bd8d, type: 2}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22470760, guid: 5ccdeae2a8a124a9eb27644ae957bd8d, type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22470760, guid: 5ccdeae2a8a124a9eb27644ae957bd8d, type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22470760, guid: 5ccdeae2a8a124a9eb27644ae957bd8d, type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22470760, guid: 5ccdeae2a8a124a9eb27644ae957bd8d, type: 2}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22470760, guid: 5ccdeae2a8a124a9eb27644ae957bd8d, type: 2}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22495544, guid: 5ccdeae2a8a124a9eb27644ae957bd8d, type: 2}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22495544, guid: 5ccdeae2a8a124a9eb27644ae957bd8d, type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22495544, guid: 5ccdeae2a8a124a9eb27644ae957bd8d, type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22495544, guid: 5ccdeae2a8a124a9eb27644ae957bd8d, type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22495544, guid: 5ccdeae2a8a124a9eb27644ae957bd8d, type: 2}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22495544, guid: 5ccdeae2a8a124a9eb27644ae957bd8d, type: 2}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22448448, guid: 5ccdeae2a8a124a9eb27644ae957bd8d, type: 2}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22448448, guid: 5ccdeae2a8a124a9eb27644ae957bd8d, type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22448448, guid: 5ccdeae2a8a124a9eb27644ae957bd8d, type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22448448, guid: 5ccdeae2a8a124a9eb27644ae957bd8d, type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22448448, guid: 5ccdeae2a8a124a9eb27644ae957bd8d, type: 2}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22448448, guid: 5ccdeae2a8a124a9eb27644ae957bd8d, type: 2}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 5ccdeae2a8a124a9eb27644ae957bd8d, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1001 &754111137
 Prefab:
   m_ObjectHideFlags: 0
@@ -37617,7 +37517,7 @@ Prefab:
     - target: {fileID: 11488058, guid: 5f3544a1a9938410bb31fc447db65457, type: 2}
       propertyPath: target2
       value: 
-      objectReference: {fileID: 94291260}
+      objectReference: {fileID: 0}
     - target: {fileID: 11438628, guid: 5f3544a1a9938410bb31fc447db65457, type: 2}
       propertyPath: portal
       value: 
@@ -37658,16 +37558,15 @@ MonoBehaviour:
     itemName: 
     displayName: 
     prefabName: 
-    isCollectable: 0
     isCollected: 0
     isDroppable: 0
-  Icon: {fileID: 21300000, guid: fb95dcee818d24ef28010358f7fdfaf7, type: 3}
-  itemName: 
-  _interactDistance: 1
+    isUsable: 0
+    isDestroyedOnUse: 0
+    count: 0
+    thumbnail: 
+  icon: 0
   description: A purple crystal
   Thumbnail: {fileID: 21300000, guid: a9d37252a199d409b85c34722aba70ff, type: 3}
-  targetContainerName: 
-  _weight: {fileID: 11484862, guid: ed5b67beeb2f34409b9e0764fc6167fb, type: 2}
 --- !u!1001 &921544050
 Prefab:
   m_ObjectHideFlags: 0
@@ -42554,12 +42453,13 @@ MonoBehaviour:
     itemName: 
     displayName: 
     prefabName: 
-    isCollectable: 0
     isCollected: 0
     isDroppable: 0
-  Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
-  itemName: 
-  _interactDistance: 1.5
+    isUsable: 0
+    isDestroyedOnUse: 0
+    count: 0
+    thumbnail: 
+  icon: 0
   target: {fileID: 2004787475}
   disabledMessage: 
 --- !u!65 &1026504390
@@ -48590,6 +48490,68 @@ Light:
   m_ShadowRadius: 0
   m_ShadowAngle: 0
   m_AreaSize: {x: 1, y: 1}
+--- !u!1001 &1153314824
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 11494250, guid: 811005ab4c6954152a4162869ef2c947, type: 2}
+      propertyPath: sceneData.playerLocations.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 409092, guid: 811005ab4c6954152a4162869ef2c947, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 409092, guid: 811005ab4c6954152a4162869ef2c947, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 409092, guid: 811005ab4c6954152a4162869ef2c947, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 409092, guid: 811005ab4c6954152a4162869ef2c947, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 409092, guid: 811005ab4c6954152a4162869ef2c947, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 409092, guid: 811005ab4c6954152a4162869ef2c947, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 409092, guid: 811005ab4c6954152a4162869ef2c947, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 409092, guid: 811005ab4c6954152a4162869ef2c947, type: 2}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 11494250, guid: 811005ab4c6954152a4162869ef2c947, type: 2}
+      propertyPath: sceneData.sceneName
+      value: cave01
+      objectReference: {fileID: 0}
+    - target: {fileID: 11494250, guid: 811005ab4c6954152a4162869ef2c947, type: 2}
+      propertyPath: sceneData.playerLocations.Array.data[0].position.x
+      value: 135
+      objectReference: {fileID: 0}
+    - target: {fileID: 11494250, guid: 811005ab4c6954152a4162869ef2c947, type: 2}
+      propertyPath: sceneData.playerLocations.Array.data[0].position.y
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 11494250, guid: 811005ab4c6954152a4162869ef2c947, type: 2}
+      propertyPath: sceneData.playerLocations.Array.data[0].position.z
+      value: 11
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 811005ab4c6954152a4162869ef2c947, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &1154941088
 Prefab:
   m_ObjectHideFlags: 0
@@ -51749,13 +51711,14 @@ MonoBehaviour:
     itemName: 
     displayName: 
     prefabName: 
-    isCollectable: 0
     isCollected: 0
     isDroppable: 0
-  Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
-  itemName: 
-  _interactDistance: 1
-  startEnabled: 1
+    isUsable: 0
+    isDestroyedOnUse: 0
+    count: 0
+    thumbnail: 
+  icon: 0
+  isStartEnabled: 0
   target: {fileID: 1209543712}
   key: {fileID: 0}
 --- !u!65 &1209543714
@@ -52436,12 +52399,13 @@ MonoBehaviour:
     itemName: 
     displayName: 
     prefabName: 
-    isCollectable: 0
     isCollected: 0
     isDroppable: 0
-  Icon: {fileID: 21300000, guid: 2ee4da8354ff444ee932fa51f99d830b, type: 3}
-  itemName: 
-  _interactDistance: 2
+    isUsable: 0
+    isDestroyedOnUse: 0
+    count: 0
+    thumbnail: 
+  icon: 0
   _pops: {fileID: 2089079634}
   _parentBone: {fileID: 1921883684}
   _mainClip: {fileID: 7400010, guid: f9d3a00d4ddbf45f2b3f27f33eb90a99, type: 3}
@@ -54444,16 +54408,15 @@ MonoBehaviour:
     itemName: 
     displayName: 
     prefabName: 
-    isCollectable: 0
     isCollected: 0
     isDroppable: 0
-  Icon: {fileID: 21300000, guid: fb95dcee818d24ef28010358f7fdfaf7, type: 3}
-  itemName: 
-  _interactDistance: 1.5
+    isUsable: 0
+    isDestroyedOnUse: 0
+    count: 0
+    thumbnail: 
+  icon: 0
   description: A purple crystal
   Thumbnail: {fileID: 21300000, guid: a9d37252a199d409b85c34722aba70ff, type: 3}
-  targetContainerName: 
-  _weight: {fileID: 11484862, guid: ed5b67beeb2f34409b9e0764fc6167fb, type: 2}
 --- !u!1001 &1271573515
 Prefab:
   m_ObjectHideFlags: 0
@@ -59021,12 +58984,13 @@ MonoBehaviour:
     itemName: 
     displayName: 
     prefabName: 
-    isCollectable: 0
     isCollected: 0
     isDroppable: 0
-  Icon: {fileID: 21300000, guid: 2ee4da8354ff444ee932fa51f99d830b, type: 3}
-  itemName: 
-  _interactDistance: 2
+    isUsable: 0
+    isDestroyedOnUse: 0
+    count: 0
+    thumbnail: 
+  icon: 0
   _pops: {fileID: 2089079634}
   _parentBone: {fileID: 886028904}
   _mainClip: {fileID: 7400002, guid: f9d3a00d4ddbf45f2b3f27f33eb90a99, type: 3}
@@ -61333,7 +61297,7 @@ Prefab:
     - target: {fileID: 11488058, guid: 5f3544a1a9938410bb31fc447db65457, type: 2}
       propertyPath: target2
       value: 
-      objectReference: {fileID: 94291260}
+      objectReference: {fileID: 0}
     - target: {fileID: 11438628, guid: 5f3544a1a9938410bb31fc447db65457, type: 2}
       propertyPath: portal
       value: 
@@ -61378,16 +61342,15 @@ MonoBehaviour:
     itemName: 
     displayName: 
     prefabName: 
-    isCollectable: 0
     isCollected: 0
     isDroppable: 0
-  Icon: {fileID: 21300000, guid: fb95dcee818d24ef28010358f7fdfaf7, type: 3}
-  itemName: 
-  _interactDistance: 1
+    isUsable: 0
+    isDestroyedOnUse: 0
+    count: 0
+    thumbnail: 
+  icon: 0
   description: A purple crystal
   Thumbnail: {fileID: 21300000, guid: a9d37252a199d409b85c34722aba70ff, type: 3}
-  targetContainerName: 
-  _weight: {fileID: 11484862, guid: ed5b67beeb2f34409b9e0764fc6167fb, type: 2}
 --- !u!1001 &1524205629
 Prefab:
   m_ObjectHideFlags: 0
@@ -62574,13 +62537,14 @@ MonoBehaviour:
     itemName: 
     displayName: 
     prefabName: 
-    isCollectable: 0
     isCollected: 0
     isDroppable: 0
-  Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
-  itemName: 
-  _interactDistance: 4
-  startEnabled: 1
+    isUsable: 0
+    isDestroyedOnUse: 0
+    count: 0
+    thumbnail: 
+  icon: 0
+  isStartEnabled: 0
   target: {fileID: 1542142462}
   key: {fileID: 0}
 --- !u!114 &1542142462
@@ -69615,13 +69579,14 @@ MonoBehaviour:
     itemName: 
     displayName: 
     prefabName: 
-    isCollectable: 0
     isCollected: 0
     isDroppable: 0
-  Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
-  itemName: 
-  _interactDistance: 4
-  startEnabled: 1
+    isUsable: 0
+    isDestroyedOnUse: 0
+    count: 0
+    thumbnail: 
+  icon: 0
+  isStartEnabled: 0
   target: {fileID: 1660579789}
   key: {fileID: 1512676968}
 --- !u!65 &1660579788
@@ -70783,12 +70748,13 @@ MonoBehaviour:
     itemName: 
     displayName: 
     prefabName: 
-    isCollectable: 0
     isCollected: 0
     isDroppable: 0
-  Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
-  itemName: 
-  _interactDistance: 1.5
+    isUsable: 0
+    isDestroyedOnUse: 0
+    count: 0
+    thumbnail: 
+  icon: 0
   target: {fileID: 722767600}
   disabledMessage: 
 --- !u!1 &1676804987
@@ -70886,13 +70852,14 @@ MonoBehaviour:
     itemName: 
     displayName: 
     prefabName: 
-    isCollectable: 0
     isCollected: 0
     isDroppable: 0
-  Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
-  itemName: 
-  _interactDistance: 3
-  startEnabled: 0
+    isUsable: 0
+    isDestroyedOnUse: 0
+    count: 0
+    thumbnail: 
+  icon: 0
+  isStartEnabled: 0
   target: {fileID: 1678901310}
   key: {fileID: 920620367}
 --- !u!1001 &1679342218
@@ -75437,13 +75404,14 @@ MonoBehaviour:
     itemName: 
     displayName: 
     prefabName: 
-    isCollectable: 0
     isCollected: 0
     isDroppable: 0
-  Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
-  itemName: 
-  _interactDistance: 4
-  startEnabled: 0
+    isUsable: 0
+    isDestroyedOnUse: 0
+    count: 0
+    thumbnail: 
+  icon: 0
+  isStartEnabled: 0
   target: {fileID: 1758367405}
   key: {fileID: 1512676968}
 --- !u!65 &1758367411
@@ -81782,13 +81750,14 @@ MonoBehaviour:
     itemName: 
     displayName: 
     prefabName: 
-    isCollectable: 0
     isCollected: 0
     isDroppable: 0
-  Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
-  itemName: 
-  _interactDistance: 4
-  startEnabled: 1
+    isUsable: 0
+    isDestroyedOnUse: 0
+    count: 0
+    thumbnail: 
+  icon: 0
+  isStartEnabled: 0
   target: {fileID: 1949137316}
   key: {fileID: 1512676968}
 --- !u!65 &1949137318
@@ -81853,7 +81822,7 @@ Prefab:
     - target: {fileID: 11488058, guid: 5f3544a1a9938410bb31fc447db65457, type: 2}
       propertyPath: target2
       value: 
-      objectReference: {fileID: 94291260}
+      objectReference: {fileID: 0}
     - target: {fileID: 11438628, guid: 5f3544a1a9938410bb31fc447db65457, type: 2}
       propertyPath: portal
       value: 
@@ -81894,16 +81863,15 @@ MonoBehaviour:
     itemName: 
     displayName: 
     prefabName: 
-    isCollectable: 0
     isCollected: 0
     isDroppable: 0
-  Icon: {fileID: 21300000, guid: fb95dcee818d24ef28010358f7fdfaf7, type: 3}
-  itemName: 
-  _interactDistance: 1
+    isUsable: 0
+    isDestroyedOnUse: 0
+    count: 0
+    thumbnail: 
+  icon: 0
   description: A purple crystal
   Thumbnail: {fileID: 21300000, guid: a9d37252a199d409b85c34722aba70ff, type: 3}
-  targetContainerName: 
-  _weight: {fileID: 11484862, guid: ed5b67beeb2f34409b9e0764fc6167fb, type: 2}
 --- !u!1001 &1955166951
 Prefab:
   m_ObjectHideFlags: 0
@@ -82672,13 +82640,14 @@ MonoBehaviour:
     itemName: 
     displayName: 
     prefabName: 
-    isCollectable: 0
     isCollected: 0
     isDroppable: 0
-  Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
-  itemName: 
-  _interactDistance: 1.5
-  startEnabled: 0
+    isUsable: 0
+    isDestroyedOnUse: 0
+    count: 0
+    thumbnail: 
+  icon: 0
+  isStartEnabled: 0
   target: {fileID: 1976656940}
   key: {fileID: 1953255915}
 --- !u!114 &1976656940
@@ -86349,48 +86318,6 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400034, guid: 75823213227884022b03ccfda354772d, type: 3}
   m_PrefabInternal: {fileID: 2041749356}
---- !u!1001 &2042296498
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 485538, guid: d6632904813824ff889b1c963b5a9b20, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 40.728027
-      objectReference: {fileID: 0}
-    - target: {fileID: 485538, guid: d6632904813824ff889b1c963b5a9b20, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 14.063545
-      objectReference: {fileID: 0}
-    - target: {fileID: 485538, guid: d6632904813824ff889b1c963b5a9b20, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 18.299866
-      objectReference: {fileID: 0}
-    - target: {fileID: 485538, guid: d6632904813824ff889b1c963b5a9b20, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 485538, guid: d6632904813824ff889b1c963b5a9b20, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 485538, guid: d6632904813824ff889b1c963b5a9b20, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 485538, guid: d6632904813824ff889b1c963b5a9b20, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 485538, guid: d6632904813824ff889b1c963b5a9b20, type: 2}
-      propertyPath: m_RootOrder
-      value: 5
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: d6632904813824ff889b1c963b5a9b20, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1001 &2044470194
 Prefab:
   m_ObjectHideFlags: 0
@@ -86441,7 +86368,7 @@ Prefab:
     - target: {fileID: 11488058, guid: 5f3544a1a9938410bb31fc447db65457, type: 2}
       propertyPath: target2
       value: 
-      objectReference: {fileID: 94291260}
+      objectReference: {fileID: 0}
     - target: {fileID: 11438628, guid: 5f3544a1a9938410bb31fc447db65457, type: 2}
       propertyPath: portal
       value: 
@@ -86482,16 +86409,15 @@ MonoBehaviour:
     itemName: 
     displayName: 
     prefabName: 
-    isCollectable: 0
     isCollected: 0
     isDroppable: 0
-  Icon: {fileID: 21300000, guid: fb95dcee818d24ef28010358f7fdfaf7, type: 3}
-  itemName: 
-  _interactDistance: 1
+    isUsable: 0
+    isDestroyedOnUse: 0
+    count: 0
+    thumbnail: 
+  icon: 0
   description: A purple crystal
   Thumbnail: {fileID: 21300000, guid: a9d37252a199d409b85c34722aba70ff, type: 3}
-  targetContainerName: 
-  _weight: {fileID: 11484862, guid: ed5b67beeb2f34409b9e0764fc6167fb, type: 2}
 --- !u!1001 &2044477080
 Prefab:
   m_ObjectHideFlags: 0

@@ -1,0 +1,105 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &190814
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 456028}
+  - 114: {fileID: 11478364}
+  - 114: {fileID: 11400958}
+  m_Layer: 0
+  m_Name: glass_game_control
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &456028
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 190814}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -659.3914, y: 111.96619, z: -3.9059849}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &11400958
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 190814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0e8a00f345ae4534a9cb38871c066ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11478364
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 190814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f4e98b8bd4674d848ca809b6779f088, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameData:
+    currentScene: 
+    count: 0
+    levels:
+    - name: house_floor02
+      isCleared: 0
+      currentPlayerLocation: 0
+      tasks:
+        intTasks:
+        - name: incrementCount
+          isCompleted: 0
+          goal: 5
+          current: 0
+        floatTasks: []
+        stringTasks:
+        - name: itemCollection
+          isCompleted: 0
+          goal: wallpaper_sphere(Clone)
+          current: 
+        - name: itemCollection
+          isCompleted: 0
+          goal: brick_cube(Clone)
+          current: 
+    - name: cave01
+      isCleared: 0
+      currentPlayerLocation: 0
+      tasks:
+        intTasks: []
+        floatTasks: []
+        stringTasks:
+        - name: itemCollection
+          isCompleted: 0
+          goal: wooden_cube01(Clone)
+          current: 
+    playerData:
+      health: 100
+      stamina: 100
+      breath: 100
+  dataFilename: glass.dat
+  playerPrefab: player/player_objects
+  isCursorless: 1
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 190814}
+  m_IsPrefabParent: 1
