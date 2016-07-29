@@ -52,7 +52,6 @@ namespace Polyworks {
 			if (_getIsLevel(currentSceneName)) {
 				_initLevel (currentSceneName, items);
 			} else {
-				Debug.Log("Game, not a level, calling scene initialization complete");
 				EventCenter.Instance.SceneInitializationComplete (currentSceneName);
 			}
 
