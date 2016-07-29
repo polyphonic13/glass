@@ -76,7 +76,7 @@ namespace Polyworks {
 				break;
 
 			case 2:
-				playerInventory.Remove(this.name);
+				playerInventory.Drop(this.name);
 				break;
 
 			default:

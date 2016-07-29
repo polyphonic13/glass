@@ -31,7 +31,7 @@ namespace Polyworks {
 			}
 			if (_isPlayerInventory) {
 				_eventCenter.InventoryAdded (itemData.itemName, itemData.count, _isPlayerInventory);
-//				_eventCenter.AddNote (itemData.itemName + " Added");
+				_eventCenter.AddNote (itemData.itemName + " Added");
 			}
 		}
 
@@ -57,29 +57,33 @@ namespace Polyworks {
 		}
 
 		public virtual void Use(string name) {
-			_eventCenter.CloseInventoryUI ();
-
-			ItemData data = Remove (name);
-			if (data != null) {
-				// Debug.Log ("Inventory/Use, name = " + name + ", prefab = " + data.prefabName + ", isDestroyedOnUse = " + data.isDestroyedOnUse);
-				GameObject itemObj = (GameObject) Instantiate (Resources.Load (data.prefabName, typeof(GameObject)), transform.position, transform.rotation);
-				Item item = itemObj.GetComponent<Item> ();
-				item.data = data;
-				item.data.isCollected = false;
-				item.Use ();
-
-				if (data.isDestroyedOnUse) {
-					// Debug.Log (" kill " + itemObj);
-					Destroy (itemObj);
-				} else {
-					ProximityController proximityController = itemObj.GetComponent<ProximityController> ();
-					if (proximityController != null) {
-						proximityController.Init ();
-					}
-				}
+			Item item = _pluck(name); 
+			
+			if(item == null) {
+				return; 
 			}
+			
+			item.Use ();
+
+			if (item.data.isDestroyedOnUse) {
+				Destroy (item.gameObject);
+			} else {
+				_initProximityController(item);
+			}
+			
 		}
 
+		public virtual void Drop(string name) {
+			Debug.Log("Inventory/Drop, name = " + name);
+			Item item = _pluck(name); 
+			
+			if(item == null) {
+				return;
+			}
+			
+			_initProximityController(item);
+		}
+		
 		public bool Contains(string key) {
 			return(_items.Contains(key)) ? true : false;
 		}
@@ -102,6 +106,29 @@ namespace Polyworks {
 		private void OnDestroy() {
 			// Debug.Log ("Inventory/OnDestroy");
 		}
+		
+		private Item _pluck(string name) {
+			_eventCenter.CloseInventoryUI ();
 
+			ItemData data = Remove (name);
+			if (data == null) {
+				return null;
+			}
+			// Debug.Log ("Inventory/Use, name = " + name + ", prefab = " + data.prefabName + ", isDestroyedOnUse = " + data.isDestroyedOnUse);
+			GameObject itemObj = (GameObject) Instantiate (Resources.Load (data.prefabName, typeof(GameObject)), transform.position, transform.rotation);
+			Item item = itemObj.GetComponent<Item> ();
+			item.data = data;
+			item.data.isCollected = false;
+
+			return item;
+		}
+		
+		private void _initProximityController(Item item) {
+			ProximityController pc = item.gameObject.GetComponent<ProximityController>();
+			if(pc == null) {
+				return;
+			}
+			pc.Init();
+		}
 	}
 }
