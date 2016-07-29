@@ -52,6 +52,7 @@ namespace Polyworks {
 			if (_getIsLevel(currentSceneName)) {
 				_initLevel (currentSceneName, items);
 			} else {
+				Debug.Log("Game, not a level, calling scene initialization complete");
 				EventCenter.Instance.SceneInitializationComplete (currentSceneName);
 			}
 
@@ -108,8 +109,10 @@ namespace Polyworks {
 				if (isLevel) {
 					// Debug.Log ("about to get items, _playerInventory = " + _playerInventory);
 					Instance.gameData.items = _playerInventory.GetAll ();
-					LevelController levelController = GameObject.Find("level_controller").GetComponent<LevelController>();
-					levelController.Cleanup();
+					if (_levelController == null) {
+						_levelController = GetLevelController();
+					}
+					_levelController.Cleanup();
 				}
 				_cleanUp ();
 
@@ -151,8 +154,10 @@ namespace Polyworks {
 
 		private void _initLevel(string currentSceneName, Hashtable items) {
 			// Debug.Log ("Game/_initLevel");
-			LevelController levelController = GameObject.Find("level_controller").GetComponent<LevelController>();
-			levelController.Init (Instance.gameData);
+			if(_levelController == null) {
+				_levelController = GetLevelController();
+			}
+			_levelController.Init (Instance.gameData);
 		}
 
 		private void _loadScene(string scene) {
