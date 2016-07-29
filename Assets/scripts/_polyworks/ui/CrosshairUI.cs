@@ -33,6 +33,13 @@ namespace Polyworks {
 				image.sprite = _sprites [defaultIcon] as Sprite;
 			}
 		}
+
+		void OnDestroy() {
+			EventCenter ec = EventCenter.Instance;
+			if (ec != null) {
+				ec.OnNearItem -= this.OnNearItem;
+			}
+		}
 	}
 }
 

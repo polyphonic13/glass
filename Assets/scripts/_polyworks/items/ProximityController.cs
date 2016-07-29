@@ -47,5 +47,12 @@ namespace Polyworks {
 		private void Awake() {
 			EventCenter.Instance.OnSceneInitialized += this.OnSceneInitialized;
 		}
+
+		private void OnDestroy() {
+			EventCenter ec = EventCenter.Instance;
+			if (ec != null) {
+				ec.OnSceneInitialized -= this.OnSceneInitialized;
+			}
+		}
 	}
 }
