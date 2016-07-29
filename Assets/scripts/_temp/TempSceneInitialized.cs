@@ -12,7 +12,10 @@ public class TempSceneInitialized : MonoBehaviour {
 	}
 
 	private void Awake () {
-		Polyworks.EventCenter ec = Polyworks.EventCenter.Instance;
-		ec.OnSceneInitialized += this.OnSceneInitialized;
+		Polyworks.EventCenter.Instance.OnSceneInitialized += this.OnSceneInitialized;
+	}
+
+	private void Destroy() {
+		Polyworks.EventCenter.Instance.OnSceneInitialized -= this.OnSceneInitialized;
 	}
 }
