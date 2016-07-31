@@ -107,13 +107,14 @@ namespace Polyworks {
 			if (scene != currentScene.name) {
 				if (isLevel) {
 					// Debug.Log ("about to get items, _playerInventory = " + _playerInventory);
-					Instance.gameData.items = _playerInventory.GetAll ();
-					Instance.gameData.currentSection = section;
-
 					if (_levelController == null) {
 						_levelController = GetLevelController();
 					}
 					_levelController.Cleanup();
+
+					Instance.gameData.items = _playerInventory.GetAll ();
+					Instance.gameData.targetSection = section;
+
 				}
 				_cleanUp ();
 

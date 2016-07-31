@@ -45,7 +45,5 @@ namespace Polyworks
 			return null;
 		}
 	}
-
-
 }
 
