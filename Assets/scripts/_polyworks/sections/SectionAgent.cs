@@ -4,7 +4,7 @@ using System.Collections;
 namespace Polyworks {
 	public class SectionAgent : MonoBehaviour
 	{
-		public int section; 
+		public int section = -1; 
 
 		private Item _item;
 
@@ -18,8 +18,10 @@ namespace Polyworks {
 
 		private void Awake() {
 			_item = this.gameObject.GetComponent<Item> ();
-			_item.isEnabled = false;
 			if (_item != null) {
+				if (section > -1) {
+					_item.isEnabled = false;
+				}
 				EventCenter.Instance.OnSectionChanged += this.OnSectionChanged;	
 			}
 		}

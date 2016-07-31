@@ -26,7 +26,7 @@ namespace Polyworks
 
 				}
 			} else {
-				// Debug.Log ("LevelController["+sceneData.sceneName+"]/Initlevel cleared");
+				Debug.Log ("LevelController["+sceneData.sceneName+"]/Initlevel cleared");
 			}
 			PlayerLocation playerLocation = sceneData.playerLocations [level.currentSection];
 			_playerManager = GetComponent<PlayerManager> ();
@@ -34,7 +34,8 @@ namespace Polyworks
 
 			EventCenter ec = EventCenter.Instance;
 			ec.OnLevelTasksCompleted += OnLevelTasksCompleted;
-
+			ec.ChangeSection (level.currentSection);
+			Debug.Log ("current section = " + level.currentSection);
 			Game.Instance.LevelInitialized (this);
 		}
 

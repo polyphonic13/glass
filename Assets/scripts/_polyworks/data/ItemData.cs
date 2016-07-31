@@ -6,10 +6,10 @@ namespace Polyworks
 	[Serializable]
 	public class ItemData
 	{
-		public string containingSection; 
 		public string itemName;
 		public string displayName;
 		public string prefabName; 
+		public string thumbnail; 
 
 		public bool isCollected = false;
 		public bool isDroppable = false; 
@@ -18,16 +18,14 @@ namespace Polyworks
 
 		public int count = 0;
 
-		public string thumbnail; 
-
 		public ItemData () {}
 
 		public virtual ItemData Clone() {
 			var clone = new ItemData ();
-			clone.containingSection = this.containingSection;
 			clone.itemName = this.itemName;
 			clone.displayName = this.displayName;
 			clone.prefabName = this.prefabName;
+			clone.thumbnail = this.thumbnail;
 
 			clone.isCollected = this.isCollected;
 			clone.isDroppable = this.isDroppable;
@@ -35,8 +33,6 @@ namespace Polyworks
 			clone.isDestroyedOnUse = this.isDestroyedOnUse;
 
 			clone.count = this.count;
-
-			clone.thumbnail = this.thumbnail;
 
 			return clone;
 		}
