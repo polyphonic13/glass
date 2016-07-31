@@ -14,16 +14,15 @@ namespace Polyworks
 		private bool _isIntTasksCompleted = false; 
 		private bool _isFloatTasksCompleted = false; 
 		private bool _isStringTasksCompleted = false; 
+		private bool _isCollectionTasksCompleted = false; 
 
 		private Hashtable _gameDataTasks; 
 		#endregion
 
 		#region handlers
 		public void OnIntTaskUpdated(string name, int value) {
-			// Debug.Log ("TaskController/OnIntTaskUpdated, name = " + name + ", value = " + value);
 			IntTaskData task = _findTask (_tasks.intTasks, name) as IntTaskData;
 			if (task != null) {
-				// Debug.Log (" task = " + task + ", goal = " + task.goal);
 				task.current = value;
 				if (task.current == task.goal) {
 					_taskCompleted (task, _tasks.intTasks, out _isIntTasksCompleted);
@@ -46,6 +45,18 @@ namespace Polyworks
 				_taskCompleted (task, _tasks.stringTasks, out _isStringTasksCompleted);
 			}
 		}
+
+		public void OnInventoryAdded(string item, int count, bool isPlayerInventory = false) {
+			if (isPlayerInventory) {
+				CollectionTaskData task = _findTask (_tasks.collectionTasks, item) as CollectionTaskData;
+				if (task != null) {
+					task.current = count;
+					if (task.current == task.goal) {
+						_taskCompleted (task, _tasks.collectionTasks, out _isCollectionTasksCompleted);
+					}
+				}
+			}
+		}
 		#endregion
 
 		#region public methods
@@ -62,11 +73,15 @@ namespace Polyworks
 			if (_tasks.stringTasks.Length == 0) {
 				_isStringTasksCompleted = true;
 			}
+			if (_tasks.collectionTasks.Length == 0) {
+				_isCollectionTasksCompleted = true;
+			}
 
 			EventCenter ec = EventCenter.Instance;
 			ec.OnIntTaskUpdated += OnIntTaskUpdated;
 			ec.OnFloatTaskUpdated += OnFloatTaskUpdated;
 			ec.OnStringTaskUpdated += OnStringTaskUpdated;
+			ec.OnInventoryAdded += OnInventoryAdded;
 		}
 
 		#endregion
@@ -105,6 +120,7 @@ namespace Polyworks
 				ec.OnIntTaskUpdated -= OnIntTaskUpdated;
 				ec.OnFloatTaskUpdated -= OnFloatTaskUpdated;
 				ec.OnStringTaskUpdated -= OnStringTaskUpdated;
+				ec.OnInventoryAdded -= OnInventoryAdded;
 			}
 		}
 		#endregion

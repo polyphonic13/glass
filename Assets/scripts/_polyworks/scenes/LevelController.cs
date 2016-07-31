@@ -25,7 +25,7 @@ namespace Polyworks
 			ScenePrefabController.Init (sceneData.prefabs, gameData.items);
 			bool isCleared = LevelUtils.GetIsCleared (sceneData.sceneName, Game.Instance.gameData.levels);
 			levelData = LevelUtils.GetLevel (sceneData.sceneName, gameData.levels);
-			Debug.Log ("LevelController/Init, levelData for " + levelData.name + ", scene name = " + sceneData.sceneName);
+
 			if (gameData.targetSection > -1) {
 				levelData.currentSection = gameData.targetSection;
 			}
@@ -43,7 +43,6 @@ namespace Polyworks
 
 			PlayerLocation playerLocation = sceneData.playerLocations [levelData.currentSection];
 			_playerManager = GetComponent<PlayerManager> ();
-			Debug.Log (" _playerManager = " + _playerManager);
 			_playerManager.Init (playerLocation, gameData.playerData, gameData.items);
 
 			EventCenter ec = EventCenter.Instance;
@@ -60,15 +59,8 @@ namespace Polyworks
 			}
 			return _playerManager.GetPlayer();
 		}
-		#endregion
 
-		private void OnDestroy() {
-			EventCenter ec = EventCenter.Instance;
-			if (ec != null) {
-				ec.OnLevelTasksCompleted -= OnLevelTasksCompleted;
-				ec.OnSectionChanged -= OnSectionChanged;
-			}
-		}
+		#endregion
 	}
 }
 

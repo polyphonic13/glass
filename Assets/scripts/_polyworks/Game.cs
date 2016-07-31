@@ -97,15 +97,13 @@ namespace Polyworks {
 		}
 
 		public void ChangeScene(string scene, int section = -1) {
-			// Debug.Log ("Game/ChangeScene, scene = " + scene + ", gameData.items.Count = " + Instance.gameData.items.Count);
 			Scene currentScene = SceneManager.GetActiveScene ();
 			bool isLevel = _getIsLevel (currentScene.name);
 
 			if (scene != currentScene.name) {
 				if (isLevel) {
-					// Debug.Log ("about to get items, _playerInventory = " + _playerInventory);
 					if (_levelController != null) {
-						LevelUtils.SetLevelData (currentScene.name, Instance.gameData.levels, _levelController.GetLevelData ());
+						LevelUtils.SetLevelData (currentScene.name, Instance.gameData.levels, _levelController.levelData);
 					}
 					Instance.gameData.items = _playerInventory.GetAll ();
 					Instance.gameData.targetSection = section;
@@ -119,12 +117,15 @@ namespace Polyworks {
 
 		public void LevelInitialized() {
 			PlayerManager pm = GameObject.Find ("level_controller").GetComponent<PlayerManager> ();
-//			_player = _levelController.GetPlayer ();
-//			_playerInventory = _levelController.GetPlayerInventory ();
 			_player = pm.GetPlayer();
 			_playerInventory = pm.GetInventory ();
-			 Debug.Log ("Game/LevelInitialized, _playerInventory = " + _playerInventory);
 			Scene currentScene = SceneManager.GetActiveScene ();
+
+			GameObject inventoryObj = GameObject.Find ("inventory_ui");
+			if (inventoryObj != null) {
+				InventoryUI inventoryUI = inventoryObj.GetComponent<InventoryUI> ();
+				inventoryUI.InitInventory(_playerInventory);
+			}
 
 			EventCenter.Instance.SceneInitializationComplete (currentScene.name);
 		}
