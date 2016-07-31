@@ -3,12 +3,12 @@ using System.Collections;
 
 namespace Polyworks
 {
-	public class LevelController : Singleton<LevelController>
+	public class LevelController : MonoBehaviour
 	{
 		public SceneData sceneData;
+		public LevelData levelData; 
 
 		private PlayerManager _playerManager;
-		public LevelData levelData; 
 
 		#region handlers
 		public void OnLevelTasksCompleted() {
@@ -16,7 +16,7 @@ namespace Polyworks
 		}
 
 		public void OnSectionChanged(int section) {
-			Instance.levelData.currentSection = section;
+			levelData.currentSection = section;
 		}
 		#endregion
 
@@ -24,15 +24,16 @@ namespace Polyworks
 		public void Init(GameData gameData) {
 			ScenePrefabController.Init (sceneData.prefabs, gameData.items);
 			bool isCleared = LevelUtils.GetIsCleared (sceneData.sceneName, Game.Instance.gameData.levels);
-			Instance.levelData = LevelUtils.GetLevel (sceneData.sceneName, gameData.levels);
+			levelData = LevelUtils.GetLevel (sceneData.sceneName, gameData.levels);
+			Debug.Log ("LevelController/Init, levelData for " + levelData.name + ", scene name = " + sceneData.sceneName);
 			if (gameData.targetSection > -1) {
-				Instance.levelData.currentSection = gameData.targetSection;
+				levelData.currentSection = gameData.targetSection;
 			}
 
 			if (!isCleared) {
 				TaskController taskController = GetComponent<TaskController> ();
-				if (Instance.levelData != null) {
-					LevelTaskData taskData = Instance.levelData.tasks as LevelTaskData;
+				if (levelData != null) {
+					LevelTaskData taskData = levelData.tasks as LevelTaskData;
 					taskController.Init (taskData);
 
 				}
@@ -40,12 +41,13 @@ namespace Polyworks
 				Debug.Log ("LevelController["+sceneData.sceneName+"]/Initlevel cleared");
 			}
 
-			PlayerLocation playerLocation = sceneData.playerLocations [Instance.levelData.currentSection];
+			PlayerLocation playerLocation = sceneData.playerLocations [levelData.currentSection];
 			_playerManager = GetComponent<PlayerManager> ();
+			Debug.Log (" _playerManager = " + _playerManager);
 			_playerManager.Init (playerLocation, gameData.playerData, gameData.items);
 
 			EventCenter ec = EventCenter.Instance;
-			ec.ChangeSection (Instance.levelData.currentSection);
+			ec.ChangeSection (levelData.currentSection);
 			ec.OnLevelTasksCompleted += OnLevelTasksCompleted;
 			ec.OnSectionChanged += OnSectionChanged;
 
@@ -58,26 +60,15 @@ namespace Polyworks
 			}
 			return _playerManager.GetPlayer();
 		}
+		#endregion
 
-		public Inventory GetPlayerInventory() {
-			if (_playerManager == null) {
-				return null;
-			}
-			return _playerManager.GetInventory ();
-		}
-
-		public LevelData GetLevelData() {
-			return Instance.levelData;
-		}
-
-		public void OnDestroy() {
+		private void OnDestroy() {
 			EventCenter ec = EventCenter.Instance;
 			if (ec != null) {
 				ec.OnLevelTasksCompleted -= OnLevelTasksCompleted;
 				ec.OnSectionChanged -= OnSectionChanged;
 			}
 		}
-		#endregion
 	}
 }
 

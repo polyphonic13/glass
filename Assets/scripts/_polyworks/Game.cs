@@ -16,6 +16,7 @@ namespace Polyworks {
 
 		public string currentTargetScene { get; set; }
 
+		private LevelController _levelController;
 		private Player _player;
 		private Inventory _playerInventory; 
 
@@ -103,10 +104,11 @@ namespace Polyworks {
 			if (scene != currentScene.name) {
 				if (isLevel) {
 					// Debug.Log ("about to get items, _playerInventory = " + _playerInventory);
-					LevelUtils.SetLevelData (currentScene.name, Instance.gameData.levels, LevelController.Instance.GetLevelData ());
+					if (_levelController != null) {
+						LevelUtils.SetLevelData (currentScene.name, Instance.gameData.levels, _levelController.GetLevelData ());
+					}
 					Instance.gameData.items = _playerInventory.GetAll ();
 					Instance.gameData.targetSection = section;
-
 				}
 				_cleanUp ();
 
@@ -116,10 +118,12 @@ namespace Polyworks {
 		}
 
 		public void LevelInitialized() {
-			LevelController lc = LevelController.Instance;
-			_player = lc.GetPlayer ();
-			_playerInventory = lc.GetPlayerInventory ();
-			// Debug.Log ("Game/LevelInitialized, _playerInventory = " + _playerInventory);
+			PlayerManager pm = GameObject.Find ("level_controller").GetComponent<PlayerManager> ();
+//			_player = _levelController.GetPlayer ();
+//			_playerInventory = _levelController.GetPlayerInventory ();
+			_player = pm.GetPlayer();
+			_playerInventory = pm.GetInventory ();
+			 Debug.Log ("Game/LevelInitialized, _playerInventory = " + _playerInventory);
 			Scene currentScene = SceneManager.GetActiveScene ();
 
 			EventCenter.Instance.SceneInitializationComplete (currentScene.name);
@@ -147,7 +151,8 @@ namespace Polyworks {
 		}
 
 		private void _initLevel(string currentSceneName, Hashtable items) {
-			LevelController.Instance.Init (Instance.gameData);
+			_levelController = GameObject.Find("level_controller").GetComponent<LevelController>();
+			_levelController.Init (Instance.gameData);
 		}
 
 		private void _loadScene(string scene) {
@@ -159,6 +164,7 @@ namespace Polyworks {
 		}
 
 		private void _cleanUp() {
+			_levelController = null;
 			EventCenter ec = EventCenter.Instance;
 			ec.OnChangeScene -= OnChangeScene;
 		}
