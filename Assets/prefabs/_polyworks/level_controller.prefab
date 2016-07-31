@@ -8,9 +8,9 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 409092}
-  - 114: {fileID: 11494250}
   - 114: {fileID: 11458178}
-  - 114: {fileID: 11414618}
+  - 114: {fileID: 11460622}
+  - 114: {fileID: 11451354}
   m_Layer: 0
   m_Name: level_controller
   m_TagString: Untagged
@@ -25,12 +25,12 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 162112}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 149.5, y: 212, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!114 &11414618
+--- !u!114 &11451354
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d8ded5dd415d4566b882838136055d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &11494250
+--- !u!114 &11460622
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -60,13 +60,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 162112}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d67ed5c135054bf9a4453fb9d112ccc, type: 3}
+  m_Script: {fileID: 11500000, guid: fd59d4831730c4ccb9fd2ddf10308465, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sceneData:
-    sceneName: game_control_test00
-    prefabs: []
-    playerLocations: []
+    sceneName: game_control_test01
+    prefabs:
+    - name: wooden_cube01
+      path: items/wooden_cube01
+      addTo: things/stuff
+      location: {x: 5, y: 1, z: -2}
+      rotation: {x: 0, y: 0, z: 0, w: 0}
+    - name: wooden_cube02
+      path: items/wooden_cube02
+      addTo: things/stuff
+      location: {x: -5, y: 1, z: -2}
+      rotation: {x: 0, y: 0, z: 0, w: 0}
+    playerLocations:
+    - position: {x: -5, y: -14, z: -9}
+      rotation: {x: 0, y: 0, z: 0, w: 0}
+    - position: {x: 5, y: -14, z: -9}
+      rotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

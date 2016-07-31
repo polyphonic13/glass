@@ -18,7 +18,6 @@ namespace Polyworks {
 
 		private Player _player;
 		private Inventory _playerInventory; 
-		private LevelController _levelController; 
 
 		private DataIOController _dataIOController; 
 
@@ -63,16 +62,13 @@ namespace Polyworks {
 		public void OnChangeScene(string scene) {
 			ChangeScene (scene);
 		}
+
+		public void OnSectionChange(int section) {
+
+		}
 		#endregion
 	
 		#region public methods
-		public virtual LevelController GetLevelController() {
-			if (_levelController == null) {
-				_levelController = GameObject.Find ("level_controller").GetComponent<LevelController> ();
-			}
-			return _levelController;
-		}
-
 		public virtual Inventory GetPlayerInventory() {
 			return _playerInventory;
 		}
@@ -107,11 +103,7 @@ namespace Polyworks {
 			if (scene != currentScene.name) {
 				if (isLevel) {
 					// Debug.Log ("about to get items, _playerInventory = " + _playerInventory);
-					if (_levelController == null) {
-						_levelController = GetLevelController();
-					}
-					_levelController.Cleanup();
-
+					LevelUtils.SetLevelData (currentScene.name, Instance.gameData.levels, LevelController.Instance.GetLevelData ());
 					Instance.gameData.items = _playerInventory.GetAll ();
 					Instance.gameData.targetSection = section;
 
@@ -123,10 +115,10 @@ namespace Polyworks {
 			}
 		}
 
-		public void LevelInitialized(LevelController levelController) {
-			_levelController = levelController; 
-			_player = _levelController.GetPlayer ();
-			_playerInventory = _levelController.GetPlayerInventory ();
+		public void LevelInitialized() {
+			LevelController lc = LevelController.Instance;
+			_player = lc.GetPlayer ();
+			_playerInventory = lc.GetPlayerInventory ();
 			// Debug.Log ("Game/LevelInitialized, _playerInventory = " + _playerInventory);
 			Scene currentScene = SceneManager.GetActiveScene ();
 
@@ -155,11 +147,7 @@ namespace Polyworks {
 		}
 
 		private void _initLevel(string currentSceneName, Hashtable items) {
-			// Debug.Log ("Game/_initLevel");
-			if(_levelController == null) {
-				_levelController = GetLevelController();
-			}
-			_levelController.Init (Instance.gameData);
+			LevelController.Instance.Init (Instance.gameData);
 		}
 
 		private void _loadScene(string scene) {

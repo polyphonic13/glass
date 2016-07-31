@@ -18,35 +18,6 @@ namespace Polyworks
 		private Hashtable _gameDataTasks; 
 		#endregion
 
-		#region public methods
-		public void Init(LevelTaskData tasks) {
-			// Debug.Log ("TaskController/Init, tasks = " + tasks);
-			_tasks = tasks;
-
-			if (_tasks.intTasks.Length == 0) {
-				_isIntTasksCompleted = true;
-			}
-			if (_tasks.floatTasks.Length == 0) {
-				_isFloatTasksCompleted = true;
-			}
-			if (_tasks.stringTasks.Length == 0) {
-				_isStringTasksCompleted = true;
-			}
-
-			EventCenter ec = EventCenter.Instance;
-			ec.OnIntTaskUpdated += OnIntTaskUpdated;
-			ec.OnFloatTaskUpdated += OnFloatTaskUpdated;
-			ec.OnStringTaskUpdated += OnStringTaskUpdated;
-		}
-
-		public void Cleanup() {
-			EventCenter ec = EventCenter.Instance;
-			ec.OnIntTaskUpdated -= OnIntTaskUpdated;
-			ec.OnFloatTaskUpdated -= OnFloatTaskUpdated;
-			ec.OnStringTaskUpdated -= OnStringTaskUpdated;
-		}
-		#endregion
-
 		#region handlers
 		public void OnIntTaskUpdated(string name, int value) {
 			// Debug.Log ("TaskController/OnIntTaskUpdated, name = " + name + ", value = " + value);
@@ -77,6 +48,29 @@ namespace Polyworks
 		}
 		#endregion
 
+		#region public methods
+		public void Init(LevelTaskData tasks) {
+			// Debug.Log ("TaskController/Init, tasks = " + tasks);
+			_tasks = tasks;
+
+			if (_tasks.intTasks.Length == 0) {
+				_isIntTasksCompleted = true;
+			}
+			if (_tasks.floatTasks.Length == 0) {
+				_isFloatTasksCompleted = true;
+			}
+			if (_tasks.stringTasks.Length == 0) {
+				_isStringTasksCompleted = true;
+			}
+
+			EventCenter ec = EventCenter.Instance;
+			ec.OnIntTaskUpdated += OnIntTaskUpdated;
+			ec.OnFloatTaskUpdated += OnFloatTaskUpdated;
+			ec.OnStringTaskUpdated += OnStringTaskUpdated;
+		}
+
+		#endregion
+
 		#region private methods
 		private TaskData _findTask(TaskData[] tasks, string name) {
 			for(int i = 0; i < tasks.Length; i++) {
@@ -105,6 +99,14 @@ namespace Polyworks
 			}
 		}
 
+		private void OnDestroy() {
+			EventCenter ec = EventCenter.Instance;
+			if (ec != null) {
+				ec.OnIntTaskUpdated -= OnIntTaskUpdated;
+				ec.OnFloatTaskUpdated -= OnFloatTaskUpdated;
+				ec.OnStringTaskUpdated -= OnStringTaskUpdated;
+			}
+		}
 		#endregion
 	}
 
