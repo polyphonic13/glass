@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 
 namespace Polyworks {
-	public class ProximityController : MonoBehaviour {
+	public class ProximityAgent : MonoBehaviour {
 
 		public float interactDistance = 2f;
 		public Transform target;
-		public bool isTargetPlayer; 
+		public bool isTargetPlayer = true; 
 
 		private bool _wasJustFocused;
 		private bool _isInitialized;
@@ -13,8 +13,8 @@ namespace Polyworks {
 	
 	
 		public void SetFocus(bool isFocused) {
-			// Debug.Log ("ProximityController[" + this.name + "]/SetFocus, isFocused = " + isFocused + ", item = " + _item);
-			if(_isInitialized) {
+			// Debug.Log ("ProximityAgent[" + this.name + "]/SetFocus, isFocused = " + isFocused + ", item = " + _item);
+			if(_isInitialized && _item.isEnabled) {
 				if (isFocused) {
 					if (!_wasJustFocused) {
 						EventCenter.Instance.ChangeItemProximity(_item, true);
@@ -29,7 +29,7 @@ namespace Polyworks {
 
 		public bool Check() {
 			bool isInProximity = false;
-			if (_item.enabled) {
+			if (_item.isEnabled) {
 				var difference = Vector3.Distance (target.position, transform.position);
 				if (difference < interactDistance) {
 					isInProximity = true;

@@ -27,7 +27,7 @@ namespace Polyworks
 		public delegate void SceneInitializer(string scene);
 		public event SceneInitializer OnSceneInitialized;
 
-		public delegate void SectionChanger(string section);
+		public delegate void SectionChanger(int section);
 		public event SectionChanger OnSectionChanged; 
 
 		public delegate void IntTaskUpdater(string task, int count);
@@ -114,7 +114,7 @@ namespace Polyworks
 			}
 		}
 
-		public void ChangeSection(string section) {
+		public void ChangeSection(int section) {
 			if (OnSectionChanged != null) {
 				OnSectionChanged (section);
 			}

@@ -4,11 +4,11 @@ using System.Collections;
 namespace Polyworks {
 	public class SectionSwitch : Switch
 	{
-		public string sectionName; 
+		public int section; 
 
 		public override void Actuate() {
-			Debug.Log ("SectionSwitch/Actuate, sectionName = " + sectionName);
-			EventCenter.Instance.ChangeSection (sectionName);
+			Debug.Log ("SectionSwitch/Actuate, sectionName = " + section);
+			EventCenter.Instance.ChangeSection (section);
 		}
 	}
 }

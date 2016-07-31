@@ -6,7 +6,7 @@ namespace Polyworks {
 
 		public float interactDistance = 2f;
 
-		private ProximityController _focusedItem;
+		private ProximityAgent _focusedItem;
 		private string _itemJustHit;
 
 		void Update () {
@@ -28,11 +28,11 @@ namespace Polyworks {
 			if (Physics.Raycast (this.transform.position, this.transform.forward, out hit, interactDistance)) {
 				if (hit.transform != this.transform && (hit.transform.tag == "interactive" || hit.transform.tag == "persistent")) {
 					if (hit.transform.name != _itemJustHit) {
-						ProximityController item = hit.transform.gameObject.GetComponent<ProximityController> ();
-						if(item != null) {
-							item.SetFocus (true);
+						ProximityAgent pa = hit.transform.gameObject.GetComponent<ProximityAgent> ();
+						if(pa != null) {
+							pa.SetFocus (true);
 							_itemJustHit = hit.transform.name;
-							_focusedItem = item;
+							_focusedItem = pa;
 						}
 					}
 				} else {

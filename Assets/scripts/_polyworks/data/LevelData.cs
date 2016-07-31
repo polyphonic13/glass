@@ -5,9 +5,9 @@ namespace Polyworks
 {
 	[System.Serializable]
 	public class LevelData {
-		public string name;
-		public bool isCleared;
-		public int currentPlayerLocation;
+		public string name = "";
+		public bool isCleared = false;
+		public int currentSection = 0;
 		public LevelTaskData tasks;
 	}
 

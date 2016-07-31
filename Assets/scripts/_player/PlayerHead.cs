@@ -6,7 +6,7 @@ public class PlayerHead : MonoBehaviour {
 
 	public float interactDistance = 2f;
 
-	private ProximityController _focusedItem;
+	private ProximityAgent _focusedItem;
 	private string _itemJustHit;
 
 	void Update () {
@@ -31,7 +31,7 @@ public class PlayerHead : MonoBehaviour {
 //				Debug.DrawRay(this.transform.position, this.transform.forward, Color.green);
 				if (hit.transform.name != _itemJustHit) {
 //					Debug.Log("hit name = " + hit.transform.name);
-					ProximityController item = hit.transform.gameObject.GetComponent<ProximityController> ();
+					ProximityAgent item = hit.transform.gameObject.GetComponent<ProximityAgent> ();
 					if(item != null) {
 						item.SetFocus (true);
 						_itemJustHit = hit.transform.name;

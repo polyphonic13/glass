@@ -99,7 +99,7 @@ namespace Polyworks {
 			}
 		}
 
-		public void ChangeScene(string scene) {
+		public void ChangeScene(string scene, int section = -1) {
 			// Debug.Log ("Game/ChangeScene, scene = " + scene + ", gameData.items.Count = " + Instance.gameData.items.Count);
 			Scene currentScene = SceneManager.GetActiveScene ();
 			bool isLevel = _getIsLevel (currentScene.name);
@@ -108,6 +108,8 @@ namespace Polyworks {
 				if (isLevel) {
 					// Debug.Log ("about to get items, _playerInventory = " + _playerInventory);
 					Instance.gameData.items = _playerInventory.GetAll ();
+					Instance.gameData.currentSection = section;
+
 					if (_levelController == null) {
 						_levelController = GetLevelController();
 					}

@@ -68,7 +68,7 @@ namespace Polyworks {
 			if (item.data.isDestroyedOnUse) {
 				Destroy (item.gameObject);
 			} else {
-				_initProximityController(item);
+				_initProximityAgent(item);
 			}
 			
 		}
@@ -81,7 +81,7 @@ namespace Polyworks {
 				return;
 			}
 			
-			_initProximityController(item);
+			_initProximityAgent(item);
 		}
 		
 		public bool Contains(string key) {
@@ -123,8 +123,8 @@ namespace Polyworks {
 			return item;
 		}
 		
-		private void _initProximityController(Item item) {
-			ProximityController pc = item.gameObject.GetComponent<ProximityController>();
+		private void _initProximityAgent(Item item) {
+			ProximityAgent pc = item.gameObject.GetComponent<ProximityAgent>();
 			if(pc == null) {
 				return;
 			}

@@ -5,7 +5,7 @@ namespace Polyworks
 {
 	public class LevelController : Singleton<LevelController>
 	{
-		[SerializeField] private SceneData sceneData;
+		public SceneData sceneData;
 
 		private PlayerManager _playerManager;
 
@@ -13,6 +13,10 @@ namespace Polyworks
 			ScenePrefabController.Init (sceneData.prefabs, gameData.items);
 			bool isCleared = LevelUtils.GetIsCleared (sceneData.sceneName, Game.Instance.gameData.levels);
 			LevelData level = LevelUtils.GetLevel (sceneData.sceneName, gameData.levels);
+
+			if (gameData.currentSection > -1) {
+				level.currentSection = gameData.currentSection;
+			}
 
 			if (!isCleared) {
 				TaskController taskController = GetComponent<TaskController> ();
@@ -24,7 +28,7 @@ namespace Polyworks
 			} else {
 				// Debug.Log ("LevelController["+sceneData.sceneName+"]/Initlevel cleared");
 			}
-			PlayerLocation playerLocation = sceneData.playerLocations [level.currentPlayerLocation];
+			PlayerLocation playerLocation = sceneData.playerLocations [level.currentSection];
 			_playerManager = GetComponent<PlayerManager> ();
 			_playerManager.Init (playerLocation, gameData.playerData, gameData.items);
 

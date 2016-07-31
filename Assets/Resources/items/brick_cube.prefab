@@ -12,9 +12,9 @@ GameObject:
   - 65: {fileID: 6519634}
   - 23: {fileID: 2364862}
   - 114: {fileID: 11444938}
-  - 114: {fileID: 11412720}
   - 114: {fileID: 11414294}
   - 114: {fileID: 11449634}
+  - 114: {fileID: 11417240}
   m_Layer: 0
   m_Name: brick_cube
   m_TagString: interactive
@@ -79,20 +79,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &11412720
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 129282}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcba8f33e268f4dcfb802180715fdcd3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactDistance: 2
-  target: {fileID: 0}
-  isTargetPlayer: 1
 --- !u!114 &11414294
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -116,6 +102,20 @@ MonoBehaviour:
     count: 0
     thumbnail: sprites/brick_cube_sprite
   icon: 2
+--- !u!114 &11417240
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 129282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8f2515d035a5431bae3eaa8d63d77f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactDistance: 2
+  target: {fileID: 0}
+  isTargetPlayer: 1
 --- !u!114 &11444938
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3df9045043b8d4f1cb143be7d3383c2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sectionName: section02
+  section: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
