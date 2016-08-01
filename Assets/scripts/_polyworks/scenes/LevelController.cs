@@ -52,14 +52,6 @@ namespace Polyworks
 
 			Game.Instance.LevelInitialized ();
 		}
-
-		public Player GetPlayer() {
-			if (_playerManager == null) {
-				return null;
-			}
-			return _playerManager.GetPlayer();
-		}
-
 		#endregion
 	}
 }
