@@ -19,7 +19,7 @@ namespace Polyworks {
 		}
 
 		private void Destroy() {
-			Debug.Log("SectionAgaent["+this.name+"]/DEstroy");
+			Debug.Log("SectionAgaent["+this.name+"]/Destroy");
 
 			EventCenter.Instance.OnSectionChanged -= this.OnSectionChanged;	
 		}
