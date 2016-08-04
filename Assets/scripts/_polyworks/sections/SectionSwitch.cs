@@ -7,7 +7,7 @@ namespace Polyworks {
 		public int section; 
 
 		public override void Actuate() {
-//			Debug.Log ("SectionSwitch/Actuate, sectionName = " + section);
+			Debug.Log ("SectionSwitch/Actuate, sectionName = " + section);
 			EventCenter.Instance.ChangeSection (section);
 		}
 	}

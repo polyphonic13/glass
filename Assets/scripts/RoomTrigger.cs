@@ -6,6 +6,6 @@ public class RoomTrigger : MonoBehaviour {
 
 	void OnTriggerEnter(Collider tgt) {
 //		// Debug.Log("RoomTrigger/OnTriggerEnter, _roomName = " + _roomName + " tgt tag = " + tgt.gameObject.tag);
-		EventCenter.Instance.EnterRoom(_roomName);
+//		EventCenter.Instance.EnterRoom(_roomName);
 	}
 }

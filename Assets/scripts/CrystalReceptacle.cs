@@ -7,23 +7,23 @@ public class CrystalReceptacle : Item {
 	public bool isStartEnabled = false;
 
 	public TargetController target;
-	public CrystalKey key;
+	public string keyName;
 
 	private GameObject _crystal;
+	private CrystalKey _key; 
 
 	private bool _isOpen = false;
 
-	void Awake() {
-		_crystal = this.transform.FindChild("crystal").gameObject;
-		EventCenter.Instance.OnCrystalKeyUsed += OnCrystalKeyUsed;
-		_crystal.SetActive (isStartEnabled);
-		this.isEnabled = isStartEnabled;
+	public void OnSceneInitialized(string scene) {
+		_key = GameObject.Find (keyName).GetComponent<CrystalKey>();
 	}
 
-	public void OnCrystalKeyUsed(string name) {
-		if (key != null && name == key.name) {
-			this.isEnabled = true;
-			_crystal.SetActive (true);
+	public void OnStringEvent(string type, string value) {
+		if (type == CrystalKey.EVENT_NAME) {
+			if (_key != null && value == _key.name) {
+				this.isEnabled = true;
+				_crystal.SetActive (true);
+			}
 		}
 	}
 
@@ -35,5 +35,21 @@ public class CrystalReceptacle : Item {
 		} else {
 			EventCenter.Instance.AddNote ("Crystal required to activate");
 		}
+	}
+
+	private void Awake() {
+		_crystal = this.transform.FindChild("crystal").gameObject;
+		_crystal.SetActive (isStartEnabled);
+		this.isEnabled = isStartEnabled;
+
+		EventCenter ec = EventCenter.Instance;
+		ec.OnSceneInitialized += this.OnSceneInitialized;
+		ec.OnStringEvent += this.OnStringEvent;
+	}
+
+	private void OnDestroy() {
+		EventCenter ec = EventCenter.Instance;
+		ec.OnSceneInitialized -= this.OnSceneInitialized;
+		ec.OnStringEvent -= this.OnStringEvent;
 	}
 }

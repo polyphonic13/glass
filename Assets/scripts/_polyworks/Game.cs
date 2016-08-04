@@ -103,7 +103,7 @@ namespace Polyworks {
 			if (scene != currentScene.name) {
 				if (isLevel) {
 					if (_levelController != null) {
-						LevelUtils.SetLevelData (currentScene.name, Instance.gameData.levels, _levelController.levelData);
+						LevelUtils.SetLevelData (currentScene.name, Instance.gameData.levels, _levelController.GetLevelData());
 					}
 					Instance.gameData.items = _playerInventory.GetAll ();
 					Instance.gameData.targetSection = section;

@@ -2,34 +2,26 @@
 using System.Collections;
 
 namespace Polyworks {
-	public class SectionAgent : MonoBehaviour
+	public class SectionAgent : Reaction
 	{
 		public int section = -1; 
 
-		private Item _item;
-
 		public void OnSectionChanged(int s) {
 			if (section == s) {
-				_item.isEnabled = true;
+				this.gameObject.SendMessage ("Enable");
 			} else {
-				_item.isEnabled = false;
+				this.gameObject.SendMessage ("Disable");
 			}
 		}
 
 		private void Awake() {
-			_item = this.gameObject.GetComponent<Item> ();
-			if (_item != null) {
-				if (section > -1) {
-					_item.isEnabled = false;
-				}
-				EventCenter.Instance.OnSectionChanged += this.OnSectionChanged;	
-			}
+			EventCenter.Instance.OnSectionChanged += this.OnSectionChanged;	
 		}
 
 		private void Destroy() {
-			if (_item != null) {
-				EventCenter.Instance.OnSectionChanged -= this.OnSectionChanged;	
-			}
+			Debug.Log("SectionAgaent["+this.name+"]/DEstroy");
+
+			EventCenter.Instance.OnSectionChanged -= this.OnSectionChanged;	
 		}
 	}
 }

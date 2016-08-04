@@ -10,7 +10,7 @@ public class UIPlayer_propertyText : MonoBehaviour {
 
 	void Awake() {
 		_text = GetComponent<Text>();
-		EventCenter.Instance.OnPlayerPropertyUpdated += OnPlayerPropertyUpdated;
+//		EventCenter.Instance.OnPlayerPropertyUpdated += OnPlayerPropertyUpdated;
 		updateText();
 	}
 	

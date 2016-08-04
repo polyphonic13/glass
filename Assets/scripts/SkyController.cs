@@ -104,7 +104,7 @@ public class SkyController : MonoBehaviour {
 
 		if (_currentState != _previousState) {
 			// dispatch new state
-			EventCenter.Instance.ChangeDayNightState(_currentState);
+//			EventCenter.Instance.ChangeDayNightState(_currentState);
 			_previousState = _currentState;
 		}
 

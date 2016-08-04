@@ -3,9 +3,10 @@ using System.Collections;
 using Polyworks;
 
 public class CrystalKey : CollectableItem {
+	public static string EVENT_NAME = "crystalKeyUsed";
 
 	public override void Use() {
-		EventCenter ec = EventCenter.Instance;
-		ec.UseCrystalKey (this.name);
+		EventCenter.Instance.TriggerStringEvent(EVENT_NAME, this.name);
+//		ec.UseCrystalKey (this.name);
 	}
 }

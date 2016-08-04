@@ -1288,16 +1288,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-    containingRoom: 
     itemName: 
     displayName: 
     prefabName: 
+    thumbnail: 
     isCollected: 0
     isDroppable: 0
     isUsable: 0
     isDestroyedOnUse: 0
     count: 0
-    thumbnail: 
   icon: 0
   isStartEnabled: 0
   target: {fileID: 23933220}
@@ -5383,16 +5382,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-    containingRoom: 
     itemName: 
     displayName: 
     prefabName: 
+    thumbnail: 
     isCollected: 0
     isDroppable: 0
     isUsable: 0
     isDestroyedOnUse: 0
     count: 0
-    thumbnail: 
   icon: 0
   isStartEnabled: 0
   target: {fileID: 120316980}
@@ -9802,16 +9800,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-    containingRoom: 
     itemName: 
     displayName: 
     prefabName: 
+    thumbnail: 
     isCollected: 0
     isDroppable: 0
     isUsable: 0
     isDestroyedOnUse: 0
     count: 0
-    thumbnail: 
   icon: 0
   isStartEnabled: 0
   target: {fileID: 215006623}
@@ -12352,16 +12349,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-    containingRoom: 
     itemName: 
     displayName: 
     prefabName: 
+    thumbnail: 
     isCollected: 0
     isDroppable: 0
     isUsable: 0
     isDestroyedOnUse: 0
     count: 0
-    thumbnail: 
   icon: 0
   description: A purple crystal
   Thumbnail: {fileID: 21300000, guid: a9d37252a199d409b85c34722aba70ff, type: 3}
@@ -13964,16 +13960,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-    containingRoom: 
     itemName: 
     displayName: 
     prefabName: 
+    thumbnail: 
     isCollected: 0
     isDroppable: 0
     isUsable: 0
     isDestroyedOnUse: 0
     count: 0
-    thumbnail: 
   icon: 0
   isStartEnabled: 0
   target: {fileID: 245471245}
@@ -16241,16 +16236,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-    containingRoom: 
     itemName: 
     displayName: 
     prefabName: 
+    thumbnail: 
     isCollected: 0
     isDroppable: 0
     isUsable: 0
     isDestroyedOnUse: 0
     count: 0
-    thumbnail: 
   icon: 0
   description: A purple crystal
   Thumbnail: {fileID: 21300000, guid: a9d37252a199d409b85c34722aba70ff, type: 3}
@@ -27844,16 +27838,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-    containingRoom: 
     itemName: 
     displayName: 
     prefabName: 
+    thumbnail: 
     isCollected: 0
     isDroppable: 0
     isUsable: 0
     isDestroyedOnUse: 0
     count: 0
-    thumbnail: 
   icon: 0
   _pops: {fileID: 2089079634}
   _parentBone: {fileID: 2041163914}
@@ -30972,16 +30965,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-    containingRoom: 
     itemName: 
     displayName: 
     prefabName: 
+    thumbnail: 
     isCollected: 0
     isDroppable: 0
     isUsable: 0
     isDestroyedOnUse: 0
     count: 0
-    thumbnail: 
   icon: 0
   isStartEnabled: 0
   target: {fileID: 750555480}
@@ -37554,16 +37546,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-    containingRoom: 
     itemName: 
     displayName: 
     prefabName: 
+    thumbnail: 
     isCollected: 0
     isDroppable: 0
     isUsable: 0
     isDestroyedOnUse: 0
     count: 0
-    thumbnail: 
   icon: 0
   description: A purple crystal
   Thumbnail: {fileID: 21300000, guid: a9d37252a199d409b85c34722aba70ff, type: 3}
@@ -42449,16 +42440,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-    containingRoom: 
     itemName: 
     displayName: 
     prefabName: 
+    thumbnail: 
     isCollected: 0
     isDroppable: 0
     isUsable: 0
     isDestroyedOnUse: 0
     count: 0
-    thumbnail: 
   icon: 0
   target: {fileID: 2004787475}
   disabledMessage: 
@@ -48497,7 +48487,15 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11460622, guid: 811005ab4c6954152a4162869ef2c947, type: 2}
+      propertyPath: sceneData.prefabs.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 11494250, guid: 811005ab4c6954152a4162869ef2c947, type: 2}
+      propertyPath: sceneData.playerLocations.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11460622, guid: 811005ab4c6954152a4162869ef2c947, type: 2}
       propertyPath: sceneData.playerLocations.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -48548,6 +48546,82 @@ Prefab:
     - target: {fileID: 11494250, guid: 811005ab4c6954152a4162869ef2c947, type: 2}
       propertyPath: sceneData.playerLocations.Array.data[0].position.z
       value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 11460622, guid: 811005ab4c6954152a4162869ef2c947, type: 2}
+      propertyPath: sceneData.playerLocations.Array.data[1].position.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11460622, guid: 811005ab4c6954152a4162869ef2c947, type: 2}
+      propertyPath: sceneData.playerLocations.Array.data[1].position.y
+      value: -14
+      objectReference: {fileID: 0}
+    - target: {fileID: 11460622, guid: 811005ab4c6954152a4162869ef2c947, type: 2}
+      propertyPath: sceneData.playerLocations.Array.data[1].position.z
+      value: -9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11460622, guid: 811005ab4c6954152a4162869ef2c947, type: 2}
+      propertyPath: sceneData.prefabs.Array.data[0].name
+      value: wooden_cube01
+      objectReference: {fileID: 0}
+    - target: {fileID: 11460622, guid: 811005ab4c6954152a4162869ef2c947, type: 2}
+      propertyPath: sceneData.prefabs.Array.data[0].path
+      value: items/wooden_cube01
+      objectReference: {fileID: 0}
+    - target: {fileID: 11460622, guid: 811005ab4c6954152a4162869ef2c947, type: 2}
+      propertyPath: sceneData.prefabs.Array.data[0].addTo
+      value: things/stuff
+      objectReference: {fileID: 0}
+    - target: {fileID: 11460622, guid: 811005ab4c6954152a4162869ef2c947, type: 2}
+      propertyPath: sceneData.prefabs.Array.data[0].location.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11460622, guid: 811005ab4c6954152a4162869ef2c947, type: 2}
+      propertyPath: sceneData.prefabs.Array.data[0].location.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11460622, guid: 811005ab4c6954152a4162869ef2c947, type: 2}
+      propertyPath: sceneData.prefabs.Array.data[0].location.z
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11460622, guid: 811005ab4c6954152a4162869ef2c947, type: 2}
+      propertyPath: sceneData.prefabs.Array.data[1].name
+      value: wooden_cube02
+      objectReference: {fileID: 0}
+    - target: {fileID: 11460622, guid: 811005ab4c6954152a4162869ef2c947, type: 2}
+      propertyPath: sceneData.prefabs.Array.data[1].path
+      value: items/wooden_cube02
+      objectReference: {fileID: 0}
+    - target: {fileID: 11460622, guid: 811005ab4c6954152a4162869ef2c947, type: 2}
+      propertyPath: sceneData.prefabs.Array.data[1].addTo
+      value: things/stuff
+      objectReference: {fileID: 0}
+    - target: {fileID: 11460622, guid: 811005ab4c6954152a4162869ef2c947, type: 2}
+      propertyPath: sceneData.prefabs.Array.data[1].location.x
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11460622, guid: 811005ab4c6954152a4162869ef2c947, type: 2}
+      propertyPath: sceneData.prefabs.Array.data[1].location.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11460622, guid: 811005ab4c6954152a4162869ef2c947, type: 2}
+      propertyPath: sceneData.prefabs.Array.data[1].location.z
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11460622, guid: 811005ab4c6954152a4162869ef2c947, type: 2}
+      propertyPath: levelData.name
+      value: cave01
+      objectReference: {fileID: 0}
+    - target: {fileID: 11460622, guid: 811005ab4c6954152a4162869ef2c947, type: 2}
+      propertyPath: sceneData.playerLocations.Array.data[0].position.x
+      value: 134.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11460622, guid: 811005ab4c6954152a4162869ef2c947, type: 2}
+      propertyPath: sceneData.playerLocations.Array.data[0].position.z
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 11460622, guid: 811005ab4c6954152a4162869ef2c947, type: 2}
+      propertyPath: sceneData.playerLocations.Array.data[0].position.y
+      value: -13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 811005ab4c6954152a4162869ef2c947, type: 2}
@@ -51707,16 +51781,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-    containingRoom: 
     itemName: 
     displayName: 
     prefabName: 
+    thumbnail: 
     isCollected: 0
     isDroppable: 0
     isUsable: 0
     isDestroyedOnUse: 0
     count: 0
-    thumbnail: 
   icon: 0
   isStartEnabled: 0
   target: {fileID: 1209543712}
@@ -52395,16 +52468,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-    containingRoom: 
     itemName: 
     displayName: 
     prefabName: 
+    thumbnail: 
     isCollected: 0
     isDroppable: 0
     isUsable: 0
     isDestroyedOnUse: 0
     count: 0
-    thumbnail: 
   icon: 0
   _pops: {fileID: 2089079634}
   _parentBone: {fileID: 1921883684}
@@ -54404,16 +54476,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-    containingRoom: 
     itemName: 
     displayName: 
     prefabName: 
+    thumbnail: 
     isCollected: 0
     isDroppable: 0
     isUsable: 0
     isDestroyedOnUse: 0
     count: 0
-    thumbnail: 
   icon: 0
   description: A purple crystal
   Thumbnail: {fileID: 21300000, guid: a9d37252a199d409b85c34722aba70ff, type: 3}
@@ -58980,16 +59051,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-    containingRoom: 
     itemName: 
     displayName: 
     prefabName: 
+    thumbnail: 
     isCollected: 0
     isDroppable: 0
     isUsable: 0
     isDestroyedOnUse: 0
     count: 0
-    thumbnail: 
   icon: 0
   _pops: {fileID: 2089079634}
   _parentBone: {fileID: 886028904}
@@ -61338,16 +61408,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-    containingRoom: 
     itemName: 
     displayName: 
     prefabName: 
+    thumbnail: 
     isCollected: 0
     isDroppable: 0
     isUsable: 0
     isDestroyedOnUse: 0
     count: 0
-    thumbnail: 
   icon: 0
   description: A purple crystal
   Thumbnail: {fileID: 21300000, guid: a9d37252a199d409b85c34722aba70ff, type: 3}
@@ -62533,16 +62602,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-    containingRoom: 
     itemName: 
     displayName: 
     prefabName: 
+    thumbnail: 
     isCollected: 0
     isDroppable: 0
     isUsable: 0
     isDestroyedOnUse: 0
     count: 0
-    thumbnail: 
   icon: 0
   isStartEnabled: 0
   target: {fileID: 1542142462}
@@ -69575,16 +69643,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-    containingRoom: 
     itemName: 
     displayName: 
     prefabName: 
+    thumbnail: 
     isCollected: 0
     isDroppable: 0
     isUsable: 0
     isDestroyedOnUse: 0
     count: 0
-    thumbnail: 
   icon: 0
   isStartEnabled: 0
   target: {fileID: 1660579789}
@@ -70744,16 +70811,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-    containingRoom: 
     itemName: 
     displayName: 
     prefabName: 
+    thumbnail: 
     isCollected: 0
     isDroppable: 0
     isUsable: 0
     isDestroyedOnUse: 0
     count: 0
-    thumbnail: 
   icon: 0
   target: {fileID: 722767600}
   disabledMessage: 
@@ -70848,16 +70914,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-    containingRoom: 
     itemName: 
     displayName: 
     prefabName: 
+    thumbnail: 
     isCollected: 0
     isDroppable: 0
     isUsable: 0
     isDestroyedOnUse: 0
     count: 0
-    thumbnail: 
   icon: 0
   isStartEnabled: 0
   target: {fileID: 1678901310}
@@ -75400,16 +75465,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-    containingRoom: 
     itemName: 
     displayName: 
     prefabName: 
+    thumbnail: 
     isCollected: 0
     isDroppable: 0
     isUsable: 0
     isDestroyedOnUse: 0
     count: 0
-    thumbnail: 
   icon: 0
   isStartEnabled: 0
   target: {fileID: 1758367405}
@@ -81746,16 +81810,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-    containingRoom: 
     itemName: 
     displayName: 
     prefabName: 
+    thumbnail: 
     isCollected: 0
     isDroppable: 0
     isUsable: 0
     isDestroyedOnUse: 0
     count: 0
-    thumbnail: 
   icon: 0
   isStartEnabled: 0
   target: {fileID: 1949137316}
@@ -81859,16 +81922,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-    containingRoom: 
     itemName: 
     displayName: 
     prefabName: 
+    thumbnail: 
     isCollected: 0
     isDroppable: 0
     isUsable: 0
     isDestroyedOnUse: 0
     count: 0
-    thumbnail: 
   icon: 0
   description: A purple crystal
   Thumbnail: {fileID: 21300000, guid: a9d37252a199d409b85c34722aba70ff, type: 3}
@@ -82636,16 +82698,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-    containingRoom: 
     itemName: 
     displayName: 
     prefabName: 
+    thumbnail: 
     isCollected: 0
     isDroppable: 0
     isUsable: 0
     isDestroyedOnUse: 0
     count: 0
-    thumbnail: 
   icon: 0
   isStartEnabled: 0
   target: {fileID: 1976656940}
@@ -86405,16 +86466,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-    containingRoom: 
     itemName: 
     displayName: 
     prefabName: 
+    thumbnail: 
     isCollected: 0
     isDroppable: 0
     isUsable: 0
     isDestroyedOnUse: 0
     count: 0
-    thumbnail: 
   icon: 0
   description: A purple crystal
   Thumbnail: {fileID: 21300000, guid: a9d37252a199d409b85c34722aba70ff, type: 3}

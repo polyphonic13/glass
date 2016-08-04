@@ -32,10 +32,10 @@ public class Underwater : RoomElement {
 	}
 	
 	void setNormal() {
-		EventCenter.Instance.ChangeUnderWater(false);
+//		EventCenter.Instance.ChangeUnderWater(false);
 	}
 	
 	void setUnderwater() {
-		EventCenter.Instance.ChangeUnderWater(true);
+//		EventCenter.Instance.ChangeUnderWater(true);
 	}
 }

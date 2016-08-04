@@ -6,6 +6,12 @@ namespace Polyworks
 	public class EventCenter: Singleton<EventCenter>
 	{
 		#region delegates
+		public delegate void IntEventHandler(string name, int value = 0);
+		public event IntEventHandler OnIntEvent;
+
+		public delegate void StringEventHandler(string name, string value = "");
+		public event StringEventHandler OnStringEvent;
+
 		public delegate void LevelInitializedHandler();
 		public event LevelInitializedHandler OnLevelInitialized; 
 
@@ -70,6 +76,18 @@ namespace Polyworks
 		#endregion
 
 		#region handlers
+		public void TriggerIntEvent(string name, int value = 0) {
+			if (OnIntEvent != null) {
+				OnIntEvent (name, value);
+			}
+		}
+
+		public void TriggerStringEvent(string name, string value = "") {
+			if (OnStringEvent != null) {
+				OnStringEvent (name, value);
+			}
+		}
+
 		public void LevelInitialized() {
 			if (OnLevelInitialized != null) {
 				OnLevelInitialized ();

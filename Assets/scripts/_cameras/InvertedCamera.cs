@@ -10,9 +10,9 @@ public class InvertedCamera : MonoBehaviour {
 	void Start() {
 		gameObject.SetActive(false);
 
-		var eventCenter = EventCenter.Instance;
-		eventCenter.OnRoomEntered += OnRoomEntered;
-		eventCenter.OnRoomExited += OnRoomExited;
+//		var eventCenter = EventCenter.Instance;
+//		eventCenter.OnRoomEntered += OnRoomEntered;
+//		eventCenter.OnRoomExited += OnRoomExited;
 	}
 
 	// EXAMPLE WITH CAMERA UPSIDEDOWN

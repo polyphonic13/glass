@@ -212,14 +212,14 @@ namespace UnitySampleAssets.Characters.FirstPerson
 //			_hasFlashlight = Game.Instance.hasFlashlight;
 				
 			var ec = EventCenter.Instance;
-			ec.OnAboveWater += OnAboveWater;
-			ec.OnPlayerDamaged += OnPlayerDamaged;
+//			ec.OnAboveWater += OnAboveWater;
+//			ec.OnPlayerDamaged += OnPlayerDamaged;
 			ec.OnNearItem += OnNearItem;
 			ec.OnInspectItem += OnInspectItem;
 			ec.OnCloseInventoryUI += OnCloseInventoryUI;
 			ec.OnCloseMenuUI += OnCloseMenuUI;
-			ec.OnInventoryAdded += OnInventoryChanged;
-			ec.OnInventoryRemoved += OnInventoryChanged;
+//			ec.OnInventoryAdded += OnInventoryChanged;
+//			ec.OnInventoryRemoved += OnInventoryChanged;
 		}
 		#endregion
 

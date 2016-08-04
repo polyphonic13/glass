@@ -20,7 +20,7 @@ public class RoomItem : MonoBehaviour {
 //			IsRoomActive = false;
 			_item.isEnabled = false;
 			var eventCenter = EventCenter.Instance;
-			eventCenter.OnRoomEntered += OnRoomEntered;
+//			eventCenter.OnRoomEntered += OnRoomEntered;
 		}
 	}
 

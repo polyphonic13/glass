@@ -10,7 +10,7 @@ public class Lock : MonoBehaviour {
 	public CrystalKey crystal;
 
 	void Awake() {
-		EventCenter.Instance.OnCrystalKeyUsed += OnCrystalKeyUsed;
+//		EventCenter.Instance.OnCrystalKeyUsed += OnCrystalKeyUsed;
 	}
 	
 	public void OnCrystalKeyUsed(string name) {

@@ -42,16 +42,16 @@ public class ToyChest : MonoBehaviour {
 
 				toy.isEnabled = false;
 
-				EventCenter.Instance.CloseInventoryUI ();
-				EventCenter.Instance.AddNote (toy.data.itemName + " added to Toy Chest");
+//				EventCenter.Instance.CloseInventoryUI ();
+//				EventCenter.Instance.AddNote (toy.data.itemName + " added to Toy Chest");
 				break;
 			}
 		}
 //		// Debug.Log("_collected = " + _collected + ", _expected = " + _expected);
 		if(_collected == _expected) {
 //			// Debug.Log ("toy box expected all collected");
-			EventCenter.Instance.TriggerEvent(unlockEvent);
-			EventCenter.Instance.AddNote ("There's a crash in the room next door.");
+//			EventCenter.Instance.TriggerEvent(unlockEvent);
+//			EventCenter.Instance.AddNote ("There's a crash in the room next door.");
 		}
 	}
 }

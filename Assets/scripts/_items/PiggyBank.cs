@@ -20,12 +20,12 @@ public class PiggyBank : MonoBehaviour {
 		for(int i = 0; i < _coins.Length; i++) {
 			if(_coins[i] == coin) {
 				crystalKeys[i].isEnabled = true;
-				EventCenter.Instance.TriggerEvent(_unlockEvents[i]);
+//				EventCenter.Instance.TriggerEvent(_unlockEvents[i]);
 				break;
 			}
 		}
-		EventCenter.Instance.CloseInventoryUI ();
-		EventCenter.Instance.AddNote (coinName + " added to Piggy Bank");
+//		EventCenter.Instance.CloseInventoryUI ();
+//		EventCenter.Instance.AddNote (coinName + " added to Piggy Bank");
 	}
 
 	private void Awake() {

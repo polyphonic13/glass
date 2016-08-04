@@ -18,14 +18,14 @@ public class ItemContainer : CollidableParent {
 			if(parentName == ci) {
 				string evt = ci + "_Collected";
 				// Debug.Log("  triggering: " + evt);
-				EventCenter.Instance.TriggerEvent(evt);
+//				EventCenter.Instance.TriggerEvent(evt);
 				_collectedItems++;
 				InitCollidableChild(target.transform.parent.transform.gameObject);
 			}
 			HandleColliderItemWeight(target);
 			
 			if(_collectedItems >= _collectableItems.Length) {
-				EventCenter.Instance.TriggerCollectedEvent(name + "_AllCollected");
+//				EventCenter.Instance.TriggerCollectedEvent(name + "_AllCollected");
 			}
 		}
 	}

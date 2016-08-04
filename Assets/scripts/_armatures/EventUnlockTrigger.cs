@@ -14,7 +14,7 @@ public class EventUnlockTrigger : LockableArmatureTrigger {
 	}
 	
 	public void InitEventUnlockTrigger() {
-		EventCenter.Instance.OnTriggerEvent += onUnlockEvent;
+//		EventCenter.Instance.OnTriggerEvent += onUnlockEvent;
 		isEnabled = false;
 	}
 
@@ -32,13 +32,13 @@ public class EventUnlockTrigger : LockableArmatureTrigger {
 			string msg;
 			if(unlockMessage != "") {
 				msg = unlockMessage;
-				EventCenter.Instance.AddNote(msg);
+//				EventCenter.Instance.AddNote(msg);
 			}
 			houseKeeping();
 		}
 	}
 	
 	public virtual void houseKeeping() {
-		EventCenter.Instance.OnTriggerEvent -= onUnlockEvent;
+//		EventCenter.Instance.OnTriggerEvent -= onUnlockEvent;
 	}
 }

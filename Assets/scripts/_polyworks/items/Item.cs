@@ -20,6 +20,19 @@ namespace Polyworks {
 		public void SetData(ItemData d) {
 			data = d;
 		}
+
+		public void SetEnabled(bool isEnabled) {
+			this.isEnabled = isEnabled;
+		}
+
+		public void Enable() {
+			this.SetEnabled (true);
+		}
+
+		public void Disable() {
+			this.SetEnabled (false);
+
+		}
 	}
 }
 
