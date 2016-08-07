@@ -13,7 +13,6 @@ namespace Polyworks
 		public string sceneName;
 
 		public Prefab[] prefabs;
-		public SectionData[] sections;
 	}
 
 }

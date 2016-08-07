@@ -4,14 +4,10 @@ using System.Collections;
 namespace Polyworks {
 	public class SectionController : MonoBehaviour
 	{
-		#region public members
-		public int section = -1;
-		#endregion
+		public SectionData data; 
 
-		#region private members
 		private SectionAgent[] _agents; 
 		private bool _isChildrenActive = false; 
-		#endregion
 
 		#region handlers
 		public void OnSectionChanged(int currentSection) {
@@ -37,7 +33,7 @@ namespace Polyworks {
 				return;
 			}
 
-			if (this.section == currentSection) {
+			if (data.section == currentSection) {
 				_toggleActivate (true);
 			} else {
 				_toggleActivate (false);

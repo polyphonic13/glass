@@ -7,7 +7,7 @@ namespace Polyworks {
 	[Serializable]
 	public class SectionData
 	{
-		public string name;
+		public int section = -1;
 		public PlayerLocation playerLocation;
 	}
 

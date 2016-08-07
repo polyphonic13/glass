@@ -28,7 +28,7 @@ namespace Polyworks
 			bool isCleared = LevelUtils.GetIsCleared (sceneData.sceneName, Game.Instance.gameData.levels);
 			_levelData = LevelUtils.GetLevel (sceneData.sceneName, gameData.levels);
 
-			if (gameData.targetSection > -1) {
+			if (gameData.targetSection > -1 && gameData.targetSection < sectionControllers.Length) {
 				_levelData.currentSection = gameData.targetSection;
 			}
 
@@ -36,8 +36,11 @@ namespace Polyworks
 				foreach (SectionController sectionController in sectionControllers) {
 					sectionController.Init (_levelData.currentSection);
 				}
-			}
 
+				PlayerLocation playerLocation = sectionControllers [_levelData.currentSection].data.playerLocation;
+				_playerManager = GetComponent<PlayerManager> ();
+				_playerManager.Init (playerLocation, gameData.playerData, gameData.items);
+			}
 
 			if (!isCleared) {
 				TaskController taskController = GetComponent<TaskController> ();
@@ -49,10 +52,6 @@ namespace Polyworks
 			} else {
 				Debug.Log ("LevelController["+sceneData.sceneName+"]/Initlevel cleared");
 			}
-			Debug.Log ("current section = " + _levelData.currentSection);
-			PlayerLocation playerLocation = sceneData.sections[_levelData.currentSection].playerLocation;
-			_playerManager = GetComponent<PlayerManager> ();
-			_playerManager.Init (playerLocation, gameData.playerData, gameData.items);
 
 			EventCenter ec = EventCenter.Instance;
 			ec.OnLevelTasksCompleted += OnLevelTasksCompleted;
