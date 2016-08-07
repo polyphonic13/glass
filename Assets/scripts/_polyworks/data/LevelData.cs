@@ -1,6 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
+/*
+ * LevelData contains state information for the scene, including currentSection
+ * SecneData contains general information on scene, not stored in persistent GameData
+ */
 namespace Polyworks
 {
 	[System.Serializable]

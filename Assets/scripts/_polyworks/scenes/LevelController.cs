@@ -6,6 +6,7 @@ namespace Polyworks
 	public class LevelController : MonoBehaviour
 	{
 		public SceneData sceneData;
+		public SectionController[] sectionControllers; 
 
 		private LevelData _levelData; 
 		private PlayerManager _playerManager;
@@ -23,12 +24,20 @@ namespace Polyworks
 		#region public methods
 		public void Init(GameData gameData) {
 			ScenePrefabController.Init (sceneData.prefabs, gameData.items);
+
 			bool isCleared = LevelUtils.GetIsCleared (sceneData.sceneName, Game.Instance.gameData.levels);
 			_levelData = LevelUtils.GetLevel (sceneData.sceneName, gameData.levels);
 
 			if (gameData.targetSection > -1) {
 				_levelData.currentSection = gameData.targetSection;
 			}
+
+			if (sectionControllers != null) {
+				foreach (SectionController sectionController in sectionControllers) {
+					sectionController.Init (_levelData.currentSection);
+				}
+			}
+
 
 			if (!isCleared) {
 				TaskController taskController = GetComponent<TaskController> ();
@@ -40,13 +49,12 @@ namespace Polyworks
 			} else {
 				Debug.Log ("LevelController["+sceneData.sceneName+"]/Initlevel cleared");
 			}
-
+			Debug.Log ("current section = " + _levelData.currentSection);
 			PlayerLocation playerLocation = sceneData.sections[_levelData.currentSection].playerLocation;
 			_playerManager = GetComponent<PlayerManager> ();
 			_playerManager.Init (playerLocation, gameData.playerData, gameData.items);
 
 			EventCenter ec = EventCenter.Instance;
-			ec.ChangeSection (_levelData.currentSection);
 			ec.OnLevelTasksCompleted += OnLevelTasksCompleted;
 			ec.OnSectionChanged += OnSectionChanged;
 
