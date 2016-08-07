@@ -12,13 +12,13 @@ public class MovingPlatformController : TargetController {
 		}
 	}
 
-	public override void Pause ()
-	{
+	public override void Pause () {
+		Debug.Log ("MovingPlatformController[" + this.name + "]/Pause");
 		target.Pause ();
 	}
 
-	public override void Resume ()
-	{
+	public override void Resume () {
+		Debug.Log ("MovingPlatformController[" + this.name + "]/Resume");
 		target.Resume ();
 	}
 

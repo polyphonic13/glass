@@ -3,6 +3,8 @@ using System.Collections;
 
 public class TargetController : MonoBehaviour {
 
+	public bool isEnabled { get; set; }
+
 	public virtual void Actuate() {
 
 	}
@@ -18,4 +20,23 @@ public class TargetController : MonoBehaviour {
 	public virtual void Resume() {
 
 	}
+
+	public virtual void SetEnabled(bool isEnabled) {
+		this.isEnabled = isEnabled;
+	}
+
+	public virtual void Enable() {
+		this.SetEnabled (true);
+		if (GetIsActive ()) {
+			this.Resume ();
+		}
+	}
+
+	public virtual void Disable() {
+		this.SetEnabled (false);
+		if (GetIsActive ()) {
+			this.Pause ();
+		}
+	}
+
 }

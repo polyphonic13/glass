@@ -7,7 +7,7 @@ namespace Polyworks {
 		public SectionData data; 
 
 		private SectionAgent[] _agents; 
-		private bool _isChildrenActive = false; 
+		private bool _isChildrenEnabled = false; 
 
 		#region handlers
 		public void OnSectionChanged(int currentSection) {
@@ -34,20 +34,21 @@ namespace Polyworks {
 			}
 
 			if (data.section == currentSection) {
-				_toggleActivate (true);
+				_toggleEnabled (true);
 			} else {
-				_toggleActivate (false);
+				_toggleEnabled (false);
 			}
 		}
 
-		private void _toggleActivate(bool isActive) {
+		private void _toggleEnabled(bool isEnabled) {
+//			Debug.Log ("SectionController[" + this.name + "]/_toggleEnabled, isEnabled = " + isEnabled);
 			foreach(SectionAgent agent in _agents) {
 				if (agent != null) {
-					agent.ToggleActive (isActive);
+					agent.ToggleEnabled (isEnabled);
 				}
 			}
 
-			_isChildrenActive = isActive;
+			_isChildrenEnabled = isEnabled;
 		}
 
 		private void OnDestroy() {

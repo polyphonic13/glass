@@ -31,7 +31,6 @@ namespace Polyworks {
 
 		public void Disable() {
 			this.SetEnabled (false);
-
 		}
 	}
 }

@@ -11,17 +11,17 @@ public class RoomItem : MonoBehaviour {
 	private Item _item; 
 
 	public virtual void Init() {
-		_item = GetComponent<Item> () as Item;
-
-		if(transform.tag == "persistentItem" || containingRoom == "") {
-//			IsRoomActive = true;
-			_item.isEnabled = true;
-		} else {
-//			IsRoomActive = false;
-			_item.isEnabled = false;
-			var eventCenter = EventCenter.Instance;
-//			eventCenter.OnRoomEntered += OnRoomEntered;
-		}
+//		_item = GetComponent<Item> () as Item;
+//
+//		if(transform.tag == "persistentItem" || containingRoom == "") {
+////			IsRoomActive = true;
+//			_item.isEnabled = true;
+//		} else {
+////			IsRoomActive = false;
+//			_item.isEnabled = false;
+//			var eventCenter = EventCenter.Instance;
+////			eventCenter.OnRoomEntered += OnRoomEntered;
+//		}
 	}
 
 	public virtual void OnRoomEntered(string room) {
