@@ -13,7 +13,7 @@ namespace Polyworks {
 	
 	
 		public void SetFocus(bool isFocused) {
-			// Debug.Log ("ProximityAgent[" + this.name + "]/SetFocus, isFocused = " + isFocused + ", item = " + _item);
+			Debug.Log ("ProximityAgent[" + this.name + "]/SetFocus, isFocused = " + isFocused + ", item = " + _item);
 			if(_isInitialized && _item.isEnabled) {
 				if (isFocused) {
 					if (!_wasJustFocused) {

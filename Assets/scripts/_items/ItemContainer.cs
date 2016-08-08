@@ -35,10 +35,5 @@ public class ItemContainer : CollidableParent {
 		child.transform.parent = transform;
 		child.transform.position = transform.position;
 		child.transform.rotation = transform.rotation; 
-		
-		ItemWeight itemWeight = child.GetComponent<ItemWeight>();
-		if(itemWeight != null) {
-			itemWeight.KillSelf();
-		}
 	}
 }

@@ -3575,6 +3575,34 @@ Prefab:
       propertyPath: portal
       value: 
       objectReference: {fileID: 688659146}
+    - target: {fileID: 11438628, guid: 5f3544a1a9938410bb31fc447db65457, type: 2}
+      propertyPath: data.itemName
+      value: portal_crystal
+      objectReference: {fileID: 0}
+    - target: {fileID: 11438628, guid: 5f3544a1a9938410bb31fc447db65457, type: 2}
+      propertyPath: data.displayName
+      value: Portal Crystal
+      objectReference: {fileID: 0}
+    - target: {fileID: 11438628, guid: 5f3544a1a9938410bb31fc447db65457, type: 2}
+      propertyPath: data.prefabName
+      value: portal_crystal
+      objectReference: {fileID: 0}
+    - target: {fileID: 11438628, guid: 5f3544a1a9938410bb31fc447db65457, type: 2}
+      propertyPath: data.isUsable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11438628, guid: 5f3544a1a9938410bb31fc447db65457, type: 2}
+      propertyPath: data.isDestroyedOnUse
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11438628, guid: 5f3544a1a9938410bb31fc447db65457, type: 2}
+      propertyPath: icon
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11438628, guid: 5f3544a1a9938410bb31fc447db65457, type: 2}
+      propertyPath: targetName
+      value: portal01
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5f3544a1a9938410bb31fc447db65457, type: 2}
   m_IsPrefabParent: 0
@@ -12361,18 +12389,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-    itemName: 
-    displayName: 
-    prefabName: 
+    itemName: taurus_crystal
+    displayName: Taurus Crystal
+    prefabName: taurus_crystal
     thumbnail: 
     isCollected: 0
     isDroppable: 0
-    isUsable: 0
-    isDestroyedOnUse: 0
+    isUsable: 1
+    isDestroyedOnUse: 1
     count: 0
-  icon: 0
-  description: A purple crystal
-  Thumbnail: {fileID: 21300000, guid: a9d37252a199d409b85c34722aba70ff, type: 3}
+  icon: 1
+--- !u!114 &237989731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 237989729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8f2515d035a5431bae3eaa8d63d77f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactDistance: 2
+  target: {fileID: 0}
+  isTargetPlayer: 1
+--- !u!114 &237989732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 237989729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3df9045043b8d4f1cb143be7d3383c2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &238418178
 Prefab:
   m_ObjectHideFlags: 0
@@ -16214,18 +16265,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-    itemName: 
-    displayName: 
-    prefabName: 
+    itemName: scorpio_crystal
+    displayName: Scorpio Crystal
+    prefabName: scorpio_crysal
     thumbnail: 
     isCollected: 0
     isDroppable: 0
-    isUsable: 0
-    isDestroyedOnUse: 0
+    isUsable: 1
+    isDestroyedOnUse: 1
     count: 0
-  icon: 0
-  description: A purple crystal
-  Thumbnail: {fileID: 21300000, guid: a9d37252a199d409b85c34722aba70ff, type: 3}
+  icon: 1
+--- !u!114 &353632616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 353632614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8f2515d035a5431bae3eaa8d63d77f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactDistance: 2
+  target: {fileID: 0}
+  isTargetPlayer: 1
+--- !u!114 &353632617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 353632614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3df9045043b8d4f1cb143be7d3383c2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &353829424
 GameObject:
   m_ObjectHideFlags: 0
@@ -16369,6 +16443,35 @@ MonoBehaviour:
 Transform:
   m_PrefabParentObject: {fileID: 400008, guid: f3cb57a94219340b69a039594367b3d7, type: 3}
   m_PrefabInternal: {fileID: 355419322}
+--- !u!1 &358716135 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 157342, guid: 5f3544a1a9938410bb31fc447db65457, type: 2}
+  m_PrefabInternal: {fileID: 62502444}
+--- !u!114 &358716136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 358716135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8f2515d035a5431bae3eaa8d63d77f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactDistance: 2
+  target: {fileID: 0}
+  isTargetPlayer: 1
+--- !u!114 &358716137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 358716135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3df9045043b8d4f1cb143be7d3383c2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &361088470
 GameObject:
   m_ObjectHideFlags: 0
@@ -37469,18 +37572,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-    itemName: 
-    displayName: 
-    prefabName: 
+    itemName: leo_crystal
+    displayName: Leo Crystal
+    prefabName: leo_crystal
     thumbnail: 
     isCollected: 0
     isDroppable: 0
-    isUsable: 0
-    isDestroyedOnUse: 0
+    isUsable: 1
+    isDestroyedOnUse: 1
     count: 0
-  icon: 0
-  description: A purple crystal
-  Thumbnail: {fileID: 21300000, guid: a9d37252a199d409b85c34722aba70ff, type: 3}
+  icon: 1
+--- !u!114 &920620368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 920620366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8f2515d035a5431bae3eaa8d63d77f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactDistance: 2
+  target: {fileID: 0}
+  isTargetPlayer: 1
+--- !u!114 &920620369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 920620366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3df9045043b8d4f1cb143be7d3383c2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &921544050
 Prefab:
   m_ObjectHideFlags: 0
@@ -54238,8 +54364,6 @@ MonoBehaviour:
     isDestroyedOnUse: 0
     count: 0
   icon: 0
-  description: A purple crystal
-  Thumbnail: {fileID: 21300000, guid: a9d37252a199d409b85c34722aba70ff, type: 3}
 --- !u!1001 &1271573515
 Prefab:
   m_ObjectHideFlags: 0
@@ -61286,18 +61410,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-    itemName: 
-    displayName: 
-    prefabName: 
+    itemName: room02d_elevator_crystal
+    displayName: Elevator Crystal
+    prefabName: room02d_elevator_crystal
     thumbnail: 
     isCollected: 0
     isDroppable: 0
-    isUsable: 0
-    isDestroyedOnUse: 0
+    isUsable: 1
+    isDestroyedOnUse: 1
     count: 0
-  icon: 0
-  description: A purple crystal
-  Thumbnail: {fileID: 21300000, guid: a9d37252a199d409b85c34722aba70ff, type: 3}
+  icon: 1
+--- !u!114 &1512676969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1512676967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8f2515d035a5431bae3eaa8d63d77f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactDistance: 2
+  target: {fileID: 0}
+  isTargetPlayer: 1
+--- !u!114 &1512676970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1512676967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3df9045043b8d4f1cb143be7d3383c2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1524205629
 Prefab:
   m_ObjectHideFlags: 0
@@ -81761,18 +81908,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-    itemName: 
-    displayName: 
-    prefabName: 
+    itemName: aries_crystal
+    displayName: Aries Crystal
+    prefabName: aries_crystal
     thumbnail: 
     isCollected: 0
     isDroppable: 0
-    isUsable: 0
-    isDestroyedOnUse: 0
+    isUsable: 1
+    isDestroyedOnUse: 1
     count: 0
-  icon: 0
-  description: A purple crystal
-  Thumbnail: {fileID: 21300000, guid: a9d37252a199d409b85c34722aba70ff, type: 3}
+  icon: 1
+--- !u!114 &1953255916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1953255913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8f2515d035a5431bae3eaa8d63d77f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactDistance: 2
+  target: {fileID: 0}
+  isTargetPlayer: 1
+--- !u!114 &1953255917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1953255913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3df9045043b8d4f1cb143be7d3383c2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1955166951
 Prefab:
   m_ObjectHideFlags: 0
@@ -86322,18 +86492,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-    itemName: 
-    displayName: 
-    prefabName: 
+    itemName: sagittarius_crystal
+    displayName: Sagittarius Crystal
+    prefabName: sagittarius_crystal
     thumbnail: 
     isCollected: 0
     isDroppable: 0
-    isUsable: 0
-    isDestroyedOnUse: 0
+    isUsable: 1
+    isDestroyedOnUse: 1
     count: 0
-  icon: 0
-  description: A purple crystal
-  Thumbnail: {fileID: 21300000, guid: a9d37252a199d409b85c34722aba70ff, type: 3}
+  icon: 1
+--- !u!114 &2044470198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2044470196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8f2515d035a5431bae3eaa8d63d77f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactDistance: 2
+  target: {fileID: 0}
+  isTargetPlayer: 1
+--- !u!114 &2044470199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2044470196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3df9045043b8d4f1cb143be7d3383c2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2044477080
 Prefab:
   m_ObjectHideFlags: 0
