@@ -1,7 +1,8 @@
 using System; 
 
 namespace Polyworks {
-	public interface IPauseResumable {
+	public interface IAnimatable {
+		void Play;
 		void Pause;
 		void Resume;
 		bool GetIsActive;

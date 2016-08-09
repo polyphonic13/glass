@@ -5,6 +5,10 @@ namespace Polyworks {
 		
 		public bool isActive = false; 
 		
+		public virtual void Play() {
+			isActive = true;
+		}
+		
 		public virtual void Pause() {
 			isActive = false;
 		}
