@@ -6,7 +6,7 @@ public class CrystalReceptacle : Item {
 
 	public bool isStartEnabled = false;
 
-	public TargetController target;
+	public TargetAgent target;
 	public string keyName;
 
 	private GameObject _crystal;

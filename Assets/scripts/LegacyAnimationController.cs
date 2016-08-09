@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LegacyAnimationController : TargetController {
+public class LegacyAnimationController : TargetAgent {
 
 	public AnimationClip[] animationClips;
 	public bool isAutoStart = false; 

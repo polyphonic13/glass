@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MovingPlatformController : TargetController {
+public class MovingPlatformController : TargetAgent {
 
 	[SerializeField] MovingPlatform target;
 

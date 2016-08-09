@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ArmatureController : TargetController {
+public class ArmatureController : TargetAgent {
 
 	public ArmatureParent target;
 	public AnimationClip unlockClip; 

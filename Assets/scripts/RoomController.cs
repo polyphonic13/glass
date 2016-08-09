@@ -3,7 +3,7 @@ using System.Collections;
 
 public class RoomController : RoomItem {
 
-	public TargetController[] targetControllers; 
+	public TargetAgent[] targetControllers; 
 
 	private bool _isPaused = false;
 
