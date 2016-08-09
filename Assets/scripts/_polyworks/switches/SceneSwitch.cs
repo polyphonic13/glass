@@ -2,7 +2,7 @@
 using System.Collections;
 
 namespace Polyworks {
-	public class SceneChangeSwitch : Switch
+	public class SceneSwitch : Switch
 	{
 		public string targetScene;
 		public int targetSection = -1;
