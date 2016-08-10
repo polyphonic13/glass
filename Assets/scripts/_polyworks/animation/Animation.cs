@@ -1,7 +1,7 @@
 using UnityEngine;
 
 namespace Polyworks {
-	public class Animation: MonoBehaviour, IPauseResumable {
+	public class Animation: MonoBehaviour, IAnimatable {
 		
 		public bool isActive = false; 
 		

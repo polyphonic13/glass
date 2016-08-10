@@ -76,15 +76,15 @@ namespace Polyworks
 		#endregion
 
 		#region handlers
-		public void InvokeIntEvent(string name, int value = 0) {
+		public void InvokeIntEvent(string type, int value = 0) {
 			if (OnIntEvent != null) {
-				OnIntEvent (name, value);
+				OnIntEvent (type, value);
 			}
 		}
 
-		public void InvokeStringEvent(string name, string value = "") {
+		public void InvokeStringEvent(string type, string value = "") {
 			if (OnStringEvent != null) {
-				OnStringEvent (name, value);
+				OnStringEvent (type, value);
 			}
 		}
 
