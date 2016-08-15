@@ -2,12 +2,12 @@ using UnityEngine;
 using System.Collections;
 
 namespace Polyworks {
-	public class StringEventSwitch : Switch
+	public class IntEventSwitch : Switch
 	{
-		public int eventType; 
+		public int value; 
 
 		public override void Actuate() {
-			EventCenter.Instance.InvokeIntEvent(eventType, this.name);
+			EventCenter.Instance.InvokeIntEvent(this.name, value);
 		}
 	}
 }

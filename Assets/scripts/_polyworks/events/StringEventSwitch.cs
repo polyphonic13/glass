@@ -4,10 +4,10 @@ using System.Collections;
 namespace Polyworks {
 	public class StringEventSwitch : Switch
 	{
-		public string eventType; 
+		public string value; 
 
 		public override void Actuate() {
-			EventCenter.Instance.InvokeStringEvent(eventType, this.name);
+			EventCenter.Instance.InvokeStringEvent(this.name, value);
 		}
 	}
 }

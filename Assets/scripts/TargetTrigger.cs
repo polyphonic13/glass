@@ -4,7 +4,7 @@ using Polyworks;
 
 public class TargetTrigger : Item {
 
-	public TargetController target;
+	public TargetAgent target;
 	public string disabledMessage = ""; 
 
 	public override void Actuate(Inventory inventory) {

@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 namespace Polyworks {
-	public class MovingPlatform : Animation {
+	public class MovingPlatform : AnimationAgent {
 		public Transform[] destinations;
 		public Transform startingPosition;
 		public Transform platform;

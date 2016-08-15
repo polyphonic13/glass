@@ -1,7 +1,7 @@
 using UnityEngine;
 
 namespace Polyworks {
-	public class ArmatureParent : Animation {
+	public class ArmatureParent : AnimationAgent {
 	
 		public delegate void AnimationHandler(Transform bone);
 	

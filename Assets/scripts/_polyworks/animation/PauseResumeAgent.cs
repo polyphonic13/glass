@@ -3,7 +3,7 @@ using System.Collections;
 
 namespace Polyworks {
 	public class PauseResumeAgent : MonoBehaviour {
-		public Animation target; 
+		public AnimationAgent target; 
 		
 		public virtual void Enable() {
 			_send("Resume");
@@ -15,7 +15,7 @@ namespace Polyworks {
 		
 		private void Awake() {
 			if(target == null) {
-				target = GetComponent<Animation>();
+				target = GetComponent<AnimationAgent>();
 			}
 		}
 		
@@ -23,7 +23,7 @@ namespace Polyworks {
 			if(target == null) {
 				return;
 			}
-			if (GetIsActive ()) {
+			if (target.GetIsActive ()) {
 				gameObject.SendMessage(message);
 			}
 		}

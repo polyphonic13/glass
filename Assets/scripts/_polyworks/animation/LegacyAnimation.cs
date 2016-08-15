@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 namespace Polyworks {
-	public class LegacyAnimation : Animation {
+	public class LegacyAnimation : AnimationAgent {
 
 		public AnimationClip[] animationClips;
 		public bool isAutoStart = false; 
@@ -17,6 +17,10 @@ namespace Polyworks {
 		private Animation _animation; 
 		private bool _isPlaying = false; 
 
+		public override void Play() {
+			Actuate ();
+		}
+
 		public override void Pause() {
 			_adjustSpeed (PAUSE_SPEED);
 		}
@@ -29,7 +33,7 @@ namespace Polyworks {
 			return _animation.isPlaying;
 		}
 
-		public override void Actuate() {
+		public void Actuate() {
 			string clip = animationClips [_currentAnimation].name;
 			_animation [clip].wrapMode = WrapMode.Loop;
 			_animation [clip].speed = PLAY_SPEED;
