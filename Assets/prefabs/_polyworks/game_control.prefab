@@ -9,6 +9,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 419950}
   - 114: {fileID: 11439898}
+  - 114: {fileID: 11456530}
   - 114: {fileID: 11460078}
   m_Layer: 0
   m_Name: game_control
@@ -37,50 +38,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 162886}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f4e98b8bd4674d848ca809b6779f088, type: 3}
+  m_Script: {fileID: 11500000, guid: 0b4572e7c0a4e4ae6a81fbfc8e17271c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData:
-    currentScene: 
-    count: 0
-    levels:
-    - name: game_control_test02
-      isCleared: 0
-      currentPlayerLocation: 0
-      tasks:
-        intTasks:
-        - name: incrementCount
-          isCompleted: 0
-          goal: 5
-          current: 0
-        floatTasks: []
-        stringTasks:
-        - name: itemCollection
-          isCompleted: 0
-          goal: wallpaper_sphere(Clone)
-          current: 
-        - name: itemCollection
-          isCompleted: 0
-          goal: brick_cube(Clone)
-          current: 
-    - name: game_control_test01
-      isCleared: 0
-      currentPlayerLocation: 0
-      tasks:
-        intTasks: []
-        floatTasks: []
-        stringTasks:
-        - name: itemCollection
-          isCompleted: 0
-          goal: wooden_cube01(Clone)
-          current: 
-    playerData:
-      health: 0
-      stamina: 0
-      breath: 0
-  dataFilename: glass.dat
-  playerPrefab: player/player_objects
-  isCursorless: 0
+--- !u!114 &11456530
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 162886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58a73b8e6f8cf4b7b9dffbb14f13d0de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11460078
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -89,9 +60,37 @@ MonoBehaviour:
   m_GameObject: {fileID: 162886}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0e8a00f345ae4534a9cb38871c066ab, type: 3}
+  m_Script: {fileID: 11500000, guid: 59cf262d9506b4b06afb27638a442c26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameData:
+    currentScene: 
+    targetSection: -1
+    count: 0
+    levels:
+    - name: game_control_test01
+      isCleared: 0
+      currentSection: 0
+      tasks:
+        intTasks: []
+        floatTasks: []
+        stringTasks: []
+        collectionTasks: []
+    - name: game_control_test02
+      isCleared: 0
+      currentSection: 0
+      tasks:
+        intTasks: []
+        floatTasks: []
+        stringTasks: []
+        collectionTasks: []
+    playerData:
+      health: 100
+      stamina: 100
+      breath: 100
+  dataFilename: game_data.dat
+  playerPrefab: player/player_objects
+  isCursorless: 1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

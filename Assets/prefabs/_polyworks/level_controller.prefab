@@ -49,7 +49,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 162112}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d8ded5dd415d4566b882838136055d0, type: 3}
+  m_Script: {fileID: 11500000, guid: a6fbd356da5a14df5b35ee703c8e0464, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &11460622
@@ -68,19 +68,22 @@ MonoBehaviour:
     prefabs:
     - name: wooden_cube01
       path: items/wooden_cube01
-      addTo: things/stuff
+      addTo: things/sections/section_right
       location: {x: 5, y: 1, z: -2}
       rotation: {x: 0, y: 0, z: 0, w: 0}
     - name: wooden_cube02
       path: items/wooden_cube02
-      addTo: things/stuff
+      addTo: things/sections/section_left
       location: {x: -5, y: 1, z: -2}
       rotation: {x: 0, y: 0, z: 0, w: 0}
-    playerLocations:
-    - position: {x: -5, y: -14, z: -9}
+    - name: wooden_cube02
+      path: items/wooden_cube02
+      addTo: things/sections/section_left
+      location: {x: -5, y: 1, z: -4}
       rotation: {x: 0, y: 0, z: 0, w: 0}
-    - position: {x: 5, y: -14, z: -9}
-      rotation: {x: 0, y: 0, z: 0, w: 0}
+  sectionControllers:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
