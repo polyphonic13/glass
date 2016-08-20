@@ -23,7 +23,7 @@ namespace Polyworks
         [SerializeField] private float m_WalkSpeed = 3;
         [SerializeField] private float m_RunSpeed = 6;
         [SerializeField] [Range(0f, 1f)] private float m_RunstepLenghten = 0.7f;
-        [SerializeField] private float m_JumpSpeed;
+        [SerializeField] private float m_JumpSpeed = 8;
         [SerializeField] private float m_StickToGroundForce = 10;
         [SerializeField] private float m_GravityMultiplier = 2;
 		[SerializeField] private MouseLook m_MouseLook;
@@ -117,7 +117,8 @@ namespace Polyworks
 		}
 
 		public void SetJumping(bool isJumping) {
-			_isJumping = isJumping;
+			m_Jump = _isJumping = isJumping;
+
 		}
 
 		public void SetClimbState(bool isClimbing) {
