@@ -41,7 +41,7 @@ namespace Polyworks {
 		}
 
 		private void _toggleEnabled(bool isEnabled) {
-//			Debug.Log ("SectionController[" + this.name + "]/_toggleEnabled, isEnabled = " + isEnabled);
+			Debug.Log ("SectionController[" + this.name + "]/_toggleEnabled, isEnabled = " + isEnabled);
 			foreach(SectionAgent agent in _agents) {
 				if (agent != null) {
 //					Debug.Log (" sending " + isEnabled + " to agent[" + agent.name + "]");

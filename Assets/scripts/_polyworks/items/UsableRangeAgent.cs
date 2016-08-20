@@ -16,7 +16,7 @@ namespace Polyworks {
 		private bool _isCollected = false;
 
 		public void Collect() {
-			Debug.Log ("UsableRangeAgent[" + this.name + "]/Collect");
+//			Debug.Log ("UsableRangeAgent[" + this.name + "]/Collect");
 			GameObject object1 = GameObject.Find (targetName1);
 			GameObject object2 = GameObject.Find (targetName2);
 
@@ -38,7 +38,7 @@ namespace Polyworks {
 				var difference = Vector3.Distance(_target1.position, _target2.position);
 				if(difference < usableDistance) {
 					if(!_item.data.isUsable) {
-						// Debug.Log (this.name + " is enabled, proximity difference = " + difference);
+						 Debug.Log (this.name + " is enabled, proximity difference = " + difference);
 						_item.data.isUsable = true;
 					}
 				} else if(_item.data.isUsable) {
