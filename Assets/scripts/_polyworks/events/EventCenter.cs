@@ -60,7 +60,7 @@ namespace Polyworks
 		public delegate void FlashlightActuateHandler(); 
 		public event FlashlightActuateHandler OnActuateFlashlight;
 		#endregion
-		
+
 		#region singleton
 		private static EventCenter _instance;
 		private EventCenter() {}

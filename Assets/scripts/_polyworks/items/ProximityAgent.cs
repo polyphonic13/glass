@@ -53,11 +53,13 @@ namespace Polyworks {
 				if (isTargetPlayer) {
 					target = GameObject.Find ("player").transform;
 				}
+//				Debug.Log ("ProximityAgent[" + this.name + "]/Init, target = " + target);
 				_isInitialized = true;
 			}
 		}
 		
 		private void Awake() {
+//			Debug.Log ("ProximityAgent[" + this.name + "]/Awake");
 			EventCenter.Instance.OnSceneInitialized += this.OnSceneInitialized;
 		}
 

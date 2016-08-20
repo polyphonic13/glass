@@ -36,7 +36,6 @@ namespace Polyworks {
 		#endregion
 
 		public void Init(bool isLevel) {
-			Debug.Log ("InputManager/Init");
 			_controls = ReInput.players.GetPlayer(0);
 
 			GameObject menuObj = GameObject.Find ("menu_ui");
