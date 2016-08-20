@@ -14,6 +14,8 @@ namespace Polyworks {
 		private MenuUI _menuUI;
 		private InventoryUI _inventoryUI;
 
+		private bool _isLevel = false;
+
 		private bool _isUIOpen = false; 
 		private bool _isInventoryOpen = false;
 
@@ -32,28 +34,31 @@ namespace Polyworks {
 		}
 		#endregion
 
-		private void Awake() {
+		public void Init(bool isLevel) {
+			Debug.Log ("InputManager/Init");
 			_controls = ReInput.players.GetPlayer(0);
-
-			GameObject playerObj = GameObject.Find ("player");
-			if (playerObj != null) {
-				_player = playerObj.GetComponent<Player> ();
-			}
 
 			GameObject menuObj = GameObject.Find ("menu_ui");
 			if (menuObj != null) {
 				_menuUI = menuObj.GetComponent<MenuUI> ();
 			}
 
-			GameObject inventoryObj = GameObject.Find ("inventory_ui");
-			if (inventoryObj != null) {
-				_inventoryUI = inventoryObj.GetComponent<InventoryUI> ();
-				// Debug.Log ("_inventoryUI = " + _inventoryUI);
-			}
+			if (isLevel) {
+				GameObject playerObj = GameObject.Find ("player");
+				if (playerObj != null) {
+					_player = playerObj.GetComponent<Player> ();
+				}
 
-			EventCenter ec = EventCenter.Instance;
-			ec.OnNearItem += this.OnNearItem;
-			ec.OnCloseInventoryUI += this.OnCloseInventoryUI;
+				GameObject inventoryObj = GameObject.Find ("inventory_ui");
+				if (inventoryObj != null) {
+					_inventoryUI = inventoryObj.GetComponent<InventoryUI> ();
+					// Debug.Log ("_inventoryUI = " + _inventoryUI);
+				}
+
+				EventCenter ec = EventCenter.Instance;
+				ec.OnNearItem += this.OnNearItem;
+				ec.OnCloseInventoryUI += this.OnCloseInventoryUI;
+			}
 		}
 
 		#region open / close ui

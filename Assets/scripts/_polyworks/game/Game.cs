@@ -28,6 +28,7 @@ namespace Polyworks {
 
 			Scene currentScene = SceneManager.GetActiveScene ();
 			string currentSceneName = currentScene.name;
+			bool isLevel = _getIsLevel (currentSceneName);
 
 			_dataIOController = new DataIOController ();
 
@@ -49,10 +50,10 @@ namespace Polyworks {
 			Instance.gameData.currentScene = currentSceneName; 
 			Hashtable items = Instance.gameData.items;
 
-			if (_getIsLevel(currentSceneName)) {
+			if (isLevel) {
 				_initLevel (currentSceneName, items);
 			} else {
-				EventCenter.Instance.SceneInitializationComplete (currentSceneName);
+				_completeSceneInitialization (isLevel, currentSceneName);
 			}
 
 			EventCenter ec = EventCenter.Instance;
@@ -127,7 +128,8 @@ namespace Polyworks {
 				inventoryUI.InitInventory(_playerInventory);
 			}
 
-			EventCenter.Instance.SceneInitializationComplete (currentScene.name);
+
+			_completeSceneInitialization(true, currentScene.name);
 		}
 
 		public void Increment() {
@@ -154,6 +156,13 @@ namespace Polyworks {
 		private void _initLevel(string currentSceneName, Hashtable items) {
 			_levelController = GameObject.Find("level_controller").GetComponent<LevelController>();
 			_levelController.Init (Instance.gameData);
+		}
+
+		private void _completeSceneInitialization(bool isLevel, string currentSceneName) {
+			EventCenter.Instance.SceneInitializationComplete (currentSceneName);
+
+			InputManager inputManager = GetComponent<InputManager> ();
+			inputManager.Init (isLevel);
 		}
 
 		private void _loadScene(string scene) {
