@@ -10,10 +10,10 @@ GameObject:
   - 4: {fileID: 451906}
   - 95: {fileID: 9514898}
   - 65: {fileID: 6519212}
-  - 114: {fileID: 11453748}
   - 114: {fileID: 11415106}
   - 114: {fileID: 11400632}
   - 114: {fileID: 11428798}
+  - 114: {fileID: 11416538}
   m_Layer: 0
   m_Name: portal_crystal
   m_TagString: interactive
@@ -160,8 +160,22 @@ MonoBehaviour:
     isUsable: 1
     isDestroyedOnUse: 1
     count: 0
-  icon: 1
+  icon: 2
   targetName: portal01
+--- !u!114 &11416538
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 120870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8210f08825f8459181ebe5bc4aea1b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetName1: portal01
+  targetName2: player
+  usableDistance: 2
 --- !u!114 &11428798
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -173,20 +187,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3df9045043b8d4f1cb143be7d3383c2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &11453748
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 120870}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b0ca0c7e80994db6a1499e2fcbe512b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target1: {fileID: 0}
-  target2: {fileID: 0}
-  usableDistance: 2
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

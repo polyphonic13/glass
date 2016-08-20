@@ -27,10 +27,10 @@ GameObject:
   - 4: {fileID: 446876}
   - 95: {fileID: 9587248}
   - 65: {fileID: 6501256}
-  - 114: {fileID: 11458168}
   - 114: {fileID: 11435888}
   - 114: {fileID: 11409158}
   - 114: {fileID: 11474350}
+  - 114: {fileID: 11432008}
   m_Layer: 0
   m_Name: room02d_elevator_crystal
   m_TagString: interactive
@@ -139,6 +139,20 @@ MonoBehaviour:
   interactDistance: 2
   target: {fileID: 0}
   isTargetPlayer: 1
+--- !u!114 &11432008
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 165776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8210f08825f8459181ebe5bc4aea1b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetName1: room02d_elevator_receptacle
+  targetName2: player
+  usableDistance: 2
 --- !u!114 &11435888
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -160,21 +174,7 @@ MonoBehaviour:
     isUsable: 1
     isDestroyedOnUse: 1
     count: 0
-  icon: 1
---- !u!114 &11458168
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 165776}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b0ca0c7e80994db6a1499e2fcbe512b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target1: {fileID: 0}
-  target2: {fileID: 0}
-  usableDistance: 4
+  icon: 2
 --- !u!114 &11474350
 MonoBehaviour:
   m_ObjectHideFlags: 1

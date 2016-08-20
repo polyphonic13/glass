@@ -9,7 +9,7 @@ namespace Polyworks
 		public string itemName;
 		public string displayName;
 		public string prefabName; 
-		public string thumbnail; 
+		public string thumbnail = ""; 
 
 		public bool isCollected = false;
 		public bool isDroppable = false; 

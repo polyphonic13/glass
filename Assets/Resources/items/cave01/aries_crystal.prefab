@@ -10,10 +10,10 @@ GameObject:
   - 4: {fileID: 412618}
   - 95: {fileID: 9568784}
   - 65: {fileID: 6557206}
-  - 114: {fileID: 11419464}
   - 114: {fileID: 11492002}
   - 114: {fileID: 11445040}
   - 114: {fileID: 11430504}
+  - 114: {fileID: 11445364}
   m_Layer: 0
   m_Name: aries_crystal
   m_TagString: interactive
@@ -46,7 +46,7 @@ Transform:
   m_GameObject: {fileID: 132042}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 24.81, y: -539.7, z: 4.48}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.1058062, y: 0.1058062, z: 0.1058062}
   m_Children:
   - {fileID: 424162}
   m_Father: {fileID: 0}
@@ -57,9 +57,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 140792}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0.17242254, y: 0, z: 0, w: 0.9850231}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 4.72562, y: 4.72562, z: 4.72562}
   m_Children: []
   m_Father: {fileID: 412618}
   m_RootOrder: 0
@@ -125,20 +125,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &11419464
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 132042}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b0ca0c7e80994db6a1499e2fcbe512b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target1: {fileID: 0}
-  target2: {fileID: 0}
-  usableDistance: 2
 --- !u!114 &11430504
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -164,6 +150,20 @@ MonoBehaviour:
   interactDistance: 2
   target: {fileID: 0}
   isTargetPlayer: 1
+--- !u!114 &11445364
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 132042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8210f08825f8459181ebe5bc4aea1b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetName1: crystal_receptacle_aries
+  targetName2: player
+  usableDistance: 2
 --- !u!114 &11492002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -185,7 +185,7 @@ MonoBehaviour:
     isUsable: 1
     isDestroyedOnUse: 1
     count: 0
-  icon: 1
+  icon: 2
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
