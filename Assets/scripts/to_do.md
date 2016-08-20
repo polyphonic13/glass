@@ -22,7 +22,7 @@ game controller:
 	
 level controller: 
 	- LevelController
-	- TaskManager
+	- TaskController
 	- PlayerManager
 
 sections: 

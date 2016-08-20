@@ -9,7 +9,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 456028}
   - 114: {fileID: 11478364}
-  - 114: {fileID: 11400958}
+  - 114: {fileID: 11483172}
+  - 114: {fileID: 11432274}
   m_Layer: 0
   m_Name: glass_game_control
   m_TagString: Untagged
@@ -29,7 +30,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!114 &11400958
+--- !u!114 &11432274
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -37,7 +38,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 190814}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0e8a00f345ae4534a9cb38871c066ab, type: 3}
+  m_Script: {fileID: 11500000, guid: 9d978ba48b5df4e38a9a77e12b73f7ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &11478364
@@ -48,16 +49,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 190814}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f4e98b8bd4674d848ca809b6779f088, type: 3}
+  m_Script: {fileID: 11500000, guid: 59cf262d9506b4b06afb27638a442c26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   gameData:
     currentScene: 
+    targetSection: -1
     count: 0
     levels:
     - name: house_floor02
       isCleared: 0
-      currentPlayerLocation: 0
+      currentSection: 0
       tasks:
         intTasks:
         - name: incrementCount
@@ -74,9 +76,10 @@ MonoBehaviour:
           isCompleted: 0
           goal: brick_cube(Clone)
           current: 
+        collectionTasks: []
     - name: cave01
       isCleared: 0
-      currentPlayerLocation: 0
+      currentSection: 0
       tasks:
         intTasks: []
         floatTasks: []
@@ -85,6 +88,7 @@ MonoBehaviour:
           isCompleted: 0
           goal: wooden_cube01(Clone)
           current: 
+        collectionTasks: []
     playerData:
       health: 100
       stamina: 100
@@ -92,6 +96,17 @@ MonoBehaviour:
   dataFilename: glass.dat
   playerPrefab: player/player_objects
   isCursorless: 1
+--- !u!114 &11483172
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 190814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b4572e7c0a4e4ae6a81fbfc8e17271c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

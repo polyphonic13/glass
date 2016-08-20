@@ -15,6 +15,7 @@ namespace Polyworks {
 		private InventoryUI _inventoryUI;
 
 		private bool _isLevel = false;
+		private bool _isInitialized = false;
 
 		private bool _isUIOpen = false; 
 		private bool _isInventoryOpen = false;
@@ -59,6 +60,7 @@ namespace Polyworks {
 				ec.OnNearItem += this.OnNearItem;
 				ec.OnCloseInventoryUI += this.OnCloseInventoryUI;
 			}
+			_isInitialized = true;
 		}
 
 		#region open / close ui
@@ -142,43 +144,45 @@ namespace Polyworks {
 		}
 
 		private void FixedUpdate() {
-			float horizontal = _controls.GetAxis("move_horizontal");
-			float vertical = _controls.GetAxis("move_vertical");
-			_isMenuButtonPressed = _controls.GetButtonDown ("open_menu");
-			_isInventoryButtonPressed = _controls.GetButtonDown ("open_inventory");
+			if (_isInitialized) {
+				float horizontal = _controls.GetAxis ("move_horizontal");
+				float vertical = _controls.GetAxis ("move_vertical");
+				_isMenuButtonPressed = _controls.GetButtonDown ("open_menu");
+				_isInventoryButtonPressed = _controls.GetButtonDown ("open_inventory");
 
-			if (_isMenuButtonPressed) {
-				if (_isInventoryOpen) {
-//					_closeInventory ();
-					EventCenter.Instance.CloseInventoryUI ();
-
-					_openMenu ();
-				} else if (!_isUIOpen) {
-					_openMenu ();
-				} else {
-					_closeMenu ();
-				}
-			} else if (_isInventoryButtonPressed) {
-				if (!_isUIOpen) {
-					_openInventory ();
-				} else {
-					if (!_isInventoryOpen) {
-						_closeMenu ();
-						_openInventory ();
-					} else {
+				if (_isMenuButtonPressed) {
+					if (_isInventoryOpen) {
+						//					_closeInventory ();
 						EventCenter.Instance.CloseInventoryUI ();
 
-//						_closeInventory ();
+						_openMenu ();
+					} else if (!_isUIOpen) {
+						_openMenu ();
+					} else {
+						_closeMenu ();
 					}
-				}
-			} else {
-				if (!_isUIOpen) {
-					_playerUpdate (horizontal, vertical);
-					_itemsUpdate ();
-				} else if (_isInventoryOpen) {
-					_inventoryUpdate (horizontal, vertical);
+				} else if (_isInventoryButtonPressed) {
+					if (!_isUIOpen) {
+						_openInventory ();
+					} else {
+						if (!_isInventoryOpen) {
+							_closeMenu ();
+							_openInventory ();
+						} else {
+							EventCenter.Instance.CloseInventoryUI ();
+
+							//						_closeInventory ();
+						}
+					}
 				} else {
-					_menuUpdate (horizontal, vertical);
+					if (!_isUIOpen) {
+						_playerUpdate (horizontal, vertical);
+						_itemsUpdate ();
+					} else if (_isInventoryOpen) {
+						_inventoryUpdate (horizontal, vertical);
+					} else {
+						_menuUpdate (horizontal, vertical);
+					}
 				}
 			}
 		}
