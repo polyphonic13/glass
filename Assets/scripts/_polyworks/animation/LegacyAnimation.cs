@@ -17,7 +17,7 @@ namespace Polyworks {
 		private Animation _animation; 
 		private bool _isPlaying = false; 
 
-		public override void Play() {
+		public override void Play(string clip = "") {
 			Actuate ();
 		}
 

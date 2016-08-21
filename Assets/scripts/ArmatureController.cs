@@ -29,6 +29,9 @@ public class ArmatureController : TargetAgent {
 	}
 
 	public override bool GetIsActive() {
+		if (target == null) {
+			return false;
+		}
 		return target.GetIsActive ();
 	}
 }

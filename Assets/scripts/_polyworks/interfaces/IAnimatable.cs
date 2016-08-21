@@ -2,7 +2,7 @@ using System;
 
 namespace Polyworks {
 	public interface IAnimatable {
-		void Play();
+		void Play(string clip);
 		void Pause();
 		void Resume();
 		bool GetIsActive();

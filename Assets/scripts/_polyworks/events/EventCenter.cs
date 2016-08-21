@@ -127,6 +127,7 @@ namespace Polyworks
 		}
 
 		public void SceneInitializationComplete(string scene) {
+			Debug.Log ("EventCenter/SceneInitializationComplete");
 			if (OnSceneInitialized != null) {
 				OnSceneInitialized (scene);
 			}

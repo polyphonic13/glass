@@ -5,7 +5,7 @@ namespace Polyworks {
 		
 		public bool isActive = false; 
 		
-		public virtual void Play() {
+		public virtual void Play(string clip = "") {
 			isActive = true;
 		}
 		
