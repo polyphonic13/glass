@@ -18,7 +18,8 @@ namespace Polyworks {
 
 				if(isAddable) {
 //					Debug.Log ("ScenePrefab/Init, prefab = " + prefabs[i].path);
-					GameObject go = (GameObject) Instantiate (Resources.Load (prefabs [i].path, typeof(GameObject)), prefabs [i].location, prefabs [i].rotation);
+					string prefabPath = prefabs[i].path + prefabs[i].name;
+					GameObject go = (GameObject) Instantiate (Resources.Load (prefabPath, typeof(GameObject)), prefabs [i].location, prefabs [i].rotation);
 					string addTo = prefabs [i].addTo;
 					if (addTo != null && addTo != "") {
 						GameObject parentObj = GameObject.Find (addTo);

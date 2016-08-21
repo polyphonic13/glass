@@ -6,13 +6,14 @@ public class CrystalReceptacle : Item {
 
 	public bool isStartEnabled = false;
 
-	public AnimationSwitch target;
 	public string keyName;
 
 	private GameObject _crystal;
 
 	private bool _isUnlocked = false;
 	private bool _isOpen = false;
+
+	private AnimationSwitch _target;
 
 	public void OnStringEvent(string type, string value) {
 		if (type == CrystalKey.EVENT_NAME && value == keyName) {
@@ -28,7 +29,7 @@ public class CrystalReceptacle : Item {
 	public override void Actuate(Inventory inventory) {
 		if (isEnabled) {
 			if (_isUnlocked) {
-				target.Actuate ();
+				_target.Actuate ();
 			} else {
 				EventCenter.Instance.AddNote ("Crystal required to activate");
 			}
@@ -36,6 +37,7 @@ public class CrystalReceptacle : Item {
 	}
 
 	private void Awake() {
+		_target = GetComponent<AnimationSwitch> ();
 		_crystal = this.transform.FindChild("crystal").gameObject;
 		_crystal.SetActive (isStartEnabled);
 		isEnabled = isStartEnabled;
