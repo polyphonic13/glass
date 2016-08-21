@@ -8,7 +8,7 @@ namespace Polyworks
 	{
 		public string itemName;
 		public string displayName;
-		public string prefabName; 
+		public string prefabPath; 
 		public string thumbnail = ""; 
 
 		public bool isCollected = false;
@@ -18,13 +18,15 @@ namespace Polyworks
 
 		public int count = 0;
 
+		public UsableRange usableRange; 
+
 		public ItemData () {}
 
 		public virtual ItemData Clone() {
 			var clone = new ItemData ();
 			clone.itemName = this.itemName;
 			clone.displayName = this.displayName;
-			clone.prefabName = this.prefabName;
+			clone.prefabPath = this.prefabPath;
 			clone.thumbnail = this.thumbnail;
 
 			clone.isCollected = this.isCollected;
@@ -34,8 +36,17 @@ namespace Polyworks
 
 			clone.count = this.count;
 
+			clone.usableRange = this.usableRange;
+
 			return clone;
 		}
+	}
+
+	[Serializable]
+	public class UsableRange {
+		public string target1;
+		public string target2;
+		public float distance;
 	}
 }
 

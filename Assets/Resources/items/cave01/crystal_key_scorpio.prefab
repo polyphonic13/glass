@@ -13,9 +13,8 @@ GameObject:
   - 114: {fileID: 11471226}
   - 114: {fileID: 11498728}
   - 114: {fileID: 11498052}
-  - 114: {fileID: 11457360}
   m_Layer: 0
-  m_Name: scorpio_crystal
+  m_Name: crystal_key_scorpio
   m_TagString: interactive
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -125,20 +124,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &11457360
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 136808}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8210f08825f8459181ebe5bc4aea1b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetName1: scorpio_crystal_receptacle
-  targetName2: player
-  usableDistance: 2
 --- !u!114 &11471226
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -151,15 +136,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-    itemName: scorpio_crystal
+    itemName: crystal_key_scorpio
     displayName: Scorpio Crystal
-    prefabName: items/cave01/scorpio_crystal
+    prefabPath: items/cave01/
     thumbnail: sprites/crystal_scorpio_sprite
     isCollected: 0
     isDroppable: 0
-    isUsable: 1
+    isUsable: 0
     isDestroyedOnUse: 1
     count: 0
+    usableRange:
+      target1: crystal_receptacle_scorpio(Clone)
+      target2: player
+      distance: 0
   icon: 2
 --- !u!114 &11498052
 MonoBehaviour:

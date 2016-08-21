@@ -27,6 +27,8 @@ namespace Polyworks {
 			if (object2 != null) {
 				_target2 = object2.transform;
 			}
+
+			Debug.Log ("UsableRangeAgent[" + this.name + "]/Collect, _target1 = " + _target1 + ", _target2 = " + _target2);
 		}
 
 		void Awake () {
@@ -34,15 +36,19 @@ namespace Polyworks {
 		}
 			
 		void Update () {
-			if (_item.isEnabled && _item.data.isCollected && _target1 != null && _target2 != null) {
-				var difference = Vector3.Distance(_target1.position, _target2.position);
-				if(difference < usableDistance) {
-					if(!_item.data.isUsable) {
-						 Debug.Log (this.name + " is enabled, proximity difference = " + difference);
-						_item.data.isUsable = true;
+			if( _target1 != null && _target2 != null) {
+				Debug.Log ("enabled = " + _item.isEnabled + ", collected = " + _item.data.isCollected);
+				if (_item.isEnabled && _item.data.isCollected) {
+					var difference = Vector3.Distance(_target1.position, _target2.position);
+					Debug.Log ("UsableRangeAgent/Update, difference = " + difference + ", usableDifference = " + usableDistance);
+					if(difference < usableDistance) {
+						if(!_item.data.isUsable) {
+							Debug.Log (this.name + " is enabled, proximity difference = " + difference);
+							_item.data.isUsable = true;
+						}
+					} else if(_item.data.isUsable) {
+						_item.data.isUsable = false;
 					}
-				} else if(_item.data.isUsable) {
-					_item.data.isUsable = false;
 				}
 			}
 		}

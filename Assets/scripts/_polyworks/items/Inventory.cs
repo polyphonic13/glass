@@ -57,20 +57,26 @@ namespace Polyworks {
 		}
 
 		public virtual void Use(string name) {
-			Item item = _pluck(name); 
-			
-			if(item == null) {
+			ItemData data = Get (name);			
+			if(data == null) {
 				return; 
 			}
-			
-			item.Use ();
+			data.isUsable = ItemUtils.GetIsUsable (data);
+			Debug.Log ("Inventory/Use, name = " + name + ", is usable = " + data.isUsable);
+			if (data.isUsable) {
+				Item item = _pluck(name); 
 
-			if (item.data.isDestroyedOnUse) {
-				Destroy (item.gameObject);
+				item.Use ();
+
+				if (item.data.isDestroyedOnUse) {
+					Destroy (item.gameObject);
+				} else {
+					_initProximityAgent (item);
+				}
 			} else {
-				_initProximityAgent(item);
+				_eventCenter.AddNote (data.displayName + " Can not be used here");
 			}
-			
+			_eventCenter.CloseInventoryUI ();
 		}
 
 		public virtual void Drop(string name) {
@@ -82,6 +88,7 @@ namespace Polyworks {
 			}
 			
 			_initProximityAgent(item);
+			_eventCenter.CloseInventoryUI ();
 		}
 		
 		public bool Contains(string key) {
@@ -108,14 +115,13 @@ namespace Polyworks {
 		}
 		
 		private Item _pluck(string name) {
-			_eventCenter.CloseInventoryUI ();
-
 			ItemData data = Remove (name);
 			if (data == null) {
 				return null;
 			}
-			// Debug.Log ("Inventory/Use, name = " + name + ", prefab = " + data.prefabName + ", isDestroyedOnUse = " + data.isDestroyedOnUse);
-			GameObject itemObj = (GameObject) Instantiate (Resources.Load (data.prefabName, typeof(GameObject)), transform.position, transform.rotation);
+			string prefab = data.prefabPath + data.itemName;
+			Debug.Log ("Inventory/_pluck, name = " + name + ", prefab = " + prefab + ", isDestroyedOnUse = " + data.isDestroyedOnUse);
+			GameObject itemObj = (GameObject) Instantiate (Resources.Load (prefab, typeof(GameObject)), transform.position, transform.rotation);
 			Item item = itemObj.GetComponent<Item> ();
 			item.data = data;
 			item.data.isCollected = false;
