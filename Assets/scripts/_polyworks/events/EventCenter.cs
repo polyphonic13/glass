@@ -25,7 +25,7 @@ namespace Polyworks
 		public event InventoryRemover OnInventoryRemoved;
 
 		public delegate void NoteAdder(string message);
-		public event NoteAdder OnNoteAdded;
+		public event NoteAdder OnAddNote;
 
 		public delegate void SceneChanger(string scene);
 		public event SceneChanger OnChangeScene;
@@ -114,8 +114,8 @@ namespace Polyworks
 		}
 
 		public void AddNote(string message) {
-			if (OnNoteAdded != null) {
-				OnNoteAdded (message);
+			if (OnAddNote != null) {
+				OnAddNote (message);
 			}
 		}
 
