@@ -2,7 +2,7 @@
 using System.Collections;
 
 /*
- * SecneData contains general information on scene, not stored in persistent GameData
+ * SceneData contains general information on scene, not stored in persistent GameData
  * LevelData contains state information for the scene, including currentSection
  */
 namespace Polyworks
@@ -12,7 +12,7 @@ namespace Polyworks
 	{
 		public string sceneName;
 
-		public Prefab[] prefabs;
+		public SectionPrefabs[] sectionPrefabs;
 	}
 
 }

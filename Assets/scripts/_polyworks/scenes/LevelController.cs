@@ -23,7 +23,7 @@ namespace Polyworks
 
 		#region public methods
 		public void Init(GameData gameData) {
-			ScenePrefabController.Init (sceneData.prefabs, gameData.items);
+			ScenePrefabController.Init (sceneData.sectionPrefabs, gameData.items);
 
 			bool isCleared = LevelUtils.GetIsCleared (sceneData.sceneName, Game.Instance.gameData.levels);
 			_levelData = LevelUtils.GetLevel (sceneData.sceneName, gameData.levels);
