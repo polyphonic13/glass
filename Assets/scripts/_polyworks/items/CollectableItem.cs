@@ -15,5 +15,9 @@ namespace Polyworks {
 				GameObject.Destroy (gameObject);
 			}
 		}
+		
+		public override void Use() {
+			SendMessage("Use", null, SendMessageOptions.DontRequireReceiver);
+		}
 	}
 }
