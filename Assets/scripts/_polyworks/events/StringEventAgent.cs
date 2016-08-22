@@ -3,9 +3,9 @@ using System.Collections;
 using Polyworks;
 
 public class StringEventAgent : MonoBehaviour {
-	public static string EVENT_NAME = "";
+	public static string value = "";
 
 	public override void Use() {
-		EventCenter.Instance.InvokeStringEvent(EVENT_NAME, this.name);
+		EventCenter.Instance.InvokeStringEvent(value, this.name);
 	}
 }
