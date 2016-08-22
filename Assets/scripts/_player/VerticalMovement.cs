@@ -70,6 +70,7 @@ public class VerticalMovement : MonoBehaviour {
 
 	private void Awake() {
 		_player = GetComponent<Player> ();
+		Debug.Log ("VerticalMovement/Awake, _player = " + _player);
 		_mainCamera = Camera.main;
 	}
 

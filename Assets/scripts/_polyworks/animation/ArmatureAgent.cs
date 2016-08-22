@@ -15,7 +15,7 @@ namespace Polyworks {
 		public bool isOpen { get; set; }
 
 		public override void Play(string clip = "") {
-			Debug.Log ("ArmatureAgent[" + this.name + "]/Play, clip = " + clip + ", isPlaying = " + _animation.isPlaying);
+//			Debug.Log ("ArmatureAgent[" + this.name + "]/Play, clip = " + clip + ", isPlaying = " + _animation.isPlaying);
 			if(!_animation.isPlaying) {
 				base.Play ();
 				if (clip == "") {

@@ -18,6 +18,13 @@ namespace Polyworks {
 
 		private bool _isMoving = false;
 
+		public override void Play(string clip = "") {
+			if (!_isMoving) {
+				base.Play ();
+				StartMovement ();
+			}
+		}
+
 		public override void Pause() {
 			base.Pause();
 			_isMoving = false;

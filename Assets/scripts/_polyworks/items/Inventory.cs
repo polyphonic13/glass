@@ -62,7 +62,6 @@ namespace Polyworks {
 				return; 
 			}
 			data.isUsable = ItemUtils.GetIsUsable (data);
-			Debug.Log ("Inventory/Use, name = " + name + ", is usable = " + data.isUsable);
 			if (data.isUsable) {
 				Item item = _pluck(name); 
 
@@ -120,7 +119,6 @@ namespace Polyworks {
 				return null;
 			}
 			string prefab = data.prefabPath + data.itemName;
-			Debug.Log ("Inventory/_pluck, name = " + name + ", prefab = " + prefab + ", isDestroyedOnUse = " + data.isDestroyedOnUse);
 			GameObject itemObj = (GameObject) Instantiate (Resources.Load (prefab, typeof(GameObject)), transform.position, transform.rotation);
 			Item item = itemObj.GetComponent<Item> ();
 			item.data = data;

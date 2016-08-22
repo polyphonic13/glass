@@ -17,19 +17,19 @@ public class CrystalReceptacle : Item {
 
 	public void OnStringEvent(string type, string value) {
 		if (type == CrystalKey.EVENT_NAME && value == keyName) {
-			Debug.Log ("CrystalReceptacle[" + this.name + "]/OnStringEvent, type = " + type + ", value = " + value);
 			isEnabled = true;
 			_isUnlocked = true;
 			_crystal.SetActive (true);
 			ProximityAgent pa = GetComponent<ProximityAgent> ();
 			pa.SetFocus (true);
+			_actuate ();
 		}
 	}
 
 	public override void Actuate(Inventory inventory) {
 		if (isEnabled) {
 			if (_isUnlocked) {
-				_target.Actuate ();
+				_actuate ();
 			} else {
 				EventCenter.Instance.AddNote ("Crystal required to activate");
 			}
@@ -40,7 +40,7 @@ public class CrystalReceptacle : Item {
 		_target = GetComponent<AnimationSwitch> ();
 		_crystal = this.transform.FindChild("crystal").gameObject;
 		_crystal.SetActive (isStartEnabled);
-		isEnabled = isStartEnabled;
+		_isUnlocked = isEnabled = isStartEnabled;
 
 		EventCenter ec = EventCenter.Instance;
 		ec.OnStringEvent += this.OnStringEvent;
@@ -50,6 +50,12 @@ public class CrystalReceptacle : Item {
 		EventCenter ec = EventCenter.Instance;
 		if (ec != null) {
 			ec.OnStringEvent -= this.OnStringEvent;
+		}
+	}
+
+	private void _actuate() {
+		if (_target != null) {
+			_target.Actuate ();
 		}
 	}
 }

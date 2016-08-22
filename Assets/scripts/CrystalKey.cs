@@ -7,6 +7,5 @@ public class CrystalKey : CollectableItem {
 
 	public override void Use() {
 		EventCenter.Instance.InvokeStringEvent(EVENT_NAME, this.name);
-//		ec.UseCrystalKey (this.name);
 	}
 }
