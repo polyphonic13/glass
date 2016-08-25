@@ -29,7 +29,7 @@ public class VerticalMovement : MonoBehaviour {
 				_detachFromVerticalMovementArea ();
 			}
 		} else {
-			Debug.Log("VerticalMovement/GetMovement, _isInClimbTrigger = " + _isInClimbTrigger + ", isClimbPressed");
+//			Debug.Log("VerticalMovement/GetMovement, _isInClimbTrigger = " + _isInClimbTrigger + ", isClimbPressed = " + isClimbPressed);
 			if (_isInClimbTrigger) {
 				if (isClimbPressed) {
 					// move vertically

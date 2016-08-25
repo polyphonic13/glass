@@ -126,9 +126,6 @@ namespace Polyworks
 		}
 
 		public void SetClimbing(bool isClimbing) {
-			if(isClimbing) {
-				Debug.Log("SetClimbing, isClimbing = " + isClimbing);
-			}
 			_isClimbing = isClimbing;
 		}
 

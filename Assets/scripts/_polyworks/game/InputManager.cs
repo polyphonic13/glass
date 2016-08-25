@@ -125,7 +125,12 @@ namespace Polyworks {
 				_player.SetJumping(true);
 			}
 
-			_player.SetClimbing(_controls.GetButtonDown("climb"));
+			if (_controls.GetButton ("climb")) {
+				_player.SetClimbing (true);
+			} else if (_controls.GetButtonUp ("climb")) {
+				_player.SetClimbing (false);
+			}
+
 			_player.SetDiving(_controls.GetButtonDown("dive"));
 			_player.SetCrawling(_controls.GetButtonDown("crawl"));
 
