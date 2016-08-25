@@ -21,9 +21,9 @@ namespace Polyworks {
 
 			Transform target1 = targetObject1.transform;
 			Transform target2 = targetObject2.transform;
-			Debug.Log ("target1 = " + target1 + ", target2 = " + target2);
+
 			var distance = Vector3.Distance(target1.position, target2.position);
-			Debug.Log ("distance = " + distance + ", ur.distance = " + ur.distance);
+
 			if(distance < ur.distance) {
 				return true;
 			}

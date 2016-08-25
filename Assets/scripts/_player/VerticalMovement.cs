@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnitySampleAssets.Characters.FirstPerson; 
+using Polyworks;
 
 public class VerticalMovement : MonoBehaviour {
 	public float climbDownThreshold = -0.4f;
@@ -28,15 +29,15 @@ public class VerticalMovement : MonoBehaviour {
 				_detachFromVerticalMovementArea ();
 			}
 		} else {
-			// 
+			Debug.Log("VerticalMovement/GetMovement, _isInClimbTrigger = " + _isInClimbTrigger + ", isClimbPressed");
 			if (_isInClimbTrigger) {
 				if (isClimbPressed) {
 					// move vertically
-//					// Debug.Log("in climb trigger, move vertically");
+					// Debug.Log(" in climb trigger, move vertically");
 					_moveVertically (horizontal, vertical, true);
 				} else {
 					// move normally
-//					// Debug.Log("in climb trigger, move normally");
+					// Debug.Log(" in climb trigger, move normally");
 					_movement.y = 0;
 					_movement.x = horizontal;
 					_movement.z = vertical;
@@ -44,7 +45,7 @@ public class VerticalMovement : MonoBehaviour {
 				}
 			} else {
 				// move vertically
-//				// Debug.Log("move vertically");
+				// Debug.Log("move vertically");
 				if (isClimbPressed) {
 					_moveVertically (horizontal, vertical, false);
 				} else {
@@ -54,7 +55,6 @@ public class VerticalMovement : MonoBehaviour {
 				}
 			}
 		}
-
 		return _movement;
 	}
 
@@ -70,7 +70,6 @@ public class VerticalMovement : MonoBehaviour {
 
 	private void Awake() {
 		_player = GetComponent<Player> ();
-		Debug.Log ("VerticalMovement/Awake, _player = " + _player);
 		_mainCamera = Camera.main;
 	}
 
@@ -136,5 +135,4 @@ public class VerticalMovement : MonoBehaviour {
 			_movement = transform.TransformDirection (_movement);
 		}
 	}
-
 }
