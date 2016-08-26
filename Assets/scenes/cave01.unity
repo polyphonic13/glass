@@ -6272,6 +6272,10 @@ Prefab:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2300018, guid: 09ad743a3fbf04ea3b4162a788c0e4b8, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e034fb94a49864f8ebf65a1cf186589b, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 09ad743a3fbf04ea3b4162a788c0e4b8, type: 3}
   m_IsPrefabParent: 0
@@ -27165,18 +27169,6 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400034, guid: 75823213227884022b03ccfda354772d, type: 3}
   m_PrefabInternal: {fileID: 643561807}
---- !u!4 &647048722
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 475884, guid: e060e153f9c0640cb9cfde1820c4d94a, type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2103183343}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071067}
-  m_LocalPosition: {x: 135.41, y: -1.4200001, z: 112.44}
-  m_LocalScale: {x: 0.1498893, y: 6.3849854, z: 11.481898}
-  m_Children: []
-  m_Father: {fileID: 1952537789}
-  m_RootOrder: 9
 --- !u!1 &650591465
 GameObject:
   m_ObjectHideFlags: 0
@@ -41850,11 +41842,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1217740115}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 218.11, y: -45.92, z: 169.14}
+  m_LocalPosition: {x: 217.1, y: -45.92, z: 169.14}
   m_LocalScale: {x: 0.1498893, y: 6.384985, z: 11.481898}
   m_Children: []
   m_Father: {fileID: 1952537789}
-  m_RootOrder: 13
+  m_RootOrder: 12
 --- !u!1 &997836589
 GameObject:
   m_ObjectHideFlags: 0
@@ -62504,11 +62496,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 905063212}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 217.48999, y: -45.92, z: 169.14}
+  m_LocalPosition: {x: 216.5, y: -45.92, z: 169.14}
   m_LocalScale: {x: 0.1498893, y: 6.384985, z: 11.481898}
   m_Children: []
   m_Father: {fileID: 1952537789}
-  m_RootOrder: 14
+  m_RootOrder: 13
 --- !u!1001 &1556706658
 Prefab:
   m_ObjectHideFlags: 0
@@ -65411,7 +65403,7 @@ Transform:
   m_LocalScale: {x: 0.1498893, y: 6.384985, z: 11.481898}
   m_Children: []
   m_Father: {fileID: 1952537789}
-  m_RootOrder: 15
+  m_RootOrder: 14
 --- !u!1 &1600522086
 GameObject:
   m_ObjectHideFlags: 0
@@ -65961,7 +65953,7 @@ Transform:
   m_LocalScale: {x: 0.1498893, y: 10.46134, z: 11.481898}
   m_Children: []
   m_Father: {fileID: 1952537789}
-  m_RootOrder: 10
+  m_RootOrder: 9
 --- !u!1001 &1613421419
 Prefab:
   m_ObjectHideFlags: 0
@@ -68770,7 +68762,7 @@ MonoBehaviour:
       target1: 
       target2: 
       distance: 0
-  icon: 0
+  icon: 1
   isStartEnabled: 1
   keyName: 
 --- !u!65 &1660579788
@@ -75926,7 +75918,7 @@ Transform:
   m_LocalScale: {x: 0.1498893, y: 6.384985, z: 11.481898}
   m_Children: []
   m_Father: {fileID: 1952537789}
-  m_RootOrder: 11
+  m_RootOrder: 10
 --- !u!1001 &1788986576
 Prefab:
   m_ObjectHideFlags: 0
@@ -80607,7 +80599,6 @@ Transform:
   - {fileID: 359529908}
   - {fileID: 946818261}
   - {fileID: 362752407}
-  - {fileID: 647048722}
   - {fileID: 1606206641}
   - {fileID: 1786443759}
   - {fileID: 2112183519}
@@ -84068,7 +84059,7 @@ GameObject:
   - 114: {fileID: 2017554769}
   - 114: {fileID: 2017554768}
   m_Layer: 0
-  m_Name: room02e_trigger1
+  m_Name: room02f_trigger1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -84097,7 +84088,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 198c4c0567ed94630aec2217f87fea62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  section: 4
+  section: 5
 --- !u!65 &2017554770
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -84263,14 +84254,14 @@ MonoBehaviour:
     - name: room02f
       prefabs: []
     - name: room02g
-      prefabs: []
-    - name: room02h
       prefabs:
       - name: crystal_receptacle_taurus
-        path: items/cave01/room02h/
-        addTo: cave_objects/room_objects/room02/room02b
+        path: items/cave01/room02g/
+        addTo: cave_objects/room_objects/room02/room02g
         location: {x: 219, y: -51, z: 166}
         rotation: {x: 0, y: 0, z: 0, w: 0}
+    - name: room02h
+      prefabs: []
     - name: room02i
       prefabs: []
   sectionControllers:
@@ -87918,70 +87909,6 @@ MonoBehaviour:
 Transform:
   m_PrefabParentObject: {fileID: 400036, guid: f9d3a00d4ddbf45f2b3f27f33eb90a99, type: 3}
   m_PrefabInternal: {fileID: 1013208715}
---- !u!1 &2103183343
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 129348, guid: e060e153f9c0640cb9cfde1820c4d94a, type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 647048722}
-  - 33: {fileID: 2103183347}
-  - 65: {fileID: 2103183346}
-  - 114: {fileID: 2103183345}
-  - 114: {fileID: 2103183344}
-  m_Layer: 0
-  m_Name: room02f_trigger1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2103183344
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2103183343}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15b802e857384449e940525afed5e135, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2103183345
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11450026, guid: e060e153f9c0640cb9cfde1820c4d94a,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2103183343}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 198c4c0567ed94630aec2217f87fea62, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  section: 5
---- !u!65 &2103183346
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 6557432, guid: e060e153f9c0640cb9cfde1820c4d94a,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2103183343}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!33 &2103183347
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 3319086, guid: e060e153f9c0640cb9cfde1820c4d94a,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2103183343}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &2104778004
 GameObject:
   m_ObjectHideFlags: 0
@@ -88028,7 +87955,7 @@ Transform:
   m_LocalScale: {x: 0.1498893, y: 6.384985, z: 11.481898}
   m_Children: []
   m_Father: {fileID: 1952537789}
-  m_RootOrder: 12
+  m_RootOrder: 11
 --- !u!1 &2112762405
 GameObject:
   m_ObjectHideFlags: 0
