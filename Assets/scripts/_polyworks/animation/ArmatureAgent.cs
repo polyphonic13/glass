@@ -1,14 +1,38 @@
 using UnityEngine;
+using System.Collections;
 
 namespace Polyworks {
+	[System.Serializable]
+	public struct AnimationBone {
+		public string animation;
+		public Transform bone;
+	}
+
+	[System.Serializable]
+	public class AnimationBoneCollection {
+		public AnimationBone[] animationBones;
+
+		public static Transform GetBone(string name, AnimationBone[] bones) {
+			Transform bone = null;
+			for (int i = 0; i < bones.Length; i++) {
+				if (name == bones[i].animation) {
+					bone = bones[i].bone;
+					break;
+				}
+			}
+			return bone;
+		}
+	}
+
 	public class ArmatureAgent : AnimationAgent {
 	
 		public delegate void AnimationHandler(Transform bone);
-	
 		public event AnimationHandler OnAnimationPlayed;
 	
 		public AnimationClip defaultAnimation; 
 	
+		public AnimationBoneCollection bones; 
+
 		private Animation _animation;
 		private string _currentClip; 
 
@@ -44,8 +68,10 @@ namespace Polyworks {
 			return _animation.isPlaying;
 		}
 
-		public virtual void PlayAnimation(string clip, Transform bone = null, bool isLooping = false) {
+		public virtual void PlayAnimation(string clip, bool isLooping = false) {
 			isOpen = !isOpen;
+			Transform bone = AnimationBoneCollection.GetBone (clip, bones.animationBones);
+			Debug.Log ("ArmatureAgent[" + this.name + "]/PlayAnimation, clip = " + clip + ", bone = " + bone);
 			AnimateArmatureBone(clip, bone, isLooping);
 		}
 	

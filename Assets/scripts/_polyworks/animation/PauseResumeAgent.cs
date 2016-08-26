@@ -24,7 +24,7 @@ namespace Polyworks {
 				return;
 			}
 			if (target.GetIsActive ()) {
-				gameObject.SendMessage(message);
+				gameObject.SendMessage(message, null, SendMessageOptions.DontRequireReceiver);
 			}
 		}
 	}

@@ -2,7 +2,7 @@
 using System.Collections;
 
 namespace Polyworks {
-	public class AnimationSwitch : MonoBehaviour
+	public class AnimationSwitch : Item
 	{
 		public string targetName; 
 		public string[] animations; 

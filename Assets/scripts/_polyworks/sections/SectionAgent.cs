@@ -7,9 +7,9 @@ namespace Polyworks {
 		public void ToggleEnabled(bool isEnabled) {
 			if (isEnabled) {
 				Debug.Log ("SectionAgent[" + this.name + "]/ToggleEnabled, isEnabled = " + isEnabled);
-				this.gameObject.SendMessage ("Enable");
+				this.gameObject.SendMessage ("Enable", null, SendMessageOptions.DontRequireReceiver);
 			} else {
-				this.gameObject.SendMessage ("Disable");
+				this.gameObject.SendMessage ("Disable", null, SendMessageOptions.DontRequireReceiver);
 			}
 		}
 	}
