@@ -14,7 +14,7 @@ public class FogManager : MonoBehaviour {
 	private GlobalFog _fog;
 
 	void Start() {
-		EventCenter.Instance.OnUnderWater += OnUnderWater;
+//		EventCenter.Instance.OnUnderWater += OnUnderWater;
 		_mainCamera = Camera.main;
 		_fog = _mainCamera.GetComponent<GlobalFog>();
 		_fog.distanceFog = true;

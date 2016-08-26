@@ -9,6 +9,7 @@ namespace Polyworks
 		public IntTaskData[] intTasks; 
 		public FloatTaskData[] floatTasks;
 		public StringTaskData[] stringTasks;
+		public CollectionTaskData[] collectionTasks;
 	}
 
 	[Serializable]
@@ -61,6 +62,23 @@ namespace Polyworks
 
 		public StringTaskData Clone() {
 			StringTaskData clone = new StringTaskData ();
+			clone.name = this.name;
+			clone.isCompleted = this.isCompleted;
+			clone.goal = this.goal;
+			clone.current = this.current;
+			return clone;
+		}
+	}
+
+	[Serializable]
+	public class CollectionTaskData: TaskData {
+		public int goal = 1;
+		public int current = 0;
+
+		public CollectionTaskData() {}
+
+		public CollectionTaskData Clone() {
+			CollectionTaskData clone = new CollectionTaskData ();
 			clone.name = this.name;
 			clone.isCompleted = this.isCompleted;
 			clone.goal = this.goal;

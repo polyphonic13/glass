@@ -38,12 +38,6 @@ public class CollidableParent : MonoBehaviour {
 //		// Debug.Log("CollidableParent[ " + name + " ]/_onCollision, collisionTarget = " + target.name);
 		if(target.name == "weight(Clone)") {
 //			// Debug.Log(" it is a weight");
-			ItemWeight itemWeight = target.GetComponent<ItemWeight>();
-//			// Debug.Log("  itemWeight = " + itemWeight + ", TargetContainerName = " + itemWeight.TargetContainerName);
-			if(itemWeight.TargetContainerName != null && itemWeight.TargetContainerName == name) {
-//				// Debug.Log("  itemWeight.parent = " + itemWeight.ParentObject);
-//				PositionChild(itemWeight.ParentObject);
-			}
 		}
 	}
 	

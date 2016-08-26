@@ -9,15 +9,15 @@ public class CrosshairUI : MonoBehaviour {
 	public Sprite[] icons;
 	public int defaultIcon;
 	
-	void Awake () {
-		EventCenter.Instance.OnNearItem += this.OnNearItem;
-	}
-
-	void OnNearItem(Item item, bool isFocused) {
+	public void OnNearItem(Item item, bool isFocused) {
 		if (isFocused && item.icon != null) {
 			image.sprite = icons[item.icon];
 		} else {
 			image.sprite = icons[defaultIcon];
 		}
 	}
+	void Awake () {
+		EventCenter.Instance.OnNearItem += this.OnNearItem;
+	}
+
 }

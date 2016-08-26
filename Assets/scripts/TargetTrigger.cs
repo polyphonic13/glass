@@ -4,10 +4,10 @@ using Polyworks;
 
 public class TargetTrigger : Item {
 
-	public TargetController target;
+	public TargetAgent target;
 	public string disabledMessage = ""; 
 
-	public override void Actuate() {
+	public override void Actuate(Inventory inventory) {
 		if (this.isEnabled) {
 			if (!target.GetIsActive ()) {
 				target.Actuate ();

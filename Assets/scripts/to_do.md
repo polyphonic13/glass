@@ -12,3 +12,36 @@
 	- Clone prefab from Item.data.prefabName on inspect
 	- Destroy prefab instance on close
 	
+	
+NOTES
+
+game controller: 
+	- Game
+	- EventCenter
+	- InputManager
+	
+level controller: 
+	- LevelController
+	- TaskController
+	- PlayerManager
+
+sections: 
+	- SectionController
+	
+scene change game object: 
+	- TriggerReaction
+	- SceneChangeSwitch
+
+section change game object: 
+	- TriggerReaction
+	- SectionSwitch
+	
+prefab game object: 
+	- CollectableItem
+	- SectionAgent
+	- ProximityAgent
+
+player:
+	- Player
+	- PlayerHead
+	- Inventory

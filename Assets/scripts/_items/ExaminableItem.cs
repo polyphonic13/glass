@@ -9,13 +9,13 @@ public class ExaminableItem : Item {
 
 	private bool _isUsedOnce = false;
 
-	private ProximityController _proximityController; 
+	private ProximityAgent _proximityController; 
 	
 	void Awake() {
-		_proximityController = GetComponent<ProximityController>();
+		_proximityController = GetComponent<ProximityAgent>();
 	}
 
-	public override void Actuate() {
+	public override void Actuate(Inventory inventory) {
 		if(isEnabled) {
 			if(_proximityController.Check()) {
 				if(!isSingleUse || !_isUsedOnce) {

@@ -6,18 +6,18 @@ namespace Polyworks {
 	{
 		public string collectKey; 
 
-		private Item _item;
+		private CollectableItem _item;
 
 		void Start ()
 		{
-			_item = GetComponent<Item> ();
+			_item = GetComponent<CollectableItem> ();
 		}
 
 		void Update ()
 		{
 			if (Input.GetKeyDown (collectKey)) {
 				if (_item != null && !_item.data.isCollected) {
-					_item.Collect (Game.Instance.GetPlayerInventory());
+					_item.Actuate (Game.Instance.GetPlayerInventory());
 					EventCenter.Instance.UpdateStringTask (_item.name, _item.name);
 
 				}

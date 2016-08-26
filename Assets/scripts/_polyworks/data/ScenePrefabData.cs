@@ -6,6 +6,7 @@ namespace Polyworks
 	[Serializable]
 	public class ScenePrefabData {
 		public Prefab[] prefabs;
+		public SectionPrefabs[] sectionPrefabs;
 	}
 
 	[Serializable]
@@ -17,5 +18,10 @@ namespace Polyworks
 		public Quaternion rotation;
 	}
 
+	[Serializable]
+	public struct SectionPrefabs {
+		public string name;
+		public Prefab[] prefabs;
+	}
 }
 

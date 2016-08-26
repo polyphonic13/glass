@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ArmatureController : TargetController {
+public class ArmatureController : TargetAgent {
 
 	public ArmatureParent target;
 	public AnimationClip unlockClip; 
@@ -29,6 +29,9 @@ public class ArmatureController : TargetController {
 	}
 
 	public override bool GetIsActive() {
+		if (target == null) {
+			return false;
+		}
 		return target.GetIsActive ();
 	}
 }

@@ -24,13 +24,13 @@ namespace Polyworks {
 		private string _initName = ""; 
 
 		public void Select() {
-//			// Debug.Log ("InventoryItemUI/Select");
+			// Debug.Log ("InventoryItemUI/Select");
 			_controlPanel.alpha = 1;
 			SetControlButtonFocus (0);
 		}
 
 		public void Deselect() {
-//			// Debug.Log ("InventoryItemUI/Deselect");
+			// Debug.Log ("InventoryItemUI/Deselect");
 			_controlPanel.alpha = 0;
 			_focusedControlButton = 0;
 		}
@@ -76,7 +76,7 @@ namespace Polyworks {
 				break;
 
 			case 2:
-				playerInventory.Remove(this.name);
+				playerInventory.Drop(this.name);
 				break;
 
 			default:

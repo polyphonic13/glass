@@ -20,23 +20,23 @@ public class VerticalMovementArea : MonoBehaviour {
 
 	}
 
-//	void OnDrawGizmos() {
-//		Gizmos.color = Color.red;
-//		if (top != null) {
-//			Gizmos.DrawWireCube (top.position, top.localScale);
-//		}
-//		if (bottom != null) {
-//			Gizmos.DrawWireCube (bottom.position, bottom.localScale);
-//		}
-//		if (left != null) {
-//			Gizmos.DrawWireCube (left.position, left.localScale);
-//		}
-//		if (right != null) {
-//			Gizmos.DrawWireCube (right.position, right.localScale);
-//		}
-//		Gizmos.color = Color.blue;
-//		Gizmos.DrawWireCube (this.transform.position, this.transform.localScale);
-//	}
+	void OnDrawGizmos() {
+		Gizmos.color = Color.red;
+		if (top != null) {
+			Gizmos.DrawWireCube (top.position, top.localScale);
+		}
+		if (bottom != null) {
+			Gizmos.DrawWireCube (bottom.position, bottom.localScale);
+		}
+		if (left != null) {
+			Gizmos.DrawWireCube (left.position, left.localScale);
+		}
+		if (right != null) {
+			Gizmos.DrawWireCube (right.position, right.localScale);
+		}
+		// Gizmos.color = Color.blue;
+		// Gizmos.DrawWireCube (this.transform.position, this.transform.localScale);
+	}
 
 	public bool GetIsUpDownEnabled() {
 		return _isUpDownEnabled;

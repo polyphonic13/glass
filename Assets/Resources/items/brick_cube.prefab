@@ -11,11 +11,13 @@ GameObject:
   - 33: {fileID: 3323410}
   - 65: {fileID: 6519634}
   - 23: {fileID: 2364862}
-  - 114: {fileID: 11459490}
   - 114: {fileID: 11444938}
+  - 114: {fileID: 11414294}
+  - 114: {fileID: 11449634}
+  - 114: {fileID: 11417240}
   m_Layer: 0
   m_Name: brick_cube
-  m_TagString: Untagged
+  m_TagString: interactive
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -77,6 +79,42 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &11414294
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 129282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 196cc4548139b4b2891c6b378d048c62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+    itemName: brick_cube
+    displayName: Brick Cube
+    prefabName: items/brick_cube
+    thumbnail: sprites/brick_cube_sprite
+    isCollected: 0
+    isDroppable: 1
+    isUsable: 1
+    isDestroyedOnUse: 1
+    count: 0
+  icon: 2
+--- !u!114 &11417240
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 129282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8f2515d035a5431bae3eaa8d63d77f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactDistance: 2
+  target: {fileID: 0}
+  isTargetPlayer: 1
 --- !u!114 &11444938
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -89,7 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collectKey: m
---- !u!114 &11459490
+--- !u!114 &11449634
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -97,21 +135,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 129282}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61649c29147dc43ca8ab161ec740176f, type: 3}
+  m_Script: {fileID: 11500000, guid: 3df9045043b8d4f1cb143be7d3383c2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data:
-    containingRoom: 
-    itemName: brick_cube
-    displayName: Brick Cube
-    prefabName: items/brick_cube
-    isCollected: 0
-    isDroppable: 1
-    isUsable: 1
-    isDestroyedOnUse: 1
-    count: 0
-    thumbnail: sprites/brick_cube_sprite
-  icon: 1
+  section: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

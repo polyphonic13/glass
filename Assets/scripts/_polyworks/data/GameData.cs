@@ -5,6 +5,7 @@ namespace Polyworks {
 	[System.Serializable]
 	public class GameData {
 		public string currentScene;
+		public int targetSection = -1;
 
 		public int count = 0;
 

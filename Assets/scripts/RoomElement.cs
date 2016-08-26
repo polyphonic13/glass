@@ -11,9 +11,9 @@ public class RoomElement : MonoBehaviour {
 	}
 
 	public void Init() {
-		var ec = EventCenter.Instance;
-
-		ec.OnRoomEntered += OnRoomEntered;
+//		var ec = EventCenter.Instance;
+//
+//		ec.OnRoomEntered += OnRoomEntered;
 	}
 
 	public void OnRoomEntered(string room) {

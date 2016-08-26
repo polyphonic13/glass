@@ -11,11 +11,13 @@ GameObject:
   - 33: {fileID: 3311996}
   - 135: {fileID: 13544324}
   - 23: {fileID: 2335102}
-  - 114: {fileID: 11425834}
   - 114: {fileID: 11489480}
+  - 114: {fileID: 11413002}
+  - 114: {fileID: 11446130}
+  - 114: {fileID: 11400784}
   m_Layer: 0
   m_Name: wallpaper_sphere
-  m_TagString: Untagged
+  m_TagString: interactive
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -65,7 +67,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 159296}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &11425834
+--- !u!114 &11400784
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -73,21 +75,47 @@ MonoBehaviour:
   m_GameObject: {fileID: 159296}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61649c29147dc43ca8ab161ec740176f, type: 3}
+  m_Script: {fileID: 11500000, guid: c8f2515d035a5431bae3eaa8d63d77f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactDistance: 2
+  target: {fileID: 0}
+  isTargetPlayer: 1
+--- !u!114 &11413002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 159296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 196cc4548139b4b2891c6b378d048c62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-    containingRoom: scene2
+    containingSection: 
     itemName: wallpaper_sphere
     displayName: Wallpaper Sphere
     prefabName: items/wallpaper_sphere
     isCollected: 0
-    isDroppable: 1
+    isDroppable: 0
     isUsable: 1
     isDestroyedOnUse: 0
     count: 0
     thumbnail: sprites/wallpaper_sphere_sprite
-  icon: 1
+  icon: 2
+--- !u!114 &11446130
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 159296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3df9045043b8d4f1cb143be7d3383c2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  section: 0
 --- !u!114 &11489480
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections;
-using UnityEngine;
 
+/*
+ * SceneData contains general information on scene, not stored in persistent GameData
+ * LevelData contains state information for the scene, including currentSection
+ */
 namespace Polyworks
 {
 	[Serializable]
@@ -9,15 +12,7 @@ namespace Polyworks
 	{
 		public string sceneName;
 
-		public Prefab[] prefabs;
-		public PlayerLocation[] playerLocations;
-
-	}
-
-	[Serializable]
-	public struct PlayerLocation {
-		public Vector3 position;
-		public Quaternion rotation;
+		public SectionPrefabs[] sectionPrefabs;
 	}
 
 }

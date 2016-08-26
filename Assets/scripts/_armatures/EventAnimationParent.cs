@@ -14,7 +14,7 @@ public class EventAnimationParent : ArmatureParent {
 	
 	public void InitEventAnimationParent() {
 		if(eventName != "") {
-			EventCenter.Instance.OnTriggerEvent += OnTriggerEvent;
+//			EventCenter.Instance.OnTriggerEvent += OnTriggerEvent;
 		}
 		Init();
 	}
@@ -24,7 +24,7 @@ public class EventAnimationParent : ArmatureParent {
 		if(evt == eventName && animationClip != null) {
 			PlayAnimation(animationClip.name);
 			if(isSingleUse) {
-				EventCenter.Instance.OnTriggerEvent -= OnTriggerEvent;
+//				EventCenter.Instance.OnTriggerEvent -= OnTriggerEvent;
 			}
 		}
 	}

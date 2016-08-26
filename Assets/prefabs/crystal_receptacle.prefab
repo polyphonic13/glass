@@ -10,7 +10,8 @@ GameObject:
   - 4: {fileID: 447396}
   - 95: {fileID: 9584718}
   - 65: {fileID: 6568654}
-  - 114: {fileID: 11467498}
+  - 114: {fileID: 11482598}
+  - 114: {fileID: 11405084}
   m_Layer: 0
   m_Name: crystal_receptacle
   m_TagString: interactive
@@ -89,7 +90,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 107442}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.8600006, y: -0.46100593, z: 3.2999954}
+  m_LocalPosition: {x: 127.259995, y: -0.4609926, z: 53.100002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 493896}
@@ -273,7 +274,7 @@ Light:
   m_ShadowRadius: 0
   m_ShadowAngle: 0
   m_AreaSize: {x: 1, y: 1}
---- !u!114 &11467498
+--- !u!114 &11405084
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -284,17 +285,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eae31bc15b68f4149b23835def9f1a73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: 3391a7fbc890f4fbaaf553f39c200493, type: 3}
-  Thumbnail: {fileID: 0}
-  ItemName: Crystal Receptacle
-  _interactDistance: 1.5
-  _containingRoom: room02a
+  data:
+    itemName: 
+    displayName: 
+    prefabName: 
+    thumbnail: 
+    isCollected: 0
+    isDroppable: 0
+    isUsable: 0
+    isDestroyedOnUse: 0
+    count: 0
+  icon: 0
+  isStartEnabled: 0
+  target: {fileID: 11482598}
+  keyName: leo_key
+--- !u!114 &11482598
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 107442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32f71962736ed45739d8800e3c5db29b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   target: {fileID: 0}
-  bone: {fileID: 0}
   unlockClip: {fileID: 7400008, guid: 18db5bebeebe341869a285daeced51e9, type: 3}
   closeClip: {fileID: 7400010, guid: 18db5bebeebe341869a285daeced51e9, type: 3}
-  key: {fileID: 0}
-  crystal: {fileID: 154866}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

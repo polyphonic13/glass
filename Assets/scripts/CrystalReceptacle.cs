@@ -6,36 +6,56 @@ public class CrystalReceptacle : Item {
 
 	public bool isStartEnabled = false;
 
-	public TargetController target;
-	public CrystalKey key;
+	public string keyName;
 
 	private GameObject _crystal;
 
+	private bool _isUnlocked = false;
 	private bool _isOpen = false;
 
-	void Awake() {
-		_crystal = this.transform.FindChild("crystal").gameObject;
-		EventCenter.Instance.OnCrystalKeyUsed += OnCrystalKeyUsed;
-		_crystal.SetActive (isStartEnabled);
-		this.isEnabled = isStartEnabled;
+	private AnimationSwitch _target;
+
+	public void OnStringEvent(string type, string value) {
+		if (type == CrystalKey.EVENT_NAME && value == keyName) {
+			isEnabled = true;
+			_isUnlocked = true;
+			_crystal.SetActive (true);
+			ProximityAgent pa = GetComponent<ProximityAgent> ();
+			pa.SetFocus (true);
+			_actuate ();
+		}
 	}
 
-	public void OnCrystalKeyUsed(string name) {
-		if (key != null) {
-			if (name == key.name) {
-				this.isEnabled = true;
-				_crystal.SetActive (true);
+	public override void Actuate(Inventory inventory) {
+		if (isEnabled) {
+			if (_isUnlocked) {
+				_actuate ();
+			} else {
+				EventCenter.Instance.AddNote ("Crystal required to activate");
 			}
 		}
 	}
 
-	public override void Actuate() {
-		if (this.isEnabled) {
-			if (!target.GetIsActive ()) {
-				target.Actuate ();
-			}
-		} else {
-			EventCenter.Instance.AddNote ("Crystal required to activate");
+	private void Awake() {
+		_target = GetComponent<AnimationSwitch> ();
+		_crystal = this.transform.FindChild("crystal").gameObject;
+		_crystal.SetActive (isStartEnabled);
+		_isUnlocked = isEnabled = isStartEnabled;
+
+		EventCenter ec = EventCenter.Instance;
+		ec.OnStringEvent += this.OnStringEvent;
+	}
+
+	private void OnDestroy() {
+		EventCenter ec = EventCenter.Instance;
+		if (ec != null) {
+			ec.OnStringEvent -= this.OnStringEvent;
+		}
+	}
+
+	private void _actuate() {
+		if (_target != null) {
+			_target.Actuate ();
 		}
 	}
 }
