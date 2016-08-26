@@ -27206,6 +27206,8 @@ GameObject:
   - 114: {fileID: 650591471}
   - 114: {fileID: 650591470}
   - 114: {fileID: 650591467}
+  - 114: {fileID: 650591473}
+  - 114: {fileID: 650591472}
   m_Layer: 0
   m_Name: trigger
   m_TagString: interactive
@@ -27236,7 +27238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8f2515d035a5431bae3eaa8d63d77f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactDistance: 2
+  interactDistance: 3
   target: {fileID: 0}
   isTargetPlayer: 1
 --- !u!65 &650591468
@@ -27284,6 +27286,44 @@ MonoBehaviour:
   animations:
   - room02h_relays_001_close
   - room02h_relays_001_open
+--- !u!114 &650591472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 650591465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4e0e4ebed3e94a869a970734193bc66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value: miner_relay_001_closed
+--- !u!114 &650591473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 650591465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dbbe14777fe4421e95e12f798835414, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+    itemName: 
+    displayName: 
+    prefabPath: 
+    thumbnail: 
+    isCollected: 0
+    isDroppable: 0
+    isUsable: 0
+    isDestroyedOnUse: 0
+    count: 0
+    usableRange:
+      target1: 
+      target2: 
+      distance: 0
+  icon: 1
 --- !u!1001 &653825221
 Prefab:
   m_ObjectHideFlags: 0
@@ -52013,6 +52053,8 @@ GameObject:
   - 114: {fileID: 1217261972}
   - 114: {fileID: 1217261971}
   - 114: {fileID: 1217261968}
+  - 114: {fileID: 1217261974}
+  - 114: {fileID: 1217261973}
   m_Layer: 0
   m_Name: trigger
   m_TagString: interactive
@@ -52043,7 +52085,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8f2515d035a5431bae3eaa8d63d77f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactDistance: 2
+  interactDistance: 3
   target: {fileID: 0}
   isTargetPlayer: 1
 --- !u!65 &1217261969
@@ -52091,6 +52133,44 @@ MonoBehaviour:
   animations:
   - room02h_relays_002_close
   - room02h_relays_002_open
+--- !u!114 &1217261973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1217261966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4e0e4ebed3e94a869a970734193bc66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value: miner_relay_002_closed
+--- !u!114 &1217261974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1217261966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dbbe14777fe4421e95e12f798835414, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+    itemName: 
+    displayName: 
+    prefabPath: 
+    thumbnail: 
+    isCollected: 0
+    isDroppable: 0
+    isUsable: 0
+    isDestroyedOnUse: 0
+    count: 0
+    usableRange:
+      target1: 
+      target2: 
+      distance: 0
+  icon: 1
 --- !u!1 &1217740115
 GameObject:
   m_ObjectHideFlags: 0
@@ -58530,6 +58610,8 @@ GameObject:
   - 114: {fileID: 1422303869}
   - 114: {fileID: 1422303868}
   - 114: {fileID: 1422303865}
+  - 114: {fileID: 1422303871}
+  - 114: {fileID: 1422303870}
   m_Layer: 0
   m_Name: trigger
   m_TagString: interactive
@@ -58560,7 +58642,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8f2515d035a5431bae3eaa8d63d77f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactDistance: 2
+  interactDistance: 3
   target: {fileID: 0}
   isTargetPlayer: 1
 --- !u!65 &1422303866
@@ -58608,6 +58690,44 @@ MonoBehaviour:
   animations:
   - room02h_relays_000_close
   - room02h_relays_000_open
+--- !u!114 &1422303870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1422303863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4e0e4ebed3e94a869a970734193bc66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value: miner_relay_000_closed
+--- !u!114 &1422303871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1422303863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dbbe14777fe4421e95e12f798835414, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+    itemName: 
+    displayName: 
+    prefabPath: 
+    thumbnail: 
+    isCollected: 0
+    isDroppable: 0
+    isUsable: 0
+    isDestroyedOnUse: 0
+    count: 0
+    usableRange:
+      target1: 
+      target2: 
+      distance: 0
+  icon: 1
 --- !u!1001 &1426468771
 Prefab:
   m_ObjectHideFlags: 0

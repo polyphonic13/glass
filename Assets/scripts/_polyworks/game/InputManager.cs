@@ -138,7 +138,7 @@ namespace Polyworks {
 
 		private void _itemsUpdate() {
 			if(_itemInProximity != null && _controls.GetButtonDown("actuate")) {
-				// Debug.Log ("InputManager/FixedUpded, item about to be actuated");
+				Debug.Log ("InputManager/FixedUpded, item about to be actuated");
 				_itemInProximity.Actuate(Game.Instance.GetPlayerInventory());
 			}
 
