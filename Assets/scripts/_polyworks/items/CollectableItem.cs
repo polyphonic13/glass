@@ -4,6 +4,8 @@ using System.Collections;
 namespace Polyworks {
 	public class CollectableItem : Item
 	{
+		public CollectableItemData data;
+
 		public override void Actuate() {
 			// Debug.Log ("CollectableItem[" + this.name + "]/Actuate, isCollected = " + data.isCollected);
 

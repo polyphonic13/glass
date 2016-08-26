@@ -21,11 +21,11 @@ namespace Polyworks {
 			}
 		}
 
-		public virtual void Add(ItemData item, bool increment = true) {
+		public virtual void Add(IData item, bool increment = true) {
 			if (!Contains (item.itemName)) {
 				_items.Add (item.itemName, item);
 			}
-			ItemData itemData = Get (item.itemName) as ItemData;
+			IData itemData = Get (item.itemName) as IData;
 			if (increment) {
 				itemData.count++;
 			}
@@ -35,11 +35,11 @@ namespace Polyworks {
 			}
 		}
 
-		public virtual ItemData Remove(string name) {
+		public virtual IData Remove(string name) {
 			if (!Contains (name)) {
 				return null;
 			} else {
-				var data = _items [name] as ItemData;
+				var data = _items [name] as IData;
 
 				if (data != null && data.count > 0) {
 					data.count--;
@@ -57,7 +57,7 @@ namespace Polyworks {
 		}
 
 		public virtual void Use(string name) {
-			ItemData data = Get (name);			
+			IData data = Get (name);			
 			if(data == null) {
 				return; 
 			}
@@ -94,9 +94,9 @@ namespace Polyworks {
 			return(_items.Contains(key)) ? true : false;
 		}
 
-		public virtual ItemData Get(string name) {
+		public virtual IData Get(string name) {
 			if (Contains (name)) {
-				return _items [name] as ItemData;
+				return _items [name] as IData;
 			} 
 			return null;
 		}
@@ -114,7 +114,7 @@ namespace Polyworks {
 		}
 		
 		private CollectableItem _pluck(string name) {
-			ItemData data = Remove (name);
+			IData data = Remove (name);
 			if (data == null) {
 				return null;
 			}
