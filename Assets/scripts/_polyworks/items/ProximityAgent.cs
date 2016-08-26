@@ -13,7 +13,6 @@ namespace Polyworks {
 	
 	
 		public void SetFocus(bool isFocused) {
-//			Debug.Log ("ProximityAgent[" + this.name + "]/SetFocus, isFocused = " + isFocused + ", enabled= " + _item.isEnabled + ", _isInitialized = " + _isInitialized);
 			if(_isInitialized && _item.isEnabled) {
 				if (isFocused) {
 					if (!_wasJustFocused) {
@@ -54,12 +53,14 @@ namespace Polyworks {
 				if (isTargetPlayer) {
 					target = GameObject.Find ("player").transform;
 				}
-//				Debug.Log ("ProximityAgent[" + this.name + "]/Init, target = " + target);
 				_isInitialized = true;
 			}
 		}
 		
 		private void Awake() {
+			if (Game.Instance.isSceneInitialized) {
+				Init ();
+			}
 			EventCenter.Instance.OnSceneInitialized += this.OnSceneInitialized;
 		}
 

@@ -12,6 +12,8 @@ namespace Polyworks {
 		public string dataFilename = "game_data.dat"; 
 		public string playerPrefab = "player_objects";
 
+		public bool isSceneInitialized = false;
+
 		public bool isCursorless = true;
 
 		public string currentTargetScene { get; set; }
@@ -29,6 +31,7 @@ namespace Polyworks {
 			Scene currentScene = SceneManager.GetActiveScene ();
 			string currentSceneName = currentScene.name;
 			bool isLevel = _getIsLevel (currentSceneName);
+			Instance.isSceneInitialized = false;
 
 			_dataIOController = new DataIOController ();
 
@@ -159,6 +162,7 @@ namespace Polyworks {
 		}
 
 		private void _completeSceneInitialization(bool isLevel, string currentSceneName) {
+			Instance.isSceneInitialized = true;
 			EventCenter.Instance.SceneInitializationComplete (currentSceneName);
 
 			InputManager inputManager = GetComponent<InputManager> ();

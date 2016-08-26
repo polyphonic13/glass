@@ -4,11 +4,11 @@ using System.Collections;
 namespace Polyworks {
 	public class CollectableItem : Item
 	{
-		public override void Actuate(Inventory inventory) {
+		public override void Actuate() {
 			// Debug.Log ("CollectableItem[" + this.name + "]/Actuate, isCollected = " + data.isCollected);
-			base.Actuate (inventory);
 
 			if (!data.isCollected) {
+				Inventory inventory = Game.Instance.GetPlayerInventory ();
 				EventCenter.Instance.ChangeItemProximity (this, false);
 				data.isCollected = true;
 				inventory.Add (data.Clone ());

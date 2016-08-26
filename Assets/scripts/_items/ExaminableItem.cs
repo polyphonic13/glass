@@ -15,7 +15,7 @@ public class ExaminableItem : Item {
 		_proximityController = GetComponent<ProximityAgent>();
 	}
 
-	public override void Actuate(Inventory inventory) {
+	public override void Actuate() {
 		if(isEnabled) {
 			if(_proximityController.Check()) {
 				if(!isSingleUse || !_isUsedOnce) {

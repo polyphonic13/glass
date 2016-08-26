@@ -7,7 +7,7 @@ public class TargetTrigger : Item {
 	public TargetAgent target;
 	public string disabledMessage = ""; 
 
-	public override void Actuate(Inventory inventory) {
+	public override void Actuate() {
 		if (this.isEnabled) {
 			if (!target.GetIsActive ()) {
 				target.Actuate ();

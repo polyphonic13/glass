@@ -11,7 +11,7 @@ namespace Polyworks {
 
 		public int icon;
 
-		public virtual void Actuate(Inventory inventory = null) {
+		public virtual void Actuate() {
 			// Debug.Log ("Item[" + this.name + "]/Actuate");
 		}
 

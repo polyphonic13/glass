@@ -63,7 +63,7 @@ namespace Polyworks {
 			}
 			data.isUsable = ItemUtils.GetIsUsable (data);
 			if (data.isUsable) {
-				Item item = _pluck(name); 
+				CollectableItem item = _pluck(name); 
 
 				item.Use ();
 
@@ -80,7 +80,7 @@ namespace Polyworks {
 
 		public virtual void Drop(string name) {
 			// Debug.Log("Inventory/Drop, name = " + name);
-			Item item = _pluck(name); 
+			CollectableItem item = _pluck(name); 
 			
 			if(item == null) {
 				return;
@@ -113,21 +113,21 @@ namespace Polyworks {
 			// Debug.Log ("Inventory/OnDestroy");
 		}
 		
-		private Item _pluck(string name) {
+		private CollectableItem _pluck(string name) {
 			ItemData data = Remove (name);
 			if (data == null) {
 				return null;
 			}
 			string prefab = data.prefabPath + data.itemName;
 			GameObject itemObj = (GameObject) Instantiate (Resources.Load (prefab, typeof(GameObject)), transform.position, transform.rotation);
-			Item item = itemObj.GetComponent<Item> ();
+			CollectableItem item = itemObj.GetComponent<CollectableItem> ();
 			item.data = data;
 			item.data.isCollected = false;
 
 			return item;
 		}
 		
-		private void _initProximityAgent(Item item) {
+		private void _initProximityAgent(CollectableItem item) {
 			ProximityAgent pc = item.gameObject.GetComponent<ProximityAgent>();
 			if(pc == null) {
 				return;

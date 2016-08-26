@@ -26,7 +26,8 @@ public class CrystalReceptacle : Item {
 		}
 	}
 
-	public override void Actuate(Inventory inventory) {
+	public override void Actuate() {
+//		Debug.Log ("CrystalReceptacle[" + this.name + "]/Actuate, isEnabled = " + isEnabled + ", _isUnlocked = " + _isUnlocked);
 		if (isEnabled) {
 			if (_isUnlocked) {
 				_actuate ();

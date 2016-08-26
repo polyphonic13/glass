@@ -14,7 +14,7 @@ public class ArmatureTrigger : Item {
 		}
 	}
 
-	public override void Actuate(Inventory inventory) {
+	public override void Actuate() {
 //		// Debug.Log ("ArmatureTrigger[" + this.name + "]/Actuate");
 		HandleAnimation();
 	}

@@ -17,7 +17,7 @@ namespace Polyworks {
 		{
 			if (Input.GetKeyDown (collectKey)) {
 				if (_item != null && !_item.data.isCollected) {
-					_item.Actuate (Game.Instance.GetPlayerInventory());
+					_item.Actuate ();
 					EventCenter.Instance.UpdateStringTask (_item.name, _item.name);
 
 				}

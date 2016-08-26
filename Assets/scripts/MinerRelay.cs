@@ -9,7 +9,7 @@ public class MinerRelay : Item {
 
 	private bool isClosed = false;
 
-	public override void Actuate(Inventory inventory = null) {
+	public override void Actuate() {
 		if (isEnabled) {
 			isClosed = !isClosed;
 			_actuate ();
