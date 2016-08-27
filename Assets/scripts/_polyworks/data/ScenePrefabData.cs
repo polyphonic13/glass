@@ -15,7 +15,7 @@ namespace Polyworks
 		public string path;
 		public string addTo;
 		public Vector3 location;
-		public Quaternion rotation;
+		public Vector3 rotation;
 	}
 
 	[Serializable]
