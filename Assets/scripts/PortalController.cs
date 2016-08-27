@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Polyworks;
 
 public class PortalController : MonoBehaviour {
 
@@ -12,13 +13,13 @@ public class PortalController : MonoBehaviour {
 
 	private bool _isActive; 
 
-	private SceneChangeTrigger sceneChanger;
+	private SceneSwitch sceneSwitch;
 
 	private const string OPEN_ANIMATION_CLIP = "portal00_open";
 
 	void Awake () {
-		sceneChanger = GameObject.Find("collider_back").GetComponent<SceneChangeTrigger> ();
-//		// Debug.Log ("sceneChanger = " + sceneChanger);
+		sceneSwitch = GameObject.Find("collider_back").GetComponent<SceneSwitch> ();
+//		// Debug.Log ("sceneSwitch = " + sceneSwitch);
 
 		if (!startActivated) {
 			_toggleParticleSystemStart (false);
@@ -44,6 +45,6 @@ public class PortalController : MonoBehaviour {
 	private void _toggleParticleSystemStart(bool enable) {
 		up.enableEmission = enable;
 		down.enableEmission = enable;
-		sceneChanger.SetActive (enable);
+//		sceneSwitch.SetActive (enable);
 	}
 }

@@ -47,6 +47,7 @@ namespace Polyworks {
 		}
 
 		public void Init() {
+			Debug.Log ("ProximityAgent[" + this.name + "]/Init");
 			if(!_isInitialized) {
 				_item = gameObject.GetComponent<Item> ();
 

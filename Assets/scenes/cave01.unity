@@ -5081,15 +5081,6 @@ MonoBehaviour:
     displayName: 
     prefabPath: 
     thumbnail: 
-    isCollected: 1
-    isDroppable: 0
-    isUsable: 0
-    isDestroyedOnUse: 0
-    count: 0
-    usableRange:
-      target1: 
-      target2: 
-      distance: 0
   icon: 1
   isStartEnabled: 1
   keyName: 
@@ -27209,7 +27200,7 @@ GameObject:
   - 114: {fileID: 650591473}
   - 114: {fileID: 650591472}
   m_Layer: 0
-  m_Name: trigger
+  m_Name: miner_relay
   m_TagString: interactive
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27248,10 +27239,10 @@ BoxCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 650591465}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1.1, y: 1.1, z: 1.1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &650591469
 MeshFilter:
@@ -27314,15 +27305,6 @@ MonoBehaviour:
     displayName: 
     prefabPath: 
     thumbnail: 
-    isCollected: 0
-    isDroppable: 0
-    isUsable: 0
-    isDestroyedOnUse: 0
-    count: 0
-    usableRange:
-      target1: 
-      target2: 
-      distance: 0
   icon: 1
 --- !u!1001 &653825221
 Prefab:
@@ -30567,15 +30549,6 @@ MonoBehaviour:
     displayName: 
     prefabPath: 
     thumbnail: 
-    isCollected: 0
-    isDroppable: 0
-    isUsable: 0
-    isDestroyedOnUse: 0
-    count: 0
-    usableRange:
-      target1: 
-      target2: 
-      distance: 0
   icon: 1
   isStartEnabled: 1
   keyName: 
@@ -41993,6 +41966,9 @@ GameObject:
   - 4: {fileID: 1026504388}
   - 33: {fileID: 1026504391}
   - 65: {fileID: 1026504390}
+  - 114: {fileID: 1026504394}
+  - 114: {fileID: 1026504393}
+  - 114: {fileID: 1026504392}
   - 114: {fileID: 1026504389}
   m_Layer: 0
   m_Name: trigger
@@ -42021,7 +41997,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1026504387}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96edf571167a64fc1813d5132a459ce8, type: 3}
+  m_Script: {fileID: 11500000, guid: af247101776684d179e5aca1da0cbf64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   data:
@@ -42029,18 +42005,8 @@ MonoBehaviour:
     displayName: 
     prefabPath: 
     thumbnail: 
-    isCollected: 0
-    isDroppable: 0
-    isUsable: 0
-    isDestroyedOnUse: 0
-    count: 0
-    usableRange:
-      target1: 
-      target2: 
-      distance: 0
-  icon: 0
-  target: {fileID: 2004787475}
-  disabledMessage: 
+  icon: 1
+  expectedEvents: 3
 --- !u!65 &1026504390
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -42048,10 +42014,10 @@ BoxCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1026504387}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1.2, y: 1.2, z: 1.2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1026504391
 MeshFilter:
@@ -42060,6 +42026,44 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1026504387}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1026504392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1026504387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53cefab8c6b97430cb054bb10bf39bec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetName: room02f_miner
+  animations: []
+--- !u!114 &1026504393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1026504387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8f2515d035a5431bae3eaa8d63d77f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactDistance: 4
+  target: {fileID: 0}
+  isTargetPlayer: 1
+--- !u!114 &1026504394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1026504387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3df9045043b8d4f1cb143be7d3383c2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1027221663
 Prefab:
   m_ObjectHideFlags: 0
@@ -51358,15 +51362,6 @@ MonoBehaviour:
     displayName: 
     prefabPath: 
     thumbnail: 
-    isCollected: 0
-    isDroppable: 0
-    isUsable: 0
-    isDestroyedOnUse: 0
-    count: 0
-    usableRange:
-      target1: 
-      target2: 
-      distance: 0
   icon: 1
   isStartEnabled: 1
   keyName: 
@@ -52056,7 +52051,7 @@ GameObject:
   - 114: {fileID: 1217261974}
   - 114: {fileID: 1217261973}
   m_Layer: 0
-  m_Name: trigger
+  m_Name: miner_relay
   m_TagString: interactive
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52095,10 +52090,10 @@ BoxCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1217261966}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1.1, y: 1.1, z: 1.1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1217261970
 MeshFilter:
@@ -52161,15 +52156,6 @@ MonoBehaviour:
     displayName: 
     prefabPath: 
     thumbnail: 
-    isCollected: 0
-    isDroppable: 0
-    isUsable: 0
-    isDestroyedOnUse: 0
-    count: 0
-    usableRange:
-      target1: 
-      target2: 
-      distance: 0
   icon: 1
 --- !u!1 &1217740115
 GameObject:
@@ -58613,7 +58599,7 @@ GameObject:
   - 114: {fileID: 1422303871}
   - 114: {fileID: 1422303870}
   m_Layer: 0
-  m_Name: trigger
+  m_Name: miner_relay
   m_TagString: interactive
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58652,10 +58638,10 @@ BoxCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1422303863}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1.1, y: 1.1, z: 1.1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1422303867
 MeshFilter:
@@ -58718,15 +58704,6 @@ MonoBehaviour:
     displayName: 
     prefabPath: 
     thumbnail: 
-    isCollected: 0
-    isDroppable: 0
-    isUsable: 0
-    isDestroyedOnUse: 0
-    count: 0
-    usableRange:
-      target1: 
-      target2: 
-      distance: 0
   icon: 1
 --- !u!1001 &1426468771
 Prefab:
@@ -62155,15 +62132,6 @@ MonoBehaviour:
     displayName: 
     prefabPath: 
     thumbnail: 
-    isCollected: 0
-    isDroppable: 0
-    isUsable: 0
-    isDestroyedOnUse: 0
-    count: 0
-    usableRange:
-      target1: 
-      target2: 
-      distance: 0
   icon: 1
   isStartEnabled: 1
   keyName: 
@@ -68949,15 +68917,6 @@ MonoBehaviour:
     displayName: 
     prefabPath: 
     thumbnail: 
-    isCollected: 0
-    isDroppable: 0
-    isUsable: 0
-    isDestroyedOnUse: 0
-    count: 0
-    usableRange:
-      target1: 
-      target2: 
-      distance: 0
   icon: 1
   isStartEnabled: 1
   keyName: 
@@ -70146,15 +70105,6 @@ MonoBehaviour:
     displayName: 
     prefabPath: 
     thumbnail: 
-    isCollected: 0
-    isDroppable: 0
-    isUsable: 0
-    isDestroyedOnUse: 0
-    count: 0
-    usableRange:
-      target1: 
-      target2: 
-      distance: 0
   icon: 0
   target: {fileID: 722767600}
   disabledMessage: 
@@ -74625,15 +74575,6 @@ MonoBehaviour:
     displayName: 
     prefabPath: 
     thumbnail: 
-    isCollected: 0
-    isDroppable: 0
-    isUsable: 0
-    isDestroyedOnUse: 0
-    count: 0
-    usableRange:
-      target1: 
-      target2: 
-      distance: 0
   icon: 1
   isStartEnabled: 1
   keyName: 
@@ -80737,15 +80678,6 @@ MonoBehaviour:
     displayName: 
     prefabPath: 
     thumbnail: 
-    isCollected: 0
-    isDroppable: 0
-    isUsable: 0
-    isDestroyedOnUse: 0
-    count: 0
-    usableRange:
-      target1: 
-      target2: 
-      distance: 0
   icon: 1
   isStartEnabled: 1
   keyName: 
@@ -84125,6 +84057,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 4497a12232e8246c2a0c8341080908f1, type: 2}
+    - target: {fileID: 11100000, guid: 3ad07af2fb980434d95c46eb6c680c24, type: 3}
+      propertyPath: m_PlayAutomatically
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3ad07af2fb980434d95c46eb6c680c24, type: 3}
   m_IsPrefabParent: 0
@@ -84132,7 +84068,7 @@ Prefab:
 GameObject:
   m_PrefabParentObject: {fileID: 100168, guid: 3ad07af2fb980434d95c46eb6c680c24, type: 3}
   m_PrefabInternal: {fileID: 2004787472}
---- !u!114 &2004787475
+--- !u!114 &2004787474
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -84140,9 +84076,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2004787473}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d34086fec8842474e9341be639fe6f3b, type: 3}
+  m_Script: {fileID: 11500000, guid: 22df876825b7644dd87471b78489e9fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isActive: 0
   animationClips:
   - {fileID: 7400034, guid: 3ad07af2fb980434d95c46eb6c680c24, type: 3}
   isAutoStart: 0

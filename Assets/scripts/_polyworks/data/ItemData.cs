@@ -14,11 +14,5 @@ namespace Polyworks
 		public ItemData () {}
 	}
 
-	[Serializable]
-	public class UsableRange {
-		public string target1;
-		public string target2;
-		public float distance;
-	}
 }
 
