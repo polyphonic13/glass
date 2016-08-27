@@ -21,25 +21,25 @@ namespace Polyworks {
 			}
 		}
 
-		public virtual void Add(IData item, bool increment = true) {
-			if (!Contains (item.itemName)) {
-				_items.Add (item.itemName, item);
+		public virtual void Add(CollectableItemData data, bool increment = true) {
+			if (!Contains (data.itemName)) {
+				_items.Add (data.itemName, data);
 			}
-			IData itemData = Get (item.itemName) as IData;
+//			CollectableItemData itemData = Get (data.itemName) as CollectableItemData;
 			if (increment) {
-				itemData.count++;
+				data.count++;
 			}
 			if (_isPlayerInventory) {
-				_eventCenter.InventoryAdded (itemData.itemName, itemData.count, _isPlayerInventory);
-				_eventCenter.AddNote (itemData.displayName + " Added");
+				_eventCenter.InventoryAdded (data.itemName, data.count, _isPlayerInventory);
+				_eventCenter.AddNote (data.displayName + " Added");
 			}
 		}
 
-		public virtual IData Remove(string name) {
+		public virtual CollectableItemData Remove(string name) {
 			if (!Contains (name)) {
 				return null;
 			} else {
-				var data = _items [name] as IData;
+				var data = _items [name] as CollectableItemData;
 
 				if (data != null && data.count > 0) {
 					data.count--;
@@ -57,7 +57,7 @@ namespace Polyworks {
 		}
 
 		public virtual void Use(string name) {
-			IData data = Get (name);			
+			CollectableItemData data = Get (name);			
 			if(data == null) {
 				return; 
 			}
@@ -94,9 +94,9 @@ namespace Polyworks {
 			return(_items.Contains(key)) ? true : false;
 		}
 
-		public virtual IData Get(string name) {
+		public virtual CollectableItemData Get(string name) {
 			if (Contains (name)) {
-				return _items [name] as IData;
+				return _items [name] as CollectableItemData;
 			} 
 			return null;
 		}
@@ -114,7 +114,7 @@ namespace Polyworks {
 		}
 		
 		private CollectableItem _pluck(string name) {
-			IData data = Remove (name);
+			CollectableItemData data = Remove (name);
 			if (data == null) {
 				return null;
 			}

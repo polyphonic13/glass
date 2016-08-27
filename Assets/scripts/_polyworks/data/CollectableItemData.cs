@@ -12,15 +12,24 @@ namespace Polyworks
 
 		public int count = 0;
 
+		public UsableRange usableRange; 
+
 		public CollectableItemData () {}
 
-		public override IData Clone() {
-			var clone = base.Clone();
+		public CollectableItemData Clone() {
+			var clone = new CollectableItemData();
+			clone.itemName = this.itemName;
+			clone.displayName = this.displayName;
+			clone.prefabPath = this.prefabPath;
+			clone.thumbnail = this.thumbnail;
 
 			clone.isCollected = this.isCollected;
 			clone.isDroppable = this.isDroppable;
 			clone.isUsable = this.isUsable;
 			clone.isDestroyedOnUse = this.isDestroyedOnUse;
+
+			clone.usableRange = this.usableRange;
+			return clone;
 		}
 	}
 }

@@ -4,7 +4,7 @@ using System.Collections;
 namespace Polyworks {
 	public class ItemUtils : MonoBehaviour
 	{
-		public static bool GetIsUsable(ItemData item) {
+		public static bool GetIsUsable(CollectableItemData item) {
 			if (item.usableRange == null) {
 				Debug.Log ("no usableRange");
 				return true;

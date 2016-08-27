@@ -126,8 +126,7 @@ namespace Polyworks {
 			}
 			_itemsIndex++;
 
-			// Inventory playerInventory = Game.Instance.GetPlayerInventory();
-			ItemData itemData = _playerInventory.Get(itemName);
+			CollectableItemData itemData = _playerInventory.Get(itemName);
 			InventoryItemUI itemUI = _items[_itemsIndex] as InventoryItemUI;
 
 			itemUI.name = itemName;
@@ -159,7 +158,7 @@ namespace Polyworks {
 			int count = 0;
 
 			Hashtable items = _playerInventory.GetAll();
-			foreach(ItemData itemData in items.Values) {
+			foreach(CollectableItemData itemData in items.Values) {
 				if (count < total) {
 					_setItem (itemData.itemName);
 				}
