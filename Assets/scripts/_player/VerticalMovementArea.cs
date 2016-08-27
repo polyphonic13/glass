@@ -21,7 +21,7 @@ public class VerticalMovementArea : MonoBehaviour {
 	}
 
 	void OnDrawGizmos() {
-		Gizmos.color = Color.red;
+		Gizmos.color = Color.grey;
 		if (top != null) {
 			Gizmos.DrawWireCube (top.position, top.localScale);
 		}

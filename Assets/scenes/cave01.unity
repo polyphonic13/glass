@@ -3500,10 +3500,6 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400004, guid: 4e68f6ace20184ef8bf641428f9616a3, type: 3}
   m_PrefabInternal: {fileID: 71426518}
---- !u!4 &71426520 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 400002, guid: 4e68f6ace20184ef8bf641428f9616a3, type: 3}
-  m_PrefabInternal: {fileID: 71426518}
 --- !u!1 &73207149
 GameObject:
   m_ObjectHideFlags: 0
@@ -70697,74 +70693,6 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: d5b288dfffc9e44989f770c88ff66223, type: 3}
   m_PrefabInternal: {fileID: 1674190952}
---- !u!1 &1674882141
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1674882142}
-  - 33: {fileID: 1674882144}
-  - 65: {fileID: 1674882143}
-  - 114: {fileID: 1674882145}
-  m_Layer: 0
-  m_Name: trigger
-  m_TagString: interactive
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1674882142
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1674882141}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.31, y: -0, z: -0.17}
-  m_LocalScale: {x: 0.14999995, y: 3.2543705, z: 1.4250405}
-  m_Children: []
-  m_Father: {fileID: 71426520}
-  m_RootOrder: 0
---- !u!65 &1674882143
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1674882141}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!33 &1674882144
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1674882141}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1674882145
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1674882141}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96edf571167a64fc1813d5132a459ce8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  data:
-    itemName: 
-    displayName: 
-    prefabPath: 
-    thumbnail: 
-  icon: 0
-  target: {fileID: 0}
-  disabledMessage: 
 --- !u!1 &1676804987
 GameObject:
   m_ObjectHideFlags: 0
@@ -85274,7 +85202,12 @@ MonoBehaviour:
         location: {x: 92, y: 1, z: 52.5}
         rotation: {x: 0, y: -39, z: 0}
     - name: room02c
-      prefabs: []
+      prefabs:
+      - name: crystal_processor_trigger
+        path: items/cave01/room02c/
+        addTo: cave_objects/room_objects/room02/room02c/
+        location: {x: 97.1, y: 0, z: 108.75}
+        rotation: {x: 0, y: 0, z: 0}
     - name: room02d
       prefabs: []
     - name: room02e

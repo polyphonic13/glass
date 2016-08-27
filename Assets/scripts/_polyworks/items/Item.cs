@@ -9,7 +9,7 @@ namespace Polyworks {
 
 		public bool isEnabled { get; set; }
 
-		public int icon;
+		public int icon = 1;
 
 		public virtual void Actuate() {
 			// Debug.Log ("Item[" + this.name + "]/Actuate");
