@@ -62,6 +62,7 @@ namespace Polyworks {
 		}
 
 		private void _adjustSpeed(float speed) {
+//			Debug.Log ("LegacyAnimation[" + this.name + "]/_adjustSpeed, speed = " + speed);
 			string clip = animationClips [_currentAnimation].name;
 			_animation [clip].speed = speed;
 		}
