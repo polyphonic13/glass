@@ -35933,7 +35933,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400068, guid: 282737650903543f8b86487c2cd6e08e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 400068, guid: 282737650903543f8b86487c2cd6e08e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -41956,114 +41956,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f9d3a00d4ddbf45f2b3f27f33eb90a99, type: 3}
   m_IsPrefabParent: 0
---- !u!1 &1026504387
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1026504388}
-  - 33: {fileID: 1026504391}
-  - 65: {fileID: 1026504390}
-  - 114: {fileID: 1026504394}
-  - 114: {fileID: 1026504393}
-  - 114: {fileID: 1026504392}
-  - 114: {fileID: 1026504389}
-  m_Layer: 0
-  m_Name: trigger
-  m_TagString: interactive
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
---- !u!4 &1026504388
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1026504387}
-  m_LocalRotation: {x: -0.49999997, y: 0.50000006, z: 0.50000006, w: 0.49999997}
-  m_LocalPosition: {x: 196.93, y: -47.26, z: 163.6}
-  m_LocalScale: {x: 0.14999993, y: 3.9911213, z: 1.5680342}
-  m_Children: []
-  m_Father: {fileID: 899452782}
-  m_RootOrder: 2
---- !u!114 &1026504389
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1026504387}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af247101776684d179e5aca1da0cbf64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  data:
-    itemName: 
-    displayName: 
-    prefabPath: 
-    thumbnail: 
-  icon: 1
-  expectedEvents: 3
---- !u!65 &1026504390
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1026504387}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.2, y: 1.2, z: 1.2}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!33 &1026504391
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1026504387}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1026504392
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1026504387}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53cefab8c6b97430cb054bb10bf39bec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetName: room02f_miner
-  animations: []
---- !u!114 &1026504393
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1026504387}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8f2515d035a5431bae3eaa8d63d77f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactDistance: 4
-  target: {fileID: 0}
-  isTargetPlayer: 1
---- !u!114 &1026504394
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1026504387}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3df9045043b8d4f1cb143be7d3383c2d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1027221663
 Prefab:
   m_ObjectHideFlags: 0
@@ -65597,7 +65489,7 @@ Transform:
   - {fileID: 1952537789}
   - {fileID: 343726087}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!4 &1600865263 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400008, guid: 3bde35ba28af84a929c4baa332a7342f, type: 3}
@@ -84421,7 +84313,12 @@ MonoBehaviour:
         location: {x: 219, y: -51, z: 166}
         rotation: {x: 0, y: 0, z: 0, w: 0}
     - name: room02h
-      prefabs: []
+      prefabs:
+      - name: miner_controls_trigger
+        path: items/cave01/room02h/
+        addTo: cave_objects/room_objects/room02/room02h/room02h_miner_controls
+        location: {x: 196.93, y: -47.76, z: 163.6}
+        rotation: {x: 0, y: 0, z: 0, w: 0}
     - name: room02i
       prefabs: []
   sectionControllers:
