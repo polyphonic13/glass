@@ -26,13 +26,11 @@ namespace Polyworks {
 		}
 
 		public override void Pause() {
-			Debug.Log ("MovingPlatform[" + this.name + "]/Pause");
 			base.Pause();
 			_isMoving = false;
 		}
 
 		public override void Resume() {
-			Debug.Log ("MovingPlatform[" + this.name + "]/Resume");
 			base.Resume();
 			_isMoving = true;
 		}
