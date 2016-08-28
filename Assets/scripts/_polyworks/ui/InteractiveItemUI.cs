@@ -14,10 +14,10 @@ public class InteractiveItemUI : MonoBehaviour {
 	}
 	
 	void OnNearItem(Item item, bool isFocused) {
-		if (isFocused && item.data.itemName != null) {
-//			// Debug.Log ("InteractiveItemUI/OnNearItem, item = " + item.itemName + ", isFocused = " + isFocused + ", _message.text = " + _message.text);
+		if (isFocused && item.displayName != null) {
+//			// Debug.Log ("InteractiveItemUI/OnNearItem, item = " + item.name + ", isFocused = " + isFocused + ", _message.text = " + _message.text);
 			_group.alpha = 1;
-			_message.text = item.data.itemName;
+			_message.text = item.displayName;
 		} else {
 			_group.alpha = 0;
 			_message.text = "";

@@ -7,6 +7,6 @@ public class AstrologyCoin : Item {
 
 	public override void Use() {
 		PiggyBank piggyBank = GameObject.Find (targetName).GetComponent<PiggyBank> ();
-		piggyBank.InsertCoin (this.name, this.data.itemName);
+		piggyBank.InsertCoin (this.name);
 	}
 }

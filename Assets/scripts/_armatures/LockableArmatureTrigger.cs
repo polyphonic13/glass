@@ -26,7 +26,7 @@ public class LockableArmatureTrigger : OpenCloseArmatureTrigger {
 		if(!IsLocked) {
 			HandleOpenClose();
 		} else {
-			EventCenter.Instance.AddNote("The " + this.data.itemName + " is locked");
+			EventCenter.Instance.AddNote("The " + this.name + " is locked");
 		}
 	}
 
@@ -36,7 +36,7 @@ public class LockableArmatureTrigger : OpenCloseArmatureTrigger {
 
 	private void _unlock() {
 		IsLocked = false;
-		EventCenter.Instance.AddNote("The " + this.data.itemName + " was unlocked");
+		EventCenter.Instance.AddNote("The " + this.name + " was unlocked");
 		HandleOpenClose();
 	}
 }

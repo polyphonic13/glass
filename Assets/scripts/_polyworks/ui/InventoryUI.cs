@@ -41,12 +41,12 @@ namespace Polyworks {
 		#endregion
 
 		#region handlers
-		public void OnInventoryAdded(string itemName, int count, bool isPlayerInventory) {
-			// Debug.Log ("InventoryUI/OnInventoryAdded, itemName = " + itemName);
+		public void OnInventoryAdded(string name, int count, bool isPlayerInventory) {
+			// Debug.Log ("InventoryUI/OnInventoryAdded, name = " + name);
 			if (isPlayerInventory) {
 				bool isIgnored = false;
 				for (int i = 0; i < ignoredItems.Length; i++) {
-					if (itemName == ignoredItems [i]) {
+					if (name == ignoredItems [i]) {
 						return;
 					}
 				}
@@ -54,8 +54,8 @@ namespace Polyworks {
 			}
 		}
 
-		public void OnInventoryRemoved(string itemName, int count) {
-			// Debug.Log ("InventoryUI/OnInventoryRemoved, itemName = " + itemName);
+		public void OnInventoryRemoved(string name, int count) {
+			// Debug.Log ("InventoryUI/OnInventoryRemoved, name = " + name);
 			_resetItems();
 		}
 
@@ -120,16 +120,16 @@ namespace Polyworks {
 		}
 
 		#region build
-		private void _setItem(string itemName) {
+		private void _setItem(string name) {
 			if(_itemsIndex == (numColumns * numRows) - 1) {
 				return;
 			}
 			_itemsIndex++;
 
-			CollectableItemData itemData = _playerInventory.Get(itemName);
+			CollectableItemData itemData = _playerInventory.Get(name);
 			InventoryItemUI itemUI = _items[_itemsIndex] as InventoryItemUI;
 
-			itemUI.name = itemName;
+			itemUI.name = name;
 			itemUI.SetName(itemData.displayName);
 			itemUI.SetCount(itemData.count);
 			if(itemData.thumbnail != "") {
@@ -160,7 +160,7 @@ namespace Polyworks {
 			Hashtable items = _playerInventory.GetAll();
 			foreach(CollectableItemData itemData in items.Values) {
 				if (count < total) {
-					_setItem (itemData.itemName);
+					_setItem (itemData.name);
 				}
 				count++;
 			}
@@ -179,7 +179,7 @@ namespace Polyworks {
 				float x = startX + (_width * col);
 				float y = startY + -(_height * row);
 
-				string itemName = "item" + i;
+				string name = "item" + i;
 				var item = (GameObject) Instantiate(inventoryItem);
 
 				item.transform.SetParent(canvas.gameObject.transform, false);
@@ -187,7 +187,7 @@ namespace Polyworks {
 				InventoryItemUI itemUI = item.GetComponent<InventoryItemUI>();
 				RectTransform rect = item.GetComponent<RectTransform>();
 
-				item.name = itemName;
+				item.name = name;
 
 				rect.localPosition = new Vector3(x, y, 0);
 				_items.Add(itemUI);

@@ -17,7 +17,7 @@ public class PiggyBank : MonoBehaviour {
 		"bedroom_e_dresser_drawer_top_unlock"
 	};
 
-	public void InsertCoin(string coin, string coinName) {
+	public void InsertCoin(string coin) {
 		for(int i = 0; i < _coins.Length; i++) {
 			if(_coins[i] == coin) {
 				crystalKeys[i].isEnabled = true;
