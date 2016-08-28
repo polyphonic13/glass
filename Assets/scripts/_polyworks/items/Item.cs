@@ -21,15 +21,15 @@ namespace Polyworks {
 			data = d;
 		}
 
-		public void SetEnabled(bool isEnabled) {
+		public virtual void SetEnabled(bool isEnabled) {
 			this.isEnabled = isEnabled;
 		}
 
-		public void Enable() {
+		public virtual void Enable() {
 			this.SetEnabled (true);
 		}
 
-		public void Disable() {
+		public virtual void Disable() {
 			this.SetEnabled (false);
 		}
 	}

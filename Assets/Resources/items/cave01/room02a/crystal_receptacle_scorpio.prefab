@@ -12,7 +12,9 @@ GameObject:
   - 65: {fileID: 6577186}
   - 114: {fileID: 11411032}
   - 114: {fileID: 11451642}
+  - 114: {fileID: 11435294}
   - 114: {fileID: 11430916}
+  - 114: {fileID: 11426816}
   m_Layer: 0
   m_Name: crystal_receptacle_scorpio
   m_TagString: interactive
@@ -291,18 +293,21 @@ MonoBehaviour:
     displayName: 
     prefabPath: 
     thumbnail: 
-    isCollected: 0
-    isDroppable: 0
-    isUsable: 0
-    isDestroyedOnUse: 0
-    count: 0
-    usableRange:
-      target1: 
-      target2: 
-      distance: 0
   icon: 1
   isStartEnabled: 0
   keyName: crystal_key_scorpio(Clone)
+--- !u!114 &11426816
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 147594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 502faab3923714840b5ef0f22f147931, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: door_examiner_scorpio(Clone)
 --- !u!114 &11430916
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -318,6 +323,17 @@ MonoBehaviour:
   animations:
   - scorpio_door_open
   - scorpio_door_close
+--- !u!114 &11435294
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 147594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3df9045043b8d4f1cb143be7d3383c2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11451642
 MonoBehaviour:
   m_ObjectHideFlags: 1

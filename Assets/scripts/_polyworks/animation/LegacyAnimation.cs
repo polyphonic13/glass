@@ -30,6 +30,9 @@ namespace Polyworks {
 		}
 
 		public override bool GetIsActive() {
+			if (_animation == null) {
+				return false;
+			}
 			return _animation.isPlaying;
 		}
 

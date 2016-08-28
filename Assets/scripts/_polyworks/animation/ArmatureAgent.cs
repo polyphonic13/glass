@@ -71,7 +71,7 @@ namespace Polyworks {
 		public virtual void PlayAnimation(string clip, bool isLooping = false) {
 			isOpen = !isOpen;
 			Transform bone = AnimationBoneCollection.GetBone (clip, bones.animationBones);
-			Debug.Log ("ArmatureAgent[" + this.name + "]/PlayAnimation, clip = " + clip + ", bone = " + bone);
+//			Debug.Log ("ArmatureAgent[" + this.name + "]/PlayAnimation, clip = " + clip + ", bone = " + bone);
 			AnimateArmatureBone(clip, bone, isLooping);
 		}
 	

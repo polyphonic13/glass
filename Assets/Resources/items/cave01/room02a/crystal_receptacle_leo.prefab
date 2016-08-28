@@ -12,7 +12,9 @@ GameObject:
   - 65: {fileID: 6517642}
   - 114: {fileID: 11479742}
   - 114: {fileID: 11405272}
+  - 114: {fileID: 11403420}
   - 114: {fileID: 11489554}
+  - 114: {fileID: 11481054}
   m_Layer: 0
   m_Name: crystal_receptacle_leo
   m_TagString: interactive
@@ -275,6 +277,17 @@ Light:
   m_ShadowRadius: 0
   m_ShadowAngle: 0
   m_AreaSize: {x: 1, y: 1}
+--- !u!114 &11403420
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 136348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3df9045043b8d4f1cb143be7d3383c2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11405272
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -305,18 +318,21 @@ MonoBehaviour:
     displayName: 
     prefabPath: 
     thumbnail: 
-    isCollected: 0
-    isDroppable: 0
-    isUsable: 0
-    isDestroyedOnUse: 0
-    count: 0
-    usableRange:
-      target1: 
-      target2: 
-      distance: 0
   icon: 1
   isStartEnabled: 0
   keyName: crystal_key_leo(Clone)
+--- !u!114 &11481054
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 136348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 502faab3923714840b5ef0f22f147931, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: door_examiner_leo(Clone)
 --- !u!114 &11489554
 MonoBehaviour:
   m_ObjectHideFlags: 1

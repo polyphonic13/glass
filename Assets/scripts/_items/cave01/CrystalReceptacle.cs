@@ -13,9 +13,10 @@ public class CrystalReceptacle : Item {
 	private bool _isUnlocked = false;
 	private bool _isOpen = false;
 
-	private AnimationSwitch _target;
+	private Switch[] _switches;
 
 	public void OnStringEvent(string type, string value) {
+//		Debug.Log ("CrystalReceptacle[" + this.name + "]/OnStringEvent, type = " + type + ", value = " + value);
 		if (type == CrystalKey.EVENT_NAME && value == keyName) {
 			isEnabled = true;
 			_isUnlocked = true;
@@ -27,7 +28,6 @@ public class CrystalReceptacle : Item {
 	}
 
 	public override void Actuate() {
-//		Debug.Log ("CrystalReceptacle[" + this.name + "]/Actuate, isEnabled = " + isEnabled + ", _isUnlocked = " + _isUnlocked);
 		if (isEnabled) {
 			if (_isUnlocked) {
 				_actuate ();
@@ -37,26 +37,52 @@ public class CrystalReceptacle : Item {
 		}
 	}
 
+	public override void Enable() {
+		if (!isEnabled) {
+			base.Enable ();
+			_addListeners ();
+		}
+	}
+
+	public override void Disable() {
+		base.Disable ();
+		_removeListeners ();
+	}
+
 	private void Awake() {
-		_target = GetComponent<AnimationSwitch> ();
 		_crystal = this.transform.FindChild("crystal").gameObject;
 		_crystal.SetActive (isStartEnabled);
 		_isUnlocked = isEnabled = isStartEnabled;
 
-		EventCenter ec = EventCenter.Instance;
-		ec.OnStringEvent += this.OnStringEvent;
+		_switches = gameObject.GetComponents<Switch> ();
 	}
 
 	private void OnDestroy() {
-		EventCenter ec = EventCenter.Instance;
-		if (ec != null) {
-			ec.OnStringEvent -= this.OnStringEvent;
-		}
+		_removeListeners ();
 	}
 
 	private void _actuate() {
-		if (_target != null) {
-			_target.Actuate ();
+		if (_switches != null) {
+			for (int i = 0; i < _switches.Length; i++) {
+				if (_switches [i] != null) {
+					_switches [i].Actuate ();
+				}
+			}
+		}
+	}
+
+	private void _addListeners() {
+		EventCenter ec = EventCenter.Instance;
+		if (ec != null) {
+			ec.OnStringEvent += this.OnStringEvent;
+		}
+	}
+
+	private void _removeListeners() {
+//		Debug.Log ("CrystalReceptacle[" + this.name + "]/_removeListeners");
+		EventCenter ec = EventCenter.Instance;
+		if (ec != null) {
+			ec.OnStringEvent -= this.OnStringEvent;
 		}
 	}
 }

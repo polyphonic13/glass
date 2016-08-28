@@ -12,6 +12,9 @@ namespace Polyworks
 		public delegate void StringEventHandler(string name, string value = "");
 		public event StringEventHandler OnStringEvent;
 
+		public delegate void DestroyEventHandler(string target); 
+		public event DestroyEventHandler OnDestroyEvent;
+
 		public delegate void LevelInitializedHandler();
 		public event LevelInitializedHandler OnLevelInitialized; 
 
@@ -85,6 +88,12 @@ namespace Polyworks
 		public void InvokeStringEvent(string type, string value = "") {
 			if (OnStringEvent != null) {
 				OnStringEvent (type, value);
+			}
+		}
+
+		public void InvokeDestroy(string target) {
+			if (OnDestroyEvent != null) {
+				OnDestroyEvent (target);
 			}
 		}
 

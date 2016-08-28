@@ -2,7 +2,7 @@
 using System.Collections;
 
 namespace Polyworks {
-	public class AnimationSwitch : MonoBehaviour
+	public class AnimationSwitch : Switch
 	{
 		public string targetName; 
 		public string[] animations; 
@@ -10,8 +10,8 @@ namespace Polyworks {
 
 		private AnimationAgent _target; 
 
-		public void Actuate() {
-			Debug.Log ("AnimationSwitch[" + this.name + "]/Actuate, _target = " + _target);
+		public override void Actuate() {
+//			Debug.Log ("AnimationSwitch[" + this.name + "]/Actuate, _target = " + _target);
 			if (_target != null) {
 				if (animations.Length > 0) {
 					_target.Play (animations [currentIdx]);
