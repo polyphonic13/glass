@@ -70,7 +70,7 @@ namespace Polyworks {
 				if (item.data.isDestroyedOnUse) {
 					Destroy (item.gameObject);
 				} else {
-					_initProximityAgent (item);
+					_initDroppedItem (item);
 				}
 			} else {
 				_eventCenter.AddNote (data.displayName + " Can not be used here");
@@ -86,7 +86,7 @@ namespace Polyworks {
 				return;
 			}
 			
-			_initProximityAgent(item);
+			_initDroppedItem(item);
 			_eventCenter.CloseInventoryUI ();
 		}
 		
@@ -127,12 +127,16 @@ namespace Polyworks {
 			return item;
 		}
 		
-		private void _initProximityAgent(CollectableItem item) {
+		private void _initDroppedItem(CollectableItem item) {
 			ProximityAgent pc = item.gameObject.GetComponent<ProximityAgent>();
-			if(pc == null) {
-				return;
+			if(pc != null) {
+				pc.Init();
 			}
-			pc.Init();
+
+			SectionAgent sa = item.gameObject.GetComponent<SectionAgent> ();
+			if (sa != null) {
+				sa.ToggleEnabled (true);
+			}
 		}
 	}
 }
