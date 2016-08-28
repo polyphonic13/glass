@@ -5,6 +5,7 @@ namespace Polyworks {
 	public class LegacyAnimation : AnimationAgent {
 
 		public AnimationClip[] animationClips;
+
 		public bool isAutoStart = false; 
 		public bool isAutoAdvance = true;
 		public bool isLoopPlayback = false;

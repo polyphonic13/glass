@@ -29865,6 +29865,7 @@ GameObject:
   - 114: {fileID: 722767600}
   - 114: {fileID: 722767597}
   - 114: {fileID: 722767602}
+  - 114: {fileID: 722767603}
   m_Layer: 0
   m_Name: room02c_harvester_hammer
   m_TagString: Untagged
@@ -29942,7 +29943,7 @@ MonoBehaviour:
   - {fileID: 7400004, guid: 72797f5002b974599aede5015e8b955f, type: 3}
   isAutoStart: 0
   isAutoAdvance: 1
-  isLoopPlayback: 0
+  isLoopPlayback: 1
 --- !u!114 &722767602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29956,6 +29957,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _togglers:
   - {fileID: 122188129}
+--- !u!114 &722767603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 722767596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68c7e12595fcf4e319b7f04d59e25745, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clipData:
+  - clip: {fileID: 7400004, guid: 72797f5002b974599aede5015e8b955f, type: 3}
+    events:
+    - method: Toggle
+      time: 0
+      intParam: 0
+      floatParam: 0
+      stringParam: 
+    - method: Toggle
+      time: 0.25
+      intParam: 0
+      floatParam: 0
+      stringParam: 
 --- !u!1001 &724882177
 Prefab:
   m_ObjectHideFlags: 0
