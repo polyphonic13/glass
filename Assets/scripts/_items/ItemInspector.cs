@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using UnitySampleAssets.CrossPlatformInput;
 using Rewired;
+using Polyworks;
 
 public class ItemInspector : MonoBehaviour {
 
@@ -128,7 +129,7 @@ public class ItemInspector : MonoBehaviour {
 		// based on: http://answers.unity3d.com/questions/463704/smooth-orbit-round-object-with-adjustable-orbit-ra.html
 		if (_item) {
 			if(_controls.GetButtonDown("cancel")) {
-//				EventCenter.Instance.InspectItem(false, _item.name);
+				EventCenter.Instance.InspectItem(false, _item.name);
 			} else if(_controls.GetButtonDown("zoom_in")) {
 				if(_currentZoom < maxZoom) {
 					_camera.fieldOfView += zoomAmount;

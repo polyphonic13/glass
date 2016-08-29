@@ -59,10 +59,6 @@ namespace Polyworks
 		private const float _CrawlCameraY = 0.1f;
 		private bool _justCrouched = false;
 
-		private bool _isMenuOpen = false;
-		private bool _isInventoryOpen = false;
-		private bool _isInspectorOpen = false;
-
 		private Camera _mainCamera;
         private bool m_Jump;
         private float m_YRotation;
@@ -165,10 +161,6 @@ namespace Polyworks
 			_gravityDamager.CancelFall();
 		}
 
-		public void OnInspectItem(bool isInspecting, string item) {
-			_isInspectorOpen = isInspecting;
-		}
-
 		#endregion
 
 		#region awake
@@ -208,7 +200,6 @@ namespace Polyworks
 //			ec.OnAboveWater += OnAboveWater;
 //			ec.OnPlayerDamaged += OnPlayerDamaged;
 			ec.OnNearItem += OnNearItem;
-			ec.OnInspectItem += OnInspectItem;
 		}
 		#endregion
 
@@ -512,7 +503,6 @@ namespace Polyworks
 //				ec.OnAboveWater -= OnAboveWater;
 //				ec.OnPlayerDamaged -= OnPlayerDamaged;
 				ec.OnNearItem -= OnNearItem;
-				ec.OnInspectItem -= OnInspectItem;
 			}
 		}
 	}
