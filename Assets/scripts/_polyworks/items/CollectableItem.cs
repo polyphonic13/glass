@@ -23,6 +23,8 @@ namespace Polyworks {
 			clone.name = this.name;
 
 			clone.displayName = this.displayName;
+			clone.description = this.description;
+
 			clone.prefabPath = this.prefabPath;
 
 			clone.thumbnail = data.thumbnail;

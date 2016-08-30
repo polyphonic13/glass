@@ -61,13 +61,23 @@ public class ItemInspector : MonoBehaviour {
 			return _instance;
 		}
 	}
-	
+
+	public void OnInspectItem(bool isInspecting, string itemName) {
+		Debug.Log ("ItemInspector/OnInspectItem, isInspecting = " + isInspecting + ", item = " + itemName);
+		if (isInspecting) {
+			CollectableItem item = Game.Instance.GetPlayerInventory ().GetItem (itemName);
+			AddTarget (item.transform, item.data.displayName, item.data.description);
+		} else {
+			RemoveTarget ();
+		}
+	}
+
 	public void AddTarget(Transform item, string itemName, string itemDescription) {
 		_item = item;
 
-		_previousParent = _item.parent.transform;
-		_previousPosition = _item.position;
-		_previousLayer = _item.gameObject.layer;
+//		_previousParent = _item.parent.transform;
+//		_previousPosition = _item.position;
+//		_previousLayer = _item.gameObject.layer;
 
 		_item.parent = transform.parent;
 //		_item.gameObject.layer = INSPECTOR_LAYER;
@@ -123,6 +133,8 @@ public class ItemInspector : MonoBehaviour {
 		_itemName.text = "";
 		_itemDescription = uiCam.transform.Find ("inspector_ui/text_description").GetComponent<Text>();
 		_itemDescription.text = "";
+
+		EventCenter.Instance.OnInspectItem += OnInspectItem;
 	}
 	
 	void LateUpdate() {

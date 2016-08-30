@@ -6,6 +6,8 @@ namespace Polyworks {
 	public class Item : MonoBehaviour
 	{
 		public string displayName;
+		public string description;
+
 		public string prefabPath; 
 
 		public bool isEnabled { get; set; }

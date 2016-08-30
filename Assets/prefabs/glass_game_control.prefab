@@ -11,6 +11,8 @@ GameObject:
   - 114: {fileID: 11478364}
   - 114: {fileID: 11483172}
   - 114: {fileID: 11432274}
+  - 114: {fileID: 11422008}
+  - 114: {fileID: 11408434}
   m_Layer: 0
   m_Name: glass_game_control
   m_TagString: Untagged
@@ -30,6 +32,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &11408434
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 190814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 975fbe9ba2fe145fd815d9ba067fb906, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11422008
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 190814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b821bae934025472e9f82305297eda43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11432274
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -95,6 +119,7 @@ MonoBehaviour:
       breath: 100
   dataFilename: glass.dat
   playerPrefab: player/player_objects
+  isSceneInitialized: 0
   isCursorless: 1
 --- !u!114 &11483172
 MonoBehaviour:

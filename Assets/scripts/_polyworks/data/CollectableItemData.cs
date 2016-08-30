@@ -23,6 +23,7 @@ namespace Polyworks
 
 		public string name { get; set; }
 		public string displayName { get; set; }
+		public string description { get; set; }
 		public string prefabPath { get; set; }
 
 		public UsableRange usableRange; 

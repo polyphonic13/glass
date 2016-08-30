@@ -63,7 +63,8 @@ namespace Polyworks {
 			}
 			data.isUsable = ItemUtils.GetIsUsable (data);
 			if (data.isUsable) {
-				CollectableItem item = _pluck(name); 
+				Remove (name);
+				CollectableItem item = _pluck(data); 
 
 				item.Use ();
 
@@ -80,7 +81,8 @@ namespace Polyworks {
 
 		public virtual void Drop(string name) {
 			// Debug.Log("Inventory/Drop, name = " + name);
-			CollectableItem item = _pluck(name); 
+			CollectableItemData data = Remove(name);
+			CollectableItem item = _pluck(data); 
 			
 			if(item == null) {
 				return;
@@ -105,6 +107,11 @@ namespace Polyworks {
 			return _items;
 		}
 
+		public CollectableItem GetItem(string name) {
+			
+			return _pluck (Get(name));
+		}
+
 		private void Awake() {
 			_eventCenter = EventCenter.Instance;
 		}
@@ -113,8 +120,7 @@ namespace Polyworks {
 			// Debug.Log ("Inventory/OnDestroy");
 		}
 		
-		private CollectableItem _pluck(string name) {
-			CollectableItemData data = Remove (name);
+		private CollectableItem _pluck(CollectableItemData data) {
 			if (data == null) {
 				return null;
 			}
