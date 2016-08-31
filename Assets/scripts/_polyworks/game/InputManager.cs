@@ -10,7 +10,8 @@ namespace Polyworks {
 	public class InputManager : MonoBehaviour {
 		private Rewired.Player _controls;
 		private Player _player;
-	
+		private CameraZoom _cameraZoom; 
+
 		private MenuUI _menuUI;
 		private InventoryUI _inventoryUI;
 		private ItemInspector _itemInspector; 
@@ -57,6 +58,8 @@ namespace Polyworks {
 				GameObject playerObj = GameObject.Find ("player");
 				if (playerObj != null) {
 					_player = playerObj.GetComponent<Player> ();
+
+					_cameraZoom = playerObj.GetComponent<CameraZoom> ();
 				}
 
 				GameObject inventoryObj = GameObject.Find ("inventory_ui");
@@ -159,11 +162,13 @@ namespace Polyworks {
 			_player.SetDiving(_controls.GetButtonDown("dive"));
 			_player.SetCrawling(_controls.GetButtonDown("crawl"));
 
+			if(_cameraZoom != null && _controls.GetButtonDown("zoom_view")) {
+				_cameraZoom.Execute();
+			}
 		}
 
 		private void _itemsUpdate() {
 			if(_itemInProximity != null && _controls.GetButtonDown("actuate")) {
-//				Debug.Log ("InputManager/FixedUpded, item about to be actuated");
 				_itemInProximity.Actuate();
 			}
 
@@ -199,13 +204,10 @@ namespace Polyworks {
 							_openInventory ();
 						} else {
 							EventCenter.Instance.CloseInventoryUI ();
-
-							//						_closeInventory ();
 						}
 					}
 				} else {
 					if (_isInspectingItem) {
-						Debug.Log ("going to call item inspector update");
 						_itemInspectorUpdate (horizontal, vertical);
 					} else if (!_isUIOpen) {
 						_playerUpdate (horizontal, vertical);
