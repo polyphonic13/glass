@@ -13,12 +13,14 @@ namespace Polyworks {
 	
 		private MenuUI _menuUI;
 		private InventoryUI _inventoryUI;
+		private ItemInspector _itemInspector; 
 
 		private bool _isLevel = false;
 		private bool _isInitialized = false;
 
 		private bool _isUIOpen = false; 
 		private bool _isInventoryOpen = false;
+		private bool _isInspectingItem = false; 
 
 		private bool _isInventoryButtonPressed = false;
 		private bool _isMenuButtonPressed = false;
@@ -29,9 +31,17 @@ namespace Polyworks {
 		public void OnNearItem(Item item, bool isNear) {
 			_itemInProximity = (isNear) ? item : null;
 		}
-		
+
 		public void OnCloseInventoryUI() {
 			_closeInventory ();
+		}
+
+		public void OnInspectItem(bool isInspecting, string itemName) {
+			_isInspectingItem = isInspecting;
+			Debug.Log ("InputManager/OnInspectItem, _isInspectingItem = " + _isInspectingItem);
+			if (isInspecting) {
+				_isUIOpen = true;
+			}
 		}
 		#endregion
 
@@ -55,9 +65,12 @@ namespace Polyworks {
 					// Debug.Log ("_inventoryUI = " + _inventoryUI);
 				}
 
+				_itemInspector = ItemInspector.Instance;
+
 				EventCenter ec = EventCenter.Instance;
 				ec.OnNearItem += this.OnNearItem;
 				ec.OnCloseInventoryUI += this.OnCloseInventoryUI;
+				ec.OnInspectItem += this.OnInspectItem;
 			}
 			_isInitialized = true;
 		}
@@ -115,6 +128,18 @@ namespace Polyworks {
 
 		private void _menuUpdate(float horizontal, float vertical) {
 			_uiUpdate (_menuUI, horizontal, vertical);
+		}
+
+		private void _itemInspectorUpdate(float horizontal, float vertical) {
+			Debug.Log ("_itemInspectorUpdate, _itemInspector = " + _itemInspector);
+			if (_itemInspector != null) {
+				Debug.Log ("INSPECTOR NOT NULL");
+				_itemInspector.SetHorizontal (horizontal);
+				_itemInspector.SetVertical (vertical);
+				_itemInspector.SetCancel (_controls.GetButtonDown ("cancel"));
+				_itemInspector.SetZoomIn (_controls.GetButtonDown ("zoom_in"));
+				_itemInspector.SetZoomOut (_controls.GetButtonDown ("zoom_out"));
+			}
 		}
 
 		private void _playerUpdate(float horizontal, float vertical) {
@@ -179,7 +204,10 @@ namespace Polyworks {
 						}
 					}
 				} else {
-					if (!_isUIOpen) {
+					if (_isInspectingItem) {
+						Debug.Log ("going to call item inspector update");
+						_itemInspectorUpdate (horizontal, vertical);
+					} else if (!_isUIOpen) {
 						_playerUpdate (horizontal, vertical);
 						_itemsUpdate ();
 					} else if (_isInventoryOpen) {
@@ -212,6 +240,7 @@ namespace Polyworks {
 			if (ec != null) {
 				ec.OnNearItem -= this.OnNearItem;
 				ec.OnCloseInventoryUI -= this.OnCloseInventoryUI;
+				ec.OnInspectItem -= this.OnInspectItem;
 			}
 		}
 	}
