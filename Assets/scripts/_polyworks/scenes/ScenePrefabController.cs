@@ -18,8 +18,7 @@ namespace Polyworks {
 					if(isAddable) {
 						string prefabPath = prefabs[i].path + prefabs[i].name;
 //						Debug.Log ("prefabPath = " + prefabPath);
-						Vector3 rotation = prefabs[i].rotation;
-						GameObject go = (GameObject) Instantiate (Resources.Load (prefabPath, typeof(GameObject)), prefabs [i].location, Quaternion.Euler(rotation.x, rotation.y, rotation.z));
+						GameObject go = (GameObject) Instantiate (Resources.Load (prefabPath, typeof(GameObject)), prefabs [i].location, Quaternion.Euler(prefabs[i].rotation));
 						string addTo = prefabs [i].addTo;
 						if (addTo != null && addTo != "") {
 							GameObject parentObj = GameObject.Find (addTo);

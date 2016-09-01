@@ -4,7 +4,6 @@ using System.Collections;
 namespace Polyworks {
 	public class ExaminableItem : Item {
 
-		public string description = "";
 		public bool isSingleUse = true;
 
 		private bool _isUsedOnce = false;
@@ -12,11 +11,14 @@ namespace Polyworks {
 		public override void Actuate() {
 			if(isEnabled) {
 				if(!isSingleUse || !_isUsedOnce) {
+					EventCenter ec = EventCenter.Instance;
+
 					_isUsedOnce = true;
-					EventCenter.Instance.AddNote(description);
+					ec.AddNote(description);
+
 					if (isSingleUse) {
 						Destroy (this.gameObject);
-						EventCenter.Instance.ChangeItemProximity (this, false);
+						ec.ChangeItemProximity (this, false);
 					}
 				}
 			}

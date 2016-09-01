@@ -8,7 +8,7 @@ namespace Polyworks {
 		private Inventory _inventory;
 
 		public void Init(PlayerLocation location, PlayerData data, Hashtable items) {
-			GameObject playerObject = (GameObject) Instantiate (Resources.Load (Game.Instance.playerPrefab, typeof(GameObject)), location.position, location.rotation);
+			GameObject playerObject = (GameObject) Instantiate (Resources.Load (Game.Instance.playerPrefab, typeof(GameObject)), location.position, Quaternion.Euler(location.rotation));
 
 			GameObject playerGO = playerObject.transform.Find ("player").gameObject;
 			_player = playerGO.GetComponent<Player> ();
