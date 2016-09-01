@@ -17,6 +17,7 @@ namespace Polyworks {
 
 		#region public methods
 		public void Init(int currentSection) {
+			Debug.Log ("SectionController/Init, currentSection = " + currentSection);
 			_agents = GetComponentsInChildren<SectionAgent> ();
 			_sectionTest (currentSection);
 

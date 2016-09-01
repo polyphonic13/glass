@@ -30,8 +30,8 @@ public class PiggyBank : MonoBehaviour {
 	}
 
 	private void Awake() {
-		foreach (CollectableItem crystalKey in crystalKeys) {
-			crystalKey.isEnabled = false;
-		}
+//		foreach (CollectableItem crystalKey in crystalKeys) {
+//			crystalKey.isEnabled = false;
+//		}
 	}
 }

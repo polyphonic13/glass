@@ -27,7 +27,6 @@ namespace Polyworks
 
 			bool isCleared = LevelUtils.GetIsCleared (sceneData.sceneName, Game.Instance.gameData.levels);
 			_levelData = LevelUtils.GetLevel (sceneData.sceneName, gameData.levels);
-
 			if (gameData.targetSection > -1 && gameData.targetSection < sectionControllers.Length) {
 				_levelData.currentSection = gameData.targetSection;
 			}
