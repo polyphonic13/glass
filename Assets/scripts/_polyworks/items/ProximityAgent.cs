@@ -11,7 +11,13 @@ namespace Polyworks {
 		private bool _isInitialized;
 		private Item _item;
 	
-	
+		#region handlers
+		public void OnSceneInitialized(string scene) {
+			Init();
+		}
+		#endregion
+
+		#region public methods
 		public void SetFocus(bool isFocused) {
 			Debug.Log ("ProximityAgent[" + this.name + "]/SetFocus, isFocused = " + isFocused + ", _isInitialized = " + _isInitialized + ", isEnabled = " + _item.isEnabled);
 			if(_isInitialized && _item.isEnabled) {
@@ -43,10 +49,6 @@ namespace Polyworks {
 			return isInProximity;
 		}
 
-		public void OnSceneInitialized(string scene) {
-			Init();
-		}
-
 		public void Init() {
 //			Debug.Log ("ProximityAgent[" + this.name + "]/Init");
 			if(!_isInitialized) {
@@ -58,9 +60,11 @@ namespace Polyworks {
 				_isInitialized = true;
 			}
 		}
-		
+		#endregion
+
+		#region private methods
 		private void Awake() {
-			if (Game.Instance.isSceneInitialized) {
+			if (Game.Instance != null && Game.Instance.isSceneInitialized) {
 				Init ();
 			}
 			EventCenter.Instance.OnSceneInitialized += this.OnSceneInitialized;
@@ -72,5 +76,6 @@ namespace Polyworks {
 				ec.OnSceneInitialized -= this.OnSceneInitialized;
 			}
 		}
+		#endregion
 	}
 }

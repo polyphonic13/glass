@@ -43,15 +43,13 @@ namespace Polyworks {
 			_animation [clip].speed = PLAY_SPEED;
 			_animation.Play(clip);
 			_isPlaying = true;
+
+			_incrementCurrentAnimation ();
 		}
 
 		public void AnimationEnded() {
+			Debug.Log ("LegacyAnimation[" + this.name + "]/AnimationEnded");
 			if (isAutoAdvance) {
-				if (_currentAnimation < animationClips.Length - 1) {
-					_currentAnimation++;
-				} else {
-					_currentAnimation = 0;
-				}
 				Actuate ();
 			} else {
 				_isPlaying = false; 
@@ -62,6 +60,14 @@ namespace Polyworks {
 			_animation = GetComponent<Animation> ();
 			if (isAutoStart) {
 				Actuate ();
+			}
+		}
+
+		private void _incrementCurrentAnimation() {
+			if (_currentAnimation < animationClips.Length - 1) {
+				_currentAnimation++;
+			} else {
+				_currentAnimation = 0;
 			}
 		}
 
