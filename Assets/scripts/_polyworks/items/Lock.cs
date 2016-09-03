@@ -16,37 +16,17 @@ namespace Polyworks {
 			if (type == eventType && value == eventValue) {
 				if (isLocked) {
 					isLocked = false;
-					if (_isInSection) {
-						base.Enable ();
-					}
 				}
-			}
-		}
-
-		public override void Enable() {
-//			Debug.Log ("Lock[" + this.name + "]/Enable, isLocked = " + isLocked + ", isEnabled = " + isEnabled);
-			_isInSection = true;
-			if (!isLocked) {
-				base.Enable ();
-			}
-		}
-
-		public override void Disable () {
-			_isInSection = false;
-			if (!isLocked) {
-				base.Disable ();
 			}
 		}
 
 		public override void Actuate () {
-//			Debug.Log ("Lock[" + this.name + "]/Actuate, isLocked = " + isLocked + ", isEnabled = " + isEnabled);
-			if (isEnabled) {
-				if (!isLocked) {
-					base.Actuate ();
-					_actuate ();
-				} else {
-					EventCenter.Instance.AddNote (this.displayName + " is locked");
-				}
+			Debug.Log ("Lock[" + this.name + "]/Actuate, isLocked = " + isLocked + ", isEnabled = " + isEnabled);
+			if (!isLocked) {
+				base.Actuate ();
+				_actuate ();
+			} else {
+				EventCenter.Instance.AddNote (this.displayName + " is locked");
 			}
 		}
 

@@ -23,7 +23,6 @@ namespace Polyworks {
 		}
 
 		public virtual void Enable() {
-			Debug.Log ("Item[" + this.name + "]/Enable");
 			this.SetEnabled (true);
 		}
 
