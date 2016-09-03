@@ -17,7 +17,6 @@ namespace Polyworks {
 
 		#region public methods
 		public void Init(int currentSection) {
-			Debug.Log ("SectionController/Init, currentSection = " + currentSection);
 			_agents = GetComponentsInChildren<SectionAgent> ();
 			_sectionTest (currentSection);
 
@@ -35,6 +34,7 @@ namespace Polyworks {
 			}
 
 			if (data.section == currentSection) {
+				Debug.Log ("enabling section " + currentSection);
 				_toggleEnabled (true);
 			} else {
 				_toggleEnabled (false);
@@ -42,10 +42,10 @@ namespace Polyworks {
 		}
 
 		private void _toggleEnabled(bool isEnabled) {
-//			Debug.Log ("SectionController[" + this.name + "]/_toggleEnabled, isEnabled = " + isEnabled);
+			Debug.Log ("SectionController[" + this.name + "]/_toggleEnabled, isEnabled = " + isEnabled);
 			foreach(SectionAgent agent in _agents) {
 				if (agent != null) {
-//					Debug.Log (" sending " + isEnabled + " to agent[" + agent.name + "]");
+					Debug.Log (" sending " + isEnabled + " to agent[" + agent.name + "]");
 					agent.ToggleEnabled (isEnabled);
 				}
 			}

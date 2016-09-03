@@ -36,6 +36,9 @@ namespace Polyworks
 		public delegate void SceneInitializer(string scene);
 		public event SceneInitializer OnSceneInitialized;
 
+		public delegate void PrefabInitializer();
+		public event PrefabInitializer OnPrefabsAdded;
+
 		public delegate void SectionChanger(int section);
 		public event SectionChanger OnSectionChanged; 
 
@@ -139,6 +142,12 @@ namespace Polyworks
 			Debug.Log ("EventCenter/SceneInitializationComplete");
 			if (OnSceneInitialized != null) {
 				OnSceneInitialized (scene);
+			}
+		}
+
+		public void PrefabsAdded() {
+			if (OnPrefabsAdded != null) {
+				OnPrefabsAdded ();
 			}
 		}
 

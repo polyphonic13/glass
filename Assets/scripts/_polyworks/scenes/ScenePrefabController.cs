@@ -30,6 +30,8 @@ namespace Polyworks {
 					}
 				}
 			}
+
+			EventCenter.Instance.PrefabsAdded ();
 		}
 	}
 }

@@ -11,7 +11,14 @@ namespace Polyworks
 		private LevelData _levelData; 
 		private PlayerManager _playerManager;
 
+		private GameData _gameData;
+
 		#region handlers
+		public void OnPrefabsAdded() {
+			Debug.Log ("LevelController/OnPrefabsAdded");
+			_finishInitialization ();		
+		}
+
 		public void OnLevelTasksCompleted() {
 			LevelUtils.SetIsCleared (sceneData.sceneName, Game.Instance.gameData.levels);
 		}
@@ -23,12 +30,28 @@ namespace Polyworks
 
 		#region public methods
 		public void Init(GameData gameData) {
+			_gameData = gameData;
 			ScenePrefabController.Init (sceneData.sectionPrefabs, gameData.items);
+		}
 
+		public LevelData GetLevelData() {
+			return _levelData;
+		}
+		#endregion
+
+		#region private methods
+		private void Awake() {
+			EventCenter ec = EventCenter.Instance;
+			ec.OnPrefabsAdded += OnPrefabsAdded;
+			ec.OnLevelTasksCompleted += OnLevelTasksCompleted;
+			ec.OnSectionChanged += OnSectionChanged;
+		}
+
+		private void _finishInitialization() {
 			bool isCleared = LevelUtils.GetIsCleared (sceneData.sceneName, Game.Instance.gameData.levels);
-			_levelData = LevelUtils.GetLevel (sceneData.sceneName, gameData.levels);
-			if (gameData.targetSection > -1 && gameData.targetSection < sectionControllers.Length) {
-				_levelData.currentSection = gameData.targetSection;
+			_levelData = LevelUtils.GetLevel (sceneData.sceneName, _gameData.levels);
+			if (_gameData.targetSection > -1 && _gameData.targetSection < sectionControllers.Length) {
+				_levelData.currentSection = _gameData.targetSection;
 			}
 
 			if (sectionControllers != null) {
@@ -38,7 +61,7 @@ namespace Polyworks
 
 				PlayerLocation playerLocation = sectionControllers [_levelData.currentSection].data.playerLocation;
 				_playerManager = GetComponent<PlayerManager> ();
-				_playerManager.Init (playerLocation, gameData.playerData, gameData.items);
+				_playerManager.Init (playerLocation, _gameData.playerData, _gameData.items);
 			}
 
 			if (!isCleared) {
@@ -52,15 +75,16 @@ namespace Polyworks
 				Debug.Log ("LevelController["+sceneData.sceneName+"]/Initlevel cleared");
 			}
 
-			EventCenter ec = EventCenter.Instance;
-			ec.OnLevelTasksCompleted += OnLevelTasksCompleted;
-			ec.OnSectionChanged += OnSectionChanged;
-
 			Game.Instance.LevelInitialized ();
 		}
 
-		public LevelData GetLevelData() {
-			return _levelData;
+		private void OnDestroy() {
+			EventCenter ec = EventCenter.Instance;
+			if (ec != null) {
+				ec.OnPrefabsAdded -= OnPrefabsAdded;
+				ec.OnLevelTasksCompleted -= OnLevelTasksCompleted;
+				ec.OnSectionChanged -= OnSectionChanged;
+			}
 		}
 		#endregion
 	}
