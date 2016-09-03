@@ -24,7 +24,7 @@ namespace Polyworks {
 		}
 
 		public override void Enable() {
-			Debug.Log ("Lock[" + this.name + "]/Enable, isLocked = " + isLocked + ", isEnabled = " + isEnabled);
+//			Debug.Log ("Lock[" + this.name + "]/Enable, isLocked = " + isLocked + ", isEnabled = " + isEnabled);
 			_isInSection = true;
 			if (!isLocked) {
 				base.Enable ();
@@ -39,7 +39,7 @@ namespace Polyworks {
 		}
 
 		public override void Actuate () {
-			Debug.Log ("Lock[" + this.name + "]/Actuate, isLocked = " + isLocked + ", isEnabled = " + isEnabled);
+//			Debug.Log ("Lock[" + this.name + "]/Actuate, isLocked = " + isLocked + ", isEnabled = " + isEnabled);
 			if (isEnabled) {
 				if (!isLocked) {
 					base.Actuate ();
@@ -56,6 +56,7 @@ namespace Polyworks {
 		}
 
 		private void _actuate() {
+//			Debug.Log ("Lock[" + this.name + "]/_actuate, _switches = " + _switches);
 			if (_switches != null) {
 				for (int i = 0; i < _switches.Length; i++) {
 					if (_switches [i] != null) {

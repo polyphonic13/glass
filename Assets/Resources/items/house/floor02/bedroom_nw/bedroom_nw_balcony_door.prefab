@@ -10,9 +10,13 @@ GameObject:
   - 4: {fileID: 442468}
   - 33: {fileID: 3361106}
   - 65: {fileID: 6504562}
+  - 114: {fileID: 11417246}
+  - 114: {fileID: 11428866}
+  - 114: {fileID: 11432958}
+  - 114: {fileID: 11486876}
   m_Layer: 0
   m_Name: balcony_door_collider
-  m_TagString: Untagged
+  m_TagString: interactive
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,27 +33,6 @@ GameObject:
   - 114: {fileID: 11487520}
   m_Layer: 0
   m_Name: bedroom_nw_balcony_door
-  m_TagString: interactive
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &145430
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 415656}
-  - 33: {fileID: 3368672}
-  - 65: {fileID: 6593310}
-  - 114: {fileID: 11419224}
-  - 114: {fileID: 11452464}
-  - 114: {fileID: 11464110}
-  - 114: {fileID: 11492956}
-  m_Layer: 0
-  m_Name: bedroom_nw_balcony_door_trigger
   m_TagString: interactive
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -210,18 +193,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 444398}
   m_RootOrder: 6
---- !u!4 &415656
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 145430}
-  m_LocalRotation: {x: -0.00000018831395, y: 7.1054274e-15, z: 0.7071068, w: 0.7071067}
-  m_LocalPosition: {x: -1.407, y: 0.045, z: 0.89}
-  m_LocalScale: {x: 0.41303676, y: 0.31249988, z: 1}
-  m_Children: []
-  m_Father: {fileID: 492270}
-  m_RootOrder: 1
 --- !u!4 &426010
 Transform:
   m_ObjectHideFlags: 1
@@ -338,7 +309,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 442468}
-  - {fileID: 415656}
   m_Father: {fileID: 473866}
   m_RootOrder: 0
 --- !u!4 &494204
@@ -393,31 +363,12 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 115866}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!33 &3368672
-MeshFilter:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 145430}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!65 &6504562
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 115866}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &6593310
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 145430}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
@@ -444,23 +395,23 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 1
---- !u!114 &11419224
+--- !u!114 &11417246
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 145430}
+  m_GameObject: {fileID: 115866}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3df9045043b8d4f1cb143be7d3383c2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &11452464
+--- !u!114 &11428866
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 145430}
+  m_GameObject: {fileID: 115866}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c8f2515d035a5431bae3eaa8d63d77f5, type: 3}
@@ -469,24 +420,37 @@ MonoBehaviour:
   interactDistance: 2
   target: {fileID: 0}
   isTargetPlayer: 1
---- !u!114 &11464110
+--- !u!114 &11432958
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 145430}
+  m_GameObject: {fileID: 115866}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3d6f77c15043843088bb70ed735c2d43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayName: Door
-  description: a balcony door
+  displayName: Balcony Door
+  description: 
   prefabPath: 
   icon: 1
   isLocked: 0
   eventType: 
   eventValue: 
+--- !u!114 &11486876
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 115866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53cefab8c6b97430cb054bb10bf39bec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetName: bedroom_nw_balcony_door(Clone)
+  animations: []
 --- !u!114 &11487520
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -505,19 +469,6 @@ MonoBehaviour:
   isAutoStart: 0
   isAutoAdvance: 0
   isLoopPlayback: 0
---- !u!114 &11492956
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 145430}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53cefab8c6b97430cb054bb10bf39bec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetName: bedroom_nw_balcony_door(Clone)
-  animations: []
 --- !u!137 &13713466
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

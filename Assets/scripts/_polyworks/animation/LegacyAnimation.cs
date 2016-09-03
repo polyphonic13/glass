@@ -39,21 +39,12 @@ namespace Polyworks {
 
 		public void Actuate() {
 			string clip = animationClips [_currentAnimation].name;
-			_animation [clip].wrapMode = WrapMode.Loop;
+			_animation [clip].wrapMode = WrapMode.Once;
 			_animation [clip].speed = PLAY_SPEED;
 			_animation.Play(clip);
 			_isPlaying = true;
 
 			_incrementCurrentAnimation ();
-		}
-
-		public void AnimationEnded() {
-			Debug.Log ("LegacyAnimation[" + this.name + "]/AnimationEnded");
-			if (isAutoAdvance) {
-				Actuate ();
-			} else {
-				_isPlaying = false; 
-			}
 		}
 
 		private void Awake() {
