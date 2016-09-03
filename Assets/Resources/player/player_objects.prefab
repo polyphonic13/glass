@@ -305,7 +305,6 @@ GameObject:
   - 4: {fileID: 497680}
   - 20: {fileID: 2071336}
   - 81: {fileID: 8176566}
-  - 114: {fileID: 11425906}
   - 114: {fileID: 11450236}
   - 114: {fileID: 11464528}
   - 114: {fileID: 11464150}
@@ -442,6 +441,7 @@ GameObject:
   - 114: {fileID: 11424186}
   - 114: {fileID: 11454262}
   - 114: {fileID: 11429208}
+  - 114: {fileID: 11412494}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -1378,6 +1378,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &11412494
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 156930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a175adedee9e04bc6929f7ea9993dd74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isMain: 1
 --- !u!114 &11415582
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1658,19 +1670,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &11425906
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 141320}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1b90a1c03d9342449d18c165e91218f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _zoom: 10
-  _camera: {fileID: 2071336}
 --- !u!114 &11429208
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1683,7 +1682,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _zoom: 10
-  _camera: {fileID: 0}
 --- !u!114 &11429960
 MonoBehaviour:
   m_ObjectHideFlags: 1

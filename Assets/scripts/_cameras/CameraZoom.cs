@@ -1,4 +1,5 @@
 using UnityEngine;
+using Polyworks;
 
 public class CameraZoom : MonoBehaviour {
 
@@ -12,13 +13,24 @@ public class CameraZoom : MonoBehaviour {
 		_zoomCamera ();
 	}
 
-	void Awake() {
+	public void OnMainCameraEnabled() {
 		_camera = Camera.main;
 		_normal = _camera.fieldOfView;
 	}
+
+	private void Awake() {
+		EventCenter.Instance.OnMainCameraEnabled += OnMainCameraEnabled;
+	}
 		
-	void _zoomCamera() {
+	private void _zoomCamera() {
 		_camera.fieldOfView =(_isZoomed) ? _normal : _zoom;
 		_isZoomed = !_isZoomed;
+	}
+
+	private void OnDestroy() {
+		EventCenter ec = EventCenter.Instance;
+		if (ec != null) {
+			ec.OnMainCameraEnabled -= OnMainCameraEnabled;
+		}
 	}
 }

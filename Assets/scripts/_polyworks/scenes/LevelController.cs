@@ -15,7 +15,6 @@ namespace Polyworks
 
 		#region handlers
 		public void OnPrefabsAdded() {
-			Debug.Log ("LevelController/OnPrefabsAdded");
 			_finishInitialization ();		
 		}
 

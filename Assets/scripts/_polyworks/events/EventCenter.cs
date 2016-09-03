@@ -39,6 +39,9 @@ namespace Polyworks
 		public delegate void PrefabInitializer();
 		public event PrefabInitializer OnPrefabsAdded;
 
+		public delegate void MainCameraInitializer();
+		public event MainCameraInitializer OnMainCameraEnabled;
+
 		public delegate void SectionChanger(int section);
 		public event SectionChanger OnSectionChanged; 
 
@@ -148,6 +151,12 @@ namespace Polyworks
 		public void PrefabsAdded() {
 			if (OnPrefabsAdded != null) {
 				OnPrefabsAdded ();
+			}
+		}
+
+		public void MainCameraEnabled() {
+			if (OnMainCameraEnabled != null) {
+				OnMainCameraEnabled ();
 			}
 		}
 

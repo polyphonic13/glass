@@ -87,6 +87,36 @@ namespace Polyworks
 		private Transform[] _childTransforms; 
 		#endregion
 
+		#region delegate handlers
+		public void OnNearItem(Item item, bool isFocused) {
+			if(isFocused) {
+				_elementInProximity = item;
+			} else {
+				_elementInProximity = null;
+			}
+			// _interactiveItemUI.enabled = isFocused;
+		}
+
+		public void OnPlayerDamaged(float damage) {
+			// float health = Game.Instance.RemainingHealth - damage;
+			// Game.Instance.UpdateHealth(health);
+		}
+
+		public void OnAboveWater(bool water, Transform tgt) {
+			// Debug.Log("Player/OnAboveWater, water = " + water);
+			if(water) {
+				_currentMovementState = _previousMovementState = MovementStates.Swim;
+				_gravity = 0;
+			} else {
+				_currentMovementState = MovementStates.Normal;
+				_gravity = m_GravityMultiplier;
+			}
+			_gravityDamager.CancelFall();
+		}
+
+		#endregion
+
+
 		#region public methods
 		public void Init(PlayerData d) {
 			data = d;
@@ -132,35 +162,6 @@ namespace Polyworks
 		public void SetCrawling(bool isCrawling) {
 			_isCrawling = isCrawling;
 		}
-		#endregion
-
-		#region delegate handlers
- 		public void OnNearItem(Item item, bool isFocused) {
-			if(isFocused) {
-				_elementInProximity = item;
-			} else {
-				_elementInProximity = null;
-			}
-			// _interactiveItemUI.enabled = isFocused;
-		}
-
-		public void OnPlayerDamaged(float damage) {
-			// float health = Game.Instance.RemainingHealth - damage;
-			// Game.Instance.UpdateHealth(health);
-		}
-
-		public void OnAboveWater(bool water, Transform tgt) {
-			// Debug.Log("Player/OnAboveWater, water = " + water);
-			if(water) {
-				_currentMovementState = _previousMovementState = MovementStates.Swim;
-				_gravity = 0;
-			} else {
-				_currentMovementState = MovementStates.Normal;
-				_gravity = m_GravityMultiplier;
-			}
-			_gravityDamager.CancelFall();
-		}
-
 		#endregion
 
 		#region awake
