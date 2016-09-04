@@ -21,7 +21,7 @@ namespace Polyworks {
 		}
 
 		public override void Actuate () {
-//			Debug.Log ("Lock[" + this.name + "]/Actuate, isLocked = " + isLocked + ", isEnabled = " + isEnabled);
+			Debug.Log ("Lock[" + this.name + "]/Actuate, isLocked = " + isLocked + ", isEnabled = " + isEnabled);
 			if (!isLocked) {
 				base.Actuate ();
 				_actuate ();

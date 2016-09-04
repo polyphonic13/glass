@@ -19,6 +19,7 @@ namespace Polyworks {
 		private bool _isPlaying = false; 
 
 		public override void Play(string clip = "") {
+			Debug.Log ("LegacyAnimation[" + this.name + "]/Play");
 			Actuate ();
 		}
 
@@ -38,7 +39,9 @@ namespace Polyworks {
 		}
 
 		public void Actuate() {
+			Debug.Log ("LegacyAnimation[" + this.name + "]/Actuate");
 			string clip = animationClips [_currentAnimation].name;
+			Debug.Log (" clip = " + clip);
 			_animation [clip].wrapMode = WrapMode.Once;
 			_animation [clip].speed = PLAY_SPEED;
 			_animation.Play(clip);

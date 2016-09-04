@@ -11,7 +11,7 @@ public class OpenCloseArmatureTrigger : ArmatureTrigger {
 	}
 	
 	public void InitOpenCloseArmatureTrigger() {
-		_pops.OnAnimationPlayed += OnAnimationPlayed;
+//		_pops.OnAnimationPlayed += OnAnimationPlayed;
 		IsOpen = false;
 	}
 	
