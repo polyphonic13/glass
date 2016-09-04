@@ -21,16 +21,19 @@ namespace Polyworks {
 		}
 
 		public override void Actuate () {
-			Debug.Log ("Lock[" + this.name + "]/Actuate, isLocked = " + isLocked + ", isEnabled = " + isEnabled);
+//			Debug.Log ("Lock[" + this.name + "]/Actuate, isLocked = " + isLocked + ", isEnabled = " + isEnabled);
 			if (!isLocked) {
 				base.Actuate ();
 				_actuate ();
 			} else {
-				EventCenter.Instance.AddNote (this.displayName + " is locked");
+				EventCenter.Instance.AddNote ("The " + this.displayName + " is locked");
 			}
 		}
 
 		private void Awake() {
+			if (transform.tag == "persistent") {
+				Enable ();
+			}
 			_switches = gameObject.GetComponents<Switch> ();
 			EventCenter.Instance.OnStringEvent += OnStringEvent;
 		}

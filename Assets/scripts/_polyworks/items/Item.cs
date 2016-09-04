@@ -23,11 +23,20 @@ namespace Polyworks {
 		}
 
 		public virtual void Enable() {
+//			Debug.Log ("Item[" + this.name + "]/Enable");
 			this.SetEnabled (true);
 		}
 
 		public virtual void Disable() {
+//			Debug.Log ("Item[" + this.name + "]/Disable");
 			this.SetEnabled (false);
+		}
+
+		private void Awake() {
+//			Debug.Log ("Item[" + this.name + "]/Awake, tag = " + transform.tag);
+//			if (transform.tag == "persistent") {
+//				Enable ();
+//			}
 		}
 	}
 }
