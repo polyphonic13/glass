@@ -4,7 +4,7 @@ using System.Collections;
 namespace Polyworks {
 	public class PlayerHead : MonoBehaviour {
 
-		public float interactDistance = 2f;
+		public float interactDistance = 4f;
 
 		private ProximityAgent _focusedItem;
 		private string _itemJustHit;
@@ -25,6 +25,7 @@ namespace Polyworks {
 		private void _checkRayCast() {
 			RaycastHit hit;
 			if (Physics.Raycast (this.transform.position, this.transform.forward, out hit, interactDistance)) {
+				Debug.DrawRay (this.transform.position, this.transform.forward, Color.red);
 //				Debug.Log (" hit tag = " + hit.transform.tag + ", name = " + hit.transform.name);
 				if (hit.transform != this.transform && (hit.transform.tag == "interactive" || hit.transform.tag == "persistent")) {
 //					Debug.Log (" hit name = " + hit.transform.name + ", just hit = " + _itemJustHit);
@@ -32,9 +33,11 @@ namespace Polyworks {
 						ProximityAgent pa = hit.transform.gameObject.GetComponent<ProximityAgent> ();
 //						Debug.Log ("  pa = " + pa);
 						if(pa != null) {
-							pa.SetFocus (true);
-							_itemJustHit = hit.transform.name;
-							_focusedItem = pa;
+							if (pa.Check ()) {
+								pa.SetFocus (true);
+								_itemJustHit = hit.transform.name;
+								_focusedItem = pa;
+							}
 						}
 					}
 				} else {

@@ -1,57 +1,57 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Polyworks; 
 
-public class ToyChest : MonoBehaviour {
+public class ToyChest : Item {
+	public static string RABBIT_HUNT_ADD_EVENT = "rabbitHuntToyAdded";
+	public static string RABBIT_HUNT_COMPLETE_EVENT = "rabbitHuntCompleted"; 
 
-	public string unlockEvent; 
+	public GameObject[] collectedToys; 
 
 	private int _collected = 0;
 	private int _expected = 2;
 
-	private string[] _toyNames = {
-		"rabbit_doll01",
-		"toy_dog01"
-	};
-
-	private Vector3[] _toyOffsets = {
-		new Vector3(0, 0.25f, 0),
-		new Vector3(-0.66f, 0.25f, 0)
-	};
-
-	private Quaternion[] _toyRotations = {
-		new Quaternion(90, 90, 0, 0),
-		new Quaternion(90, 90, 0, 0)
-	};
-
-	public void AddToy(RabbitHuntToy toy) {
-
-//		// Debug.Log("ToyChest/AddToy, toy = " + toy.name);
-		for(int i = 0; i < _toyNames.Length; i++) {
-
-			if(toy.name == _toyNames[i]) {
-				Transform toyTransform = toy.transform;
-				Vector3 newPosition = new Vector3(
-					(this.transform.position.x + _toyOffsets[i].x), 
-					(this.transform.position.y + _toyOffsets[i].y), 
-					(this.transform.position.z + _toyOffsets[i].z)
-				);
-				toyTransform.parent = this.transform;
-				toyTransform.position = newPosition;
-				toyTransform.rotation = _toyRotations[i];
-				_collected++;
-
-				toy.isEnabled = false;
-
-//				EventCenter.Instance.CloseInventoryUI ();
-//				EventCenter.Instance.AddNote (toy.name + " added to Toy Chest");
-				break;
+	#region handlers
+	public void OnStringEvent(string type, string value) {
+		if (type == RABBIT_HUNT_ADD_EVENT) {
+			for (int i = 0; i < collectedToys.Length; i++) {
+				if (collectedToys [i].name == value) {
+					collectedToys [i].SetActive (true);
+					_collected++;
+					break;
+				}
+			}
+			if (_collected == _expected) {
+				EventCenter.Instance.InvokeStringEvent (RABBIT_HUNT_COMPLETE_EVENT, "");
 			}
 		}
-//		// Debug.Log("_collected = " + _collected + ", _expected = " + _expected);
-		if(_collected == _expected) {
-//			// Debug.Log ("toy box expected all collected");
-//			EventCenter.Instance.TriggerEvent(unlockEvent);
-//			EventCenter.Instance.AddNote ("There's a crash in the room next door.");
+	}
+	#endregion
+
+	#region public methods
+	public override void Enable () {
+		base.Enable ();
+		EventCenter.Instance.OnStringEvent += OnStringEvent;
+	}
+
+	public override void Disable () {
+		base.Disable ();
+		EventCenter.Instance.OnStringEvent -= OnStringEvent;
+	}
+	#endregion
+
+	#region private methods
+	private void Awake() {
+		for (int i = 0; i < collectedToys.Length; i++) {
+			collectedToys [i].SetActive (false);
 		}
 	}
+
+	private void OnDestroy() {
+		EventCenter ec = EventCenter.Instance;
+		if (ec != null) {
+			EventCenter.Instance.OnStringEvent -= OnStringEvent;
+		}
+	}
+	#endregion
 }

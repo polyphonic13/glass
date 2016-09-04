@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System;
 
+/** 
+ * component to dyamically add AnimationEvents to clips from AnimationEventClipData
+ */
 namespace Polyworks {
 	public class AnimationEventAgent : MonoBehaviour
 	{

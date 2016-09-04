@@ -2,16 +2,22 @@
 using System.Collections;
 
 namespace Polyworks {
-	public class Lock : Item
+	public class SwitchController : Item
 	{
+		#region public members
 		public bool isLocked;
+		public bool isLockMessageDisplayed = true; 
 
 		public string eventType;
 		public string eventValue;
+		#endregion
 
+		#region private members
 		private Switch[] _switches;
 		private bool _isInSection = false;
+		#endregion
 
+		#region handlers
 		public void OnStringEvent(string type, string value) {
 			if (type == eventType && value == eventValue) {
 				if (isLocked) {
@@ -19,27 +25,33 @@ namespace Polyworks {
 				}
 			}
 		}
+		#endregion
 
+		#region public methods
 		public override void Actuate () {
-//			Debug.Log ("Lock[" + this.name + "]/Actuate, isLocked = " + isLocked + ", isEnabled = " + isEnabled);
+			Debug.Log ("SwitchController[" + this.name + "]/Actuate, _switches = " + _switches.Length);
 			if (!isLocked) {
 				base.Actuate ();
 				_actuate ();
-			} else {
+			} else if(isLockMessageDisplayed) {
 				EventCenter.Instance.AddNote ("The " + this.displayName + " is locked");
 			}
 		}
+		#endregion
 
+		#region private methods
 		private void Awake() {
 			if (transform.tag == "persistent") {
 				Enable ();
 			}
 			_switches = gameObject.GetComponents<Switch> ();
-			EventCenter.Instance.OnStringEvent += OnStringEvent;
+
+			if (isLocked) {	
+				EventCenter.Instance.OnStringEvent += OnStringEvent;
+			}
 		}
 
 		private void _actuate() {
-//			Debug.Log ("Lock[" + this.name + "]/_actuate, _switches = " + _switches);
 			if (_switches != null) {
 				for (int i = 0; i < _switches.Length; i++) {
 					if (_switches [i] != null) {
@@ -48,12 +60,13 @@ namespace Polyworks {
 				}
 			}
 		}
+
 		private void OnDestroy() {
 			EventCenter ec = EventCenter.Instance;
 			if (ec != null) {
 				EventCenter.Instance.OnStringEvent -= OnStringEvent;
 			}
 		}
+		#endregion
 	}
 }
-
