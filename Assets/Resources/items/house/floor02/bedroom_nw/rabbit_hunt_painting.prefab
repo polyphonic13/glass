@@ -57,10 +57,25 @@ GameObject:
   - 4: {fileID: 429184}
   - 111: {fileID: 11155036}
   - 114: {fileID: 11427302}
-  - 114: {fileID: 11434758}
-  - 114: {fileID: 11431010}
   m_Layer: 0
   m_Name: rabbit_hunt_painting
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &151252
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 454602}
+  - 114: {fileID: 11491292}
+  - 114: {fileID: 11443796}
+  m_Layer: 0
+  m_Name: event_and_switch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -126,6 +141,7 @@ Transform:
   - {fileID: 447302}
   - {fileID: 425638}
   - {fileID: 471310}
+  - {fileID: 454602}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &438308
@@ -153,6 +169,18 @@ Transform:
   - {fileID: 485936}
   m_Father: {fileID: 429184}
   m_RootOrder: 0
+--- !u!4 &454602
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 151252}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 429184}
+  m_RootOrder: 3
 --- !u!4 &471310
 Transform:
   m_ObjectHideFlags: 1
@@ -261,12 +289,12 @@ MonoBehaviour:
   isAutoStart: 0
   isAutoAdvance: 0
   isLoopPlayback: 0
---- !u!114 &11431010
+--- !u!114 &11443796
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 127280}
+  m_GameObject: {fileID: 151252}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: feaa1b568e3e04434be783e8585d6ea1, type: 3}
@@ -274,19 +302,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventType: rabbitHuntCompleted
   eventValue: 
---- !u!114 &11434758
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 127280}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53cefab8c6b97430cb054bb10bf39bec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetName: rabbit_hunt_painting(Clone)
-  animations: []
 --- !u!114 &11488060
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -298,6 +313,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3df9045043b8d4f1cb143be7d3383c2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11491292
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 151252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53cefab8c6b97430cb054bb10bf39bec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetName: rabbit_hunt_painting(Clone)
+  animations: []
 --- !u!137 &13714656
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

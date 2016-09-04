@@ -13,14 +13,17 @@ public class ToyChest : Item {
 
 	#region handlers
 	public void OnStringEvent(string type, string value) {
+		Debug.Log ("ToyChest/OnStringEvent, type = " + type + ", value = " + value);
 		if (type == RABBIT_HUNT_ADD_EVENT) {
 			for (int i = 0; i < collectedToys.Length; i++) {
+				Debug.Log (" collectedToys[" + i + "].name = " + collectedToys [i].name);
 				if (collectedToys [i].name == value) {
 					collectedToys [i].SetActive (true);
 					_collected++;
 					break;
 				}
 			}
+			Debug.Log (" _collected = " + _collected + ", _expected = " + _expected);
 			if (_collected == _expected) {
 				EventCenter.Instance.InvokeStringEvent (RABBIT_HUNT_COMPLETE_EVENT, "");
 			}

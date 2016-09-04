@@ -39,7 +39,6 @@ namespace Polyworks {
 
 		public void OnInspectItem(bool isInspecting, string itemName) {
 			_isInspectingItem = isInspecting;
-			Debug.Log ("InputManager/OnInspectItem, _isInspectingItem = " + _isInspectingItem);
 			if (isInspecting) {
 				_isUIOpen = true;
 			}
@@ -65,7 +64,6 @@ namespace Polyworks {
 				GameObject inventoryObj = GameObject.Find ("inventory_ui");
 				if (inventoryObj != null) {
 					_inventoryUI = inventoryObj.GetComponent<InventoryUI> ();
-					// Debug.Log ("_inventoryUI = " + _inventoryUI);
 				}
 
 				_itemInspector = ItemInspector.Instance;
@@ -186,7 +184,6 @@ namespace Polyworks {
 
 				if (_isMenuButtonPressed) {
 					if (_isInventoryOpen) {
-						//					_closeInventory ();
 						EventCenter.Instance.CloseInventoryUI ();
 
 						_openMenu ();

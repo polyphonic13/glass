@@ -37,14 +37,19 @@ namespace Polyworks {
 			return _animation.isPlaying;
 		}
 
-		public void Actuate() {
-			string clip = animationClips [_currentAnimation].name;
-			_animation [clip].wrapMode = WrapMode.Once;
-			_animation [clip].speed = PLAY_SPEED;
-			_animation.Play(clip);
+		public void Actuate(string clip = "") {
+			string c;
+			if (clip == "") {
+				c = animationClips [_currentAnimation].name;
+				_incrementCurrentAnimation ();
+			} else {
+				c = clip;
+			}
+			_animation [c].wrapMode = WrapMode.Once;
+			_animation [c].speed = PLAY_SPEED;
+			_animation.Play(c);
 			_isPlaying = true;
 
-			_incrementCurrentAnimation ();
 		}
 
 		private void Awake() {

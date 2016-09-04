@@ -11,9 +11,9 @@ namespace Polyworks {
 			}
 
 			UsableRange ur = item.usableRange;
-			GameObject targetObject1 = GameObject.Find (ur.target1);
+			GameObject targetObject1 = GameObject.Find(ur.target1);
 			GameObject targetObject2 = GameObject.Find(ur.target2);
-
+			Debug.Log ("ur.target1 = " + ur.target1 + ", ur.target2 = " + ur.target2 + ", targetObject1 = " + targetObject1 + ", targetObject2 = " + targetObject2);
 			if(targetObject1 == null || targetObject2 == null) {
 				Debug.Log ("targetObject1 or targetObject2 are null");
 				return false;
