@@ -65,6 +65,7 @@ namespace Polyworks {
 			string c;
 			if (clip == "") {
 				c = animationClips [_currentAnimation].name;
+				Debug.Log (" no clip param, going to play " + c);
 				_incrementCurrentAnimation ();
 			} else {
 				c = clip;
