@@ -42,7 +42,7 @@ namespace Polyworks {
 		private bool _isPlaying = false; 
 
 		public override void Play(string clip = "") {
-			Actuate ();
+			Actuate (clip);
 		}
 
 		public override void Pause() {
@@ -61,6 +61,7 @@ namespace Polyworks {
 		}
 
 		public void Actuate(string clip = "") {
+			Debug.Log ("LegacyAnimation[" + this.name + "]/Actuate, clip = " + clip);
 			string c;
 			if (clip == "") {
 				c = animationClips [_currentAnimation].name;
@@ -74,7 +75,6 @@ namespace Polyworks {
 			if (bone != null) {
 				Debug.Log ("there is a bone that we will add mixing transform for: " + bone);
 				_animation [c].AddMixingTransform(bone);
-				_animation [c].layer = 0;
 			}
 
 			_animation [c].wrapMode = WrapMode.Once;

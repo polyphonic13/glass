@@ -29,7 +29,7 @@ namespace Polyworks {
 
 		#region public methods
 		public override void Actuate () {
-			Debug.Log ("SwitchController[" + this.name + "]/Actuate, _switches = " + _switches.Length);
+//			Debug.Log ("SwitchController[" + this.name + "]/Actuate, _switches = " + _switches.Length);
 			if (!isLocked) {
 				base.Actuate ();
 				_actuate ();
