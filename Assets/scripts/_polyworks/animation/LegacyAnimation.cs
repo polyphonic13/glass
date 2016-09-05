@@ -2,9 +2,32 @@ using UnityEngine;
 using System.Collections;
 
 namespace Polyworks {
+	[System.Serializable]
+	public struct AnimationBone {
+		public string animation;
+		public Transform bone;
+	}
+
+	[System.Serializable]
+	public class AnimationBoneCollection {
+		public AnimationBone[] animationBones;
+
+		public static Transform GetBone(string name, AnimationBone[] bones) {
+			Transform bone = null;
+			for (int i = 0; i < bones.Length; i++) {
+				if (name == bones[i].animation) {
+					bone = bones[i].bone;
+					break;
+				}
+			}
+			return bone;
+		}
+	}
+
 	public class LegacyAnimation : AnimationAgent {
 
 		public AnimationClip[] animationClips;
+		public AnimationBoneCollection bones; 
 
 		public bool isAutoStart = false; 
 		public bool isAutoAdvance = true;
@@ -45,6 +68,15 @@ namespace Polyworks {
 			} else {
 				c = clip;
 			}
+
+			Transform bone = AnimationBoneCollection.GetBone (c, bones.animationBones);
+
+			if (bone != null) {
+				Debug.Log ("there is a bone that we will add mixing transform for: " + bone);
+				_animation [c].AddMixingTransform(bone);
+				_animation [c].layer = 0;
+			}
+
 			_animation [c].wrapMode = WrapMode.Once;
 			_animation [c].speed = PLAY_SPEED;
 			_animation.Play(c);

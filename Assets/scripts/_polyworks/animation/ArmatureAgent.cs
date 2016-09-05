@@ -2,27 +2,27 @@ using UnityEngine;
 using System.Collections;
 
 namespace Polyworks {
-	[System.Serializable]
-	public struct AnimationBone {
-		public string animation;
-		public Transform bone;
-	}
-
-	[System.Serializable]
-	public class AnimationBoneCollection {
-		public AnimationBone[] animationBones;
-
-		public static Transform GetBone(string name, AnimationBone[] bones) {
-			Transform bone = null;
-			for (int i = 0; i < bones.Length; i++) {
-				if (name == bones[i].animation) {
-					bone = bones[i].bone;
-					break;
-				}
-			}
-			return bone;
-		}
-	}
+//	[System.Serializable]
+//	public struct AnimationBone {
+//		public string animation;
+//		public Transform bone;
+//	}
+//
+//	[System.Serializable]
+//	public class AnimationBoneCollection {
+//		public AnimationBone[] animationBones;
+//
+//		public static Transform GetBone(string name, AnimationBone[] bones) {
+//			Transform bone = null;
+//			for (int i = 0; i < bones.Length; i++) {
+//				if (name == bones[i].animation) {
+//					bone = bones[i].bone;
+//					break;
+//				}
+//			}
+//			return bone;
+//		}
+//	}
 
 	public class ArmatureAgent : AnimationAgent {
 	
