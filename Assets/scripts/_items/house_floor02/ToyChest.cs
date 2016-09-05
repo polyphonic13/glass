@@ -11,10 +11,18 @@ public class ToyChest : Item {
 	private int _collected = 0;
 	private int _expected = 2;
 
+	private bool _isLidOpen = false; 
+
 	#region handlers
 	public void OnStringEvent(string type, string value) {
-		Debug.Log ("ToyChest/OnStringEvent, type = " + type + ", value = " + value);
+		Debug.Log ("ToyChest/OnStringEvent, type = " + type + ", value = " + value + ", _isLidOpen = " + _isLidOpen);
 		if (type == RABBIT_HUNT_ADD_EVENT) {
+			if (!_isLidOpen) {
+				// dispatch an event to open the lid first
+				EventCenter.Instance.InvokeStringEvent("open_toychest_lid", "");
+				// toggle once before event received
+				_isLidOpen = !_isLidOpen;
+			}
 			for (int i = 0; i < collectedToys.Length; i++) {
 				Debug.Log (" collectedToys[" + i + "].name = " + collectedToys [i].name);
 				if (collectedToys [i].name == value) {
@@ -27,6 +35,9 @@ public class ToyChest : Item {
 			if (_collected == _expected) {
 				EventCenter.Instance.InvokeStringEvent (RABBIT_HUNT_COMPLETE_EVENT, "");
 			}
+		} else if (type == "toychest_lid_collider") {
+			_isLidOpen = !_isLidOpen;
+			Debug.Log (" is lid open now: " + _isLidOpen);
 		}
 	}
 	#endregion
