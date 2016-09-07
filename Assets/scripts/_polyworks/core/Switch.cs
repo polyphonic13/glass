@@ -7,6 +7,10 @@ namespace Polyworks {
 		public virtual void Actuate() {
 			Debug.Log ("Switch["+this.name+"]/Acutate");
 		}
+
+		public virtual void Use() {
+			Debug.Log ("Switch[" + this.name + "]/Use");
+		}
 	}
 }
 

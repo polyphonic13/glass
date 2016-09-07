@@ -10,6 +10,10 @@ namespace Polyworks {
 //			Debug.Log ("StringEventSwitch/Actuate, name = " + this.name + ", value = " + value);
 			EventCenter.Instance.InvokeStringEvent(this.name, value);
 		}
+
+		public override void Use() {
+			Actuate ();
+		}
 	}
 }
 
