@@ -124,6 +124,7 @@ namespace Polyworks {
 			if (data == null) {
 				return null;
 			}
+			Debug.Log ("prefabPath = " + data.prefabPath);
 			GameObject itemObj = (GameObject) Instantiate (Resources.Load (data.prefabPath, typeof(GameObject)), transform.position, transform.rotation);
 			CollectableItem item = itemObj.GetComponent<CollectableItem> ();
 			item.data = data;
