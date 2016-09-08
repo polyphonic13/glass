@@ -48,31 +48,30 @@ namespace Polyworks {
 						_items.Remove (name);
 					}
 					_eventCenter.InventoryRemoved (data.name, data.count);
-					return data;
-
-				} else {
-					return null;
 				}
+				return data;
 			} 
 		}
 
 		public virtual void Use(string name) {
-			CollectableItemData data = Get (name);			
+			CollectableItemData data = Get (name);	
+			Debug.Log ("Inventory/Use, data = " + data);
 			if(data == null) {
 				return; 
 			}
 			data.isUsable = ItemUtils.GetIsUsable (data);
+			Debug.Log ("is usable = " + data.isUsable);
 			if (data.isUsable) {
 				Remove (name);
 				CollectableItem item = _pluck(data); 
-
+				Debug.Log ("the item is = " + item);
 				item.Use ();
-
-				if (item.data.isDestroyedOnUse) {
-					Destroy (item.gameObject);
-				} else {
-					_initDroppedItem (item);
-				}
+//
+//				if (item.data.isDestroyedOnUse) {
+//					Destroy (item.gameObject);
+//				} else {
+//					_initDroppedItem (item);
+//				}
 			} else {
 				_eventCenter.AddNote (data.displayName + " Can not be used here");
 			}

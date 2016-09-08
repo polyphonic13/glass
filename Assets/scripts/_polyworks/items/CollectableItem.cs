@@ -42,7 +42,17 @@ namespace Polyworks {
 		}
 
 		public override void Use() {
-			SendMessage("Use", null, SendMessageOptions.DontRequireReceiver);
+			Debug.Log ("CollectableItem[" + this.name + "]/Use");
+//			SendMessage("Use", null, SendMessageOptions.DontRequireReceiver);
+
+			Switch[] _switches = gameObject.GetComponents<Switch> ();
+			if (_switches != null) {
+				for (int i = 0; i < _switches.Length; i++) {
+					if (_switches [i] != null) {
+						_switches [i].Actuate ();
+					}
+				}
+			}
 		}
 	}
 }
