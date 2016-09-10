@@ -31,7 +31,7 @@ namespace Polyworks {
 			}
 			if (_isPlayerInventory) {
 				_eventCenter.InventoryAdded (data.name, data.count, _isPlayerInventory);
-				_eventCenter.AddNote (data.displayName + " Added");
+				_eventCenter.AddNote (data.displayName + " added");
 			}
 		}
 

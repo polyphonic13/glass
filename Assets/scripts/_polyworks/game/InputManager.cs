@@ -171,7 +171,7 @@ namespace Polyworks {
 			}
 
 			if(_controls.GetButtonDown("flashlight")) {
-				EventCenter.Instance.ActuateFlashlight();
+				EventCenter.Instance.EnableFlashlight();
 			}
 		}
 

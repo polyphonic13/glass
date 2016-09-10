@@ -61,11 +61,11 @@ namespace Polyworks {
 		}
 
 		public void Actuate(string clip = "") {
-			Debug.Log ("LegacyAnimation[" + this.name + "]/Actuate, clip = " + clip);
+//			Debug.Log ("LegacyAnimation[" + this.name + "]/Actuate, clip = " + clip);
 			string c;
 			if (clip == "") {
 				c = animationClips [_currentAnimation].name;
-				Debug.Log (" no clip param, going to play " + c);
+//				Debug.Log (" no clip param, going to play " + c);
 				_incrementCurrentAnimation ();
 			} else {
 				c = clip;
@@ -74,7 +74,7 @@ namespace Polyworks {
 			Transform bone = AnimationBoneCollection.GetBone (c, bones.animationBones);
 
 			if (bone != null) {
-				Debug.Log ("there is a bone that we will add mixing transform for: " + bone);
+//				Debug.Log ("there is a bone that we will add mixing transform for: " + bone);
 				_animation [c].AddMixingTransform(bone);
 			}
 

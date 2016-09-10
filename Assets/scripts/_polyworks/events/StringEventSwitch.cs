@@ -7,7 +7,7 @@ namespace Polyworks {
 		public string eventType; 
 
 		public override void Actuate() {
-			Debug.Log ("StringEventSwitch/Actuate, name = " + this.name + ", eventType = " + eventType);
+//			Debug.Log ("StringEventSwitch/Actuate, name = " + this.name + ", eventType = " + eventType);
 			EventCenter.Instance.InvokeStringEvent(eventType, this.name);
 		}
 

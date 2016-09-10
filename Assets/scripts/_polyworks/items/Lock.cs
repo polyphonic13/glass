@@ -13,7 +13,7 @@ namespace Polyworks {
 		private bool _isInSection = false;
 
 		public void OnStringEvent(string type, string value) {
-			Debug.Log ("Lock[" + this.name + "]/OnStringEvent, type = " + type + ", eventType = " + eventType + ", value = " + value + ", eventValue = " + eventValue);
+//			Debug.Log ("Lock[" + this.name + "]/OnStringEvent, type = " + type + ", eventType = " + eventType + ", value = " + value + ", eventValue = " + eventValue);
 			if (type == eventType && value == eventValue) {
 				if (isLocked) {
 					isLocked = false;

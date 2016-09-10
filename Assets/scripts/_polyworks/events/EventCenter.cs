@@ -66,8 +66,11 @@ namespace Polyworks
 		public delegate void CloseInventoryHandler();
 		public event CloseInventoryHandler OnCloseInventoryUI;
 
-		public delegate void FlashlightActuateHandler(); 
-		public event FlashlightActuateHandler OnActuateFlashlight;
+		public delegate void FlashlightCollectHandler(); 
+		public event FlashlightCollectHandler OnCollectFlashlight;
+
+		public delegate void FlashlightEnableHandler(); 
+		public event FlashlightEnableHandler OnEnableFlashlight;
 		#endregion
 
 		#region singleton
@@ -207,10 +210,16 @@ namespace Polyworks
 				OnCloseInventoryUI();
 			}
 		}
-		
-		public void ActuateFlashlight() {
-			if(OnActuateFlashlight != null) {
-				OnActuateFlashlight();
+
+		public void CollectFlashight() {
+			if (OnCollectFlashlight != null) {
+				OnCollectFlashlight ();
+			}
+		}
+
+		public void EnableFlashlight() {
+			if(OnEnableFlashlight != null) {
+				OnEnableFlashlight();
 			}
 		}
 		#endregion

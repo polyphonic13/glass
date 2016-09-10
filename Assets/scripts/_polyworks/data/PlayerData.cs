@@ -8,6 +8,8 @@ namespace Polyworks
 		public int health; 
 		public int stamina;
 		public int breath;
+
+		public bool isFlashlightCollected;
 	}
 }
 

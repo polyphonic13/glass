@@ -9,7 +9,7 @@ namespace Polyworks {
 		private ProximityAgent _focusedItem;
 		private string _itemJustHit;
 
-		void Update () {
+		private void Update () {
 			_checkRayCast();
 		}
 

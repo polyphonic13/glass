@@ -31,6 +31,7 @@ GameObject:
   - 114: {fileID: 11480664}
   - 114: {fileID: 11484996}
   - 114: {fileID: 11436136}
+  - 114: {fileID: 11455262}
   m_Layer: 0
   m_Name: flashlight
   m_TagString: interactive
@@ -138,7 +139,7 @@ Light:
   m_Color: {r: 0.99264705, g: 0.99123764, b: 0.9415549, a: 1}
   m_Intensity: 1
   m_Range: 10
-  m_SpotAngle: 30
+  m_SpotAngle: 50
   m_CookieSize: 10
   m_Shadows:
     m_Type: 2
@@ -147,7 +148,7 @@ Light:
     m_Bias: 0.05
     m_NormalBias: 0.4
     m_NearPlane: 0.2
-  m_Cookie: {fileID: 0}
+  m_Cookie: {fileID: 2800000, guid: 2c29c08dd1c0b6749b7cd0fcff7a29fd, type: 3}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
   m_RenderMode: 0
@@ -187,6 +188,17 @@ MonoBehaviour:
       distance: 0
   parentName: player_head_camera
   model: {fileID: 163358}
+--- !u!114 &11455262
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 188460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 144d4fd781399498c91cd0e8bd3c6537, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11480664
 MonoBehaviour:
   m_ObjectHideFlags: 1

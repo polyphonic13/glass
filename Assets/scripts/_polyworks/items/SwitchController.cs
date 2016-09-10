@@ -20,7 +20,7 @@ namespace Polyworks {
 		#region handlers
 		public void OnStringEvent(string type, string value) {
 			if (type == eventType && value == eventValue) {
-				Debug.Log ("SwitchController[" + this.name + "]/OnStringEvent, match, isLocked = " + isLocked);
+//				Debug.Log ("SwitchController[" + this.name + "]/OnStringEvent, match, isLocked = " + isLocked);
 				if (isLocked) {
 					isLocked = false;
 				}

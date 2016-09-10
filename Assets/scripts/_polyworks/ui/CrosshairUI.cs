@@ -11,7 +11,15 @@ namespace Polyworks {
 
 		private ArrayList _sprites;
 
-		void Awake () {
+		public void OnNearItem(Item item, bool isFocused) {
+			if (isFocused && item.icon != null) {
+				image.sprite = _sprites[item.icon] as Sprite;
+			} else {
+				image.sprite = _sprites [defaultIcon] as Sprite;
+			}
+		}
+
+		private void Awake () {
 			EventCenter.Instance.OnNearItem += this.OnNearItem;
 
 			_sprites = new ArrayList ();
@@ -26,15 +34,7 @@ namespace Polyworks {
 			}
 		}
 
-		void OnNearItem(Item item, bool isFocused) {
-			if (isFocused && item.icon != null) {
-				image.sprite = _sprites[item.icon] as Sprite;
-			} else {
-				image.sprite = _sprites [defaultIcon] as Sprite;
-			}
-		}
-
-		void OnDestroy() {
+		private void OnDestroy() {
 			EventCenter ec = EventCenter.Instance;
 			if (ec != null) {
 				ec.OnNearItem -= this.OnNearItem;
