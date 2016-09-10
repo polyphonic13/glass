@@ -67,11 +67,11 @@ namespace Polyworks {
 				Debug.Log ("the item is = " + item);
 				item.Use ();
 //
-//				if (item.data.isDestroyedOnUse) {
-//					Destroy (item.gameObject);
-//				} else {
-//					_initDroppedItem (item);
-//				}
+				if (item.data.isDestroyedOnUse) {
+					Destroy (item.gameObject);
+				} else {
+					_initDroppedItem (item);
+				}
 			} else {
 				_eventCenter.AddNote (data.displayName + " Can not be used here");
 			}
