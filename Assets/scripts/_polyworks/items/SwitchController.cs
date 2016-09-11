@@ -8,6 +8,7 @@ namespace Polyworks {
 		public bool isLocked = false;
 		public bool isLockMessageDisplayed = true;
 		public bool isAutoActuatedOnUnlock = false;
+		public bool isNoteAddedOnUnlock = true;
 
 		public string eventType = "";
 		public string eventValue = "";
@@ -20,12 +21,15 @@ namespace Polyworks {
 
 		#region handlers
 		public void OnStringEvent(string type, string value) {
-			Debug.Log ("SwitchController[" + this.name + "]/OnStringEvent, type " + type + ", eventType = " + eventType);
-			Debug.Log(" value = " + value + ", eventValue = " + eventValue);
+//			Debug.Log ("SwitchController[" + this.name + "]/OnStringEvent, type " + type + ", eventType = " + eventType);
+//			Debug.Log(" value = " + value + ", eventValue = " + eventValue);
 			if (type == eventType && value == eventValue) {
-				Debug.Log (" is a MATCH");
+//				Debug.Log (" is a MATCH");
 				if (isLocked) {
 					isLocked = false;
+					if (isNoteAddedOnUnlock) {
+						EventCenter.Instance.AddNote ("The " + this.displayName + " was unlocked");
+					}
 					if (isAutoActuatedOnUnlock) {
 						Actuate ();
 					}

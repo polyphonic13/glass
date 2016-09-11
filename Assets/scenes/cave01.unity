@@ -6402,7 +6402,7 @@ MonoBehaviour:
     section: 3
     playerLocation:
       position: {x: 134.5, y: -14, z: 11}
-      rotation: {x: 0, y: 0, z: 0, w: 0}
+      rotation: {x: 0, y: 0, z: 0}
 --- !u!1001 &140673650
 Prefab:
   m_ObjectHideFlags: 0
@@ -8044,7 +8044,7 @@ MonoBehaviour:
     section: 6
     playerLocation:
       position: {x: 134.5, y: -14, z: 11}
-      rotation: {x: 0, y: 0, z: 0, w: 0}
+      rotation: {x: 0, y: 0, z: 0}
 --- !u!1 &184228055
 GameObject:
   m_ObjectHideFlags: 0
@@ -16566,7 +16566,7 @@ MonoBehaviour:
     section: 8
     playerLocation:
       position: {x: 134.5, y: -14, z: 11}
-      rotation: {x: 0, y: 0, z: 0, w: 0}
+      rotation: {x: 0, y: 0, z: 0}
 --- !u!1 &403939706
 GameObject:
   m_ObjectHideFlags: 0
@@ -27571,7 +27571,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4e0e4ebed3e94a869a970734193bc66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: miner_relay_001_closed
+  eventType: 
 --- !u!114 &650591473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27698,7 +27698,7 @@ MonoBehaviour:
     section: 1
     playerLocation:
       position: {x: 134.5, y: -14, z: 11}
-      rotation: {x: 0, y: 0, z: 0, w: 0}
+      rotation: {x: 0, y: 0, z: 0}
 --- !u!1001 &658484687
 Prefab:
   m_ObjectHideFlags: 0
@@ -29937,6 +29937,8 @@ MonoBehaviour:
   isActive: 0
   animationClips:
   - {fileID: 7400004, guid: 72797f5002b974599aede5015e8b955f, type: 3}
+  bones:
+    animationBones: []
   isAutoStart: 0
   isAutoAdvance: 1
   isLoopPlayback: 1
@@ -52669,7 +52671,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4e0e4ebed3e94a869a970734193bc66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: miner_relay_002_closed
+  eventType: 
 --- !u!114 &1217261974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59171,7 +59173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4e0e4ebed3e94a869a970734193bc66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: miner_relay_000_closed
+  eventType: 
 --- !u!114 &1422303871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70924,7 +70926,7 @@ MonoBehaviour:
     section: 0
     playerLocation:
       position: {x: 134.5, y: -14, z: 11}
-      rotation: {x: 0, y: 0, z: 0, w: 0}
+      rotation: {x: 0, y: 0, z: 0}
 --- !u!1001 &1688144058
 Prefab:
   m_ObjectHideFlags: 0
@@ -81533,7 +81535,7 @@ MonoBehaviour:
     section: 5
     playerLocation:
       position: {x: 134.5, y: -14, z: 11}
-      rotation: {x: 0, y: 0, z: 0, w: 0}
+      rotation: {x: 0, y: 0, z: 0}
 --- !u!1 &1963053401
 GameObject:
   m_ObjectHideFlags: 0
@@ -84717,6 +84719,8 @@ MonoBehaviour:
   isActive: 0
   animationClips:
   - {fileID: 7400034, guid: 3ad07af2fb980434d95c46eb6c680c24, type: 3}
+  bones:
+    animationBones: []
   isAutoStart: 0
   isAutoAdvance: 1
   isLoopPlayback: 1
@@ -84911,7 +84915,7 @@ MonoBehaviour:
     section: 7
     playerLocation:
       position: {x: 134.5, y: -14, z: 11}
-      rotation: {x: 0, y: 0, z: 0, w: 0}
+      rotation: {x: 0, y: 0, z: 0}
 --- !u!1 &2017554767
 GameObject:
   m_ObjectHideFlags: 0
@@ -85054,22 +85058,7 @@ MonoBehaviour:
     sectionPrefabs:
     - name: room02a
       prefabs:
-      - name: crystal_key_aries
-        path: items/cave01/room02a/
-        addTo: cave_objects/room_objects/room02/room02a/crystals/
-        location: {x: 136, y: 0.5, z: 11}
-        rotation: {x: 0, y: 0, z: 0}
-      - name: crystal_key_leo
-        path: items/cave01/room02a/
-        addTo: cave_objects/room_objects/room02/room02a/crystals/
-        location: {x: 136.5, y: 0.5, z: 11}
-        rotation: {x: 0, y: 0, z: 0}
       - name: crystal_key_sagittarius
-        path: items/cave01/room02a/
-        addTo: cave_objects/room_objects/room02/room02a/crystals/
-        location: {x: 137, y: 0.5, z: 11}
-        rotation: {x: 0, y: 0, z: 0}
-      - name: crystal_key_scorpio
         path: items/cave01/room02a/
         addTo: cave_objects/room_objects/room02/room02a/crystals/
         location: {x: 137.5, y: 0.5, z: 11}
@@ -85078,16 +85067,6 @@ MonoBehaviour:
         path: items/cave01/room02a/
         addTo: cave_objects/room_objects/room02/room02a/crystals/
         location: {x: 138, y: 0.5, z: 11}
-        rotation: {x: 0, y: 0, z: 0}
-      - name: crystal_key_portal
-        path: items/cave01/room02a/
-        addTo: cave_objects/room_objects/room02/room02a/crystals/
-        location: {x: 138.5, y: 0.5, z: 11}
-        rotation: {x: 0, y: 0, z: 0}
-      - name: crystal_key_room02d_elevator
-        path: items/cave01/room02d/
-        addTo: cave_objects/room_objects/room02/room02d/crystals/
-        location: {x: 139, y: 0.5, z: 11}
         rotation: {x: 0, y: 0, z: 0}
       - name: crystal_receptacle_leo
         path: items/cave01/room02a/
@@ -87669,7 +87648,7 @@ MonoBehaviour:
     section: 2
     playerLocation:
       position: {x: 134.5, y: -14, z: 11}
-      rotation: {x: 0, y: 0, z: 0, w: 0}
+      rotation: {x: 0, y: 0, z: 0}
 --- !u!1001 &2067498025
 Prefab:
   m_ObjectHideFlags: 0
@@ -87847,7 +87826,7 @@ MonoBehaviour:
     section: 4
     playerLocation:
       position: {x: 134.5, y: -14, z: 11}
-      rotation: {x: 0, y: 0, z: 0, w: 0}
+      rotation: {x: 0, y: 0, z: 0}
 --- !u!1 &2078744944 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100016, guid: f3cb57a94219340b69a039594367b3d7, type: 3}

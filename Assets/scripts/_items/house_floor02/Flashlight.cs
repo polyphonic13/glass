@@ -44,6 +44,7 @@ public class Flashlight : CollectableItem {
 	}
 
 	private void OnDestroy() {
+		_removeListeners ();
 	}
 
 	private void _removeListeners() {
