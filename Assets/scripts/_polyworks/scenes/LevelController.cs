@@ -15,6 +15,7 @@ namespace Polyworks
 
 		#region handlers
 		public void OnPrefabsAdded() {
+			Debug.Log ("LevelController/OnPrefabsAdded");
 			_finishInitialization ();		
 		}
 
@@ -30,6 +31,10 @@ namespace Polyworks
 		#region public methods
 		public void Init(GameData gameData) {
 			_gameData = gameData;
+			EventCenter ec = EventCenter.Instance;
+			ec.OnPrefabsAdded += OnPrefabsAdded;
+			ec.OnLevelTasksCompleted += OnLevelTasksCompleted;
+			ec.OnSectionChanged += OnSectionChanged;
 			ScenePrefabController.Init (sceneData.sectionPrefabs, gameData.items);
 		}
 
@@ -40,13 +45,15 @@ namespace Polyworks
 
 		#region private methods
 		private void Awake() {
-			EventCenter ec = EventCenter.Instance;
-			ec.OnPrefabsAdded += OnPrefabsAdded;
-			ec.OnLevelTasksCompleted += OnLevelTasksCompleted;
-			ec.OnSectionChanged += OnSectionChanged;
+			Debug.Log ("LevelController/Awake");
+//			EventCenter ec = EventCenter.Instance;
+//			ec.OnPrefabsAdded += OnPrefabsAdded;
+//			ec.OnLevelTasksCompleted += OnLevelTasksCompleted;
+//			ec.OnSectionChanged += OnSectionChanged;
 		}
 
 		private void _finishInitialization() {
+			Debug.Log ("LevelController/_finishInitialization, sectionControllers = " + sectionControllers);
 			bool isCleared = LevelUtils.GetIsCleared (sceneData.sceneName, Game.Instance.gameData.levels);
 			_levelData = LevelUtils.GetLevel (sceneData.sceneName, _gameData.levels);
 			if (_gameData.targetSection > -1 && _gameData.targetSection < sectionControllers.Length) {
