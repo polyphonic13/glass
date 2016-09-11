@@ -107,13 +107,14 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 413392}
+  - 114: {fileID: 11441858}
   m_Layer: 0
   m_Name: portal_effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &117744
 GameObject:
   m_ObjectHideFlags: 1
@@ -832,6 +833,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 450508}
   - 114: {fileID: 11459866}
+  - 114: {fileID: 11455786}
   - 114: {fileID: 11413302}
   m_Layer: 0
   m_Name: portal_event_and_switch
@@ -2826,6 +2828,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventType: open_portal
   eventValue: portal_crystal(Clone)
+--- !u!114 &11441858
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 115562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccac8723d42bb4acb9fb37b6d6000779, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isActive: 0
+  systems:
+  - {fileID: 19803182}
+  - {fileID: 19800980}
+  isStartActive: 0
+--- !u!114 &11455786
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 184314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53cefab8c6b97430cb054bb10bf39bec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetName: portal_effect
+  animations: []
 --- !u!114 &11459102
 MonoBehaviour:
   m_ObjectHideFlags: 1
