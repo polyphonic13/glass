@@ -30,7 +30,7 @@ namespace Polyworks
 		public delegate void NoteAdder(string message);
 		public event NoteAdder OnAddNote;
 
-		public delegate void SceneChanger(string scene);
+		public delegate void SceneChanger(string scene, int section);
 		public event SceneChanger OnChangeScene;
 
 		public delegate void SceneInitializer(string scene);
@@ -137,10 +137,10 @@ namespace Polyworks
 			}
 		}
 
-		public void ChangeScene(string scene) {
+		public void ChangeScene(string scene, int section) {
 			// Debug.Log ("EventCenter/ChangeScene, scene = " + scene + ", OnChangeScene = " + OnChangeScene);
 			if (OnChangeScene != null) {
-				OnChangeScene (scene);
+				OnChangeScene (scene, section);
 			}
 		}
 

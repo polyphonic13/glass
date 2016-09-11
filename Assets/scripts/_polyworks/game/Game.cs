@@ -64,12 +64,8 @@ namespace Polyworks {
 		}
 
 		#region handlers
-		public void OnChangeScene(string scene) {
-			ChangeScene (scene);
-		}
-
-		public void OnSectionChange(int section) {
-
+		public void OnChangeScene(string scene, int section) {
+			ChangeScene (scene, section);
 		}
 		#endregion
 	

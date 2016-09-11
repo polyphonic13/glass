@@ -14,7 +14,8 @@ namespace Polyworks {
 		}
 
 		public void Actuate() {
-			Game.Instance.ChangeScene(targetScene, targetSection);
+//			Game.Instance.ChangeScene(targetScene, targetSection);
+			EventCenter.Instance.ChangeScene(targetScene, targetSection);
 		}
 	}
 }
