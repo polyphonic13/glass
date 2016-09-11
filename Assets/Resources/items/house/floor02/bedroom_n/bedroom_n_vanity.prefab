@@ -513,6 +513,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &161458
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 454106}
+  - 33: {fileID: 3335274}
+  - 65: {fileID: 6552344}
+  m_Layer: 0
+  m_Name: vanity_table_collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &161888
 GameObject:
   m_ObjectHideFlags: 1
@@ -1220,6 +1237,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 479116}
   m_RootOrder: 3
+--- !u!4 &454106
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 161458}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.379, z: 0}
+  m_LocalScale: {x: 1.4150527, y: 0.07728737, z: 0.69296235}
+  m_Children: []
+  m_Father: {fileID: 486480}
+  m_RootOrder: 5
 --- !u!4 &455766
 Transform:
   m_ObjectHideFlags: 1
@@ -1461,6 +1490,7 @@ Transform:
   - {fileID: 476010}
   - {fileID: 492354}
   - {fileID: 479116}
+  - {fileID: 454106}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &486566
@@ -2790,6 +2820,13 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 191014}
   m_Mesh: {fileID: 4300022, guid: 43d5efe8ef86d4231b5ca1cf7eea2748, type: 3}
+--- !u!33 &3335274
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 161458}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &3344346
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -3024,6 +3061,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &6552344
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 161458}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &6557472
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -3145,6 +3194,7 @@ MonoBehaviour:
   icon: 1
   isLocked: 0
   isLockMessageDisplayed: 1
+  isAutoActuatedOnUnlock: 0
   eventType: 
   eventValue: 
 --- !u!114 &11481006
