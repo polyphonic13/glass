@@ -6,7 +6,7 @@ namespace Polyworks {
 	public class ScenePrefabController : MonoBehaviour
 	{
 		public static void Init(SectionPrefabs[] sectionsPrefabs, Hashtable items) {
-			Debug.Log ("ScenePrefabController/Init");
+//			Debug.Log ("ScenePrefabController/Init");
 			for (int j = 0; j < sectionsPrefabs.Length; j++) {
 				Prefab[] prefabs = sectionsPrefabs[j].prefabs;
 				for (int i = 0; i < prefabs.Length; i++) {
@@ -31,7 +31,6 @@ namespace Polyworks {
 					}
 				}
 			}
-			Debug.Log (" about to call PrefabsAdded");
 			EventCenter.Instance.PrefabsAdded ();
 		}
 	}

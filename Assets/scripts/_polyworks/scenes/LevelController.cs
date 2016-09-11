@@ -45,7 +45,7 @@ namespace Polyworks
 
 		#region private methods
 		private void Awake() {
-			Debug.Log ("LevelController/Awake");
+//			Debug.Log ("LevelController/Awake");
 //			EventCenter ec = EventCenter.Instance;
 //			ec.OnPrefabsAdded += OnPrefabsAdded;
 //			ec.OnLevelTasksCompleted += OnLevelTasksCompleted;
@@ -53,7 +53,7 @@ namespace Polyworks
 		}
 
 		private void _finishInitialization() {
-			Debug.Log ("LevelController/_finishInitialization, sectionControllers = " + sectionControllers);
+//			Debug.Log ("LevelController/_finishInitialization, sectionControllers = " + sectionControllers);
 			bool isCleared = LevelUtils.GetIsCleared (sceneData.sceneName, Game.Instance.gameData.levels);
 			_levelData = LevelUtils.GetLevel (sceneData.sceneName, _gameData.levels);
 			if (_gameData.targetSection > -1 && _gameData.targetSection < sectionControllers.Length) {

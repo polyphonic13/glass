@@ -5,8 +5,9 @@ namespace Polyworks {
 	public class SwitchController : Item
 	{
 		#region public members
-		public bool isLocked;
-		public bool isLockMessageDisplayed = true; 
+		public bool isLocked = false;
+		public bool isLockMessageDisplayed = true;
+		public bool isAutoActuatedOnUnlock = false;
 
 		public string eventType = "";
 		public string eventValue = "";
@@ -19,12 +20,15 @@ namespace Polyworks {
 
 		#region handlers
 		public void OnStringEvent(string type, string value) {
-//			Debug.Log ("SwitchController[" + this.name + "]/OnStringEvent, type " + type + ", eventType = " + eventType);
-//			Debug.Log(" value = " + value + ", eventValue = " + eventValue);
+			Debug.Log ("SwitchController[" + this.name + "]/OnStringEvent, type " + type + ", eventType = " + eventType);
+			Debug.Log(" value = " + value + ", eventValue = " + eventValue);
 			if (type == eventType && value == eventValue) {
 				Debug.Log (" is a MATCH");
 				if (isLocked) {
 					isLocked = false;
+					if (isAutoActuatedOnUnlock) {
+						Actuate ();
+					}
 				}
 			}
 		}

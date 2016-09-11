@@ -9,7 +9,7 @@ namespace Polyworks {
 		private Camera _camera;
 
 		public void OnSceneInitialized(string scene) {
-			Debug.Log ("CameraController/OnSceneInitialized");
+//			Debug.Log ("CameraController/OnSceneInitialized");
 			if (_camera != null) {
 				_camera.enabled = true;
 				EventCenter.Instance.MainCameraEnabled ();
@@ -17,7 +17,7 @@ namespace Polyworks {
 		}
 
 		public void OnChangeScene(string scene, int section) {
-			Debug.Log ("CameraController/OnChangeScene, _camera = " + _camera);
+//			Debug.Log ("CameraController/OnChangeScene, _camera = " + _camera);
 			if (_camera != null) {
 				_camera.enabled = false;
 			}
