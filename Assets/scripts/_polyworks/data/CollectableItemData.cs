@@ -13,7 +13,7 @@ namespace Polyworks
 	public class CollectableItemData 
 	{
 		public bool isCollected = false;
-		public bool isDroppable = false; 
+		public bool isDroppable = true; 
 		public bool isUsable = false;
 		public bool isDestroyedOnUse = false; 
 

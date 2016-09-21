@@ -8,18 +8,20 @@ namespace Polyworks {
 		public Text itemName;
 		public Text itemCount;
 		public Image itemThumbnail;
+		public bool isDroppable; 
 
 		public CanvasGroup _controlPanel;
 
 		public Color32 activeColor = new Color32(150, 150, 150, 100);
 		public Color32 inactiveColor = new Color32(0, 0, 0, 100);
-		public Color32	controlInactivateColor = new Color32(75, 75, 75, 100); 
+		public Color32 controlInactivateColor = new Color32(75, 75, 75, 100); 
 
 		private Image _itemBg;
 
 		private ArrayList _panels;
 		private int _focusedControlButton; 
 		private int _previousControlButton; 
+		private int _availableControlButtons; 
 
 		private string _initName = ""; 
 
@@ -38,7 +40,7 @@ namespace Polyworks {
 		public void IncrementControlButtonFocus(bool increment) {
 			int btn = _focusedControlButton;
 			if(increment) {
-				if(_focusedControlButton < (_panels.Count - 1)) {
+				if(_focusedControlButton < (_availableControlButtons - 1)) {
 					btn++;
 				} else {
 					btn = 0;
@@ -47,7 +49,7 @@ namespace Polyworks {
 				if(_focusedControlButton > 0) {
 					btn--;
 				} else {
-					btn = (_panels.Count -1);
+					btn = (_availableControlButtons -1);
 				}
 			}
 			SetControlButtonFocus(btn);
@@ -118,6 +120,13 @@ namespace Polyworks {
 			}
 		}
 
+		public void SetDroppable(bool droppable) {
+			isDroppable = droppable;
+			if (!isDroppable) {
+				_availableControlButtons--;
+			}
+		}
+
 		public void Reset() {
 			gameObject.name = _initName;
 			SetName("");
@@ -129,19 +138,20 @@ namespace Polyworks {
 		}
 
 		void Awake() {
+			
 			_controlPanel.alpha = 0;
 
 			_itemBg = GetComponent<Image>();
 			SetFocus(false);
 			SetThumbnail(null);
 
-			var usePanel = _controlPanel.transform.Find("panel_use").gameObject;
-			var inspectPanel = _controlPanel.transform.Find("panel_inspect").gameObject;
-			var dropPanel = _controlPanel.transform.Find("panel_drop").gameObject;
+			GameObject usePanel = _controlPanel.transform.Find("panel_use").gameObject;
+			GameObject inspectPanel = _controlPanel.transform.Find("panel_inspect").gameObject;
+			GameObject dropPanel = _controlPanel.transform.Find("panel_drop").gameObject;
 
-			var useImage = usePanel.GetComponent<Image>();
-			var inspectImage = inspectPanel.GetComponent<Image>();
-			var dropImage = dropPanel.GetComponent<Image>();
+			Image useImage = usePanel.GetComponent<Image>();
+			Image inspectImage = inspectPanel.GetComponent<Image>();
+			Image dropImage = dropPanel.GetComponent<Image>();
 
 			useImage.color = activeColor;
 			inspectImage.color = controlInactivateColor;
@@ -151,9 +161,9 @@ namespace Polyworks {
 			_panels.Add(useImage);
 			_panels.Add(inspectImage);
 			_panels.Add(dropImage);
+
+			_availableControlButtons = _panels.Count;
 		}
-
-
 	}
 }
 
