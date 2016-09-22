@@ -124,6 +124,8 @@ namespace Polyworks {
 			isDroppable = droppable;
 			if (!isDroppable) {
 				_availableControlButtons--;
+				GameObject dropPanel = _controlPanel.transform.Find("panel_drop").gameObject;
+				dropPanel.SetActive (false);
 			}
 		}
 
