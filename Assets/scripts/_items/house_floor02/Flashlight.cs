@@ -25,6 +25,7 @@ public class Flashlight : CollectableItem {
 //		this.transform.rotation = rotation;
 //		this.transform.parent = playerHead.transform;
 //		this.data.isCollected = true;
+		Game.Instance.SetFlag("isFlashlightCollected", true);
 		EventCenter ec = EventCenter.Instance;
 		ec.CollectFlashight();
 		ec.ChangeItemProximity(this, false);

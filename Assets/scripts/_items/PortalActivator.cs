@@ -2,55 +2,45 @@
 using System.Collections;
 using Polyworks;
 
+[System.Serializable]
+public struct PortalSceneMap {
+	public string name;
+	public string target;
+	public int section;
+}
+
 public class PortalActivator : CollectableItem {
 
-	public float secondsToCharge = 5.0f; 
-	public string[] usableScenes; 
-
-	private bool _isInUsableScene = false; 
-
-	private float _isUsableCounter;
-
-	public void OnSceneInitialized(string scene) {
-		for (var i = 0; i < usableScenes.Length; i++) {
-			if (usableScenes [i] == scene) {
-				_isInUsableScene = true;
-				break;
-			}
-		}
-	}
+	public PortalSceneMap[] sceneMaps; 
 
 	public override void Use () {
-		if (data.isUsable) {
-			data.isUsable = false;
-			_isUsableCounter = secondsToCharge;
+		bool isCharged = Game.Instance.GetFlag (PortalActivatorCharger.GAME_DATA_ITEM_KEY);
+//		Debug.Log ("PortalActivator/Use, isCharged = " + isCharged);
+		if (data.isUsable && isCharged) {
+			string currentScene = Game.Instance.gameData.currentScene;
+			for (var i = 0; i < sceneMaps.Length; i++) {
+				if (sceneMaps [i].name == currentScene) {
+					_use (sceneMaps [i]);
+					break;
+				}
+			} 
+		} else {
+			EventCenter.Instance.AddNote (this.data.displayName + " is not usable at this time");
 		}
 	}
 
-	private void Awake() {
-		data.isUsable = false;
-		data.isDroppable = false;
-		_isUsableCounter = secondsToCharge;
+	private void _use(PortalSceneMap sceneMap) {
+		_initializeSceneSwitch (sceneMap);
 
-		EventCenter.Instance.OnSceneInitialized += OnSceneInitialized;
+		Game.Instance.SetFlag (PortalActivatorCharger.GAME_DATA_ITEM_KEY, false);
+		base.Use ();
 	}
 
-	private void FixedUpdate() {
-//		Debug.Log ("PortalActivator: " + Time.deltaTime + ", _isUsableCounter = " + _isUsableCounter);
-		if (_isInUsableScene && !data.isUsable) {
-			_isUsableCounter -= Time.deltaTime;
-			if (_isUsableCounter <= 0) {
-				Debug.Log ("PortalActivator now usable");
-				data.isUsable = true;
-				_isUsableCounter = 0;
-			}
-		}
+	private void _initializeSceneSwitch(PortalSceneMap sceneMap) {
+//		Debug.Log ("PortalActivator/_initializeSceneSwitch, scene = " + sceneMap.target + ", section = " + sceneMap.section);
+		SceneSwitch sceneSwitch = GetComponent<SceneSwitch> ();
+		sceneSwitch.targetScene = sceneMap.target;
+		sceneSwitch.targetSection = sceneMap.section;
 	}
 
-	private void OnDestroy() {
-		EventCenter ec = EventCenter.Instance;
-		if (ec != null) {
-			ec.OnSceneInitialized -= OnSceneInitialized;
-		}
-	}
 }

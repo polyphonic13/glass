@@ -17,6 +17,8 @@ namespace Polyworks {
 
 		public PlayerData playerData;
 
+		public Flag[] flags;
+
 		/*
 		 * tasks = {
 		 * 	sceneA: {

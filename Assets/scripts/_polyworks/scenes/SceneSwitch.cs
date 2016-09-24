@@ -13,8 +13,8 @@ namespace Polyworks {
 			isActive = active;
 		}
 
-		public void Actuate() {
-//			Game.Instance.ChangeScene(targetScene, targetSection);
+		public override void Actuate() {
+			Debug.Log ("SceneSwitch[" + this.name + "]/Actuate, targetScene = " + targetScene + ", targetSection = " + targetSection);
 			EventCenter.Instance.ChangeScene(targetScene, targetSection);
 		}
 	}

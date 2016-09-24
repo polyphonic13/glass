@@ -18,7 +18,7 @@ namespace Polyworks {
 			_player.Init (data);
 			_inventory.Init (items, true);
 
-			if (data.isFlashlightCollected) {
+			if (Game.Instance.GetFlag("isFlashlightCollected")) {
 				EventCenter.Instance.CollectFlashight ();
 			}
 		}

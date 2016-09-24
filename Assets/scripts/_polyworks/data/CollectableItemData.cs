@@ -4,9 +4,9 @@ namespace Polyworks
 {
 	[Serializable]
 	public class UsableRange {
-		public string target1;
-		public string target2;
-		public float distance;
+		public string target1 = "";
+		public string target2 = "";
+		public float distance = 0;
 	}
 
 	[Serializable]
@@ -16,6 +16,7 @@ namespace Polyworks
 		public bool isDroppable = true; 
 		public bool isUsable = false;
 		public bool isDestroyedOnUse = false; 
+		public bool isPersistent = false;
 
 		public int count = 0;
 

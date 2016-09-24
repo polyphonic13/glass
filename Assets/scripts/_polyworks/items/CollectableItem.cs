@@ -35,6 +35,7 @@ namespace Polyworks {
 			clone.isDroppable = data.isDroppable;
 			clone.isUsable = data.isUsable;
 			clone.isDestroyedOnUse = data.isDestroyedOnUse;
+			clone.isPersistent = data.isPersistent; 
 
 			clone.usableRange = data.usableRange;
 
@@ -42,9 +43,7 @@ namespace Polyworks {
 		}
 
 		public override void Use() {
-			Debug.Log ("CollectableItem[" + this.name + "]/Use");
-//			SendMessage("Use", null, SendMessageOptions.DontRequireReceiver);
-
+//			Debug.Log ("CollectableItem[" + this.name + "]/Use");
 			Switch[] _switches = gameObject.GetComponents<Switch> ();
 			if (_switches != null) {
 				for (int i = 0; i < _switches.Length; i++) {

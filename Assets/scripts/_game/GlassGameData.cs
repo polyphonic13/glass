@@ -12,8 +12,6 @@ public class GlassGameData: GameData
 	public float remainingBreath;
 	public float remainingStamina;
 
-	public string currentTargetScene = "";
-
 	public bool hasFlashlight = false; 
 
 	public int targetRoom = -1;

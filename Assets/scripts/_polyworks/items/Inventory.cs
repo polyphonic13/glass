@@ -55,25 +55,29 @@ namespace Polyworks {
 
 		public virtual void Use(string name) {
 			CollectableItemData data = Get (name);	
-			Debug.Log ("Inventory/Use, data = " + data);
+//			Debug.Log ("Inventory/Use, data = " + data);
 			if(data == null) {
 				return; 
 			}
 			data.isUsable = ItemUtils.GetIsUsable (data);
-			Debug.Log ("is usable = " + data.isUsable);
+//			Debug.Log ("is usable = " + data.isUsable);
 			if (data.isUsable) {
-				Remove (name);
-				CollectableItem item = _pluck(data); 
-				Debug.Log ("the item is = " + item);
+				CollectableItem item = _instantiate(data); 
+
+				if (!data.isPersistent) {
+					Remove (name);
+				}
+
+//				Debug.Log ("the item is = " + item);
 				item.Use ();
 //
-				if (item.data.isDestroyedOnUse) {
+				if (item.data.isDestroyedOnUse || item.data.isPersistent) {
 					Destroy (item.gameObject);
 				} else {
 					_initDroppedItem (item);
 				}
 			} else {
-				_eventCenter.AddNote (data.displayName + " Can not be used here");
+				_eventCenter.AddNote (data.displayName + " can not be used here");
 			}
 			_eventCenter.CloseInventoryUI ();
 		}
@@ -81,7 +85,7 @@ namespace Polyworks {
 		public virtual void Drop(string name) {
 			// Debug.Log("Inventory/Drop, name = " + name);
 			CollectableItemData data = Remove(name);
-			CollectableItem item = _pluck(data); 
+			CollectableItem item = _instantiate(data); 
 			
 			if(item == null) {
 				return;
@@ -108,7 +112,7 @@ namespace Polyworks {
 
 		public CollectableItem GetItem(string name) {
 			
-			return _pluck (Get(name));
+			return _instantiate (Get(name));
 		}
 
 		private void Awake() {
@@ -119,15 +123,15 @@ namespace Polyworks {
 			// Debug.Log ("Inventory/OnDestroy");
 		}
 		
-		private CollectableItem _pluck(CollectableItemData data) {
+		private CollectableItem _instantiate(CollectableItemData data) {
 			if (data == null) {
 				return null;
 			}
-			Debug.Log ("prefabPath = " + data.prefabPath);
+//			Debug.Log ("prefabPath = " + data.prefabPath);
 			GameObject itemObj = (GameObject) Instantiate (Resources.Load (data.prefabPath, typeof(GameObject)), transform.position, transform.rotation);
 			CollectableItem item = itemObj.GetComponent<CollectableItem> ();
 			item.data = data;
-			item.data.isCollected = false;
+			item.data.isCollected = item.data.isPersistent;
 
 			return item;
 		}

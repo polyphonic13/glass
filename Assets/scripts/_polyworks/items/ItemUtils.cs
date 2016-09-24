@@ -5,8 +5,9 @@ namespace Polyworks {
 	public class ItemUtils : MonoBehaviour
 	{
 		public static bool GetIsUsable(CollectableItemData item) {
-			if (item.usableRange == null) {
-				Debug.Log ("no usableRange");
+			Debug.Log ("item.usableRange = " + item.usableRange);
+			if (item.usableRange == null || item.usableRange.distance == 0) {
+				Debug.Log ("no usableRange, or distance = 0");
 				return true;
 			}
 
