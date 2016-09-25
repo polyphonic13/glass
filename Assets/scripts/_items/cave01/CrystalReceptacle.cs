@@ -16,7 +16,7 @@ public class CrystalReceptacle : Item {
 	private Switch[] _switches;
 
 	public void OnStringEvent(string type, string value) {
-//		Debug.Log ("CrystalReceptacle[" + this.name + "]/OnStringEvent, type = " + type + ", value = " + value);
+		Debug.Log ("CrystalReceptacle[" + this.name + "]/OnStringEvent, type = " + type + ", value = " + value);
 		if (type == CrystalKey.EVENT_NAME && value == keyName) {
 			isEnabled = true;
 			_isUnlocked = true;

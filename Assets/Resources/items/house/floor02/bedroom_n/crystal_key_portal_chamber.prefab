@@ -29,10 +29,9 @@ GameObject:
   - 65: {fileID: 6526460}
   - 114: {fileID: 11405074}
   - 114: {fileID: 11485036}
-  - 114: {fileID: 11464210}
-  - 114: {fileID: 11423694}
+  - 114: {fileID: 114000012144856476}
   m_Layer: 0
-  m_Name: portal_crystal
+  m_Name: crystal_key_portal_chamber
   m_TagString: interactive
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -141,45 +140,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3df9045043b8d4f1cb143be7d3383c2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &11423694
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 176840}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4e0e4ebed3e94a869a970734193bc66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventType: open_portal
---- !u!114 &11464210
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 176840}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 196cc4548139b4b2891c6b378d048c62, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  displayName: Crystal
-  description: a purple crystal
-  prefabPath: items/house/floor02/bedroom_n/portal_crystal
-  icon: 2
-  data:
-    isCollected: 0
-    isDroppable: 0
-    isUsable: 0
-    isDestroyedOnUse: 1
-    isPersistent: 0
-    count: 0
-    thumbnail: ui/thumbnails/thumbnail_portal_crystal
-    usableRange:
-      target1: portal01(Clone)
-      target2: player
-      distance: 2
 --- !u!114 &11485036
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -205,3 +165,30 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 176840}
   m_IsPrefabParent: 1
+--- !u!114 &114000012144856476
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 176840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e961cf80bba864078b615c4a4fda8f78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  displayName: Crystal
+  description: a purple crystal
+  prefabPath: items/house/floor02/bedroom_n/crystal_key_portal_chamber
+  icon: 2
+  data:
+    isCollected: 0
+    isDroppable: 1
+    isUsable: 0
+    isDestroyedOnUse: 1
+    isPersistent: 0
+    count: 0
+    thumbnail: ui/thumbnails/thumbnail_portal_crystal
+    usableRange:
+      target1: crystal_receptacle_portal_chamber_inner(Clone)
+      target2: player
+      distance: 1.5
