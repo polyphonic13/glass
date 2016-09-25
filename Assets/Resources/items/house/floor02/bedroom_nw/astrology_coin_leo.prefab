@@ -32,6 +32,7 @@ Transform:
   m_LocalRotation: {x: -0.5000004, y: 0.49999952, z: 0.49999964, w: 0.50000054}
   m_LocalPosition: {x: -642.134, y: 111.523, z: -13.736277}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -44,18 +45,21 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
   m_Materials:
   - {fileID: 2100000, guid: ad609d65489474310baa8c915e0c8146, type: 2}
   - {fileID: 2100000, guid: ad609d65489474310baa8c915e0c8146, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 1
-  m_ReflectionProbeUsage: 1
   m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_SelectedWireframeHidden: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -129,8 +133,9 @@ MonoBehaviour:
     isDroppable: 0
     isUsable: 1
     isDestroyedOnUse: 1
+    isPersistent: 0
     count: 0
-    thumbnail: 
+    thumbnail: ui/thumbnails/thumbnail_leo_coin
     usableRange:
       target1: piggy_bank(Clone)
       target2: player

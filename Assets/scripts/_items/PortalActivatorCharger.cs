@@ -5,6 +5,7 @@ using Polyworks;
 public class PortalActivatorCharger : MonoBehaviour
 {
 	public const string GAME_DATA_ITEM_KEY = "isPortalActivatorCharged"; 
+	public const string USABLE_MESSAGE = "The device vibrated"; 
 
 	public float secondsToCharge = 5.0f; 
 
@@ -28,6 +29,7 @@ public class PortalActivatorCharger : MonoBehaviour
 			_isChargedCounter -= Time.deltaTime;
 			if (_isChargedCounter <= 0) {
 				Debug.Log ("PortalActivator now charged");
+				EventCenter.Instance.AddNote (USABLE_MESSAGE);
 				_isCharged = true;
 				Game.Instance.SetFlag (GAME_DATA_ITEM_KEY, _isCharged);
 				_isChargedCounter = 0;
