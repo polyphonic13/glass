@@ -134,7 +134,7 @@ namespace Polyworks {
 			itemUI.SetCount(itemData.count);
 
 			if(itemData.thumbnail != "") {
-				// Debug.Log("Inventory/_setItem, itemData.thumbnail = " + itemData.thumbnail);
+				 Debug.Log("Inventory/_setItem, itemData.thumbnail = " + itemData.thumbnail);
 				GameObject itemObj = (GameObject)Instantiate (Resources.Load (itemData.thumbnail, typeof(GameObject)), transform.position, transform.rotation);
 				Image thumbnail = itemObj.GetComponent<Image>();
 				itemUI.SetThumbnail(thumbnail.sprite);
