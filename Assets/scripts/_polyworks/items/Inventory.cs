@@ -115,6 +115,12 @@ namespace Polyworks {
 			return _instantiate (Get(name));
 		}
 
+		public void LogAll() {
+			foreach (string key in _items.Keys) {
+				Debug.Log ("key = " + key);
+			}
+		}
+
 		private void Awake() {
 			_eventCenter = EventCenter.Instance;
 		}
