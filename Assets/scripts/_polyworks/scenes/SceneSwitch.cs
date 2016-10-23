@@ -15,7 +15,8 @@ namespace Polyworks {
 
 		public override void Actuate() {
 			Debug.Log ("SceneSwitch[" + this.name + "]/Actuate, targetScene = " + targetScene + ", targetSection = " + targetSection);
-			EventCenter.Instance.ChangeScene(targetScene, targetSection);
+//			EventCenter.Instance.ChangeScene(targetScene, targetSection);
+			SceneChanger.Instance.Execute(targetScene, targetSection);
 		}
 	}
 }

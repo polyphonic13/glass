@@ -4,38 +4,56 @@ using System.Collections;
 namespace Polyworks {
 	public class CameraController : MonoBehaviour
 	{
-		public bool isMain;
+		public bool isMain = false;
+		public bool isInterScene = false; 
 
 		private Camera _camera;
 
 		public void OnSceneInitialized(string scene) {
-//			Debug.Log ("CameraController/OnSceneInitialized");
 			if (_camera != null) {
-				_camera.enabled = true;
-				EventCenter.Instance.MainCameraEnabled ();
+				if (isInterScene) {
+					_camera.enabled = false;
+				} else {
+					_camera.enabled = true;
+					if (isMain) {
+						EventCenter.Instance.MainCameraEnabled ();
+					}
+				}
 			}
 		}
 
-		public void OnChangeScene(string scene, int section) {
-//			Debug.Log ("CameraController/OnChangeScene, _camera = " + _camera);
+		public void OnChangeScenePrep(string scene, int section) {
+			Debug.Log ("CameraController/OnChangeScenePrep, _camera = " + _camera + ", isMain = " + isMain + ", isInterScene = " + isInterScene);
 			if (_camera != null) {
-				_camera.enabled = false;
+				if (isInterScene) {
+					_camera.enabled = true;
+				} else {
+					_camera.enabled = false;
+				}
 			}
+			SceneChanger.Instance.Continue ();
+
 		}
 
 		private void Awake() {
-			if (isMain) {
-				_camera = Camera.main;
-				_camera.enabled = false;
+			Debug.Log ("CameraController/Awake, isMain = " + isMain);
+			_camera = GetComponent<Camera> ();
 
-				var ec = EventCenter.Instance;
-				if (ec != null) {
-					ec.OnSceneInitialized += OnSceneInitialized;
-					ec.OnChangeScene += OnChangeScene;
-				}
+			if (isInterScene) {
+				_camera.enabled = true;
 			} else {
-				_camera = GetComponent<Camera> ();
+				_camera.enabled = false;
 			}
+
+			var ec = EventCenter.Instance;
+			if (ec != null) {
+				ec.OnSceneInitialized += OnSceneInitialized;
+			}
+			var sc = SceneChanger.Instance; 
+			if (sc != null) {
+				sc.OnSceneChangePrep += OnChangeScenePrep;
+			}
+			Debug.Log ("  _camera = " + _camera);
 		}
 
 		private void OnDestroy() {
@@ -43,7 +61,10 @@ namespace Polyworks {
 				var ec = EventCenter.Instance;
 				if (ec != null) {
 					ec.OnSceneInitialized -= OnSceneInitialized;
-					ec.OnChangeScene -= OnChangeScene;
+				}
+				var sc = SceneChanger.Instance; 
+				if (sc != null) {
+					sc.OnSceneChangePrep -= OnChangeScenePrep;
 				}
 			}
 		}

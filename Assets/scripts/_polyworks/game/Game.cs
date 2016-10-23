@@ -60,13 +60,19 @@ namespace Polyworks {
 				_completeSceneInitialization (isLevel, currentSceneName);
 			}
 
-			EventCenter ec = EventCenter.Instance;
-			ec.OnChangeScene += OnChangeScene;
+			SceneChanger sc = SceneChanger.Instance;
+			sc.OnSceneChangePrep += OnSceneChangePrep;
+			sc.OnSceneChange += OnSceneChange;
 		}
 
 		#region handlers
-		public void OnChangeScene(string scene, int section) {
-			ChangeScene (scene, section);
+		public void OnSceneChangePrep(string scene, int section) {
+			_prepForSceneChange (scene, section);
+		}
+
+		public void OnSceneChange(string scene, int section) {
+			Debug.Log ("Game/OnSceneChange");
+			_loadScene (scene);
 		}
 		#endregion
 	
@@ -88,20 +94,21 @@ namespace Polyworks {
 
 				if (data.currentScene != "") {
 					// Debug.Log ("going to change scene to " + data.currentScene);
-					ChangeScene (data.currentScene);
+//					ChangeScene (data.currentScene);
+					SceneChanger.Instance.Execute(data.currentScene, data.targetSection);
 				} else {
 					Scene currentScene = SceneManager.GetActiveScene ();
 					string currentSceneName = currentScene.name;
-					ChangeScene (currentSceneName);
+					SceneChanger.Instance.Execute(currentSceneName, data.targetSection);
 				}
 			}
 		}
 
 		public void StartGame() {
-			ChangeScene(Instance.gameData.levels[0].name);
+			SceneChanger.Instance.Execute(Instance.gameData.levels[0].name);
 		}
 
-		public void ChangeScene(string scene, int section = -1) {
+		private void _prepForSceneChange(string scene, int section = -1) {
 			Scene currentScene = SceneManager.GetActiveScene ();
 			bool isLevel = _getIsLevel (currentScene.name);
 
@@ -122,8 +129,7 @@ namespace Polyworks {
 					Instance.gameData.targetSection = section;
 				}
 				_cleanUp ();
-
-				_loadScene (scene);
+				SceneChanger.Instance.Continue ();
 			}
 		}
 
@@ -197,8 +203,9 @@ namespace Polyworks {
 
 		private void _cleanUp() {
 			_levelController = null;
-			EventCenter ec = EventCenter.Instance;
-			ec.OnChangeScene -= OnChangeScene;
+			SceneChanger sc = SceneChanger.Instance;
+			sc.OnSceneChangePrep -= OnSceneChangePrep;
+			sc.OnSceneChange -= OnSceneChange;
 		}
 		#endregion
 	}

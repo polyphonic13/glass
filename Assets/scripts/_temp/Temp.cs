@@ -20,7 +20,7 @@ public class Temp : MonoBehaviour {
 	}
 	
 	public void ChangeScene(string scene) {
-		Game.Instance.ChangeScene(scene);
+		SceneChanger.Instance.Execute(scene);
 	}
 
 	public void OnSceneInitialized(string scene) {

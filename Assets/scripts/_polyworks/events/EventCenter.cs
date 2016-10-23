@@ -32,6 +32,8 @@ namespace Polyworks
 
 		public delegate void SceneChanger(string scene, int section);
 		public event SceneChanger OnChangeScene;
+		public event SceneChanger OnPreChangeScene;
+		public event SceneChanger OnPostChangeScene;
 
 		public delegate void SceneInitializer(string scene);
 		public event SceneInitializer OnSceneInitialized;
@@ -71,20 +73,6 @@ namespace Polyworks
 
 		public delegate void FlashlightEnableHandler(); 
 		public event FlashlightEnableHandler OnEnableFlashlight;
-		#endregion
-
-		#region singleton
-		private static EventCenter _instance;
-		private EventCenter() {}
-
-		public static EventCenter Instance {
-			get {
-				if(_instance == null) {
-					_instance = GameObject.FindObjectOfType(typeof(EventCenter)) as EventCenter;      
-				}
-				return _instance;
-			}
-		}
 		#endregion
 
 		#region handlers
@@ -135,6 +123,10 @@ namespace Polyworks
 			if (OnAddNote != null) {
 				OnAddNote (message);
 			}
+		}
+
+		public void StartSceneChange(string scene, int section) {
+
 		}
 
 		public void ChangeScene(string scene, int section) {

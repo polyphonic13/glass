@@ -54,6 +54,7 @@ namespace Polyworks {
 		}
 
 		public virtual void Use(string name) {
+			_eventCenter.CloseInventoryUI ();
 			CollectableItemData data = Get (name);	
 //			Debug.Log ("Inventory/Use, data = " + data);
 			if(data == null) {
@@ -79,7 +80,6 @@ namespace Polyworks {
 			} else {
 				_eventCenter.AddNote (data.displayName + " can not be used here");
 			}
-			_eventCenter.CloseInventoryUI ();
 		}
 
 		public virtual void Drop(string name) {
