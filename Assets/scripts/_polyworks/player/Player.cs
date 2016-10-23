@@ -114,6 +114,9 @@ namespace Polyworks
 			_gravityDamager.CancelFall();
 		}
 
+		public void OnChangeScenePrep(string scene, int section) {
+//			Destroy(this.gameObject);
+		}
 		#endregion
 
 
@@ -197,13 +200,15 @@ namespace Polyworks
 				_childTransforms [i++] = t;
 			}
 
-			var ec = EventCenter.Instance;
+			EventCenter ec = EventCenter.Instance;
 //			ec.OnAboveWater += OnAboveWater;
 //			ec.OnPlayerDamaged += OnPlayerDamaged;
 			ec.OnNearItem += OnNearItem;
+
+			SceneChanger sc = SceneChanger.Instance;
+			sc.OnSceneChangePrep += OnChangeScenePrep;
 		}
 		#endregion
-
 
 		#region update		
 		private void Update()
@@ -499,11 +504,15 @@ namespace Polyworks
 		#endregion
 
 		private void OnDestroy() {
-			var ec = EventCenter.Instance;
+			EventCenter ec = EventCenter.Instance;
 			if (ec != null) {
 //				ec.OnAboveWater -= OnAboveWater;
 //				ec.OnPlayerDamaged -= OnPlayerDamaged;
 				ec.OnNearItem -= OnNearItem;
+			}
+			SceneChanger sc = SceneChanger.Instance;
+			if (sc != null) {
+				sc.OnSceneChangePrep -= OnChangeScenePrep;
 			}
 		}
 	}

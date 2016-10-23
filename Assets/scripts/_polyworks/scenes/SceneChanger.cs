@@ -5,8 +5,9 @@ namespace Polyworks {
 	public class SceneChanger : Singleton<SceneChanger>
 	{
 		#region delegates
+		public delegate void Prepper(string scene, int section);
+		public event Prepper OnSceneChangePrep;
 		public delegate void Changer(string scene, int section);
-		public event Changer OnSceneChangePrep;
 		public event Changer OnSceneChange;
 		#endregion
 
@@ -37,10 +38,11 @@ namespace Polyworks {
 			Debug.Log ("SceneChanger/Continue, _totalPrepStepsCompleted = " + _totalPrepStepsCompleted + ", totalPrepSteps = " + totalPrepSteps);
 			if (_totalPrepStepsCompleted == totalPrepSteps) {
 				_totalPrepStepsCompleted = 0;
-				Debug.Log (" all prep done, time to change the scene");
-				if (OnSceneChange != null) {
-					OnSceneChange (_targetScene, _targetSection);
-				}
+				Debug.Log (" all prep done, time to change the scene, OnSceneChange = " + OnSceneChange);
+//				if (OnSceneChange != null) {
+//					OnSceneChange (_targetScene, _targetSection);
+//				}
+				Game.Instance.ChangeScene(_targetScene, _targetSection);
 			}
 		}
 		#endregion

@@ -67,6 +67,7 @@ namespace Polyworks {
 
 		#region handlers
 		public void OnSceneChangePrep(string scene, int section) {
+			Debug.Log ("Game/OnSceneChangePrep");
 			_prepForSceneChange (scene, section);
 		}
 
@@ -74,9 +75,15 @@ namespace Polyworks {
 			Debug.Log ("Game/OnSceneChange");
 			_loadScene (scene);
 		}
+
 		#endregion
 	
 		#region public methods
+		public void ChangeScene(string scene, int section) {
+			Debug.Log ("Game/ChangeScene");
+			_loadScene(scene);
+		}
+
 		public virtual Inventory GetPlayerInventory() {
 			return Instance.playerInventory;
 		}
@@ -117,7 +124,7 @@ namespace Polyworks {
 					if (_levelController != null) {
 						LevelUtils.SetLevelData (currentScene.name, Instance.gameData.levels, _levelController.GetLevelData());
 					}
-					Debug.Log ("Game/ChangeScene, current scene = " + currentScene.name + ", _levelController = " + _levelController);
+					Debug.Log ("Game/_prepForSceneChange, current scene = " + currentScene.name + ", _levelController = " + _levelController);
 //					if (Instance.playerInventory = null) {
 //						Debug.Log (" player inventory was null, goign to try to get it from player manager");
 //						PlayerManager pm = _levelController.GetComponent<PlayerManager> ();
