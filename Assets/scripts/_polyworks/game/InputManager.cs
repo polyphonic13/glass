@@ -46,6 +46,8 @@ namespace Polyworks {
 		#endregion
 
 		public void Init(bool isLevel) {
+			Debug.Log("InputManager/Init");
+			_isLevel = isLevel;
 			_controls = ReInput.players.GetPlayer(0);
 
 			GameObject menuObj = GameObject.Find ("menu_ui");
@@ -113,14 +115,16 @@ namespace Polyworks {
 
 		#region update loop
 		private void _uiUpdate(UIController controller, float horizontal, float vertical) {
-			controller.SetHorizontal (horizontal);
-			controller.SetVertical (vertical);
-			controller.SetConfirm (_controls.GetButtonDown ("confirm"));
-			controller.SetCancel (_controls.GetButtonDown ("cancel"));
-			controller.SetUp(_controls.GetButtonDown("up"));
-			controller.SetDown(_controls.GetButtonDown("down"));
-			controller.SetLeft(_controls.GetButtonDown("left"));
-			controller.SetRight(_controls.GetButtonDown("right"));
+			if(controller != null) {
+				controller.SetHorizontal (horizontal);
+				controller.SetVertical (vertical);
+				controller.SetConfirm (_controls.GetButtonDown ("confirm"));
+				controller.SetCancel (_controls.GetButtonDown ("cancel"));
+				controller.SetUp(_controls.GetButtonDown("up"));
+				controller.SetDown(_controls.GetButtonDown("down"));
+				controller.SetLeft(_controls.GetButtonDown("left"));
+				controller.SetRight(_controls.GetButtonDown("right"));
+			}
 		}
 
 		private void _inventoryUpdate(float horizontal, float vertical) {
@@ -206,7 +210,7 @@ namespace Polyworks {
 				} else {
 					if (_isInspectingItem) {
 						_itemInspectorUpdate (horizontal, vertical);
-					} else if (!_isUIOpen) {
+					} else if (_isLevel && !_isUIOpen) {
 						_playerUpdate (horizontal, vertical);
 						_itemsUpdate ();
 					} else if (_isInventoryOpen) {

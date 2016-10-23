@@ -31,6 +31,7 @@ namespace Polyworks {
 			Scene currentScene = SceneManager.GetActiveScene ();
 			string currentSceneName = currentScene.name;
 			bool isLevel = _getIsLevel (currentSceneName);
+			Debug.Log("currentScene, " + currentSceneName + " isLevel = " + isLevel);
 			Instance.isSceneInitialized = false;
 
 			_dataIOController = new DataIOController ();
@@ -94,6 +95,10 @@ namespace Polyworks {
 					ChangeScene (currentSceneName);
 				}
 			}
+		}
+
+		public void StartGame() {
+			ChangeScene(Instance.gameData.levels[0].name);
 		}
 
 		public void ChangeScene(string scene, int section = -1) {
@@ -178,6 +183,7 @@ namespace Polyworks {
 			EventCenter.Instance.SceneInitializationComplete (currentSceneName);
 
 			InputManager inputManager = GetComponent<InputManager> ();
+			Debug.Log("inputmanager = " + inputManager + ", isLevel = " + isLevel);
 			inputManager.Init (isLevel);
 		}
 
