@@ -19,11 +19,14 @@ namespace Polyworks {
 		}
 
 		public static Flag GetByKey(string key, Flag[] list) {
+//			Debug.Log ("FlagDataUtils/GetByKey, key = " + key + ", list = " + list);
 			Flag item = new Flag();
 
 			for (var i = 0; i < list.Length; i++) {
+//				Debug.Log (" list[" + i + "].key = " + list [i].key);
 				if (list [i].key == key) {
 					item = list [i];
+//					Debug.Log ("  found value = " + item.value);
 					break;
 				}
 			}

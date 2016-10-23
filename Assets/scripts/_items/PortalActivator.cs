@@ -13,8 +13,13 @@ public class PortalActivator : CollectableItem {
 
 	public PortalSceneMap[] sceneMaps; 
 
+	public override void Actuate() {
+		Game.Instance.SetFlag (PortalActivatorCharger.PORTAL_ACTIVATOR_COLLECTED, true);
+		base.Actuate ();
+	}
+	
 	public override void Use () {
-		bool isCharged = Game.Instance.GetFlag (PortalActivatorCharger.GAME_DATA_ITEM_KEY);
+		bool isCharged = Game.Instance.GetFlag (PortalActivatorCharger.PORTAL_ACTIVATOR_CHARGED);
 //		Debug.Log ("PortalActivator/Use, isCharged = " + isCharged);
 		if (data.isUsable && isCharged) {
 			string currentScene = Game.Instance.gameData.currentScene;
@@ -32,7 +37,7 @@ public class PortalActivator : CollectableItem {
 	private void _use(PortalSceneMap sceneMap) {
 		_initializeSceneSwitch (sceneMap);
 
-		Game.Instance.SetFlag (PortalActivatorCharger.GAME_DATA_ITEM_KEY, false);
+		Game.Instance.SetFlag (PortalActivatorCharger.PORTAL_ACTIVATOR_CHARGED, false);
 		base.Use ();
 	}
 
