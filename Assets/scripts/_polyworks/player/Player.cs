@@ -205,8 +205,6 @@ namespace Polyworks
 //			ec.OnPlayerDamaged += OnPlayerDamaged;
 			ec.OnNearItem += OnNearItem;
 
-			SceneChanger sc = SceneChanger.Instance;
-			sc.OnSceneChangePrep += OnChangeScenePrep;
 		}
 		#endregion
 
@@ -509,10 +507,6 @@ namespace Polyworks
 //				ec.OnAboveWater -= OnAboveWater;
 //				ec.OnPlayerDamaged -= OnPlayerDamaged;
 				ec.OnNearItem -= OnNearItem;
-			}
-			SceneChanger sc = SceneChanger.Instance;
-			if (sc != null) {
-				sc.OnSceneChangePrep -= OnChangeScenePrep;
 			}
 		}
 	}

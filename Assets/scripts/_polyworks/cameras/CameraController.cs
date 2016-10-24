@@ -22,8 +22,8 @@ namespace Polyworks {
 			}
 		}
 
-		public void OnChangeScenePrep(string scene, int section) {
-			Debug.Log ("CameraController/OnChangeScenePrep, _camera = " + _camera + ", isMain = " + isMain + ", isInterScene = " + isInterScene);
+		public void OnStartSceneChange(string scene, int section) {
+//			Debug.Log ("CameraController/OnChangeScenePrep, _camera = " + _camera + ", isMain = " + isMain + ", isInterScene = " + isInterScene);
 			if (_camera != null) {
 				if (isInterScene) {
 					_camera.enabled = true;
@@ -31,12 +31,12 @@ namespace Polyworks {
 					_camera.enabled = false;
 				}
 			}
-			SceneChanger.Instance.Continue ();
+			EventCenter.Instance.ContinueSceneChange (scene, section);
 
 		}
 
 		private void Awake() {
-			Debug.Log ("CameraController/Awake, isMain = " + isMain);
+//			Debug.Log ("CameraController/Awake, isMain = " + isMain);
 			_camera = GetComponent<Camera> ();
 
 			if (isInterScene) {
@@ -48,24 +48,16 @@ namespace Polyworks {
 			var ec = EventCenter.Instance;
 			if (ec != null) {
 				ec.OnSceneInitialized += OnSceneInitialized;
+				ec.OnStartSceneChange += OnStartSceneChange;
 			}
-			var sc = SceneChanger.Instance; 
-			if (sc != null) {
-				sc.OnSceneChangePrep += OnChangeScenePrep;
-			}
-			Debug.Log ("  _camera = " + _camera);
+//			Debug.Log ("  _camera = " + _camera);
 		}
 
 		private void OnDestroy() {
-			if (isMain) {
-				var ec = EventCenter.Instance;
-				if (ec != null) {
-					ec.OnSceneInitialized -= OnSceneInitialized;
-				}
-				var sc = SceneChanger.Instance; 
-				if (sc != null) {
-					sc.OnSceneChangePrep -= OnChangeScenePrep;
-				}
+			var ec = EventCenter.Instance;
+			if (ec != null) {
+				ec.OnSceneInitialized -= OnSceneInitialized;
+				ec.OnStartSceneChange -= OnStartSceneChange;
 			}
 		}
 

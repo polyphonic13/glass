@@ -24,7 +24,7 @@ namespace Polyworks {
 			ec.OnAddNote += OnAddNote;
 		}
 
-		public void OnAddNote(string message, bool fadeOut = true) {
+		public void OnAddNote(string message) {
 			if (_queue.Count == 0 || (message != _queue [_queue.Count - 1])) {
 				_queue.Add (message);
 				if (!_isClearing) {

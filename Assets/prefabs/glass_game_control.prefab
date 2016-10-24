@@ -80,12 +80,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameData:
-    currentScene: house_floor02a
-    targetSection: 5
+    currentScene: start
+    targetSection: 0
     count: 0
     levels:
     - name: house_floor02a
-      isCleared: 0
+      isCleared: 1
       currentSection: 0
       tasks:
         intTasks:
@@ -130,7 +130,7 @@ MonoBehaviour:
   dataFilename: glass.dat
   playerPrefab: player/player_objects
   isSceneInitialized: 0
-  isCursorless: 1
+  isCursorless: 0
 --- !u!114 &11483172
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -164,7 +164,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a519e0febea5402cbf7317b2608dacb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalPrepSteps: 4
+  prepSteps:
+  - scene: start
+    steps: 1
+  - scene: house_floor02a
+    steps: 4
+  - scene: cave01
+    steps: 1
 --- !u!114 &114000012953061632
 MonoBehaviour:
   m_ObjectHideFlags: 1

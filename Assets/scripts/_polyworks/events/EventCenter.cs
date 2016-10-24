@@ -6,6 +6,11 @@ namespace Polyworks
 	public class EventCenter: Singleton<EventCenter>
 	{
 		#region delegates
+		public delegate void SceneChangeHandler(string scene, int section = -1);
+		public event SceneChangeHandler OnStartSceneChange;
+		public event SceneChangeHandler OnContinueSceneChange; 
+		public event SceneChangeHandler OnCompleteSceneChange; 
+
 		public delegate void IntEventHandler(string name, int value = 0);
 		public event IntEventHandler OnIntEvent;
 
@@ -71,6 +76,24 @@ namespace Polyworks
 		#endregion
 
 		#region handlers
+		public void StartSceneChange(string scene, int section = -1) {
+			if (OnStartSceneChange != null) {
+				OnStartSceneChange (scene, section);
+			}
+		}
+
+		public void ContinueSceneChange(string scene, int section = -1) {
+			if (OnContinueSceneChange != null) {
+				OnContinueSceneChange (scene, section);
+			}
+		}
+
+		public void CompleteSceneChange(string scene, int section = -1) {
+			if (OnCompleteSceneChange != null) {
+				OnCompleteSceneChange (scene, section);
+			}
+		}
+
 		public void InvokeIntEvent(string type, int value = 0) {
 			if (OnIntEvent != null) {
 				OnIntEvent (type, value);

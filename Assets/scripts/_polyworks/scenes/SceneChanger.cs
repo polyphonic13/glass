@@ -1,51 +1,72 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 
 namespace Polyworks {
+	[Serializable]
+	public struct ScenePrepSteps {
+		public string scene;
+		public int steps;
+	}
+
 	public class SceneChanger : Singleton<SceneChanger>
 	{
-		#region delegates
-		public delegate void Prepper(string scene, int section);
-		public event Prepper OnSceneChangePrep;
-		public delegate void Changer(string scene, int section);
-		public event Changer OnSceneChange;
-		#endregion
-
 		#region public members
-		public int totalPrepSteps = 0;
+		public ScenePrepSteps[] prepSteps;
 		#endregion
 
 		#region private members
+		private string _currentScene = "";
 		private string _targetScene = "";
 		private int _targetSection = -1;
 
+		private ScenePrepSteps _currentPrepSteps;
 		private int _totalPrepStepsCompleted = 0;
+		private bool _isListenersAdded = false;
 		#endregion
 
 		#region public methods
-		public void Execute(string scene, int section = -1) {
-			Debug.Log ("SceneChanger/Execute, scene = " + scene + ", section = " + section);
-			_targetScene = scene;
-			_targetSection = section;
-
-			if (OnSceneChangePrep != null) {
-				OnSceneChangePrep (scene, section);
+		public void Init(string scene) {
+			_currentScene = scene;
+			for (int i = 0; i < prepSteps.Length; i++) {
+				if (prepSteps [i].scene == scene) {
+					_currentPrepSteps = prepSteps [i];
+					break;
+				}
+			}
+			if (!_isListenersAdded) {
+				EventCenter ec = EventCenter.Instance;
+				ec.OnStartSceneChange += OnStartSceneChange;
+				ec.OnContinueSceneChange += OnContinueSceneChange;
+				_isListenersAdded = true;
 			}
 		}
 
-		public void Continue() {
+		public void OnStartSceneChange(string scene, int section = -1) {
+			_targetScene = scene;
+			_targetSection = section;
+		}
+
+		public void OnContinueSceneChange(string scene, int section = -1) {
 			_totalPrepStepsCompleted++; 
-			Debug.Log ("SceneChanger/Continue, _totalPrepStepsCompleted = " + _totalPrepStepsCompleted + ", totalPrepSteps = " + totalPrepSteps);
-			if (_totalPrepStepsCompleted == totalPrepSteps) {
+			Debug.Log ("SceneChanger/OnContinueSceneChange, _totalPrepStepsCompleted = " + _totalPrepStepsCompleted + ", _currentPrepSteps.steps = " + _currentPrepSteps.steps);
+			if (_totalPrepStepsCompleted == _currentPrepSteps.steps) {
 				_totalPrepStepsCompleted = 0;
-				Debug.Log (" all prep done, time to change the scene, OnSceneChange = " + OnSceneChange);
-//				if (OnSceneChange != null) {
-//					OnSceneChange (_targetScene, _targetSection);
-//				}
-				Game.Instance.ChangeScene(_targetScene, _targetSection);
+				Debug.Log (" dispatching CompleteSceneChange");
+				EventCenter.Instance.CompleteSceneChange(_targetScene, _targetSection);
 			}
 		}
 		#endregion
+
+		private void OnDestroy() {
+			EventCenter ec = EventCenter.Instance;
+			if (ec != null) {
+				ec.OnStartSceneChange -= OnStartSceneChange;
+				ec.OnContinueSceneChange -= OnStartSceneChange;
+			}
+		}
 	}
+
 }
+
 
