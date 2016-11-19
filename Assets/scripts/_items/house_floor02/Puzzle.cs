@@ -1,15 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Polyworks;
 
 public class Puzzle : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
+	public Transform[] hiddenChildren; 
+
+	public virtual void Init() {
+		GameObjectUtils.DeactivateFromTransforms (hiddenChildren);
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+	private void Awake() {
+		Init ();
 	}
 }

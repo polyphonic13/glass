@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CombinationCircuitPuzzle : MonoBehaviour
+public class CombinationCircuitPuzzle : Puzzle
 {
 
 	// Use this for initialization

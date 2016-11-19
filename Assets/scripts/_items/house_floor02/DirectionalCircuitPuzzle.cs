@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DirectionalCircuitPuzzle : MonoBehaviour
+public class DirectionalCircuitPuzzle : Puzzle
 {
 
 	// Use this for initialization
