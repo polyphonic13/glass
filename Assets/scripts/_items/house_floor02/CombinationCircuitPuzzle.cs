@@ -3,8 +3,12 @@ using System.Collections;
 
 public class CombinationCircuitPuzzle : Puzzle
 {
+	public int[] pegsTopRow;
+	public int[] pegsBottomRow; 
+
 	private Light _redLight;
 	private Light _greenLight;
+
 
 	public override void Init() {
 		Debug.Log ("CombinationCircuitPuzzle/Init");
