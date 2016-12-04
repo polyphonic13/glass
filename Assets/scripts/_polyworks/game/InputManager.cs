@@ -1,12 +1,12 @@
-using UnityEngine;
-using UnitySampleAssets.CrossPlatformInput;
-using UnitySampleAssets.Utility;
-using Random = UnityEngine.Random;
-using Rewired;
-using Polyworks;
-
 namespace Polyworks {
-	
+
+	using UnityEngine;
+	using UnitySampleAssets.CrossPlatformInput;
+	using UnitySampleAssets.Utility;
+	using Random = UnityEngine.Random;
+	using Rewired;
+	using Polyworks;
+
 	public class InputManager : MonoBehaviour {
 		private Rewired.Player _controls;
 		private Player _player;
@@ -46,7 +46,7 @@ namespace Polyworks {
 		#endregion
 
 		public void Init(bool isLevel) {
-			Debug.Log("InputManager/Init");
+//			Debug.Log("InputManager/Init");
 			_isLevel = isLevel;
 			_controls = ReInput.players.GetPlayer(0);
 
