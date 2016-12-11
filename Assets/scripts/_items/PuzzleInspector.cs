@@ -28,7 +28,7 @@ public class PuzzleInspector : MonoBehaviour {
 	}
 
 	void Awake () {
-		_toggleActivated (false);
+//		_toggleActivated (false);
 	}
 
 	private void _setLocation(PuzzleLocation location) {
