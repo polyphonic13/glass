@@ -28,6 +28,8 @@ namespace Polyworks {
 
 		private Item _itemInProximity = null; 
 
+		private IInputControllable _activeObject = null; 
+
 		#region handlers
 		public void OnNearItem(Item item, bool isNear) {
 			_itemInProximity = (isNear) ? item : null;
@@ -41,6 +43,18 @@ namespace Polyworks {
 			_isInspectingItem = isInspecting;
 			if (isInspecting) {
 				_isUIOpen = true;
+			}
+		}
+
+		public void OnContextChange(string type) {
+			if (type == "player") {
+				if (_player) {
+					_player.isActive = true; 
+					_activeObject = _player;
+				}
+			} else {
+				_player.isActive = false; 
+
 			}
 		}
 		#endregion
@@ -59,7 +73,7 @@ namespace Polyworks {
 				GameObject playerObj = GameObject.Find ("player");
 				if (playerObj != null) {
 					_player = playerObj.GetComponent<Player> ();
-
+					_activeObject = _player;
 					_cameraZoom = playerObj.GetComponent<CameraZoom> ();
 				}
 
@@ -74,6 +88,7 @@ namespace Polyworks {
 				ec.OnNearItem += this.OnNearItem;
 				ec.OnCloseInventoryUI += this.OnCloseInventoryUI;
 				ec.OnInspectItem += this.OnInspectItem;
+				ec.OnContextChange += this.OnContextChange;
 			}
 			_isInitialized = true;
 		}
@@ -83,12 +98,14 @@ namespace Polyworks {
 			_openUI ();
 			_isInventoryOpen = true;
 			_inventoryUI.SetActive (true);
+			_activeObject = _inventoryUI;
 		}
 
 		private void _openMenu() {
 			_openUI ();
 			_isInventoryOpen = false;
 			_menuUI.SetActive (true);
+			_activeObject = _menuUI;
 		}
 
 		private void _openUI() {
@@ -110,14 +127,15 @@ namespace Polyworks {
 		private void _closeUI() {
 			_isUIOpen = false;
 			_player.isActive = true;
+			_activeObject = _player;
 		}
 		#endregion
 
 		#region update loop
 		private void _uiUpdate(UIController controller, float horizontal, float vertical) {
 			if(controller != null) {
-				controller.SetHorizontal (horizontal);
-				controller.SetVertical (vertical);
+//				controller.SetVertical (vertical);
+//				controller.SetHorizontal (horizontal);
 				controller.SetConfirm (_controls.GetButtonDown ("confirm"));
 				controller.SetCancel (_controls.GetButtonDown ("cancel"));
 				controller.SetUp(_controls.GetButtonDown("up"));
@@ -138,9 +156,8 @@ namespace Polyworks {
 		private void _itemInspectorUpdate(float horizontal, float vertical) {
 			Debug.Log ("_itemInspectorUpdate, _itemInspector = " + _itemInspector);
 			if (_itemInspector != null) {
-				Debug.Log ("INSPECTOR NOT NULL");
-				_itemInspector.SetHorizontal (horizontal);
-				_itemInspector.SetVertical (vertical);
+//				_itemInspector.SetHorizontal (horizontal);
+//				_itemInspector.SetVertical (vertical);
 				_itemInspector.SetCancel (_controls.GetButtonDown ("cancel"));
 				_itemInspector.SetZoomIn (_controls.GetButtonDown ("zoom_in"));
 				_itemInspector.SetZoomOut (_controls.GetButtonDown ("zoom_out"));
@@ -148,8 +165,8 @@ namespace Polyworks {
 		}
 
 		private void _playerUpdate(float horizontal, float vertical) {
-			_player.SetHorizontal (horizontal);
-			_player.SetVertical (vertical);
+//			_player.SetHorizontal (horizontal);
+//			_player.SetVertical (vertical);
 
 			if(_controls.GetButtonDown("jump")) {
 				_player.SetJumping(true);
@@ -185,6 +202,11 @@ namespace Polyworks {
 				float vertical = _controls.GetAxis ("move_vertical");
 				_isMenuButtonPressed = _controls.GetButtonDown ("open_menu");
 				_isInventoryButtonPressed = _controls.GetButtonDown ("open_inventory");
+
+				if (_activeObject != null) {
+					_activeObject.SetVertical (vertical);
+					_activeObject.SetHorizontal (horizontal);
+				}
 
 				if (_isMenuButtonPressed) {
 					if (_isInventoryOpen) {

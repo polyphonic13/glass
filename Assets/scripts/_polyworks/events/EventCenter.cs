@@ -73,6 +73,10 @@ namespace Polyworks
 
 		public delegate void FlashlightEnableHandler(); 
 		public event FlashlightEnableHandler OnEnableFlashlight;
+
+		public delegate void ContextChanger(string Types);
+		public event ContextChanger OnContextChange; 
+
 		#endregion
 
 		#region handlers
@@ -218,6 +222,12 @@ namespace Polyworks
 		public void EnableFlashlight() {
 			if(OnEnableFlashlight != null) {
 				OnEnableFlashlight();
+			}
+		}
+
+		public void ChangeContext(string type) {
+			if (OnContextChange != null) {
+				OnContextChange (type);
 			}
 		}
 		#endregion

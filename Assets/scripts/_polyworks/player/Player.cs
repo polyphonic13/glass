@@ -9,8 +9,9 @@ namespace Polyworks
 {
     [RequireComponent(typeof (CharacterController))]
     [RequireComponent(typeof (AudioSource))]
-    public class Player : MonoBehaviour
+    public class Player : MonoBehaviour, IInputControllable
     {
+		#region members
 		#region serialized members
 		[SerializeField] private bool _damageFromFall = true;
 		[SerializeField] private float _underWaterGravity = -0.1f;
@@ -38,12 +39,14 @@ namespace Polyworks
         [SerializeField] private AudioClip m_LandSound;           // the sound played when character touches back on ground.
 		#endregion
 
+		#region public members
 		public PlayerData data; 
 		public int startingHealth = 100;
 		public int startingStamina = 100;
 		public int startingBreath = 100;
 		public bool isResetOnSceneChange = true;
 		public bool isActive = true; 
+		#endregion
 
 		#region private members
 		private enum MovementStates { Normal, Crawl, Climb, Swim, Dive };
@@ -86,6 +89,7 @@ namespace Polyworks
 
 		private Transform[] _childTransforms; 
 		#endregion
+		#endregion
 
 		#region delegate handlers
 		public void OnNearItem(Item item, bool isFocused) {
@@ -118,7 +122,6 @@ namespace Polyworks
 //			Destroy(this.gameObject);
 		}
 		#endregion
-
 
 		#region public methods
 		public void Init(PlayerData d) {

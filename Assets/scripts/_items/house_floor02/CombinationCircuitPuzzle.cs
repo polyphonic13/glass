@@ -11,7 +11,7 @@ public class CombinationCircuitPuzzle : Puzzle
 
 
 	public override void Init() {
-		Debug.Log ("CombinationCircuitPuzzle/Init");
+//		Debug.Log ("CombinationCircuitPuzzle["+this.name+"]/Init");
 		_redLight = GameObject.Find ("red_light").GetComponent<Light>();
 		_greenLight = GameObject.Find ("green_light").GetComponent<Light>();
 

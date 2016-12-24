@@ -1,15 +1,30 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using UnitySampleAssets.Characters.FirstPerson;
+using Polyworks; 
 
-public class PuzzleInspector : MonoBehaviour {
+public class PuzzleInspector : MonoBehaviour, IInputControllable {
 
 	public PuzzleLocation[] locations;
 
-	public Camera camera;
-	public Light light;
+	public bool isActive { get; set; }
+
+	[SerializeField] private Light _light;
+	[SerializeField] private Camera _camera;
+	[SerializeField] private MouseLook _mouseLook;
 
 	private string _activeLocation = "";
+
+	private float _vertical; 
+	private float _horizontal; 
+
+	#region public methods
+	public void Init() {
+		EventCenter ec = EventCenter.Instance;
+
+		_mouseLook.Init (this.transform, _camera.transform);
+	}
 
 	public void Activate(string name) {
 		if (_activeLocation == "" || _activeLocation != name) {
@@ -27,8 +42,24 @@ public class PuzzleInspector : MonoBehaviour {
 		_toggleActivated (false);
 	}
 
-	void Awake () {
+	public void SetVertical(float vertical) {
+		_vertical = vertical;
+	}
+
+	public void SetHorizontal(float horizontal) {
+		_horizontal = horizontal;
+	}
+	#endregion
+
+	#region private methods
+	private void Awake () {
 		_toggleActivated (false);
+	}
+
+	private void Update() {
+		if (this.isActive) {
+
+		}
 	}
 
 	private void _setLocation(PuzzleLocation location) {
@@ -38,9 +69,10 @@ public class PuzzleInspector : MonoBehaviour {
 	}
 
 	private void _toggleActivated(bool isActivated) {
-		this.camera.enabled = isActivated; 
-		this.light.enabled = isActivated;
+		this._camera.enabled = isActivated; 
+		this._light.enabled = isActivated;
 	}
+	#endregion
 }
 
 [Serializable]

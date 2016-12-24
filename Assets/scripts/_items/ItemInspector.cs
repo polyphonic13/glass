@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using Polyworks;
 
-public class ItemInspector : MonoBehaviour {
+public class ItemInspector : MonoBehaviour, IInputControllable {
 
 	public const int INSPECTOR_LAYER = 15;
 

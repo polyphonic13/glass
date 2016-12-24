@@ -3,17 +3,13 @@ using System.Collections;
 
 public class DirectionalCircuitPuzzle : Puzzle
 {
+	public int Columns; 
+	public int Rows;
 
-	// Use this for initialization
-	void Start ()
-	{
-	
-	}
-	
-	// Update is called once per frame
-	void Update ()
-	{
-	
+	public override void Init() {
+//		Debug.Log ("DirectionalCircuitPuzzle["+this.name+"]/Init");
+
+		base.Init ();
 	}
 }
 

@@ -2,7 +2,7 @@
 using System.Collections;
 
 namespace Polyworks {
-	public class UIController : MonoBehaviour
+	public class UIController : MonoBehaviour, IInputControllable
 	{
 		public bool isActiveOnAwake = false;
 
