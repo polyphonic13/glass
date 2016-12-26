@@ -77,6 +77,9 @@ namespace Polyworks
 		public delegate void ContextChanger(string Types);
 		public event ContextChanger OnContextChange; 
 
+		public delegate void PuzzleActivator(string name, bool isActive);
+		public event PuzzleActivator OnActivatePuzzle; 
+
 		#endregion
 
 		#region handlers
@@ -228,6 +231,12 @@ namespace Polyworks
 		public void ChangeContext(string type) {
 			if (OnContextChange != null) {
 				OnContextChange (type);
+			}
+		}
+
+		public void ActivatePuzzle(string name, bool isActive) {
+			if (OnActivatePuzzle != null) {
+				OnActivatePuzzle (name, isActive);
 			}
 		}
 		#endregion

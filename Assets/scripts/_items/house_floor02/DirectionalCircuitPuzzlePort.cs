@@ -11,13 +11,13 @@ public class DirectionalCircuitPuzzlePort : Item
 	public PortState State;
 	public PortNeighbors Neighbors;
 
-	public override void Actuate ()
-	{
+	public int index; 
+
+	public override void Actuate () {
 		base.Actuate ();
 	}
 
-	public override void SetEnabled (bool isEnabled)
-	{
+	public override void SetEnabled (bool isEnabled) {
 		base.SetEnabled (isEnabled);
 	}
 
@@ -26,7 +26,7 @@ public class DirectionalCircuitPuzzlePort : Item
 	private void Awake() {
 		GameObject _puzzleParent = this.transform.parent.transform.parent.transform.parent.gameObject;
 		_puzzle = _puzzleParent.GetComponent<DirectionalCircuitPuzzle> ();
-		Debug.Log ("DirectionCircuitPuzzlePort[" + this.name + "]/Awake, _puzzle = " + _puzzle);
+//		Debug.Log ("DirectionCircuitPuzzlePort[" + this.name + "]/Awake, _puzzle = " + _puzzle);
 	}
 
 }

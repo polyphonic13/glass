@@ -6,6 +6,7 @@ using Polyworks;
 
 public class PuzzleInspector : MonoBehaviour, IInputControllable {
 
+	#region members
 	public PuzzleLocation[] locations;
 
 	public bool isActive { get; set; }
@@ -18,10 +19,30 @@ public class PuzzleInspector : MonoBehaviour, IInputControllable {
 
 	private float _vertical; 
 	private float _horizontal; 
+	#endregion
+
+	#region event handlers
+	public void OnStringEvent(string type, string value) {
+		if (type == Puzzle.ACTIVATE_EVENT) {
+			Debug.Log ("PuzzleInspector/OnStringEvent, type = " + type + ", value = " + value);
+		}
+	}
+
+	public void OnActivatePuzzle(string name, bool isActive) {
+		if (isActive) {
+
+		} else {
+
+		}
+	}
+
+	#endregion
 
 	#region public methods
 	public void Init() {
 		EventCenter ec = EventCenter.Instance;
+		ec.OnStringEvent += this.OnStringEvent;
+		ec.OnActivatePuzzle += this.OnActivatePuzzle; 
 
 		_mouseLook.Init (this.transform, _camera.transform);
 	}
@@ -54,6 +75,7 @@ public class PuzzleInspector : MonoBehaviour, IInputControllable {
 	#region private methods
 	private void Awake () {
 		_toggleActivated (false);
+		Init ();
 	}
 
 	private void Update() {
@@ -71,6 +93,14 @@ public class PuzzleInspector : MonoBehaviour, IInputControllable {
 	private void _toggleActivated(bool isActivated) {
 		this._camera.enabled = isActivated; 
 		this._light.enabled = isActivated;
+	}
+
+	private void OnDestroy() {
+		EventCenter ec = EventCenter.Instance;
+		if (ec != null) {
+			ec.OnStringEvent -= this.OnStringEvent;
+			ec.OnActivatePuzzle -= this.OnActivatePuzzle; 
+		}
 	}
 	#endregion
 }
