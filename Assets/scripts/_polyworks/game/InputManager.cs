@@ -15,6 +15,7 @@ namespace Polyworks {
 		private MenuUI _menuUI;
 		private InventoryUI _inventoryUI;
 		private ItemInspector _itemInspector; 
+		private PuzzleInspector _puzzleInspector; 
 
 		private bool _isLevel = false;
 		private bool _isInitialized = false;
@@ -54,7 +55,9 @@ namespace Polyworks {
 				}
 			} else {
 				_player.isActive = false; 
-
+				if (type == "puzzle") {
+					_activeObject = _puzzleInspector;
+				}
 			}
 		}
 		#endregion
@@ -83,6 +86,11 @@ namespace Polyworks {
 				}
 
 				_itemInspector = ItemInspector.Instance;
+
+				GameObject puzzleInspector = GameObject.Find ("puzzle_inspector");
+				if (puzzleInspector != null) {
+					_puzzleInspector = puzzleInspector.GetComponent<PuzzleInspector> ();
+				}
 
 				EventCenter ec = EventCenter.Instance;
 				ec.OnNearItem += this.OnNearItem;

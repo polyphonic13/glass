@@ -6,13 +6,13 @@ public class Puzzle : MonoBehaviour {
 	public const string UNLOCK_EVENT = "unlock_puzzle";
 	public const string ACTIVATE_EVENT = "activate_puzzle";
 
+	public string activateValue; 
+
 	public Transform[] hiddenChildren; 
 
 	public void OnStringEvent(string type, string value) {
-		string expectedValue = this.name + "_collider";
-		if (type == Puzzle.ACTIVATE_EVENT) {
-			Debug.Log ("Puzzle["+this.name+"]/OnStringEvent, type = " + type + ", value = " + value + ", expectedValue = " + expectedValue);
-
+		if (type == Puzzle.ACTIVATE_EVENT && value == activateValue) {
+			Debug.Log ("Puzzle["+this.name+"]/OnStringEvent, type = " + type + ", value = " + value);
 		}
 	}
 
