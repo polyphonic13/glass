@@ -74,16 +74,6 @@ public class PuzzleInspector : MonoBehaviour, IInputControllable {
 			// handle the input
 		}
 	}
-
-	public void SetVertical(float vertical) {
-		Debug.Log ("PuzzleInspector/SetVertical, vertical =  " + vertical);
-		_vertical = vertical;
-	}
-
-	public void SetHorizontal(float horizontal) {
-		Debug.Log ("PuzzleInspector/SetVertical, horizontal =  " + horizontal);
-		_horizontal = horizontal;
-	}
 	#endregion
 
 	#region private methods
