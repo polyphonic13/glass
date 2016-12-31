@@ -140,6 +140,11 @@ namespace Polyworks
 			data.breath = breath;
 		}
 
+		public void SetInput(InputObject input) {
+			_vertical = input.vertical;
+			_horizontal = input.horizontal;
+		}
+
 		public void SetHorizontal(float horizontal) {
 			_horizontal = horizontal;
 		}

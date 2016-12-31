@@ -59,12 +59,20 @@ public class PuzzleInspector : MonoBehaviour, IInputControllable {
 			_setLocation (index);
 		}
 		_toggleActivated (true);
-//		EventCenter.Instance.ActivatePuzzle (locations [index].name, true);
-		EventCenter.Instance.ChangeContext("puzzle");
+		EventCenter.Instance.ChangeContext(InputContext.PUZZLE);
 	}
 
 	public void Deactivate() {
 		_toggleActivated (false);
+	}
+
+	public void SetInput(InputObject input) {
+		if (input.buttons ["cancel"]) {
+			_toggleActivated (false);
+			EventCenter.Instance.ChangeContext(InputContext.PLAYER);
+		} else {
+			// handle the input
+		}
 	}
 
 	public void SetVertical(float vertical) {

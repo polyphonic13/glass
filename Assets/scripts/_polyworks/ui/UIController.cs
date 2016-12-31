@@ -24,6 +24,10 @@ namespace Polyworks {
 			canvas.enabled = isActiveOnAwake;
 		}
 
+		public void SetInput(InputObject input) {
+
+		}
+
 		public virtual void SetActive(bool isActive) {
 			canvas.enabled = isActive;
 		}

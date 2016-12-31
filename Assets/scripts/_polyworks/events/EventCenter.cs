@@ -74,9 +74,9 @@ namespace Polyworks
 		public delegate void FlashlightEnableHandler(); 
 		public event FlashlightEnableHandler OnEnableFlashlight;
 
-		public delegate void ContextChanger(string Types);
+		public delegate void ContextChanger(InputContext context );
 		public event ContextChanger OnContextChange; 
-
+		 
 		public delegate void PuzzleActivator(string name, bool isActive);
 		public event PuzzleActivator OnActivatePuzzle; 
 
@@ -228,9 +228,9 @@ namespace Polyworks
 			}
 		}
 
-		public void ChangeContext(string type) {
+		public void ChangeContext(InputContext context) {
 			if (OnContextChange != null) {
-				OnContextChange (type);
+				OnContextChange (context);
 			}
 		}
 

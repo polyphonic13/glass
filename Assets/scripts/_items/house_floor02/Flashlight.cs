@@ -2,6 +2,7 @@
 using Polyworks;
 
 public class Flashlight : CollectableItem {
+	public const string COLLECTED = "isFlashlightCollected";
 	public string parentName;
 	public GameObject model;
 	private Light _bulb;
@@ -25,7 +26,7 @@ public class Flashlight : CollectableItem {
 //		this.transform.rotation = rotation;
 //		this.transform.parent = playerHead.transform;
 //		this.data.isCollected = true;
-		Game.Instance.SetFlag("isFlashlightCollected", true);
+		Game.Instance.SetFlag(COLLECTED, true);
 		EventCenter ec = EventCenter.Instance;
 		ec.CollectFlashight();
 		ec.ChangeItemProximity(this, false);

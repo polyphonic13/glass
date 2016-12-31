@@ -74,7 +74,7 @@ GameObject:
   - 65: {fileID: 65000011559709546}
   - 114: {fileID: 114000013329279080}
   - 114: {fileID: 114000010316096172}
-  - 114: {fileID: 114000012401361108}
+  - 114: {fileID: 114000013522630680}
   - 114: {fileID: 114000010236550286}
   m_Layer: 0
   m_Name: puzzle00_wires
@@ -145,9 +145,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011319570948}
-  m_LocalRotation: {x: -0.8660254, y: 0, z: 0, w: -0.50000006}
+  m_LocalRotation: {x: -0.8660254, y: -0, z: -0, w: -0.50000006}
   m_LocalPosition: {x: -646.73785, y: 112.288, z: -18.935}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalScale: {x: 0.25, y: 0.25000012, z: 0.25000012}
   m_LocalEulerAnglesHint: {x: -240, y: 0, z: 0}
   m_Children:
   - {fileID: 4000012968866606}
@@ -368,7 +368,7 @@ MonoBehaviour:
   interactDistance: 2
   target: {fileID: 0}
   isTargetPlayer: 1
---- !u!114 &114000012401361108
+--- !u!114 &114000013329279080
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -376,11 +376,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000011319570948}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 196cc4548139b4b2891c6b378d048c62, type: 3}
+  m_Script: {fileID: 11500000, guid: 3df9045043b8d4f1cb143be7d3383c2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114000013522630680
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011319570948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7899e2bbe3b4bcf8616255ad8ef852, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   displayName: Green Wires
-  description: Old, green wires
+  description: Od, green wires
   prefabPath: items/house/floor02/secret_room_nw/puzzle00_wires
   icon: 2
   data:
@@ -395,14 +406,4 @@ MonoBehaviour:
       target1: puzzle00(Clone)
       target2: player
       distance: 2
---- !u!114 &114000013329279080
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011319570948}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3df9045043b8d4f1cb143be7d3383c2d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  collectedFlag: puzzle00wiresCollected

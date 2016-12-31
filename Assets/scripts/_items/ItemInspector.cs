@@ -74,6 +74,10 @@ public class ItemInspector : MonoBehaviour, IInputControllable {
 		}
 	}
 
+	public void SetInput(InputObject input) {
+
+	}
+
 	public void SetHorizontal(float horizontal) {
 		_horizontal = horizontal;
 	}

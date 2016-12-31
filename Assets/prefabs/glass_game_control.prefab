@@ -29,7 +29,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 190814}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -659.3914, y: 111.96619, z: -3.9059849}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -68,6 +68,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d978ba48b5df4e38a9a77e12b73f7ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  input:
+    vertical: 0
+    horizontal: 0
+    inputButtons:
+    - name: confirm
+      value: 0
+    - name: cancel
+      value: 1
+    - name: run
+      value: 0
+    - name: jump
+      value: 0
+    - name: dive
+      value: 0
 --- !u!114 &11478364
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -81,7 +95,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameData:
     currentScene: start
-    targetSection: 0
+    targetSection: 5
     count: 0
     levels:
     - name: house_floor02a

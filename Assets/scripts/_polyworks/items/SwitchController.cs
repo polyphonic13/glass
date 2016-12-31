@@ -10,6 +10,8 @@ namespace Polyworks {
 		public bool isAutoActuatedOnUnlock = false;
 		public bool isNoteAddedOnUnlock = true;
 
+		public string customLockedMessage = ""; 
+
 		public string eventType = "";
 		public string eventValue = "";
 		#endregion
@@ -45,7 +47,11 @@ namespace Polyworks {
 				base.Actuate ();
 				_actuate ();
 			} else if(isLockMessageDisplayed) {
-				EventCenter.Instance.AddNote ("The " + this.displayName + " is locked");
+				if (customLockedMessage == "") {
+					EventCenter.Instance.AddNote ("The " + this.displayName + " is locked");
+				} else {
+					EventCenter.Instance.AddNote (customLockedMessage);
+				}
 			}
 		}
 		#endregion
