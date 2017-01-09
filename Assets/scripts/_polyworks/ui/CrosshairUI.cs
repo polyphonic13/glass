@@ -12,7 +12,7 @@ namespace Polyworks {
 		private ArrayList _sprites;
 
 		public void OnNearItem(Item item, bool isFocused) {
-			Debug.Log ("CrosshairUI/OnNearItem, isFocused = " + isFocused + ", item = " + item.name);
+//			Debug.Log ("CrosshairUI/OnNearItem, isFocused = " + isFocused + ", item = " + item.name);
 			if (isFocused && item.icon != null) {
 				image.sprite = _sprites[item.icon] as Sprite;
 			} else {
