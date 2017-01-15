@@ -184,8 +184,8 @@ public class ItemInspector : MonoBehaviour, IInputControllable {
 				
 				_rotationYAxis += _velocityX;
 				_rotationXAxis -= _velocityY;
-				
 				_rotationXAxis = ClampAngle(_rotationXAxis, yMinLimit, yMaxLimit);
+
 				Quaternion fromRotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, 0);
 				Quaternion toRotation = Quaternion.Euler(_rotationXAxis, _rotationYAxis, 0);
 				Quaternion rotation = toRotation;
