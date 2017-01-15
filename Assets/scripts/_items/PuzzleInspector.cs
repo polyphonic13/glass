@@ -17,8 +17,10 @@ public class PuzzleInspector : MonoBehaviour, IInputControllable {
 
 	private int _activeLocation = -1;
 
+	private InputObject _input;
+
 	private float _vertical; 
-	private float _horizontal; 
+	private float _horizontal;
 	#endregion
 
 	#region event handlers
@@ -72,6 +74,9 @@ public class PuzzleInspector : MonoBehaviour, IInputControllable {
 			EventCenter.Instance.ChangeContext(InputContext.PLAYER);
 		} else {
 			// handle the input
+			_horizontal = input.horizontal;
+			_vertical = input.vertical;
+			Debug.Log ("PuzzleInspector/SetInput, _horizonal = " + _horizontal + ", _vertical = " + _vertical);
 		}
 	}
 	#endregion
