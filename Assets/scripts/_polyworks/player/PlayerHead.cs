@@ -9,6 +9,12 @@ namespace Polyworks {
 			this.dynamicTag = "interactive";
 			this.staticTag = "persistent";
 		}
+
+		private void Update() {
+			if (this.isActive) {
+				CheckRayCast ();
+			}
+		}
 //		public float interactDistance = 4f;
 //
 //		private ProximityAgent _focusedItem;

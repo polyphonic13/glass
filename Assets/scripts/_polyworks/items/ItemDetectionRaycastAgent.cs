@@ -5,16 +5,19 @@ namespace Polyworks {
 	public class ItemDetectionRaycastAgent : MonoBehaviour
 	{
 		public float detectionDistance = 4f;
-		public ProximityAgent focusedItem;
-		public string itemJustHit;
 		public string dynamicTag = "";
 		public string staticTag = ""; 
+		public bool isActive;
+
+		public ProximityAgent focusedItem { get; set; }
+		public string itemJustHit { get; set; }
 
 		private void Update () {
-			CheckRayCast();
+//			CheckRayCast();
 		}
 
 		public virtual void CheckRayCast() {
+			Debug.Log ("ItemDectectionRaycastAgent[" + this.name + "]/CheckRayCast");
 			RaycastHit hit;
 			if (Physics.Raycast (this.transform.position, this.transform.forward, out hit, detectionDistance)) {
 				Debug.DrawRay (this.transform.position, this.transform.forward, Color.red);

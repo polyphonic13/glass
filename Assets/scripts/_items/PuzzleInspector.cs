@@ -4,12 +4,10 @@ using System;
 using UnitySampleAssets.Characters.FirstPerson;
 using Polyworks; 
 
-public class PuzzleInspector : MonoBehaviour, IInputControllable {
+public class PuzzleInspector : ItemDetectionRaycastAgent, IInputControllable {
 
 	#region members
 	public PuzzleLocation[] locations;
-
-	public bool isActive { get; set; }
 
 	[SerializeField] private Light _light;
 	[SerializeField] private Camera _camera;
@@ -37,6 +35,7 @@ public class PuzzleInspector : MonoBehaviour, IInputControllable {
 	}
 
 	public void OnActivatePuzzle(string name, bool isActive) {
+		this.isActive = isActive;
 		if (isActive) {
 
 		} else {
@@ -89,7 +88,7 @@ public class PuzzleInspector : MonoBehaviour, IInputControllable {
 
 	private void Update() {
 		if (this.isActive) {
-
+			base.CheckRayCast ();
 		}
 	}
 
