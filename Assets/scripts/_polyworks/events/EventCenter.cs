@@ -74,12 +74,9 @@ namespace Polyworks
 		public delegate void FlashlightEnableHandler(); 
 		public event FlashlightEnableHandler OnEnableFlashlight;
 
-		public delegate void ContextChanger(InputContext context );
+		public delegate void ContextChanger(InputContext context, string param);
 		public event ContextChanger OnContextChange; 
 		 
-		public delegate void PuzzleActivator(string name, bool isActive);
-		public event PuzzleActivator OnActivatePuzzle; 
-
 		#endregion
 
 		#region handlers
@@ -228,15 +225,9 @@ namespace Polyworks
 			}
 		}
 
-		public void ChangeContext(InputContext context) {
+		public void ChangeContext(InputContext context, string param) {
 			if (OnContextChange != null) {
-				OnContextChange (context);
-			}
-		}
-
-		public void ActivatePuzzle(string name, bool isActive) {
-			if (OnActivatePuzzle != null) {
-				OnActivatePuzzle (name, isActive);
+				OnContextChange (context, param);
 			}
 		}
 		#endregion

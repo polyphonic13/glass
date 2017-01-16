@@ -71,7 +71,7 @@ namespace Polyworks {
 			}
 		}
 
-		public void OnContextChange(InputContext context) {
+		public void OnContextChange(InputContext context, string param) {
 			if (context == InputContext.PLAYER) {
 				if (_player) {
 					_player.isActive = true; 

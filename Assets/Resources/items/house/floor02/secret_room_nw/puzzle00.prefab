@@ -77,7 +77,7 @@ GameObject:
   - 114: {fileID: 114000010219544794}
   - 114: {fileID: 114000013768633422}
   - 114: {fileID: 114000010256236884}
-  - 114: {fileID: 114000011426449346}
+  - 114: {fileID: 114000010117815388}
   m_Layer: 19
   m_Name: puzzle00_collider
   m_TagString: interactive
@@ -1723,6 +1723,18 @@ MonoBehaviour:
   customLockedMessage: Some required items are missing
   eventType: unlock_puzzle
   eventValue: puzzle00_wires(Clone)
+--- !u!114 &114000010117815388
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011059490438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ff38efa0cf4e407898833070312ee1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  contextType: 4
 --- !u!114 &114000010126910250
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1866,18 +1878,6 @@ MonoBehaviour:
   interactDistance: 2
   target: {fileID: 0}
   isTargetPlayer: 1
---- !u!114 &114000011426449346
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011059490438}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4e0e4ebed3e94a869a970734193bc66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventType: activate_puzzle
 --- !u!114 &114000011677890222
 MonoBehaviour:
   m_ObjectHideFlags: 1

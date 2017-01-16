@@ -8,7 +8,7 @@ public class Puzzle : MonoBehaviour {
 
 	public string activateValue; 
 
-	public Transform[] hiddenChildren; 
+	public Transform[] hiddenChildren;
 
 	public void OnStringEvent(string type, string value) {
 		if (type == Puzzle.ACTIVATE_EVENT && value == activateValue) {

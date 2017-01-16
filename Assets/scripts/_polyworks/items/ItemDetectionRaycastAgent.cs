@@ -9,6 +9,8 @@ namespace Polyworks {
 		public string staticTag = ""; 
 		public bool isActive;
 
+		public Color rayColor = Color.red;
+
 		public ProximityAgent focusedItem { get; set; }
 		public string itemJustHit { get; set; }
 
@@ -17,10 +19,10 @@ namespace Polyworks {
 		}
 
 		public virtual void CheckRayCast() {
-			Debug.Log ("ItemDectectionRaycastAgent[" + this.name + "]/CheckRayCast");
+//			Debug.Log ("ItemDectectionRaycastAgent[" + this.name + "]/CheckRayCast");
 			RaycastHit hit;
 			if (Physics.Raycast (this.transform.position, this.transform.forward, out hit, detectionDistance)) {
-				Debug.DrawRay (this.transform.position, this.transform.forward, Color.red);
+				Debug.DrawRay (this.transform.position, this.transform.forward, rayColor);
 //				Debug.Log (" hit tag = " + hit.transform.tag + ", name = " + hit.transform.name);
 				if (hit.transform != this.transform && (hit.transform.tag == dynamicTag || hit.transform.tag == staticTag)) {
 //					Debug.Log (" hit name = " + hit.transform.name + ", just hit = " + itemJustHit);

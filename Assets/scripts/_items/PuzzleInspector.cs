@@ -11,47 +11,63 @@ public class PuzzleInspector : ItemDetectionRaycastAgent, IInputControllable {
 
 	[SerializeField] private Light _light;
 	[SerializeField] private Camera _camera;
-	[SerializeField] private MouseLook _mouseLook;
+	[SerializeField] private float _minX; 
+	[SerializeField] private float _maxX;
+	[SerializeField] private float _minY;
+	[SerializeField] private float _maxY;
+	[SerializeField] private float _xSpeed = 120.0f;
+	[SerializeField] private float _ySpeed = 120.0f;
 
+
+//	[SerializeField] private MouseLook _mouseLook;
+
+	private float _rotationYAxis = 0.0f;
+	private float _rotationXAxis = 0.0f;
+
+	private float _velocityX = 0.0f;
+	private float _velocityY = 0.0f;
+
+	private float _activeRotationY;
 	private int _activeLocation = -1;
 
 	private InputObject _input;
 
-	private float _vertical; 
-	private float _horizontal;
 	#endregion
 
 	#region event handlers
-	public void OnStringEvent(string type, string value) {
-		if (type == Puzzle.ACTIVATE_EVENT) {
-			string target = value.Substring (0, 8);
-			Debug.Log ("PuzzleInspector/OnStringEvent, type = " + type + ", value = " + value + ", target = " + target);
+	public void OnContextChange(InputContext context, string param) {
+		if (context == InputContext.PUZZLE) {
+			string target = param.Substring (0, 8);
+			Debug.Log ("PuzzleInspector/OnContextChange, context = " + context);
 			int index = _getLocationIndex (target);
 			if (index > -1) {
 				Debug.Log (" has location, going to activate with index: " + index);
 				Activate (index);
 			}
+		} else if (this.isActive) {
+			this.isActive = false; 
 		}
 	}
+	#endregion
 
-	public void OnActivatePuzzle(string name, bool isActive) {
-		this.isActive = isActive;
-		if (isActive) {
-
-		} else {
-
+	#region static methods
+	public static float ClampAngle(float angle, float min, float max) {
+		if (angle < -360F) {
+			angle += 360F;
 		}
+		if (angle > 360F) {
+			angle -= 360F;
+		}
+		return Mathf.Clamp(angle, min, max);
 	}
-
 	#endregion
 
 	#region public methods
 	public void Init() {
 		EventCenter ec = EventCenter.Instance;
-		ec.OnStringEvent += this.OnStringEvent;
-		ec.OnActivatePuzzle += this.OnActivatePuzzle; 
+		ec.OnContextChange += this.OnContextChange;
 
-		_mouseLook.Init (this.transform, _camera.transform);
+//		_mouseLook.Init (this.transform, _camera.transform);
 	}
 
 	public void Activate(int index) {
@@ -60,7 +76,6 @@ public class PuzzleInspector : ItemDetectionRaycastAgent, IInputControllable {
 			_setLocation (index);
 		}
 		_toggleActivated (true);
-		EventCenter.Instance.ChangeContext(InputContext.PUZZLE);
 	}
 
 	public void Deactivate() {
@@ -70,12 +85,12 @@ public class PuzzleInspector : ItemDetectionRaycastAgent, IInputControllable {
 	public void SetInput(InputObject input) {
 		if (input.buttons ["cancel"]) {
 			_toggleActivated (false);
-			EventCenter.Instance.ChangeContext(InputContext.PLAYER);
+			EventCenter.Instance.ChangeContext(InputContext.PLAYER, "");
 		} else {
-			// handle the input
-			_horizontal = input.horizontal;
-			_vertical = input.vertical;
-			Debug.Log ("PuzzleInspector/SetInput, _horizonal = " + _horizontal + ", _vertical = " + _vertical);
+			if (input.horizontal != 0 || input.vertical != 0) {
+				_rotate (input.horizontal, input.vertical);
+			}
+//			Debug.Log ("PuzzleInspector/SetInput, _horizonal = " + _horizontal + ", _vertical = " + _vertical);
 		}
 	}
 	#endregion
@@ -83,12 +98,14 @@ public class PuzzleInspector : ItemDetectionRaycastAgent, IInputControllable {
 	#region private methods
 	private void Awake () {
 		_toggleActivated (false);
+//		_mouseLook.Init(transform , _camera.transform);
 		Init ();
 	}
 
 	private void Update() {
 		if (this.isActive) {
-			base.CheckRayCast ();
+//			_rotateView ();
+			CheckRayCast ();
 		}
 	}
 
@@ -105,20 +122,40 @@ public class PuzzleInspector : ItemDetectionRaycastAgent, IInputControllable {
 		PuzzleLocation location = locations [index];
 		this.transform.position = new Vector3 (location.position.x, location.position.y, location.position.z);
 		this.transform.Rotate(location.rotation);
+		_activeRotationY = location.rotation.y;
 		_activeLocation = index;
 	}
 
 	private void _toggleActivated(bool isActivated) {
-		Debug.Log ("PuzzleInspector/_toggleActivated, isActivated = " + isActivated);
+//		Debug.Log ("PuzzleInspector/_toggleActivated, isActivated = " + isActivated);
 		this._camera.enabled = isActivated; 
 		this._light.enabled = isActivated;
+		this.isActive = isActivated;
+	}
+
+	private void _rotate(float horizontal, float vertical) {
+		Debug.Log ("PuzzleInspector/_rotate, x/y = " + horizontal + "/" + vertical + ", rot = " + this.transform.rotation.x + "/" + this.transform.rotation.y);
+
+		_velocityX = _xSpeed * horizontal * 0.01f;
+		_velocityY = _ySpeed * vertical * 0.01f;
+
+		_rotationYAxis += _velocityX;
+		_rotationXAxis -= _velocityY;
+		_rotationXAxis = ClampAngle (_rotationXAxis, _minX, _maxX);
+		_rotationYAxis = ClampAngle(_rotationYAxis, _minY, _maxY);
+		Quaternion rotation = Quaternion.Euler(_rotationXAxis, _rotationYAxis + _activeRotationY, 0);
+
+		transform.rotation = rotation;
+	}
+
+	private void _rotateView() {
+//		_mouseLook.LookRotation (transform, _camera.transform);
 	}
 
 	private void OnDestroy() {
 		EventCenter ec = EventCenter.Instance;
 		if (ec != null) {
-			ec.OnStringEvent -= this.OnStringEvent;
-			ec.OnActivatePuzzle -= this.OnActivatePuzzle; 
+			ec.OnContextChange -= this.OnContextChange;
 		}
 	}
 	#endregion
