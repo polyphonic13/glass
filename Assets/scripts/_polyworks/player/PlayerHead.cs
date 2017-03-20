@@ -1,7 +1,7 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿namespace Polyworks {
+	using UnityEngine;
+	using System.Collections;
 
-namespace Polyworks {
 	public class PlayerHead : MonoBehaviour {
 
 		public float interactDistance = 2f;
