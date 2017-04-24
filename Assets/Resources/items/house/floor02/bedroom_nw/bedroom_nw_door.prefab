@@ -8,8 +8,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 483562}
-  - 111: {fileID: 11159338}
-  - 114: {fileID: 11449300}
   m_Layer: 0
   m_Name: bedroom_nw_door
   m_TagString: interactive
@@ -83,24 +81,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!111 &11159338
-Animation:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 156610}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400002, guid: 8e01fa68f9de24409b0124ab1e80d980, type: 3}
-  m_Animations:
-  - {fileID: 7400000, guid: 8e01fa68f9de24409b0124ab1e80d980, type: 3}
-  - {fileID: 7400002, guid: 8e01fa68f9de24409b0124ab1e80d980, type: 3}
-  - {fileID: 7400018, guid: 8e01fa68f9de24409b0124ab1e80d980, type: 3}
-  - {fileID: 7400016, guid: 8e01fa68f9de24409b0124ab1e80d980, type: 3}
-  m_WrapMode: 0
-  m_PlayAutomatically: 0
-  m_AnimatePhysics: 0
-  m_CullingType: 1
 --- !u!114 &11419994
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -115,26 +95,6 @@ MonoBehaviour:
   interactDistance: 2
   target: {fileID: 0}
   isTargetPlayer: 1
---- !u!114 &11449300
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 156610}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22df876825b7644dd87471b78489e9fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isActive: 0
-  animationClips:
-  - {fileID: 7400018, guid: 8e01fa68f9de24409b0124ab1e80d980, type: 3}
-  - {fileID: 7400016, guid: 8e01fa68f9de24409b0124ab1e80d980, type: 3}
-  bones:
-    animationBones: []
-  isAutoStart: 0
-  isAutoAdvance: 0
-  isLoopPlayback: 0
 --- !u!114 &11478362
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -146,7 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53cefab8c6b97430cb054bb10bf39bec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetName: bedroom_nw_door(Clone)
+  targetName: bedroom_nw_door_model
   animations: []
 --- !u!114 &11480238
 MonoBehaviour:
@@ -218,8 +178,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013979111304}
   - 111: {fileID: 111000010014121428}
+  - 114: {fileID: 114000011926590620}
   m_Layer: 0
-  m_Name: door_plain02d
+  m_Name: bedroom_nw_door_model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -472,6 +433,26 @@ Animation:
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 1
+--- !u!114 &114000011926590620
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012734495396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22df876825b7644dd87471b78489e9fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isActive: 0
+  animationClips:
+  - {fileID: 7400018, guid: 8e01fa68f9de24409b0124ab1e80d980, type: 3}
+  - {fileID: 7400016, guid: 8e01fa68f9de24409b0124ab1e80d980, type: 3}
+  bones:
+    animationBones: []
+  isAutoStart: 0
+  isAutoAdvance: 0
+  isLoopPlayback: 0
 --- !u!137 &137000012045473876
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
