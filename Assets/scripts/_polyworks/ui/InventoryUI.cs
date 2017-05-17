@@ -128,7 +128,8 @@ namespace Polyworks {
 
 			CollectableItemData itemData = _playerInventory.Get(name);
 			InventoryItemUI itemUI = _items[_itemsIndex] as InventoryItemUI;
-
+			Debug.Log ("InventoryUI/_setItem, name = " + name + ", itemData = " + itemData);
+			Debug.Log ("itemData.thumbnail = " + itemData.thumbnail);
 			itemUI.name = name;
 			itemUI.SetName(itemData.displayName);
 			itemUI.SetCount(itemData.count);
