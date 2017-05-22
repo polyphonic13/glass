@@ -12,6 +12,8 @@ ModelImporter:
     100008: trim_top
     100010: trim_top_001
     100012: trim_bottom
+    100014: bedroom_sw_shelves01_armature
+    100016: bedroom_sw_shelves01_bone
     400000: //RootNode
     400002: shelves
     400004: shelves_body
@@ -19,6 +21,8 @@ ModelImporter:
     400008: trim_top
     400010: trim_top_001
     400012: trim_bottom
+    400014: bedroom_sw_shelves01_armature
+    400016: bedroom_sw_shelves01_bone
     2300000: shelves_body
     2300002: shelves_feet
     2300004: trim_top
@@ -35,7 +39,14 @@ ModelImporter:
     4300006: shelves_feet
     4300008: trim_bottom
     7400000: Default Take
+    7400002: bedroom_sw_shelves01_default
+    7400004: bedroom_sw_shelves01_slide_right
     9500000: //RootNode
+    11100000: //RootNode
+    13700000: shelves_body
+    13700002: shelves_feet
+    13700004: trim_bottom
+    13700006: trim_top
   materials:
     importMaterials: 1
     materialName: 0
@@ -56,7 +67,95 @@ ModelImporter:
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: bedroom_sw_shelves01_default
+      takeName: bedroom_sw_shelves01_default
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: shelves
+        weight: 1
+      - path: shelves/bedroom_sw_shelves01_armature
+        weight: 1
+      - path: shelves/bedroom_sw_shelves01_armature/bedroom_sw_shelves01_bone
+        weight: 1
+      - path: shelves_body
+        weight: 1
+      - path: shelves_feet
+        weight: 1
+      - path: trim_bottom
+        weight: 1
+      - path: trim_top
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: bedroom_sw_shelves01_slide_right
+      takeName: bedroom_sw_shelves01_slide_right
+      firstFrame: 0
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: shelves
+        weight: 1
+      - path: shelves/bedroom_sw_shelves01_armature
+        weight: 1
+      - path: shelves/bedroom_sw_shelves01_armature/bedroom_sw_shelves01_bone
+        weight: 1
+      - path: shelves_body
+        weight: 1
+      - path: shelves_feet
+        weight: 1
+      - path: trim_bottom
+        weight: 1
+      - path: trim_top
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -94,7 +193,7 @@ ModelImporter:
     rootMotionBoneName: 
     hasTranslationDoF: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 1
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
