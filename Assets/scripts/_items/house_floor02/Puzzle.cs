@@ -17,7 +17,9 @@ public class Puzzle : MonoBehaviour {
 	}
 
 	public virtual void Init() {
-		GameObjectUtils.DeactivateFromTransforms (hiddenChildren);
+		if (hiddenChildren.Length > 0) {
+			GameObjectUtils.DeactivateFromTransforms (hiddenChildren);
+		}
 
 		EventCenter ec = EventCenter.Instance;
 		ec.OnStringEvent += this.OnStringEvent;
