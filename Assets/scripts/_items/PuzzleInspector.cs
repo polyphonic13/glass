@@ -18,9 +18,6 @@ public class PuzzleInspector : ItemDetectionRaycastAgent, IInputControllable {
 	[SerializeField] private float _xSpeed = 120.0f;
 	[SerializeField] private float _ySpeed = 120.0f;
 
-
-//	[SerializeField] private MouseLook _mouseLook;
-
 	private float _rotationYAxis = 0.0f;
 	private float _rotationXAxis = 0.0f;
 
@@ -66,8 +63,6 @@ public class PuzzleInspector : ItemDetectionRaycastAgent, IInputControllable {
 	public void Init() {
 		EventCenter ec = EventCenter.Instance;
 		ec.OnContextChange += this.OnContextChange;
-
-//		_mouseLook.Init (this.transform, _camera.transform);
 	}
 
 	public void Activate(int index) {
@@ -98,7 +93,6 @@ public class PuzzleInspector : ItemDetectionRaycastAgent, IInputControllable {
 	#region private methods
 	private void Awake () {
 		_toggleActivated (false);
-//		_mouseLook.Init(transform , _camera.transform);
 		Init ();
 	}
 
@@ -127,7 +121,7 @@ public class PuzzleInspector : ItemDetectionRaycastAgent, IInputControllable {
 	}
 
 	private void _toggleActivated(bool isActivated) {
-//		Debug.Log ("PuzzleInspector/_toggleActivated, isActivated = " + isActivated);
+		Debug.Log ("PuzzleInspector/_toggleActivated, isActivated = " + isActivated);
 		this._camera.enabled = isActivated; 
 		this._light.enabled = isActivated;
 		this.isActive = isActivated;
@@ -149,7 +143,6 @@ public class PuzzleInspector : ItemDetectionRaycastAgent, IInputControllable {
 	}
 
 	private void _rotateView() {
-//		_mouseLook.LookRotation (transform, _camera.transform);
 	}
 
 	private void OnDestroy() {
