@@ -72,6 +72,7 @@ namespace Polyworks {
 		}
 
 		public void OnContextChange(InputContext context, string param) {
+			Debug.Log ("InputManager/OnContextChange, context = " + context);
 			if (context == InputContext.PLAYER) {
 				if (_player) {
 					_player.isActive = true; 
@@ -80,6 +81,7 @@ namespace Polyworks {
 			} else {
 				_player.isActive = false; 
 				if (context == InputContext.PUZZLE) {
+					Debug.Log ("  setting active object to puzzle inspector: " + _puzzleInspector);
 					_activeObject = _puzzleInspector;
 				}
 			}
@@ -246,8 +248,6 @@ namespace Polyworks {
 
 				if (_activeObject != null) {
 					_activeObject.SetInput (input);
-//					_activeObject.SetVertical (vertical);
-//					_activeObject.SetHorizontal (horizontal);
 				}
 
 				if (_activeObject == _puzzleInspector) {

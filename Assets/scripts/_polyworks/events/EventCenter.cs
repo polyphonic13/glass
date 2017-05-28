@@ -122,7 +122,7 @@ namespace Polyworks
 			}
 		}
 
-		public void ChangeItemProximity(Item item, bool isNear) {
+		public void NearItem(Item item, bool isNear) {
 			if(OnNearItem != null) {
 				OnNearItem(item, isNear);
 			}

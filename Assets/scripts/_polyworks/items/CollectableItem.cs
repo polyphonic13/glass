@@ -11,7 +11,7 @@ namespace Polyworks {
 
 			if (!data.isCollected) {
 				Inventory inventory = Game.Instance.GetPlayerInventory ();
-				EventCenter.Instance.ChangeItemProximity (this, false);
+				EventCenter.Instance.NearItem (this, false);
 				data.isCollected = true;
 				inventory.Add (Clone ());
 				GameObject.Destroy (gameObject);

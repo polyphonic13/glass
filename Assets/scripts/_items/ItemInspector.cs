@@ -11,7 +11,8 @@ public class ItemInspector : MonoBehaviour, IInputControllable {
 
 	public float xSpeed = 120.0f;
 	public float ySpeed = 120.0f;
-	
+	public float rotationMultiplier = 0.01f;
+
 	public float yMinLimit = -361f;
 	public float yMaxLimit = 361f;
 	
@@ -179,14 +180,13 @@ public class ItemInspector : MonoBehaviour, IInputControllable {
 					_currentZoom--;
 				}
 			} else {
-				_velocityX = xSpeed * _horizontal * 0.01f;
-				_velocityY = ySpeed * _vertical * 0.01f;
+				_velocityX = xSpeed * _horizontal * rotationMultiplier;
+				_velocityY = ySpeed * _vertical * rotationMultiplier;
 				
 				_rotationYAxis += _velocityX;
 				_rotationXAxis -= _velocityY;
-				_rotationXAxis = ClampAngle(_rotationXAxis, yMinLimit, yMaxLimit);
+				_rotationXAxis = Polyworks.Utils.ClampAngle(_rotationXAxis, yMinLimit, yMaxLimit);
 
-//				Quaternion fromRotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, 0);
 				Quaternion toRotation = Quaternion.Euler(_rotationXAxis, _rotationYAxis, 0);
 				Quaternion rotation = toRotation;
 				
@@ -200,15 +200,5 @@ public class ItemInspector : MonoBehaviour, IInputControllable {
 				_velocityY = Mathf.Lerp(_velocityY, 0, Time.deltaTime * smoothTime);
 			}
 		}
-	}
-	
-	public static float ClampAngle(float angle, float min, float max) {
-		if (angle < -360F) {
-			angle += 360F;
-		}
-		if (angle > 360F) {
-			angle -= 360F;
-		}
-		return Mathf.Clamp(angle, min, max);
 	}
 }

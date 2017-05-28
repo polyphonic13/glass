@@ -22,7 +22,7 @@ namespace Polyworks {
 
 					if (isSingleUse) {
 						Destroy (this.gameObject);
-						ec.ChangeItemProximity (this, false);
+						ec.NearItem (this, false);
 					}
 				}
 			}

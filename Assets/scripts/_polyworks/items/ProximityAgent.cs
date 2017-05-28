@@ -23,11 +23,11 @@ namespace Polyworks {
 			if(_isInitialized && _item.isEnabled) {
 				if (isFocused) {
 					if (!_wasJustFocused) {
-						EventCenter.Instance.ChangeItemProximity(_item, true);
+						EventCenter.Instance.NearItem(_item, true);
 						_wasJustFocused = true;
 					}
 				} else if (_wasJustFocused) {
-					EventCenter.Instance.ChangeItemProximity(_item, false);
+					EventCenter.Instance.NearItem(_item, false);
 					_wasJustFocused = false;
 				}
 			}
@@ -39,10 +39,10 @@ namespace Polyworks {
 				var difference = Vector3.Distance (target.position, transform.position);
 				if (difference < interactDistance) {
 					isInProximity = true;
-					EventCenter.Instance.ChangeItemProximity (_item, isInProximity);
+					EventCenter.Instance.NearItem (_item, isInProximity);
 					_wasJustFocused = true;
 				} else if (_wasJustFocused) {
-					EventCenter.Instance.ChangeItemProximity (_item, isInProximity);
+					EventCenter.Instance.NearItem (_item, isInProximity);
 					_wasJustFocused = false;
 				}
 			}

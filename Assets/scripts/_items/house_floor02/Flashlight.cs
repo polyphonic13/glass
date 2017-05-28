@@ -29,7 +29,7 @@ public class Flashlight : CollectableItem {
 		Game.Instance.SetFlag(COLLECTED, true);
 		EventCenter ec = EventCenter.Instance;
 		ec.CollectFlashight();
-		ec.ChangeItemProximity(this, false);
+		ec.NearItem(this, false);
 		ec.AddNote (this.displayName + " added");
 
 		_removeListeners ();

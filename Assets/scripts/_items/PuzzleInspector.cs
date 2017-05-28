@@ -4,7 +4,7 @@ using System;
 using UnitySampleAssets.Characters.FirstPerson;
 using Polyworks; 
 
-public class PuzzleInspector : ItemDetectionRaycastAgent, IInputControllable {
+public class PuzzleInspector : MonoBehaviour, IInputControllable {
 
 	#region members
 	public PuzzleLocation[] locations;
@@ -17,6 +17,7 @@ public class PuzzleInspector : ItemDetectionRaycastAgent, IInputControllable {
 	[SerializeField] private float _maxY;
 	[SerializeField] private float _xSpeed = 120.0f;
 	[SerializeField] private float _ySpeed = 120.0f;
+	[SerializeField] private GameObject _raycastObject; 
 
 	private float _rotationYAxis = 0.0f;
 	private float _rotationXAxis = 0.0f;
@@ -27,7 +28,10 @@ public class PuzzleInspector : ItemDetectionRaycastAgent, IInputControllable {
 	private float _activeRotationY;
 	private int _activeLocation = -1;
 
+	public bool isActive;
+
 	private InputObject _input;
+	private RaycastAgent _raycastAgent; 
 
 	#endregion
 
@@ -47,22 +51,12 @@ public class PuzzleInspector : ItemDetectionRaycastAgent, IInputControllable {
 	}
 	#endregion
 
-	#region static methods
-	public static float ClampAngle(float angle, float min, float max) {
-		if (angle < -360F) {
-			angle += 360F;
-		}
-		if (angle > 360F) {
-			angle -= 360F;
-		}
-		return Mathf.Clamp(angle, min, max);
-	}
-	#endregion
-
 	#region public methods
 	public void Init() {
 		EventCenter ec = EventCenter.Instance;
 		ec.OnContextChange += this.OnContextChange;
+
+		_raycastAgent = _raycastObject.GetComponent<RaycastAgent> ();
 	}
 
 	public void Activate(int index) {
@@ -85,21 +79,20 @@ public class PuzzleInspector : ItemDetectionRaycastAgent, IInputControllable {
 			if (input.horizontal != 0 || input.vertical != 0) {
 				_rotate (input.horizontal, input.vertical);
 			}
-//			Debug.Log ("PuzzleInspector/SetInput, _horizonal = " + _horizontal + ", _vertical = " + _vertical);
+//			Debug.Log ("PuzzleInspector/SetInput, horizontal = " + input.horizontal + ", vertical = " + input.vertical);
 		}
 	}
 	#endregion
 
 	#region private methods
 	private void Awake () {
-		_toggleActivated (false);
 		Init ();
+		_toggleActivated (false);
 	}
 
 	private void Update() {
 		if (this.isActive) {
-//			_rotateView ();
-			CheckRayCast ();
+			_raycastAgent.CheckRayCast ();
 		}
 	}
 
@@ -121,25 +114,23 @@ public class PuzzleInspector : ItemDetectionRaycastAgent, IInputControllable {
 	}
 
 	private void _toggleActivated(bool isActivated) {
-		Debug.Log ("PuzzleInspector/_toggleActivated, isActivated = " + isActivated);
-		this._camera.enabled = isActivated; 
-		this._light.enabled = isActivated;
-		this.isActive = isActivated;
+//		this._camera.enabled = isActivated; 
+//		this._light.enabled = isActivated;
+//		this.isActive = isActivated;
+		this.isActive = _camera.enabled = _light.enabled = _raycastAgent.isActive = isActivated;
 	}
 
 	private void _rotate(float horizontal, float vertical) {
-		Debug.Log ("PuzzleInspector/_rotate, x/y = " + horizontal + "/" + vertical + ", rot = " + this.transform.rotation.x + "/" + this.transform.rotation.y);
-
 		_velocityX = _xSpeed * horizontal * 0.01f;
 		_velocityY = _ySpeed * vertical * 0.01f;
 
 		_rotationYAxis += _velocityX;
 		_rotationXAxis -= _velocityY;
-		_rotationXAxis = ClampAngle (_rotationXAxis, _minX, _maxX);
-		_rotationYAxis = ClampAngle(_rotationYAxis, _minY, _maxY);
+		_rotationXAxis = Polyworks.Utils.ClampAngle(_rotationXAxis, _minX, _maxX);
+		_rotationYAxis = Polyworks.Utils.ClampAngle(_rotationYAxis, _minY, _maxY);
 		Quaternion rotation = Quaternion.Euler(_rotationXAxis, _rotationYAxis + _activeRotationY, 0);
 
-		transform.rotation = rotation;
+		_raycastObject.transform.rotation = rotation;
 	}
 
 	private void _rotateView() {

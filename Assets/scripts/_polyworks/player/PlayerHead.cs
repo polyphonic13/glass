@@ -2,7 +2,7 @@
 using System.Collections;
 
 namespace Polyworks {
-	public class PlayerHead : ItemDetectionRaycastAgent {
+	public class PlayerHead : RaycastAgent {
 
 		public void OnContextChange(InputContext context, string param) {
 			if (context == InputContext.PLAYER) {
