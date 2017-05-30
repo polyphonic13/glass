@@ -14,9 +14,10 @@ public class Puzzle : MonoBehaviour {
 	private bool _isActive = false; 
 
 	public void OnStringEvent(string type, string value) {
+		Debug.Log ("Puzzle[" + this.name + "]/OnStringEvent, type = " + type + ", value = " + value);
 		if (type == Puzzle.ACTIVATE_EVENT && value == activateValue) {
-			Debug.Log ("Puzzle[" + this.name + "]/OnStringEvent, type = " + type + ", value = " + value);
 			_toggleActive (true);
+			EventCenter.Instance.ChangeContext(InputContext.PUZZLE, this.name);
 		} else if(_isActive) {
 			_toggleActive (false);
 		}
@@ -46,6 +47,7 @@ public class Puzzle : MonoBehaviour {
 	}
 
 	private void _toggleActive(bool isActivated) {
+		Debug.Log ("Puzzle[" + this.name + "]/_toggleActive, isActivated = " + isActivated);
 		_isActive = isActivated;
 		mainCollider.SetActive (!_isActive);
 	}
