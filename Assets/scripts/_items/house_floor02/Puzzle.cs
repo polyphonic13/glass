@@ -9,6 +9,7 @@ public class Puzzle : MonoBehaviour {
 	public string activateValue; 
 	public GameObject mainCollider; 
 
+	public PuzzleComponent[] puzzleComponents;
 	public Transform[] hiddenChildren;
 
 	private bool _isActive = false; 
