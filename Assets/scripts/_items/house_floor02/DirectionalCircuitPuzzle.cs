@@ -44,6 +44,10 @@ public class DirectionalCircuitPuzzle : Puzzle
 		EventCenter.Instance.OnIntEvent += OnIntEvent;
 	}
 
+	public override void Solve () {
+		base.Solve ();
+	}
+
 	private void _onToggleWirePort(int port) {
 		int index = _getWireIndexFromPort(port);
 		if (index > -1) {
@@ -61,7 +65,7 @@ public class DirectionalCircuitPuzzle : Puzzle
 						isSolved = _checkIsPuzzleSolved();
 						Debug.Log ("DirectionalCircuitPuzzle[" + this.name + "].isSolved = " + isSolved);
 						if (isSolved) {
-							EventCenter.Instance.InvokeStringEvent (Puzzle.SOLVED_EVENT, this.name);
+							Solve ();
 						}
 					}
 					_activeWire.port1 = -1;

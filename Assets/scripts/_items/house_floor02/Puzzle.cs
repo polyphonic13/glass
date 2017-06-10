@@ -14,6 +14,9 @@ public class Puzzle : MonoBehaviour {
 	public PuzzleComponent[] puzzleComponents;
 	public PuzzleChild[] children;
 
+	public GameObject[] activatedOnSolved;
+	public GameObject[] deactivatedOnSolved; 
+
 	public bool isSolved = false; 
 
 	private bool _isActive = false; 
@@ -57,6 +60,11 @@ public class Puzzle : MonoBehaviour {
 		child.gameObject.SetActive (isActivated);
 	}
 
+	public virtual void Solve() {
+		_toggleSolvedGameObjects ();
+		EventCenter.Instance.InvokeStringEvent (Puzzle.SOLVED_EVENT, this.name);
+	} 
+
 	private void Awake() {
 		Init ();
 	}
@@ -72,6 +80,18 @@ public class Puzzle : MonoBehaviour {
 		Debug.Log ("Puzzle[" + this.name + "]/_toggleActive, isActivated = " + isActivated);
 		_isActive = isActivated;
 		mainCollider.SetActive (!_isActive);
+	}
+
+	private void _toggleSolvedGameObjects() {
+		int i;
+		int l;
+
+		for (i = 0, l = activatedOnSolved.Length; i < l; i++) {
+			activatedOnSolved [i].SetActive (true);
+		}
+		for (i = 0, l = deactivatedOnSolved.Length; i < l; i++) {
+			deactivatedOnSolved [i].SetActive (false);
+		}
 	}
 }
 

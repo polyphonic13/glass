@@ -14,7 +14,6 @@ public class HighlightAgent : MonoBehaviour
 		_setHighlight (false);
 	}
 
-
 	private void _setHighlight(bool isHighlighted) {
 		target.SetActive (isHighlighted);
 	}
