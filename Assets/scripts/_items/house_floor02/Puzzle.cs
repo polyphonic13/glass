@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 using Polyworks;
 
 public class Puzzle : MonoBehaviour {
@@ -10,7 +11,7 @@ public class Puzzle : MonoBehaviour {
 	public GameObject mainCollider; 
 
 	public PuzzleComponent[] puzzleComponents;
-	public Transform[] hiddenChildren;
+	public PuzzleChild[] children;
 
 	private bool _isActive = false; 
 
@@ -25,15 +26,24 @@ public class Puzzle : MonoBehaviour {
 	}
 
 	public virtual void Init() {
-		if (hiddenChildren.Length > 0) {
-			GameObjectUtils.DeactivateFromTransforms (hiddenChildren);
-		}
-
+		ActivateChildren();
 		EventCenter ec = EventCenter.Instance;
 		ec.OnStringEvent += this.OnStringEvent;
 
 		_toggleActive (false);
 
+	}
+
+	public virtual void ActivateChildren() {
+		PuzzleChild child;
+		for(int i = 0; i < children.Length; i++) {
+			ActivateChild (children [i], children [i].isActive);
+		}
+	}
+
+	public virtual void ActivateChild(PuzzleChild child, bool isActivated) {
+		child.isActive = isActivated;
+		child.gameObject.SetActive (isActivated);
 	}
 
 	private void Awake() {
@@ -52,4 +62,10 @@ public class Puzzle : MonoBehaviour {
 		_isActive = isActivated;
 		mainCollider.SetActive (!_isActive);
 	}
+}
+
+[Serializable]
+public struct PuzzleChild {
+	public GameObject gameObject;
+	public bool isActive;
 }
