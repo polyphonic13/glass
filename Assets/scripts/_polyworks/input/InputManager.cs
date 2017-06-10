@@ -252,6 +252,7 @@ namespace Polyworks {
 
 				if (_activeObject == _puzzleInspector) {
 					// let puzzle inspector handle
+					_itemsUpdate ();
 				} else {
 					if (input.buttons["open_menu"]) {
 						if (_isInventoryOpen) {

@@ -15,16 +15,16 @@ namespace Polyworks {
 		public string itemJustHit { get; set; }
 
 		public virtual void CheckRayCast() {
-//			Debug.Log ("RaycastAgent[" + this.name + "]/CheckRayCast");
+//			Debug.Log ("RaycastAgent[" + this.name + "]/CheckRayCast, dynamicTag = " + dynamicTag);
 			RaycastHit hit;
 			if (Physics.Raycast (this.transform.position, this.transform.forward, out hit, detectionDistance)) {
 				Debug.DrawRay (this.transform.position, this.transform.forward, rayColor);
 //				Debug.Log (" hit tag = " + hit.transform.tag + ", name = " + hit.transform.name);
 				if (hit.transform != this.transform && (hit.transform.tag == dynamicTag || hit.transform.tag == staticTag)) {
-					Debug.Log (" hit name = " + hit.transform.name + ", just hit = " + itemJustHit);
+//					Debug.Log (" hit name = " + hit.transform.name + ", just hit = " + itemJustHit);
 					if (hit.transform.name != itemJustHit) {
 						ProximityAgent pa = hit.transform.gameObject.GetComponent<ProximityAgent> ();
-						Debug.Log ("  pa = " + pa);
+//						Debug.Log ("  pa = " + pa);
 						if (pa != null) {
 							if (pa.Check ()) {
 								pa.SetFocus (true);
@@ -39,6 +39,11 @@ namespace Polyworks {
 			} else {
 				_clearFocus();
 			}
+		}
+
+		public void ClearFocus() {
+			Debug.Log ("RaycastAgent/ClearFocus, focusedItem = " + focusedItem);
+			_clearFocus ();
 		}
 
 		private void _clearFocus() {

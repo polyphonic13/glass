@@ -24,11 +24,11 @@ GameObject:
   - 114: {fileID: 114000010451305044}
   - 114: {fileID: 114000010717356118}
   - 114: {fileID: 114000010443993764}
-  - 114: {fileID: 114000010729536950}
   - 114: {fileID: 114000011013444738}
+  - 114: {fileID: 114000010475490508}
   m_Layer: 19
   m_Name: puzzle00_port01_collider
-  m_TagString: interactive
+  m_TagString: puzzleComponent
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -331,7 +331,7 @@ GameObject:
   - 114: {fileID: 114000013750691578}
   m_Layer: 19
   m_Name: puzzle00_lever_collider
-  m_TagString: interactive
+  m_TagString: puzzleComponent
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -511,11 +511,11 @@ GameObject:
   - 114: {fileID: 114000014230609848}
   - 114: {fileID: 114000010126910250}
   - 114: {fileID: 114000013976532166}
-  - 114: {fileID: 114000013589222166}
   - 114: {fileID: 114000012792409814}
+  - 114: {fileID: 114000013460641140}
   m_Layer: 19
   m_Name: puzzle00_port02_collider
-  m_TagString: interactive
+  m_TagString: puzzleComponent
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -634,11 +634,11 @@ GameObject:
   - 114: {fileID: 114000012566714542}
   - 114: {fileID: 114000012789588664}
   - 114: {fileID: 114000010295660196}
-  - 114: {fileID: 114000013038756112}
   - 114: {fileID: 114000014003540094}
+  - 114: {fileID: 114000013927473894}
   m_Layer: 19
   m_Name: puzzle00_port04_collider
-  m_TagString: interactive
+  m_TagString: puzzleComponent
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -656,11 +656,11 @@ GameObject:
   - 114: {fileID: 114000011256932660}
   - 114: {fileID: 114000014198168494}
   - 114: {fileID: 114000013344810082}
-  - 114: {fileID: 114000010765813804}
   - 114: {fileID: 114000011170952082}
+  - 114: {fileID: 114000010808448896}
   m_Layer: 19
   m_Name: puzzle00_port03_collider
-  m_TagString: interactive
+  m_TagString: puzzleComponent
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2114,6 +2114,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3df9045043b8d4f1cb143be7d3383c2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114000010475490508
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010068482504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b723d56e5b1bb4cdd8ee3682394871c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: toggle_wire_port
+  value: 0
 --- !u!114 &114000010717356118
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2128,19 +2141,7 @@ MonoBehaviour:
   interactDistance: 4
   target: {fileID: 0}
   isTargetPlayer: 1
---- !u!114 &114000010729536950
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010068482504}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4e0e4ebed3e94a869a970734193bc66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventType: 
---- !u!114 &114000010765813804
+--- !u!114 &114000010808448896
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -2148,10 +2149,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000014035179828}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4e0e4ebed3e94a869a970734193bc66, type: 3}
+  m_Script: {fileID: 11500000, guid: b723d56e5b1bb4cdd8ee3682394871c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventType: 
+  type: toggle_wire_port
+  value: 2
 --- !u!114 &114000011013444738
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2226,16 +2228,30 @@ MonoBehaviour:
   activateValue: puzzle00_collider
   mainCollider: {fileID: 1000011059490438}
   puzzleComponents: []
-  hiddenChildren:
-  - {fileID: 4000011677103622}
-  - {fileID: 4000012787515900}
-  - {fileID: 4000010386257026}
-  - {fileID: 4000011900282330}
-  combinations:
+  children:
+  - gameObject: {fileID: 1000010981225626}
+    isActive: 0
+  - gameObject: {fileID: 1000010159559056}
+    isActive: 0
+  - gameObject: {fileID: 1000010593711956}
+    isActive: 0
+  - gameObject: {fileID: 1000012317915696}
+    isActive: 0
+  isSolved: 0
+  wires:
   - port1: 0
     port2: 1
+    isActivated: 0
   - port1: 2
     port2: 3
+    isActivated: 0
+  - port1: 0
+    port2: 2
+    isActivated: 0
+  - port1: 1
+    port2: 3
+    isActivated: 0
+  solution: 0000000001000000
   columns: 2
   rows: 2
 --- !u!114 &114000012635273634
@@ -2286,18 +2302,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1000011188423516}
---- !u!114 &114000013038756112
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013941386534}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4e0e4ebed3e94a869a970734193bc66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventType: 
 --- !u!114 &114000013250024528
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2343,7 +2347,7 @@ MonoBehaviour:
   customLockedMessage: 
   eventType: 
   eventValue: 
---- !u!114 &114000013589222166
+--- !u!114 &114000013460641140
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -2351,10 +2355,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000012942737866}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4e0e4ebed3e94a869a970734193bc66, type: 3}
+  m_Script: {fileID: 11500000, guid: b723d56e5b1bb4cdd8ee3682394871c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventType: 
+  type: toggle_wire_port
+  value: 1
 --- !u!114 &114000013612661450
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2404,6 +2409,19 @@ MonoBehaviour:
   interactDistance: 2
   target: {fileID: 0}
   isTargetPlayer: 1
+--- !u!114 &114000013927473894
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013941386534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b723d56e5b1bb4cdd8ee3682394871c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: toggle_wire_port
+  value: 3
 --- !u!114 &114000013976532166
 MonoBehaviour:
   m_ObjectHideFlags: 1

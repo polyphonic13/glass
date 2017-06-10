@@ -11,13 +11,14 @@ using Polyworks;
 
 public class DirectionalCircuitPuzzle : Puzzle
 {
-	public PortCombination[] wires; 
+	public PuzzleWire[] wires;
+
 	public int[] solution; 
 
 	public int columns; 
 	public int rows;
 
-	private PortCombination _activePort;
+	private PuzzleWire _activeWire;
 
 	private struct CellPosition {
 		public int col;
@@ -27,53 +28,55 @@ public class DirectionalCircuitPuzzle : Puzzle
 	public void OnIntEvent(string type, int value) {
 		Debug.Log ("DirectionalPuzzle/OnStringEvent, type = " + type + ", value = " + value);
 
-		if(type == "wire_state_change") {
-			_onWireStateChanged (value);
+		if(type == "toggle_wire_port" && !isSolved) {
+			_onToggleWirePort (value);
 		}
 	}
 
 	public override void Init() {
 		int total = columns * rows; 
 
-		for (int i = 0; i < children.Length; i++) {
-			
-		}
-
-		_activePort.port1 = -1;
-		_activePort.port2 = -1;
+		_activeWire.port1 = -1;
+		_activeWire.port2 = -1;
 
 		base.Init ();
 
 		EventCenter.Instance.OnIntEvent += OnIntEvent;
 	}
 
-	private void _onWireStateChanged(int port) {
-		if (_getIsPortActive (port)) {
-
+	private void _onToggleWirePort(int port) {
+		int index = _getWireIndexFromPort(port);
+		if (index > -1) {
+			_toggleWireActivatedByIndex (index, false);
 		} else {
+			if (_activeWire.port1 == -1) {
+				_activeWire.port1 = port;
+			} else {
+				if (_getIsValidPuzzleWire (port)) {
+					_activeWire.port2 = port;
+					index = _getWireIndexFromPorts (_activeWire.port1, _activeWire.port2);
+					if (index > -1) {
+						_toggleWireActivatedByIndex (index, true);
 
-		}
-		if (_activePort.port1 == -1) {
-			_activePort.port1 = port;
-		} else {
-			if (_getIsValidPortCombination (port)) {
-				_activePort.port2 = port;
-
+						isSolved = _checkIsPuzzleSolved();
+						Debug.Log ("DirectionalCircuitPuzzle[" + this.name + "].isSolved = " + isSolved);
+						if (isSolved) {
+							EventCenter.Instance.InvokeStringEvent (Puzzle.SOLVED_EVENT, this.name);
+						}
+					}
+					_activeWire.port1 = -1;
+					_activeWire.port2 = -1;
+				} else {
+					Debug.Log("non matching port2: " + port);
+				}
 			}
 		}
 	}
 
-	private bool _getIsPortActive(int port) {
-		if (_activePort.port1 == port || _activePort.port2 == port) {
-			return true;
-		}
-		return false;
-	}
-
-	private bool _getIsValidPortCombination(int port) {
+	private bool _getIsValidPuzzleWire(int port) {
 		bool isAdjacent = false;
 
-		CellPosition pos1 = _setCellPosition (_activePort.port1);
+		CellPosition pos1 = _setCellPosition (_activeWire.port1);
 		CellPosition pos2 = _setCellPosition (port);
 
 		isAdjacent = _getIsAdjacent (pos1.row, pos2.row, pos1.col, pos2.col);
@@ -104,17 +107,62 @@ public class DirectionalCircuitPuzzle : Puzzle
 		return false;
 	}
 
+	private int _getWireIndexFromPorts(int port1, int port2) {
+		int index = -1;
+
+		for (int i = 0, l = wires.Length; i < l; i++) {
+			if ((wires [i].port1 == port1 && wires [i].port2 == port2) || (wires [i].port1 == port2 && wires [i].port2 == port1)) {
+				index = i;
+				break;
+			}
+		}
+
+		return index;
+	}
+
+	private int _getWireIndexFromPort(int port) {
+		int index = -1;
+
+		for (int i = 0, l = wires.Length; i < l; i++) {
+			if (wires[i].isActivated && (wires [i].port1 == port || wires [i].port2 == port)) {
+				index = i;
+				break;
+			}
+		}
+		return index;
+	}
+
+	private void _toggleWireActivatedByIndex(int index, bool isActivated) {
+		wires [index].isActivated = isActivated;
+		ToggleChildActive (children [index], isActivated);
+	}
+
+	private bool _checkIsPuzzleSolved() {
+		int count = 0;
+		int l = solution.Length;
+
+		for (int i = 0; i < l; i++) {
+			if (wires [solution [i]].isActivated) {
+				count++;
+			}
+		}
+
+		if (count != l) {
+			return false;
+		}
+		return true; 
+	}
+
 	private void OnDestroy() {
 		EventCenter ec = EventCenter.Instance; 
 		if(ec != null) {
 			ec.OnIntEvent -= OnIntEvent;
 		}
 	}
-
 }
 
 [Serializable]
-public struct PortCombination {
+public struct PuzzleWire {
 	public int port1;
 	public int port2;
 	public bool isActivated;

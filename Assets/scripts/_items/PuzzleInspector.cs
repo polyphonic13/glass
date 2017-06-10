@@ -28,7 +28,7 @@ public class PuzzleInspector : MonoBehaviour, IInputControllable {
 	private float _activeRotationY;
 	private int _activeLocation = -1;
 
-	public bool isActive;
+	public bool isActive = false;
 
 	private InputObject _input;
 	private RaycastAgent _raycastAgent; 
@@ -114,10 +114,14 @@ public class PuzzleInspector : MonoBehaviour, IInputControllable {
 	}
 
 	private void _toggleActivated(bool isActivated) {
-//		this._camera.enabled = isActivated; 
-//		this._light.enabled = isActivated;
-//		this.isActive = isActivated;
-		this.isActive = _camera.enabled = _light.enabled = _raycastAgent.isActive = isActivated;
+		Debug.Log ("PuzzleInspector/_toggleActivated, isActivated = " + isActivated);
+		if (this.isActive && !isActivated) {
+			Debug.Log ("  was active, have to deactivate stuff");
+			_raycastAgent.ClearFocus ();
+			EventCenter.Instance.InvokeStringEvent (Puzzle.ACTIVATE_EVENT);
+		}
+		_raycastObject.SetActive (isActivated);
+		this.isActive = _camera.enabled = _light.enabled = isActivated;
 	}
 
 	private void _rotate(float horizontal, float vertical) {
