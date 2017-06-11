@@ -24,7 +24,7 @@ namespace Polyworks {
 //					Debug.Log (" hit name = " + hit.transform.name + ", just hit = " + itemJustHit);
 					if (hit.transform.name != itemJustHit) {
 						ProximityAgent pa = hit.transform.gameObject.GetComponent<ProximityAgent> ();
-						Debug.Log ("  pa = " + pa);
+//						Debug.Log ("  pa = " + pa);
 						if (pa != null) {
 							if (pa.Check ()) {
 								pa.SetFocus (true);

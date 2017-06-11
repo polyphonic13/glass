@@ -52,15 +52,21 @@ public class DirectionalCircuitPuzzle : Puzzle
 		int index = _getWireIndexFromPort(port);
 		if (index > -1) {
 			_toggleWireActivatedByIndex (index, false);
+
+			EventCenter.Instance.InvokeIntEvent ("port_plug_off", port);
 		} else {
 			if (_activeWire.port1 == -1) {
 				_activeWire.port1 = port;
+
+				EventCenter.Instance.InvokeIntEvent ("port_plug_on", port);
 			} else {
 				if (_getIsValidPuzzleWire (port)) {
 					_activeWire.port2 = port;
 					index = _getWireIndexFromPorts (_activeWire.port1, _activeWire.port2);
 					if (index > -1) {
 						_toggleWireActivatedByIndex (index, true);
+
+						EventCenter.Instance.InvokeIntEvent ("port_plug_off", port);
 
 						isSolved = _checkIsPuzzleSolved();
 						Debug.Log ("DirectionalCircuitPuzzle[" + this.name + "].isSolved = " + isSolved);

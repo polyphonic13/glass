@@ -11,13 +11,16 @@ public class PuzzleInspector : MonoBehaviour, IInputControllable {
 
 	[SerializeField] private Light _light;
 	[SerializeField] private Camera _camera;
+	[SerializeField] private GameObject _raycastObject; 
+	[SerializeField] private GameObject _icon;
+	[SerializeField] private GameObject _objectIcon;
+
 	[SerializeField] private float _minX; 
 	[SerializeField] private float _maxX;
 	[SerializeField] private float _minY;
 	[SerializeField] private float _maxY;
 	[SerializeField] private float _xSpeed = 120.0f;
 	[SerializeField] private float _ySpeed = 120.0f;
-	[SerializeField] private GameObject _raycastObject; 
 
 	private float _rotationYAxis = 0.0f;
 	private float _rotationXAxis = 0.0f;
@@ -39,10 +42,10 @@ public class PuzzleInspector : MonoBehaviour, IInputControllable {
 	public void OnContextChange(InputContext context, string param) {
 		if (context == InputContext.PUZZLE) {
 			string target = param.Substring (0, 8);
-			Debug.Log ("PuzzleInspector/OnContextChange, context = " + context);
+//			Debug.Log ("PuzzleInspector/OnContextChange, context = " + context);
 			int index = _getLocationIndex (target);
 			if (index > -1) {
-				Debug.Log (" has location, going to activate with index: " + index);
+//				Debug.Log (" has location, going to activate with index: " + index);
 				Activate (index);
 			}
 		} else if (this.isActive) {
@@ -114,9 +117,9 @@ public class PuzzleInspector : MonoBehaviour, IInputControllable {
 	}
 
 	private void _toggleActivated(bool isActivated) {
-		Debug.Log ("PuzzleInspector/_toggleActivated, isActivated = " + isActivated);
+//		Debug.Log ("PuzzleInspector/_toggleActivated, isActivated = " + isActivated);
 		if (this.isActive && !isActivated) {
-			Debug.Log ("  was active, have to deactivate stuff");
+//			Debug.Log ("  was active, have to deactivate stuff");
 			_raycastAgent.ClearFocus ();
 			EventCenter.Instance.InvokeStringEvent (Puzzle.ACTIVATE_EVENT);
 		}

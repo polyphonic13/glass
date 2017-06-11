@@ -7,7 +7,7 @@ namespace Polyworks {
 		public int eventValue = -1; 
 
 		public void OnIntEvent(string type, int value) {
-			//			Debug.Log ("IntEventAgent[" + this.name + "]/OnIntEvent, type = " + type + ", eventType = " + eventType + ", value = " + value + ", eventValue = " + eventValue);
+			Debug.Log ("IntEventAgent[" + this.name + "]/OnIntEvent, type = " + type + ", eventType = " + eventType + ", value = " + value + ", eventValue = " + eventValue);
 			if (type == eventType && value == eventValue) {
 				SendMessage ("Actuate", null, SendMessageOptions.DontRequireReceiver);
 			}
