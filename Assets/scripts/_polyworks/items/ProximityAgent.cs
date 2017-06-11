@@ -19,7 +19,7 @@ namespace Polyworks {
 
 		#region public methods
 		public void SetFocus(bool isFocused) {
-//			Debug.Log ("ProximityAgent[" + this.name + "]/SetFocus, isFocused = " + isFocused + ", _isInitialized = " + _isInitialized + ", isEnabled = " + _item.isEnabled);
+			Debug.Log ("ProximityAgent[" + this.name + "]/SetFocus, isFocused = " + isFocused + ", _isInitialized = " + _isInitialized + ", isEnabled = " + _item.isEnabled);
 			SendMessage ("SetInProximity", isFocused, SendMessageOptions.DontRequireReceiver);
 			if(_isInitialized && _item.isEnabled) {
 				if (isFocused) {
@@ -47,6 +47,7 @@ namespace Polyworks {
 					_wasJustFocused = false;
 				}
 			}
+			Debug.Log ("ProximityAgent/Check, item isEnabled = " + _item.isEnabled + ", isInProximity");
 			return isInProximity;
 		}
 

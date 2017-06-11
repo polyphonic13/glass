@@ -6,7 +6,7 @@ public class HighlightAgent : MonoBehaviour
 	public GameObject target;
 
 	public void SetInProximity(bool isInProximity) {
-//		Debug.Log ("HighlightAgent[" + this.name + "]/SetInProximity, isInProximity = " + isInProximity);
+		Debug.Log ("HighlightAgent[" + this.name + "]/SetInProximity, isInProximity = " + isInProximity);
 		_setHighlight(isInProximity);
 	}
 

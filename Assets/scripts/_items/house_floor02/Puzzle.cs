@@ -11,16 +11,13 @@ public class Puzzle : MonoBehaviour {
 	public string activateValue; 
 	public GameObject mainCollider; 
 
-	public PuzzleComponent[] puzzleComponents;
 	public PuzzleChild[] children;
-
-	public GameObject[] activatedOnSolved;
-	public GameObject[] deactivatedOnSolved; 
 
 	public bool isSolved = false; 
 
 	private bool _isActive = false; 
 
+	#region eventhandlers
 	public void OnStringEvent(string type, string value) {
 		Debug.Log ("Puzzle[" + this.name + "]/OnStringEvent, type = " + type + ", value = " + value);
 		if (type == Puzzle.ACTIVATE_EVENT) {
@@ -38,9 +35,11 @@ public class Puzzle : MonoBehaviour {
 			_toggleActive (false);
 		}
 	}
+	#endregion
 
+	#region public methods
 	public virtual void Init() {
-		ActivateChildren();
+		InitChildren();
 		EventCenter ec = EventCenter.Instance;
 		ec.OnStringEvent += this.OnStringEvent;
 
@@ -48,22 +47,34 @@ public class Puzzle : MonoBehaviour {
 
 	}
 
-	public virtual void ActivateChildren() {
-		PuzzleChild child;
-		for(int i = 0; i < children.Length; i++) {
-			ToggleChildActive (children [i], children [i].isActive);
+	public virtual void InitChildren() {
+		
+		for (int i = 0, l = children.Length; i < l; i++) {
+			Item item = children [i].gameObject.GetComponent<Item> ();
+			if (item != null) {
+				children [i].item = item;
+			}
+
+			if (children [i].isDeactivatedOnInit) {
+				ToggleChildActive (children [i], false);
+			}
 		}
 	}
 
 	public virtual void ToggleChildActive(PuzzleChild child, bool isActivated) {
 		child.isActive = isActivated;
 		child.gameObject.SetActive (isActivated);
+
+		if (child.item != null) {
+			child.item.isEnabled = isActivated;
+		}
 	}
 
 	public virtual void Solve() {
-		_toggleSolvedGameObjects ();
+		_toggleChildrenOnSolved ();
 		EventCenter.Instance.InvokeStringEvent (Puzzle.SOLVED_EVENT, this.name);
 	} 
+	#endregion
 
 	private void Awake() {
 		Init ();
@@ -82,15 +93,13 @@ public class Puzzle : MonoBehaviour {
 		mainCollider.SetActive (!_isActive);
 	}
 
-	private void _toggleSolvedGameObjects() {
-		int i;
-		int l;
-
-		for (i = 0, l = activatedOnSolved.Length; i < l; i++) {
-			activatedOnSolved [i].SetActive (true);
-		}
-		for (i = 0, l = deactivatedOnSolved.Length; i < l; i++) {
-			deactivatedOnSolved [i].SetActive (false);
+	private void _toggleChildrenOnSolved() {
+		for (int i = 0, l = children.Length; i < l; i++) {
+			if (children [i].isActivatedOnSolved) {
+				ToggleChildActive (children [i], true);
+			} else if (children [i].isDeactivatedOnSolved) {
+				ToggleChildActive (children [i], false);
+			}
 		}
 	}
 }
@@ -98,5 +107,9 @@ public class Puzzle : MonoBehaviour {
 [Serializable]
 public struct PuzzleChild {
 	public GameObject gameObject;
+	public Item item;
 	public bool isActive;
+	public bool isDeactivatedOnInit;
+	public bool isActivatedOnSolved;
+	public bool isDeactivatedOnSolved;
 }

@@ -11,11 +11,10 @@ namespace Polyworks
 		public event SceneChangeHandler OnContinueSceneChange; 
 		public event SceneChangeHandler OnCompleteSceneChange; 
 
-		public delegate void IntEventHandler(string name, int value = 0);
-		public event IntEventHandler OnIntEvent;
-
-		public delegate void StringEventHandler(string name, string value = "");
-		public event StringEventHandler OnStringEvent;
+		public delegate void EventHandler<T>(string name, T value);
+		public event EventHandler<bool> OnBoolEvent;
+		public event EventHandler<int> OnIntEvent;
+		public event EventHandler<string> OnStringEvent;
 
 		public delegate void DestroyEventHandler(string target); 
 		public event DestroyEventHandler OnDestroyEvent;
@@ -95,6 +94,12 @@ namespace Polyworks
 		public void CompleteSceneChange(string scene, int section = -1) {
 			if (OnCompleteSceneChange != null) {
 				OnCompleteSceneChange (scene, section);
+			}
+		}
+
+		public void InvokeBoolEvent(string type, bool value = true) {
+			if (OnBoolEvent != null) {
+				OnBoolEvent (type, value);
 			}
 		}
 
