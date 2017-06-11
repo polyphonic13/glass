@@ -52,13 +52,16 @@ public class PuzzleInspector : MonoBehaviour, IInputControllable {
 			this.isActive = false; 
 		}
 	}
+
+	public void OnNearItem(Item item, bool isFocused) {
+		Debug.Log ("PuzzleInspector/OnNearItem, item = " + item.name + ", isFocused = " + isFocused);
+	}
 	#endregion
 
 	#region public methods
 	public void Init() {
 		EventCenter ec = EventCenter.Instance;
 		ec.OnContextChange += this.OnContextChange;
-
 		_raycastAgent = _raycastObject.GetComponent<RaycastAgent> ();
 	}
 
@@ -118,10 +121,18 @@ public class PuzzleInspector : MonoBehaviour, IInputControllable {
 
 	private void _toggleActivated(bool isActivated) {
 //		Debug.Log ("PuzzleInspector/_toggleActivated, isActivated = " + isActivated);
+		EventCenter ec = EventCenter.Instance;
+
+		if (isActivated) {
+			ec.OnNearItem += OnNearItem;
+		} else {
+			ec.OnNearItem -= OnNearItem;
+		}
+
 		if (this.isActive && !isActivated) {
 //			Debug.Log ("  was active, have to deactivate stuff");
 			_raycastAgent.ClearFocus ();
-			EventCenter.Instance.InvokeStringEvent (Puzzle.ACTIVATE_EVENT);
+			ec.InvokeStringEvent (Puzzle.ACTIVATE_EVENT);
 		}
 		_raycastObject.SetActive (isActivated);
 		this.isActive = _camera.enabled = _light.enabled = isActivated;
@@ -147,6 +158,7 @@ public class PuzzleInspector : MonoBehaviour, IInputControllable {
 		EventCenter ec = EventCenter.Instance;
 		if (ec != null) {
 			ec.OnContextChange -= this.OnContextChange;
+			ec.OnNearItem -= this.OnNearItem;
 		}
 	}
 	#endregion
