@@ -12,6 +12,7 @@ using Polyworks;
 public class DirectionalCircuitPuzzle : Puzzle
 {
 	public PuzzleWire[] wires;
+	public GameObject[] wireColliders; 
 
 	public int[] solution; 
 
@@ -144,6 +145,8 @@ public class DirectionalCircuitPuzzle : Puzzle
 
 	private void _toggleWireActivatedByIndex(int index, bool isActivated) {
 		wires [index].isActivated = isActivated;
+		wireColliders [index].SetActive (!isActivated);
+
 		ToggleChildActive (children [index], isActivated);
 	}
 
