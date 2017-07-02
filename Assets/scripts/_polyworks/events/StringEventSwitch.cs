@@ -2,17 +2,11 @@ using UnityEngine;
 using System.Collections;
 
 namespace Polyworks {
-	public class StringEventSwitch : Switch
+	public class StringEventSwitch : EventSwitch
 	{
-		public string eventType; 
-
 		public override void Actuate() {
-//			Debug.Log ("StringEventSwitch/Actuate, name = " + this.name + ", eventType = " + eventType);
-			EventCenter.Instance.InvokeStringEvent(eventType, this.name);
-		}
-
-		public override void Use() {
-			Actuate ();
+			Debug.Log ("StringEventSwitch["+this.name+"]/Actuate, type = " + type);
+			EventCenter.Instance.InvokeStringEvent(type, this.name);
 		}
 	}
 }

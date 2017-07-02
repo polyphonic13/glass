@@ -57,6 +57,7 @@ namespace Polyworks {
 
 		#region handlers
 		public void OnNearItem(Item item, bool isNear) {
+//			Debug.Log ("InputManager/OnNearItem, item = " + item.gameObject.name + ", isNear = " + isNear);
 			_itemInProximity = (isNear) ? item : null;
 		}
 
@@ -229,6 +230,7 @@ namespace Polyworks {
 
 		private void _itemsUpdate() {
 			if(_itemInProximity != null && input.buttons["actuate"]) {
+//				Debug.Log ("InputManager/_itemsUpdate, calling Actuate on " + _itemInProximity.gameObject.name);
 				_itemInProximity.Actuate();
 			}
 

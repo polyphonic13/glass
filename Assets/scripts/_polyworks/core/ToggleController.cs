@@ -2,16 +2,18 @@
 	using UnityEngine;
 	using System.Collections;
 
-	public class ToggleController : MonoBehaviour {
+	public class ToggleController : ActuateAgent {
 
 		public Toggler[] _togglers; 
 
-		public virtual void Actuate() {
+		public override void Actuate() {
 			Toggle ();
 		}
 
+		public override void Use() {
+		}
+
 		public void Toggle() {
-	//		Debug.Log ("ToggleController[" + this.name + "]/Toggle");
 			for (int i = 0; i < _togglers.Length; i++) {
 				_togglers [i].Toggle ();
 			}

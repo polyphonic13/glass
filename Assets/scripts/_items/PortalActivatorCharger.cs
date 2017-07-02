@@ -30,7 +30,7 @@ public class PortalActivatorCharger : MonoBehaviour
 			_isChargedCounter -= Time.deltaTime;
 			if (_isChargedCounter <= 0) {
 				bool isCollected = Game.Instance.GetFlag (PORTAL_ACTIVATOR_COLLECTED);
-				Debug.Log ("PortalActivator now charged, isCollected = " + isCollected);
+				// Debug.Log ("PortalActivator now charged, isCollected = " + isCollected);
 				if (isCollected) {
 					EventCenter.Instance.AddNote (USABLE_MESSAGE);
 				}

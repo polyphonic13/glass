@@ -7,13 +7,15 @@
 	{
 		public ExclusiveGameObject[] gameObjects;
 
-		public string[] eventTypes; 
+		public string onEvent;
+		public string offEvent;
 
 		public void OnStringEvent(string type, string value) {
-			for(int i = 0; i < eventTypes.Length; i++) {
-				if (eventTypes [i] == type) {
-					_deactiveOthers (value);
-				}
+			Debug.Log ("ExclusiveItemController[" + this.name + "]/OnStringEvent, type = " + type + ", value = " + value);
+			if (type == onEvent) {
+				_setActiveByName (true, value);
+			} else if (type == offEvent) {
+				_setActiveByName (false, value);
 			}
 		}
 
@@ -25,15 +27,20 @@
 			EventCenter.Instance.OnStringEvent += OnStringEvent;
 		}
 
-		private void _deactiveOthers(string name) {
-			int activeIdx = _getIndexByName (name);
-			_setItemsActive (false, activeIdx);
+		private void _setActiveByName(bool isActive, string name) {
+			int excludeIdx = _getIndexByName (name);
+			Debug.Log ("ExclusiveItemAgent["+this.name+"]/_setActiveByName, excludeIdx = " + excludeIdx);
+			if (excludeIdx > -1) {
+				_setItemsActive (isActive, excludeIdx);
+			}
 		}
 
 		private void _setItemsActive(bool isActive, int excludeIdx = -1) {
 			for (int i = 0; i < gameObjects.Length; i++) {
-				if (i != excludeIdx) {
+				if (i == excludeIdx) {
 					gameObjects [i].item.SetActive(isActive);
+				} else {
+					gameObjects [i].item.SetActive(!isActive);
 				}
 			}
 		}

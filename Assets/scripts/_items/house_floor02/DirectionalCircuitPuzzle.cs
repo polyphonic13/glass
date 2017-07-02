@@ -27,11 +27,24 @@ public class DirectionalCircuitPuzzle : Puzzle
 	}
 
 	public void OnIntEvent(string type, int value) {
-		Debug.Log ("DirectionalPuzzle/OnStringEvent, type = " + type + ", value = " + value);
+		Debug.Log ("DirectionalPuzzle/OnIntEvent, type = " + type + ", value = " + value);
 
-		if(type == "toggle_wire_port" && !isSolved) {
-			_onToggleWirePort (value);
+		switch (type) {
+		case "insert_wire":
+			break;
+
+		case "remove_wire":
+			break;
+
+		case "wire_inserted":
+			break;
+
+		case "wire_removed":
+			break;
 		}
+//		if(type == "toggle_wire_port" && !isSolved) {
+//			_onToggleWirePort (value);
+//		}
 	}
 
 	public override void Init() {
