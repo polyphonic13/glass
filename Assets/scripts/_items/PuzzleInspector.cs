@@ -54,7 +54,7 @@ public class PuzzleInspector : MonoBehaviour, IInputControllable {
 	}
 
 	public void OnNearItem(Item item, bool isFocused) {
-		Debug.Log ("PuzzleInspector/OnNearItem, item = " + item.name + ", isFocused = " + isFocused);
+//		Debug.Log ("PuzzleInspector/OnNearItem, item = " + item.name + ", isFocused = " + isFocused);
 	}
 	#endregion
 
