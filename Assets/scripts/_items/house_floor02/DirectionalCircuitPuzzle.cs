@@ -12,9 +12,6 @@ using Polyworks;
 
 public class DirectionalCircuitPuzzle : Puzzle
 {
-	public PuzzleWire[] wires;
-	public GameObject[] wireColliders; 
-
 	public int cols;
 	public int rows;
 	public int vRows;
