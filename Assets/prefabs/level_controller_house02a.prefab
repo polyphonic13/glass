@@ -27,6 +27,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 149.5, y: 212, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -64,24 +65,274 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneData:
-    sceneName: game_control_test01
+    sceneName: house_floor02a
     sectionPrefabs:
     - name: bathroom_e
-      prefabs: []
+      prefabs:
+      - name: bathroom_e_door
+        path: items/house/floor02/bathroom_e/
+        addTo: house_objects/section_objects/bathroom_e/
+        location: {x: -660.806, y: 110.693, z: -1.427324}
+        rotation: {x: 0, y: 0, z: 0}
     - name: bathroom_n
-      prefabs: []
+      prefabs:
+      - name: bathroom_n_door
+        path: items/house/floor02/bathroom_n/
+        addTo: house_objects/section_objects/bathroom_n/
+        location: {x: -657.304, y: 110.693, z: -13.21733}
+        rotation: {x: 0, y: 90, z: 0}
+      - name: puzzle03_wires
+        path: items/house/floor02/bathroom_n/
+        addTo: house_objects/section_objects/bathroom_n/
+        location: {x: -656.11, y: 112.41, z: -15.76}
+        rotation: {x: 0, y: 0, z: 0}
+      - name: puzzle03
+        path: items/house/floor02/bathroom_n/
+        addTo: house_objects/section_objects/bathroom_n/
+        location: {x: -659.57, y: 113.012, z: -14.704}
+        rotation: {x: 0, y: 0, z: 0}
     - name: bathroom_w
-      prefabs: []
+      prefabs:
+      - name: bathroom_w_door
+        path: items/house/floor02/bathroom_w/
+        addTo: house_objects/section_objects/bathroom_w/
+        location: {x: -641.946, y: 110.693, z: -0.2773247}
+        rotation: {x: 0, y: 0, z: 0}
     - name: bedroom_e
-      prefabs: []
+      prefabs:
+      - name: bedroom_e_door
+        path: items/house/floor02/bedroom_e/
+        addTo: house_objects/section_objects/bedroom_e/
+        location: {x: -662.13, y: 110.693, z: -8.3}
+        rotation: {x: 0, y: 90, z: 0}
+      - name: piggy_bank
+        path: items/house/floor02/bedroom_e/
+        addTo: house_objects/section_objects/bedroom_e/
+        location: {x: -659.4275, y: 112.694, z: -3.827028}
+        rotation: {x: 0, y: 106, z: 0}
+      - name: astrology_coin_scorpio
+        path: items/house/floor02/bedroom_e/
+        addTo: house_objects/section_objects/bedroom_e/
+        location: {x: -656.045, y: 111.497, z: -6.621575}
+        rotation: {x: 90, y: 0, z: 0}
+      - name: bedroom_e_dresser
+        path: items/house/floor02/bedroom_e/
+        addTo: house_objects/section_objects/bedroom_e/
+        location: {x: -659.6998, y: 110.7, z: -3.841401}
+        rotation: {x: 0, y: 0, z: 0}
+      - name: crystal_key_aries
+        path: items/cave01/room02a/
+        addTo: house_objects/section_objects/bedroom_e/bedroom_e_dresser(Clone)/dresser/dresser_armature/bone_top/
+        location: {x: -659.78, y: 111.947, z: -3.76}
+        rotation: {x: 0, y: 80, z: 0}
+      - name: crystal_key_leo
+        path: items/cave01/room02a/
+        addTo: house_objects/section_objects/bedroom_e/bedroom_e_dresser(Clone)/dresser/dresser_armature/bone_middle/
+        location: {x: -659.69, y: 111.452, z: -3.8}
+        rotation: {x: 0, y: 90, z: 0}
+      - name: crystal_key_scorpio
+        path: items/cave01/room02a/
+        addTo: house_objects/section_objects/bedroom_e/bedroom_e_dresser(Clone)/dresser/dresser_armature/bone_bottom/
+        location: {x: -659.72, y: 110.974, z: -3.85}
+        rotation: {x: 0, y: 100, z: 0}
     - name: bedroom_n
-      prefabs: []
+      prefabs:
+      - name: bedroom_n_balcony_door
+        path: items/house/floor02/bedroom_n/
+        addTo: house_objects/section_objects/bedroom_n/
+        location: {x: -648.75, y: 110.6, z: -22.58}
+        rotation: {x: 0, y: 0, z: 0}
+      - name: bedroom_n_door
+        path: items/house/floor02/bedroom_n/
+        addTo: house_objects/section_objects/bedroom_n/
+        location: {x: -652.84, y: 110.6533, z: -13.26}
+        rotation: {x: 0, y: 270, z: 0}
+      - name: toychest
+        path: items/house/floor02/bedroom_n/
+        addTo: house_objects/section_objects/bedroom_n/
+        location: {x: -649.75, y: 110.98, z: -17.1}
+        rotation: {x: 0, y: 270, z: 0}
+      - name: rabbit_doll
+        path: items/house/floor02/bedroom_n/
+        addTo: house_objects/section_objects/bedroom_n/
+        location: {x: -650.04, y: 111.93, z: -15.4}
+        rotation: {x: 0, y: -30, z: 0}
+      - name: bedroom_n_wardrobe
+        path: items/house/floor02/bedroom_n/
+        addTo: house_objects/section_objects/bedroom_n/
+        location: {x: -654.29, y: 110.6562, z: -19}
+        rotation: {x: 0, y: 92, z: 0}
+      - name: bed_n
+        path: items/house/floor02/bedroom_n/
+        addTo: house_objects/section_objects/bedroom_n/
+        location: {x: -649.796, y: 110.2781, z: -14.79733}
+        rotation: {x: 0, y: 0, z: 0}
+      - name: astrology_coin_aries
+        path: items/house/floor02/bedroom_n/
+        addTo: house_objects/section_objects/bedroom_n/
+        location: {x: -650.1221, y: 111.8271, z: -14.27402}
+        rotation: {x: 270, y: 270, z: 90}
+      - name: bedroom_n_endtable
+        path: items/house/floor02/bedroom_n/
+        addTo: house_objects/section_objects/bedroom_n/
+        location: {x: -651.27, y: 109.67, z: -13.95}
+        rotation: {x: 0, y: 180, z: 0}
+      - name: bedroom_n_vanity
+        path: items/house/floor02/bedroom_n/
+        addTo: house_objects/section_objects/bedroom_n/
+        location: {x: -654.26, y: 110.66, z: -22}
+        rotation: {x: 0, y: 268, z: 0}
+      - name: bedroom_n_dresser
+        path: items/house/floor02/bedroom_n/
+        addTo: house_objects/section_objects/bedroom_n/
+        location: {x: -654.2, y: 110.688, z: -16.22}
+        rotation: {x: 0, y: 91, z: 0}
+      - name: bedroom_n_endtable_key
+        path: items/house/floor02/bedroom_n/
+        addTo: house_objects/section_objects/bedroom_n/bedroom_n_vanity(Clone)/Armature/drawer_bone/
+        location: {x: -654.26, y: 111.842, z: -21.9}
+        rotation: {x: 90, y: 80, z: 0}
+      - name: crystal_key_portal_chamber
+        path: items/house/floor02/bedroom_n/
+        addTo: house_objects/section_objects/bedroom_n/bedroom_n_endtable(Clone)/endtable02_armature/endtable02_drawer_bone
+        location: {x: -651.394, y: 111.792, z: -14.076}
+        rotation: {x: 0, y: 0, z: 0}
     - name: bedroom_nw
-      prefabs: []
+      prefabs:
+      - name: gas_can01
+        path: items/house/floor02/bedroom_nw/
+        addTo: house_objects/section_objects/bedroom_nw/
+        location: {x: -639.2644, y: 110.693, z: -23.33847}
+        rotation: {x: 0, y: 158.9208, z: 0}
+      - name: bedroom_nw_balcony_door
+        path: items/house/floor02/bedroom_nw/
+        addTo: house_objects/section_objects/bedroom_nw/
+        location: {x: -642.18, y: 110.693, z: -20.679}
+        rotation: {x: 0, y: 270, z: 0}
+      - name: bedroom_nw_door
+        path: items/house/floor02/bedroom_nw/
+        addTo: house_objects/section_objects/bedroom_nw/
+        location: {x: -644, y: 110.646, z: -13.21632}
+        rotation: {x: 0, y: 270, z: 0}
+      - name: rabbit_hunt_painting
+        path: items/house/floor02/bedroom_nw/
+        addTo: house_objects/section_objects/bedroom_nw/
+        location: {x: -645.39, y: 111.6, z: -16.15}
+        rotation: {x: 0, y: 0, z: 0}
+      - name: bedroom_nw_wardrobe
+        path: items/house/floor02/bedroom_nw/
+        addTo: house_objects/section_objects/bedroom_nw/
+        location: {x: -644.74, y: 110.6562, z: -18.62733}
+        rotation: {x: 0, y: 90, z: 0}
+      - name: toy_dog
+        path: items/house/floor02/bedroom_nw/
+        addTo: house_objects/section_objects/bedroom_nw/
+        location: {x: -644.682, y: 111.3631, z: -19.17732}
+        rotation: {x: 0, y: 158.9208, z: 0}
+      - name: bedroom_nw_dresser
+        path: items/house/floor02/bedroom_nw/
+        addTo: house_objects/section_objects/bedroom_nw/
+        location: {x: -639.236, y: 110.74, z: -20.06733}
+        rotation: {x: 0, y: 0, z: 0}
+      - name: flashlight
+        path: items/house/floor02/bedroom_nw/
+        addTo: house_objects/section_objects/bedroom_nw/bedroom_nw_dresser(Clone)/Armature/middle_drawer_bone/
+        location: {x: -639.199, y: 111.5452, z: -20}
+        rotation: {x: 0, y: 111, z: 0}
+      - name: bedroom_nw_endtable
+        path: items/house/floor02/bedroom_nw/
+        addTo: house_objects/section_objects/bedroom_nw/
+        location: {x: -642.16, y: 110.6512, z: -13.81}
+        rotation: {x: 0, y: 180, z: 0}
+      - name: astrology_coin_leo
+        path: items/house/floor02/bedroom_nw/
+        addTo: house_objects/section_objects/bedroom_nw/bedroom_nw_endtable(Clone)/Armature/drawer_bottom_bone/
+        location: {x: -642.134, y: 111.523, z: -13.73628}
+        rotation: {x: 270, y: 90, z: 0}
+      - name: portal_activation_device
+        path: items/
+        addTo: house_objects/section_objects/bedroom_nw/
+        location: {x: -639.966, y: 111.835, z: -16.77}
+        rotation: {x: 0, y: 0, z: 90}
     - name: bedroom_se
-      prefabs: []
+      prefabs:
+      - name: bedroom_se_door_n
+        path: items/house/floor02/bedroom_se/
+        addTo: house_objects/section_objects/bedroom_se/
+        location: {x: -662.245, y: 110.693, z: -0.1973248}
+        rotation: {x: 0, y: 270, z: 0}
+      - name: bedroom_se_door_w
+        path: items/house/floor02/bedroom_se/
+        addTo: house_objects/section_objects/bedroom_se/
+        location: {x: -655, y: 110.693, z: 9.5}
+        rotation: {x: 0, y: 0, z: 0}
+      - name: bedroom_se_dresser
+        path: items/house/floor02/bedroom_se/
+        addTo: house_objects/section_objects/bedroom_se/
+        location: {x: -660.046, y: 110.6488, z: 0.2999992}
+        rotation: {x: 0, y: 0, z: 0}
+      - name: bedroom_se_endtable_n
+        path: items/house/floor02/bedroom_se/
+        addTo: house_objects/section_objects/bedroom_se/
+        location: {x: -663.287, y: 110.7295, z: 4.534069}
+        rotation: {x: 0, y: -1, z: 0}
+      - name: bedroom_se_endtable_s
+        path: items/house/floor02/bedroom_se/
+        addTo: house_objects/section_objects/bedroom_se/
+        location: {x: -663.19, y: 110.7295, z: 8.82}
+        rotation: {x: 0, y: 4, z: 0}
+      - name: bedroom_se_wardrobe_n
+        path: items/house/floor02/bedroom_se/
+        addTo: house_objects/section_objects/bedroom_se/
+        location: {x: -658.016, y: 110.6481, z: 0.4426746}
+        rotation: {x: 0, y: -2, z: 0}
+      - name: bedroom_se_wardrobe_s
+        path: items/house/floor02/bedroom_se/
+        addTo: house_objects/section_objects/bedroom_se/
+        location: {x: -656.43, y: 110.6481, z: 12.05}
+        rotation: {x: 0, y: 181, z: 0}
     - name: bedroom_sw
-      prefabs: []
+      prefabs:
+      - name: bedroom_sw_door
+        path: items/house/floor02/bedroom_sw/
+        addTo: house_objects/section_objects/bedroom_sw/
+        location: {x: -647.004, y: 110.693, z: 9.5}
+        rotation: {x: 0, y: 0, z: 0}
+      - name: bedroom_sw_wardrobe01
+        path: items/house/floor02/bedroom_sw/
+        addTo: house_objects/section_objects/bedroom_sw/
+        location: {x: -645.21, y: 112.92, z: 12.09}
+        rotation: {x: 0, y: 0, z: 0}
+      - name: bedroom_sw_dresser01
+        path: items/house/floor02/bedroom_sw/
+        addTo: house_objects/section_objects/bedroom_sw/
+        location: {x: -641.47, y: 112.92, z: 12.14}
+        rotation: {x: 0, y: 0, z: 0}
+      - name: bedroom_sw_endtable01
+        path: items/house/floor02/bedroom_sw/
+        addTo: house_objects/section_objects/bedroom_sw/
+        location: {x: -638.76, y: 112.92, z: 10.25}
+        rotation: {x: 0, y: 0, z: 0}
+      - name: bedroom_sw_endtable02
+        path: items/house/floor02/bedroom_sw/
+        addTo: house_objects/section_objects/bedroom_sw/
+        location: {x: -638.76, y: 112.92, z: 0.37}
+        rotation: {x: 0, y: 0, z: 0}
+      - name: bedroom_sw_dresser02
+        path: items/house/floor02/bedroom_sw/
+        addTo: house_objects/section_objects/bedroom_sw/
+        location: {x: -635.32, y: 112.92, z: -6.525}
+        rotation: {x: 0, y: 0, z: 0}
+      - name: bedroom_sw_vanity01
+        path: items/house/floor02/bedroom_sw/
+        addTo: house_objects/section_objects/bedroom_sw/
+        location: {x: -638.92, y: 112.92, z: -7.36}
+        rotation: {x: 0, y: 0, z: 0}
+      - name: bedroom_sw_shelves01
+        path: items/house/floor02/bedroom_sw/
+        addTo: house_objects/section_objects/bedroom_sw/
+        location: {x: -641.2, y: 112.92, z: -6.71}
+        rotation: {x: 0, y: 0, z: 0}
     - name: hall
       prefabs: []
     - name: secret_room_e
@@ -89,7 +340,27 @@ MonoBehaviour:
     - name: secret_room_ne
       prefabs: []
     - name: secret_room_nw
-      prefabs: []
+      prefabs:
+      - name: secret_room_nw_door
+        path: items/house/floor02/secret_room_nw/
+        addTo: house_objects/section_objects/secret_room_nw/
+        location: {x: -652.386, y: 127.5781, z: -17.27732}
+        rotation: {x: 0, y: 0, z: 0}
+      - name: bedroom_nw_door_key
+        path: items/house/floor02/secret_room_nw/
+        addTo: house_objects/section_objects/secret_room_nw/
+        location: {x: -647.42, y: 112.29, z: -18.93}
+        rotation: {x: 314.9707, y: 0.0107, z: 85.9294}
+      - name: puzzle00_wires
+        path: items/house/floor02/secret_room_nw/
+        addTo: house_objects/section_objects/secret_room_nw
+        location: {x: -646.7379, y: 112.288, z: -18.935}
+        rotation: {x: -240, y: 0, z: 0}
+      - name: puzzle00
+        path: items/house/floor02/secret_room_nw/
+        addTo: house_objects/section_objects/secret_room_nw
+        location: {x: -645.638, y: 113.003, z: -18.209}
+        rotation: {x: 0, y: 0, z: 0}
     - name: secret_room_sw
       prefabs: []
   sectionControllers:
