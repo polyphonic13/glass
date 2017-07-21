@@ -19,7 +19,7 @@ public class Puzzle : MonoBehaviour {
 
 	#region eventhandlers
 	public void OnStringEvent(string type, string value) {
-		Debug.Log ("Puzzle[" + this.name + "]/OnStringEvent, type = " + type + ", value = " + value);
+//		Debug.Log ("Puzzle[" + this.name + "]/OnStringEvent, type = " + type + ", value = " + value);
 		if (type == Puzzle.ACTIVATE_EVENT) {
 			if (value == activateValue) {
 				_toggleActive (true);
@@ -88,7 +88,7 @@ public class Puzzle : MonoBehaviour {
 	}
 
 	private void _toggleActive(bool isActivated) {
-		Debug.Log ("Puzzle[" + this.name + "]/_toggleActive, isActivated = " + isActivated);
+//		Debug.Log ("Puzzle[" + this.name + "]/_toggleActive, isActivated = " + isActivated);
 		_isActive = isActivated;
 		mainCollider.SetActive (!_isActive);
 	}

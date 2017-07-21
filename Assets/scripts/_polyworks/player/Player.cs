@@ -121,6 +121,15 @@ namespace Polyworks
 		public void OnChangeScenePrep(string scene, int section) {
 //			Destroy(this.gameObject);
 		}
+
+		public void OnContextChange(InputContext context, string param) {
+			Debug.Log ("Player/OnContextChange, context = " + context);
+			if (context == InputContext.PLAYER) {
+				this.gameObject.SetActive (true);
+			} else {
+				this.gameObject.SetActive (false);
+			}
+		}
 		#endregion
 
 		#region public methods
@@ -212,6 +221,7 @@ namespace Polyworks
 //			ec.OnAboveWater += OnAboveWater;
 //			ec.OnPlayerDamaged += OnPlayerDamaged;
 			ec.OnNearItem += OnNearItem;
+			ec.OnContextChange += OnContextChange;
 
 		}
 		#endregion
@@ -515,6 +525,7 @@ namespace Polyworks
 //				ec.OnAboveWater -= OnAboveWater;
 //				ec.OnPlayerDamaged -= OnPlayerDamaged;
 				ec.OnNearItem -= OnNearItem;
+				ec.OnContextChange -= OnContextChange;
 			}
 		}
 	}

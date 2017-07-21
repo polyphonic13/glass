@@ -23,6 +23,7 @@ namespace Polyworks {
 		public Dictionary<string, bool> buttons;
 	}
 
+	[Serializable]
 	public enum InputContext { PLAYER, MENU, INVENTORY, INSPECTOR, PUZZLE }; 
 
 	public class InputManager : MonoBehaviour {
@@ -127,10 +128,10 @@ namespace Polyworks {
 				}
 
 				EventCenter ec = EventCenter.Instance;
-				ec.OnNearItem += this.OnNearItem;
-				ec.OnCloseInventoryUI += this.OnCloseInventoryUI;
-				ec.OnInspectItem += this.OnInspectItem;
-				ec.OnContextChange += this.OnContextChange;
+				ec.OnNearItem += OnNearItem;
+				ec.OnCloseInventoryUI += OnCloseInventoryUI;
+				ec.OnInspectItem += OnInspectItem;
+				ec.OnContextChange += OnContextChange;
 			}
 			_isInitialized = true;
 		}
@@ -312,9 +313,10 @@ namespace Polyworks {
 		private void OnDestroy() {
 			EventCenter ec = EventCenter.Instance;
 			if (ec != null) {
-				ec.OnNearItem -= this.OnNearItem;
-				ec.OnCloseInventoryUI -= this.OnCloseInventoryUI;
-				ec.OnInspectItem -= this.OnInspectItem;
+				ec.OnNearItem -= OnNearItem;
+				ec.OnCloseInventoryUI -= OnCloseInventoryUI;
+				ec.OnInspectItem -= OnInspectItem;
+				ec.OnContextChange -= OnContextChange;
 			}
 		}
 	}

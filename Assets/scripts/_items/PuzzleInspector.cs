@@ -97,6 +97,7 @@ public class PuzzleInspector : MonoBehaviour, IInputControllable {
 	}
 
 	private void Update() {
+//		Debug.Log ("PuzzleInspector/Update, isActive = " + this.isActive);
 		if (this.isActive) {
 			_raycastAgent.CheckRayCast ();
 		}
