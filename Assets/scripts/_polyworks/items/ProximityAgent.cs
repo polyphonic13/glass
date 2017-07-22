@@ -35,6 +35,10 @@ namespace Polyworks {
 		}
 
 		public bool Check() {
+			if (target == null) {
+				return true;
+			}
+
 			bool isInProximity = false;
 			if (_item.isEnabled) {
 				var difference = Vector3.Distance (target.position, transform.position);

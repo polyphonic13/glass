@@ -22,10 +22,9 @@ public class Puzzle : MonoBehaviour {
 //		Debug.Log ("Puzzle[" + this.name + "]/OnStringEvent, type = " + type + ", value = " + value);
 		if (type == Puzzle.ACTIVATE_EVENT) {
 			if (value == activateValue) {
-				_toggleActive (true);
-				EventCenter.Instance.ChangeContext (InputContext.PUZZLE, this.name);
+				Activate ();
 			} else if (_isActive) {
-				_toggleActive (false);
+				Deactivate ();
 			}
 		}
 	}
@@ -68,6 +67,15 @@ public class Puzzle : MonoBehaviour {
 		if (child.item != null) {
 			child.item.isEnabled = isActivated;
 		}
+	}
+
+	public virtual void Activate() {
+		_toggleActive (true);
+		EventCenter.Instance.ChangeContext (InputContext.PUZZLE, this.name);
+	}
+
+	public virtual void Deactivate() {
+		_toggleActive(false);
 	}
 
 	public virtual void Solve() {

@@ -37,11 +37,23 @@ public class DirectionalCircuitPuzzle : Puzzle
 		base.Init ();
 		_initPorts ();
 		_initPuzzleWires ();
-		EventCenter.Instance.OnIntEvent += OnIntEvent;
+	}
+
+	public override void Activate() {
+		base.Activate ();
+		if (!isSolved) {
+			EventCenter.Instance.OnIntEvent += OnIntEvent;
+		}
+	}
+
+	public override void Deactivate () {
+		base.Deactivate ();
+		EventCenter.Instance.OnIntEvent -= OnIntEvent;
 	}
 
 	public override void Solve () {
 		base.Solve ();
+		EventCenter.Instance.OnIntEvent -= OnIntEvent;
 	}
 
 	private void _initPorts() {
@@ -163,7 +175,7 @@ public class DirectionalCircuitPuzzle : Puzzle
 			}
 		}
 		if (isSolved) {
-			base.Solve ();
+			Solve ();
 		}
 		Debug.Log ("DirectionalCircuitPuzzle[" + this.name + "]/_checkIsSolved, isSolved = " + isSolved);
 	}

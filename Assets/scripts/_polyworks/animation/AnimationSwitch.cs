@@ -6,19 +6,21 @@ namespace Polyworks {
 	{
 		public string targetName; 
 		public string[] animations; 
+		public bool isLogOn = false;
+
 		public int currentIdx { get; set; }
 
 		private AnimationAgent _target; 
 
 		public override void Actuate() {
-			Debug.Log ("AnimationSwitch[" + this.name + "]/Actuate, _target = " + _target);
+			_log ("AnimationSwitch[" + this.name + "]/Actuate, _target = " + _target);
 			if (_target != null) {
 				if (animations.Length > 0) {
-					Debug.Log (" sending current["+currentIdx+"] animation: " + animations [currentIdx]);
+					_log (" sending current["+currentIdx+"] animation: " + animations [currentIdx]);
 					_target.Play (animations [currentIdx]);
 					_incrementIndex ();
 				} else {
-//					Debug.Log (" going to call _target.Play");
+//					_log (" going to call _target.Play");
 					_target.Play ("");
 				}
 			}
@@ -29,7 +31,7 @@ namespace Polyworks {
 			GameObject targetObject = GameObject.Find (targetName);
 			if (targetObject != null) {
 				_target = targetObject.GetComponent<AnimationAgent> ();
-//				Debug.Log ("AnimationSwitch[" + this.name + "]/Awake, targetObject = " + targetObject + ", _target = " + _target);
+				_log ("AnimationSwitch[" + this.name + "]/Awake, targetObject = " + targetObject + ", _target = " + _target);
 			}
 		}
 
@@ -38,6 +40,12 @@ namespace Polyworks {
 				currentIdx++;
 			} else {
 				currentIdx = 0;
+			}
+		}
+
+		private void _log(string message) {
+			if (isLogOn) {
+				Debug.Log (message);
 			}
 		}
 	}
