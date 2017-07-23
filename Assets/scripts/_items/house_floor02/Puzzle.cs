@@ -19,7 +19,7 @@ public class Puzzle : MonoBehaviour {
 
 	#region eventhandlers
 	public void OnStringEvent(string type, string value) {
-//		Debug.Log ("Puzzle[" + this.name + "]/OnStringEvent, type = " + type + ", value = " + value);
+		Debug.Log ("Puzzle[" + this.name + "]/OnStringEvent, type = " + type + ", value = " + value);
 		if (type == Puzzle.ACTIVATE_EVENT) {
 			if (value == activateValue) {
 				Activate ();

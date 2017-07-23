@@ -6,6 +6,7 @@ namespace Polyworks {
 		public float interactDistance = 2f;
 		public Transform target;
 		public bool isTargetPlayer = true; 
+		public bool isLogOn = false; 
 
 		private bool _wasJustFocused;
 		private bool _isInitialized;
@@ -19,7 +20,7 @@ namespace Polyworks {
 
 		#region public methods
 		public void SetFocus(bool isFocused) {
-//			Debug.Log ("ProximityAgent[" + this.name + "]/SetFocus, isFocused = " + isFocused + ", _isInitialized = " + _isInitialized + ", isEnabled = " + _item.isEnabled);
+			_log ("ProximityAgent[" + this.name + "]/SetFocus, isFocused = " + isFocused + ", _isInitialized = " + _isInitialized + ", isEnabled = " + _item.isEnabled);
 			SendMessage ("SetInProximity", isFocused, SendMessageOptions.DontRequireReceiver);
 			if(_isInitialized && _item.isEnabled) {
 				if (isFocused) {
@@ -51,12 +52,12 @@ namespace Polyworks {
 					_wasJustFocused = false;
 				}
 			}
-//			Debug.Log ("ProximityAgent/Check, item isEnabled = " + _item.isEnabled + ", isInProximity");
+			_log ("ProximityAgent/Check, item isEnabled = " + _item.isEnabled + ", isInProximity");
 			return isInProximity;
 		}
 
 		public void Init() {
-//			Debug.Log ("ProximityAgent[" + this.name + "]/Init");
+			_log ("ProximityAgent[" + this.name + "]/Init");
 			if(!_isInitialized) {
 				_item = gameObject.GetComponent<Item> ();
 
@@ -83,5 +84,11 @@ namespace Polyworks {
 			}
 		}
 		#endregion
+
+		private void _log(string message) {
+			if(isLogOn) {
+				Debug.Log(message);
+			}
+		}
 	}
 }

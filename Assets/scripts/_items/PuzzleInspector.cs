@@ -40,12 +40,13 @@ public class PuzzleInspector : MonoBehaviour, IInputControllable {
 
 	#region event handlers
 	public void OnContextChange(InputContext context, string param) {
+		Debug.Log ("PuzzleInspector/OnContextChange, context = " + context);
 		if (context == InputContext.PUZZLE) {
 			string target = param.Substring (0, 8);
 //			Debug.Log ("PuzzleInspector/OnContextChange, context = " + context);
 			int index = _getLocationIndex (target);
 			if (index > -1) {
-//				Debug.Log (" has location, going to activate with index: " + index);
+				Debug.Log (" has location, going to activate with index: " + index);
 				Activate (index);
 			}
 		} else if (this.isActive) {

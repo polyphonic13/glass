@@ -5,13 +5,15 @@ namespace Polyworks {
 
 	public class Inventory : MonoBehaviour
 	{
+		public bool isLogOn = false; 
+
 		private Hashtable _items;
 		private EventCenter _eventCenter; 
 
 		private bool _isPlayerInventory; 
 
 		public void Init(Hashtable items = null, bool isPlayerInventory = false) {
-			// Debug.Log ("Inventory/Init, items.Count = " + items.Count);
+			_log ("Inventory/Init, items.Count = " + items.Count);
 			_isPlayerInventory = isPlayerInventory;
 
 			if (items != null && items.Count > 0) {
@@ -21,7 +23,7 @@ namespace Polyworks {
 			}
 		}
 
-		public virtual void Add(CollectableItemData data, bool increment = true) {
+		public virtual void Add(CollectableItemData data, bool increment = true, bool isNoteAdded = true) {
 			if (!Contains (data.name)) {
 				_items.Add (data.name, data);
 			}
@@ -31,6 +33,10 @@ namespace Polyworks {
 			}
 			if (_isPlayerInventory) {
 				_eventCenter.InventoryAdded (data.name, data.count, _isPlayerInventory);
+
+			}
+
+			if (isNoteAdded) {
 				_eventCenter.AddNote (data.displayName + " added");
 			}
 		}
@@ -56,12 +62,12 @@ namespace Polyworks {
 		public virtual void Use(string name) {
 			_eventCenter.CloseInventoryUI ();
 			CollectableItemData data = Get (name);	
-//			Debug.Log ("Inventory/Use, data = " + data);
+			_log ("Inventory/Use, data = " + data);
 			if(data == null) {
 				return; 
 			}
 			data.isUsable = ItemUtils.GetIsUsable (data);
-//			Debug.Log ("is usable = " + data.isUsable);
+			_log ("is usable = " + data.isUsable);
 			if (data.isUsable) {
 				CollectableItem item = _instantiate(data); 
 
@@ -69,9 +75,9 @@ namespace Polyworks {
 					Remove (name);
 				}
 
-//				Debug.Log ("the item is = " + item);
+				_log ("the item is = " + item);
 				item.Use ();
-//
+
 				if (item.data.isDestroyedOnUse || item.data.isPersistent) {
 					Destroy (item.gameObject);
 				} else {
@@ -83,7 +89,7 @@ namespace Polyworks {
 		}
 
 		public virtual void Drop(string name) {
-			// Debug.Log("Inventory/Drop, name = " + name);
+			_log("Inventory/Drop, name = " + name);
 			CollectableItemData data = Remove(name);
 			CollectableItem item = _instantiate(data); 
 			
@@ -117,7 +123,7 @@ namespace Polyworks {
 
 		public void LogAll() {
 			foreach (string key in _items.Keys) {
-				Debug.Log ("key = " + key);
+				_log ("key = " + key);
 			}
 		}
 
@@ -125,15 +131,21 @@ namespace Polyworks {
 			_eventCenter = EventCenter.Instance;
 		}
 
+		private void _log(string message) {
+			if (isLogOn) {
+				Debug.Log (message);
+			}
+		}
+
 		private void OnDestroy() {
-			// Debug.Log ("Inventory/OnDestroy");
+			_log ("Inventory/OnDestroy");
 		}
 		
 		private CollectableItem _instantiate(CollectableItemData data) {
 			if (data == null) {
 				return null;
 			}
-//			Debug.Log ("prefabPath = " + data.prefabPath);
+			_log ("prefabPath = " + data.prefabPath);
 			GameObject itemObj = (GameObject) Instantiate (Resources.Load (data.prefabPath, typeof(GameObject)), transform.position, transform.rotation);
 			CollectableItem item = itemObj.GetComponent<CollectableItem> ();
 			item.data = data;
