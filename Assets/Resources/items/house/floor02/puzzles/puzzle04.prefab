@@ -2663,6 +2663,8 @@ GameObject:
   - 114: {fileID: 114000011941252648}
   - 114: {fileID: 114000011473016468}
   - 114: {fileID: 114000013974294442}
+  - 114: {fileID: 114000014226236970}
+  - 114: {fileID: 114000014186396308}
   m_Layer: 19
   m_Name: puzzle03_lever_collider_solved
   m_TagString: puzzleComponent
@@ -13710,6 +13712,12 @@ MonoBehaviour:
     isDeactivatedOnInit: 1
     isActivatedOnSolved: 1
     isDeactivatedOnSolved: 0
+  - gameObject: {fileID: 1000012296718344}
+    item: {fileID: 0}
+    isActive: 0
+    isDeactivatedOnInit: 0
+    isActivatedOnSolved: 0
+    isDeactivatedOnSolved: 1
   isSolved: 0
   cols: 4
   rows: 4
@@ -13884,6 +13892,19 @@ MonoBehaviour:
   target: {fileID: 0}
   isTargetPlayer: 0
   isLogOn: 0
+--- !u!114 &114000014186396308
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013266498944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9d08b0237d114106b8c74deec79dda5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isTargetSelf: 0
+  target: {fileID: 1000014236504062}
 --- !u!114 &114000014189683962
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -13910,6 +13931,19 @@ MonoBehaviour:
   target: {fileID: 0}
   isTargetPlayer: 0
   isLogOn: 0
+--- !u!114 &114000014226236970
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013266498944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9d08b0237d114106b8c74deec79dda5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isTargetSelf: 0
+  target: {fileID: 1000013266498944}
 --- !u!137 &137000010667122730
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
