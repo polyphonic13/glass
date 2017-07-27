@@ -1723,6 +1723,8 @@ GameObject:
   - 114: {fileID: 114000013714176364}
   - 114: {fileID: 114000012176973550}
   - 114: {fileID: 114000011861910016}
+  - 114: {fileID: 114000011692737400}
+  - 114: {fileID: 114000014178702056}
   m_Layer: 19
   m_Name: puzzle03_lever_collider_solved
   m_TagString: puzzleComponent
@@ -6066,6 +6068,7 @@ MonoBehaviour:
   interactDistance: 2
   target: {fileID: 0}
   isTargetPlayer: 0
+  isLogOn: 0
 --- !u!114 &114000010154822980
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6103,6 +6106,7 @@ MonoBehaviour:
   interactDistance: 2
   target: {fileID: 0}
   isTargetPlayer: 0
+  isLogOn: 0
 --- !u!114 &114000010252937806
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6491,6 +6495,12 @@ MonoBehaviour:
     isDeactivatedOnInit: 1
     isActivatedOnSolved: 1
     isDeactivatedOnSolved: 0
+  - gameObject: {fileID: 1000011702545588}
+    item: {fileID: 0}
+    isActive: 0
+    isDeactivatedOnInit: 0
+    isActivatedOnSolved: 0
+    isDeactivatedOnSolved: 1
   isSolved: 0
   cols: 3
   rows: 3
@@ -6554,6 +6564,7 @@ MonoBehaviour:
   interactDistance: 1.75
   target: {fileID: 0}
   isTargetPlayer: 1
+  isLogOn: 0
 --- !u!114 &114000011252106238
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6680,6 +6691,19 @@ MonoBehaviour:
   prefabPath: 
   icon: 1
   target: {fileID: 114000010849651808}
+--- !u!114 &114000011692737400
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013805461146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9d08b0237d114106b8c74deec79dda5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isTargetSelf: 0
+  target: {fileID: 1000013805461146}
 --- !u!114 &114000011723469280
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6931,6 +6955,7 @@ MonoBehaviour:
   interactDistance: 2
   target: {fileID: 0}
   isTargetPlayer: 0
+  isLogOn: 0
 --- !u!114 &114000012299405302
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6968,6 +6993,7 @@ MonoBehaviour:
   interactDistance: 2
   target: {fileID: 0}
   isTargetPlayer: 0
+  isLogOn: 0
 --- !u!114 &114000012352954594
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6993,6 +7019,7 @@ MonoBehaviour:
   interactDistance: 2
   target: {fileID: 0}
   isTargetPlayer: 0
+  isLogOn: 0
 --- !u!114 &114000012437138714
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7020,6 +7047,7 @@ MonoBehaviour:
   interactDistance: 2
   target: {fileID: 0}
   isTargetPlayer: 0
+  isLogOn: 0
 --- !u!114 &114000012464917976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7126,6 +7154,7 @@ MonoBehaviour:
   interactDistance: 2
   target: {fileID: 0}
   isTargetPlayer: 0
+  isLogOn: 0
 --- !u!114 &114000012863197786
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7191,6 +7220,7 @@ MonoBehaviour:
   interactDistance: 4
   target: {fileID: 0}
   isTargetPlayer: 0
+  isLogOn: 0
 --- !u!114 &114000013046547794
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7205,6 +7235,7 @@ MonoBehaviour:
   interactDistance: 2
   target: {fileID: 0}
   isTargetPlayer: 0
+  isLogOn: 0
 --- !u!114 &114000013221458216
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7261,6 +7292,7 @@ MonoBehaviour:
   interactDistance: 2
   target: {fileID: 0}
   isTargetPlayer: 0
+  isLogOn: 0
 --- !u!114 &114000013494251042
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7323,6 +7355,7 @@ MonoBehaviour:
   interactDistance: 2
   target: {fileID: 0}
   isTargetPlayer: 0
+  isLogOn: 0
 --- !u!114 &114000013714176364
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7372,6 +7405,7 @@ MonoBehaviour:
   interactDistance: 2
   target: {fileID: 0}
   isTargetPlayer: 0
+  isLogOn: 0
 --- !u!114 &114000013827144088
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7427,6 +7461,7 @@ MonoBehaviour:
   interactDistance: 2
   target: {fileID: 0}
   isTargetPlayer: 0
+  isLogOn: 0
 --- !u!114 &114000013948572768
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7521,6 +7556,20 @@ MonoBehaviour:
   interactDistance: 4
   target: {fileID: 0}
   isTargetPlayer: 0
+  isLogOn: 0
+--- !u!114 &114000014178702056
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013805461146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9d08b0237d114106b8c74deec79dda5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isTargetSelf: 0
+  target: {fileID: 1000011017295318}
 --- !u!114 &114000014258544008
 MonoBehaviour:
   m_ObjectHideFlags: 1

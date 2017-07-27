@@ -540,6 +540,8 @@ GameObject:
   - 114: {fileID: 114000012635273634}
   - 114: {fileID: 114000013750691578}
   - 114: {fileID: 114000011733932528}
+  - 114: {fileID: 114000010042388430}
+  - 114: {fileID: 114000010845224824}
   m_Layer: 19
   m_Name: puzzle00_lever_collider_solved
   m_TagString: puzzleComponent
@@ -3117,6 +3119,19 @@ Animation:
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 1
+--- !u!114 &114000010042388430
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011752531238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9d08b0237d114106b8c74deec79dda5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isTargetSelf: 0
+  target: {fileID: 1000011752531238}
 --- !u!114 &114000010085444646
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3166,6 +3181,7 @@ MonoBehaviour:
   interactDistance: 2
   target: {fileID: 0}
   isTargetPlayer: 0
+  isLogOn: 0
 --- !u!114 &114000010219544794
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3226,6 +3242,7 @@ MonoBehaviour:
   interactDistance: 2
   target: {fileID: 0}
   isTargetPlayer: 0
+  isLogOn: 0
 --- !u!114 &114000010435307190
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3240,6 +3257,7 @@ MonoBehaviour:
   interactDistance: 4
   target: {fileID: 0}
   isTargetPlayer: 0
+  isLogOn: 0
 --- !u!114 &114000010473689430
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3298,6 +3316,20 @@ MonoBehaviour:
   interactDistance: 2
   target: {fileID: 0}
   isTargetPlayer: 0
+  isLogOn: 0
+--- !u!114 &114000010845224824
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011752531238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9d08b0237d114106b8c74deec79dda5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isTargetSelf: 0
+  target: {fileID: 1000012917171720}
 --- !u!114 &114000010856747122
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3404,6 +3436,7 @@ MonoBehaviour:
   interactDistance: 4
   target: {fileID: 0}
   isTargetPlayer: 0
+  isLogOn: 0
 --- !u!114 &114000011532234602
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3444,6 +3477,7 @@ MonoBehaviour:
   interactDistance: 2
   target: {fileID: 0}
   isTargetPlayer: 0
+  isLogOn: 0
 --- !u!114 &114000011733932528
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3578,6 +3612,12 @@ MonoBehaviour:
     isDeactivatedOnInit: 1
     isActivatedOnSolved: 1
     isDeactivatedOnSolved: 0
+  - gameObject: {fileID: 1000012160849666}
+    item: {fileID: 0}
+    isActive: 0
+    isDeactivatedOnInit: 0
+    isActivatedOnSolved: 0
+    isDeactivatedOnSolved: 1
   isSolved: 0
   cols: 2
   rows: 2
@@ -3777,6 +3817,7 @@ MonoBehaviour:
   interactDistance: 1.75
   target: {fileID: 0}
   isTargetPlayer: 1
+  isLogOn: 0
 --- !u!114 &114000013835064498
 MonoBehaviour:
   m_ObjectHideFlags: 1
