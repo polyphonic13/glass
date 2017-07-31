@@ -13,8 +13,6 @@ public class DirectionalCircuitPuzzle : Puzzle
 	public int[] solution; 
 
 	public string wiresPath = "";
-	public string wireHighlightsPath = ""; 
-	public string wireCollidersPath = ""; 
 
 	private List<PuzzleWire> _wireChildren;
 	List<List<int>> _ports;
