@@ -28,7 +28,7 @@ public class PuzzleInspector : MonoBehaviour, IInputControllable {
 	private float _velocityX = 0.0f;
 	private float _velocityY = 0.0f;
 
-	private float _activeRotationY;
+	private float _activeRotationY = 0;
 	private int _activeLocation = -1;
 
 	public bool isActive = false;
@@ -114,9 +114,14 @@ public class PuzzleInspector : MonoBehaviour, IInputControllable {
 	}
 
 	private void _setLocation(int index) {
+		if (_activeRotationY != 0) {
+			Vector3 rotate = new Vector3 (0, -_activeRotationY, 0);
+			transform.Rotate (rotate);
+		}
+
 		PuzzleLocation location = locations [index];
-		this.transform.position = new Vector3 (location.position.x, location.position.y, location.position.z);
-		this.transform.Rotate(location.rotation);
+		transform.position = new Vector3 (location.position.x, location.position.y, location.position.z);
+		transform.Rotate(location.rotation);
 		_activeRotationY = location.rotation.y;
 		_activeLocation = index;
 	}
