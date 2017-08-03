@@ -232,6 +232,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1000011284967860
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000011501871944}
+  m_Layer: 19
+  m_Name: colliders
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1000011358687176
 GameObject:
   m_ObjectHideFlags: 1
@@ -302,7 +317,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &1000012133342940
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
@@ -313,6 +328,7 @@ GameObject:
   - 114: {fileID: 114000010930953212}
   - 114: {fileID: 114000010354562156}
   - 114: {fileID: 114000013536090500}
+  - 114: {fileID: 114000011855531996}
   m_Layer: 19
   m_Name: puzzle01c_collider
   m_TagString: interactive
@@ -531,6 +547,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000012992326722}
+  - 114: {fileID: 114000013212852396}
   - 114: {fileID: 114000010027714504}
   m_Layer: 19
   m_Name: puzzle01c
@@ -786,12 +803,12 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012133342940}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.009, y: 0.06, z: 0.016}
+  m_LocalPosition: {x: 0.008972168, y: 0.05999756, z: 0.016000748}
   m_LocalScale: {x: 0.66970974, y: 0.6693664, z: 0.25058094}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
-  m_Father: {fileID: 4000012992326722}
-  m_RootOrder: 1
+  m_Father: {fileID: 4000011501871944}
+  m_RootOrder: 0
 --- !u!4 &4000011404481108
 Transform:
   m_ObjectHideFlags: 1
@@ -805,6 +822,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4000014093711676}
   m_RootOrder: 35
+--- !u!4 &4000011501871944
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011284967860}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 4000011340853540}
+  m_Father: {fileID: 4000012992326722}
+  m_RootOrder: 1
 --- !u!4 &4000011505762284
 Transform:
   m_ObjectHideFlags: 1
@@ -986,7 +1017,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_Children:
   - {fileID: 4000014093711676}
-  - {fileID: 4000011340853540}
+  - {fileID: 4000011501871944}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &4000013029377456
@@ -2567,7 +2598,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11e1eb9ed8fce4771bb5a80eee764790, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activateValue: 
+  activateValue: puzzle01c_collider
   mainCollider: {fileID: 1000012133342940}
   children: []
   isSolved: 0
@@ -2602,6 +2633,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3df9045043b8d4f1cb143be7d3383c2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114000011855531996
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012133342940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4e0e4ebed3e94a869a970734193bc66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: activate_puzzle
+--- !u!114 &114000013212852396
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013478006634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3df9045043b8d4f1cb143be7d3383c2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114000013536090500
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2617,7 +2671,7 @@ MonoBehaviour:
   description: 
   prefabPath: 
   icon: 1
-  isLocked: 1
+  isLocked: 0
   isLockMessageDisplayed: 1
   isAutoActuatedOnUnlock: 0
   isNoteAddedOnUnlock: 1

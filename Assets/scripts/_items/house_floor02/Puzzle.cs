@@ -39,11 +39,24 @@ public class Puzzle : MonoBehaviour {
 	#region public methods
 	public virtual void Init() {
 		InitChildren();
-		EventCenter ec = EventCenter.Instance;
-		ec.OnStringEvent += this.OnStringEvent;
+//		EventCenter ec = EventCenter.Instance;
+//		ec.OnStringEvent += this.OnStringEvent;
 
 		_toggleActive (false);
 
+	}
+
+	public virtual void Enable() {
+		Debug.Log ("Puzzle[" + this.name + "]/Enable");
+		EventCenter ec = EventCenter.Instance;
+		ec.OnStringEvent += this.OnStringEvent;
+	}
+
+	public virtual void Disable() {
+		EventCenter ec = EventCenter.Instance;
+		if (ec != null) {
+			ec.OnStringEvent -= this.OnStringEvent;
+		}
 	}
 
 	public virtual void InitChildren() {

@@ -58,6 +58,7 @@ GameObject:
   - 114: {fileID: 114000013275483840}
   - 114: {fileID: 114000010423718818}
   - 114: {fileID: 114000012135493252}
+  - 114: {fileID: 114000013124127722}
   m_Layer: 19
   m_Name: puzzle01a_collider
   m_TagString: interactive
@@ -158,6 +159,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000011745686468}
+  - 114: {fileID: 114000010446217204}
   - 114: {fileID: 114000010562628074}
   m_Layer: 19
   m_Name: puzzle01a
@@ -579,7 +581,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010327531308}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.001, y: 0.02, z: 0.025}
+  m_LocalPosition: {x: 0.001, y: 0.02, z: -0.055}
   m_LocalScale: {x: 0.63469595, y: 0.6693664, z: 0.1856258}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -1930,6 +1932,17 @@ MonoBehaviour:
   target: {fileID: 0}
   isTargetPlayer: 1
   isLogOn: 0
+--- !u!114 &114000010446217204
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011185805038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3df9045043b8d4f1cb143be7d3383c2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114000010562628074
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1941,7 +1954,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11e1eb9ed8fce4771bb5a80eee764790, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activateValue: 
+  activateValue: puzzle01a_collider
   mainCollider: {fileID: 1000010327531308}
   children: []
   isSolved: 0
@@ -1965,13 +1978,25 @@ MonoBehaviour:
   description: 
   prefabPath: 
   icon: 1
-  isLocked: 1
+  isLocked: 0
   isLockMessageDisplayed: 1
   isAutoActuatedOnUnlock: 0
   isNoteAddedOnUnlock: 1
   customLockedMessage: 
   eventType: 
   eventValue: 
+--- !u!114 &114000013124127722
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010327531308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4e0e4ebed3e94a869a970734193bc66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: activate_puzzle
 --- !u!114 &114000013275483840
 MonoBehaviour:
   m_ObjectHideFlags: 1

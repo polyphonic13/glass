@@ -18,7 +18,7 @@ namespace Polyworks {
 		private RaycastHit _hit;
 
 		public virtual void CheckRayCast() {
-			_log ("RaycastAgent[" + this.name + "]/CheckRayCast, dynamicTag = " + dynamicTag);
+//			_log ("RaycastAgent[" + this.name + "]/CheckRayCast, dynamicTag = " + dynamicTag);
 			if (Physics.Raycast (this.transform.position, this.transform.forward, out _hit, detectionDistance)) {
 				Debug.DrawRay (this.transform.position, this.transform.forward, rayColor);
 				_log (" _hit tag = " + _hit.transform.tag + ", name = " + _hit.transform.name);

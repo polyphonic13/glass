@@ -138,8 +138,8 @@ MonoBehaviour:
       - name: puzzle04
         path: items/house/floor02/puzzles/
         addTo: house_objects/section_objects/bedroom_e/
-        location: {x: -658.231, y: 113.01, z: -8.232}
-        rotation: {x: 0, y: 0, z: 0}
+        location: {x: -655.25, y: 113.01, z: -5.24}
+        rotation: {x: 0, y: -90, z: 0}
       - name: puzzle04_wires
         path: items/house/floor02/puzzles/
         addTo: house_objects/section_objects/bedroom_e/
@@ -207,6 +207,11 @@ MonoBehaviour:
         addTo: house_objects/section_objects/bedroom_n/bedroom_n_endtable(Clone)/endtable02_armature/endtable02_drawer_bone
         location: {x: -651.394, y: 111.792, z: -14.076}
         rotation: {x: 0, y: 0, z: 0}
+      - name: puzzle00_wires
+        path: items/house/floor02/puzzles/
+        addTo: house_objects/section_objects/bedroom_n/
+        location: {x: -654.27, y: 112.07, z: -21.97}
+        rotation: {x: 90, y: 47, z: 0}
     - name: bedroom_nw
       prefabs:
       - name: gas_can01
@@ -264,6 +269,11 @@ MonoBehaviour:
         addTo: house_objects/section_objects/bedroom_nw/
         location: {x: -639.966, y: 111.835, z: -16.77}
         rotation: {x: 0, y: 0, z: 90}
+      - name: puzzle00
+        path: items/house/floor02/puzzles/
+        addTo: house_objects/section_objects/bedroom_nw/
+        location: {x: -648.903, y: 113.007, z: -19.87}
+        rotation: {x: 0, y: 0, z: 0}
     - name: bedroom_se
       prefabs:
       - name: bedroom_se_door_n
@@ -301,6 +311,11 @@ MonoBehaviour:
         addTo: house_objects/section_objects/bedroom_se/
         location: {x: -656.43, y: 110.6481, z: 12.05}
         rotation: {x: 0, y: 181, z: 0}
+      - name: puzzle05
+        path: items/house/floor02/puzzles/
+        addTo: house_objects/section_objects/bedroom_se/
+        location: {x: -655.09, y: 113, z: 1.413}
+        rotation: {x: 0, y: 0, z: 0}
       - name: puzzle05_wires
         path: items/house/floor02/puzzles/
         addTo: house_objects/section_objects/bedroom_se/
@@ -348,17 +363,37 @@ MonoBehaviour:
         addTo: house_objects/section_objects/bedroom_sw/
         location: {x: -641.2, y: 112.92, z: -6.71}
         rotation: {x: 0, y: 0, z: 0}
+      - name: puzzle06
+        path: items/house/floor02/puzzles/
+        addTo: house_objects/section_objects/bedroom_sw/
+        location: {x: -641.733, y: 113.015, z: -2.691}
+        rotation: {x: 0, y: 0, z: 0}
       - name: puzzle06_wires
         path: items/house/floor02/puzzles/
         addTo: house_objects/section_objects/bedroom_sw/
-        location: {x: -635.28, y: 111.68, z: -3.41}
+        location: {x: -635.731, y: 111.445, z: -3.4}
+        rotation: {x: 0, y: 0, z: 0}
+      - name: puzzle02
+        path: items/house/floor02/puzzles/
+        addTo: house_objects/section_objects/bedroom_sw/
+        location: {x: -642.979, y: 113.042, z: 1.598}
         rotation: {x: 0, y: 0, z: 0}
     - name: hall
       prefabs: []
     - name: secret_room_e
-      prefabs: []
+      prefabs:
+      - name: puzzle01b
+        path: items/house/floor02/puzzles/
+        addTo: house_objects/section_objects/secret_room_e/
+        location: {x: -655.1, y: 113.012, z: -2.679}
+        rotation: {x: 0, y: 180, z: 0}
     - name: secret_room_ne
-      prefabs: []
+      prefabs:
+      - name: puzzle01c
+        path: items/house/floor02/puzzles/
+        addTo: house_objects/section_objects/secret_room_ne/
+        location: {x: -657.303, y: 112.972, z: -24.2}
+        rotation: {x: 0, y: 180, z: 0}
     - name: secret_room_nw
       prefabs:
       - name: secret_room_nw_door
@@ -371,16 +406,11 @@ MonoBehaviour:
         addTo: house_objects/section_objects/secret_room_nw/
         location: {x: -647.42, y: 112.29, z: -18.93}
         rotation: {x: 314.9707, y: 0.0107, z: 85.9294}
-      - name: puzzle00_wires
+      - name: puzzle01a
         path: items/house/floor02/puzzles/
-        addTo: house_objects/section_objects/secret_room_nw
-        location: {x: -646.7379, y: 112.288, z: -18.935}
-        rotation: {x: -240, y: 0, z: 0}
-      - name: puzzle00
-        path: items/house/floor02/puzzles/
-        addTo: house_objects/section_objects/secret_room_nw
-        location: {x: -645.638, y: 113.003, z: -18.209}
-        rotation: {x: 0, y: 0, z: 0}
+        addTo: house_objects/section_objects/secret_room_nw/
+        location: {x: -645.671, y: 113.012, z: -18.152}
+        rotation: {x: 0, y: 90, z: 0}
     - name: secret_room_sw
       prefabs: []
   sectionControllers:
