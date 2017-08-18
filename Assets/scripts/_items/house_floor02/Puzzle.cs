@@ -120,6 +120,7 @@ public class Puzzle : MonoBehaviour {
 			if (children [i].isActivatedOnSolved) {
 				ToggleChildActive (children [i], true);
 			} else if (children [i].isDeactivatedOnSolved) {
+				_log (" toggling child active: " + children [i].gameObject.name);
 				ToggleChildActive (children [i], false);
 			}
 		}
