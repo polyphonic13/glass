@@ -14,12 +14,13 @@ public class Puzzle : MonoBehaviour {
 	public PuzzleChild[] children;
 
 	public bool isSolved = false; 
+	public bool isLogOn = false; 
 
 	private bool _isActive = false; 
 
 	#region eventhandlers
 	public void OnStringEvent(string type, string value) {
-		Debug.Log ("Puzzle[" + this.name + "]/OnStringEvent, type = " + type + ", value = " + value);
+		_log ("Puzzle[" + this.name + "]/OnStringEvent, type = " + type + ", value = " + value);
 		if (type == Puzzle.ACTIVATE_EVENT) {
 			if (value == activateValue) {
 				Activate ();
@@ -47,7 +48,7 @@ public class Puzzle : MonoBehaviour {
 	}
 
 	public virtual void Enable() {
-		Debug.Log ("Puzzle[" + this.name + "]/Enable");
+		_log ("Puzzle[" + this.name + "]/Enable");
 		EventCenter ec = EventCenter.Instance;
 		ec.OnStringEvent += this.OnStringEvent;
 	}
@@ -109,7 +110,7 @@ public class Puzzle : MonoBehaviour {
 	}
 
 	private void _toggleActive(bool isActivated) {
-//		Debug.Log ("Puzzle[" + this.name + "]/_toggleActive, isActivated = " + isActivated);
+//		_log ("Puzzle[" + this.name + "]/_toggleActive, isActivated = " + isActivated);
 		_isActive = isActivated;
 		mainCollider.SetActive (!_isActive);
 	}
@@ -121,6 +122,12 @@ public class Puzzle : MonoBehaviour {
 			} else if (children [i].isDeactivatedOnSolved) {
 				ToggleChildActive (children [i], false);
 			}
+		}
+	}
+
+	private void _log(string message) {
+		if(isLogOn) {
+			Debug.Log(message);
 		}
 	}
 }

@@ -2,7 +2,7 @@
 	using UnityEngine;
 	using System.Collections;
 
-	public class Switch : MonoBehaviour
+	public class Switch : ActuateAgent
 	{
 		public virtual void Actuate() {
 			Debug.Log ("Switch["+this.name+"]/Actuate");

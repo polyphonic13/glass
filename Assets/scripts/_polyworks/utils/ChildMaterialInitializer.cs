@@ -19,7 +19,7 @@
 		}
 
 		private void _setMaterialOnTransformChildren(Transform target) {
-			Debug.Log (" _setMaterialOnTransformChildren, target = " + target.gameObject.name);
+//			Debug.Log (" _setMaterialOnTransformChildren, target = " + target.gameObject.name);
 			foreach (Transform child in target) {
 				_setMaterialOnTransform (child);
 
@@ -30,7 +30,7 @@
 		}
 
 		private void _setMaterialOnTransform(Transform child) {
-			Debug.Log ("  _setMaterialOnTransform, child = " + child.gameObject.name);
+//			Debug.Log ("  _setMaterialOnTransform, child = " + child.gameObject.name);
 			GameObject go = child.gameObject;
 			if (go != null) {
 				Renderer renderer = go.GetComponent<Renderer> ();

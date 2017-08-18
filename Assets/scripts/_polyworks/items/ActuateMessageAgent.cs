@@ -6,7 +6,8 @@
 	{
 		public override void Actuate ()
 		{
-			SendMessage ("Actuate", null, SendMessageOptions.DontRequireReceiver);
+			Debug.Log ("ActuateMessageAgent[" + this.name + "]/Actuate");
+//			SendMessage ("Actuate", null, SendMessageOptions.DontRequireReceiver);
 		}
 	}
 }
