@@ -50,7 +50,11 @@ public class WallpaperCombinationPuzzle : Puzzle
 	private void Awake() {
 		_correctPositions = new List<bool> ();
 		for (int i = 0; i < dials.Length; i++) {
-			_correctPositions.Add (false);
+			if (dials [i].rotation == 0) {
+				_correctPositions.Add (true);
+			} else {
+				_correctPositions.Add (false);
+			}
 		}
 		Debug.Log ("_correctPositions.Count = " + _correctPositions.Count);
 	}
