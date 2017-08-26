@@ -8,6 +8,8 @@ public class Puzzle : MonoBehaviour {
 	public const string ACTIVATE_EVENT = "activate_puzzle";
 	public const string SOLVED_EVENT = "puzzle_solved";
 
+	public const string SOLVED_MESSAGE = "puzzle solved";
+
 	public string activateValue; 
 	public GameObject mainCollider; 
 
@@ -16,7 +18,11 @@ public class Puzzle : MonoBehaviour {
 	public bool isSolved = false; 
 	public bool isLogOn = false; 
 
+	public bool isNoteAddedOnSolved = true;
+	public string noteMessage = ""; 
+
 	private bool _isActive = false; 
+
 
 	#region eventhandlers
 	public void OnStringEvent(string type, string value) {
@@ -40,8 +46,6 @@ public class Puzzle : MonoBehaviour {
 	#region public methods
 	public virtual void Init() {
 		InitChildren();
-//		EventCenter ec = EventCenter.Instance;
-//		ec.OnStringEvent += this.OnStringEvent;
 
 		_toggleActive (false);
 
@@ -61,7 +65,6 @@ public class Puzzle : MonoBehaviour {
 	}
 
 	public virtual void InitChildren() {
-		
 		for (int i = 0, l = children.Length; i < l; i++) {
 			Item item = children [i].gameObject.GetComponent<Item> ();
 			if (item != null) {
@@ -95,6 +98,10 @@ public class Puzzle : MonoBehaviour {
 	public virtual void Solve() {
 		_toggleChildrenOnSolved ();
 		EventCenter.Instance.InvokeStringEvent (Puzzle.SOLVED_EVENT, this.name);
+		if (isNoteAddedOnSolved) {
+			string message = (noteMessage != "") ? noteMessage : SOLVED_MESSAGE;
+			EventCenter.Instance.AddNote (message);
+		}
 	} 
 	#endregion
 
