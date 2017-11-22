@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.225
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1423631829}
-  m_IndirectSpecularColor: {r: 0.0040684366, g: 0.0067113875, b: 0.013244363, a: 0.225}
+  m_IndirectSpecularColor: {r: 0.0040680487, g: 0.0067105605, b: 0.013243021, a: 0.225}
 --- !u!157 &4
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -65,7 +65,7 @@ LightmapSettings:
     m_CompAOExponentDirect: 0
     m_Padding: 2
     m_LightmapParameters: {fileID: 0}
-    m_LightmapsBakeMode: 1
+    m_LightmapsBakeMode: 0
     m_TextureCompression: 1
     m_DirectLightInLightProbes: 1
     m_FinalGather: 0
@@ -74,7 +74,7 @@ LightmapSettings:
     m_ReflectionCompression: 2
   m_LightingDataAsset: {fileID: 112000001, guid: 1c8f8fd47542b4989898d55288842df6,
     type: 2}
-  m_RuntimeCPUUsage: 50
+  m_RuntimeCPUUsage: 75
 --- !u!196 &5
 NavMeshSettings:
   serializedVersion: 2
@@ -26766,6 +26766,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 1863674618534822, guid: 79238bee9bdb2473da77d99288972ab3, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 224573707751394342, guid: 79238bee9bdb2473da77d99288972ab3,
         type: 2}
       propertyPath: m_AnchorMin.y
@@ -26885,10 +26889,6 @@ Prefab:
         type: 2}
       propertyPath: m_SizeDelta.y
       value: 64
-      objectReference: {fileID: 0}
-    - target: {fileID: 1863674618534822, guid: 79238bee9bdb2473da77d99288972ab3, type: 2}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 79238bee9bdb2473da77d99288972ab3, type: 2}
@@ -39581,7 +39581,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &777707060
 Transform:
   m_ObjectHideFlags: 0
@@ -47760,7 +47760,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &931003339
 Transform:
   m_ObjectHideFlags: 0
@@ -52472,7 +52472,7 @@ MonoBehaviour:
   isLockMessageDisplayed: 1
   isAutoActuatedOnUnlock: 0
   isNoteAddedOnUnlock: 1
-  customLockedMessage: Some Required Items Are Missing
+  customLockedMessage: I need wires for this device
   eventType: unlock_puzzle
   eventValue: puzzle04_wires(Clone)
 --- !u!114 &1001705804
@@ -58869,7 +58869,7 @@ MonoBehaviour:
   isLockMessageDisplayed: 1
   isAutoActuatedOnUnlock: 0
   isNoteAddedOnUnlock: 1
-  customLockedMessage: Some Required Items Are Missing
+  customLockedMessage: I need wires for this device
   eventType: unlock_puzzle
   eventValue: puzzle03_wires(Clone)
 --- !u!114 &1112043917
@@ -67399,7 +67399,7 @@ MonoBehaviour:
   isLockMessageDisplayed: 1
   isAutoActuatedOnUnlock: 0
   isNoteAddedOnUnlock: 1
-  customLockedMessage: Some required items are missing
+  customLockedMessage: I need wires for this device
   eventType: unlock_puzzle
   eventValue: puzzle05_wires(Clone)
 --- !u!114 &1262695284
@@ -94592,7 +94592,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1827429301
 Transform:
   m_ObjectHideFlags: 0
