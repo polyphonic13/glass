@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 uniform sampler2D _MainTex;
 uniform float4 _MainTex_TexelSize;
 
@@ -29,7 +31,7 @@ struct v2f {
 v2f vert( appdata_full v )
 {
 	v2f o;
-	o.pos = mul (UNITY_MATRIX_MVP, v.vertex);
+	o.pos = UnityObjectToClipPos (v.vertex);
 	o.uv = v.texcoord.xy;
 	o.uv2 = o.uv;
 	#if UNITY_UV_STARTS_AT_TOP
