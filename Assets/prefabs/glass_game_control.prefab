@@ -5,16 +5,17 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 456028}
-  - 114: {fileID: 11478364}
-  - 114: {fileID: 11483172}
-  - 114: {fileID: 11432274}
-  - 114: {fileID: 114000010828365742}
-  - 114: {fileID: 11422008}
-  - 114: {fileID: 11408434}
-  - 114: {fileID: 114000012953061632}
+  - component: {fileID: 456028}
+  - component: {fileID: 11478364}
+  - component: {fileID: 11483172}
+  - component: {fileID: 11432274}
+  - component: {fileID: 114000010828365742}
+  - component: {fileID: 11422008}
+  - component: {fileID: 11408434}
+  - component: {fileID: 114000012953061632}
+  - component: {fileID: 114596799255035204}
   m_Layer: 0
   m_Name: glass_game_control
   m_TagString: Untagged
@@ -31,10 +32,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &11408434
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -43,7 +44,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 190814}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 975fbe9ba2fe145fd815d9ba067fb906, type: 3}
+  m_Script: {fileID: 11500000, guid: c4007f393319c064d970714a026c35b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &11422008
@@ -54,7 +55,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 190814}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b821bae934025472e9f82305297eda43, type: 3}
+  m_Script: {fileID: 11500000, guid: b07610f0b7519d645accf351d8ac76ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &11432274
@@ -65,7 +66,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 190814}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d978ba48b5df4e38a9a77e12b73f7ab, type: 3}
+  m_Script: {fileID: 11500000, guid: ee05bcce30a447c44826d2588aab5574, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   input:
@@ -75,12 +76,38 @@ MonoBehaviour:
     - name: confirm
       value: 0
     - name: cancel
-      value: 1
+      value: 0
+    - name: open_menu
+      value: 0
+    - name: open_inventory
+      value: 0
+    - name: up
+      value: 0
+    - name: down
+      value: 0
+    - name: left
+      value: 0
+    - name: right
+      value: 0
+    - name: zoom_in
+      value: 0
+    - name: zoom_out
+      value: 0
+    - name: zoom_view
+      value: 0
     - name: run
       value: 0
     - name: jump
       value: 0
+    - name: climb
+      value: 0
+    - name: crawl
+      value: 0
     - name: dive
+      value: 0
+    - name: actuate
+      value: 0
+    - name: flashlight
       value: 0
 --- !u!114 &11478364
 MonoBehaviour:
@@ -90,33 +117,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 190814}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59cf262d9506b4b06afb27638a442c26, type: 3}
+  m_Script: {fileID: 11500000, guid: 48636d36955b0814081f0f7397019601, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   gameData:
     currentScene: start
-    targetSection: 5
+    targetSection: 7
     count: 0
     levels:
     - name: house_floor02a
-      isCleared: 1
+      isCleared: 0
       currentSection: 0
       tasks:
-        intTasks:
-        - name: incrementCount
-          isCompleted: 0
-          goal: 5
-          current: 0
+        intTasks: []
         floatTasks: []
-        stringTasks:
-        - name: itemCollection
-          isCompleted: 0
-          goal: wallpaper_sphere(Clone)
-          current: 
-        - name: itemCollection
-          isCompleted: 0
-          goal: brick_cube(Clone)
-          current: 
+        stringTasks: []
         collectionTasks: []
     - name: cave01
       isCleared: 0
@@ -124,27 +139,23 @@ MonoBehaviour:
       tasks:
         intTasks: []
         floatTasks: []
-        stringTasks:
-        - name: itemCollection
-          isCompleted: 0
-          goal: wooden_cube01(Clone)
-          current: 
+        stringTasks: []
         collectionTasks: []
     playerData:
       health: 100
       stamina: 100
       breath: 100
     flags:
-    - key: isPortalActivatorCharged
+    - key: isFlashlightCollected
       value: 0
     - key: isPortalActivatorCollected
       value: 0
-    - key: isFlashlightCollected
+    - key: isPortalActivatorCharged
       value: 0
-  dataFilename: glass.dat
-  playerPrefab: player/player_objects
+  dataFilename: game_data.dat
+  playerPrefab: player_objects
   isSceneInitialized: 0
-  isCursorless: 0
+  isCursorless: 1
 --- !u!114 &11483172
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -153,7 +164,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 190814}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b4572e7c0a4e4ae6a81fbfc8e17271c, type: 3}
+  m_Script: {fileID: 11500000, guid: 7063bc25c743afd4ab25a8c0c1e7f321, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &100100000
@@ -175,7 +186,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 190814}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a519e0febea5402cbf7317b2608dacb, type: 3}
+  m_Script: {fileID: 11500000, guid: 9dbff3473e8732041a1fd70b69ac65f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   prepSteps:
@@ -193,7 +204,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 190814}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffe1220cf52e94296a75c7551a5550e6, type: 3}
+  m_Script: {fileID: 11500000, guid: 15729b55d8b0c9e468e79ba49d1de240, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   secondsToCharge: 20
+--- !u!114 &114596799255035204
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 190814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fda0b7a37f935cd428e28729f3a439b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objects: []

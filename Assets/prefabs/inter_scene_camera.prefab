@@ -16,12 +16,12 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 224: {fileID: 224000013062426926}
-  - 223: {fileID: 223000010410602378}
-  - 114: {fileID: 114000012640763226}
-  - 114: {fileID: 114000010885770620}
+  - component: {fileID: 224000013062426926}
+  - component: {fileID: 223000010410602378}
+  - component: {fileID: 114000012640763226}
+  - component: {fileID: 114000010885770620}
   m_Layer: 18
   m_Name: scene_change_ui
   m_TagString: Untagged
@@ -34,11 +34,11 @@ GameObject:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 224: {fileID: 224000010649295132}
-  - 222: {fileID: 222000012822152816}
-  - 114: {fileID: 114000010966720606}
+  - component: {fileID: 224000010649295132}
+  - component: {fileID: 222000012822152816}
+  - component: {fileID: 114000010966720606}
   m_Layer: 18
   m_Name: scene_change_bg
   m_TagString: Untagged
@@ -51,12 +51,11 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 4000010755377046}
-  - 20: {fileID: 20000011990376738}
-  - 92: {fileID: 92000012421720126}
-  - 114: {fileID: 114000013247310750}
+  - component: {fileID: 4000010755377046}
+  - component: {fileID: 20000011990376738}
+  - component: {fileID: 114000013247310750}
   m_Layer: 0
   m_Name: inter_scene_camera
   m_TagString: Untagged
@@ -69,11 +68,11 @@ GameObject:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 224: {fileID: 224000014250180374}
-  - 222: {fileID: 222000014239418322}
-  - 114: {fileID: 114000011581980930}
+  - component: {fileID: 224000014250180374}
+  - component: {fileID: 222000014239418322}
+  - component: {fileID: 114000011581980930}
   m_Layer: 18
   m_Name: scene_change_text
   m_TagString: Untagged
@@ -86,11 +85,11 @@ GameObject:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 224: {fileID: 224000012448546736}
-  - 222: {fileID: 222000013296536530}
-  - 114: {fileID: 114000012915537552}
+  - component: {fileID: 224000012448546736}
+  - component: {fileID: 222000013296536530}
+  - component: {fileID: 114000012915537552}
   m_Layer: 18
   m_Name: scene_change_image
   m_TagString: Untagged
@@ -107,11 +106,11 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2314, y: 114.631676, z: -4.74749}
   m_LocalScale: {x: 1, y: 1.0125003, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 224000013062426926}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &20000011990376738
 Camera:
   m_ObjectHideFlags: 1
@@ -142,17 +141,12 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 0
+  m_AllowMSAA: 0
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
-  m_StereoMirrorMode: 0
---- !u!92 &92000012421720126
-Behaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010799917948}
-  m_Enabled: 1
 --- !u!114 &114000010885770620
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -285,7 +279,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000010799917948}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a175adedee9e04bc6929f7ea9993dd74, type: 3}
+  m_Script: {fileID: 11500000, guid: 848e5e0f242ca154a9a4cf2c7b7189fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isMain: 0
@@ -315,7 +309,7 @@ Canvas:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010084514102}
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_RenderMode: 2
   m_Camera: {fileID: 20000011990376738}
   m_PlaneDistance: 100
@@ -324,6 +318,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -336,10 +331,10 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 224000013062426926}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -354,10 +349,10 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 224000013062426926}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -372,13 +367,13 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 306}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 224000010649295132}
   - {fileID: 224000014250180374}
   - {fileID: 224000012448546736}
   m_Father: {fileID: 4000010755377046}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -393,10 +388,10 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 224000013062426926}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.1, y: -14}
