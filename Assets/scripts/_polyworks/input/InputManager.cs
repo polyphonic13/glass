@@ -81,7 +81,10 @@ namespace Polyworks {
 					_activeObject = _player;
 				}
 			} else {
+//				EventCenter.Instance.HideNote ();
+
 				_player.isActive = false; 
+
 				if (context == InputContext.PUZZLE) {
 					Debug.Log ("  setting active object to puzzle inspector: " + _puzzleInspector);
 					_activeObject = _puzzleInspector;

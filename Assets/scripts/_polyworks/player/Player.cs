@@ -123,11 +123,11 @@ namespace Polyworks
 		}
 
 		public void OnContextChange(InputContext context, string param) {
-//			Debug.Log ("Player/OnContextChange, context = " + context);
+			Debug.Log ("Player/OnContextChange, context = " + context);
 			if (context == InputContext.PLAYER) {
-				this.gameObject.SetActive (true);
+//				this.gameObject.SetActive (true);
 			} else {
-				this.gameObject.SetActive (false);
+//				this.gameObject.SetActive (false);
 			}
 		}
 		#endregion

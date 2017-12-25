@@ -15,6 +15,10 @@ namespace Polyworks {
 		private ArrayList _queue;
 		private bool _isClearing; 
 
+		public void OnHideNote() {
+			Hide ();
+		}
+
 		void Awake() {
 			_queue = new ArrayList ();
 			_canvasGroup = gameObject.GetComponent<CanvasGroup>();
@@ -22,6 +26,7 @@ namespace Polyworks {
 			_canvasGroup.alpha = 0;
 			EventCenter ec = EventCenter.Instance;
 			ec.OnAddNote += OnAddNote;
+			ec.OnHideNote += OnHideNote;
 		}
 
 		public void OnAddNote(string message) {
@@ -74,7 +79,8 @@ namespace Polyworks {
 		private void OnDestroy() {
 			EventCenter ec = EventCenter.Instance;
 			if (ec != null) {
-				ec.OnAddNote -= this.OnAddNote;
+				ec.OnAddNote -= OnAddNote;
+				ec.OnHideNote -= OnHideNote;
 			}
 		}
 	}
