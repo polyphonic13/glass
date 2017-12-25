@@ -145,16 +145,19 @@ public class PuzzleInspector : MonoBehaviour, IInputControllable {
 	}
 
 	private void _rotate(float horizontal, float vertical) {
-		_velocityX = _xSpeed * horizontal * 0.01f;
-		_velocityY = _ySpeed * vertical * 0.01f;
-
-		_rotationYAxis += _velocityX;
-		_rotationXAxis -= _velocityY;
-		_rotationXAxis = Polyworks.Utils.ClampAngle(_rotationXAxis, _minX, _maxX);
-		_rotationYAxis = Polyworks.Utils.ClampAngle(_rotationYAxis, _minY, _maxY);
-		Quaternion rotation = Quaternion.Euler(_rotationXAxis, _rotationYAxis + _activeRotationY, 0);
-
-		_raycastObject.transform.rotation = rotation;
+//		_velocityX = _xSpeed * horizontal * 0.01f;
+//		_velocityY = _ySpeed * vertical * 0.01f;
+//
+//		_rotationYAxis += _velocityX;
+//		_rotationXAxis -= _velocityY;
+//		_rotationXAxis = Polyworks.Utils.ClampAngle(_rotationXAxis, _minX, _maxX);
+//		_rotationYAxis = Polyworks.Utils.ClampAngle(_rotationYAxis, _minY, _maxY);
+//		Quaternion rotation = Quaternion.Euler(_rotationXAxis, _rotationYAxis + _activeRotationY, 0);
+//
+//		_raycastObject.transform.rotation = rotation;
+		Vector3 newPosition = new Vector3(horizontal * _xSpeed, vertical * _ySpeed, 0);
+		Debug.Log ("PuzzleInspector/_rotate, h/v = " + horizontal + "/" + vertical + ", newPosition = " + newPosition);
+		_raycastObject.transform.Translate(newPosition);
 	}
 
 	private void _rotateView() {
