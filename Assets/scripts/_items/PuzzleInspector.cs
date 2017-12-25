@@ -15,10 +15,6 @@ public class PuzzleInspector : MonoBehaviour, IInputControllable {
 	[SerializeField] private GameObject _icon;
 	[SerializeField] private GameObject _objectIcon;
 
-	[SerializeField] private float _minX; 
-	[SerializeField] private float _maxX;
-	[SerializeField] private float _minY;
-	[SerializeField] private float _maxY;
 	[SerializeField] private float _xSpeed = 120.0f;
 	[SerializeField] private float _ySpeed = 120.0f;
 
@@ -30,6 +26,9 @@ public class PuzzleInspector : MonoBehaviour, IInputControllable {
 
 	private float _activeRotationY = 0;
 	private int _activeLocation = -1;
+	private Bounds _activeBounds; 
+	private float _xDeviation;
+	private float _yDeviation; 
 
 	public bool isActive = false;
 
@@ -83,7 +82,7 @@ public class PuzzleInspector : MonoBehaviour, IInputControllable {
 			EventCenter.Instance.ChangeContext(InputContext.PLAYER, "");
 		} else {
 			if (input.horizontal != 0 || input.vertical != 0) {
-				_rotate (input.horizontal, input.vertical);
+				_move (input.horizontal, input.vertical);
 			}
 //			Debug.Log ("PuzzleInspector/SetInput, horizontal = " + input.horizontal + ", vertical = " + input.vertical);
 		}
@@ -123,6 +122,10 @@ public class PuzzleInspector : MonoBehaviour, IInputControllable {
 		transform.Rotate(location.rotation);
 		_activeRotationY = location.rotation.y;
 		_activeLocation = index;
+		_activeBounds = location.bounds;
+		_xDeviation = 0;
+		_yDeviation = 0;
+
 	}
 
 	private void _toggleActivated(bool isActivated) {
@@ -144,23 +147,26 @@ public class PuzzleInspector : MonoBehaviour, IInputControllable {
 		this.isActive = _camera.enabled = _light.enabled = isActivated;
 	}
 
-	private void _rotate(float horizontal, float vertical) {
-//		_velocityX = _xSpeed * horizontal * 0.01f;
-//		_velocityY = _ySpeed * vertical * 0.01f;
-//
-//		_rotationYAxis += _velocityX;
-//		_rotationXAxis -= _velocityY;
-//		_rotationXAxis = Polyworks.Utils.ClampAngle(_rotationXAxis, _minX, _maxX);
-//		_rotationYAxis = Polyworks.Utils.ClampAngle(_rotationYAxis, _minY, _maxY);
-//		Quaternion rotation = Quaternion.Euler(_rotationXAxis, _rotationYAxis + _activeRotationY, 0);
-//
-//		_raycastObject.transform.rotation = rotation;
-		Vector3 newPosition = new Vector3(horizontal * _xSpeed, vertical * _ySpeed, 0);
-		Debug.Log ("PuzzleInspector/_rotate, h/v = " + horizontal + "/" + vertical + ", newPosition = " + newPosition);
-		_raycastObject.transform.Translate(newPosition);
-	}
+	private void _move(float horizontal, float vertical) {
+		float moveX = horizontal * _xSpeed;
+		float moveY = vertical * _ySpeed;
 
-	private void _rotateView() {
+//		Debug.Log ("move x/y = " + moveX + " / " + moveY + ", deviation x/y = " + _xDeviation + " / " + _yDeviation);
+		if (moveX + _xDeviation > _activeBounds.maxH || moveX + _xDeviation < _activeBounds.minH) {
+			moveX = 0;
+		}
+		if (moveY + _yDeviation > _activeBounds.maxV || moveY + _yDeviation < _activeBounds.minV) {
+			moveY = 0; 
+		}
+
+		_xDeviation += moveX; 
+		_yDeviation += moveY; 
+
+		Vector3 newPosition = new Vector3(moveX, moveY, 0);
+//		Debug.Log ("PuzzleInspector/_move, h/v = " + horizontal + "/" + vertical + ", newPosition = " + newPosition);
+		_raycastObject.transform.Translate(newPosition);
+//		Debug.Log ("position now: " + _raycastObject.transform.position);
+
 	}
 
 	private void OnDestroy() {
@@ -178,4 +184,13 @@ public struct PuzzleLocation {
 	public string name;
 	public Vector3 position;
 	public Vector3 rotation;
+	public Bounds bounds;
+}
+
+[Serializable]
+public struct Bounds {
+	public float minH;
+	public float maxH;
+	public float minV;
+	public float maxV;
 }
