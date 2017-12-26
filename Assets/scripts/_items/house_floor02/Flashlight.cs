@@ -20,6 +20,7 @@ public class Flashlight : CollectableItem {
 	}
 
 	public override void Actuate() {
+		Debug.Log ("Flashlight/Actuate");
 //		model.SetActive (false);
 //		Quaternion rotation = new Quaternion(0, 0, 0, 0);
 //		GameObject playerHead = GameObject.Find (parentName);

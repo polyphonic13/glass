@@ -46,6 +46,10 @@ public class DirectionalCircuitPuzzle : Puzzle
 
 	public override void Deactivate () {
 		base.Deactivate ();
+
+		if (!isSolved) {
+			_removeAllWires ();
+		}
 		EventCenter.Instance.OnIntEvent -= OnIntEvent;
 	}
 
@@ -135,6 +139,12 @@ public class DirectionalCircuitPuzzle : Puzzle
 			}
 		}
 		return siblings;
+	}
+
+	private void _removeAllWires() {
+		for (int i = 0; i < _wireChildren.Count; i++) {
+			_toggleWireInserted (i, false);
+		}
 	}
 
 	private void _toggleWireInserted(int index, bool isInserted) {

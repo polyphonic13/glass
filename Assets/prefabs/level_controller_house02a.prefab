@@ -5,12 +5,12 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 490074}
-  - 114: {fileID: 11445928}
-  - 114: {fileID: 11495852}
-  - 114: {fileID: 11401742}
+  - component: {fileID: 490074}
+  - component: {fileID: 11495852}
+  - component: {fileID: 11445928}
+  - component: {fileID: 11401742}
   m_Layer: 0
   m_Name: level_controller_house02a
   m_TagString: Untagged
@@ -27,10 +27,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 149.5, y: 212, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &11401742
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneData:
-    sceneName: house_floor02a
+    sceneName: house_floor02b
     sectionPrefabs:
     - name: bathroom_e
       prefabs:
@@ -138,7 +138,7 @@ MonoBehaviour:
       - name: puzzle04
         path: items/house/floor02/puzzles/
         addTo: house_objects/section_objects/bedroom_e/
-        location: {x: -655.25, y: 113.01, z: -5.24}
+        location: {x: -655.15, y: 113.01, z: -5.24}
         rotation: {x: 0, y: -90, z: 0}
       - name: puzzle04_wires
         path: items/house/floor02/puzzles/
@@ -272,7 +272,7 @@ MonoBehaviour:
       - name: puzzle00
         path: items/house/floor02/puzzles/
         addTo: house_objects/section_objects/bedroom_nw/
-        location: {x: -648.903, y: 113.007, z: -19.87}
+        location: {x: -638.064, y: 113.007, z: -17.187}
         rotation: {x: 0, y: 0, z: 0}
     - name: bedroom_se
       prefabs:
@@ -366,7 +366,7 @@ MonoBehaviour:
       - name: puzzle06
         path: items/house/floor02/puzzles/
         addTo: house_objects/section_objects/bedroom_sw/
-        location: {x: -641.733, y: 113.015, z: -2.691}
+        location: {x: -641.733, y: 113, z: -2.691}
         rotation: {x: 0, y: 0, z: 0}
       - name: puzzle06_wires
         path: items/house/floor02/puzzles/
