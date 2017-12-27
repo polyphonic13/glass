@@ -56,7 +56,7 @@ public class WallpaperCombinationPuzzle : Puzzle
 				_correctPositions.Add (false);
 			}
 		}
-		Debug.Log ("_correctPositions.Count = " + _correctPositions.Count);
+//		Debug.Log ("_correctPositions.Count = " + _correctPositions.Count);
 	}
 
 	private bool _checkSolved() {

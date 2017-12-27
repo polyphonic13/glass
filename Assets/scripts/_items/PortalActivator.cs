@@ -20,7 +20,7 @@ public class PortalActivator : CollectableItem {
 	
 	public override void Use () {
 		bool isCharged = Game.Instance.GetFlag (PortalActivatorCharger.PORTAL_ACTIVATOR_CHARGED);
-		Debug.Log ("PortalActivator/Use, isCharged = " + isCharged);
+//		Debug.Log ("PortalActivator/Use, isCharged = " + isCharged);
 		if (data.isUsable && isCharged) {
 			string currentScene = Game.Instance.gameData.currentScene;
 			for (var i = 0; i < sceneMaps.Length; i++) {

@@ -13,10 +13,10 @@ namespace Polyworks {
 		private AnimationAgent _target; 
 
 		public override void Actuate() {
-			_log ("AnimationSwitch[" + this.name + "]/Actuate, _target = " + _target);
+//			_log ("AnimationSwitch[" + this.name + "]/Actuate, _target = " + _target);
 			if (_target != null) {
 				if (animations.Length > 0) {
-					_log (" sending current["+currentIdx+"] animation: " + animations [currentIdx]);
+//					_log (" sending current["+currentIdx+"] animation: " + animations [currentIdx]);
 					_target.Play (animations [currentIdx]);
 					_incrementIndex ();
 				} else {
@@ -31,7 +31,7 @@ namespace Polyworks {
 			GameObject targetObject = GameObject.Find (targetName);
 			if (targetObject != null) {
 				_target = targetObject.GetComponent<AnimationAgent> ();
-				_log ("AnimationSwitch[" + this.name + "]/Awake, targetObject = " + targetObject + ", _target = " + _target);
+//				_log ("AnimationSwitch[" + this.name + "]/Awake, targetObject = " + targetObject + ", _target = " + _target);
 			}
 		}
 

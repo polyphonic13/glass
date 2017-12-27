@@ -32,8 +32,6 @@ namespace Polyworks {
 		private int _previousItemIndex;
 
 		private bool _isInspectingItem = false;
-		private bool _isBuilt = false;
-		private bool _isDirty = false;
 
 		private Inventory _playerInventory; 
 
@@ -44,7 +42,6 @@ namespace Polyworks {
 		public void OnInventoryAdded(string name, int count, bool isPlayerInventory) {
 			// Debug.Log ("InventoryUI/OnInventoryAdded, name = " + name);
 			if (isPlayerInventory) {
-				bool isIgnored = false;
 				for (int i = 0; i < ignoredItems.Length; i++) {
 					if (name == ignoredItems [i]) {
 						return;
@@ -128,14 +125,14 @@ namespace Polyworks {
 
 			CollectableItemData itemData = _playerInventory.Get(name);
 			InventoryItemUI itemUI = _items[_itemsIndex] as InventoryItemUI;
-			Debug.Log ("InventoryUI/_setItem, name = " + name + ", itemData = " + itemData);
-			Debug.Log ("itemData.thumbnail = " + itemData.thumbnail);
+//			Debug.Log ("InventoryUI/_setItem, name = " + name + ", itemData = " + itemData);
+//			Debug.Log ("itemData.thumbnail = " + itemData.thumbnail);
 			itemUI.name = name;
 			itemUI.SetName(itemData.displayName);
 			itemUI.SetCount(itemData.count);
 
 			if(itemData.thumbnail != "") {
-				 Debug.Log("Inventory/_setItem, itemData.thumbnail = " + itemData.thumbnail);
+//				 Debug.Log("Inventory/_setItem, itemData.thumbnail = " + itemData.thumbnail);
 				GameObject itemObj = (GameObject)Instantiate (Resources.Load (itemData.thumbnail, typeof(GameObject)), transform.position, transform.rotation);
 				Image thumbnail = itemObj.GetComponent<Image>();
 				itemUI.SetThumbnail(thumbnail.sprite);
@@ -200,7 +197,6 @@ namespace Polyworks {
 					col = 0;
 				}
 			}
-			_isBuilt = true;
 		}
 		#endregion
 

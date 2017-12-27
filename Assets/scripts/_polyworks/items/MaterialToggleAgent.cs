@@ -24,7 +24,7 @@
 			if (isOn) {
 				_renderer.material = onMaterial;
 			} else {
-				_renderer.material = onMaterial;
+				_renderer.material = offMaterial;
 			}
 		}
 	}

@@ -3,7 +3,7 @@ using Polyworks;
 
 public class OnOffLight : Toggler {
 
-	public Light light; 
+	public Light bulb; 
 
 	public override void Toggle() {
 		isOn = !isOn;
@@ -12,8 +12,8 @@ public class OnOffLight : Toggler {
 	
 	public override void ToggleTarget(bool turnOn) {
 		isOn = turnOn;
-//		// Debug.Log ("ToggleTarget[" + this.name + "], isOn = " + isOn);
-		light.enabled = isOn;
+		 Debug.Log ("ToggleTarget[" + this.name + "], isOn = " + isOn);
+		bulb.enabled = isOn;
 	}
 
 	void Awake() {

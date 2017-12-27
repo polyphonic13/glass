@@ -18,12 +18,12 @@ public class OnOffEmissive : Toggler {
 
 	public override void ToggleTarget(bool turnOn) {
 		isOn = turnOn;
-//		// Debug.Log ("ToggleTarget[" + this.name + "], isOn = " + isOn);
+		 Debug.Log ("ToggleTarget[" + this.name + "], isOn = " + isOn);
 		float emission = (isOn) ? onEmission : offEmission;
 		Color baseColor = (isOn) ? _onColor : _offColor;
 
 		Color finalColor = baseColor * Mathf.LinearToGammaSpace (emission);
-//		// Debug.Log ("finalColor = " + finalColor + ", emission = " + emission + ", baseColor = " + _onColor);
+		 Debug.Log ("finalColor = " + finalColor + ", emission = " + emission + ", baseColor = " + _onColor);
 		_material.SetColor ("_EmissionColor", finalColor);
 	}
 
@@ -31,7 +31,7 @@ public class OnOffEmissive : Toggler {
 		Renderer _renderer = GetComponent<Renderer> ();
 		_material = _renderer.material;
 		_onColor = _material.GetColor ("_EmissionColor");
-//		// Debug.Log ("emission color = " + _onColor);
+		// Debug.Log ("emission color = " + _onColor);
 		ToggleTarget (isOn);
 	}
 	

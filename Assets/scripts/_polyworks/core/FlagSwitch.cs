@@ -6,12 +6,16 @@
 		public string key;
 		public bool isActivate = true; 
 
-		public override void Use() {
-			Debug.Log ("FlagSwitch[" + this.name + "]/Use, key = " + key);
+		public override void Actuate() {
+			Debug.Log ("FlagSwitch[" + this.name + "]/Actuate, key = " + key);
 
 			Game.Instance.SetFlag (key, isActivate); 
 
 			isActivate = !isActivate;
+		}
+
+		public override void Use() {
+			Actuate ();
 		}
 	}
 }
