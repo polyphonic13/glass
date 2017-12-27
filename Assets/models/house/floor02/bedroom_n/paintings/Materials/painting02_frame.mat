@@ -6,11 +6,11 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: skybox
-  m_Shader: {fileID: 106, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: _SUNDISK_HIGH_QUALITY
+  m_Name: painting02_frame
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: 
   m_LightmapFlags: 5
-  m_CustomRenderQueue: 1000
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
@@ -48,7 +48,7 @@ Material:
     - first:
         name: _MainTex
       second:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: c98b53c629c1c45d98c774d59f9bf1f1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
@@ -71,9 +71,6 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - first:
-        name: _AtmosphereThickness
-      second: 0.40023354
-    - first:
         name: _BumpScale
       second: 1
     - first:
@@ -86,11 +83,14 @@ Material:
         name: _DstBlend
       second: 0
     - first:
-        name: _Exposure
-      second: 1.9687696
+        name: _GlossMapScale
+      second: 1
     - first:
         name: _Glossiness
       second: 0.5
+    - first:
+        name: _GlossyReflections
+      second: 1
     - first:
         name: _Metallic
       second: 0
@@ -104,14 +104,14 @@ Material:
         name: _Parallax
       second: 0.02
     - first:
-        name: _SrcBlend
+        name: _SmoothnessTextureChannel
+      second: 0
+    - first:
+        name: _SpecularHighlights
       second: 1
     - first:
-        name: _SunDisk
-      second: 2
-    - first:
-        name: _SunSize
-      second: 0.057
+        name: _SrcBlend
+      second: 1
     - first:
         name: _UVSec
       second: 0
@@ -121,13 +121,7 @@ Material:
     m_Colors:
     - first:
         name: _Color
-      second: {r: 0.043137256, g: 0.09411765, b: 0.13333334, a: 1}
+      second: {r: 0.8, g: 0.8, b: 0.8, a: 1}
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
-    - first:
-        name: _GroundColor
-      second: {r: 0, g: 0, b: 0, a: 1}
-    - first:
-        name: _SkyTint
-      second: {r: 0.46666667, g: 0.46666667, b: 0.46666667, a: 1}
