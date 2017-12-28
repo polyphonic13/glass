@@ -12,7 +12,7 @@ public class OnOffLight : Toggler {
 	
 	public override void ToggleTarget(bool turnOn) {
 		isOn = turnOn;
-		 Debug.Log ("ToggleTarget[" + this.name + "], isOn = " + isOn);
+//		 Debug.Log ("ToggleTarget[" + this.name + "], isOn = " + isOn);
 		bulb.enabled = isOn;
 	}
 
