@@ -10,7 +10,7 @@ namespace Polyworks {
 
 		public string prefabPath; 
 
-		public bool isEnabled { get; set; }
+		public bool isEnabled;
 
 		public int icon = 1;
 

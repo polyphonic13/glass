@@ -2,11 +2,12 @@
 	using UnityEngine;
 	using System.Collections;
 
-	public class ToggleController : ActuateAgent {
+	public class ToggleController : Item {
 
 		public Toggler[] _togglers; 
 
 		public override void Actuate() {
+			base.Actuate ();
 			Toggle ();
 		}
 
