@@ -14,6 +14,8 @@ public class DirectionalCircuitPuzzle : Puzzle
 
 	public string wiresPath = "";
 
+	public string wiresPrefabPath = ""; 
+
 	private List<PuzzleWire> _wireChildren;
 	List<List<int>> _ports;
 
@@ -49,6 +51,11 @@ public class DirectionalCircuitPuzzle : Puzzle
 
 		if (!isSolved) {
 			_removeAllWires ();
+
+			if (wiresPrefabPath != "") {
+				Inventory inventory = Game.Instance.GetPlayerInventory ();
+				inventory.AddFromPrefabPath (wiresPrefabPath);
+			}
 		}
 		EventCenter.Instance.OnIntEvent -= OnIntEvent;
 	}

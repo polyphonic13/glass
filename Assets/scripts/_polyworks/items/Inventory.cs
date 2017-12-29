@@ -23,6 +23,22 @@ namespace Polyworks {
 			}
 		}
 
+		public virtual void AddFromPrefabPath(string path) {
+			Debug.Log ("Inventory/AddFromPrefabPath, path = " + path);
+			GameObject itemObj = (GameObject) Instantiate (Resources.Load (path, typeof(GameObject)), transform.position, transform.rotation);
+			Debug.Log (" object = " + itemObj);
+			if (itemObj != null) {
+				CollectableItem item = itemObj.GetComponent<CollectableItem> ();
+				Debug.Log (" item = " + item);
+				if (item != null) {
+					item.data.isCollected = true;
+					Add (item.Clone ());
+					Destroy (itemObj);
+				}
+			}
+
+		}
+
 		public virtual void Add(CollectableItemData data, bool increment = true, bool isNoteAdded = true) {
 			_log ("Inventory/Add, item =  " + data.name);
 			if (!Contains (data.name)) {
