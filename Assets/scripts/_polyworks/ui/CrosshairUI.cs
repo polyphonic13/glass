@@ -33,7 +33,9 @@ namespace Polyworks {
 			_sprites = new ArrayList ();
 			for (int i = 0; i < icons.Length; i++) {
 				GameObject iconObj = (GameObject)Instantiate (Resources.Load (icons[i], typeof(GameObject)), transform.position, transform.rotation);
-				iconObj.transform.parent = this.transform.parent;
+//				iconObj.transform.parent = this.transform.parent;
+				iconObj.transform.SetParent(this.transform.parent, false);
+
 				Image iconImg = iconObj.GetComponent<Image>();
 				_sprites.Add (iconImg.sprite);
 

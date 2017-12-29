@@ -11,5 +11,9 @@ public class PuzzleKey : CollectableItem
 		EventCenter.Instance.InvokeStringEvent(Puzzle.UNLOCK_EVENT, this.name);
 		base.Actuate ();
 	}
+
+	public override void Use() {
+		Debug.Log ("PuzzleKey[" + this.name + "]/Use");
+	}
 }
 

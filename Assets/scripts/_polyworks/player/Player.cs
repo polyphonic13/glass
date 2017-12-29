@@ -127,7 +127,7 @@ namespace Polyworks
 			if (context == InputContext.PLAYER) {
 				this.gameObject.SetActive (true);
 			} else {
-				this.gameObject.SetActive (false);
+//				this.gameObject.SetActive (false);
 			}
 		}
 		#endregion

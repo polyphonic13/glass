@@ -57,6 +57,7 @@ namespace Polyworks {
 		}
 
 		public void OnCloseInventoryUI() {
+			Debug.Log ("InventoryUI/OnCloseInventoryUI");
 			_reset();
 		}
 

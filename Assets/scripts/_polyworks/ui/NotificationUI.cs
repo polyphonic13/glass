@@ -4,7 +4,7 @@ using System.Collections;
 
 namespace Polyworks {
 	public class NotificationUI : MonoBehaviour {
-		public float fadeTime = 1.5f;
+		public float fadeTime = 2f;
 		public float fadeSpeed = 0.015f;
 
 		[SerializeField] private Text _message;

@@ -43,7 +43,7 @@ namespace Polyworks {
 		}
 
 		public override void Use() {
-//			Debug.Log ("CollectableItem[" + this.name + "]/Use");
+			Debug.Log ("CollectableItem[" + this.name + "]/Use");
 			Switch[] _switches = gameObject.GetComponents<Switch> ();
 			if (_switches != null) {
 				for (int i = 0; i < _switches.Length; i++) {

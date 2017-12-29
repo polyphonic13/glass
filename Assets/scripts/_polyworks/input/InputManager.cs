@@ -51,6 +51,8 @@ namespace Polyworks {
 
 		private Item _itemInProximity = null; 
 
+		private EventCenter _eventCenter; 
+
 		private IInputControllable _activeObject = null; 
 
 //		http://answers.unity3d.com/questions/409835/out-of-sync-error-when-iterating-over-a-dictionary.html 
@@ -75,13 +77,13 @@ namespace Polyworks {
 
 		public void OnContextChange(InputContext context, string param) {
 			Debug.Log ("InputManager/OnContextChange, context = " + context);
+
 			if (context == InputContext.PLAYER) {
 				if (_player) {
 					_player.isActive = true; 
 					_activeObject = _player;
 				}
 			} else {
-//				EventCenter.Instance.HideNote ();
 
 				_player.isActive = false; 
 
@@ -130,11 +132,11 @@ namespace Polyworks {
 					_puzzleInspector = puzzleInspector.GetComponent<PuzzleInspector> ();
 				}
 
-				EventCenter ec = EventCenter.Instance;
-				ec.OnNearItem += OnNearItem;
-				ec.OnCloseInventoryUI += OnCloseInventoryUI;
-				ec.OnInspectItem += OnInspectItem;
-				ec.OnContextChange += OnContextChange;
+				_eventCenter = EventCenter.Instance;
+				_eventCenter.OnNearItem += OnNearItem;
+				_eventCenter.OnCloseInventoryUI += OnCloseInventoryUI;
+				_eventCenter.OnInspectItem += OnInspectItem;
+				_eventCenter.OnContextChange += OnContextChange;
 			}
 			_isInitialized = true;
 		}
@@ -160,6 +162,7 @@ namespace Polyworks {
 		}
 
 		private void _closeInventory() {
+			Debug.Log ("InputManager/_closeInventory");
 			_isInventoryOpen = false;
 			_inventoryUI.SetActive (false);
 			_closeUI ();
@@ -316,10 +319,10 @@ namespace Polyworks {
 		private void OnDestroy() {
 			EventCenter ec = EventCenter.Instance;
 			if (ec != null) {
-				ec.OnNearItem -= OnNearItem;
-				ec.OnCloseInventoryUI -= OnCloseInventoryUI;
-				ec.OnInspectItem -= OnInspectItem;
-				ec.OnContextChange -= OnContextChange;
+				_eventCenter.OnNearItem -= OnNearItem;
+				_eventCenter.OnCloseInventoryUI -= OnCloseInventoryUI;
+				_eventCenter.OnInspectItem -= OnInspectItem;
+				_eventCenter.OnContextChange -= OnContextChange;
 			}
 		}
 	}

@@ -87,6 +87,7 @@ public class Puzzle : MonoBehaviour {
 	}
 
 	public virtual void Activate() {
+		Debug.Log ("Puzzle[" + this.name + "]/Activate");
 		_toggleActive (true);
 		EventCenter.Instance.ChangeContext (InputContext.PUZZLE, this.name);
 	}

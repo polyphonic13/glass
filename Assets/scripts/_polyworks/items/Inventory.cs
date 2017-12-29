@@ -24,12 +24,14 @@ namespace Polyworks {
 		}
 
 		public virtual void Add(CollectableItemData data, bool increment = true, bool isNoteAdded = true) {
+			_log ("Inventory/Add, item =  " + data.name);
 			if (!Contains (data.name)) {
 				_items.Add (data.name, data);
 			}
 //			CollectableItemData itemData = Get (data.name) as CollectableItemData;
 			if (increment) {
 				data.count++;
+				_log (" incremented count to: " + data.count);
 			}
 			if (_isPlayerInventory) {
 				_eventCenter.InventoryAdded (data.name, data.count, _isPlayerInventory);
@@ -66,7 +68,7 @@ namespace Polyworks {
 			if(data == null) {
 				return; 
 			}
-			data.isUsable = ItemUtils.GetIsUsable (data);
+			data.isUsable = ItemUtils.GetIsUsable (data, isLogOn);
 			_log ("is usable = " + data.isUsable);
 			if (data.isUsable) {
 				CollectableItem item = _instantiate(data); 
@@ -79,6 +81,7 @@ namespace Polyworks {
 				item.Use ();
 
 				if (item.data.isDestroyedOnUse || item.data.isPersistent) {
+					Debug.Log (" destroying item game object");
 					Destroy (item.gameObject);
 				} else {
 					_initDroppedItem (item);
@@ -146,7 +149,14 @@ namespace Polyworks {
 				return null;
 			}
 			_log ("prefabPath = " + data.prefabPath);
-			GameObject itemObj = (GameObject) Instantiate (Resources.Load (data.prefabPath, typeof(GameObject)), transform.position, transform.rotation);
+			GameObject itemObj;
+
+			if (data.prefabPath == "") {
+				itemObj = new GameObject ();
+				itemObj.AddComponent<CollectableItem>();
+			} else {
+				itemObj = (GameObject) Instantiate (Resources.Load (data.prefabPath, typeof(GameObject)), transform.position, transform.rotation);
+			}
 			CollectableItem item = itemObj.GetComponent<CollectableItem> ();
 			item.data = data;
 			item.data.isCollected = item.data.isPersistent;
