@@ -76,7 +76,7 @@ namespace Polyworks {
 		}
 
 		public void OnContextChange(InputContext context, string param) {
-			Debug.Log ("InputManager/OnContextChange, context = " + context);
+//			Debug.Log ("InputManager/OnContextChange, context = " + context);
 
 			if (context == InputContext.PLAYER) {
 				if (_player) {
@@ -88,7 +88,7 @@ namespace Polyworks {
 				_player.isActive = false; 
 
 				if (context == InputContext.PUZZLE) {
-					Debug.Log ("  setting active object to puzzle inspector: " + _puzzleInspector);
+//					Debug.Log ("  setting active object to puzzle inspector: " + _puzzleInspector);
 					_activeObject = _puzzleInspector;
 				}
 			}
@@ -162,7 +162,6 @@ namespace Polyworks {
 		}
 
 		private void _closeInventory() {
-			Debug.Log ("InputManager/_closeInventory");
 			_isInventoryOpen = false;
 			_inventoryUI.SetActive (false);
 			_closeUI ();
