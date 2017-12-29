@@ -5,7 +5,6 @@ using Polyworks;
 public class PiggyBank : Item {
 	
 	public CollectableItem[] crystalKeys;
-	public bool isLogOn = false; 
 
 	private const string UNLOCK_MESSAGE = "There was a click within the dresser";
 	private const string UNLOCK_EVENT_TYPE = "bedroom_e_dresser_drawer_unlock";
@@ -22,11 +21,11 @@ public class PiggyBank : Item {
 	};
 
 	public void OnStringEvent(string type, string value) {
-		_log ("PiggyBank/OnStringEvent, type = " + type + ", value = " + value);
+		Log ("PiggyBank/OnStringEvent, type = " + type + ", value = " + value);
 		if(type == "insert_coin") {
 			for (int i = 0; i < _coins.Length; i++) {
 				if (_coins [i] == value) {
-					_log (" it is a matching coin");
+					Log (" it is a matching coin");
 					EventCenter ec = EventCenter.Instance;
 					ec.AddNote (UNLOCK_MESSAGE);
 					ec.InvokeStringEvent (UNLOCK_EVENT_TYPE, value);
@@ -38,7 +37,7 @@ public class PiggyBank : Item {
 
 	public override void Enable ()
 	{
-		_log ("PiggyBank/Enable");
+		Log ("PiggyBank/Enable");
 		base.Enable ();
 		EventCenter.Instance.OnStringEvent += OnStringEvent;
 	}
@@ -65,12 +64,6 @@ public class PiggyBank : Item {
 //		foreach (CollectableItem crystalKey in crystalKeys) {
 //			crystalKey.isEnabled = false;
 //		}
-	}
-
-	private void _log(string message) {
-		if (isLogOn) {
-			Debug.Log (message);
-		}
 	}
 
 	private void OnDestroy() {

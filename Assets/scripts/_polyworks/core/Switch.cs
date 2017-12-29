@@ -5,11 +5,11 @@
 	public class Switch : ActuateAgent
 	{
 		public virtual void Actuate() {
-			Debug.Log ("Switch["+this.name+"]/Actuate");
+			Log ("Switch["+this.name+"]/Actuate");
 		}
 
 		public virtual void Use() {
-			Debug.Log ("Switch[" + this.name + "]/Use");
+			Log ("Switch[" + this.name + "]/Use");
 		}
 	}
 }
