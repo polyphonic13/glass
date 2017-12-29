@@ -177,7 +177,7 @@ public class DirectionalCircuitPuzzle : Puzzle
 	private void _checkIsSolved() {
 		isSolved = true;
 		for (int i = 0; i < solution.Length; i++) {
-			Debug.Log ("solution[" + i + "] = " + solution [i] + " is activated = " + _wireChildren [solution [i]].isActivated);
+//			Debug.Log ("solution[" + i + "] = " + solution [i] + " is activated = " + _wireChildren [solution [i]].isActivated);
 			if(!_wireChildren[solution[i]].isActivated) {
 				isSolved = false;
 			}

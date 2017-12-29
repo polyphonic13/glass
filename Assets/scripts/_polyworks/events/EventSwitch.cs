@@ -7,7 +7,7 @@
 		public string type;
 
 		public override void Actuate() {
-			Debug.Log ("EventSwitch[" + this.name + "]/Actuate, type + " + type);
+			Debug.Log ("EventSwitch[" + this.name + "]/Actuate, type = " + type);
 		}
 
 		public override void Use() {
