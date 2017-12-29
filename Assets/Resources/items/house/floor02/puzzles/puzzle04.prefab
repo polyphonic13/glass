@@ -608,7 +608,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1179244993361174
 GameObject:
   m_ObjectHideFlags: 1
@@ -2406,9 +2406,7 @@ GameObject:
   - component: {fileID: 65451045656377410}
   - component: {fileID: 114052082326483500}
   - component: {fileID: 114162860885150064}
-  - component: {fileID: 114386435626168732}
-  - component: {fileID: 114995451968752364}
-  - component: {fileID: 114066231810038112}
+  - component: {fileID: 114999794900603358}
   m_Layer: 19
   m_Name: puzzle04_collider
   m_TagString: interactive
@@ -11433,21 +11431,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3df9045043b8d4f1cb143be7d3383c2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114066231810038112
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1663752325539332}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53cefab8c6b97430cb054bb10bf39bec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetName: puzzle04_model
-  animations:
-  - puzzle04_frame_door_open
-  isLogOn: 0
 --- !u!114 &114071891153913876
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -12184,7 +12167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11e1eb9ed8fce4771bb5a80eee764790, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activateValue: puzzle04_collider
+  activateValue: puzzle04_wires(Clone)
   mainCollider: {fileID: 1663752325539332}
   children:
   - gameObject: {fileID: 1588961030123330}
@@ -12349,29 +12332,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: insert_wire
   value: 4
---- !u!114 &114386435626168732
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1663752325539332}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9ebe1330f14f4039830e59a74ef9e6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  displayName: Circuit Puzzle
-  description: A puzzle of port connections to complete a circuit
-  prefabPath: 
-  isEnabled: 0
-  icon: 1
-  isLocked: 1
-  isLockMessageDisplayed: 1
-  isAutoActuatedOnUnlock: 0
-  isNoteAddedOnUnlock: 0
-  customLockedMessage: I need wires for this device
-  eventType: unlock_puzzle
-  eventValue: puzzle04_wires(Clone)
 --- !u!114 &114398192577388072
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -14257,18 +14217,6 @@ MonoBehaviour:
   target: {fileID: 0}
   isTargetPlayer: 0
   isLogOn: 0
---- !u!114 &114995451968752364
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1663752325539332}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4e0e4ebed3e94a869a970734193bc66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: activate_puzzle
 --- !u!114 &114998441806867338
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -14281,6 +14229,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1083639087456778}
+--- !u!114 &114999794900603358
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1663752325539332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15725ebbb138d4ca9b411776763f29fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  displayName: Circuit Puzzle
+  description: A box of circuitry needing wires to complete
+  prefabPath: 
+  isEnabled: 1
+  icon: 3
+  isSingleUse: 0
 --- !u!114 &114999952273452162
 MonoBehaviour:
   m_ObjectHideFlags: 1
