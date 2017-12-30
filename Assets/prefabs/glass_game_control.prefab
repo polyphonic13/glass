@@ -5,16 +5,17 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 456028}
-  - 114: {fileID: 11478364}
-  - 114: {fileID: 11483172}
-  - 114: {fileID: 11432274}
-  - 114: {fileID: 114000010828365742}
-  - 114: {fileID: 11422008}
-  - 114: {fileID: 11408434}
-  - 114: {fileID: 114000012953061632}
+  - component: {fileID: 456028}
+  - component: {fileID: 11478364}
+  - component: {fileID: 11483172}
+  - component: {fileID: 11432274}
+  - component: {fileID: 114000010828365742}
+  - component: {fileID: 11422008}
+  - component: {fileID: 11408434}
+  - component: {fileID: 114000012953061632}
+  - component: {fileID: 114710251542983148}
   m_Layer: 0
   m_Name: glass_game_control
   m_TagString: Untagged
@@ -31,10 +32,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &11408434
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -75,12 +76,38 @@ MonoBehaviour:
     - name: confirm
       value: 0
     - name: cancel
-      value: 1
+      value: 0
+    - name: open_menu
+      value: 0
+    - name: open_inventory
+      value: 0
+    - name: up
+      value: 0
+    - name: down
+      value: 0
+    - name: left
+      value: 0
+    - name: right
+      value: 0
+    - name: zoom_in
+      value: 0
+    - name: zoom_out
+      value: 0
+    - name: zoom_view
+      value: 0
     - name: run
       value: 0
     - name: jump
       value: 0
+    - name: climb
+      value: 0
+    - name: crawl
+      value: 0
     - name: dive
+      value: 0
+    - name: actuate
+      value: 0
+    - name: flashlight
       value: 0
 --- !u!114 &11478364
 MonoBehaviour:
@@ -95,28 +122,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameData:
     currentScene: start
-    targetSection: 5
+    targetSection: 6
     count: 0
     levels:
-    - name: house_floor02a
-      isCleared: 1
-      currentSection: 0
+    - name: house_floor02b
+      isCleared: 0
+      currentSection: 5
       tasks:
-        intTasks:
-        - name: incrementCount
-          isCompleted: 0
-          goal: 5
-          current: 0
+        intTasks: []
         floatTasks: []
-        stringTasks:
-        - name: itemCollection
-          isCompleted: 0
-          goal: wallpaper_sphere(Clone)
-          current: 
-        - name: itemCollection
-          isCompleted: 0
-          goal: brick_cube(Clone)
-          current: 
+        stringTasks: []
         collectionTasks: []
     - name: cave01
       isCleared: 0
@@ -124,11 +139,7 @@ MonoBehaviour:
       tasks:
         intTasks: []
         floatTasks: []
-        stringTasks:
-        - name: itemCollection
-          isCompleted: 0
-          goal: wooden_cube01(Clone)
-          current: 
+        stringTasks: []
         collectionTasks: []
     playerData:
       health: 100
@@ -141,6 +152,8 @@ MonoBehaviour:
       value: 0
     - key: isFlashlightCollected
       value: 0
+    - key: isGeneratorRunning
+      value: 1
   dataFilename: glass.dat
   playerPrefab: player/player_objects
   isSceneInitialized: 0
@@ -196,4 +209,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffe1220cf52e94296a75c7551a5550e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  secondsToCharge: 20
+  secondsToCharge: 4
+--- !u!114 &114710251542983148
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 190814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35d58a8ec240a494c8decebe015d748c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objects:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
