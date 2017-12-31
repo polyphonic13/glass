@@ -15,6 +15,7 @@
 		}
 
 		private void _toggle() {
+//			Debug.Log ("----- ActiveToggleAgent[" + this.name + "]/_toggle, isOn = " + isOn);
 			this.gameObject.SetActive (isOn);
 		}
 	}

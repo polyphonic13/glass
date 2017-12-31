@@ -15,6 +15,7 @@
 			if (isFlagOn) {
 				
 				foreach (EventSwitch s in switches) {
+					Log (" calling Actuate on " + s);
 					s.Actuate ();
 				}
 			} else if(falseMessage != "") {

@@ -6,6 +6,8 @@ namespace Polyworks {
 		public string eventType = "";
 		public string eventValue = ""; 
 
+		private bool _isListenersAdded = false;
+
 		public void OnStringEvent(string type, string value) {
 //			Debug.Log ("StringEventAgent[" + this.name + "]/OnStringEvent, type = " + type + ", eventType = " + eventType + ", value = " + value + ", eventValue = " + eventValue);
 			if (type == eventType && value == eventValue) {
@@ -30,16 +32,22 @@ namespace Polyworks {
 		}
 
 		private void _addListeners() {
-			EventCenter ec = EventCenter.Instance;
-			if (ec != null) {
-				ec.OnStringEvent += OnStringEvent;
+			if (!_isListenersAdded) {
+				_isListenersAdded = true;
+				EventCenter ec = EventCenter.Instance;
+				if (ec != null) {
+					ec.OnStringEvent += OnStringEvent;
+				}
 			}
 		}
 
 		private void _removeListeners() {
-			EventCenter ec = EventCenter.Instance;
-			if (ec != null) {
-				ec.OnStringEvent -= OnStringEvent;
+			if (_isListenersAdded) {
+				_isListenersAdded = false;
+				EventCenter ec = EventCenter.Instance;
+				if (ec != null) {
+					ec.OnStringEvent -= OnStringEvent;
+				}
 			}
 		}
 	}
