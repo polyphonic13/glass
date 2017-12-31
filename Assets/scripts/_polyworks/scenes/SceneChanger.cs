@@ -6,7 +6,7 @@ namespace Polyworks {
 	[Serializable]
 	public struct ScenePrepSteps {
 		public string scene;
-		public int steps;
+		public int count;
 	}
 
 	public class SceneChanger : Singleton<SceneChanger>
@@ -49,8 +49,8 @@ namespace Polyworks {
 
 		public void OnContinueSceneChange(string scene, int section = -1) {
 			_totalPrepStepsCompleted++; 
-			Debug.Log ("SceneChanger/OnContinueSceneChange, _totalPrepStepsCompleted = " + _totalPrepStepsCompleted + ", _currentPrepSteps.steps = " + _currentPrepSteps.steps);
-			if (_totalPrepStepsCompleted == _currentPrepSteps.steps) {
+			Debug.Log ("SceneChanger/OnContinueSceneChange, _totalPrepStepsCompleted = " + _totalPrepStepsCompleted + ", _currentPrepSteps.count = " + _currentPrepSteps.count);
+			if (_totalPrepStepsCompleted == _currentPrepSteps.count) {
 				_totalPrepStepsCompleted = 0;
 				Debug.Log (" dispatching CompleteSceneChange");
 				EventCenter.Instance.CompleteSceneChange(_targetScene, _targetSection);
