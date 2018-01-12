@@ -103,7 +103,7 @@ namespace Polyworks {
 		}
 
 		public void SetCount(int count) {
-			if(count > 0) {
+			if(count > 1) {
 				itemCount.text = "x" + count;
 			} else {
 				itemCount.text = "";

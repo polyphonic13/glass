@@ -1,8 +1,8 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
-using System.Collections;
+﻿namespace Polyworks {
+	using UnityEngine;
+	using UnityEngine.UI;
+	using System.Collections;
 
-namespace Polyworks {
 	public class NotificationUI : MonoBehaviour {
 		public float fadeTime = 2f;
 		public float fadeSpeed = 0.015f;
