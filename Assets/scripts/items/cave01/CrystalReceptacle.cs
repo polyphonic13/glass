@@ -50,7 +50,7 @@ public class CrystalReceptacle : Item {
 	}
 
 	private void Awake() {
-		_crystal = this.transform.FindChild("crystal").gameObject;
+		_crystal = this.transform.Find("crystal").gameObject;
 		_crystal.SetActive (isStartEnabled);
 		_isUnlocked = isEnabled = isStartEnabled;
 

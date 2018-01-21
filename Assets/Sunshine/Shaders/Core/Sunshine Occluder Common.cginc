@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 // == Standard Shadow Stuff ==
 //#define _Color _DummyStandardColor
 //#include "UnityStandardShadow.cginc"
@@ -44,7 +46,7 @@ struct v2f {
 #endif
 void baseVert_Depth (base_appdata v, inout v2f o)
 {
-    o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+    o.pos = UnityObjectToClipPos(v.vertex);
     o.depthAndBias = mul(UNITY_MATRIX_MV, v.vertex).z;
 }
 v2f baseVert (base_appdata v, v2f o)
