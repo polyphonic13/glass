@@ -83,8 +83,8 @@ public class PuzzleInspector : MonoBehaviour, IInputControllable {
 		} else {
 			if (input.horizontal != 0 || input.vertical != 0) {
 				_move (input.horizontal, input.vertical);
+				// Debug.Log ("PuzzleInspector/SetInput, horizontal = " + input.horizontal + ", vertical = " + input.vertical);
 			}
-//			Debug.Log ("PuzzleInspector/SetInput, horizontal = " + input.horizontal + ", vertical = " + input.vertical);
 		}
 	}
 	#endregion
@@ -151,7 +151,7 @@ public class PuzzleInspector : MonoBehaviour, IInputControllable {
 		float moveX = horizontal * _xSpeed;
 		float moveY = vertical * _ySpeed;
 
-//		Debug.Log ("move x/y = " + moveX + " / " + moveY + ", deviation x/y = " + _xDeviation + " / " + _yDeviation);
+		Debug.Log ("move x/y = " + moveX + " / " + moveY + ", deviation x/y = " + _xDeviation + " / " + _yDeviation);
 		if (moveX + _xDeviation > _activeBounds.maxH || moveX + _xDeviation < _activeBounds.minH) {
 			moveX = 0;
 		}
