@@ -192,7 +192,7 @@ public class DirectionalCircuitPuzzle : Puzzle
 		if (isSolved) {
 			Solve ();
 		}
-		Debug.Log ("DirectionalCircuitPuzzle[" + this.name + "]/_checkIsSolved, isSolved = " + isSolved);
+		// Debug.Log ("DirectionalCircuitPuzzle[" + this.name + "]/_checkIsSolved, isSolved = " + isSolved);
 	}
 
 	private int _getWireByIndex(int index, List<PuzzleWire> list) {

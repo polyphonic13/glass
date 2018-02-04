@@ -62,7 +62,10 @@ namespace Polyworks {
 				_item = gameObject.GetComponent<Item> ();
 
 				if (isTargetPlayer) {
-					target = GameObject.Find ("player").transform;
+					GameObject player = GameObject.Find("player");
+					if(player != null) {
+						target = player.transform;						
+					}
 				}
 				_isInitialized = true;
 			}

@@ -7,6 +7,8 @@ using Polyworks;
 public class PuzzleInspector : MonoBehaviour, IInputControllable {
 
 	#region members
+	public Vector3 startingPosition = new Vector3(0, 0, 0);
+	public Vector3 startingRotation = new Vector3(0, 0, 0);
 	public PuzzleLocation[] locations;
 
 	[SerializeField] private Light _light;
@@ -48,7 +50,7 @@ public class PuzzleInspector : MonoBehaviour, IInputControllable {
 				Activate (index);
 			}
 		} else if (this.isActive) {
-			this.isActive = false; 
+			Deactivate();
 		}
 	}
 
@@ -65,20 +67,17 @@ public class PuzzleInspector : MonoBehaviour, IInputControllable {
 	}
 
 	public void Activate(int index) {
-		if (index != _activeLocation) {
-			// move the inspector to new location
-			_setLocation (index);
-		}
+		_moveToNewLocation (index);
 		_toggleActivated (true);
 	}
 
 	public void Deactivate() {
+		_setPositionAndRotation(startingPosition, startingRotation);
 		_toggleActivated (false);
 	}
 
 	public void SetInput(InputObject input) {
 		if (input.buttons ["cancel"]) {
-			_toggleActivated (false);
 			EventCenter.Instance.ChangeContext(InputContext.PLAYER, "");
 		} else {
 			if (input.horizontal != 0 || input.vertical != 0) {
@@ -111,21 +110,22 @@ public class PuzzleInspector : MonoBehaviour, IInputControllable {
 		return -1;
 	}
 
-	private void _setLocation(int index) {
-		if (_activeRotationY != 0) {
-			Vector3 rotate = new Vector3 (0, -_activeRotationY, 0);
-			transform.Rotate (rotate);
-		}
-
+	private void _moveToNewLocation(int index) {
 		PuzzleLocation location = locations [index];
-		transform.position = new Vector3 (location.position.x, location.position.y, location.position.z);
-		transform.Rotate(location.rotation);
+		_setPositionAndRotation(location.position, location.rotation);
+
 		_activeRotationY = location.rotation.y;
 		_activeLocation = index;
 		_activeBounds = location.bounds;
 		_xDeviation = 0;
 		_yDeviation = 0;
 
+	}
+
+	private void _setPositionAndRotation(Vector3 position, Vector3 rotation) {
+		// Debug.Log("PuzzleInspector/_setPositionAndRotaion, position = " + position + ", rotation = " + rotation);
+		transform.position = new Vector3(position.x, position.y, position.z);
+		transform.eulerAngles = new Vector3(rotation.x, rotation.y, rotation.z);
 	}
 
 	private void _toggleActivated(bool isActivated) {
@@ -151,13 +151,13 @@ public class PuzzleInspector : MonoBehaviour, IInputControllable {
 		float moveX = horizontal * _xSpeed;
 		float moveY = vertical * _ySpeed;
 
-		Debug.Log ("move x/y = " + moveX + " / " + moveY + ", deviation x/y = " + _xDeviation + " / " + _yDeviation + ", bounds max/min H = " + _activeBounds.minH + "/" + _activeBounds.maxH + ", V = " + _activeBounds.minV + "/" + _activeBounds.maxV);
-		// if (moveX + _xDeviation > _activeBounds.maxH || moveX + _xDeviation < _activeBounds.minH) {
-		// 	moveX = 0;
-		// }
-		// if (moveY + _yDeviation > _activeBounds.maxV || moveY + _yDeviation < _activeBounds.minV) {
-		// 	moveY = 0; 
-		// }
+		// Debug.Log ("move x/y = " + moveX + " / " + moveY + ", deviation x/y = " + _xDeviation + " / " + _yDeviation + ", bounds max/min H = " + _activeBounds.minH + "/" + _activeBounds.maxH + ", V = " + _activeBounds.minV + "/" + _activeBounds.maxV);
+		if (moveX + _xDeviation > _activeBounds.maxH || moveX + _xDeviation < _activeBounds.minH) {
+			moveX = 0;
+		}
+		if (moveY + _yDeviation > _activeBounds.maxV || moveY + _yDeviation < _activeBounds.minV) {
+			moveY = 0; 
+		}
 
 		_xDeviation += moveX; 
 		_yDeviation += moveY; 
