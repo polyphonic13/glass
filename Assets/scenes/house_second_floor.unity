@@ -883,6 +883,52 @@ Transform:
 Transform:
   m_PrefabParentObject: {fileID: 400022, guid: 0c7ee85af8bf84c4d93e525026052bdb, type: 3}
   m_PrefabInternal: {fileID: 278253416}
+--- !u!1001 &75694422
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1375082364}
+    m_Modifications:
+    - target: {fileID: 4111495295887058, guid: 8b4ef1cac61514f8e8e4f7233e2ee2e4, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -655.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4111495295887058, guid: 8b4ef1cac61514f8e8e4f7233e2ee2e4, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 113.240135
+      objectReference: {fileID: 0}
+    - target: {fileID: 4111495295887058, guid: 8b4ef1cac61514f8e8e4f7233e2ee2e4, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -6.47
+      objectReference: {fileID: 0}
+    - target: {fileID: 4111495295887058, guid: 8b4ef1cac61514f8e8e4f7233e2ee2e4, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4111495295887058, guid: 8b4ef1cac61514f8e8e4f7233e2ee2e4, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4111495295887058, guid: 8b4ef1cac61514f8e8e4f7233e2ee2e4, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4111495295887058, guid: 8b4ef1cac61514f8e8e4f7233e2ee2e4, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4111495295887058, guid: 8b4ef1cac61514f8e8e4f7233e2ee2e4, type: 2}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1159749556962818, guid: 8b4ef1cac61514f8e8e4f7233e2ee2e4, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 8b4ef1cac61514f8e8e4f7233e2ee2e4, type: 2}
+  m_IsPrefabParent: 0
 --- !u!4 &82843287 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400156, guid: 40b1902f8fb0a47069e6e2c2130e754c, type: 3}
@@ -5479,6 +5525,10 @@ Prefab:
       propertyPath: objects.Array.data[4]
       value: 
       objectReference: {fileID: 209188192}
+    - target: {fileID: 11478364, guid: 84f55014e3cba445ab22685c88725eac, type: 2}
+      propertyPath: gameData.targetSection
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 84f55014e3cba445ab22685c88725eac, type: 2}
   m_IsPrefabParent: 0
@@ -8761,7 +8811,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4586087013247018, guid: cb96c66c36b4946888831cd9490ed2b6, type: 2}
       propertyPath: m_RootOrder
-      value: 10
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1531361897979104, guid: cb96c66c36b4946888831cd9490ed2b6, type: 2}
       propertyPath: m_IsActive
@@ -11024,7 +11074,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000013283624774, guid: ad61ed865c26145e781ab318f67618f6, type: 2}
       propertyPath: m_RootOrder
-      value: 11
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1000011001622974, guid: ad61ed865c26145e781ab318f67618f6, type: 2}
       propertyPath: m_IsActive
@@ -13669,6 +13719,7 @@ Transform:
   - {fileID: 684536043}
   - {fileID: 839669051}
   - {fileID: 1115956933}
+  - {fileID: 1490288821}
   m_Father: {fileID: 762531823}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -14434,6 +14485,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 31f9f3b5e67424608b396ec1d232972b, type: 2}
   m_IsPrefabParent: 0
+--- !u!4 &1490288821 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4111495295887058, guid: 8b4ef1cac61514f8e8e4f7233e2ee2e4,
+    type: 2}
+  m_PrefabInternal: {fileID: 75694422}
 --- !u!4 &1491399532 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400088, guid: bebdae0b8648c44bd9c8ae78d1319eb4, type: 3}
@@ -15129,10 +15185,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 11495852, guid: eb48f7f5a581b434b890b66fa6d5b812, type: 2}
-      propertyPath: sceneData.sectionPrefabs.Array.data[5].prefabs.Array.size
-      value: 14
-      objectReference: {fileID: 0}
     - target: {fileID: 490074, guid: eb48f7f5a581b434b890b66fa6d5b812, type: 2}
       propertyPath: m_LocalPosition.x
       value: 149.5
@@ -15222,176 +15274,20 @@ Prefab:
       value: level_controller
       objectReference: {fileID: 0}
     - target: {fileID: 11495852, guid: eb48f7f5a581b434b890b66fa6d5b812, type: 2}
-      propertyPath: sceneData.sectionPrefabs.Array.data[5].prefabs.Array.data[8].name
-      value: bedroom_nw_lamp
+      propertyPath: sceneData.sectionPrefabs.Array.data[3].prefabs.Array.data[3].name
+      value: winter_forest_painting
       objectReference: {fileID: 0}
     - target: {fileID: 11495852, guid: eb48f7f5a581b434b890b66fa6d5b812, type: 2}
-      propertyPath: sceneData.sectionPrefabs.Array.data[5].prefabs.Array.data[8].location.x
-      value: -642.13
+      propertyPath: sceneData.sectionPrefabs.Array.data[3].prefabs.Array.data[3].path
+      value: items/house/floor02/bedroom_e/
       objectReference: {fileID: 0}
     - target: {fileID: 11495852, guid: eb48f7f5a581b434b890b66fa6d5b812, type: 2}
-      propertyPath: sceneData.sectionPrefabs.Array.data[5].prefabs.Array.data[8].location.y
-      value: 112.273
+      propertyPath: sceneData.sectionPrefabs.Array.data[3].prefabs.Array.data[4].name
+      value: bedroom_e_dresser
       objectReference: {fileID: 0}
     - target: {fileID: 11495852, guid: eb48f7f5a581b434b890b66fa6d5b812, type: 2}
-      propertyPath: sceneData.sectionPrefabs.Array.data[5].prefabs.Array.data[8].location.z
-      value: -13.74
-      objectReference: {fileID: 0}
-    - target: {fileID: 11495852, guid: eb48f7f5a581b434b890b66fa6d5b812, type: 2}
-      propertyPath: sceneData.sectionPrefabs.Array.data[5].prefabs.Array.data[8].rotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11495852, guid: eb48f7f5a581b434b890b66fa6d5b812, type: 2}
-      propertyPath: sceneData.sectionPrefabs.Array.data[5].prefabs.Array.data[8].rotation.y
-      value: 180
-      objectReference: {fileID: 0}
-    - target: {fileID: 11495852, guid: eb48f7f5a581b434b890b66fa6d5b812, type: 2}
-      propertyPath: sceneData.sectionPrefabs.Array.data[5].prefabs.Array.data[8].rotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11495852, guid: eb48f7f5a581b434b890b66fa6d5b812, type: 2}
-      propertyPath: sceneData.sectionPrefabs.Array.data[5].prefabs.Array.data[9].name
-      value: bedroom_nw_endtable
-      objectReference: {fileID: 0}
-    - target: {fileID: 11495852, guid: eb48f7f5a581b434b890b66fa6d5b812, type: 2}
-      propertyPath: sceneData.sectionPrefabs.Array.data[5].prefabs.Array.data[9].addTo
-      value: house_objects/section_objects/bedroom_nw/
-      objectReference: {fileID: 0}
-    - target: {fileID: 11495852, guid: eb48f7f5a581b434b890b66fa6d5b812, type: 2}
-      propertyPath: sceneData.sectionPrefabs.Array.data[5].prefabs.Array.data[9].location.x
-      value: -642.16
-      objectReference: {fileID: 0}
-    - target: {fileID: 11495852, guid: eb48f7f5a581b434b890b66fa6d5b812, type: 2}
-      propertyPath: sceneData.sectionPrefabs.Array.data[5].prefabs.Array.data[9].location.y
-      value: 110.6512
-      objectReference: {fileID: 0}
-    - target: {fileID: 11495852, guid: eb48f7f5a581b434b890b66fa6d5b812, type: 2}
-      propertyPath: sceneData.sectionPrefabs.Array.data[5].prefabs.Array.data[9].location.z
-      value: -13.81
-      objectReference: {fileID: 0}
-    - target: {fileID: 11495852, guid: eb48f7f5a581b434b890b66fa6d5b812, type: 2}
-      propertyPath: sceneData.sectionPrefabs.Array.data[5].prefabs.Array.data[9].rotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11495852, guid: eb48f7f5a581b434b890b66fa6d5b812, type: 2}
-      propertyPath: sceneData.sectionPrefabs.Array.data[5].prefabs.Array.data[9].rotation.y
-      value: 180
-      objectReference: {fileID: 0}
-    - target: {fileID: 11495852, guid: eb48f7f5a581b434b890b66fa6d5b812, type: 2}
-      propertyPath: sceneData.sectionPrefabs.Array.data[5].prefabs.Array.data[10].name
-      value: astrology_coin_leo
-      objectReference: {fileID: 0}
-    - target: {fileID: 11495852, guid: eb48f7f5a581b434b890b66fa6d5b812, type: 2}
-      propertyPath: sceneData.sectionPrefabs.Array.data[5].prefabs.Array.data[10].path
-      value: items/house/floor02/bedroom_nw/
-      objectReference: {fileID: 0}
-    - target: {fileID: 11495852, guid: eb48f7f5a581b434b890b66fa6d5b812, type: 2}
-      propertyPath: sceneData.sectionPrefabs.Array.data[5].prefabs.Array.data[10].addTo
-      value: house_objects/section_objects/bedroom_nw/bedroom_nw_endtable(Clone)/Armature/drawer_bottom_bone/
-      objectReference: {fileID: 0}
-    - target: {fileID: 11495852, guid: eb48f7f5a581b434b890b66fa6d5b812, type: 2}
-      propertyPath: sceneData.sectionPrefabs.Array.data[5].prefabs.Array.data[10].location.x
-      value: -642.134
-      objectReference: {fileID: 0}
-    - target: {fileID: 11495852, guid: eb48f7f5a581b434b890b66fa6d5b812, type: 2}
-      propertyPath: sceneData.sectionPrefabs.Array.data[5].prefabs.Array.data[10].location.y
-      value: 111.523
-      objectReference: {fileID: 0}
-    - target: {fileID: 11495852, guid: eb48f7f5a581b434b890b66fa6d5b812, type: 2}
-      propertyPath: sceneData.sectionPrefabs.Array.data[5].prefabs.Array.data[10].location.z
-      value: -13.73628
-      objectReference: {fileID: 0}
-    - target: {fileID: 11495852, guid: eb48f7f5a581b434b890b66fa6d5b812, type: 2}
-      propertyPath: sceneData.sectionPrefabs.Array.data[5].prefabs.Array.data[10].rotation.x
-      value: 270
-      objectReference: {fileID: 0}
-    - target: {fileID: 11495852, guid: eb48f7f5a581b434b890b66fa6d5b812, type: 2}
-      propertyPath: sceneData.sectionPrefabs.Array.data[5].prefabs.Array.data[10].rotation.y
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 11495852, guid: eb48f7f5a581b434b890b66fa6d5b812, type: 2}
-      propertyPath: sceneData.sectionPrefabs.Array.data[5].prefabs.Array.data[10].rotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11495852, guid: eb48f7f5a581b434b890b66fa6d5b812, type: 2}
-      propertyPath: sceneData.sectionPrefabs.Array.data[5].prefabs.Array.data[11].name
-      value: portal_activation_device
-      objectReference: {fileID: 0}
-    - target: {fileID: 11495852, guid: eb48f7f5a581b434b890b66fa6d5b812, type: 2}
-      propertyPath: sceneData.sectionPrefabs.Array.data[5].prefabs.Array.data[11].path
-      value: items/
-      objectReference: {fileID: 0}
-    - target: {fileID: 11495852, guid: eb48f7f5a581b434b890b66fa6d5b812, type: 2}
-      propertyPath: sceneData.sectionPrefabs.Array.data[5].prefabs.Array.data[11].location.x
-      value: -639.966
-      objectReference: {fileID: 0}
-    - target: {fileID: 11495852, guid: eb48f7f5a581b434b890b66fa6d5b812, type: 2}
-      propertyPath: sceneData.sectionPrefabs.Array.data[5].prefabs.Array.data[11].location.y
-      value: 111.835
-      objectReference: {fileID: 0}
-    - target: {fileID: 11495852, guid: eb48f7f5a581b434b890b66fa6d5b812, type: 2}
-      propertyPath: sceneData.sectionPrefabs.Array.data[5].prefabs.Array.data[11].location.z
-      value: -16.77
-      objectReference: {fileID: 0}
-    - target: {fileID: 11495852, guid: eb48f7f5a581b434b890b66fa6d5b812, type: 2}
-      propertyPath: sceneData.sectionPrefabs.Array.data[5].prefabs.Array.data[11].rotation.z
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 11495852, guid: eb48f7f5a581b434b890b66fa6d5b812, type: 2}
-      propertyPath: sceneData.sectionPrefabs.Array.data[5].prefabs.Array.data[12].name
-      value: puzzle00
-      objectReference: {fileID: 0}
-    - target: {fileID: 11495852, guid: eb48f7f5a581b434b890b66fa6d5b812, type: 2}
-      propertyPath: sceneData.sectionPrefabs.Array.data[5].prefabs.Array.data[12].addTo
-      value: house_objects/section_objects/bedroom_nw/
-      objectReference: {fileID: 0}
-    - target: {fileID: 11495852, guid: eb48f7f5a581b434b890b66fa6d5b812, type: 2}
-      propertyPath: sceneData.sectionPrefabs.Array.data[5].prefabs.Array.data[12].location.x
-      value: -638.064
-      objectReference: {fileID: 0}
-    - target: {fileID: 11495852, guid: eb48f7f5a581b434b890b66fa6d5b812, type: 2}
-      propertyPath: sceneData.sectionPrefabs.Array.data[5].prefabs.Array.data[12].location.y
-      value: 113.007
-      objectReference: {fileID: 0}
-    - target: {fileID: 11495852, guid: eb48f7f5a581b434b890b66fa6d5b812, type: 2}
-      propertyPath: sceneData.sectionPrefabs.Array.data[5].prefabs.Array.data[12].location.z
-      value: -17.187
-      objectReference: {fileID: 0}
-    - target: {fileID: 11495852, guid: eb48f7f5a581b434b890b66fa6d5b812, type: 2}
-      propertyPath: sceneData.sectionPrefabs.Array.data[5].prefabs.Array.data[12].rotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11495852, guid: eb48f7f5a581b434b890b66fa6d5b812, type: 2}
-      propertyPath: sceneData.sectionPrefabs.Array.data[5].prefabs.Array.data[13].name
-      value: puzzle00_wires
-      objectReference: {fileID: 0}
-    - target: {fileID: 11495852, guid: eb48f7f5a581b434b890b66fa6d5b812, type: 2}
-      propertyPath: sceneData.sectionPrefabs.Array.data[5].prefabs.Array.data[13].path
-      value: items/house/floor02/puzzles/
-      objectReference: {fileID: 0}
-    - target: {fileID: 11495852, guid: eb48f7f5a581b434b890b66fa6d5b812, type: 2}
-      propertyPath: sceneData.sectionPrefabs.Array.data[5].prefabs.Array.data[13].addTo
-      value: house_objects/section_objects/bedroom_nw/bedroom_nw_dresser(Clone)/Armature/top_center_drawer_bone/
-      objectReference: {fileID: 0}
-    - target: {fileID: 11495852, guid: eb48f7f5a581b434b890b66fa6d5b812, type: 2}
-      propertyPath: sceneData.sectionPrefabs.Array.data[5].prefabs.Array.data[13].location.x
-      value: -639.42
-      objectReference: {fileID: 0}
-    - target: {fileID: 11495852, guid: eb48f7f5a581b434b890b66fa6d5b812, type: 2}
-      propertyPath: sceneData.sectionPrefabs.Array.data[5].prefabs.Array.data[13].location.y
-      value: 111.836
-      objectReference: {fileID: 0}
-    - target: {fileID: 11495852, guid: eb48f7f5a581b434b890b66fa6d5b812, type: 2}
-      propertyPath: sceneData.sectionPrefabs.Array.data[5].prefabs.Array.data[13].location.z
-      value: -19.84
-      objectReference: {fileID: 0}
-    - target: {fileID: 11495852, guid: eb48f7f5a581b434b890b66fa6d5b812, type: 2}
-      propertyPath: sceneData.sectionPrefabs.Array.data[5].prefabs.Array.data[13].rotation.x
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 11495852, guid: eb48f7f5a581b434b890b66fa6d5b812, type: 2}
-      propertyPath: sceneData.sectionPrefabs.Array.data[5].prefabs.Array.data[8].path
-      value: items/house/floor02/lights/
+      propertyPath: sceneData.sectionPrefabs.Array.data[3].prefabs.Array.data[4].path
+      value: items/house/floor02/bedroom_e/
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eb48f7f5a581b434b890b66fa6d5b812, type: 2}
@@ -17118,7 +17014,7 @@ Transform:
   m_PrefabParentObject: {fileID: 400156, guid: 40b1902f8fb0a47069e6e2c2130e754c, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1785307085}
-  m_LocalRotation: {x: -0.1313012, y: 0.69480926, z: 0.6948094, w: 0.13130112}
+  m_LocalRotation: {x: -0.13130121, y: 0.6948093, z: 0.69480944, w: 0.13130113}
   m_LocalPosition: {x: 4.66, y: 0.3099823, z: -3.69}
   m_LocalScale: {x: 0.9, y: 0.9000002, z: 0.9000002}
   m_Children:

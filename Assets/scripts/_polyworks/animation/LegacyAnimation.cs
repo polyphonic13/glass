@@ -61,7 +61,7 @@ namespace Polyworks {
 		}
 
 		public void Actuate(string clip = "") {
-//			Debug.Log ("LegacyAnimation[" + this.name + "]/Actuate, clip = " + clip);
+			Debug.Log ("LegacyAnimation[" + this.name + "]/Actuate, clip = " + clip);
 			string c;
 			if (clip == "") {
 				c = animationClips [_currentAnimation].name;
