@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 37f5c486d029d4d08a090f9b278580aa
 ModelImporter:
-  serializedVersion: 18
+  serializedVersion: 19
   fileIDToRecycleName:
     100000: cord
     100002: cord_shape
@@ -16,6 +16,8 @@ ModelImporter:
     100020: frame_bottom
     100022: frame_top
     100024: lamp
+    100026: shade_inner
+    100028: shade_outer
     400000: cord
     400002: cord_shape
     400004: //RootNode
@@ -29,6 +31,8 @@ ModelImporter:
     400020: frame_bottom
     400022: frame_top
     400024: lamp
+    400026: shade_inner
+    400028: shade_outer
     2300000: cord
     2300002: cord_shape
     2300004: lamp_base
@@ -40,6 +44,8 @@ ModelImporter:
     2300016: BezierCurve
     2300018: frame_bottom
     2300020: frame_top
+    2300022: shade_inner
+    2300024: shade_outer
     3300000: cord
     3300002: cord_shape
     3300004: lamp_base
@@ -51,6 +57,8 @@ ModelImporter:
     3300016: BezierCurve
     3300018: frame_bottom
     3300020: frame_top
+    3300022: shade_inner
+    3300024: shade_outer
     4300000: cord_shape
     4300002: cord
     4300004: lamp_base
@@ -62,6 +70,8 @@ ModelImporter:
     4300016: BezierCurve
     4300018: frame_bottom
     4300020: frame_top
+    4300022: shade_inner
+    4300024: shade_outer
     7400000: Default Take
     9500000: //RootNode
   materials:
@@ -71,12 +81,19 @@ ModelImporter:
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
+    resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
     animationCompression: 1
-    animationRotationError: .5
-    animationPositionError: .5
-    animationScaleError: .5
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
     clipAnimations: []
@@ -100,24 +117,29 @@ ModelImporter:
     useFileScale: 0
   tangentSpace:
     normalSmoothAngle: 60
-    splitTangentsAcrossUV: 1
     normalImportMode: 0
-    tangentImportMode: 1
+    tangentImportMode: 4
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
+    serializedVersion: 2
     human: []
     skeleton: []
-    armTwist: .5
-    foreArmTwist: .5
-    upperLegTwist: .5
-    legTwist: .5
-    armStretch: .0500000007
-    legStretch: .0500000007
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 2
+  humanoidOversampling: 1
   additionalBone: 1
   userData: 
   assetBundleName: 
