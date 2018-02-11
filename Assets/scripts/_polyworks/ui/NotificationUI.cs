@@ -5,7 +5,7 @@
 
 	public class NotificationUI : MonoBehaviour {
 		public float fadeTime = 2f;
-		public float fadeSpeed = 0.015f;
+		public float fadeSpeed = 0.03f;
 
 		[SerializeField] private Text _message;
 
