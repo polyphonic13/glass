@@ -35,7 +35,7 @@ namespace Polyworks
 		public event NoteAdder OnAddNote;
 
 		public delegate void NoteHider(); 
-		public event NoteHider OnHideNote; 
+		public event NoteHider OnRemoveNote; 
 
 		public delegate void SceneInitializer(string scene);
 		public event SceneInitializer OnSceneInitialized;
@@ -155,9 +155,9 @@ namespace Polyworks
 			}
 		}
 
-		public void HideNote() {
-			if (OnHideNote != null) {
-				OnHideNote ();
+		public void RemoveNote() {
+			if (OnRemoveNote != null) {
+				OnRemoveNote ();
 			}
 		}
 

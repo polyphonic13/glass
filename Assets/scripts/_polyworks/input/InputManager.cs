@@ -316,8 +316,7 @@ namespace Polyworks {
 		#endregion
 
 		private void OnDestroy() {
-			EventCenter ec = EventCenter.Instance;
-			if (ec != null) {
+			if (_eventCenter != null) {
 				_eventCenter.OnNearItem -= OnNearItem;
 				_eventCenter.OnCloseInventoryUI -= OnCloseInventoryUI;
 				_eventCenter.OnInspectItem -= OnInspectItem;

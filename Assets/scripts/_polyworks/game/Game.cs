@@ -119,7 +119,7 @@ namespace Polyworks {
 				InventoryUI inventoryUI = inventoryObj.GetComponent<InventoryUI> ();
 				inventoryUI.InitInventory(Instance.playerInventory);
 			}
-
+			NotificationUIController.Instance.Init();
 
 			_completeSceneInitialization(true, currentScene.name);
 		}

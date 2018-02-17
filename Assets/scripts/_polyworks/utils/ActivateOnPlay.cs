@@ -7,7 +7,9 @@ public class ActivateOnPlay : MonoBehaviour {
 
 	void Awake () {
 		for (int i = 0; i < objects.Length; i++) {
-			objects [i].SetActive (true);
+			if(objects[i] != null) {
+				objects [i].SetActive (true);
+			}
 		}
 	}
 }
