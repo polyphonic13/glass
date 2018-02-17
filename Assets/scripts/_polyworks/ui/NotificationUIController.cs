@@ -26,7 +26,6 @@
 
 		public void Init() 
 		{
-			Debug.Log("NotificationUIController/Init");
 			EventCenter ec = EventCenter.Instance; 
 			ec.OnAddNote += OnAddNote;
 			

@@ -36,7 +36,6 @@
 
 		public void Init(float fadeTime, float fadeSpeed) 
 		{
-			Debug.Log("NotificationUI/Init");
 			_fadeTime = fadeTime;
 			_fadeSpeed = fadeSpeed; 
 			
