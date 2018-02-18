@@ -28,9 +28,10 @@ namespace Polyworks {
 		private void Awake () {
 			currentIdx = 0;
 			GameObject targetObject = GameObject.Find (targetName);
+			Log("AnimationSwitch[" + this.name + "]/Awake, targetName = " + targetName + ", targetObject = " + targetObject);
 			if (targetObject != null) {
 				_target = targetObject.GetComponent<AnimationAgent> ();
-				Log ("AnimationSwitch[" + this.name + "]/Awake, targetObject = " + targetObject + ", _target = " + _target);
+				Log (" _target = " + _target);
 			}
 		}
 

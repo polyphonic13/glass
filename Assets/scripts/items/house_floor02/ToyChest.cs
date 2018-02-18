@@ -8,6 +8,8 @@ public class ToyChest : Item {
 
 	public GameObject[] collectedToys; 
 
+	public string completedMessage; 
+
 	private int _collected = 0;
 	private int _expected = 2;
 
@@ -24,7 +26,7 @@ public class ToyChest : Item {
 				_isLidOpen = !_isLidOpen;
 			}
 			for (int i = 0; i < collectedToys.Length; i++) {
-				Debug.Log (" collectedToys[" + i + "].name = " + collectedToys [i].name);
+				Debug.Log ("  collectedToys[" + i + "].name = " + collectedToys [i].name);
 				if (collectedToys [i].name == value) {
 					collectedToys [i].SetActive (true);
 					_collected++;
@@ -33,6 +35,7 @@ public class ToyChest : Item {
 			}
 			Debug.Log (" _collected = " + _collected + ", _expected = " + _expected);
 			if (_collected == _expected) {
+				EventCenter.Instance.AddNote(completedMessage);
 				EventCenter.Instance.InvokeStringEvent (RABBIT_HUNT_COMPLETE_EVENT, "");
 			}
 		} else if (type == "toychest_lid_collider") {

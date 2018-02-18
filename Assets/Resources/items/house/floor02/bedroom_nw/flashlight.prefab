@@ -5,12 +5,12 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 410320}
-  - 33: {fileID: 3377790}
-  - 23: {fileID: 2389212}
-  - 95: {fileID: 9500682}
+  - component: {fileID: 410320}
+  - component: {fileID: 3377790}
+  - component: {fileID: 2389212}
+  - component: {fileID: 9500682}
   m_Layer: 0
   m_Name: flashlight01e
   m_TagString: Untagged
@@ -23,15 +23,15 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 410050}
-  - 65: {fileID: 6568404}
-  - 108: {fileID: 10812780}
-  - 114: {fileID: 11480664}
-  - 114: {fileID: 11484996}
-  - 114: {fileID: 11436136}
-  - 114: {fileID: 11455262}
+  - component: {fileID: 410050}
+  - component: {fileID: 6568404}
+  - component: {fileID: 10812780}
+  - component: {fileID: 11480664}
+  - component: {fileID: 11484996}
+  - component: {fileID: 11436136}
+  - component: {fileID: 11455262}
   m_Layer: 0
   m_Name: flashlight
   m_TagString: interactive
@@ -45,14 +45,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 188460}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -639.199, y: 111.54518, z: -20}
+  m_LocalRotation: {x: 0, y: 0.8241262, z: 0, w: 0.56640637}
+  m_LocalPosition: {x: -639.19, y: 112.172, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 410320}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 111, z: 0}
 --- !u!4 &410320
 Transform:
   m_ObjectHideFlags: 1
@@ -62,10 +62,10 @@ Transform:
   m_LocalRotation: {x: 0.7071066, y: 0, z: 0, w: -0.70710695}
   m_LocalPosition: {x: 0.033, y: 0, z: 0}
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 410050}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &2389212
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -81,7 +81,9 @@ MeshRenderer:
   m_Materials:
   - {fileID: 2100000, guid: f21dfbb7482444c2da9b32d2cf8f8f9b, type: 2}
   - {fileID: 2100000, guid: 89119dfb824b74bfc84d07748646e12a, type: 2}
-  m_SubsetIndices: 
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
@@ -89,12 +91,13 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_SelectedWireframeHidden: 0
+  m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &3377790
 MeshFilter:
@@ -113,7 +116,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.33, y: 0.33, z: 0.75}
+  m_Size: {x: 0.33, y: 0.25, z: 0.75}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &9500682
 Animator:
@@ -139,7 +142,7 @@ Light:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 188460}
   m_Enabled: 1
-  serializedVersion: 7
+  serializedVersion: 8
   m_Type: 0
   m_Color: {r: 0.99264705, g: 0.99123764, b: 0.9415549, a: 1}
   m_Intensity: 1
@@ -164,6 +167,8 @@ Light:
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!114 &11436136
@@ -177,9 +182,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 774110817de644f5e8dd26c1bdb887ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLogOn: 0
   displayName: Flashlight
   description: an antique flashlight
   prefabPath: 
+  isEnabled: 0
   icon: 2
   data:
     isCollected: 0
@@ -231,6 +238,7 @@ MonoBehaviour:
   interactDistance: 2
   target: {fileID: 0}
   isTargetPlayer: 1
+  isLogOn: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -80,7 +80,7 @@ namespace Polyworks {
 
 			_animation [c].wrapMode = WrapMode.Once;
 			_animation [c].speed = PLAY_SPEED;
-//			Debug.Log (" about to call _animation Play on " + c + ", _animation = " + _animation + ", clip = " + _animation[c]);
+			Debug.Log (" about to call _animation Play on _animation = " + _animation[c] + ", clip = " + c);
 			_animation.Play(c);
 			_isPlaying = true;
 

@@ -146,7 +146,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011319570948}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -639.84, y: 112.182, z: -19.84}
+  m_LocalPosition: {x: -639.84, y: 112.182, z: -19.901}
   m_LocalScale: {x: 0.25, y: 0.25000036, z: 0.25000036}
   m_Children:
   - {fileID: 4000012968866606}
@@ -199,6 +199,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!23 &23000012866501812
 MeshRenderer:
@@ -230,6 +231,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!23 &23000013097219132
 MeshRenderer:
@@ -261,6 +263,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!23 &23000013728321688
 MeshRenderer:
@@ -292,6 +295,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &33000010788887664
 MeshFilter:
@@ -331,7 +335,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.5, y: 1.5, z: 1.5}
+  m_Size: {x: 1.5, y: 1, z: 0.5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &95000011581790414
 Animator:
@@ -387,6 +391,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4e0e4ebed3e94a869a970734193bc66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLogOn: 0
   type: activate_puzzle
 --- !u!114 &114919445506623330
 MonoBehaviour:
@@ -399,6 +404,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 196cc4548139b4b2891c6b378d048c62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLogOn: 0
   displayName: Green Wires
   description: Two green wires
   prefabPath: items/house/floor02/puzzles/puzzle00_wires
