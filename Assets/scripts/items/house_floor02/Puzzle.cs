@@ -7,15 +7,18 @@ public class Puzzle : MonoBehaviour {
 	public const string UNLOCK_EVENT = "unlock_puzzle";
 	public const string ACTIVATE_EVENT = "activate_puzzle";
 	public const string SOLVED_EVENT = "puzzle_solved";
+	public const string COMPLETED_EVENT = "puzzle_completed"; 
 
-	public const string SOLVED_MESSAGE = "puzzle solved";
+	public const string SOLVED_MESSAGE = "The puzzle has been solved";
 
 	public string activateValue; 
 	public GameObject mainCollider; 
 
 	public PuzzleChild[] children;
 
-	public bool isSolved = false; 
+	protected bool isSolved = false; 
+	protected bool isCompleted = false; 
+
 	public bool isLogOn = false; 
 
 	public bool isNoteAddedOnSolved = true;
@@ -25,14 +28,23 @@ public class Puzzle : MonoBehaviour {
 
 
 	#region eventhandlers
-	public void OnStringEvent(string type, string value) {
-		_log ("Puzzle[" + this.name + "]/OnStringEvent, type = " + type + ", value = " + value);
-		if (type == Puzzle.ACTIVATE_EVENT) {
-			if (value == activateValue) {
+	public void OnStringEvent(string type, string value) 
+	{
+		Log ("Puzzle[" + this.name + "]/OnStringEvent, type = " + type + ", value = " + value);
+		if (type == Puzzle.ACTIVATE_EVENT) 
+		{
+			if (value == activateValue) 
+			{
 				Activate ();
-			} else if (_isActive) {
+			}
+			else if (_isActive) 
+			{
 				Deactivate ();
 			}
+		} else if(type == Puzzle.COMPLETED_EVENT)
+		{
+			Log(" it is the completed event, setting isCompleted to true");
+			isCompleted = true;
 		}
 	}
 
@@ -52,7 +64,7 @@ public class Puzzle : MonoBehaviour {
 	}
 
 	public virtual void Enable() {
-		_log ("Puzzle[" + this.name + "]/Enable");
+		Log ("Puzzle[" + this.name + "]/Enable");
 		EventCenter ec = EventCenter.Instance;
 		ec.OnStringEvent += this.OnStringEvent;
 	}
@@ -104,6 +116,12 @@ public class Puzzle : MonoBehaviour {
 			EventCenter.Instance.AddNote (message);
 		}
 	} 
+
+	public void Log(string message) {
+		if(isLogOn) {
+			Debug.Log(message);
+		}
+	}
 	#endregion
 
 	private void Awake() {
@@ -118,7 +136,7 @@ public class Puzzle : MonoBehaviour {
 	}
 
 	private void _toggleActive(bool isActivated) {
-//		_log ("Puzzle[" + this.name + "]/_toggleActive, isActivated = " + isActivated);
+//		Log ("Puzzle[" + this.name + "]/_toggleActive, isActivated = " + isActivated);
 		_isActive = isActivated;
 		mainCollider.SetActive (!_isActive);
 	}
@@ -128,17 +146,12 @@ public class Puzzle : MonoBehaviour {
 			if (children [i].isActivatedOnSolved) {
 				ToggleChildActive (children [i], true);
 			} else if (children [i].isDeactivatedOnSolved) {
-				_log (" toggling child active: " + children [i].gameObject.name);
+				Log (" toggling child active: " + children [i].gameObject.name);
 				ToggleChildActive (children [i], false);
 			}
 		}
 	}
 
-	private void _log(string message) {
-		if(isLogOn) {
-			Debug.Log(message);
-		}
-	}
 }
 
 [Serializable]

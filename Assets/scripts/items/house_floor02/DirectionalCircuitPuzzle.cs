@@ -16,11 +16,16 @@ public class DirectionalCircuitPuzzle : Puzzle
 
 	public string wiresPrefabPath = ""; 
 
+	public string solvedSwitchEventValue = ""; 
+	public string solvedSwitchEventType = "solvedSwitchThrown";
+
 	private List<PuzzleWire> _wireChildren;
 	List<List<int>> _ports;
 
+	private bool _isSwitchThrown = false; 
+
 	public void OnIntEvent(string type, int value) {
-//		Debug.Log ("DirectionalPuzzle/OnIntEvent, type = " + type + ", value = " + value);
+		Log ("DirectionalPuzzle/OnIntEvent, type = " + type + ", value = " + value);
 
 		switch (type) {
 		case "insert_wire":
@@ -41,7 +46,7 @@ public class DirectionalCircuitPuzzle : Puzzle
 
 	public override void Activate() {
 		base.Activate ();
-		if (!isSolved) {
+		if (!isCompleted) {
 			EventCenter.Instance.OnIntEvent += OnIntEvent;
 		}
 	}
@@ -49,7 +54,7 @@ public class DirectionalCircuitPuzzle : Puzzle
 	public override void Deactivate () {
 		base.Deactivate ();
 
-		if (!isSolved) {
+		if (!isCompleted) {
 			_removeAllWires ();
 
 			if (wiresPrefabPath != "") {
@@ -57,12 +62,12 @@ public class DirectionalCircuitPuzzle : Puzzle
 				inventory.AddFromPrefabPath (wiresPrefabPath);
 			}
 		}
-		EventCenter.Instance.OnIntEvent -= OnIntEvent;
+		_removeListeners();
 	}
 
 	public override void Solve () {
 		base.Solve ();
-		EventCenter.Instance.OnIntEvent -= OnIntEvent;
+		_removeListeners();
 	}
 
 	private void _initPorts() {
@@ -184,7 +189,7 @@ public class DirectionalCircuitPuzzle : Puzzle
 	private void _checkIsSolved() {
 		isSolved = true;
 		for (int i = 0; i < solution.Length; i++) {
-//			Debug.Log ("solution[" + i + "] = " + solution [i] + " is activated = " + _wireChildren [solution [i]].isActivated);
+//			Log ("solution[" + i + "] = " + solution [i] + " is activated = " + _wireChildren [solution [i]].isActivated);
 			if(!_wireChildren[solution[i]].isActivated) {
 				isSolved = false;
 			}
@@ -192,7 +197,7 @@ public class DirectionalCircuitPuzzle : Puzzle
 		if (isSolved) {
 			Solve ();
 		}
-		// Debug.Log ("DirectionalCircuitPuzzle[" + this.name + "]/_checkIsSolved, isSolved = " + isSolved);
+		// Log ("DirectionalCircuitPuzzle[" + this.name + "]/_checkIsSolved, isSolved = " + isSolved);
 	}
 
 	private int _getWireByIndex(int index, List<PuzzleWire> list) {
@@ -208,11 +213,15 @@ public class DirectionalCircuitPuzzle : Puzzle
 
 	}
 
-	private void OnDestroy() {
+	private void _removeListeners() {
 		EventCenter ec = EventCenter.Instance; 
 		if(ec != null) {
 			ec.OnIntEvent -= OnIntEvent;
 		}
+	}
+
+	private void OnDestroy() {
+		_removeListeners();
 	}
 }
 

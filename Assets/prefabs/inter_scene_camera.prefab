@@ -57,6 +57,7 @@ GameObject:
   - component: {fileID: 20000011990376738}
   - component: {fileID: 92000012421720126}
   - component: {fileID: 114000013247310750}
+  - component: {fileID: 114484860913921378}
   m_Layer: 0
   m_Name: inter_scene_camera
   m_TagString: Untagged
@@ -142,6 +143,8 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 0
+  m_AllowMSAA: 1
+  m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
@@ -257,6 +260,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isMain: 0
   isInterScene: 1
+--- !u!114 &114484860913921378
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010799917948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bd6ebdfa539d4794997b6455b47707b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetWidth: 16
+  targetHeight: 8
 --- !u!114 &114625369727910904
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -315,7 +331,7 @@ Canvas:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010084514102}
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_RenderMode: 2
   m_Camera: {fileID: 20000011990376738}
   m_PlaneDistance: 100
@@ -324,6 +340,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0

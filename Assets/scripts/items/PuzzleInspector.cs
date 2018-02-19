@@ -152,12 +152,12 @@ public class PuzzleInspector : MonoBehaviour, IInputControllable {
 		float moveY = vertical * _ySpeed;
 
 		// Debug.Log ("move x/y = " + moveX + " / " + moveY + ", deviation x/y = " + _xDeviation + " / " + _yDeviation + ", bounds max/min H = " + _activeBounds.minH + "/" + _activeBounds.maxH + ", V = " + _activeBounds.minV + "/" + _activeBounds.maxV);
-		if (moveX + _xDeviation > _activeBounds.maxH || moveX + _xDeviation < _activeBounds.minH) {
-			moveX = 0;
-		}
-		if (moveY + _yDeviation > _activeBounds.maxV || moveY + _yDeviation < _activeBounds.minV) {
-			moveY = 0; 
-		}
+		// if (moveX + _xDeviation > _activeBounds.maxH || moveX + _xDeviation < _activeBounds.minH) {
+		// 	moveX = 0;
+		// }
+		// if (moveY + _yDeviation > _activeBounds.maxV || moveY + _yDeviation < _activeBounds.minV) {
+		// 	moveY = 0; 
+		// }
 
 		_xDeviation += moveX; 
 		_yDeviation += moveY; 

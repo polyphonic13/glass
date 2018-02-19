@@ -123,6 +123,7 @@ GameObject:
   - component: {fileID: 20537355189427842}
   - component: {fileID: 124869387236963662}
   - component: {fileID: 92193949217847194}
+  - component: {fileID: 114288553517960530}
   m_Layer: 19
   m_Name: puzzle_camera
   m_TagString: Untagged
@@ -313,7 +314,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1563342473135120}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -638.9, y: 0, z: -17.13}
+  m_LocalPosition: {x: -638.9, y: 0, z: -17.130001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4027197581949850}
@@ -583,7 +584,7 @@ MonoBehaviour:
   startingRotation: {x: 0, y: 0, z: 0}
   locations:
   - name: puzzle00(Clone)
-    position: {x: -638.9, y: 113, z: -17.13}
+    position: {x: -638.93, y: 113, z: -17.13}
     rotation: {x: 0, y: 90, z: 0}
     bounds:
       minH: -0.24
@@ -679,6 +680,19 @@ MonoBehaviour:
   isActive: 0
   isLogOn: 0
   rayColor: {r: 0, g: 0.83448267, b: 1, a: 1}
+--- !u!114 &114288553517960530
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1429274171489072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bd6ebdfa539d4794997b6455b47707b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetWidth: 16
+  targetHeight: 8
 --- !u!114 &114496074698902342
 MonoBehaviour:
   m_ObjectHideFlags: 1

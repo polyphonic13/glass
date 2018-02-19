@@ -10,7 +10,6 @@
 		public float turningRate = 0; 
 
 		public bool isLooping = true; 
-		public bool isLogOn;
 
 		private int _rotationIndex = 0; 
 
