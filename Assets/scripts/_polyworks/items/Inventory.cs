@@ -103,7 +103,7 @@ namespace Polyworks {
 					_initDroppedItem (item);
 				}
 			} else {
-				_eventCenter.AddNote (data.displayName + " can not be used here");
+				_eventCenter.AddNote ("The " + data.displayName + " can not be used here");
 			}
 		}
 
