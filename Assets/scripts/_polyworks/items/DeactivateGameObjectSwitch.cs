@@ -10,10 +10,16 @@
 
 		public override void Actuate ()
 		{
-			Debug.Log ("DeactivateGameObjectSwitch[" + this.name + "]/Actuate, target = " + target);
+			Log ("DeactivateGameObjectSwitch[" + this.name + "]/Actuate, target = " + target);
 			base.Actuate ();
 			if (target != null) {
 				target.SetActive (false);
+			}
+		}
+
+		private void Awake() {
+			if(isTargetSelf) {
+				target = this.gameObject;
 			}
 		}
 	}

@@ -5,11 +5,13 @@ namespace Polyworks {
 	public class StringEventAgent : MonoBehaviour {
 		public string eventType = "";
 		public string eventValue = ""; 
+		
+		public bool isLogOn = false; 
 
 		private bool _isListenersAdded = false;
 
 		public void OnStringEvent(string type, string value) {
-			// Debug.Log ("StringEventAgent[" + this.name + "]/OnStringEvent, type = " + type + ", eventType = " + eventType + ", value = " + value + ", eventValue = " + eventValue);
+			Log ("StringEventAgent[" + this.name + "]/OnStringEvent, type = " + type + ", eventType = " + eventType + ", value = " + value + ", eventValue = " + eventValue);
 			if (type == eventType && value == eventValue) {
 				SendMessage ("Actuate", null, SendMessageOptions.DontRequireReceiver);
 			}
@@ -48,6 +50,12 @@ namespace Polyworks {
 				if (ec != null) {
 					ec.OnStringEvent -= OnStringEvent;
 				}
+			}
+		}
+
+		private void Log(string message) {
+			if(isLogOn) {
+				Debug.Log(message);
 			}
 		}
 	}
