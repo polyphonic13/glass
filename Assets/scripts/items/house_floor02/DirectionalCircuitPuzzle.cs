@@ -224,11 +224,3 @@ public class DirectionalCircuitPuzzle : Puzzle
 		_removeListeners();
 	}
 }
-
-[Serializable]
-public struct PuzzleWire {
-	public int index;
-	public GameObject gameObject;
-	public bool isActivated;
-	public List<int> siblings;
-}
