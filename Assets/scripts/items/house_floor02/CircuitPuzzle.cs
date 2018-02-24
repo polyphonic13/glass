@@ -1,104 +1,127 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Polyworks; 
 
 public class CircuitPuzzle : Puzzle 
 {
-	public GameObject[] objectsToRemoveOnDeactive;
-	
-	protected List<PuzzleWire> _wireChildren;
+	public int[] solution;
 
-	public virtual void OnIntEvent(string type, int value) {
-		Log ("DirectionalPuzzle/OnIntEvent, type = " + type + ", value = " + value);
+	public string[] removeOnDeactivateItemPaths;
 
-		switch (type) {
-		case "insert_wire":
-			ToggleWireInserted (value, true);
-			break;
+	public List<PuzzleWire> wireChildren { get; set; }
 
-		case "remove_wire":
-			ToggleWireInserted (value, false);
-			break;
+	public virtual void OnIntEvent(string type, int value) 
+	{
+		// Log ("CircuitPuzzle/OnIntEvent, type = " + type + ", value = " + value);
+
+		switch (type) 
+		{
+			case "insert_wire":
+				ToggleWireInserted (value, true, true);
+				break;
+
+			case "remove_wire":
+				ToggleWireInserted (value, false, true);
+				break;
 		}
 	}
 
-	public override Init() 
+	public override void Init() 
 	{
 		base.Init();
 	}
 
-	protected override void Activate() {
+	public override void Activate() 
+	{
 		base.Activate ();
 
-		if (!isCompleted) {
+		if (!isCompleted) 
+		{
 			EventCenter.Instance.OnIntEvent += OnIntEvent;
 		}
 	}
 
-	protected override void Deactivate () {
+	public override void Deactivate () 
+	{
 		base.Deactivate ();
 
-		if (!isCompleted) {
-			_removeAllWires ();
+		if (!isCompleted) 
+		{
+			RemoveAllWires ();
 
-			if (objectsToRemoveOnDeactive != "") {
-				Inventory inventory = Game.Instance.GetPlayerInventory ();
-				inventory.AddFromPrefabPath (objectsToRemoveOnDeactive);
+			if (removeOnDeactivateItemPaths.Length > 0) 
+			{
+				foreach(string path in removeOnDeactivateItemPaths) 
+				{
+					Inventory inventory = Game.Instance.GetPlayerInventory ();
+					inventory.AddFromPrefabPath (path);
+				}
 			}
 		}
-		_removeListeners();
+		RemoveListeners();
 	}
 
-	protected virtual void RemoveAllWires() 
+	public override void Solve() 
 	{
-		for (int i = 0; i < _wireChildren.Count; i++) 
+		base.Solve();
+		RemoveListeners();
+	}
+
+	public virtual void RemoveAllWires() 
+	{
+		for (int i = 0; i < wireChildren.Count; i++) 
 		{
 			ToggleWireInserted (i, false);
 		}
 	}
 
-	protected virtual void ToggleWireInserted(int index, bool isInserted) 
+	public virtual void ToggleWireInserted(int index, bool isInserted, bool isCheckIsSolved = false) 
 	{
-		if (index >= _wireChildren.Count) 
+		Log("CircuitPuzzle["+this.name+"]/ToggleWireInserted, index = " + index + ", isInserted = " + isInserted + ", count = " + wireChildren.Count);
+		if (index >= wireChildren.Count) 
 		{
 			return;
 		}
-		int childIndex = _getWireByIndex (index, _wireChildren);
+		int childIndex = GetWireByIndex (index, wireChildren);
 
 		if (childIndex == -1) 
 		{
 			return;
 		}
-		PuzzleWire wire = _wireChildren [childIndex];
+		PuzzleWire wire = wireChildren [childIndex];
 
 		if (isInserted) 
 		{
 			foreach (int s in wire.siblings) 
 			{
-				PuzzleWire sibling = _wireChildren[s];
+				PuzzleWire sibling = wireChildren[s];
 				sibling.isActivated = false;
 				sibling.gameObject.SetActive (false);
-				_wireChildren [s] = sibling;
+				wireChildren [s] = sibling;
 			}
 		}
 
 		wire.gameObject.SetActive (isInserted);
 		wire.isActivated = isInserted;
-		_wireChildren [childIndex] = wire;
+		wireChildren [childIndex] = wire;
 
-		CheckIsSolved ();
+		if(isCheckIsSolved) 
+		{
+			CheckIsSolved ();
+		}
 	}
 
-	protected virtual void CheckIsSolved() 
+	public virtual void CheckIsSolved() 
 	{
 		isSolved = true;
 		for (int i = 0; i < solution.Length; i++) 
 		{
 
-			Log ("solution[" + i + "] = " + solution [i] + " is activated = " + _wireChildren [solution [i]].isActivated);
+			Log ("solution[" + i + "] = " + solution [i] + " is activated = " + wireChildren [solution [i]].isActivated);
 
-			if(!_wireChildren[solution[i]].isActivated) 
+			if(!wireChildren[solution[i]].isActivated) 
 			{
 				isSolved = false;
 			}
@@ -110,21 +133,36 @@ public class CircuitPuzzle : Puzzle
 		Log ("CircuitPuzzle[" + this.name + "]/CheckIsSolved, isSolved = " + isSolved);
 	}
 
-	protected virtual void RemoveListeners() {
+	public virtual void RemoveListeners() 
+	{
 		EventCenter ec = EventCenter.Instance; 
-		if(ec != null) {
+		if(ec != null) 
+		{
 			ec.OnIntEvent -= OnIntEvent;
 		}
 	}
 
-	private void OnDestroy() {
-		RemoveListeners();
+	public int GetWireByIndex(int index, List<PuzzleWire> list) 
+	{
+		for (int i = 0; i < list.Count; i++) 
+		{
+			if (list [i].index == index) 
+			{
+				return i;
+			}
+		}
+		return -1;
 	}
 
+	private void OnDestroy() 
+	{
+		RemoveListeners();
+	}
 }
 
 [Serializable]
-public struct PuzzleWire {
+public struct PuzzleWire 
+{
 	public int index;
 	public GameObject gameObject;
 	public bool isActivated;
