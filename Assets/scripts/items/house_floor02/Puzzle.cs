@@ -70,6 +70,7 @@ public class Puzzle : MonoBehaviour {
 	}
 
 	public virtual void Disable() {
+		Log("Puzzle[" + this.name + "]/Disable");
 		EventCenter ec = EventCenter.Instance;
 		if (ec != null) {
 			ec.OnStringEvent -= this.OnStringEvent;

@@ -8,6 +8,8 @@ public class FuseCircuitPuzzle : CircuitPuzzle
 	public int numColumns; 
 	public int verticalPositions = 3;
 
+	public RotatingDialGroup dials; 
+
 	private List<List<int>> _wires;
 
 	public override void Init() 
@@ -18,6 +20,7 @@ public class FuseCircuitPuzzle : CircuitPuzzle
 
 	private void _initPuzzleWires() 
 	{
+		Log("FuseCircuitPuzzle["+this.name+"]/_initPuzzleWires, numColumns = " + numColumns + ", verticalPositions = " + verticalPositions); 
 		int i;
 		List<int> siblings;
 
@@ -27,7 +30,7 @@ public class FuseCircuitPuzzle : CircuitPuzzle
 		{
 			siblings = new List<int>();
 
-			int pos = verticalPositions % i;
+			int pos = i % verticalPositions	;
 
 			if(pos == 0) 
 			{
