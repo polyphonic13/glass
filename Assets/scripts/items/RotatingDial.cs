@@ -10,6 +10,7 @@ public class RotatingDial : ActuateAgent
 
 	public float rotationDegree;
 
+	private bool _isInitialized = false; 
 	private int _currentValue;
 	private AxisRotationAgent _axisRotationAgent; 
 
@@ -25,17 +26,21 @@ public class RotatingDial : ActuateAgent
 	public override void Actuate()
 	{
 		Log ("RotatingDial[" + this.name + "]/Actuate, _currentValue = " + _currentValue);
+		if (!_isInitialized) {
+			Init ();
+		}
 		_axisRotationAgent.SetRotation(_currentValue);
 	}
 
-	private void Awake()
+	public void Init()
 	{
+		if (_isInitialized) {
+			return;
+		}
 		_axisRotationAgent = gameObject.GetComponent<AxisRotationAgent>();	
 		_axisRotationAgent.axisIncrements = new Vector3(rotationDegree, 0, 0);
 		Log ("RotatingDial[" + this.name + "]/Awake, rotationDegree = " + rotationDegree);
-
-//		SetDialValue (7);
-//		Actuate ();
+		_isInitialized = true;
 	}
 
 }

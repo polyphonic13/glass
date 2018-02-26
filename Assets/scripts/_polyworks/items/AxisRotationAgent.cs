@@ -11,7 +11,7 @@
 
 		public float speed;
 
-		private Vector3 _nextRotations;
+		private Vector3 _targetRotations;
 
 		private bool _isAnimating = false; 
 
@@ -21,11 +21,11 @@
 			float y = -(axisIncrements.y * value);
 			float z = -(axisIncrements.z * value);
 
-			_nextRotations = new Vector3(x, y, z);
-			Debug.Log ("AxisRotationAgent/Rotate, value = " + value + ", _nextRotations = " + _nextRotations);
-//			transform.Rotate (_nextRotations);
-//			transform.Rotate(_nextRotations.x, _nextRotations.y, _nextRotations.z);
-			this.transform.eulerAngles = _nextRotations;
+			_targetRotations = new Vector3(x, y, z);
+			Debug.Log ("AxisRotationAgent/Rotate, value = " + value + ", _targetRotations = " + _targetRotations);
+			transform.Rotate (_targetRotations, Space.Self);
+//			transform.Rotate(_targetRotations.x, _targetRotations.y, _targetRotations.z);
+//			this.transform.eulerAngles = _targetRotations;
 //			_isAnimating = true;
 		}
 
@@ -33,14 +33,14 @@
 //		{
 //			if (_isAnimating) 
 //			{
-//				if (Mathf.Abs(transform.eulerAngles.x) == Mathf.Abs(_nextRotations.x) && Mathf.Abs(transform.eulerAngles.y) == Mathf.Abs(_nextRotations.y) && Mathf.Abs(transform.eulerAngles.z) == Mathf.Abs(_nextRotations.z)) 
+//				if (Mathf.Abs(transform.eulerAngles.x) == Mathf.Abs(_targetRotations.x) && Mathf.Abs(transform.eulerAngles.y) == Mathf.Abs(_targetRotations.y) && Mathf.Abs(transform.eulerAngles.z) == Mathf.Abs(_targetRotations.z)) 
 //				{
 //					Debug.Log (" reached the desired rotation");
 //					_isAnimating = false;
 //					return;
 //				}
 //
-//				transform.Rotate (_nextRotations * Time.deltaTime * speed);
+//				transform.Rotate (_targetRotations * Time.deltaTime * speed);
 //			}
 //		}
 	}

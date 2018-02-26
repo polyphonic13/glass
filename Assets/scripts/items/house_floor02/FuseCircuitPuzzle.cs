@@ -8,6 +8,8 @@ public class FuseCircuitPuzzle : CircuitPuzzle
 	public int numColumns; 
 	public int verticalPositions = 3;
 
+	public int[] initialDialPositions;
+
 	public RotatingDialGroup dials; 
 
 	private List<List<int>> _wires;
@@ -16,6 +18,7 @@ public class FuseCircuitPuzzle : CircuitPuzzle
 	{
 		base.Init();
 		_initPuzzleWires();
+		dials.SetValue(initialDialPositions);
 	}
 
 	private void _initPuzzleWires() 
