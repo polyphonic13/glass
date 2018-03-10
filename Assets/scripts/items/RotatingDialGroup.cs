@@ -10,7 +10,7 @@ public class RotatingDialGroup : MonoBehaviour {
 
 	public void SetValue(int[] values)
 	{
-		Debug.Log("RotatingDialGroup/SetValue, values = " + values);
+		// Debug.Log("RotatingDialGroup/SetValue, values = " + values);
 		if (values.Length > dials.Length) {
 			return;
 		}

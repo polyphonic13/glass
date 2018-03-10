@@ -11,6 +11,7 @@ public class CircuitPuzzle : Puzzle
 	public string[] removeOnDeactivateItemPaths;
 
 	public List<PuzzleWire> wireChildren { get; set; }
+	public string wiresPath = "";
 
 	public virtual void OnIntEvent(string type, int value) 
 	{
@@ -31,6 +32,32 @@ public class CircuitPuzzle : Puzzle
 	public override void Init() 
 	{
 		base.Init();
+	}
+
+	public virtual void InitWires() 
+	{
+		wireChildren = new List<PuzzleWire> ();
+
+		if (wiresPath != "") {
+			Transform wireHolder = transform.Find (wiresPath);
+			int count = 0; 
+
+			foreach(Transform t in wireHolder) {
+				PuzzleWire puzzleWire = new PuzzleWire ();
+				puzzleWire.gameObject = t.gameObject;
+				puzzleWire.isActivated = false;
+				puzzleWire.gameObject.SetActive (false);
+				puzzleWire.siblings = GetWireSiblings(count);
+				wireChildren.Add (puzzleWire);
+
+				count++;
+			}
+		}
+	}
+
+	public virtual List<int> GetWireSiblings(int index) 
+	{
+		return new List<int>();
 	}
 
 	public override void Activate() 
@@ -80,32 +107,23 @@ public class CircuitPuzzle : Puzzle
 	public virtual void ToggleWireInserted(int index, bool isInserted, bool isCheckIsSolved = false) 
 	{
 		Log("CircuitPuzzle["+this.name+"]/ToggleWireInserted, index = " + index + ", isInserted = " + isInserted + ", count = " + wireChildren.Count);
-		if (index >= wireChildren.Count) 
-		{
-			return;
-		}
-		int childIndex = GetWireByIndex (index, wireChildren);
-
-		if (childIndex == -1) 
-		{
-			return;
-		}
-		PuzzleWire wire = wireChildren [childIndex];
+		PuzzleWire wire = wireChildren[index];
 
 		if (isInserted) 
 		{
-			foreach (int s in wire.siblings) 
+			foreach (int idx in wire.siblings) 
 			{
-				PuzzleWire sibling = wireChildren[s];
+				PuzzleWire sibling = wireChildren[idx];
 				sibling.isActivated = false;
 				sibling.gameObject.SetActive (false);
-				wireChildren [s] = sibling;
+				wireChildren [idx] = sibling;
 			}
 		}
 
 		wire.gameObject.SetActive (isInserted);
 		wire.isActivated = isInserted;
-		wireChildren [childIndex] = wire;
+
+		wireChildren[index] = wire; 
 
 		if(isCheckIsSolved) 
 		{
@@ -142,18 +160,6 @@ public class CircuitPuzzle : Puzzle
 		}
 	}
 
-	public int GetWireByIndex(int index, List<PuzzleWire> list) 
-	{
-		for (int i = 0; i < list.Count; i++) 
-		{
-			if (list [i].index == index) 
-			{
-				return i;
-			}
-		}
-		return -1;
-	}
-
 	private void OnDestroy() 
 	{
 		RemoveListeners();
@@ -163,7 +169,6 @@ public class CircuitPuzzle : Puzzle
 [Serializable]
 public struct PuzzleWire 
 {
-	public int index;
 	public GameObject gameObject;
 	public bool isActivated;
 	public List<int> siblings;

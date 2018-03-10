@@ -18,7 +18,7 @@
 
 		public void Toggle() {
 			for (int i = 0; i < _togglers.Length; i++) {
-//				Log  (" _togglers[" + i + "] = " + _togglers [i]);
+				Log  (" _togglers[" + i + "] = " + _togglers [i]);
 				if (_togglers [i] != null) {
 					_togglers [i].Toggle ();
 				}

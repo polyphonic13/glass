@@ -12,54 +12,49 @@ public class FuseCircuitPuzzle : CircuitPuzzle
 
 	public RotatingDialGroup dials; 
 
-	private List<List<int>> _wires;
-
+	private int currentValue;
 	public override void Init() 
 	{
 		base.Init();
-		_initPuzzleWires();
+		base.InitWires();
 		dials.SetValue(initialDialPositions);
 	}
 
-	private void _initPuzzleWires() 
+	public override List<int> GetWireSiblings(int index)
 	{
-		Log("FuseCircuitPuzzle["+this.name+"]/_initPuzzleWires, numColumns = " + numColumns + ", verticalPositions = " + verticalPositions); 
-		int i;
-		List<int> siblings;
+		Log("FuseCircuitPuzzle["+this.name+"]/GetWireSiblings, index = " + index);
+		List<int> siblings = new List<int>(); 
 
-		_wires = new List<List<int>>();
+		int pos = index % verticalPositions;
 
-		for(i = 0; i < numColumns; i++)
+		if(pos == 0) 
 		{
-			siblings = new List<int>();
-
-			int pos = i % verticalPositions	;
-
-			if(pos == 0) 
+			if(index > 1) 
 			{
-				if(i > 1) 
-				{
-					siblings.Add(i - 1);
-					siblings.Add(i - 2);
-				}
-				if(i < numColumns - 2)
-				{
-					siblings.Add(i + 1);
-					siblings.Add(i + 2);
-				}
+				Log(" pos 0, adding " + (index - 1) + ", " + (index - 2));
+				siblings.Add(index - 1);
+				siblings.Add(index - 2);
 			}
-			else if(pos == 1)
+			if(index < numColumns - 2)
 			{
-				siblings.Add(i - 1);
-				siblings.Add(i + 2);
+				Log(" pos 0, adding " + (index + 1) + ", " + (index + 2));
+				siblings.Add(index + 1);
+				siblings.Add(index + 2);
 			}
-			else if(pos == 2)
-			{
-				siblings.Add(i + 1);
-				siblings.Add(i - 2);
-			}
-			Log("sibling["+i+"] = " + siblings);
-			_wires.Add(siblings);
 		}
+		else if(pos == 1)
+		{
+			Log(" pos 1, adding " + (index - 1) + ", " + (index + 2));
+			siblings.Add(index - 1);
+			siblings.Add(index + 2);
+		}
+		else if(pos == 2)
+		{
+			Log(" pos 1, adding " + (index + 1) + ", " + (index - 2));
+			siblings.Add(index + 1);
+			siblings.Add(index - 2);
+		}
+
+		return siblings;
 	}
 }

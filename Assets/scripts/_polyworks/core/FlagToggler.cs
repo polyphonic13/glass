@@ -6,7 +6,7 @@
 		public string key;
 
 		public override void Toggle() {
-			Debug.Log ("FlagToggler[" + this.name + "]/Toggle, key = " + key);
+			Log ("FlagToggler[" + this.name + "]/Toggle, key = " + key);
 			base.Toggle ();
 			Game.Instance.SetFlag (key, isOn);
 		}

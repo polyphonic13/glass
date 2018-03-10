@@ -22,7 +22,7 @@
 			float z = -(axisIncrements.z * value);
 
 			_targetRotations = new Vector3(x, y, z);
-			Debug.Log ("AxisRotationAgent/Rotate, value = " + value + ", _targetRotations = " + _targetRotations);
+			// Debug.Log ("AxisRotationAgent/Rotate, value = " + value + ", _targetRotations = " + _targetRotations);
 			transform.Rotate (_targetRotations, Space.Self);
 //			transform.Rotate(_targetRotations.x, _targetRotations.y, _targetRotations.z);
 //			this.transform.eulerAngles = _targetRotations;

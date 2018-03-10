@@ -10,8 +10,6 @@ public class DirectionalCircuitPuzzle : CircuitPuzzle
 	public int rows;
 	public int vRows;
 
-	public string wiresPath = "";
-
 	public string solvedSwitchEventValue = ""; 
 	public string solvedSwitchEventType = "solvedSwitchThrown";
 
@@ -22,7 +20,7 @@ public class DirectionalCircuitPuzzle : CircuitPuzzle
 	public override void Init() {
 		base.Init ();
 		_initPorts ();
-		_initPuzzleWires ();
+		InitPuzzleWires ();
 		Log("DirectionCircuitPuzzle["+this.name+"]/Init, wireChildren.Count = " + wireChildren.Count);
 	}
 
@@ -79,7 +77,7 @@ public class DirectionalCircuitPuzzle : CircuitPuzzle
 		base.Activate();
 	}
 
-	private void _initPuzzleWires() {
+	private void InitPuzzleWires() {
 		wireChildren = new List<PuzzleWire> ();
 
 		if (wiresPath != "") {
@@ -89,10 +87,9 @@ public class DirectionalCircuitPuzzle : CircuitPuzzle
 			foreach(Transform t in wireHolder) {
 				PuzzleWire puzzleWire = new PuzzleWire ();
 				puzzleWire.gameObject = t.gameObject;
-				puzzleWire.index = count;
 				puzzleWire.isActivated = false;
 				puzzleWire.gameObject.SetActive (false);
-				puzzleWire.siblings = _getSiblingsFromPorts(count);
+				puzzleWire.siblings = GetWireSiblings(count);
 				wireChildren.Add (puzzleWire);
 
 				count++;
@@ -100,7 +97,7 @@ public class DirectionalCircuitPuzzle : CircuitPuzzle
 		}
 	}
 
-	private List<int> _getSiblingsFromPorts(int index) {
+	public override List<int> GetWireSiblings(int index) {
 		List<int> siblings = new List<int>();
 		foreach(List<int> port in _ports) {
 			if (port.Contains (index)) {
