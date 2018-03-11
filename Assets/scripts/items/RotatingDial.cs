@@ -20,6 +20,7 @@ public class RotatingDial : ActuateAgent
 		{
 			return;
 		}
+		Log("RotationgDial["+this.name+"]/SetValue, value = " + value);
 		_currentValue = value;
 	}
 
@@ -34,13 +35,13 @@ public class RotatingDial : ActuateAgent
 
 	public void Init()
 	{
-		if (_isInitialized) {
+		if (_isInitialized) 
+		{
 			return;
 		}
 		_axisRotationAgent = gameObject.GetComponent<AxisRotationAgent>();	
 		_axisRotationAgent.axisIncrements = new Vector3(rotationDegree, 0, 0);
-		Log ("RotatingDial[" + this.name + "]/Awake, rotationDegree = " + rotationDegree);
+		// Log ("RotatingDial[" + this.name + "]/Awake, rotationDegree = " + rotationDegree);
 		_isInitialized = true;
 	}
-
 }

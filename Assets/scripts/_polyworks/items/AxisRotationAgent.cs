@@ -11,24 +11,48 @@
 
 		public float speed;
 
+		public bool isLogOn = false;
+
 		private Vector3 _targetRotations;
+		private float _currentValue = 0;
 
 		private bool _isAnimating = false; 
 
 		public void SetRotation(float value)
 		{
-			float x = -(axisIncrements.x * value);
-			float y = -(axisIncrements.y * value);
-			float z = -(axisIncrements.z * value);
+			Log("AxisRotationAgent["+this.name+"]/SetRotation, value = " + value);
+			// reset from current value
+			float x = (_currentValue * axisIncrements.x);
+			float y = (_currentValue * axisIncrements.y);
+			float z = (_currentValue * axisIncrements.z);
 
 			_targetRotations = new Vector3(x, y, z);
-			// Debug.Log ("AxisRotationAgent/Rotate, value = " + value + ", _targetRotations = " + _targetRotations);
+			Log(" reset = " + _targetRotations);
+
+			transform.Rotate(_targetRotations, Space.Self);
+
+			// adjust to new value
+			x = -(value * axisIncrements.x);
+			y = -(value * axisIncrements.y);
+			z = -(value * axisIncrements.z);
+
+			_targetRotations = new Vector3(x, y, z);
+			Log(" new = " + _targetRotations);
+
 			transform.Rotate (_targetRotations, Space.Self);
 //			transform.Rotate(_targetRotations.x, _targetRotations.y, _targetRotations.z);
 //			this.transform.eulerAngles = _targetRotations;
 //			_isAnimating = true;
+			_currentValue = value;
 		}
 
+		public void Log(string message)
+		{
+			if(isLogOn)
+			{
+				Debug.Log(message);
+			}
+		}
 //		private void FixedUpdate()
 //		{
 //			if (_isAnimating) 

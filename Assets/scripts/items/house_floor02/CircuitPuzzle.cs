@@ -17,18 +17,18 @@ public class CircuitPuzzle : Puzzle
 	{
 		Log ("CircuitPuzzle/OnIntEvent, type = " + type + ", value = " + value);
 
-		// switch (type) 
-		// {
-		// 	case "insert_wire":
-		// 		ToggleWireInserted (value, true);
-		// 		break;
+		switch (type) 
+		{
+			case "insert_wire":
+				ToggleWireInserted (value, true);
+				break;
 
-		// 	case "remove_wire":
-		// 		ToggleWireInserted (value, false);
-		// 		break;
-		// }
+			case "remove_wire":
+				ToggleWireInserted (value, false);
+				break;
+		}
 
-		// CheckIsSolved();
+		CheckIsSolved();
 	}
 
 	public override void Init() 

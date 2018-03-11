@@ -152,7 +152,6 @@ public class Puzzle : MonoBehaviour {
 				ToggleChildActive(child, isActivated);
 			}
 		}
-
 	}
 
 	private void _toggleChildrenOnSolved() {

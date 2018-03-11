@@ -58,11 +58,11 @@ public class FuseCircuitPuzzle : CircuitPuzzle
 		return siblings;
 	}
 
-	// public override void ToggleWireInserted(int index, bool isInserted)
-	// {
-	// 	base.ToggleWireInserted(index, isInserted);
-	// 	// UpdateCurrentValue();
-	// }
+	public override void ToggleWireInserted(int index, bool isInserted)
+	{
+		base.ToggleWireInserted(index, isInserted);
+		UpdateCurrentValue();
+	}
 
 	public void UpdateCurrentValue()
 	{
@@ -73,6 +73,7 @@ public class FuseCircuitPuzzle : CircuitPuzzle
 			if(wireChildren[i].isActivated)
 			{
 				currentValue += wireValues[i];
+				Log("added wireValues["+i+"] value " + wireValues[i] + ", currentValue now = " + currentValue);
 			}
 		}
 
