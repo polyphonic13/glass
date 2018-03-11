@@ -15,18 +15,20 @@ public class CircuitPuzzle : Puzzle
 
 	public virtual void OnIntEvent(string type, int value) 
 	{
-		// Log ("CircuitPuzzle/OnIntEvent, type = " + type + ", value = " + value);
+		Log ("CircuitPuzzle/OnIntEvent, type = " + type + ", value = " + value);
 
-		switch (type) 
-		{
-			case "insert_wire":
-				ToggleWireInserted (value, true, true);
-				break;
+		// switch (type) 
+		// {
+		// 	case "insert_wire":
+		// 		ToggleWireInserted (value, true);
+		// 		break;
 
-			case "remove_wire":
-				ToggleWireInserted (value, false, true);
-				break;
-		}
+		// 	case "remove_wire":
+		// 		ToggleWireInserted (value, false);
+		// 		break;
+		// }
+
+		// CheckIsSolved();
 	}
 
 	public override void Init() 
@@ -104,7 +106,7 @@ public class CircuitPuzzle : Puzzle
 		}
 	}
 
-	public virtual void ToggleWireInserted(int index, bool isInserted, bool isCheckIsSolved = false) 
+	public virtual void ToggleWireInserted(int index, bool isInserted) 
 	{
 		Log("CircuitPuzzle["+this.name+"]/ToggleWireInserted, index = " + index + ", isInserted = " + isInserted + ", count = " + wireChildren.Count);
 		PuzzleWire wire = wireChildren[index];
@@ -124,11 +126,6 @@ public class CircuitPuzzle : Puzzle
 		wire.isActivated = isInserted;
 
 		wireChildren[index] = wire; 
-
-		if(isCheckIsSolved) 
-		{
-			CheckIsSolved ();
-		}
 	}
 
 	public virtual void CheckIsSolved() 

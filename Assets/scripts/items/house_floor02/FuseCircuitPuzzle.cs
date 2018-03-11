@@ -8,8 +8,8 @@ public class FuseCircuitPuzzle : CircuitPuzzle
 	public int numColumns; 
 	public int verticalPositions = 3;
 
-	public int[] initialDialPositions;
-
+	public float[] wireValues;
+	public float initialDialValue;
 	public RotatingDialGroup dials; 
 
 	private int currentValue;
@@ -17,7 +17,7 @@ public class FuseCircuitPuzzle : CircuitPuzzle
 	{
 		base.Init();
 		base.InitWires();
-		dials.SetValue(initialDialPositions);
+		dials.SetValues(initialDialValue);
 	}
 
 	public override List<int> GetWireSiblings(int index)
@@ -56,5 +56,26 @@ public class FuseCircuitPuzzle : CircuitPuzzle
 		}
 
 		return siblings;
+	}
+
+	// public override void ToggleWireInserted(int index, bool isInserted)
+	// {
+	// 	base.ToggleWireInserted(index, isInserted);
+	// 	// UpdateCurrentValue();
+	// }
+
+	public void UpdateCurrentValue()
+	{
+		float currentValue = 0;
+
+		for(int i = 0; i < wireChildren.Count; i++)
+		{
+			if(wireChildren[i].isActivated)
+			{
+				currentValue += wireValues[i];
+			}
+		}
+
+		dials.SetValues(currentValue);
 	}
 }

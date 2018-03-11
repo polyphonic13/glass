@@ -30,11 +30,12 @@ public class Puzzle : MonoBehaviour {
 	#region eventhandlers
 	public void OnStringEvent(string type, string value) 
 	{
-		Log ("Puzzle[" + this.name + "]/OnStringEvent, type = " + type + ", value = " + value);
+		Log ("Puzzle[" + this.name + "]/OnStringEvent, type = " + type + ", value = " + value + ", activateValue = " + activateValue);
 		if (type == Puzzle.ACTIVATE_EVENT) 
 		{
 			if (value == activateValue) 
 			{
+				Log(" type and value match");
 				Activate ();
 			}
 			else if (_isActive) 
@@ -91,6 +92,7 @@ public class Puzzle : MonoBehaviour {
 	}
 
 	public virtual void ToggleChildActive(PuzzleChild child, bool isActivated) {
+		// Log("Puzzle["+this.name+"]/ToggleChildActve, child = " + child.gameObject.name + ", isActivated = " + isActivated);
 		child.isActive = isActivated;
 		child.gameObject.SetActive (isActivated);
 
@@ -103,6 +105,7 @@ public class Puzzle : MonoBehaviour {
 		Debug.Log ("Puzzle[" + this.name + "]/Activate");
 		_toggleActive (true);
 		EventCenter.Instance.ChangeContext (InputContext.PUZZLE, this.name);
+
 	}
 
 	public virtual void Deactivate() {
@@ -137,9 +140,19 @@ public class Puzzle : MonoBehaviour {
 	}
 
 	private void _toggleActive(bool isActivated) {
-//		Log ("Puzzle[" + this.name + "]/_toggleActive, isActivated = " + isActivated);
+		Log ("Puzzle[" + this.name + "]/_toggleActive, isActivated = " + isActivated);
 		_isActive = isActivated;
 		mainCollider.SetActive (!_isActive);
+
+		foreach(PuzzleChild child in children)
+		{
+			Log(" child[" + child.gameObject.name + "].isActivatedOnActivate = " + child.isActivatedOnActivate);
+			if(child.isActivatedOnActivate)
+			{
+				ToggleChildActive(child, isActivated);
+			}
+		}
+
 	}
 
 	private void _toggleChildrenOnSolved() {
@@ -163,4 +176,5 @@ public struct PuzzleChild {
 	public bool isDeactivatedOnInit;
 	public bool isActivatedOnSolved;
 	public bool isDeactivatedOnSolved;
+	public bool isActivatedOnActivate;
 }
