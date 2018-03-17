@@ -13,7 +13,7 @@ namespace Polyworks {
 		private bool _isPlayerInventory; 
 
 		public void Init(Hashtable items = null, bool isPlayerInventory = false) {
-			_log ("Inventory/Init, items.Count = " + items.Count);
+			Log ("Inventory/Init, items.Count = " + items.Count);
 			_isPlayerInventory = isPlayerInventory;
 
 			if (items != null && items.Count > 0) {
@@ -24,30 +24,31 @@ namespace Polyworks {
 		}
 
 		public virtual void AddFromPrefabPath(string path) {
-			Debug.Log ("Inventory/AddFromPrefabPath, path = " + path);
+			Log ("Inventory/AddFromPrefabPath, path = " + path);
 			GameObject itemObj = (GameObject) Instantiate (Resources.Load (path, typeof(GameObject)), transform.position, transform.rotation);
-			Debug.Log (" object = " + itemObj);
+			Log (" object = " + itemObj);
 			if (itemObj != null) {
 				CollectableItem item = itemObj.GetComponent<CollectableItem> ();
-				Debug.Log (" item = " + item);
+				Log (" item = " + item);
 				if (item != null) {
-					item.data.isCollected = true;
-					Add (item.Clone ());
-					Destroy (itemObj);
+					item.Actuate();
+					// item.data.isCollected = true;
+					// Add (item.Clone ());
+					// Destroy (itemObj);
 				}
 			}
 
 		}
 
 		public virtual void Add(CollectableItemData data, bool increment = true, bool isNoteAdded = true) {
-			_log ("Inventory/Add, item =  " + data.name);
+			Log ("Inventory/Add, item =  " + data.name);
 			if (!Contains (data.name)) {
 				_items.Add (data.name, data);
 			}
 //			CollectableItemData itemData = Get (data.name) as CollectableItemData;
 			if (increment) {
 				data.count++;
-				_log (" incremented count to: " + data.count);
+				Log (" incremented count to: " + data.count);
 			}
 			if (_isPlayerInventory) {
 				_eventCenter.InventoryAdded (data.name, data.count, _isPlayerInventory);
@@ -80,12 +81,12 @@ namespace Polyworks {
 		public virtual void Use(string name) {
 			_eventCenter.CloseInventoryUI ();
 			CollectableItemData data = Get (name);	
-			_log ("Inventory/Use, data = " + data);
+			Log ("Inventory/Use, data = " + data);
 			if(data == null) {
 				return; 
 			}
 			data.isUsable = ItemUtils.GetIsUsable (data, isLogOn);
-			_log ("is usable = " + data.isUsable);
+			Log ("is usable = " + data.isUsable);
 			if (data.isUsable) {
 				CollectableItem item = _instantiate(data); 
 
@@ -93,11 +94,11 @@ namespace Polyworks {
 					Remove (name);
 				}
 
-				_log ("the item is = " + item);
+				Log ("the item is = " + item);
 				item.Use ();
 
 				if (item.data.isDestroyedOnUse || item.data.isPersistent) {
-					Debug.Log (" destroying item game object");
+					Log(" destroying item game object");
 					Destroy (item.gameObject);
 				} else {
 					_initDroppedItem (item);
@@ -108,7 +109,7 @@ namespace Polyworks {
 		}
 
 		public virtual void Drop(string name) {
-			_log("Inventory/Drop, name = " + name);
+			Log("Inventory/Drop, name = " + name);
 			CollectableItemData data = Remove(name);
 			CollectableItem item = _instantiate(data); 
 			
@@ -124,53 +125,62 @@ namespace Polyworks {
 			return(_items.Contains(key)) ? true : false;
 		}
 
-		public virtual CollectableItemData Get(string name) {
-			if (Contains (name)) {
+		public virtual CollectableItemData Get(string name) 
+		{
+			if (Contains (name)) 
+			{
 				return _items [name] as CollectableItemData;
 			} 
 			return null;
 		}
 
-		public Hashtable GetAll() {
+		public Hashtable GetAll() 
+		{
 			return _items;
 		}
 
-		public CollectableItem GetItem(string name) {
-			
+		public CollectableItem GetItem(string name) 
+		{
 			return _instantiate (Get(name));
 		}
 
-		public void LogAll() {
-			foreach (string key in _items.Keys) {
-				_log ("key = " + key);
+		public void LogAll() 
+		{
+			foreach (string key in _items.Keys) 
+			{
+				Log ("key = " + key);
 			}
 		}
 
-		private void Awake() {
-			_eventCenter = EventCenter.Instance;
-		}
-
-		private void _log(string message) {
-			if (isLogOn) {
+		public void Log(string message) 
+		{
+			if (isLogOn) 
+			{
 				Debug.Log (message);
 			}
 		}
 
-		private void OnDestroy() {
-			_log ("Inventory/OnDestroy");
+		private void Awake() 
+		{
+			_eventCenter = EventCenter.Instance;
 		}
-		
-		private CollectableItem _instantiate(CollectableItemData data) {
-			if (data == null) {
+
+		private CollectableItem _instantiate(CollectableItemData data) 
+		{
+			if (data == null) 
+			{
 				return null;
 			}
-			_log ("prefabPath = " + data.prefabPath);
+			Log ("Inventory/_instantiate, prefabPath = " + data.prefabPath);
 			GameObject itemObj;
 
-			if (data.prefabPath == "") {
+			if (data.prefabPath == "") 
+			{
 				itemObj = new GameObject ();
 				itemObj.AddComponent<CollectableItem>();
-			} else {
+			} 
+			else 
+			{
 				itemObj = (GameObject) Instantiate (Resources.Load (data.prefabPath, typeof(GameObject)), transform.position, transform.rotation);
 			}
 			CollectableItem item = itemObj.GetComponent<CollectableItem> ();
@@ -180,16 +190,25 @@ namespace Polyworks {
 			return item;
 		}
 		
-		private void _initDroppedItem(CollectableItem item) {
+		private void _initDroppedItem(CollectableItem item) 
+		{
 			ProximityAgent pc = item.gameObject.GetComponent<ProximityAgent>();
-			if(pc != null) {
+			if(pc != null) 
+			{
 				pc.Init();
 			}
 
 			SectionAgent sa = item.gameObject.GetComponent<SectionAgent> ();
-			if (sa != null) {
+			if (sa != null) 
+			{
 				sa.ToggleEnabled (true);
 			}
 		}
+
+		private void OnDestroy() 
+		{
+			// Log ("Inventory/OnDestroy");
+		}
+		
 	}
 }

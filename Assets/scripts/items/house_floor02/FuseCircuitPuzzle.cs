@@ -64,6 +64,12 @@ public class FuseCircuitPuzzle : CircuitPuzzle
 		UpdateCurrentValue();
 	}
 
+	public override void Solve()
+	{
+		isCompleted = true; 
+		base.Solve();
+	}
+	
 	public void UpdateCurrentValue()
 	{
 		float currentValue = 0;

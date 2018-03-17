@@ -75,7 +75,7 @@ public class CircuitPuzzle : Puzzle
 	public override void Deactivate () 
 	{
 		base.Deactivate ();
-
+		Log("CircuitPuzzle["+this.name+"]/Deactivate, isCompleted = " + isCompleted);
 		if (!isCompleted) 
 		{
 			RemoveAllWires ();

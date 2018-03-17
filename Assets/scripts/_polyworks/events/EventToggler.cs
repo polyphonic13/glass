@@ -17,7 +17,7 @@
 			} else {
 				evt = offEvent;
 			}
-			Debug.Log ("EventToggler[" + this.name + "]/Toggle, evt = " + evt.type);
+			Log ("EventToggler[" + this.name + "]/Toggle, evt = " + evt.type);
 
 			evt.Actuate ();
 		}

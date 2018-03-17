@@ -58,6 +58,7 @@ public class Puzzle : MonoBehaviour {
 
 	#region public methods
 	public virtual void Init() {
+		Log("Puzzle["+this.name+"]/Init");
 		InitChildren();
 
 		_toggleActive (false);
@@ -102,7 +103,7 @@ public class Puzzle : MonoBehaviour {
 	}
 
 	public virtual void Activate() {
-		Debug.Log ("Puzzle[" + this.name + "]/Activate");
+		// Debug.Log ("Puzzle[" + this.name + "]/Activate");
 		_toggleActive (true);
 		EventCenter.Instance.ChangeContext (InputContext.PUZZLE, this.name);
 
@@ -113,6 +114,7 @@ public class Puzzle : MonoBehaviour {
 	}
 
 	public virtual void Solve() {
+		Log("Puzzle["+this.name+"]/Solve");
 		_toggleChildrenOnSolved ();
 		EventCenter.Instance.InvokeStringEvent (Puzzle.SOLVED_EVENT, this.name);
 		if (isNoteAddedOnSolved) {
@@ -140,17 +142,35 @@ public class Puzzle : MonoBehaviour {
 	}
 
 	private void _toggleActive(bool isActivated) {
-		Log ("Puzzle[" + this.name + "]/_toggleActive, isActivated = " + isActivated);
+		// Log ("Puzzle[" + this.name + "]/_toggleActive, isActivated = " + isActivated);
 		_isActive = isActivated;
 		mainCollider.SetActive (!_isActive);
 
 		foreach(PuzzleChild child in children)
 		{
-			Log(" child[" + child.gameObject.name + "].isActivatedOnActivate = " + child.isActivatedOnActivate);
-			if(child.isActivatedOnActivate)
+			// Log(" child[" + child.gameObject.name + "].isActivatedOnActivate = " + child.isActivatedOnActivate);
+			if(isActivated)
 			{
-				ToggleChildActive(child, isActivated);
+				if(child.isActivatedOnActivate) 
+				{
+					ToggleChildActive(child, true);
+				}
+				else if(child.isDeactivatedOnActivate)
+				{
+					ToggleChildActive(child, false);
+				}
 			}
+			// else
+			// {
+			// 	if(child.isActivatedOnActivate) 
+			// 	{
+			// 		ToggleChildActive(child, false);
+			// 	}
+			// 	else if(child.isDeactivatedOnActivate)
+			// 	{
+			// 		ToggleChildActive(child, true);
+			// 	}
+			// }
 		}
 	}
 
@@ -176,4 +196,6 @@ public struct PuzzleChild {
 	public bool isActivatedOnSolved;
 	public bool isDeactivatedOnSolved;
 	public bool isActivatedOnActivate;
+
+	public bool isDeactivatedOnActivate;
 }
