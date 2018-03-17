@@ -148,11 +148,11 @@ public class Puzzle : MonoBehaviour {
 
 		foreach(PuzzleChild child in children)
 		{
-			// Log(" child[" + child.gameObject.name + "].isActivatedOnActivate = " + child.isActivatedOnActivate);
 			if(isActivated)
 			{
 				if(child.isActivatedOnActivate) 
 				{
+					Log(" child[" + child.gameObject.name + "].isActivatedOnActivate = " + child.isActivatedOnActivate);
 					ToggleChildActive(child, true);
 				}
 				else if(child.isDeactivatedOnActivate)
