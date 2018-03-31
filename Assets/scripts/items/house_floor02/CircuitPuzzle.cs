@@ -113,8 +113,10 @@ public class CircuitPuzzle : Puzzle
 
 		if (isInserted) 
 		{
+			Log("\twire siblings = " + wire.siblings.Count);
 			foreach (int idx in wire.siblings) 
 			{
+				Log("\twire sibling idx = " + idx);
 				PuzzleWire sibling = wireChildren[idx];
 				sibling.isActivated = false;
 				sibling.gameObject.SetActive (false);
@@ -128,17 +130,24 @@ public class CircuitPuzzle : Puzzle
 		wireChildren[index] = wire; 
 	}
 
+	public bool GetIsInSolution(int val) {
+		for(int i = 0; i < solution.Length; i++) {
+			if(solution[i] == val) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	public virtual void CheckIsSolved() 
 	{
 		isSolved = true;
-		for (int i = 0; i < solution.Length; i++) 
-		{
 
-			Log ("solution[" + i + "] = " + solution [i] + " is activated = " + wireChildren [solution [i]].isActivated);
-
-			if(!wireChildren[solution[i]].isActivated) 
-			{
+		for(int i = 0; i < wireChildren.Count; i++) {
+			
+			if((wireChildren[i].isActivated && !GetIsInSolution(i)) || (!wireChildren[i].isActivated) && GetIsInSolution(i)) {
 				isSolved = false;
+				break;
 			}
 		}
 		if (isSolved) 

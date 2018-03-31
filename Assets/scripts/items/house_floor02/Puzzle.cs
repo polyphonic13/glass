@@ -114,7 +114,7 @@ public class Puzzle : MonoBehaviour {
 	}
 
 	public virtual void Solve() {
-		Log("Puzzle["+this.name+"]/Solve");
+		// Log("Puzzle["+this.name+"]/Solve");
 		_toggleChildrenOnSolved ();
 		EventCenter.Instance.InvokeStringEvent (Puzzle.SOLVED_EVENT, this.name);
 		if (isNoteAddedOnSolved) {
@@ -160,17 +160,17 @@ public class Puzzle : MonoBehaviour {
 					ToggleChildActive(child, false);
 				}
 			}
-			// else
-			// {
-			// 	if(child.isActivatedOnActivate) 
-			// 	{
-			// 		ToggleChildActive(child, false);
-			// 	}
-			// 	else if(child.isDeactivatedOnActivate)
-			// 	{
-			// 		ToggleChildActive(child, true);
-			// 	}
-			// }
+			else
+			{
+				if(child.isActivatedOnActivate) 
+				{
+					ToggleChildActive(child, false);
+				}
+				else if(child.isDeactivatedOnActivate)
+				{
+					ToggleChildActive(child, true);
+				}
+			}
 		}
 	}
 

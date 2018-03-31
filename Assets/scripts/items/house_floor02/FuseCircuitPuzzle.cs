@@ -26,7 +26,7 @@ public class FuseCircuitPuzzle : CircuitPuzzle
 		List<int> siblings = new List<int>(); 
 
 		int pos = index % verticalPositions;
-
+		Log(" pos = " + pos);
 		if(pos == 0) 
 		{
 			if(index > 1) 
@@ -55,6 +55,7 @@ public class FuseCircuitPuzzle : CircuitPuzzle
 			siblings.Add(index - 2);
 		}
 
+		Log(" siblings count = " + siblings.Count);
 		return siblings;
 	}
 
