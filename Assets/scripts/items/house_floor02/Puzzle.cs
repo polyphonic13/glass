@@ -152,7 +152,7 @@ public class Puzzle : MonoBehaviour {
 			{
 				if(child.isActivatedOnActivate) 
 				{
-					Log(" child[" + child.gameObject.name + "].isActivatedOnActivate = " + child.isActivatedOnActivate);
+					// Log(" child[" + child.gameObject.name + "].isActivatedOnActivate = " + child.isActivatedOnActivate);
 					ToggleChildActive(child, true);
 				}
 				else if(child.isDeactivatedOnActivate)
@@ -160,15 +160,16 @@ public class Puzzle : MonoBehaviour {
 					ToggleChildActive(child, false);
 				}
 			}
-			else
+			else if(!isSolved)
 			{
-				if(child.isActivatedOnActivate) 
-				{
-					ToggleChildActive(child, false);
-				}
-				else if(child.isDeactivatedOnActivate)
+				Log(" child[" + child.gameObject.name + "], isActivatedOnDeactive = " + child.isActivatedOnDeactivate + ", isDeactivatedOnDeactivate = " + child.isDeactivatedOnDeactivate);
+				if(child.isActivatedOnDeactivate) 
 				{
 					ToggleChildActive(child, true);
+				}
+				else if(child.isDeactivatedOnDeactivate)
+				{
+					ToggleChildActive(child, false);
 				}
 			}
 		}
@@ -196,6 +197,7 @@ public struct PuzzleChild {
 	public bool isActivatedOnSolved;
 	public bool isDeactivatedOnSolved;
 	public bool isActivatedOnActivate;
-
 	public bool isDeactivatedOnActivate;
+	public bool isActivatedOnDeactivate;
+	public bool isDeactivatedOnDeactivate;
 }
