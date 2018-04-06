@@ -311,6 +311,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1188043114540924
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4724215502261546}
+  - component: {fileID: 114918597463466964}
+  - component: {fileID: 114135502199808016}
+  - component: {fileID: 114872779339356650}
+  m_Layer: 19
+  m_Name: bulb_power_toggler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1212325809520094
 GameObject:
   m_ObjectHideFlags: 1
@@ -452,13 +470,14 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4858777846927646}
+  - component: {fileID: 114993034027375800}
   m_Layer: 19
   m_Name: builbs_green_on
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1253790830564002
 GameObject:
   m_ObjectHideFlags: 1
@@ -612,13 +631,14 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4079551883074122}
+  - component: {fileID: 114246529985505836}
   m_Layer: 19
   m_Name: builbs_red_on
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1364443449823138
 GameObject:
   m_ObjectHideFlags: 1
@@ -640,6 +660,24 @@ GameObject:
   m_Layer: 19
   m_Name: puzzle01c_wire001_collider
   m_TagString: puzzleComponent
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1383202761709272
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4004686044649648}
+  - component: {fileID: 114731299944666456}
+  - component: {fileID: 114790470305951774}
+  - component: {fileID: 114878630977172996}
+  m_Layer: 19
+  m_Name: bulb_puzzle_solved_toggler
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1132,6 +1170,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4320753484654960}
+  - component: {fileID: 114968184445017788}
   m_Layer: 19
   m_Name: bulbs_off
   m_TagString: Untagged
@@ -1730,7 +1769,7 @@ Transform:
   - {fileID: 4000011340853540}
   - {fileID: 4745965151933546}
   m_Father: {fileID: 4000012992326722}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4000012992326722
 Transform:
@@ -1742,12 +1781,27 @@ Transform:
   m_LocalPosition: {x: -655.122, y: 112.972, z: -23.47}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 4724215502261546}
+  - {fileID: 4004686044649648}
   - {fileID: 4578588792389646}
   - {fileID: 4527466686353590}
   - {fileID: 4000011501871944}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!4 &4004686044649648
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1383202761709272}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.0000005, y: 1, z: 1.0000005}
+  m_Children: []
+  m_Father: {fileID: 4000012992326722}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4007164600056934
 Transform:
   m_ObjectHideFlags: 1
@@ -2447,7 +2501,7 @@ Transform:
   - {fileID: 4108457936433576}
   - {fileID: 4474728932331888}
   m_Father: {fileID: 4000012992326722}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4544239615902452
 Transform:
@@ -2513,7 +2567,7 @@ Transform:
   - {fileID: 4298899241223270}
   - {fileID: 4350453438007244}
   m_Father: {fileID: 4000012992326722}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!4 &4580470036753954
 Transform:
@@ -2732,6 +2786,19 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4580470036753954}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4724215502261546
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1188043114540924}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4000012992326722}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4745965151933546
@@ -5838,6 +5905,20 @@ MonoBehaviour:
   target: {fileID: 0}
   isTargetPlayer: 0
   isLogOn: 0
+--- !u!114 &114135502199808016
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1188043114540924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feaa1b568e3e04434be783e8585d6ea1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventType: generator_started
+  eventValue: switches_collider
+  isLogOn: 0
 --- !u!114 &114141935094763482
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6005,6 +6086,19 @@ MonoBehaviour:
   isLogOn: 0
   onEvent: {fileID: 114429512252627756}
   offEvent: {fileID: 114159830840932978}
+--- !u!114 &114246529985505836
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1355000472453016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcb5738485f9d4f21828b5645465e2fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isOn: 0
+  isLogOn: 0
 --- !u!114 &114254729774572690
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6654,6 +6748,17 @@ MonoBehaviour:
   icon: 1
   _togglers:
   - {fileID: 114174317372484036}
+--- !u!114 &114731299944666456
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1383202761709272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3df9045043b8d4f1cb143be7d3383c2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114735250992744346
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6770,6 +6875,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3df9045043b8d4f1cb143be7d3383c2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114790470305951774
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1383202761709272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feaa1b568e3e04434be783e8585d6ea1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventType: puzzle_solved
+  eventValue: puzzle01c(Clone)
+  isLogOn: 0
 --- !u!114 &114799253396886992
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6917,6 +7036,46 @@ MonoBehaviour:
   isEnabled: 0
   icon: 1
   target: {fileID: 114605090748946842}
+--- !u!114 &114872779339356650
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1188043114540924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e792fca1111a048b58dbd1630c65c440, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLogOn: 0
+  displayName: 
+  description: 
+  prefabPath: 
+  isEnabled: 0
+  icon: 1
+  _togglers:
+  - {fileID: 114968184445017788}
+  - {fileID: 114246529985505836}
+--- !u!114 &114878630977172996
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1383202761709272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e792fca1111a048b58dbd1630c65c440, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLogOn: 0
+  displayName: 
+  description: 
+  prefabPath: 
+  isEnabled: 0
+  icon: 1
+  _togglers:
+  - {fileID: 114246529985505836}
+  - {fileID: 114993034027375800}
 --- !u!114 &114895020171313486
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6959,6 +7118,17 @@ MonoBehaviour:
   - {fileID: 114223434022529390}
   - {fileID: 114971063174859328}
   - {fileID: 114204752443073700}
+--- !u!114 &114918597463466964
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1188043114540924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3df9045043b8d4f1cb143be7d3383c2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114939143003234168
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7017,6 +7187,19 @@ MonoBehaviour:
   isLogOn: 0
   type: insert_wire
   value: 0
+--- !u!114 &114968184445017788
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1683926685367602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcb5738485f9d4f21828b5645465e2fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isOn: 1
+  isLogOn: 0
 --- !u!114 &114969946275413532
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7072,6 +7255,19 @@ MonoBehaviour:
   isLogOn: 0
   type: insert_wire
   value: 9
+--- !u!114 &114993034027375800
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1251991829210112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcb5738485f9d4f21828b5645465e2fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isOn: 0
+  isLogOn: 0
 --- !u!114 &114998334997198786
 MonoBehaviour:
   m_ObjectHideFlags: 1
