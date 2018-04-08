@@ -548,7 +548,7 @@ GameObject:
   - component: {fileID: 4690811040264598}
   - component: {fileID: 111767518489090620}
   m_Layer: 19
-  m_Name: puzzle01_1117
+  m_Name: puzzle01_1117_model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1527,7 +1527,7 @@ Transform:
   - {fileID: 4000012219869332}
   - {fileID: 4929947966158346}
   m_Father: {fileID: 4000011757518616}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4000011757518616
 Transform:
@@ -1541,9 +1541,9 @@ Transform:
   m_Children:
   - {fileID: 4868918502043726}
   - {fileID: 4079383835174130}
-  - {fileID: 4000011608250738}
   - {fileID: 4690811040264598}
   - {fileID: 4853312489254090}
+  - {fileID: 4000011608250738}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -2329,7 +2329,7 @@ Transform:
   - {fileID: 4257991697282030}
   - {fileID: 4438202160843486}
   m_Father: {fileID: 4000011757518616}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!4 &4709809886378628
 Transform:
@@ -2632,7 +2632,7 @@ Transform:
   - {fileID: 4161477456760946}
   - {fileID: 4768861757460038}
   m_Father: {fileID: 4000011757518616}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4857580573371950
 Transform:
@@ -4933,7 +4933,7 @@ MonoBehaviour:
   description: 
   prefabPath: 
   isEnabled: 0
-  icon: 1
+  icon: 3
   isLocked: 0
   isLockMessageDisplayed: 1
   isAutoActuatedOnUnlock: 0
@@ -4967,9 +4967,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: feaa1b568e3e04434be783e8585d6ea1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventType: puzzle_solve
+  eventType: puzzle_solved
   eventValue: puzzle01b(Clone)
-  isLogOn: 0
+  isLogOn: 1
 --- !u!114 &114020665499143484
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6044,7 +6044,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e792fca1111a048b58dbd1630c65c440, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLogOn: 0
+  isLogOn: 1
   displayName: 
   description: 
   prefabPath: 
