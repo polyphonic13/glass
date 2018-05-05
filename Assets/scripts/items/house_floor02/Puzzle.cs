@@ -16,6 +16,7 @@ public class Puzzle : MonoBehaviour {
 
 	public PuzzleChild[] children;
 
+	public string[] removeOnDeactivateItemPaths;
 	protected bool isSolved = false; 
 	protected bool isCompleted = false; 
 
@@ -111,6 +112,15 @@ public class Puzzle : MonoBehaviour {
 
 	public virtual void Deactivate() {
 		_toggleActive(false);
+
+		if (removeOnDeactivateItemPaths.Length > 0) 
+		{
+			foreach(string path in removeOnDeactivateItemPaths) 
+			{
+				Inventory inventory = Game.Instance.GetPlayerInventory ();
+				inventory.AddFromPrefabPath (path);
+			}
+		}
 	}
 
 	public virtual void Solve() {

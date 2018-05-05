@@ -18,15 +18,15 @@ namespace Polyworks {
 		private RaycastHit _hit;
 
 		public virtual void CheckRayCast() {
-//			_log ("RaycastAgent[" + this.name + "]/CheckRayCast, dynamicTag = " + dynamicTag);
+			// _log ("RaycastAgent[" + this.name + "]/CheckRayCast, dynamicTag = " + dynamicTag);
 			if (Physics.Raycast (this.transform.position, this.transform.forward, out _hit, detectionDistance)) {
 				Debug.DrawRay (this.transform.position, this.transform.forward, rayColor);
-//				_log (" _hit tag = " + _hit.transform.tag + ", name = " + _hit.transform.name);
+				// _log (" _hit tag = " + _hit.transform.tag + ", name = " + _hit.transform.name);
 				if (_hit.transform != this.transform && (_hit.transform.tag == dynamicTag || _hit.transform.tag == staticTag)) {
-//					_log (" _hit name = " + _hit.transform.name + ", just hit = " + itemJustHit);
+					_log (" _hit name = " + _hit.transform.name + ", just hit = " + itemJustHit);
 					if (_hit.transform.name != itemJustHit) {
 						ProximityAgent pa = _hit.transform.gameObject.GetComponent<ProximityAgent> ();
-//						_log ("  pa = " + pa);
+						_log ("  pa = " + pa);
 						if (pa != null) {
 							if (pa.Check ()) {
 								_clearFocus ();

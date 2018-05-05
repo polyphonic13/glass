@@ -1,16 +1,19 @@
-﻿namespace Polyworks {
-	using UnityEngine;
-	using System.Collections;
+﻿namespace Polyworks
+{
+    using UnityEngine;
+    using System.Collections;
 
-	public class Switch : ActuateAgent
-	{
-		public virtual void Actuate() {
-			Log ("Switch["+this.name+"]/Actuate");
-		}
+    public class Switch : ActuateAgent
+    {
+        public override void Actuate()
+        {
+            Log("Switch[" + this.name + "]/Actuate");
+        }
 
-		public virtual void Use() {
-			Log ("Switch[" + this.name + "]/Use");
-		}
-	}
+        public override void Use()
+        {
+            Log("Switch[" + this.name + "]/Use");
+        }
+    }
 }
 

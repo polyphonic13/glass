@@ -8,8 +8,6 @@ public class CircuitPuzzle : Puzzle
 {
 	public int[] solution;
 
-	public string[] removeOnDeactivateItemPaths;
-
 	public List<PuzzleWire> wireChildren { get; set; }
 	public string wiresPath = "";
 
@@ -79,15 +77,6 @@ public class CircuitPuzzle : Puzzle
 		if (!isCompleted) 
 		{
 			RemoveAllWires ();
-
-			if (removeOnDeactivateItemPaths.Length > 0) 
-			{
-				foreach(string path in removeOnDeactivateItemPaths) 
-				{
-					Inventory inventory = Game.Instance.GetPlayerInventory ();
-					inventory.AddFromPrefabPath (path);
-				}
-			}
 		}
 		RemoveListeners();
 	}

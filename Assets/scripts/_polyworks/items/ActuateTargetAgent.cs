@@ -8,7 +8,7 @@
 
 		public override void Actuate ()
 		{
-//			Debug.Log ("ActuateTargetAgent[" + this.name + "]/Actuate, target = " + target);
+			Log ("ActuateTargetAgent[" + this.name + "]/Actuate, target = " + target);
 			target.Actuate ();
 		}
 

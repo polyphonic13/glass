@@ -7,7 +7,7 @@ namespace Polyworks {
 		public int value; 
 
 		public override void Actuate() {
-			Debug.Log ("IntEventSwitch[" + this.name + "]/Actuate, type = " + type + ", value = " + value);
+			Log ("IntEventSwitch[" + this.name + "]/Actuate, type = " + type + ", value = " + value);
 			EventCenter.Instance.InvokeIntEvent(type, value);
 		}
 	}

@@ -38,7 +38,7 @@ public class LightPuzzleLightGroup: MonoBehaviour
     {
         if(isLogOn) 
         {
-            Debug.Log("LightPuzzleLightGroup["+this.name+"]/OnIntEvent, type = " + type + ", value = " + value);
+            // Log("LightPuzzleLightGroup["+this.name+"]/OnIntEvent, type = " + type + ", value = " + value);
             if(type == ACTUATE_EVENT && value == groupIndex)
             {
                 IncrementSequence();
@@ -46,6 +46,13 @@ public class LightPuzzleLightGroup: MonoBehaviour
         }
     }
 
+    private void Log(string message) 
+    {
+        if(isLogOn)
+        {
+            Debug.Log(message);
+        }
+    }
     private void Awake() 
     {
         EventCenter.Instance.OnIntEvent += OnIntEvent;
@@ -53,7 +60,7 @@ public class LightPuzzleLightGroup: MonoBehaviour
 
     private void IncrementSequence() 
     {
-        if(currentIndex < SEQUENCES.Count) 
+        if(currentIndex < SEQUENCES.Count - 1) 
         {
             currentIndex++;
         }
@@ -62,7 +69,8 @@ public class LightPuzzleLightGroup: MonoBehaviour
             currentIndex = 0;
         } 
 
-        int[] currentSequence = SEQUENCES[currentIndex];
+        Log("LightPuzzleGroup["+this.name+"]/IncrementSequence, new currentIndex = " + currentIndex);
+        SetLightMaterial(SEQUENCES[currentIndex]);
     }
 
     private void SetLightMaterial(int[] sequence) 
@@ -73,6 +81,7 @@ public class LightPuzzleLightGroup: MonoBehaviour
         for(int i = 0; i < lights.Length; i++)
         {
             gameObject = lights[i];
+            Log("  sequence[" + i + "] = " + sequence[i]);
             material = materials[sequence[i]];
 
             gameObject.GetComponent<Renderer>().material = material;
