@@ -120,6 +120,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4139436318505662}
+  - component: {fileID: 114239486955186130}
   m_Layer: 19
   m_Name: indicator_bulbs_off
   m_TagString: Untagged
@@ -441,6 +442,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4205212561549090}
+  - component: {fileID: 114194094874580574}
   m_Layer: 19
   m_Name: indicator_bulbs_red_on
   m_TagString: Untagged
@@ -866,7 +868,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4528060973318216}
-  - component: {fileID: 114095215168771766}
   - component: {fileID: 114608371993208276}
   - component: {fileID: 114293212071578038}
   m_Layer: 19
@@ -1324,6 +1325,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4205016119515898}
+  - component: {fileID: 114051563197029908}
   m_Layer: 19
   m_Name: indicator_bulbs_green_on
   m_TagString: Untagged
@@ -2996,7 +2998,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_Materials:
   - {fileID: 2100000, guid: 1aa5a1b16437f403698ddff6201124c4, type: 2}
-  - {fileID: 2100000, guid: e7cb71ad4b83a425296a9d12d3779c89, type: 2}
+  - {fileID: 2100000, guid: 5fa97c2541cb9425c9ced8723cb424ec, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3060,7 +3062,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 5fa97c2541cb9425c9ced8723cb424ec, type: 2}
+  - {fileID: 2100000, guid: e7cb71ad4b83a425296a9d12d3779c89, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3157,7 +3159,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_Materials:
   - {fileID: 2100000, guid: 1aa5a1b16437f403698ddff6201124c4, type: 2}
-  - {fileID: 2100000, guid: f680edc38567c42ad83d0f5daa2c9733, type: 2}
+  - {fileID: 2100000, guid: b20d919700db94f808e513d8b2855f9d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3765,7 +3767,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: f680edc38567c42ad83d0f5daa2c9733, type: 2}
+  - {fileID: 2100000, guid: b20d919700db94f808e513d8b2855f9d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3862,7 +3864,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: f680edc38567c42ad83d0f5daa2c9733, type: 2}
+  - {fileID: 2100000, guid: b20d919700db94f808e513d8b2855f9d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4055,7 +4057,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_Materials:
   - {fileID: 2100000, guid: 1aa5a1b16437f403698ddff6201124c4, type: 2}
-  - {fileID: 2100000, guid: e7cb71ad4b83a425296a9d12d3779c89, type: 2}
+  - {fileID: 2100000, guid: 5fa97c2541cb9425c9ced8723cb424ec, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4697,7 +4699,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_Materials:
   - {fileID: 2100000, guid: 1aa5a1b16437f403698ddff6201124c4, type: 2}
-  - {fileID: 2100000, guid: f680edc38567c42ad83d0f5daa2c9733, type: 2}
+  - {fileID: 2100000, guid: b20d919700db94f808e513d8b2855f9d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5350,17 +5352,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3df9045043b8d4f1cb143be7d3383c2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114095215168771766
+--- !u!114 &114051563197029908
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1601784288075324}
+  m_GameObject: {fileID: 1863752839611734}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3df9045043b8d4f1cb143be7d3383c2d, type: 3}
+  m_Script: {fileID: 11500000, guid: fcb5738485f9d4f21828b5645465e2fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isOn: 0
+  isLogOn: 0
 --- !u!114 &114102346868194174
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5423,6 +5427,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1337847565147958}
+--- !u!114 &114194094874580574
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1302675493025154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcb5738485f9d4f21828b5645465e2fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isOn: 0
+  isLogOn: 0
 --- !u!114 &114199789916852516
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5471,6 +5488,19 @@ MonoBehaviour:
   isEnabled: 0
   icon: 3
   isSingleUse: 1
+--- !u!114 &114239486955186130
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1072304569941780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcb5738485f9d4f21828b5645465e2fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isOn: 1
+  isLogOn: 0
 --- !u!114 &114293212071578038
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5489,8 +5519,8 @@ MonoBehaviour:
   isEnabled: 0
   icon: 1
   _togglers:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 114239486955186130}
+  - {fileID: 114194094874580574}
 --- !u!114 &114305301419385052
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5596,10 +5626,10 @@ MonoBehaviour:
     isDeactivatedOnDeactivate: 1
   removeOnDeactivateItemPaths:
   - items/house/floor02/puzzles/puzzle07_key
-  isLogOn: 0
+  isLogOn: 1
   isNoteAddedOnSolved: 0
   noteMessage: 
-  solution: 0200000005000000080000000c000000
+  solution: 0b0000000c0000000d0000000e000000
 --- !u!114 &114630026412513176
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5751,8 +5781,8 @@ MonoBehaviour:
   isEnabled: 0
   icon: 1
   _togglers:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 114194094874580574}
+  - {fileID: 114051563197029908}
 --- !u!114 &114881116961472856
 MonoBehaviour:
   m_ObjectHideFlags: 1

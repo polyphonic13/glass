@@ -4,17 +4,7 @@ using Polyworks;
 
 public class LightPuzzleLightGroup: MonoBehaviour 
 {
-    public static string ACTUATE_EVENT = "actuateLightGroup";
-
-    public GameObject[] lights;
-
-    public Material[] materials;
-
-    public int groupIndex;
-    
-    public bool isLogOn;
-
-    private static List<int[]> SEQUENCES = new List<int[]> { 
+    public static List<int[]> SEQUENCES = new List<int[]> { 
         new int[4] { 0, 0, 0, 0 },
         new int[4] { 1, 0, 0, 0 },
         new int[4] { 0, 1, 0, 0 },
@@ -32,6 +22,16 @@ public class LightPuzzleLightGroup: MonoBehaviour
         new int[4] { 0, 1, 1, 1 },
         new int[4] { 1, 1, 1, 1 }
     };
+    public static string ACTUATE_EVENT = "actuateLightGroup";
+
+    public GameObject[] lights;
+
+    public Material[] materials;
+
+    public int groupIndex;
+    
+    public bool isLogOn;
+
     private int currentIndex;
 
     public void OnIntEvent(string type, int value) 
@@ -69,7 +69,7 @@ public class LightPuzzleLightGroup: MonoBehaviour
             currentIndex = 0;
         } 
 
-        Log("LightPuzzleGroup["+this.name+"]/IncrementSequence, new currentIndex = " + currentIndex);
+        // Log("LightPuzzleGroup["+this.name+"]/IncrementSequence, new currentIndex = " + currentIndex);
         SetLightMaterial(SEQUENCES[currentIndex]);
     }
 
@@ -81,7 +81,7 @@ public class LightPuzzleLightGroup: MonoBehaviour
         for(int i = 0; i < lights.Length; i++)
         {
             gameObject = lights[i];
-            Log("  sequence[" + i + "] = " + sequence[i]);
+            // Log("  sequence[" + i + "] = " + sequence[i]);
             material = materials[sequence[i]];
 
             gameObject.GetComponent<Renderer>().material = material;
