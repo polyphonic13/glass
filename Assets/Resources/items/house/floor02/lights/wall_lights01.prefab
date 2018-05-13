@@ -299,12 +299,12 @@ Transform:
   m_GameObject: {fileID: 1835918415563164}
   m_LocalRotation: {x: -0, y: 0.707224, z: 0.7069895, w: 0}
   m_LocalPosition: {x: -643.4, y: 113.5, z: -8.483}
-  m_LocalScale: {x: 0.15, y: 0.14999995, z: 0.14999995}
+  m_LocalScale: {x: 0.14999999, y: 0.14999996, z: 0.14999996}
   m_Children:
   - {fileID: 4524639139135692}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!4 &4139758709684450
 Transform:
   m_ObjectHideFlags: 1
@@ -674,7 +674,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 05ce67b893ec44140a63ce4ac607e763, type: 2}
+  - {fileID: 2100000, guid: 99a5104bc3dac423fa0b1d36aad1f788, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -991,8 +991,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: feaa1b568e3e04434be783e8585d6ea1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventType: generator_started
-  eventValue: switches_collider
+  eventType: turnLightsOn
+  eventValue: hall_light_switch(Clone)
+  isLogOn: 0
 --- !u!114 &114222058465990536
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1005,6 +1006,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOn: 0
+  isLogOn: 0
 --- !u!114 &114713398671702118
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1017,6 +1019,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOn: 1
+  isLogOn: 0
 --- !u!114 &114817819196650762
 MonoBehaviour:
   m_ObjectHideFlags: 1
