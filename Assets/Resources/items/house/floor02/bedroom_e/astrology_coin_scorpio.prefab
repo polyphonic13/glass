@@ -5,17 +5,17 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 407550}
-  - 33: {fileID: 3387824}
-  - 23: {fileID: 2307114}
-  - 95: {fileID: 9589758}
-  - 65: {fileID: 6532368}
-  - 114: {fileID: 11495788}
-  - 114: {fileID: 11483814}
-  - 114: {fileID: 11459424}
-  - 114: {fileID: 11493170}
+  - component: {fileID: 407550}
+  - component: {fileID: 3387824}
+  - component: {fileID: 2307114}
+  - component: {fileID: 9589758}
+  - component: {fileID: 6532368}
+  - component: {fileID: 11495788}
+  - component: {fileID: 11483814}
+  - component: {fileID: 11459424}
+  - component: {fileID: 11493170}
   m_Layer: 0
   m_Name: astrology_coin_scorpio
   m_TagString: interactive
@@ -32,10 +32,10 @@ Transform:
   m_LocalRotation: {x: 0.7071067, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -656.045, y: 111.49701, z: -6.6215754}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &2307114
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -51,7 +51,9 @@ MeshRenderer:
   m_Materials:
   - {fileID: 2100000, guid: 7ae1a625d43494758bfc005ea7670531, type: 2}
   - {fileID: 2100000, guid: 7ae1a625d43494758bfc005ea7670531, type: 2}
-  m_SubsetIndices: 
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
@@ -59,12 +61,13 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_SelectedWireframeHidden: 0
+  m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &3387824
 MeshFilter:
@@ -113,9 +116,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 196cc4548139b4b2891c6b378d048c62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLogOn: 0
   displayName: Scorpio Coin
   description: old, pewter coin with Scorpio pattern
   prefabPath: items/house/floor02/bedroom_e/astrology_coin_scorpio
+  isEnabled: 0
   icon: 2
   data:
     isCollected: 0
@@ -143,6 +148,7 @@ MonoBehaviour:
   interactDistance: 2
   target: {fileID: 0}
   isTargetPlayer: 1
+  isLogOn: 0
 --- !u!114 &11493170
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -154,7 +160,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4e0e4ebed3e94a869a970734193bc66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventType: insert_coin
+  isLogOn: 1
+  type: bedroom_e_dresser_drawer_unlock
 --- !u!114 &11495788
 MonoBehaviour:
   m_ObjectHideFlags: 1

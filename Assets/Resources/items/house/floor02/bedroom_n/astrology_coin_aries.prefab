@@ -5,17 +5,17 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 440216}
-  - 33: {fileID: 3383238}
-  - 23: {fileID: 2311368}
-  - 95: {fileID: 9588704}
-  - 65: {fileID: 6558468}
-  - 114: {fileID: 11439450}
-  - 114: {fileID: 11428188}
-  - 114: {fileID: 11438990}
-  - 114: {fileID: 11413996}
+  - component: {fileID: 440216}
+  - component: {fileID: 3383238}
+  - component: {fileID: 2311368}
+  - component: {fileID: 9588704}
+  - component: {fileID: 6558468}
+  - component: {fileID: 11439450}
+  - component: {fileID: 11428188}
+  - component: {fileID: 11438990}
+  - component: {fileID: 11413996}
   m_Layer: 0
   m_Name: astrology_coin_aries
   m_TagString: interactive
@@ -32,10 +32,10 @@ Transform:
   m_LocalRotation: {x: -0.7067642, y: -0.022006832, z: 0.022006776, w: 0.70676434}
   m_LocalPosition: {x: -650.12213, y: 111.82712, z: -14.274022}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &2311368
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -50,7 +50,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_Materials:
   - {fileID: 2100000, guid: 7ae1a625d43494758bfc005ea7670531, type: 2}
-  m_SubsetIndices: 
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
@@ -58,12 +60,13 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_SelectedWireframeHidden: 0
+  m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &3383238
 MeshFilter:
@@ -112,7 +115,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4e0e4ebed3e94a869a970734193bc66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventType: insert_coin
+  isLogOn: 0
+  type: bedroom_e_dresser_drawer_unlock
 --- !u!114 &11428188
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -127,6 +131,7 @@ MonoBehaviour:
   interactDistance: 2
   target: {fileID: 0}
   isTargetPlayer: 1
+  isLogOn: 0
 --- !u!114 &11438990
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -138,9 +143,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 196cc4548139b4b2891c6b378d048c62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLogOn: 0
   displayName: Aries Coin
   description: old, pewter coin with Aries pattern
   prefabPath: items/house/floor02/bedroom_n/astrology_coin_aries
+  isEnabled: 0
   icon: 2
   data:
     isCollected: 0
