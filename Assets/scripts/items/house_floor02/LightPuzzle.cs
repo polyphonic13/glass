@@ -48,7 +48,8 @@ public class LightPuzzle: Puzzle {
             }
         }
         // Log("LightPuzzle[" + this.name + "]/IncrementCurrent, current[" + index + "] = " + current[index]);
-        if(CheckIsSolved())
+        this.isSolved = CheckIsSolved();
+        if(this.isSolved)
         {
             Solve();
         }
@@ -64,6 +65,7 @@ public class LightPuzzle: Puzzle {
                 return false;
             }
         }
+        Log("LightPuzzle["+this.name+"]/CheckIsSolved, solved = true");
         return true;
     }
 

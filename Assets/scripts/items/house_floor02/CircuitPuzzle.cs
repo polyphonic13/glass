@@ -26,7 +26,7 @@ public class CircuitPuzzle : Puzzle
 				break;
 		}
 
-		CheckIsSolved();
+		PostIntEvent();
 	}
 
 	public override void Init() 
@@ -128,22 +128,26 @@ public class CircuitPuzzle : Puzzle
 		return false;
 	}
 
-	public virtual void CheckIsSolved() 
-	{
-		isSolved = true;
 
-		for(int i = 0; i < wireChildren.Count; i++) {
-			
-			if((wireChildren[i].isActivated && !GetIsInSolution(i)) || (!wireChildren[i].isActivated) && GetIsInSolution(i)) {
-				isSolved = false;
-				break;
-			}
-		}
+	public void PostIntEvent()
+	{
+		this.isSolved = CheckIsSolved();
 		if (isSolved) 
 		{
 			Solve ();
 		}
-		Log ("CircuitPuzzle[" + this.name + "]/CheckIsSolved, isSolved = " + isSolved);
+		Log ("CircuitPuzzle[" + this.name + "]/PostIntEvent, isSolved = " + isSolved);		
+	}
+
+	public virtual bool CheckIsSolved() 
+	{
+		for(int i = 0; i < wireChildren.Count; i++) {
+			
+			if((wireChildren[i].isActivated && !GetIsInSolution(i)) || (!wireChildren[i].isActivated) && GetIsInSolution(i)) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	public virtual void RemoveListeners() 
