@@ -12,11 +12,15 @@ public class LightPuzzle: Puzzle {
         0
     };
 
+    private LightPuzzleLightGroup[] _lightGroups;
+
+    private string _actuateEvent;
+
     public void OnIntEvent(string type, int value)
     {
-        // Log("LightPuzzle[" + this.name + "]/OnInEvent, type = " + type + ", value = " + value);
-        if(type == LightPuzzleLightGroup.ACTUATE_EVENT)
+        if(type == _actuateEvent)
         {
+            Log("LightPuzzle[" + this.name + "]/OnInEvent, type = " + type + ", value = " + value + ", _actuateEvent = " + _actuateEvent);
             IncrementCurrent(value);
         }
 
@@ -28,10 +32,35 @@ public class LightPuzzle: Puzzle {
         base.Solve();
     }
 
-    private void Awake() 
+    public override void Activate() 
     {
+        Log("LightPuzzle[" + this.name + "]/Activate");
+        base.Activate();
         EventCenter.Instance.OnIntEvent += OnIntEvent;
 
+        foreach(LightPuzzleLightGroup group in _lightGroups)
+        {
+            group.Activate();            
+        }
+
+    }
+
+    public override void Deactivate() 
+    {
+        Log("LightPuzzle[" + this.name + "]/Deactivate");
+        base.Deactivate();
+        EventCenter.Instance.OnIntEvent -= OnIntEvent;
+
+        foreach(LightPuzzleLightGroup group in _lightGroups)
+        {
+            group.Deactivate();            
+        }
+    }
+    
+    private void Awake() 
+    {
+        _actuateEvent = this.name + "ButtonClicked";
+        _lightGroups = GetComponentsInChildren<LightPuzzleLightGroup>();
     }
 
     private void IncrementCurrent(int index)
@@ -47,8 +76,9 @@ public class LightPuzzle: Puzzle {
                 current[index] = 0;
             }
         }
-        // Log("LightPuzzle[" + this.name + "]/IncrementCurrent, current[" + index + "] = " + current[index]);
+        Log("LightPuzzle[" + this.name + "]/IncrementCurrent, current[" + index + "] = " + current[index]);
         this.isSolved = CheckIsSolved();
+        Log("  isSolved = " + this.isSolved);
         if(this.isSolved)
         {
             Solve();

@@ -71,6 +71,7 @@ public class PuzzleInspector : MonoBehaviour, IInputControllable {
 
 	public void Activate(int index) 
 	{
+		Log("PuzzleInspector/Actvate, index = " + index);
 		_moveToNewLocation (index);
 		_toggleActivated (true);
 	}

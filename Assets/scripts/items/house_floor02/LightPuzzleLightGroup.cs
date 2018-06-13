@@ -22,8 +22,8 @@ public class LightPuzzleLightGroup: MonoBehaviour
         new int[4] { 0, 1, 1, 1 },
         new int[4] { 1, 1, 1, 1 }
     };
-    public static string ACTUATE_EVENT = "actuateLightGroup";
-
+    // public static string ACTUATE_EVENT = "actuateLightGroup";
+    public string actuateEvent = "";
     public GameObject[] lights;
 
     public Material[] materials;
@@ -36,14 +36,21 @@ public class LightPuzzleLightGroup: MonoBehaviour
 
     public void OnIntEvent(string type, int value) 
     {
-        if(isLogOn) 
+        Log("LightPuzzleLightGroup["+this.name+"]/OnIntEvent, type = " + type + ", value = " + value);
+        if(type == actuateEvent && value == groupIndex)
         {
-            // Log("LightPuzzleLightGroup["+this.name+"]/OnIntEvent, type = " + type + ", value = " + value);
-            if(type == ACTUATE_EVENT && value == groupIndex)
-            {
-                IncrementSequence();
-            }
+            IncrementSequence();
         }
+    }
+
+    public void Activate() 
+    {
+        EventCenter.Instance.OnIntEvent += OnIntEvent;
+    }
+
+    public void Deactivate()
+    {
+        EventCenter.Instance.OnIntEvent -= OnIntEvent;
     }
 
     private void Log(string message) 
@@ -55,7 +62,6 @@ public class LightPuzzleLightGroup: MonoBehaviour
     }
     private void Awake() 
     {
-        EventCenter.Instance.OnIntEvent += OnIntEvent;
     }
 
     private void IncrementSequence() 
@@ -69,7 +75,7 @@ public class LightPuzzleLightGroup: MonoBehaviour
             currentIndex = 0;
         } 
 
-        // Log("LightPuzzleGroup["+this.name+"]/IncrementSequence, new currentIndex = " + currentIndex);
+        Log("LightPuzzleGroup["+this.name+"]/IncrementSequence, new currentIndex = " + currentIndex);
         SetLightMaterial(SEQUENCES[currentIndex]);
     }
 
@@ -81,7 +87,7 @@ public class LightPuzzleLightGroup: MonoBehaviour
         for(int i = 0; i < lights.Length; i++)
         {
             gameObject = lights[i];
-            // Log("  sequence[" + i + "] = " + sequence[i]);
+            Log("  sequence[" + i + "] = " + sequence[i]);
             material = materials[sequence[i]];
 
             gameObject.GetComponent<Renderer>().material = material;
