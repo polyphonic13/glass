@@ -40,6 +40,8 @@ namespace Polyworks
 		#endregion
 
 		#region public members
+		public Camera playerHeadCamera;
+
 		public PlayerData data; 
 		public int startingHealth = 100;
 		public int startingStamina = 100;
@@ -190,7 +192,9 @@ namespace Polyworks
 			_verticalMovement = GetComponent<VerticalMovement> ();
 
             m_CharacterController = GetComponent<CharacterController>();
-            _mainCamera = Camera.main;
+            // _mainCamera = Camera.main;
+			_mainCamera = playerHeadCamera;
+			Debug.Log("_mainCamera = " + _mainCamera.transform);
             m_OriginalCameraPosition = _mainCamera.transform.localPosition;
             _mainCameraRefocus = new CameraRefocus(_mainCamera, transform, _mainCamera.transform.localPosition);
             m_FovKick.Setup(_mainCamera);
