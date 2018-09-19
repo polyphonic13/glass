@@ -38,6 +38,7 @@ namespace Polyworks {
 		public void SetDestination(bool isActive = false) {
 			_destination = destinations [_currentDestination];
 			_direction = (_destination.position - platform.transform.position).normalized;
+			// Debug.Log("MovingPlatform/SetDestination, _destination = " + _destination.position + ", platform position = " + platform.transform.position);
 			this.isActive = _isMoving = isActive;
 		}
 
@@ -63,6 +64,7 @@ namespace Polyworks {
 
 		private void FixedUpdate () {
 			if (isActive && _isMoving) {
+				// Debug.Log("MovingPlatform/FixedUpdate, isActive & _isMoving = true, _direction = " + _direction);
 				platform.transform.Translate(_direction * speed * Time.fixedDeltaTime);
 
 				if (Vector3.Distance (platform.transform.position, _destination.position) < speed * Time.fixedDeltaTime) {
@@ -76,7 +78,7 @@ namespace Polyworks {
 						_currentDestination = 0;
 					}
 
-					if (isAuto || isLooper) {
+					if (isLooper) {
 						SetDestination (true);
 					} else {
 						SetDestination (false);
@@ -86,9 +88,11 @@ namespace Polyworks {
 		}
 
 		private void OnDrawGizmos() {
-			for (int i = 0; i < destinations.Length; i++) {
-				if(destinations[i] != null && platform != null) {
-					Gizmos.DrawWireCube (destinations [i].position, platform.localScale);
+			if(destinations != null && destinations.Length > 0) {
+				for (int i = 0; i < destinations.Length; i++) {
+					if(destinations[i] != null && platform != null) {
+						Gizmos.DrawWireCube (destinations [i].position, platform.localScale);
+					}
 				}
 			}
 		}
