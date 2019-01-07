@@ -91,7 +91,7 @@ public class LightPuzzle: Puzzle {
         {
             if(solution[i] != current[i])
             {
-                // Log("solution[" + i + "]: " + solution[i] + ", current = " + current[i]);
+                Log("solution[" + i + "]: " + solution[i] + ", current = " + current[i]);
                 return false;
             }
         }
