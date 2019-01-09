@@ -75,7 +75,7 @@ public class LightPuzzleLightGroup: MonoBehaviour
             currentIndex = 0;
         } 
 
-        // Log("LightPuzzleGroup["+this.name+"]/IncrementSequence, new currentIndex = " + currentIndex);
+        Log("LightPuzzleGroup["+this.name+"]/IncrementSequence, new currentIndex = " + currentIndex);
         SetLightMaterial(SEQUENCES[currentIndex]);
     }
 
@@ -87,7 +87,7 @@ public class LightPuzzleLightGroup: MonoBehaviour
         for(int i = 0; i < lights.Length; i++)
         {
             gameObject = lights[i];
-            // Log("  sequence[" + i + "] = " + sequence[i]);
+            Log("  sequence[" + i + "] = " + sequence[i]);
             material = materials[sequence[i]];
 
             gameObject.GetComponent<Renderer>().material = material;
