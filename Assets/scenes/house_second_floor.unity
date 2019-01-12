@@ -39,7 +39,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.225
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0040694824, g: 0.006712878, b: 0.013247592, a: 0.225}
+  m_IndirectSpecularColor: {r: 0.0032453027, g: 0.0053576166, b: 0.010585738, a: 0.225}
 --- !u!157 &4
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -66,7 +66,7 @@ LightmapSettings:
     m_CompAOExponentDirect: 0
     m_Padding: 2
     m_LightmapParameters: {fileID: 0}
-    m_LightmapsBakeMode: 1
+    m_LightmapsBakeMode: 0
     m_TextureCompression: 1
     m_FinalGather: 0
     m_FinalGatherFiltering: 1
@@ -1086,7 +1086,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4aa7e99a4dfb842468979d184d278118, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 114.17
+      value: 114.06
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4aa7e99a4dfb842468979d184d278118, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3403,7 +3403,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 986372bc0d61046f29c1254e5de0d3f7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 113.575
+      value: 113.43
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 986372bc0d61046f29c1254e5de0d3f7, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3485,7 +3485,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ea5267ce41e3f4fa283604339840a93b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 113.62
+      value: 113.378
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ea5267ce41e3f4fa283604339840a93b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4461,12 +4461,16 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11478364, guid: 84f55014e3cba445ab22685c88725eac, type: 2}
       propertyPath: gameData.targetSection
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114000010828365742, guid: 84f55014e3cba445ab22685c88725eac,
         type: 2}
       propertyPath: prepSteps.Array.data[2].scene
       value: cave02
+      objectReference: {fileID: 0}
+    - target: {fileID: 11478364, guid: 84f55014e3cba445ab22685c88725eac, type: 2}
+      propertyPath: gameData.flags.Array.data[3].value
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 84f55014e3cba445ab22685c88725eac, type: 2}
@@ -5975,6 +5979,232 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400002, guid: 62b103adc14184e988c7a197781efc06, type: 3}
   m_PrefabInternal: {fileID: 637603272}
+--- !u!1001 &647824387
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1107554774}
+    m_Modifications:
+    - target: {fileID: 4994183637322064, guid: b1745c2c232d640c69cc344a15010fb5, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -119.394226
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994183637322064, guid: b1745c2c232d640c69cc344a15010fb5, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 50.6288
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994183637322064, guid: b1745c2c232d640c69cc344a15010fb5, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 92.38134
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994183637322064, guid: b1745c2c232d640c69cc344a15010fb5, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994183637322064, guid: b1745c2c232d640c69cc344a15010fb5, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994183637322064, guid: b1745c2c232d640c69cc344a15010fb5, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994183637322064, guid: b1745c2c232d640c69cc344a15010fb5, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994183637322064, guid: b1745c2c232d640c69cc344a15010fb5, type: 2}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114313152788500330, guid: b1745c2c232d640c69cc344a15010fb5,
+        type: 2}
+      propertyPath: nightAtmosphereThickness
+      value: 0.87
+      objectReference: {fileID: 0}
+    - target: {fileID: 114313152788500330, guid: b1745c2c232d640c69cc344a15010fb5,
+        type: 2}
+      propertyPath: nightDayFogColor.key0.r
+      value: 0.105882354
+      objectReference: {fileID: 0}
+    - target: {fileID: 114313152788500330, guid: b1745c2c232d640c69cc344a15010fb5,
+        type: 2}
+      propertyPath: nightDayFogColor.key0.g
+      value: 0.11764706
+      objectReference: {fileID: 0}
+    - target: {fileID: 114313152788500330, guid: b1745c2c232d640c69cc344a15010fb5,
+        type: 2}
+      propertyPath: nightDayFogColor.key0.b
+      value: 0.1254902
+      objectReference: {fileID: 0}
+    - target: {fileID: 114313152788500330, guid: b1745c2c232d640c69cc344a15010fb5,
+        type: 2}
+      propertyPath: nightDayFogColor.key0.a
+      value: 0.627451
+      objectReference: {fileID: 0}
+    - target: {fileID: 114313152788500330, guid: b1745c2c232d640c69cc344a15010fb5,
+        type: 2}
+      propertyPath: nightDayFogColor.key1.g
+      value: 0.11764706
+      objectReference: {fileID: 0}
+    - target: {fileID: 114313152788500330, guid: b1745c2c232d640c69cc344a15010fb5,
+        type: 2}
+      propertyPath: nightDayFogColor.key3.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114313152788500330, guid: b1745c2c232d640c69cc344a15010fb5,
+        type: 2}
+      propertyPath: nightDayFogColor.key3.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114313152788500330, guid: b1745c2c232d640c69cc344a15010fb5,
+        type: 2}
+      propertyPath: nightDayFogColor.key3.b
+      value: 0.93333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 114313152788500330, guid: b1745c2c232d640c69cc344a15010fb5,
+        type: 2}
+      propertyPath: nightDayFogColor.key4.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114313152788500330, guid: b1745c2c232d640c69cc344a15010fb5,
+        type: 2}
+      propertyPath: nightDayFogColor.key4.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114313152788500330, guid: b1745c2c232d640c69cc344a15010fb5,
+        type: 2}
+      propertyPath: nightDayFogColor.key4.b
+      value: 0.9254902
+      objectReference: {fileID: 0}
+    - target: {fileID: 114313152788500330, guid: b1745c2c232d640c69cc344a15010fb5,
+        type: 2}
+      propertyPath: nightDayFogColor.key1.r
+      value: 0.11372549
+      objectReference: {fileID: 0}
+    - target: {fileID: 114313152788500330, guid: b1745c2c232d640c69cc344a15010fb5,
+        type: 2}
+      propertyPath: nightDayFogColor.key1.b
+      value: 0.11764706
+      objectReference: {fileID: 0}
+    - target: {fileID: 114313152788500330, guid: b1745c2c232d640c69cc344a15010fb5,
+        type: 2}
+      propertyPath: nightDayFogColor.key1.a
+      value: 0.59607846
+      objectReference: {fileID: 0}
+    - target: {fileID: 114313152788500330, guid: b1745c2c232d640c69cc344a15010fb5,
+        type: 2}
+      propertyPath: nightDayFogColor.key2.r
+      value: 0.972549
+      objectReference: {fileID: 0}
+    - target: {fileID: 114313152788500330, guid: b1745c2c232d640c69cc344a15010fb5,
+        type: 2}
+      propertyPath: nightDayFogColor.key2.g
+      value: 0.6901961
+      objectReference: {fileID: 0}
+    - target: {fileID: 114313152788500330, guid: b1745c2c232d640c69cc344a15010fb5,
+        type: 2}
+      propertyPath: nightDayFogColor.key2.b
+      value: 0.49411765
+      objectReference: {fileID: 0}
+    - target: {fileID: 114313152788500330, guid: b1745c2c232d640c69cc344a15010fb5,
+        type: 2}
+      propertyPath: nightDayFogColor.key5.r
+      value: 0.5764706
+      objectReference: {fileID: 0}
+    - target: {fileID: 114313152788500330, guid: b1745c2c232d640c69cc344a15010fb5,
+        type: 2}
+      propertyPath: nightDayFogColor.key5.g
+      value: 0.5764706
+      objectReference: {fileID: 0}
+    - target: {fileID: 114313152788500330, guid: b1745c2c232d640c69cc344a15010fb5,
+        type: 2}
+      propertyPath: nightDayFogColor.key5.b
+      value: 0.6509804
+      objectReference: {fileID: 0}
+    - target: {fileID: 114313152788500330, guid: b1745c2c232d640c69cc344a15010fb5,
+        type: 2}
+      propertyPath: nightDayFogColor.key6.r
+      value: 0.5764706
+      objectReference: {fileID: 0}
+    - target: {fileID: 114313152788500330, guid: b1745c2c232d640c69cc344a15010fb5,
+        type: 2}
+      propertyPath: nightDayFogColor.key6.g
+      value: 0.5803922
+      objectReference: {fileID: 0}
+    - target: {fileID: 114313152788500330, guid: b1745c2c232d640c69cc344a15010fb5,
+        type: 2}
+      propertyPath: nightDayFogColor.key6.b
+      value: 0.654902
+      objectReference: {fileID: 0}
+    - target: {fileID: 114313152788500330, guid: b1745c2c232d640c69cc344a15010fb5,
+        type: 2}
+      propertyPath: nightDayFogColor.ctime1
+      value: 14811
+      objectReference: {fileID: 0}
+    - target: {fileID: 114313152788500330, guid: b1745c2c232d640c69cc344a15010fb5,
+        type: 2}
+      propertyPath: nightDayFogColor.ctime2
+      value: 22745
+      objectReference: {fileID: 0}
+    - target: {fileID: 114313152788500330, guid: b1745c2c232d640c69cc344a15010fb5,
+        type: 2}
+      propertyPath: nightDayFogColor.ctime3
+      value: 32960
+      objectReference: {fileID: 0}
+    - target: {fileID: 114313152788500330, guid: b1745c2c232d640c69cc344a15010fb5,
+        type: 2}
+      propertyPath: nightDayFogColor.ctime4
+      value: 37008
+      objectReference: {fileID: 0}
+    - target: {fileID: 114313152788500330, guid: b1745c2c232d640c69cc344a15010fb5,
+        type: 2}
+      propertyPath: nightDayFogColor.ctime5
+      value: 42212
+      objectReference: {fileID: 0}
+    - target: {fileID: 114313152788500330, guid: b1745c2c232d640c69cc344a15010fb5,
+        type: 2}
+      propertyPath: nightDayFogColor.ctime6
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 114313152788500330, guid: b1745c2c232d640c69cc344a15010fb5,
+        type: 2}
+      propertyPath: nightDayFogColor.m_NumColorKeys
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114313152788500330, guid: b1745c2c232d640c69cc344a15010fb5,
+        type: 2}
+      propertyPath: fogDensityCurve.m_Curve.Array.data[1].value
+      value: 0.24743438
+      objectReference: {fileID: 0}
+    - target: {fileID: 114313152788500330, guid: b1745c2c232d640c69cc344a15010fb5,
+        type: 2}
+      propertyPath: fogDensityCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114313152788500330, guid: b1745c2c232d640c69cc344a15010fb5,
+        type: 2}
+      propertyPath: fogDensityCurve.m_Curve.Array.data[1].time
+      value: 0.99405634
+      objectReference: {fileID: 0}
+    - target: {fileID: 114313152788500330, guid: b1745c2c232d640c69cc344a15010fb5,
+        type: 2}
+      propertyPath: fogDensityCurve.m_Curve.Array.data[0].value
+      value: 0.19234928
+      objectReference: {fileID: 0}
+    - target: {fileID: 114313152788500330, guid: b1745c2c232d640c69cc344a15010fb5,
+        type: 2}
+      propertyPath: fogDensityCurve.m_Curve.Array.data[0].time
+      value: 0.010391599
+      objectReference: {fileID: 0}
+    - target: {fileID: 1756088035042674, guid: b1745c2c232d640c69cc344a15010fb5, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: b1745c2c232d640c69cc344a15010fb5, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &661178807
 GameObject:
   m_ObjectHideFlags: 0
@@ -8813,7 +9043,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a34feaf33bb4d4d9aaa1866467ac6ae0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 113.56
+      value: 113.4
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a34feaf33bb4d4d9aaa1866467ac6ae0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9525,6 +9755,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 114174572896516136, guid: d74860dde854e4897a5bd7ec3842dd11,
+        type: 2}
+      propertyPath: locations.Array.data[9].position.y
+      value: 113.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114174572896516136, guid: d74860dde854e4897a5bd7ec3842dd11,
+        type: 2}
+      propertyPath: locations.Array.data[10].position.y
+      value: 113.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d74860dde854e4897a5bd7ec3842dd11, type: 2}
   m_IsPrefabParent: 0
@@ -9640,6 +9880,7 @@ Transform:
   - {fileID: 1872250290}
   - {fileID: 752368680}
   - {fileID: 209188193}
+  - {fileID: 1833738774}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10168,7 +10409,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: c8b5343bdaa99417c84e6c182ff756ab, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 114.18
+      value: 114.08
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: c8b5343bdaa99417c84e6c182ff756ab, type: 3}
       propertyPath: m_LocalPosition.z
@@ -12395,7 +12636,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: b74cd88a0cdad4ad3b43af232c670fd9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 113.62
+      value: 113.3
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: b74cd88a0cdad4ad3b43af232c670fd9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -13632,6 +13873,14 @@ Prefab:
       propertyPath: sceneData.sectionPrefabs.Array.data[8].prefabs.Array.data[12].location.z
       value: -9.771
       objectReference: {fileID: 0}
+    - target: {fileID: 11495852, guid: eb48f7f5a581b434b890b66fa6d5b812, type: 2}
+      propertyPath: sceneData.sectionPrefabs.Array.data[8].prefabs.Array.data[9].location.y
+      value: 113.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11495852, guid: eb48f7f5a581b434b890b66fa6d5b812, type: 2}
+      propertyPath: sceneData.sectionPrefabs.Array.data[8].prefabs.Array.data[10].location.y
+      value: 113.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eb48f7f5a581b434b890b66fa6d5b812, type: 2}
   m_IsPrefabParent: 0
@@ -14671,6 +14920,11 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400006, guid: 1caf530b6088d457bad34a9726a703ed, type: 3}
   m_PrefabInternal: {fileID: 1667881488}
+--- !u!4 &1833738774 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4994183637322064, guid: b1745c2c232d640c69cc344a15010fb5,
+    type: 2}
+  m_PrefabInternal: {fileID: 647824387}
 --- !u!4 &1834650818 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4453930360203308, guid: 808b7092a1ca74f2ea041ff4f8447336,
@@ -16176,7 +16430,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4300651562093574, guid: 8c87d7fdf8d9d4f4799e71b955be15a0, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 113.1
+      value: 113.3
       objectReference: {fileID: 0}
     - target: {fileID: 4300651562093574, guid: 8c87d7fdf8d9d4f4799e71b955be15a0, type: 2}
       propertyPath: m_LocalPosition.z
@@ -17283,7 +17537,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4019482510055172, guid: 981063efc49b94771a5fb0309d8af890, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 113.1
+      value: 113.3
       objectReference: {fileID: 0}
     - target: {fileID: 4019482510055172, guid: 981063efc49b94771a5fb0309d8af890, type: 2}
       propertyPath: m_LocalPosition.z

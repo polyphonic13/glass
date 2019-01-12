@@ -187,7 +187,7 @@ public class Puzzle : MonoBehaviour
 			}
 			else if(!isSolved)
 			{
-				Log(" child[" + child.gameObject.name + "], isActivatedOnDeactive = " + child.isActivatedOnDeactivate + ", isDeactivatedOnDeactivate = " + child.isDeactivatedOnDeactivate);
+				// Log(" child[" + child.gameObject.name + "], isActivatedOnDeactive = " + child.isActivatedOnDeactivate + ", isDeactivatedOnDeactivate = " + child.isDeactivatedOnDeactivate);
 				if(child.isActivatedOnDeactivate) 
 				{
 					ToggleChildActive(child, true);
