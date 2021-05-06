@@ -1,3 +1,5 @@
+// Upgrade NOTE: removed variant '__' where variant LOD_FADE_PERCENTAGE is used.
+
 Shader "Hidden/Sunshine/Occluder"
 {
     Properties
@@ -191,7 +193,7 @@ Shader "Hidden/Sunshine/Occluder"
 				#pragma vertex speedtree_vert
 				#pragma fragment speedtree_frag
 				#pragma target 3.0
-				#pragma multi_compile __ LOD_FADE_PERCENTAGE
+				#pragma multi_compile  LOD_FADE_PERCENTAGE
 				#pragma multi_compile GEOM_TYPE_BRANCH GEOM_TYPE_BRANCH_DETAIL GEOM_TYPE_BRANCH_BLEND GEOM_TYPE_FROND GEOM_TYPE_LEAF GEOM_TYPE_FACING_LEAF GEOM_TYPE_MESH
 				#define ENABLE_WIND
 				#define _MainTex _MainTex_Dummy
