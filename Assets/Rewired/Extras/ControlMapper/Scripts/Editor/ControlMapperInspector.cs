@@ -1,4 +1,7 @@
-﻿// Copyright (c) 2015 Augie R. Maddox, Guavaman Enterprises. All rights reserved.
+// Copyright (c) 2015 Augie R. Maddox, Guavaman Enterprises. All rights reserved.
+#pragma warning disable 0219
+#pragma warning disable 0618
+#pragma warning disable 0649
 
 namespace Rewired.UI.ControlMapper {
 
@@ -17,6 +20,7 @@ namespace Rewired.UI.ControlMapper {
         #region Inspector Variable Name Consts
 
         private const string c_rewiredInputManager = "_rewiredInputManager";
+        private const string c_dontDestroyOnLoad = "_dontDestroyOnLoad";
 
         private const string c_openOnStart = "_openOnStart";
 
@@ -39,7 +43,11 @@ namespace Rewired.UI.ControlMapper {
         private const string c_mouseInputFieldCount = "_mouseInputFieldCount";
         private const string c_controllerInputFieldCount = "_controllerInputFieldCount";
 
+        private const string c_showFullAxisInputFields = "_showFullAxisInputFields";
+        private const string c_showSplitAxisInputFields = "_showSplitAxisInputFields";
+
         private const string c_allowElementAssignmentConflicts = "_allowElementAssignmentConflicts";
+        private const string c_allowElementAssignmentSwap = "_allowElementAssignmentSwap";
 
         private const string c_actionLabelWidth = "_actionLabelWidth";
         private const string c_keyboardColMaxWidth = "_keyboardColMaxWidth";
@@ -47,6 +55,8 @@ namespace Rewired.UI.ControlMapper {
         private const string c_controllerColMaxWidth = "_controllerColMaxWidth";
 
         private const string c_inputRowHeight = "_inputRowHeight";
+        private const string c_inputRowPadding = "_inputRowPadding";
+        private const string c_inputRowFieldSpacing = "_inputRowFieldSpacing";
         private const string c_inputColumnSpacing = "_inputColumnSpacing";
         private const string c_inputRowCategorySpacing = "_inputRowCategorySpacing";
         private const string c_invertToggleWidth = "_invertToggleWidth";
@@ -88,6 +98,13 @@ namespace Rewired.UI.ControlMapper {
         private const string c_showControllerNameLabel = "_showControllerNameLabel";
         private const string c_showAssignedControllers = "_showAssignedControllers";
 
+        private const string c_onScreenClosed = "_onScreenClosed";
+        private const string c_onScreenOpened = "_onScreenOpened";
+        private const string c_onPopupWindowClosed = "_onPopupWindowClosed";
+        private const string c_onPopupWindowOpened = "_onPopupWindowOpened";
+        private const string c_onInputPollingStarted = "_onInputPollingStarted";
+        private const string c_onInputPollingEnded = "_onInputPollingEnded";
+
         #endregion
 
         #region Working Vars
@@ -108,12 +125,13 @@ namespace Rewired.UI.ControlMapper {
 
         #endregion
 
-        #region Unity Events
+        #region MonoBehaviour Events
 
         protected virtual void OnEnable() {
             properties = new Dictionary<string, SerializedProperty>();
 
             AddProperty(c_rewiredInputManager);
+            AddProperty(c_dontDestroyOnLoad);
 
             AddProperty(c_openOnStart);
 
@@ -136,7 +154,11 @@ namespace Rewired.UI.ControlMapper {
             AddProperty(c_mouseInputFieldCount);
             AddProperty(c_controllerInputFieldCount);
 
+            AddProperty(c_showFullAxisInputFields);
+            AddProperty(c_showSplitAxisInputFields);
+
             AddProperty(c_allowElementAssignmentConflicts);
+            AddProperty(c_allowElementAssignmentSwap);
 
             AddProperty(c_actionLabelWidth);
             AddProperty(c_keyboardColMaxWidth);
@@ -144,6 +166,8 @@ namespace Rewired.UI.ControlMapper {
             AddProperty(c_controllerColMaxWidth);
 
             AddProperty(c_inputRowHeight);
+            AddProperty(c_inputRowPadding);
+            AddProperty(c_inputRowFieldSpacing);
             AddProperty(c_inputColumnSpacing);
             AddProperty(c_inputRowCategorySpacing);
             AddProperty(c_invertToggleWidth);
@@ -184,6 +208,13 @@ namespace Rewired.UI.ControlMapper {
 
             AddProperty(c_showControllerNameLabel);
             AddProperty(c_showAssignedControllers);
+
+            AddProperty(c_onScreenClosed);
+            AddProperty(c_onScreenOpened);
+            AddProperty(c_onPopupWindowClosed);
+            AddProperty(c_onPopupWindowOpened);
+            AddProperty(c_onInputPollingStarted);
+            AddProperty(c_onInputPollingEnded);
         }
 
         public override void OnInspectorGUI() {
@@ -199,6 +230,7 @@ namespace Rewired.UI.ControlMapper {
             EditorGUILayout.Space();
             using(new EditorGUILayoutSection(true, style_sectionBkg)) {
                 EditorGUILayout.PropertyField(properties[c_rewiredInputManager]);
+                EditorGUILayout.PropertyField(properties[c_dontDestroyOnLoad]);
             }
 
             DrawLayout();
@@ -289,6 +321,35 @@ namespace Rewired.UI.ControlMapper {
                 }
             }        
 
+            // Input field options
+            using(new EditorGUILayoutSection(true, style_sectionBkg)) {
+                EditorGUILayout.LabelField(new GUIContent("Input Field Options:", "Various options for the input field grid."), style_sectionLabel);
+                EditorGUILayout.Space();
+                EditorGUILayout.PropertyField(properties[c_showFullAxisInputFields]);
+                EditorGUILayout.PropertyField(properties[c_showSplitAxisInputFields]);
+                if(!properties[c_showFullAxisInputFields].boolValue) {
+                    if(!properties[c_showSplitAxisInputFields].boolValue) { // both are disabled
+                        EditorGUILayout.HelpBox("No axis input fields will be displayed! The user will be unable to make any assignments to axis-type Actions.", MessageType.Error);
+                    } else {
+                        EditorGUILayout.HelpBox(
+                            "Full-axis input fields will not be displayed. This field is required if you have made any full-axis assignments " +
+                            "in the Rewired Input Manager or in saved XML user data. Disabling this field when you have full-axis assignments will result in the " +
+                            "inability for the user to view, remove, or modify these full-axis assignments. In addition, these assignments may cause conflicts when " + 
+                            "trying to remap the same axes to Actions.",
+                            MessageType.Warning
+                        );
+                    }
+                } else if(!properties[c_showSplitAxisInputFields].boolValue) {
+                    EditorGUILayout.HelpBox(
+                        "Split-axis input fields will not be displayed. These fields are required to assign buttons, keyboard keys, and hat or D-Pad directions to axis-type Actions. " +
+                        "If you have made any split-axis assignments or button/key/D-pad assignments to axis-type Actions in the Rewired Input Manager or " +
+                        "in saved XML user data, disabling these fields will result in the inability for the user to view, remove, or modify these assignments. " +
+                        "In addition, these assignments may cause conflicts when trying to remap the same elements to Actions.",
+                        MessageType.Warning
+                    );
+                }
+            }
+
             // Mapping sets
             using(new EditorGUILayoutSection(true, style_sectionBkg)) {
                 EditorGUILayout.LabelField(new GUIContent("Map Categories and Actions:", "Options for the Map Categories and Actions displayed to the user for input mapping."), style_sectionLabel);
@@ -326,6 +387,7 @@ namespace Rewired.UI.ControlMapper {
                 EditorGUILayout.LabelField(new GUIContent("Element Assignment Options:", "Various options for the element assignment."), style_sectionLabel);
                 EditorGUILayout.Space();
                 EditorGUILayout.PropertyField(properties[c_allowElementAssignmentConflicts]);
+                EditorGUILayout.PropertyField(properties[c_allowElementAssignmentSwap]);
             }
 
             // Timer options
@@ -347,6 +409,8 @@ namespace Rewired.UI.ControlMapper {
                 DrawIntProperty(properties[c_mouseColMaxWidth], 0, 10000);
                 DrawIntProperty(properties[c_controllerColMaxWidth], 0, 10000);
                 DrawIntProperty(properties[c_inputRowHeight], 0, 10000);
+                EditorGUILayout.PropertyField(properties[c_inputRowPadding], true);
+                DrawIntProperty(properties[c_inputRowFieldSpacing], 0, 10000);
                 DrawIntProperty(properties[c_inputColumnSpacing], 0, 10000);
                 DrawIntProperty(properties[c_inputRowCategorySpacing], 0, 10000);
                 DrawIntProperty(properties[c_invertToggleWidth], 0, 10000);
@@ -384,6 +448,18 @@ namespace Rewired.UI.ControlMapper {
                 EditorGUILayout.LabelField(new GUIContent("Language Options:", "Language options."), style_sectionLabel);
                 EditorGUILayout.Space();
                 EditorGUILayout.PropertyField(properties[c_language]);
+            }
+
+            // Unity Events
+            using(new EditorGUILayoutSection(true, style_sectionBkg)) {
+                EditorGUILayout.LabelField(new GUIContent("Events:", "Events."), style_sectionLabel);
+                EditorGUILayout.Space();
+                EditorGUILayout.PropertyField(properties[c_onScreenOpened]);
+                EditorGUILayout.PropertyField(properties[c_onScreenClosed]);
+                EditorGUILayout.PropertyField(properties[c_onPopupWindowOpened]);
+                EditorGUILayout.PropertyField(properties[c_onPopupWindowClosed]);
+                EditorGUILayout.PropertyField(properties[c_onInputPollingStarted]);
+                EditorGUILayout.PropertyField(properties[c_onInputPollingEnded]);
             }
 
             // Advanced settings

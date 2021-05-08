@@ -1,13 +1,13 @@
 Rewired
 
 Website:
-http://www.guavaman.com/projects/rewired/
+http://www.guavaman.com/rewired/
 
 Documentation:
-http://www.guavaman.com/projects/rewired/docs
+http://www.guavaman.com/rewired/docs
 
 Support:
-http://www.guavaman.com/projects/rewired/support
+http://www.guavaman.com/rewired#support
 
 Contact email:
 support@guavaman.com

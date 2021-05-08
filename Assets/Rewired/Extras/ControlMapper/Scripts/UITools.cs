@@ -1,4 +1,10 @@
-﻿// Copyright (c) 2015 Augie R. Maddox, Guavaman Enterprises. All rights reserved.
+// Copyright (c) 2015 Augie R. Maddox, Guavaman Enterprises. All rights reserved.
+
+//#define REWIRED_CONTROL_MAPPER_USE_TMPRO
+
+#pragma warning disable 0219
+#pragma warning disable 0618
+#pragma warning disable 0649
 
 namespace Rewired.UI.ControlMapper {
 
@@ -9,6 +15,12 @@ namespace Rewired.UI.ControlMapper {
     using System.Collections.Generic;
     using System.Reflection;
     using Rewired;
+    using Rewired.Utils;
+#if REWIRED_CONTROL_MAPPER_USE_TMPRO
+    using Text = TMPro.TMP_Text;
+#else
+    using Text = UnityEngine.UI.Text;
+#endif
 
     public static class UITools {
 
@@ -73,13 +85,46 @@ namespace Rewired.UI.ControlMapper {
             Rect rect = rt.rect;
 
             // Create a new rect in world coords
-            Vector3 tl = rt.TransformPoint(new Vector2(rect.xMin, rect.yMin)); // top left
-            Vector3 bl = rt.TransformPoint(new Vector2(rect.xMin, rect.yMax)); // bottom left
-            Vector3 tr = rt.TransformPoint(new Vector2(rect.xMax, rect.yMin)); // top right
+            Vector2 tl = rt.TransformPoint(new Vector2(rect.xMin, rect.yMin)); // top left
+            Vector2 bl = rt.TransformPoint(new Vector2(rect.xMin, rect.yMax)); // bottom left
+            Vector2 tr = rt.TransformPoint(new Vector2(rect.xMax, rect.yMin)); // top right
 
             // Resulting Rect is in 3D coords, NOT Unity Rect coords.
             // IE: 0 Y = bottom left, + values going UP
             return new Rect(tl.x, tl.y, tr.x - tl.x, bl.y - tl.y); // invert y
+        }
+
+        public static Rect TransformRectTo(Transform from, Transform to, Rect rect) {
+
+            Vector3 topLeft;
+            Vector3 bottomLeft;
+            Vector3 topRight;
+
+            if (from != null) {
+                topLeft = from.TransformPoint(new Vector2(rect.xMin, rect.yMin));
+                bottomLeft = from.TransformPoint(new Vector2(rect.xMin, rect.yMax));
+                topRight = from.TransformPoint(new Vector2(rect.xMax, rect.yMin));
+            } else {
+                topLeft = new Vector2(rect.xMin, rect.yMin);
+                bottomLeft = new Vector2(rect.xMin, rect.yMax);
+                topRight = new Vector2(rect.xMax, rect.yMin);
+            }
+
+            if (to != null) {
+                topLeft = to.InverseTransformPoint(topLeft);
+                bottomLeft = to.InverseTransformPoint(bottomLeft);
+                topRight = to.InverseTransformPoint(topRight);
+            }
+
+            return new Rect(topLeft.x, topLeft.y, topRight.x - topLeft.x, topLeft.y - bottomLeft.y);
+
+            // Resulting Rect is in 3D coords, NOT Unity Rect coords.
+            // IE: 0 Y = bottom left, + values going UP
+            //return new Rect(topLeft.x, topLeft.y, topRight.x - topLeft.x, bottomLeft.y - topLeft.y); // invert y
+        }
+
+        public static Rect InvertY(Rect rect) {
+            return new Rect(rect.xMin, rect.yMin, rect.width, -rect.height);
         }
 
         public static void SetInteractable(Selectable selectable, bool state, bool playTransition) {
@@ -95,6 +140,8 @@ namespace Rewired.UI.ControlMapper {
                     selectable.interactable = state;
                     colorBlock.fadeDuration = prevFadeDuration;
                     selectable.colors = colorBlock;
+                } else {
+                    selectable.interactable = state;
                 }
             } else {
                 selectable.interactable = state;

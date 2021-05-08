@@ -1,6 +1,13 @@
-﻿// Copyright (c) 2015 Augie R. Maddox, Guavaman Enterprises. All rights reserved.
+// Copyright (c) 2015 Augie R. Maddox, Guavaman Enterprises. All rights reserved.
 
-namespace Rewired.UI.ControlMapper {
+//#define REWIRED_CONTROL_MAPPER_USE_TMPRO
+
+#pragma warning disable 0219
+#pragma warning disable 0618
+#pragma warning disable 0649
+
+namespace Rewired.UI.ControlMapper
+{
 
     using UnityEngine;
     using UnityEngine.UI;
@@ -10,12 +17,19 @@ namespace Rewired.UI.ControlMapper {
     using System.Collections.ObjectModel;
     using Rewired;
     using Rewired.Utils;
+#if REWIRED_CONTROL_MAPPER_USE_TMPRO
+    using Text = TMPro.TMP_Text;
+#else
+    using Text = UnityEngine.UI.Text;
+#endif
 
-    public partial class ControlMapper {
+    public partial class ControlMapper
+    {
 
         #region GUI Elements
 
-        private abstract class GUIElement {
+        private abstract class GUIElement
+        {
             public readonly GameObject gameObject;
             protected readonly Text text;
             public readonly Selectable selectable;
@@ -134,7 +148,8 @@ namespace Rewired.UI.ControlMapper {
             }
         }
 
-        private class GUIButton : GUIElement {
+        private class GUIButton : GUIElement
+        {
 
             protected Button button { get { return selectable as Button; } }
             public ButtonInfo buttonInfo { get { return uiElementInfo as ButtonInfo; } }
@@ -158,7 +173,8 @@ namespace Rewired.UI.ControlMapper {
             }
         }
 
-        private class GUIInputField : GUIElement {
+        private class GUIInputField : GUIElement
+        {
 
             protected Button button { get { return selectable as Button; } }
             public InputFieldInfo fieldInfo { get { return uiElementInfo as InputFieldInfo; } }
@@ -220,7 +236,8 @@ namespace Rewired.UI.ControlMapper {
             }
         }
 
-        private class GUIToggle : GUIElement {
+        private class GUIToggle : GUIElement
+        {
 
             protected Toggle toggle { get { return selectable as Toggle; } }
             public ToggleInfo toggleInfo { get { return uiElementInfo as ToggleInfo; } }
@@ -255,7 +272,7 @@ namespace Rewired.UI.ControlMapper {
 
             public void SetOnSubmitCallback(System.Action<ToggleInfo, bool> callback) {
                 if(toggle == null) return;
-                
+
                 EventTrigger trigger = toggle.GetComponent<EventTrigger>();
                 if(trigger == null) trigger = toggle.gameObject.AddComponent<EventTrigger>();
 
@@ -297,7 +314,8 @@ namespace Rewired.UI.ControlMapper {
             }
         }
 
-        private class GUILabel {
+        private class GUILabel
+        {
 
             public GameObject gameObject { get; private set; }
             private Text text { get; set; }
@@ -337,6 +355,17 @@ namespace Rewired.UI.ControlMapper {
                 text.text = label;
             }
 
+#if REWIRED_CONTROL_MAPPER_USE_TMPRO
+            public void SetFontStyle(TMPro.FontStyles style) {
+                if(text == null) return;
+                text.fontStyle = style;
+            }
+
+            public void SetTextAlignment(TMPro.TextAlignmentOptions alignment) {
+                if(text == null) return;
+                text.alignment = alignment;
+            }
+#else
             public void SetFontStyle(FontStyle style) {
                 if(text == null) return;
                 text.fontStyle = style;
@@ -346,6 +375,7 @@ namespace Rewired.UI.ControlMapper {
                 if(text == null) return;
                 text.alignment = alignment;
             }
+#endif
 
             public void SetActive(bool state) {
                 if(gameObject == null) return;
@@ -369,7 +399,8 @@ namespace Rewired.UI.ControlMapper {
         #region Serialized Data
 
         [System.Serializable]
-        public class MappingSet {
+        public class MappingSet
+        {
 
             [SerializeField]
             [Tooltip("The Map Category that will be displayed to the user for remapping.")]
@@ -437,20 +468,22 @@ namespace Rewired.UI.ControlMapper {
                 }
             }
 
-            public enum ActionListMode {
+            public enum ActionListMode
+            {
                 ActionCategory = 0,
                 Action = 1
             }
         }
 
         [System.Serializable]
-        public class InputBehaviorSettings {
+        public class InputBehaviorSettings
+        {
 
             // Info
             [SerializeField]
             [Tooltip("The Input Behavior that will be displayed to the user for modification.")]
             private int _inputBehaviorId = -1;
-           
+
             // Display options
             [SerializeField]
             [Tooltip("If checked, a slider will be displayed so the user can change this value.")]
@@ -520,7 +553,8 @@ namespace Rewired.UI.ControlMapper {
         }
 
         [System.Serializable]
-        private class Prefabs {
+        private class Prefabs
+        {
 
             [SerializeField]
             private GameObject _button;
@@ -590,7 +624,8 @@ namespace Rewired.UI.ControlMapper {
         }
 
         [System.Serializable]
-        private class References {
+        private class References
+        {
 
             [SerializeField]
             private Canvas _canvas;
@@ -692,7 +727,7 @@ namespace Rewired.UI.ControlMapper {
             public Transform inputGridHeader4 { get; set; }
 
             public bool Check() {
-                if( _canvas == null ||
+                if(_canvas == null ||
                     _mainCanvasGroup == null ||
                     _mainContent == null ||
                     _mainContentInner == null ||
@@ -725,7 +760,8 @@ namespace Rewired.UI.ControlMapper {
 
         #endregion
 
-        private class InputActionSet {
+        private class InputActionSet
+        {
             private int _actionId;
             private AxisRange _axisRange;
 
@@ -738,7 +774,8 @@ namespace Rewired.UI.ControlMapper {
             }
         }
 
-        private class InputMapping {
+        private class InputMapping
+        {
             public string actionName { get; private set; }
             public InputFieldInfo fieldInfo { get; private set; }
             public ControllerMap map { get; private set; }
@@ -762,20 +799,10 @@ namespace Rewired.UI.ControlMapper {
             public string elementName {
                 get {
                     if(controllerType == ControllerType.Keyboard) {
-                        if(modifierKeyFlags != ModifierKeyFlags.None) {
-                            return string.Format("{0} + {1}", Keyboard.ModifierKeyFlagsToString(modifierKeyFlags), pollingInfo.elementIdentifierName);
-                        }
+                        return ControlMapper.GetLanguage().GetElementIdentifierName(pollingInfo.keyboardKey, modifierKeyFlags);
+                    } else {
+                        return ControlMapper.GetLanguage().GetElementIdentifierName(pollingInfo.controller, pollingInfo.elementIdentifierId, pollingInfo.axisPole == Pole.Positive ? AxisRange.Positive : AxisRange.Negative);
                     }
-
-                    string name = pollingInfo.elementIdentifierName;
-
-                    // Append +/- on split axis names
-                    if(pollingInfo.elementType == ControllerElementType.Axis) {
-                        if(axisRange == AxisRange.Positive) name += " +";
-                        else if(axisRange == AxisRange.Negative) name += " -";
-                    }
-
-                    return name;
                 }
             }
 
@@ -813,7 +840,8 @@ namespace Rewired.UI.ControlMapper {
             }
         }
 
-        private class AxisCalibrator {
+        private class AxisCalibrator
+        {
 
             public AxisCalibrationData data;
             public readonly Joystick joystick;
@@ -862,7 +890,8 @@ namespace Rewired.UI.ControlMapper {
             }
         }
 
-        private class IndexedDictionary<TKey, TValue> {
+        private class IndexedDictionary<TKey, TValue>
+        {
 
             private List<Entry> list;
 
@@ -921,7 +950,8 @@ namespace Rewired.UI.ControlMapper {
                 list.Clear();
             }
 
-            private class Entry {
+            private class Entry
+            {
                 public TKey key;
                 public TValue value;
 
