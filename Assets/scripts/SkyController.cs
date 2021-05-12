@@ -1,83 +1,89 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class SkyController : MonoBehaviour {
+public class SkyController : MonoBehaviour
+{
 
-	public Transform stars;
+    public Transform stars;
 
-	public Gradient nightDayColor;
+    public Gradient nightDayColor;
 
-	public float maxIntensity = 3f;
-	public float minIntensity = 0f;
-	public float minPoint = -0.2f; 
+    public float maxIntensity = 3f;
+    public float minIntensity = 0f;
+    public float minPoint = -0.2f;
 
-	public float maxAmbient = 1f;
-	public float minAmbient = 0f;
-	public float minAmbientPoint = -0.2f;
+    public float maxAmbient = 1f;
+    public float minAmbient = 0f;
+    public float minAmbientPoint = -0.2f;
 
-	public Gradient nightDayFogColor;
-	public AnimationCurve fogDensityCurve;
-	public float fogScale = 1f;
+    public Gradient nightDayFogColor;
+    public AnimationCurve fogDensityCurve;
+    public float fogScale = 1f;
 
-	public float dayAtmosphereThickness = 0.4f;
-	public float nightAtmosphereThickness = 0.87f;
+    public float dayAtmosphereThickness = 0.4f;
+    public float nightAtmosphereThickness = 0.87f;
 
-	public Vector3 dayRotationSpeed = new Vector3(-2, 0, 0);
-	public Vector3 nightRotationSpeed = new Vector3(-2, 0, 0); 
+    public Vector3 dayRotationSpeed = new Vector3(-2, 0, 0);
+    public Vector3 nightRotationSpeed = new Vector3(-2, 0, 0);
 
-	private Vector3 rotationSpeed;
+    private Vector3 rotationSpeed;
 
-	private float skySpeed = 1f;
+    private float skySpeed = 1f;
 
-	private Light mainLight;
-	private Skybox sky;
-	private Material skyMat;
+    private Light mainLight;
+    private Skybox sky;
+    private Material skyMat;
 
-	// Use this for initialization
-	void Start () {
-		mainLight = GetComponent<Light> ();
-		skyMat = RenderSettings.skybox;
-		// skyMat.SetFloat("_AtmosphereThickness", dayAtmosphereThickness);
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		float tRange = 1 - minPoint;
-		float dot = Mathf.Clamp01 ((Vector3.Dot (mainLight.transform.forward, Vector3.down) - minPoint) / tRange);
-		float i = ((maxIntensity - minIntensity) * dot) + minIntensity;
+    // Use this for initialization
+    void Start()
+    {
+        mainLight = GetComponent<Light>();
+        skyMat = RenderSettings.skybox;
+        // skyMat.SetFloat("_AtmosphereThickness", dayAtmosphereThickness);
+    }
 
-		mainLight.intensity = i;
+    // Update is called once per frame
+    void Update()
+    {
+        float tRange = 1 - minPoint;
+        float dot = Mathf.Clamp01((Vector3.Dot(mainLight.transform.forward, Vector3.down) - minPoint) / tRange);
+        float i = ((maxIntensity - minIntensity) * dot) + minIntensity;
 
-		tRange = 1 - minAmbientPoint;
-		dot = Mathf.Clamp01 ((Vector3.Dot (mainLight.transform.forward, Vector3.down) - minAmbientPoint) / tRange);
-		i = ((maxAmbient - minAmbient) * dot) + minAmbient;
-		// RenderSettings.ambientIntensity = i;
+        mainLight.intensity = i;
 
-		mainLight.color = nightDayColor.Evaluate (dot);
-		RenderSettings.ambientLight = mainLight.color;
+        tRange = 1 - minAmbientPoint;
+        dot = Mathf.Clamp01((Vector3.Dot(mainLight.transform.forward, Vector3.down) - minAmbientPoint) / tRange);
+        i = ((maxAmbient - minAmbient) * dot) + minAmbient;
+        RenderSettings.ambientIntensity = i;
 
-		// RenderSettings.fogColor = nightDayFogColor.Evaluate (dot);
-		RenderSettings.fogDensity = fogDensityCurve.Evaluate (dot) * fogScale;
+        mainLight.color = nightDayColor.Evaluate(dot);
+        RenderSettings.ambientLight = mainLight.color;
 
-		i = (dot > 0) ? (((dayAtmosphereThickness - nightAtmosphereThickness) * dot) + nightAtmosphereThickness) : (((nightAtmosphereThickness - dayAtmosphereThickness) * dot) + dayAtmosphereThickness);
-		// i = (dot > 0) ? dayAtmosphereThickness : nightAtmosphereThickness;
+        RenderSettings.fogColor = nightDayFogColor.Evaluate(dot);
+        RenderSettings.fogDensity = fogDensityCurve.Evaluate(dot) * fogScale;
 
-		skyMat.SetFloat("_AtmosphereThickness", i);
+        i = (dot > 0) ? (((dayAtmosphereThickness - nightAtmosphereThickness) * dot) + nightAtmosphereThickness) : (((nightAtmosphereThickness - dayAtmosphereThickness) * dot) + dayAtmosphereThickness);
+        // i = (dot > 0) ? dayAtmosphereThickness : nightAtmosphereThickness;
 
-		// Debug.Log ("dot = " + dot + " rot = " + (dayRotationSpeed * Time.deltaTime * skySpeed) + ", atmos = " + i);
-		if(dot > 0) {
-			rotationSpeed = dayRotationSpeed;
-		} else {
-			rotationSpeed = nightRotationSpeed;
-		}
+        skyMat.SetFloat("_AtmosphereThickness", i);
 
-		this.transform.Rotate(rotationSpeed * Time.deltaTime * skySpeed);
+        Debug.Log("dot = " + dot + " rot = " + (dayRotationSpeed * Time.deltaTime * skySpeed) + ", atmos = " + i);
+        if (dot > 0)
+        {
+            rotationSpeed = dayRotationSpeed;
+        }
+        else
+        {
+            rotationSpeed = nightRotationSpeed;
+        }
 
-		if(stars != null) {
-			stars.transform.Rotate(rotationSpeed * Time.deltaTime * skySpeed);
-		}
+        this.transform.Rotate(rotationSpeed * Time.deltaTime * skySpeed);
 
-		if(Input.GetKeyDown(KeyCode.Q)) skySpeed *= 0.5f;
-		if(Input.GetKeyDown(KeyCode.E)) skySpeed *= 2f;
-	}
+        if (stars != null)
+        {
+            stars.transform.Rotate(rotationSpeed * Time.deltaTime * skySpeed);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Q)) skySpeed *= 0.5f;
+        if (Input.GetKeyDown(KeyCode.E)) skySpeed *= 2f;
+    }
 }
