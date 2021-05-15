@@ -1,213 +1,253 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
-using System.Reflection;
-using System;
 
-namespace Polyworks {
-	public class Game : MonoBehaviour {
+namespace Polyworks
+{
+    public class Game : MonoBehaviour
+    {
 
-		public GameData gameData;
+        public GameData gameData;
 
-		public string dataFilename = "game_data.dat"; 
-		public string playerPrefab = "player_objects";
+        public string dataFilename = "game_data.dat";
+        public string playerPrefab = "player_objects";
 
-		public bool isSceneInitialized = false;
+        public bool isSceneInitialized = false;
 
-		public bool isCursorless = true;
+        public bool isCursorless = true;
 
-		public Inventory playerInventory { get; set; }
+        public Inventory playerInventory { get; set; }
 
-		private LevelController _levelController;
-		private Player _player;
-		private Inventory _playerInventory; 
+        private LevelController _levelController;
+        private Player _player;
+        private Inventory _playerInventory;
 
-		private DataIOController _dataIOController; 
+        private DataIOController _dataIOController;
 
-		public static Game Instance;
+        public static Game Instance;
 
-		public virtual void Init() {
+        public virtual void Init()
+        {
 
-			Scene currentScene = SceneManager.GetActiveScene ();
-			string currentSceneName = currentScene.name;
-			bool isLevel = _getIsLevel (currentSceneName);
-			Instance.isSceneInitialized = false;
+            Scene currentScene = SceneManager.GetActiveScene();
+            string currentSceneName = currentScene.name;
+            bool isLevel = _getIsLevel(currentSceneName);
+            Instance.isSceneInitialized = false;
 
-			_dataIOController = new DataIOController ();
+            _dataIOController = new DataIOController();
 
-			if (isCursorless) {
-				Cursor.visible = false;
-			}
-			if (Instance.gameData.tasks == null) {
-				Instance.gameData.tasks = new Hashtable ();
-			}
+            if (isCursorless)
+            {
+                Cursor.visible = false;
+            }
+            if (Instance.gameData.tasks == null)
+            {
+                Instance.gameData.tasks = new Hashtable();
+            }
 
-			if (Instance.gameData.items == null) {
-				Instance.gameData.items = new Hashtable ();
-			}
+            if (Instance.gameData.items == null)
+            {
+                Instance.gameData.items = new Hashtable();
+            }
 
-			if (Instance.gameData.clearedScenes == null) {
-				Instance.gameData.clearedScenes = new Hashtable ();
-			}
+            if (Instance.gameData.clearedScenes == null)
+            {
+                Instance.gameData.clearedScenes = new Hashtable();
+            }
 
-			Instance.gameData.currentScene = currentSceneName; 
-			Hashtable items = Instance.gameData.items;
+            Instance.gameData.currentScene = currentSceneName;
+            Hashtable items = Instance.gameData.items;
 
-			SceneChanger.Instance.Init (currentSceneName);
+            SceneChanger.Instance.Init(currentSceneName);
 
-			if (isLevel) {
-				_initLevel (currentSceneName, items);
-			} else {
-				_completeSceneInitialization (isLevel, currentSceneName);
-			}
+            if (isLevel)
+            {
+                _initLevel(currentSceneName, items);
+            }
+            else
+            {
+                _completeSceneInitialization(isLevel, currentSceneName);
+            }
 
-			EventCenter ec = EventCenter.Instance;
-			ec.OnStartSceneChange += OnStartSceneChange;
-			ec.OnCompleteSceneChange += OnCompleteSceneChange;
-		}
+            EventCenter ec = EventCenter.Instance;
+            ec.OnStartSceneChange += OnStartSceneChange;
+            ec.OnCompleteSceneChange += OnCompleteSceneChange;
+        }
 
-		#region handlers
-		public void OnStartSceneChange(string scene, int section = -1) {
-			_prepForSceneChange (scene, section);
-		}
+        #region handlers
+        public void OnStartSceneChange(string scene, int section = -1)
+        {
+            _prepForSceneChange(scene, section);
+        }
 
-		public void OnCompleteSceneChange(string scene, int section = -1) {
-			_loadScene (scene);
-		}
+        public void OnCompleteSceneChange(string scene, int section = -1)
+        {
+            _loadScene(scene);
+        }
 
-		#endregion
-	
-		#region public methods
-		public virtual Inventory GetPlayerInventory() {
-			return Instance.playerInventory;
-		}
+        #endregion
 
-		public void Save() {
-			Scene currentScene = SceneManager.GetActiveScene ();
-			Instance.gameData.items = Instance.playerInventory.GetAll ();
-			_dataIOController.Save (Application.persistentDataPath + "/" + dataFilename, Instance.gameData);
-		}
+        #region public methods
+        public virtual Inventory GetPlayerInventory()
+        {
+            return Instance.playerInventory;
+        }
 
-		public void Load() {
-			GameData data = _dataIOController.Load (Application.persistentDataPath + "/" + dataFilename);
-			if (data != null) {
-				Instance.gameData = data;
+        public void Save()
+        {
+            Scene currentScene = SceneManager.GetActiveScene();
+            Instance.gameData.items = Instance.playerInventory.GetAll();
+            _dataIOController.Save(Application.persistentDataPath + "/" + dataFilename, Instance.gameData);
+        }
 
-				if (data.currentScene != "") {
-					_changeScene(data.currentScene, data.targetSection);
-				} else {
-					Scene currentScene = SceneManager.GetActiveScene ();
-					string currentSceneName = currentScene.name;
-					_changeScene(currentSceneName, data.targetSection);
-				}
-			}
-		}
+        public void Load()
+        {
+            GameData data = _dataIOController.Load(Application.persistentDataPath + "/" + dataFilename);
+            if (data != null)
+            {
+                Instance.gameData = data;
 
-		public void StartGame() {
-			LevelData level = Instance.gameData.levels [0];
-			_changeScene(level.name, level.currentSection);
-		}
+                if (data.currentScene != "")
+                {
+                    _changeScene(data.currentScene, data.targetSection);
+                }
+                else
+                {
+                    Scene currentScene = SceneManager.GetActiveScene();
+                    string currentSceneName = currentScene.name;
+                    _changeScene(currentSceneName, data.targetSection);
+                }
+            }
+        }
 
-		public void LevelInitialized() {
-			PlayerManager pm = GameObject.Find ("level_controller").GetComponent<PlayerManager> ();
-			_player = pm.GetPlayer();
-			Instance.playerInventory = pm.GetInventory ();
-			Scene currentScene = SceneManager.GetActiveScene ();
+        public void StartGame()
+        {
+            LevelData level = Instance.gameData.levels[0];
+            _changeScene(level.name, level.currentSection);
+        }
 
-			GameObject inventoryObj = GameObject.Find ("inventory_ui");
-			if (inventoryObj != null) {
-				InventoryUI inventoryUI = inventoryObj.GetComponent<InventoryUI> ();
-				inventoryUI.InitInventory(Instance.playerInventory);
-			}
-			NotificationUIController.Instance.Init();
+        public void LevelInitialized()
+        {
+            PlayerManager pm = GameObject.Find("level_controller").GetComponent<PlayerManager>();
+            _player = pm.GetPlayer();
+            Instance.playerInventory = pm.GetInventory();
+            Scene currentScene = SceneManager.GetActiveScene();
 
-			_completeSceneInitialization(true, currentScene.name);
-		}
+            GameObject inventoryObj = GameObject.Find("inventory_ui");
+            if (inventoryObj != null)
+            {
+                InventoryUI inventoryUI = inventoryObj.GetComponent<InventoryUI>();
+                inventoryUI.InitInventory(Instance.playerInventory);
+            }
+            NotificationUIController.Instance.Init();
 
-		public void Increment() {
-			Instance.gameData.count++;
+            _completeSceneInitialization(true, currentScene.name);
+        }
 
-			Scene currentScene = SceneManager.GetActiveScene ();
-			if (currentScene.name == "game_control_test02") {
-				EventCenter.Instance.UpdateIntTask ("incrementCount", Instance.gameData.count);
-			}
-		}
+        public void Increment()
+        {
+            Instance.gameData.count++;
 
-		public bool GetFlag(string key) {
-			return FlagDataUtils.GetByKey (key, Instance.gameData.flags).value;
-		}
+            Scene currentScene = SceneManager.GetActiveScene();
+            if (currentScene.name == "game_control_test02")
+            {
+                EventCenter.Instance.UpdateIntTask("incrementCount", Instance.gameData.count);
+            }
+        }
 
-		public void SetFlag(string key, bool value) {
-			Debug.Log ("Game/SetFlag, key = " + key + ", value = " + value);
-			FlagDataUtils.SetByKey (key, value, Instance.gameData.flags);
-		}
-		#endregion
+        public bool GetFlag(string key)
+        {
+            return FlagDataUtils.GetByKey(key, Instance.gameData.flags).value;
+        }
 
-		#region private methods
-		private void Awake() {
-			if(Instance == null) {
-				DontDestroyOnLoad(gameObject);
-				Instance = this;
-			} else if(this != Instance) {
-				Destroy(gameObject);
-			}
-			Init ();
-		}
+        public void SetFlag(string key, bool value)
+        {
+            Debug.Log("Game/SetFlag, key = " + key + ", value = " + value);
+            FlagDataUtils.SetByKey(key, value, Instance.gameData.flags);
+        }
+        #endregion
 
-		private void _changeScene(string scene, int section = -1) {
-			EventCenter.Instance.StartSceneChange (scene, section);
-		}
+        #region private methods
+        private void Awake()
+        {
+            if (Instance == null)
+            {
+                DontDestroyOnLoad(gameObject);
+                Instance = this;
+            }
+            else if (this != Instance)
+            {
+                Destroy(gameObject);
+            }
+            Init();
+        }
 
-		private void _prepForSceneChange(string scene, int section = -1) {
-			Scene currentScene = SceneManager.GetActiveScene ();
-			bool isLevel = _getIsLevel (currentScene.name);
+        private void _changeScene(string scene, int section = -1)
+        {
+            EventCenter.Instance.StartSceneChange(scene, section);
+        }
 
-			if (section > -1) {
-				Instance.gameData.targetSection = section;
-			}
+        private void _prepForSceneChange(string scene, int section = -1)
+        {
+            Scene currentScene = SceneManager.GetActiveScene();
+            bool isLevel = _getIsLevel(currentScene.name);
 
-			if (scene != currentScene.name) {
-				if (isLevel) {
-					if (_levelController != null) {
-						LevelUtils.SetLevelData (currentScene.name, Instance.gameData.levels, _levelController.GetLevelData());
-					}
-					Instance.gameData.items = Instance.playerInventory.GetAll ();
-					Instance.gameData.targetSection = section;
-				}
-				EventCenter.Instance.ContinueSceneChange(scene, section);
-			}
-		}
+            if (section > -1)
+            {
+                Instance.gameData.targetSection = section;
+            }
 
-		private void _loadScene(string scene) {
-			_cleanUp ();
-			SceneManager.LoadScene (scene);
-		}
+            if (scene != currentScene.name)
+            {
+                if (isLevel)
+                {
+                    if (_levelController != null)
+                    {
+                        LevelUtils.SetLevelData(currentScene.name, Instance.gameData.levels, _levelController.GetLevelData());
+                    }
+                    Instance.gameData.items = Instance.playerInventory.GetAll();
+                    Instance.gameData.targetSection = section;
+                }
+                EventCenter.Instance.ContinueSceneChange(scene, section);
+            }
+        }
 
-		private void _initLevel(string currentSceneName, Hashtable items) {
-			_levelController = GameObject.Find("level_controller").GetComponent<LevelController>();
-			_levelController.Init (Instance.gameData);
-		}
+        private void _loadScene(string scene)
+        {
+            _cleanUp();
+            SceneManager.LoadScene(scene);
+        }
 
-		private void _completeSceneInitialization(bool isLevel, string currentSceneName) {
-			Instance.isSceneInitialized = true;
-			EventCenter.Instance.SceneInitializationComplete (currentSceneName);
+        private void _initLevel(string currentSceneName, Hashtable items)
+        {
+            _levelController = GameObject.Find("level_controller").GetComponent<LevelController>();
+            _levelController.Init(Instance.gameData);
+        }
 
-			InputManager inputManager = GetComponent<InputManager> ();
-			inputManager.Init (isLevel);
-		}
+        private void _completeSceneInitialization(bool isLevel, string currentSceneName)
+        {
+            Instance.isSceneInitialized = true;
+            EventCenter.Instance.SceneInitializationComplete(currentSceneName);
 
-		private bool _getIsLevel(string sceneName) {
-			return LevelUtils.Has (sceneName, Instance.gameData.levels);
-		}
+            InputManager inputManager = GetComponent<InputManager>();
+            inputManager.Init(isLevel);
+        }
 
-		private void _cleanUp() {
-			_levelController = null;
-			EventCenter ec = EventCenter.Instance;
-			if (ec != null) {
-				ec.OnStartSceneChange -= OnStartSceneChange;
-				ec.OnCompleteSceneChange -= OnCompleteSceneChange;
-			}
-		}
-		#endregion
-	}
+        private bool _getIsLevel(string sceneName)
+        {
+            return LevelUtils.Has(sceneName, Instance.gameData.levels);
+        }
+
+        private void _cleanUp()
+        {
+            _levelController = null;
+            EventCenter ec = EventCenter.Instance;
+            if (ec != null)
+            {
+                ec.OnStartSceneChange -= OnStartSceneChange;
+                ec.OnCompleteSceneChange -= OnCompleteSceneChange;
+            }
+        }
+        #endregion
+    }
 }

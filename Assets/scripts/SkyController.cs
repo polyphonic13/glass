@@ -66,7 +66,7 @@ public class SkyController : MonoBehaviour
 
         skyMat.SetFloat("_AtmosphereThickness", i);
 
-        Debug.Log("dot = " + dot + " rot = " + (dayRotationSpeed * Time.deltaTime * skySpeed) + ", atmos = " + i);
+        // Debug.Log("dot = " + dot + " rot = " + (dayRotationSpeed * Time.deltaTime * skySpeed) + ", atmos = " + i);
         if (dot > 0)
         {
             rotationSpeed = dayRotationSpeed;
