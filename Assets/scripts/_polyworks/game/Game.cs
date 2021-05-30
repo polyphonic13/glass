@@ -32,6 +32,7 @@ namespace Polyworks
             Scene currentScene = SceneManager.GetActiveScene();
             string currentSceneName = currentScene.name;
             bool isLevel = _getIsLevel(currentSceneName);
+            Debug.Log("Game/Init, isLevel = " + isLevel);
             Instance.isSceneInitialized = false;
 
             _dataIOController = new DataIOController();
