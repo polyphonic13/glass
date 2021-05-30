@@ -3,89 +3,104 @@ using System.Collections;
 
 namespace Polyworks
 {
-	public class LevelController : MonoBehaviour
-	{
-		public SceneData sceneData;
-		public SectionController[] sectionControllers; 
+    public class LevelController : MonoBehaviour
+    {
+        public SceneData sceneData;
+        public SectionController[] sectionControllers;
 
-		private LevelData _levelData; 
-		private PlayerManager _playerManager;
+        private LevelData _levelData;
+        private PlayerManager _playerManager;
 
-		private GameData _gameData;
+        private GameData _gameData;
 
-		#region handlers
-		public void OnPrefabsAdded() {
-			_finishInitialization ();		
-		}
+        #region handlers
+        public void OnPrefabsAdded()
+        {
+            _finishInitialization();
+        }
 
-		public void OnLevelTasksCompleted() {
-			LevelUtils.SetIsCleared (sceneData.sceneName, Game.Instance.gameData.levels);
-		}
+        public void OnLevelTasksCompleted()
+        {
+            LevelUtils.SetIsCleared(sceneData.sceneName, Game.Instance.gameData.levels);
+        }
 
-		public void OnSectionChanged(int section) {
-			_levelData.currentSection = section;
-		}
-		#endregion
+        public void OnSectionChanged(int section)
+        {
+            _levelData.currentSection = section;
+        }
+        #endregion
 
-		#region public methods
-		public void Init(GameData gameData) {
-//			Debug.Log ("LevelController/Init, gameData = " + gameData);
-			_gameData = gameData;
-			EventCenter ec = EventCenter.Instance;
-			ec.OnPrefabsAdded += OnPrefabsAdded;
-			ec.OnLevelTasksCompleted += OnLevelTasksCompleted;
-			ec.OnSectionChanged += OnSectionChanged;
-			ScenePrefabController.Init (sceneData.sectionPrefabs, gameData.items);
-		}
+        #region public methods
+        public void Init(GameData gameData)
+        {
+            //			Debug.Log ("LevelController/Init, gameData = " + gameData);
+            _gameData = gameData;
+            EventCenter ec = EventCenter.Instance;
+            ec.OnPrefabsAdded += OnPrefabsAdded;
+            ec.OnLevelTasksCompleted += OnLevelTasksCompleted;
+            ec.OnSectionChanged += OnSectionChanged;
+            ScenePrefabController.Init(sceneData.sectionPrefabs, gameData.items);
+        }
 
-		public LevelData GetLevelData() {
-			return _levelData;
-		}
-		#endregion
+        public LevelData GetLevelData()
+        {
+            return _levelData;
+        }
+        #endregion
 
-		#region private methods
-		private void _finishInitialization() {
-//			Debug.Log ("LevelController/_finishInitialization, _gameData = " + _gameData.targetSection + ", sectionController = " + sectionControllers.Length);
-			bool isCleared = LevelUtils.GetIsCleared (sceneData.sceneName, Game.Instance.gameData.levels);
-			_levelData = LevelUtils.GetLevel (sceneData.sceneName, _gameData.levels);
-			// Debug.Log ("  _levelData = " + _levelData);
-			if (_gameData.targetSection > -1 && _gameData.targetSection < sectionControllers.Length) {
-				_levelData.currentSection = _gameData.targetSection;
-			}
+        #region private methods
+        private void _finishInitialization()
+        {
+            //			Debug.Log ("LevelController/_finishInitialization, _gameData = " + _gameData.targetSection + ", sectionController = " + sectionControllers.Length);
+            bool isCleared = LevelUtils.GetIsCleared(sceneData.sceneName, Game.Instance.gameData.levels);
+            _levelData = LevelUtils.GetLevel(sceneData.sceneName, _gameData.levels);
+            // Debug.Log ("  _levelData = " + _levelData);
+            if (_gameData.targetSection > -1 && _gameData.targetSection < sectionControllers.Length)
+            {
+                _levelData.currentSection = _gameData.targetSection;
+            }
 
-			if (sectionControllers != null) {
-				foreach (SectionController sectionController in sectionControllers) {
-					sectionController.Init (_levelData.currentSection);
-				}
+            if (sectionControllers != null)
+            {
+                foreach (SectionController sectionController in sectionControllers)
+                {
+                    sectionController.Init(_levelData.currentSection);
+                }
 
-				PlayerLocation playerLocation = sectionControllers [_levelData.currentSection].data.playerLocation;
-				_playerManager = GetComponent<PlayerManager> ();
-				_playerManager.Init (playerLocation, _gameData.playerData, _gameData.items);
-			}
+                PlayerLocation playerLocation = sectionControllers[_levelData.currentSection].data.playerLocation;
+                _playerManager = GetComponent<PlayerManager>();
+                _playerManager.Init(playerLocation, _gameData.playerData, _gameData.items);
+            }
 
-			if (!isCleared) {
-				TaskController taskController = GetComponent<TaskController> ();
-				if (_levelData != null) {
-					LevelTaskData taskData = _levelData.tasks as LevelTaskData;
-					taskController.Init (taskData);
+            if (!isCleared)
+            {
+                TaskController taskController = GetComponent<TaskController>();
+                if (_levelData != null)
+                {
+                    LevelTaskData taskData = _levelData.tasks as LevelTaskData;
+                    taskController.Init(taskData);
 
-				}
-			} else {
-				Debug.Log ("LevelController["+sceneData.sceneName+"]/Initlevel cleared");
-			}
+                }
+            }
+            else
+            {
+                Debug.Log("LevelController[" + sceneData.sceneName + "]/Initlevel cleared");
+            }
 
-			Game.Instance.LevelInitialized ();
-		}
+            Game.Instance.LevelInitialized();
+        }
 
-		private void OnDestroy() {
-			EventCenter ec = EventCenter.Instance;
-			if (ec != null) {
-				ec.OnPrefabsAdded -= OnPrefabsAdded;
-				ec.OnLevelTasksCompleted -= OnLevelTasksCompleted;
-				ec.OnSectionChanged -= OnSectionChanged;
-			}
-		}
-		#endregion
-	}
+        private void OnDestroy()
+        {
+            EventCenter ec = EventCenter.Instance;
+            if (ec != null)
+            {
+                ec.OnPrefabsAdded -= OnPrefabsAdded;
+                ec.OnLevelTasksCompleted -= OnLevelTasksCompleted;
+                ec.OnSectionChanged -= OnSectionChanged;
+            }
+        }
+        #endregion
+    }
 }
 
