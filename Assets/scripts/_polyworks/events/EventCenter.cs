@@ -296,6 +296,17 @@ namespace Polyworks
                 OnContextChange(context, param);
             }
         }
+
+        public event EventHandler<string> OnPlayAnimation;
+        public void TriggerPlayAnimation(string type, string clipName)
+        {
+            if (OnPlayAnimation == null)
+            {
+                return;
+            }
+
+            OnPlayAnimation(type, clipName);
+        }
         #endregion
     }
 }
