@@ -74,30 +74,30 @@ namespace Polyworks
         public void Actuate(string clip = "")
         {
             Debug.Log("LegacyAnimation[" + this.name + "]/Actuate, clip = " + clip);
-            string c;
+            string clipName;
             if (clip == "")
             {
-                c = animationClips[_currentAnimation].name;
-                //				Debug.Log (" no clip param, going to play " + c);
+                clipName = animationClips[_currentAnimation].name;
+                // Debug.Log (" no clip param, going to play " + c);
                 _incrementCurrentAnimation();
             }
             else
             {
-                c = clip;
+                clipName = clip;
             }
 
-            Transform bone = AnimationBoneCollection.GetBone(c, bones.animationBones);
+            Transform bone = AnimationBoneCollection.GetBone(clipName, bones.animationBones);
 
             if (bone != null)
             {
-                //				Debug.Log (" THERE IS A BONE: " + bone);
-                _animation[c].AddMixingTransform(bone);
+                // Debug.Log (" THERE IS A BONE: " + bone);
+                _animation[clipName].AddMixingTransform(bone);
             }
 
-            _animation[c].wrapMode = WrapMode.Once;
-            _animation[c].speed = PLAY_SPEED;
-            Debug.Log(" about to call _animation Play on _animation = " + _animation[c] + ", clip = " + c);
-            _animation.Play(c);
+            Debug.Log(" about to call _animation Play on _animation = " + _animation[clipName] + ", clipName = " + clipName);
+            _animation[clipName].wrapMode = WrapMode.Once;
+            _animation[clipName].speed = PLAY_SPEED;
+            _animation.Play(clipName);
             _isPlaying = true;
 
         }
@@ -105,6 +105,7 @@ namespace Polyworks
         private void Awake()
         {
             _animation = GetComponent<Animation>();
+            Debug.Log("LegacyAnimation[ " + this.name + " ]/Awake, got " + _animation);
             if (isAutoStart)
             {
                 Actuate();

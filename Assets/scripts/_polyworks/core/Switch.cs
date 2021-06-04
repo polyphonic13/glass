@@ -1,8 +1,5 @@
 ﻿namespace Polyworks
 {
-    using UnityEngine;
-    using System.Collections;
-
     public class Switch : ActuateAgent
     {
         public override void Actuate()

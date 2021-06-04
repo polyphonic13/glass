@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using Polyworks;
 
+[RequireComponent(typeof(ProximityAgent))]
 public class CrystalReceptacle : Item
 {
 
@@ -19,9 +20,7 @@ public class CrystalReceptacle : Item
             return;
         }
 
-        isEnabled = true;
-        _isUnlocked = true;
-        _crystal.SetActive(true);
+        Enable();
         ProximityAgent pa = GetComponent<ProximityAgent>();
         pa.SetFocus(true);
         _actuate();
@@ -49,8 +48,10 @@ public class CrystalReceptacle : Item
         {
             return;
         }
-        base.Enable();
+        _isUnlocked = isEnabled = true;
+        _crystal.SetActive(true);
         _addListeners();
+        base.Enable();
     }
 
     public override void Disable()
@@ -59,22 +60,10 @@ public class CrystalReceptacle : Item
         {
             return;
         }
+        _isUnlocked = isEnabled = false;
+        _crystal.SetActive(false);
+        _removeListeners();
         base.Disable();
-        _removeListeners();
-    }
-
-    private void Awake()
-    {
-        _crystal = this.transform.Find("crystal").gameObject;
-        _crystal.SetActive(isStartEnabled);
-        _isUnlocked = isEnabled = isStartEnabled;
-
-        _switches = gameObject.GetComponents<Switch>();
-    }
-
-    private void OnDestroy()
-    {
-        _removeListeners();
     }
 
     private void _actuate()
@@ -109,4 +98,19 @@ public class CrystalReceptacle : Item
         }
         eventCenter.OnStringEvent -= this.OnStringEvent;
     }
+
+    private void Awake()
+    {
+        _crystal = this.transform.Find("crystal").gameObject;
+        _crystal.SetActive(isStartEnabled);
+        _isUnlocked = isEnabled = isStartEnabled;
+
+        _switches = gameObject.GetComponents<Switch>();
+    }
+
+    private void OnDestroy()
+    {
+        _removeListeners();
+    }
+
 }
