@@ -1,88 +1,112 @@
 ﻿using UnityEngine;
-using System.Collections;
-using Polyworks; 
+using Polyworks;
 
-public class CrystalReceptacle : Item {
+public class CrystalReceptacle : Item
+{
 
-	public bool isStartEnabled = false;
+    public bool isStartEnabled = false;
+    public string keyName;
+    private GameObject _crystal;
+    private bool _isUnlocked = false;
+    private bool _isOpen = false;
+    private Switch[] _switches;
 
-	public string keyName;
+    public void OnStringEvent(string type, string value)
+    {
+        Debug.Log("CrystalReceptacle[" + this.name + "]/OnStringEvent, type = " + type + ", value = " + value);
+        if (type != CrystalKey.EVENT_NAME || value != keyName)
+        {
+            return;
+        }
 
-	private GameObject _crystal;
+        isEnabled = true;
+        _isUnlocked = true;
+        _crystal.SetActive(true);
+        ProximityAgent pa = GetComponent<ProximityAgent>();
+        pa.SetFocus(true);
+        _actuate();
+    }
 
-	private bool _isUnlocked = false;
-	private bool _isOpen = false;
+    public override void Actuate()
+    {
+        if (!isEnabled)
+        {
+            return;
+        }
 
-	private Switch[] _switches;
+        if (!_isUnlocked)
+        {
+            EventCenter.Instance.AddNote("Crystal required to activate");
+            return;
+        }
 
-	public void OnStringEvent(string type, string value) {
-		Debug.Log ("CrystalReceptacle[" + this.name + "]/OnStringEvent, type = " + type + ", value = " + value);
-		if (type == CrystalKey.EVENT_NAME && value == keyName) {
-			isEnabled = true;
-			_isUnlocked = true;
-			_crystal.SetActive (true);
-			ProximityAgent pa = GetComponent<ProximityAgent> ();
-			pa.SetFocus (true);
-			_actuate ();
-		}
-	}
+        _actuate();
+    }
 
-	public override void Actuate() {
-		if (isEnabled) {
-			if (_isUnlocked) {
-				_actuate ();
-			} else {
-				EventCenter.Instance.AddNote ("Crystal required to activate");
-			}
-		}
-	}
+    public override void Enable()
+    {
+        if (isEnabled)
+        {
+            return;
+        }
+        base.Enable();
+        _addListeners();
+    }
 
-	public override void Enable() {
-		if (!isEnabled) {
-			base.Enable ();
-			_addListeners ();
-		}
-	}
+    public override void Disable()
+    {
+        if (!isEnabled)
+        {
+            return;
+        }
+        base.Disable();
+        _removeListeners();
+    }
 
-	public override void Disable() {
-		base.Disable ();
-		_removeListeners ();
-	}
+    private void Awake()
+    {
+        _crystal = this.transform.Find("crystal").gameObject;
+        _crystal.SetActive(isStartEnabled);
+        _isUnlocked = isEnabled = isStartEnabled;
 
-	private void Awake() {
-		_crystal = this.transform.Find("crystal").gameObject;
-		_crystal.SetActive (isStartEnabled);
-		_isUnlocked = isEnabled = isStartEnabled;
+        _switches = gameObject.GetComponents<Switch>();
+    }
 
-		_switches = gameObject.GetComponents<Switch> ();
-	}
+    private void OnDestroy()
+    {
+        _removeListeners();
+    }
 
-	private void OnDestroy() {
-		_removeListeners ();
-	}
+    private void _actuate()
+    {
+        if (_switches == null)
+        {
+            return;
+        }
 
-	private void _actuate() {
-		if (_switches != null) {
-			for (int i = 0; i < _switches.Length; i++) {
-				if (_switches [i] != null) {
-					_switches [i].Actuate ();
-				}
-			}
-		}
-	}
+        foreach (Switch s in _switches)
+        {
+            s.Actuate();
+        }
+    }
 
-	private void _addListeners() {
-		EventCenter ec = EventCenter.Instance;
-		if (ec != null) {
-			ec.OnStringEvent += this.OnStringEvent;
-		}
-	}
+    private void _addListeners()
+    {
+        EventCenter eventCenter = EventCenter.Instance;
+        if (eventCenter == null)
+        {
+            return;
+        }
+        eventCenter.OnStringEvent += this.OnStringEvent;
+    }
 
-	private void _removeListeners() {
-//		Debug.Log ("CrystalReceptacle[" + this.name + "]/_removeListeners");
-		EventCenter ec = EventCenter.Instance;
-		if (ec != null) {
-			ec.OnStringEvent -= this.OnStringEvent;
-		}
-	}
+    private void _removeListeners()
+    {
+        EventCenter eventCenter = EventCenter.Instance;
+        if (eventCenter == null)
+        {
+            return;
+        }
+        eventCenter.OnStringEvent -= this.OnStringEvent;
+    }
 }
