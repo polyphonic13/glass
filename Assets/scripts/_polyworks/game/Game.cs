@@ -165,6 +165,7 @@ namespace Polyworks
         {
             Debug.Log("Game/SetFlag, key = " + key + ", value = " + value);
             FlagDataUtils.SetByKey(key, value, Instance.gameData.flags);
+            Save();
         }
         #endregion
 
