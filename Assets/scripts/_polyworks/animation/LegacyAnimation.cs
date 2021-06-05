@@ -73,17 +73,12 @@ namespace Polyworks
 
         public void Actuate(string clip = "")
         {
-            Debug.Log("LegacyAnimation[" + this.name + "]/Actuate, clip = " + clip);
-            string clipName;
+            // Debug.Log("LegacyAnimation[" + this.name + "]/Actuate, clip = " + clip);
+            string clipName = (clip != "") ? clip : animationClips[_currentAnimation].name;
+
             if (clip == "")
             {
-                clipName = animationClips[_currentAnimation].name;
-                // Debug.Log (" no clip param, going to play " + c);
                 _incrementCurrentAnimation();
-            }
-            else
-            {
-                clipName = clip;
             }
 
             Transform bone = AnimationBoneCollection.GetBone(clipName, bones.animationBones);
@@ -94,18 +89,22 @@ namespace Polyworks
                 _animation[clipName].AddMixingTransform(bone);
             }
 
-            Debug.Log(" about to call _animation Play on _animation = " + _animation[clipName] + ", clipName = " + clipName);
+            // Debug.Log(" about to call _animation Play on _animation = " + _animation[clipName] + ", clipName = " + clipName);
             _animation[clipName].wrapMode = WrapMode.Once;
             _animation[clipName].speed = PLAY_SPEED;
             _animation.Play(clipName);
             _isPlaying = true;
+        }
 
+        private string getClipName()
+        {
+            return "";
         }
 
         private void Awake()
         {
             _animation = GetComponent<Animation>();
-            Debug.Log("LegacyAnimation[ " + this.name + " ]/Awake, got " + _animation);
+            // Debug.Log("LegacyAnimation[ " + this.name + " ]/Awake, got " + _animation);
             if (isAutoStart)
             {
                 Actuate();
@@ -126,7 +125,7 @@ namespace Polyworks
 
         private void _adjustSpeed(float speed)
         {
-            //			Debug.Log ("LegacyAnimation[" + this.name + "]/_adjustSpeed, speed = " + speed);
+            // Debug.Log ("LegacyAnimation[" + this.name + "]/_adjustSpeed, speed = " + speed);
             string clip = animationClips[_currentAnimation].name;
             _animation[clip].speed = speed;
         }
