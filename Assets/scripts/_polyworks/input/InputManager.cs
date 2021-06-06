@@ -56,30 +56,19 @@ namespace Polyworks
         private Rewired.Player controls;
         private Player player;
         private CameraZoom cameraZoom;
-
         private MenuUI menuUI;
         private InventoryUI inventoryUI;
         private ItemInspector itemInspector;
         private PuzzleInspector puzzleInspector;
-
+        private Item itemInProximity = null;
+        private EventCenter eventCenter;
+        private IInputControllable activeObject = null;
+        private List<string> buttonKeys;
         private bool isInitialized = false;
         private bool isLevel = false;
-
         private bool isUIOpen = false;
         private bool isInventoryOpen = false;
         private bool isInspectingItem = false;
-
-        private bool isInventoryButtonPressed = false;
-        private bool isMenuButtonPressed = false;
-
-        private Item itemInProximity = null;
-
-        private EventCenter eventCenter;
-
-        private IInputControllable activeObject = null;
-
-        // http://answers.unity3d.com/questions/409835/out-of-sync-error-when-iterating-over-a-dictionary.html
-        private List<string> buttonKeys;
 
         #region handlers
         public void OnNearItem(Item item, bool isNear)
@@ -96,10 +85,11 @@ namespace Polyworks
         public void OnInspectItem(bool isInspecting, string itemName)
         {
             isInspectingItem = isInspecting;
-            if (isInspecting)
+            if (!isInspecting)
             {
-                isUIOpen = true;
+                return;
             }
+            isUIOpen = true;
         }
 
         public void OnContextChange(InputContext context, string param)
@@ -113,21 +103,21 @@ namespace Polyworks
                     player.isActive = true;
                     activeObject = player;
                 }
+                return;
             }
-            else
+
+            player.isActive = false;
+
+            if (context != InputContext.PUZZLE)
             {
-
-                player.isActive = false;
-
-                if (context == InputContext.PUZZLE)
-                {
-                    // Debug.Log ("  setting active object to puzzle inspector: " + puzzleInspector);
-                    activeObject = puzzleInspector;
-                }
+                return;
             }
+            // Debug.Log ("  setting active object to puzzle inspector: " + puzzleInspector);
+            activeObject = puzzleInspector;
         }
         #endregion
 
+        #region public methods
         public void Init(bool isLevel)
         {
             this.isLevel = isLevel;
@@ -142,46 +132,118 @@ namespace Polyworks
 
             buttonKeys = new List<string>(input.buttons.Keys);
 
-            GameObject menuObj = GameObject.Find(MENU_OBJECT);
-            if (menuObj != null)
+            initMenu();
+
+            if (!isLevel)
             {
-                menuUI = menuObj.GetComponent<MenuUI>();
+                isInitialized = true;
+                return;
             }
 
-            if (isLevel)
-            {
-                GameObject playerObj = GameObject.Find(PLAYER_OBJECT);
-                if (playerObj != null)
-                {
-                    player = playerObj.GetComponent<Player>();
-                    activeObject = player;
-                    cameraZoom = playerObj.GetComponent<CameraZoom>();
-                }
-
-                GameObject inventoryObj = GameObject.Find(INVENTORY_OBJECT);
-                if (inventoryObj != null)
-                {
-                    inventoryUI = inventoryObj.GetComponent<InventoryUI>();
-                }
-
-                itemInspector = ItemInspector.Instance;
-
-                GameObject puzzleInspectorObj = GameObject.Find(PUZZLE_OBJECT);
-                if (puzzleInspectorObj != null)
-                {
-                    puzzleInspector = puzzleInspectorObj.GetComponent<PuzzleInspector>();
-                }
-
-                eventCenter = EventCenter.Instance;
-                eventCenter.OnNearItem += OnNearItem;
-                eventCenter.OnCloseInventoryUI += OnCloseInventoryUI;
-                eventCenter.OnInspectItem += OnInspectItem;
-                eventCenter.OnContextChange += OnContextChange;
-            }
+            initPlayer();
+            initInventory();
+            initPuzzleInspector();
+            addLevelEventListeners();
             isInitialized = true;
         }
+        #endregion
 
-        #region open / close ui
+        #region private init
+        private void initMenu()
+        {
+            GameObject menuObj = GameObject.Find(MENU_OBJECT);
+            if (menuObj == null)
+            {
+                return;
+            }
+            menuUI = menuObj.GetComponent<MenuUI>();
+        }
+
+        private void initPlayer()
+        {
+            GameObject playerObj = GameObject.Find(PLAYER_OBJECT);
+            if (playerObj == null)
+            {
+                return;
+            }
+            player = playerObj.GetComponent<Player>();
+            activeObject = player;
+            cameraZoom = playerObj.GetComponent<CameraZoom>();
+        }
+
+        private void initInventory()
+        {
+            GameObject inventoryObj = GameObject.Find(INVENTORY_OBJECT);
+            itemInspector = ItemInspector.Instance;
+
+            if (inventoryObj == null)
+            {
+                return;
+            }
+            inventoryUI = inventoryObj.GetComponent<InventoryUI>();
+        }
+
+        private void initPuzzleInspector()
+        {
+            GameObject puzzleInspectorObj = GameObject.Find(PUZZLE_OBJECT);
+            if (puzzleInspectorObj == null)
+            {
+                return;
+            }
+            puzzleInspector = puzzleInspectorObj.GetComponent<PuzzleInspector>();
+        }
+
+        private void addLevelEventListeners()
+        {
+            eventCenter = EventCenter.Instance;
+            eventCenter.OnNearItem += OnNearItem;
+            eventCenter.OnCloseInventoryUI += OnCloseInventoryUI;
+            eventCenter.OnInspectItem += OnInspectItem;
+            eventCenter.OnContextChange += OnContextChange;
+        }
+
+        private void removeLevelEventListeners()
+        {
+            eventCenter.OnNearItem -= OnNearItem;
+            eventCenter.OnCloseInventoryUI -= OnCloseInventoryUI;
+            eventCenter.OnInspectItem -= OnInspectItem;
+            eventCenter.OnContextChange -= OnContextChange;
+        }
+        #endregion
+
+        #region private open / close ui
+        private void handleOpenMenuInput()
+        {
+            if (isInventoryOpen)
+            {
+                EventCenter.Instance.CloseInventoryUI();
+                openMenu();
+                return;
+            }
+            if (!isUIOpen)
+            {
+                openMenu();
+                return;
+            }
+            closeMenu();
+        }
+
+        private void handleOpenInventoryInput()
+        {
+            if (!isUIOpen)
+            {
+                openInventory();
+                return;
+            }
+            if (!isInventoryOpen)
+            {
+                closeMenu();
+                openInventory();
+                return;
+            }
+            EventCenter.Instance.CloseInventoryUI();
+        }
+
         private void openInventory()
         {
             openUI();
@@ -225,7 +287,7 @@ namespace Polyworks
         }
         #endregion
 
-        #region update loop
+        #region private update loop
         private void uiUpdate(UIController controller, float horizontal, float vertical)
         {
             if (controller == null)
@@ -306,41 +368,9 @@ namespace Polyworks
             // 	EventCenter.Instance.EnableFlashlight();
             // }
         }
-
-        private void handleOpenMenuInput()
-        {
-            if (isInventoryOpen)
-            {
-                EventCenter.Instance.CloseInventoryUI();
-                openMenu();
-                return;
-            }
-            if (!isUIOpen)
-            {
-                openMenu();
-                return;
-            }
-            closeMenu();
-        }
-
-        private void handleOpenInventoryInput()
-        {
-            if (!isUIOpen)
-            {
-                openInventory();
-                return;
-            }
-            if (!isInventoryOpen)
-            {
-                closeMenu();
-                openInventory();
-                return;
-            }
-            EventCenter.Instance.CloseInventoryUI();
-        }
         #endregion
 
-        #region controller maps
+        #region private controller maps
         private void activatePlayerMaps()
         {
 
@@ -421,13 +451,11 @@ namespace Polyworks
 
         private void OnDestroy()
         {
-            if (eventCenter != null)
+            if (eventCenter == null)
             {
-                eventCenter.OnNearItem -= OnNearItem;
-                eventCenter.OnCloseInventoryUI -= OnCloseInventoryUI;
-                eventCenter.OnInspectItem -= OnInspectItem;
-                eventCenter.OnContextChange -= OnContextChange;
+                return;
             }
+            removeLevelEventListeners();
         }
         #endregion
     }
