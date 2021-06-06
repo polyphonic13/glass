@@ -5,7 +5,7 @@
     using System.Collections;
 
     [RequireComponent(typeof(EventCenter))]
-    [RequireComponent(typeof(InputManager))]
+    [RequireComponent(typeof(InputController))]
     [RequireComponent(typeof(SceneChanger))]
     [RequireComponent(typeof(SceneController))]
     [RequireComponent(typeof(ItemUtils))]
@@ -20,7 +20,8 @@
         public Inventory playerInventory { get; set; }
 
         private static readonly string DATA_FILE_NAME = "game_data.dat";
-        private static readonly string REWIRED_INPUT_MANAGER_PREFAB = "game/rewired_input_manager";
+        private static readonly string REWIRED_INPUT_MANAGER_PATH = "game/";
+        private static readonly string REWIRED_INPUT_MANAGER_NAME = "rewired_input_manager";
         private static readonly string INVENTORY_GAME_OBJECT = "inventory_ui";
         private static readonly string LEVEL_CONTROLLER_GAME_OBJECT = "level_controller";
 
@@ -87,8 +88,10 @@
         {
             eventCenter = EventCenter.Instance;
 
-            // GameObject rewiredInputManager = (GameObject)Instantiate(Resources.Load(REWIRED_INPUT_MANAGER_PREFAB));
-            // rewiredInputManager.transform.SetParent(transform);
+            string path = REWIRED_INPUT_MANAGER_PATH + REWIRED_INPUT_MANAGER_NAME;
+            GameObject rewiredInputController = (GameObject)Instantiate(Resources.Load(path));
+            rewiredInputController.name = REWIRED_INPUT_MANAGER_NAME;
+            rewiredInputController.transform.SetParent(transform);
 
             Scene currentScene = SceneManager.GetActiveScene();
             string currentSceneName = currentScene.name;
@@ -231,8 +234,8 @@
             Instance.isSceneInitialized = true;
             eventCenter.SceneInitializationComplete(currentSceneName);
 
-            InputManager inputManager = GetComponent<InputManager>();
-            inputManager.Init(isLevel);
+            InputController inputController = GetComponent<InputController>();
+            inputController.Init(isLevel);
         }
 
         private bool getIsLevel(string sceneName)

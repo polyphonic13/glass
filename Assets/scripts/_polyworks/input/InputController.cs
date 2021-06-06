@@ -24,8 +24,9 @@ namespace Polyworks
     [Serializable]
     public enum InputContext { PLAYER, MENU, INVENTORY, INSPECTOR, PUZZLE };
 
-    public class InputManager : MonoBehaviour
+    public class InputController : MonoBehaviour
     {
+        #region members
         public InputObject input;
 
         private static readonly string MENU_OBJECT = "menu_ui";
@@ -49,7 +50,7 @@ namespace Polyworks
         private static readonly string DIVE_BUTTON = "dive";
         private static readonly string ZOOM_VIEW_BUTTON = "zoom_view";
         private static readonly string ACTUATE_BUTTON = "actuate";
-        private static readonly string FLASH_LIGHT_BUTTON = "flashlight";
+        private static readonly string FLASHLIGHT_BUTTON = "flashlight";
         private static readonly string OPEN_MENU_BUTTON = "open_menu";
         private static readonly string OPEN_INVENTORY_BUTTON = "open_inventory";
 
@@ -69,11 +70,12 @@ namespace Polyworks
         private bool isUIOpen = false;
         private bool isInventoryOpen = false;
         private bool isInspectingItem = false;
+        #endregion
 
         #region handlers
         public void OnNearItem(Item item, bool isNear)
         {
-            // Debug.Log ("InputManager/OnNearItem, item = " + item.gameObject.name + ", isNear = " + isNear);
+            // Debug.Log ("InputController/OnNearItem, item = " + item.gameObject.name + ", isNear = " + isNear);
             itemInProximity = (isNear) ? item : null;
         }
 
@@ -94,7 +96,7 @@ namespace Polyworks
 
         public void OnContextChange(InputContext context, string param)
         {
-            // Debug.Log ("InputManager/OnContextChange, context = " + context);
+            // Debug.Log ("InputController/OnContextChange, context = " + context);
 
             if (context == InputContext.PLAYER)
             {
@@ -120,6 +122,7 @@ namespace Polyworks
         #region public methods
         public void Init(bool isLevel)
         {
+            // Debug.Log("InputController/Init, isLevel = " + isLevel);
             this.isLevel = isLevel;
             controls = ReInput.players.GetPlayer(0);
 
@@ -127,6 +130,7 @@ namespace Polyworks
 
             for (int i = 0; i < input.inputButtons.Length; i++)
             {
+                // Debug.Log("  input button[ " + i + " ].name = " + input.inputButtons[i].name);
                 input.buttons.Add(input.inputButtons[i].name, false);
             }
 
@@ -360,13 +364,14 @@ namespace Polyworks
         {
             if (itemInProximity != null && input.buttons[ACTUATE_BUTTON])
             {
-                // Debug.Log ("InputManager/itemsUpdate, calling Actuate on " + itemInProximity.gameObject.name);
+                // Debug.Log ("InputController/itemsUpdate, calling Actuate on " + itemInProximity.gameObject.name);
                 itemInProximity.Actuate();
             }
 
-            // if(input.buttons[FLASHLIGHT_BUTTON]) {
-            // 	EventCenter.Instance.EnableFlashlight();
-            // }
+            if (input.buttons[FLASHLIGHT_BUTTON])
+            {
+                EventCenter.Instance.EnableFlashlight();
+            }
         }
         #endregion
 

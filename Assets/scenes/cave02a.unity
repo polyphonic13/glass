@@ -21,13 +21,13 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 1
   m_LinearFogEnd: 75
-  m_AmbientSkyColor: {r: 0.19112241, g: 0.19431974, b: 0.25735295, a: 0}
+  m_AmbientSkyColor: {r: 0.86627805, g: 0.889241, b: 0.9716981, a: 0}
   m_AmbientEquatorColor: {r: 0, g: 0, b: 0, a: 0}
   m_AmbientGroundColor: {r: -0, g: -0, b: -0, a: 0}
   m_AmbientIntensity: 0
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.58592916, g: 0.58830947, b: 0.5943396, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: dba8312526a0f47b493993c21c7aa735, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: e7042be3724b9476295c66294c120259, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -39,7 +39,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.017346077, g: 0.028022746, b: 0.052331716, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &4
 LightmapSettings:
@@ -692,7 +692,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9ebe1330f14f4039830e59a74ef9e6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLogOn: 1
+  isLogOn: 0
   displayName: 
   description: 
   prefabPath: 
@@ -717,7 +717,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53cefab8c6b97430cb054bb10bf39bec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLogOn: 1
+  isLogOn: 0
   targetName: room02a_navigation_center
   animations:
   - room02a_expand
@@ -736,7 +736,7 @@ MonoBehaviour:
   interactDistance: 2
   target: {fileID: 0}
   isTargetPlayer: 1
-  isLogOn: 1
+  isLogOn: 0
 --- !u!1 &153803678 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100096, guid: 63ec847b07843488d84ae7122b66a20b,
@@ -3923,6 +3923,28 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1092608531}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1092608533 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 190814, guid: 84f55014e3cba445ab22685c88725eac,
+    type: 3}
+  m_PrefabInstance: {fileID: 1092608531}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1092608534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1092608533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2581be6e5cde948bdbe58eab90afd1ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  input:
+    vertical: 0
+    horizontal: 0
+    inputButtons: []
 --- !u!1 &1101962660
 GameObject:
   m_ObjectHideFlags: 0
