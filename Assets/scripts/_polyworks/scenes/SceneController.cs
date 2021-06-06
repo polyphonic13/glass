@@ -5,20 +5,16 @@ using UnityEngine.SceneManagement;
 public enum SceneType
 {
     None,
-    Cave1,
-    HouseFloor2BathroomE,
-    HouseFloor2BathroomS,
-    HouseFloor2BathroomW,
-    HouseFloor2BedroomNE,
-    HouseFloor2BedroomNW,
-    HouseFloor2BedroomE,
-    HouseFloor2BedroomSE,
-    HouseFloor2BedroomSW,
-    HouseFloor2Halls,
-    HouseFloor2Porch,
-    HouseFloor2SecretRoomE,
-    HouseFloor2SecretRoomS,
-    HouseFloor2SecretRoomW
+    Splash,
+    Title,
+    Map,
+    Level,
+    Shop,
+    Settings,
+    Info,
+    Interstitial,
+    Reward,
+    RewardedGems,
 }
 
 public class SceneController : MonoBehaviour

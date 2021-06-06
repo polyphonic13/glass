@@ -1,12 +1,17 @@
-﻿using UnityEngine;
-using UnityEngine.SceneManagement;
-using System.Collections;
-
-namespace Polyworks
+﻿namespace Polyworks
 {
+    using UnityEngine;
+    using UnityEngine.SceneManagement;
+    using System.Collections;
+
+    [RequireComponent(typeof(EventCenter))]
+    [RequireComponent(typeof(InputManager))]
+    [RequireComponent(typeof(SceneChanger))]
+    [RequireComponent(typeof(SceneController))]
+    [RequireComponent(typeof(ItemUtils))]
+    [RequireComponent(typeof(Utilities))]
     public class Game : MonoBehaviour
     {
-
         public GameData gameData;
 
         public string dataFilename = "game_data.dat";
@@ -18,9 +23,9 @@ namespace Polyworks
 
         public Inventory playerInventory { get; set; }
 
+        private EventCenter eventCenter;
         private LevelController _levelController;
         private Player _player;
-        private Inventory _playerInventory;
 
         private DataIOController _dataIOController;
 
@@ -28,11 +33,11 @@ namespace Polyworks
 
         public virtual void Init()
         {
-
+            eventCenter = EventCenter.Instance;
             Scene currentScene = SceneManager.GetActiveScene();
             string currentSceneName = currentScene.name;
             bool isLevel = _getIsLevel(currentSceneName);
-            Debug.Log("Game/Init, isLevel = " + isLevel);
+            // Debug.Log("Game/Init, isLevel = " + isLevel);
             Instance.isSceneInitialized = false;
 
             _dataIOController = new DataIOController();
@@ -45,12 +50,10 @@ namespace Polyworks
             {
                 Instance.gameData.tasks = new Hashtable();
             }
-
             if (Instance.gameData.items == null)
             {
                 Instance.gameData.items = new Hashtable();
             }
-
             if (Instance.gameData.clearedScenes == null)
             {
                 Instance.gameData.clearedScenes = new Hashtable();
@@ -70,9 +73,8 @@ namespace Polyworks
                 _completeSceneInitialization(isLevel, currentSceneName);
             }
 
-            EventCenter ec = EventCenter.Instance;
-            ec.OnStartSceneChange += OnStartSceneChange;
-            ec.OnCompleteSceneChange += OnCompleteSceneChange;
+            eventCenter.OnStartSceneChange += OnStartSceneChange;
+            eventCenter.OnCompleteSceneChange += OnCompleteSceneChange;
         }
 
         #region handlers
@@ -170,20 +172,6 @@ namespace Polyworks
         #endregion
 
         #region private methods
-        private void Awake()
-        {
-            if (Instance == null)
-            {
-                DontDestroyOnLoad(gameObject);
-                Instance = this;
-            }
-            else if (this != Instance)
-            {
-                Destroy(gameObject);
-            }
-            Init();
-        }
-
         private void _changeScene(string scene, int section = -1)
         {
             EventCenter.Instance.StartSceneChange(scene, section);
@@ -192,26 +180,33 @@ namespace Polyworks
         private void _prepForSceneChange(string scene, int section = -1)
         {
             Scene currentScene = SceneManager.GetActiveScene();
-            bool isLevel = _getIsLevel(currentScene.name);
 
             if (section > -1)
             {
                 Instance.gameData.targetSection = section;
             }
 
-            if (scene != currentScene.name)
+            if (scene == currentScene.name)
             {
-                if (isLevel)
-                {
-                    if (_levelController != null)
-                    {
-                        LevelUtils.SetLevelData(currentScene.name, Instance.gameData.levels, _levelController.GetLevelData());
-                    }
-                    Instance.gameData.items = Instance.playerInventory.GetAll();
-                    Instance.gameData.targetSection = section;
-                }
-                EventCenter.Instance.ContinueSceneChange(scene, section);
+                return;
             }
+            _wrapUpLevel(currentScene.name, section);
+            EventCenter.Instance.ContinueSceneChange(scene, section);
+        }
+
+        private void _wrapUpLevel(string currentSceneName, int section)
+        {
+            bool isLevel = _getIsLevel(currentSceneName);
+            if (!isLevel)
+            {
+                return;
+            }
+            if (_levelController != null)
+            {
+                LevelUtils.SetLevelData(currentSceneName, Instance.gameData.levels, _levelController.GetLevelData());
+            }
+            Instance.gameData.items = Instance.playerInventory.GetAll();
+            Instance.gameData.targetSection = section;
         }
 
         private void _loadScene(string scene)
@@ -243,13 +238,31 @@ namespace Polyworks
         private void _cleanUp()
         {
             _levelController = null;
-            EventCenter ec = EventCenter.Instance;
-            if (ec != null)
+
+            if (eventCenter == null)
             {
-                ec.OnStartSceneChange -= OnStartSceneChange;
-                ec.OnCompleteSceneChange -= OnCompleteSceneChange;
+                return;
             }
+            eventCenter.OnStartSceneChange -= OnStartSceneChange;
+            eventCenter.OnCompleteSceneChange -= OnCompleteSceneChange;
+        }
+        #endregion
+
+        #region unity methods
+        private void Awake()
+        {
+            if (Instance == null)
+            {
+                DontDestroyOnLoad(gameObject);
+                Instance = this;
+            }
+            else if (this != Instance)
+            {
+                Destroy(gameObject);
+            }
+            Init();
         }
         #endregion
     }
+
 }
