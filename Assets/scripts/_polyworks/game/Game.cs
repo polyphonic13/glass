@@ -20,6 +20,7 @@
         public Inventory playerInventory { get; set; }
 
         private static readonly string DATA_FILE_NAME = "game_data.dat";
+        private static readonly string REWIRED_INPUT_MANAGER_PREFAB = "game/rewired_input_manager";
         private static readonly string INVENTORY_GAME_OBJECT = "inventory_ui";
         private static readonly string LEVEL_CONTROLLER_GAME_OBJECT = "level_controller";
 
@@ -85,6 +86,10 @@
         public virtual void init()
         {
             eventCenter = EventCenter.Instance;
+
+            // GameObject rewiredInputManager = (GameObject)Instantiate(Resources.Load(REWIRED_INPUT_MANAGER_PREFAB));
+            // rewiredInputManager.transform.SetParent(transform);
+
             Scene currentScene = SceneManager.GetActiveScene();
             string currentSceneName = currentScene.name;
             bool isLevel = getIsLevel(currentSceneName);
