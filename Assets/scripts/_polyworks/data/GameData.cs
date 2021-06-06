@@ -1,14 +1,52 @@
-﻿using UnityEngine;
-using System.Collections;
-
-namespace Polyworks
+﻿namespace Polyworks
 {
-    [System.Serializable]
+    using System;
+    using System.Collections;
+
+    [Serializable]
+    public struct Coords
+    {
+        public float x;
+        public float y;
+        public float z;
+    }
+
+    [Serializable]
+    public struct PrefabData
+    {
+        public string name;
+        public string path;
+        public string addTo;
+        public Coords position;
+        public Coords rotation;
+    }
+
+    [Serializable]
+    public struct Section
+    {
+        public string name;
+        public PrefabData[] prefabs;
+    }
+    [Serializable]
+    public struct SubSceneData
+    {
+        public string name;
+        public bool isPlayerScene;
+        public string[] siblingScenes;
+        public Section[] sections;
+    }
+
+    [Serializable]
+    public struct GameJSON
+    {
+        public SubSceneData[] subScenes;
+    }
+
+    [Serializable]
     public class GameData
     {
         public string currentScene;
         public int targetSection = -1;
-        public int count = 0;
         public Hashtable tasks;
         public Hashtable items;
         public Hashtable clearedScenes;
@@ -28,6 +66,4 @@ namespace Polyworks
 		 * }
 		 */
     }
-
 }
-

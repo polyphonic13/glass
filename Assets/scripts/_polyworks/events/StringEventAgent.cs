@@ -13,9 +13,9 @@ namespace Polyworks
 
         public void OnStringEvent(string type, string value)
         {
-            Log("StringEventAgent[" + this.name + "]/OnStringEvent, type = " + type + ", eventType = " + eventType + ", value = " + value + ", eventValue = " + eventValue);
             if (type == eventType && value == eventValue)
             {
+                Log("StringEventAgent[" + this.name + "]/OnStringEvent, type = " + type + ", eventType = " + eventType + ", value = " + value + ", eventValue = " + eventValue);
                 SendMessage("Actuate", null, SendMessageOptions.DontRequireReceiver);
             }
         }

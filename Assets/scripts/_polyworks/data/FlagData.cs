@@ -1,52 +1,65 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Polyworks {
-	
-	public class FlagDataUtils {
-		public static int GetIndex(string key, Flag[] list) {
-			int index = -1;
-			for (var i = 0; i < list.Length; i++) {
-				if (list [i].key == key) {
-					index = i;
-				}
-			}
-			return index;
-		}
+namespace Polyworks
+{
 
-		public static Flag GetByIndex(int index, Flag[] list) {
-			return list[index];
-		}
+    public class FlagDataUtils
+    {
+        public static int GetIndex(string key, Flag[] list)
+        {
+            int index = -1;
+            for (var i = 0; i < list.Length; i++)
+            {
+                if (list[i].key == key)
+                {
+                    index = i;
+                }
+            }
+            return index;
+        }
 
-		public static Flag GetByKey(string key, Flag[] list) {
-//			Debug.Log ("FlagDataUtils/GetByKey, key = " + key + ", list = " + list);
-			Flag item = new Flag();
+        public static Flag GetByIndex(int index, Flag[] list)
+        {
+            return list[index];
+        }
 
-			for (var i = 0; i < list.Length; i++) {
-//				Debug.Log (" list[" + i + "].key = " + list [i].key);
-				if (list [i].key == key) {
-					item = list [i];
-//					Debug.Log ("  found value = " + item.value);
-					break;
-				}
-			}
-			return item;
-		}
+        public static Flag GetByKey(string key, Flag[] list)
+        {
+            // Debug.Log ("FlagDataUtils/GetByKey, key = " + key + ", list = " + list);
+            Flag item = new Flag();
 
-		public static void SetByKey(string key, bool value, Flag[] list) {
-			for (var i = 0; i < list.Length; i++) {
-				if (list [i].key == key) {
-					list [i].value = value;
-					break;
-				}
-			}
-		}
-	}
+            for (var i = 0; i < list.Length; i++)
+            {
+                // Debug.Log (" list[" + i + "].key = " + list [i].key);
+                if (list[i].key == key)
+                {
+                    item = list[i];
+                    // Debug.Log ("  found value = " + item.value);
+                    break;
+                }
+            }
+            return item;
+        }
 
-	[Serializable]
-	public struct Flag {
-		public string key;
-		public bool value;
-	}
+        public static void SetByKey(string key, bool value, Flag[] list)
+        {
+            for (var i = 0; i < list.Length; i++)
+            {
+                if (list[i].key == key)
+                {
+                    list[i].value = value;
+                    break;
+                }
+            }
+        }
+    }
+
+    [Serializable]
+    public struct Flag
+    {
+        public string key;
+        public bool value;
+    }
 }
 

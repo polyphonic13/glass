@@ -3,17 +3,19 @@
 --- !u!1 &190814
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 456028}
   - component: {fileID: 11478364}
   - component: {fileID: 11483172}
-  - component: {fileID: 11432274}
+  - component: {fileID: 2525898799579602906}
   - component: {fileID: 114000010828365742}
   - component: {fileID: 11422008}
   - component: {fileID: 11408434}
+  - component: {fileID: 6151715544018442891}
   m_Layer: 0
   m_Name: glass_game_control
   m_TagString: Untagged
@@ -23,9 +25,10 @@ GameObject:
   m_IsActive: 1
 --- !u!4 &456028
 Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 190814}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -34,37 +37,116 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &11408434
+--- !u!114 &11478364
 MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 190814}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 975fbe9ba2fe145fd815d9ba067fb906, type: 3}
+  m_Script: {fileID: 11500000, guid: 59cf262d9506b4b06afb27638a442c26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &11422008
+  gameData:
+    currentScene: start
+    targetSection: 5
+    levels:
+    - name: house00
+      isCleared: 0
+      currentSection: 5
+      tasks:
+        intTasks: []
+        floatTasks: []
+        stringTasks: []
+        collectionTasks: []
+    - name: house01
+      isCleared: 0
+      currentSection: 0
+      tasks:
+        intTasks: []
+        floatTasks: []
+        stringTasks: []
+        collectionTasks: []
+    - name: house02
+      isCleared: 0
+      currentSection: 5
+      tasks:
+        intTasks: []
+        floatTasks: []
+        stringTasks: []
+        collectionTasks: []
+    - name: house03
+      isCleared: 0
+      currentSection: 0
+      tasks:
+        intTasks: []
+        floatTasks: []
+        stringTasks: []
+        collectionTasks: []
+    - name: house04
+      isCleared: 0
+      currentSection: 0
+      tasks:
+        intTasks: []
+        floatTasks: []
+        stringTasks: []
+        collectionTasks: []
+    - name: cave01
+      isCleared: 0
+      currentSection: 0
+      tasks:
+        intTasks: []
+        floatTasks: []
+        stringTasks: []
+        collectionTasks: []
+    - name: cave02
+      isCleared: 0
+      currentSection: 0
+      tasks:
+        intTasks: []
+        floatTasks: []
+        stringTasks: []
+        collectionTasks: []
+    playerData:
+      health: 100
+      stamina: 100
+      breath: 100
+    flags:
+    - key: isPortalActivatorCharged
+      value: 0
+    - key: isPortalActivatorCollected
+      value: 0
+    - key: isFlashlightCollected
+      value: 1
+    - key: isGeneratorRunning
+      value: 1
+  playerPrefab: player/player_objects
+  isSceneInitialized: 0
+  isCursorless: 1
+--- !u!114 &11483172
 MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 190814}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b821bae934025472e9f82305297eda43, type: 3}
+  m_Script: {fileID: 11500000, guid: 0b4572e7c0a4e4ae6a81fbfc8e17271c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &11432274
+--- !u!114 &2525898799579602906
 MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 190814}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d978ba48b5df4e38a9a77e12b73f7ab, type: 3}
+  m_Script: {fileID: 11500000, guid: 2581be6e5cde948bdbe58eab90afd1ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   input:
@@ -107,82 +189,12 @@ MonoBehaviour:
       value: 0
     - name: flashlight
       value: 0
---- !u!114 &11478364
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 190814}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59cf262d9506b4b06afb27638a442c26, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameData:
-    currentScene: start
-    targetSection: 5
-    count: 0
-    levels:
-    - name: house_second_floor
-      isCleared: 0
-      currentSection: 5
-      tasks:
-        intTasks: []
-        floatTasks: []
-        stringTasks: []
-        collectionTasks: []
-    - name: cave01
-      isCleared: 0
-      currentSection: 0
-      tasks:
-        intTasks: []
-        floatTasks: []
-        stringTasks: []
-        collectionTasks: []
-    playerData:
-      health: 100
-      stamina: 100
-      breath: 100
-    flags:
-    - key: isPortalActivatorCharged
-      value: 0
-    - key: isPortalActivatorCollected
-      value: 0
-    - key: isFlashlightCollected
-      value: 0
-    - key: isGeneratorRunning
-      value: 0
-  dataFilename: glass.dat
-  playerPrefab: player/player_objects
-  isSceneInitialized: 0
-  isCursorless: 1
---- !u!114 &11483172
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 190814}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b4572e7c0a4e4ae6a81fbfc8e17271c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1001 &100100000
-Prefab:
-  m_ObjectHideFlags: 1
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications: []
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 190814}
-  m_IsPrefabParent: 1
 --- !u!114 &114000010828365742
 MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 190814}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -196,3 +208,39 @@ MonoBehaviour:
     count: 5
   - scene: cave02
     count: 0
+--- !u!114 &11422008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 190814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b821bae934025472e9f82305297eda43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11408434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 190814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 975fbe9ba2fe145fd815d9ba067fb906, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6151715544018442891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 190814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e5d637370c904f40a12660a5bdb3202, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

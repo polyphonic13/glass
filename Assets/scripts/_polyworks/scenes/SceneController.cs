@@ -5,26 +5,21 @@ using UnityEngine.SceneManagement;
 public enum SceneType
 {
     None,
-    Cave1,
-    HouseFloor2BathroomE,
-    HouseFloor2BathroomS,
-    HouseFloor2BathroomW,
-    HouseFloor2BedroomNE,
-    HouseFloor2BedroomNW,
-    HouseFloor2BedroomE,
-    HouseFloor2BedroomSE,
-    HouseFloor2BedroomSW,
-    HouseFloor2Halls,
-    HouseFloor2Porch,
-    HouseFloor2SecretRoomE,
-    HouseFloor2SecretRoomS,
-    HouseFloor2SecretRoomW
+    Splash,
+    Title,
+    House00,
+    House01,
+    House02,
+    House03,
+    House04,
+    Cave02a,
 }
 
 public class SceneController : MonoBehaviour
 {
     public void LoadSubScene(SceneType target, System.Action<bool> callback)
     {
+        Debug.Log("SceneController/LoadSubScene, target = " + target);
         StartCoroutine(loadSubScene(target, callback));
     }
 
@@ -40,7 +35,7 @@ public class SceneController : MonoBehaviour
 
         while (!asyncLoad.isDone)
         {
-            // Debug.Log(" asyncLoad.isDone = " + asyncLoad.isDone);
+            Debug.Log(" asyncLoad.isDone = " + asyncLoad.isDone);
             yield return null;
         }
         // Debug.Log(" asyncLoad.isDone at end of block = " + asyncLoad.isDone);

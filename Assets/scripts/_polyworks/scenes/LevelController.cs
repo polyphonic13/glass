@@ -1,90 +1,97 @@
-﻿using UnityEngine;
-using System.Collections;
-
-namespace Polyworks
+﻿namespace Polyworks
 {
+    using UnityEngine;
+
     public class LevelController : MonoBehaviour
     {
-        public SceneData sceneData;
         public SectionController[] sectionControllers;
 
-        private LevelData _levelData;
-        private PlayerManager _playerManager;
+        private LevelData levelData;
+        private PlayerManager playerManager;
 
-        private GameData _gameData;
+        private GameData gameData;
+        private SubSceneData subSceneData;
 
         #region handlers
         public void OnPrefabsAdded()
         {
-            _finishInitialization();
+            finishInitialization();
         }
 
         public void OnLevelTasksCompleted()
         {
-            LevelUtils.SetIsCleared(sceneData.sceneName, Game.Instance.gameData.levels);
+            LevelUtils.SetIsCleared(subSceneData.name, gameData.levels);
         }
 
         public void OnSectionChanged(int section)
         {
-            _levelData.currentSection = section;
+            levelData.currentSection = section;
         }
         #endregion
 
         #region public methods
-        public void Init(GameData gameData)
+        public void Init(GameData gameData, SubSceneData subSceneData)
         {
-            //			Debug.Log ("LevelController/Init, gameData = " + gameData);
-            _gameData = gameData;
-            EventCenter ec = EventCenter.Instance;
-            ec.OnPrefabsAdded += OnPrefabsAdded;
-            ec.OnLevelTasksCompleted += OnLevelTasksCompleted;
-            ec.OnSectionChanged += OnSectionChanged;
-            ScenePrefabController.Init(sceneData.sectionPrefabs, gameData.items);
+            // Debug.Log ("LevelController/Init, gameData = " + gameData);
+            this.gameData = gameData;
+            this.subSceneData = subSceneData;
+
+            addListeners();
+
+            ScenePrefabController.Init(subSceneData.sections, gameData.items);
         }
 
         public LevelData GetLevelData()
         {
-            return _levelData;
+            return levelData;
         }
         #endregion
 
         #region private methods
-        private void _finishInitialization()
+        private void addListeners()
         {
-            //			Debug.Log ("LevelController/_finishInitialization, _gameData = " + _gameData.targetSection + ", sectionController = " + sectionControllers.Length);
-            bool isCleared = LevelUtils.GetIsCleared(sceneData.sceneName, Game.Instance.gameData.levels);
-            _levelData = LevelUtils.GetLevel(sceneData.sceneName, _gameData.levels);
-            // Debug.Log ("  _levelData = " + _levelData);
-            if (_gameData.targetSection > -1 && _gameData.targetSection < sectionControllers.Length)
+            EventCenter eventCenter = EventCenter.Instance;
+            eventCenter.OnPrefabsAdded += OnPrefabsAdded;
+            eventCenter.OnLevelTasksCompleted += OnLevelTasksCompleted;
+            eventCenter.OnSectionChanged += OnSectionChanged;
+        }
+
+        private void finishInitialization()
+        {
+            // Debug.Log("LevelController/finishInitialization, gameData = " + gameData.targetSection + ", sectionController = " + sectionControllers.Length);
+            bool isCleared = LevelUtils.GetIsCleared(subSceneData.name, gameData.levels);
+            levelData = LevelUtils.GetLevel(subSceneData.name, gameData.levels);
+
+            if (gameData.targetSection > -1 && gameData.targetSection < sectionControllers.Length)
             {
-                _levelData.currentSection = _gameData.targetSection;
+                levelData.currentSection = gameData.targetSection;
             }
 
             if (sectionControllers != null)
             {
                 foreach (SectionController sectionController in sectionControllers)
                 {
-                    sectionController.Init(_levelData.currentSection);
+                    sectionController.Init(levelData.currentSection);
                 }
 
-                PlayerLocation playerLocation = sectionControllers[_levelData.currentSection].data.playerLocation;
-                _playerManager = GetComponent<PlayerManager>();
-                _playerManager.Init(playerLocation, _gameData.playerData, _gameData.items);
+                PlayerLocation playerLocation = sectionControllers[levelData.currentSection].data.playerLocation;
+                playerManager = GetComponent<PlayerManager>();
+                playerManager.Init(playerLocation, gameData.playerData, gameData.items);
             }
 
             if (!isCleared)
             {
                 TaskController taskController = GetComponent<TaskController>();
-                if (_levelData != null)
+                if (levelData != null)
                 {
-                    LevelTaskData taskData = _levelData.tasks as LevelTaskData;
+                    LevelTaskData taskData = levelData.tasks as LevelTaskData;
                     taskController.Init(taskData);
 
                 }
             }
             else
             {
-                Debug.Log("LevelController[" + sceneData.sceneName + "]/Initlevel cleared");
+                Debug.Log("LevelController[" + subSceneData.name + "]/Initlevel cleared");
             }
 
             Game.Instance.LevelInitialized();

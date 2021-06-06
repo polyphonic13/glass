@@ -4,6 +4,7 @@ namespace Polyworks
     public class EventCenter : Singleton<EventCenter>
     {
         #region delegates
+        public delegate void VoidHandler();
         public delegate void SceneChangeHandler(string scene, int section = -1);
         public event SceneChangeHandler OnStartSceneChange;
         public event SceneChangeHandler OnContinueSceneChange;
@@ -122,10 +123,11 @@ namespace Polyworks
 
         public void InvokeStringEvent(string type, string value = "")
         {
-            if (OnStringEvent != null)
+            if (OnStringEvent == null)
             {
-                OnStringEvent(type, value);
+                return;
             }
+            OnStringEvent(type, value);
         }
 
         public void InvokeDestroy(string target)
@@ -150,6 +152,17 @@ namespace Polyworks
             {
                 OnNearItem(item, isNear);
             }
+        }
+
+        public event VoidHandler OnItemDisabled;
+
+        public void InvokeItemDisabled()
+        {
+            if (OnItemDisabled == null)
+            {
+                return;
+            }
+            OnItemDisabled();
         }
 
         public void InventoryAdded(string item, int count, bool isPlayerInventory = false)
@@ -308,6 +321,21 @@ namespace Polyworks
             OnPlayAnimation(type, clipName);
         }
         #endregion
+
+        #region v2
+        public delegate void ChangeSceneHandler(SceneType type, bool isFadedOut);
+        public event ChangeSceneHandler OnChangeScene;
+        public void TriggerChangeScene(SceneType type, bool isFadedOut)
+        {
+            if (OnChangeScene == null)
+            {
+                return;
+            }
+            OnChangeScene(type, isFadedOut);
+        }
+
+        #endregion
+
     }
 }
 

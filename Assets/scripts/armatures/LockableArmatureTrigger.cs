@@ -1,43 +1,49 @@
-﻿using UnityEngine;
-using System.Collections;
-using Polyworks; 
+﻿using Polyworks;
 
-public class LockableArmatureTrigger : OpenCloseArmatureTrigger {
+public class LockableArmatureTrigger : OpenCloseArmatureTrigger
+{
 
-	public string _keyName = "";
+    public string _keyName = "";
 
-	public bool IsLocked = true;
-//	public bool IsLocked { get; set; }
+    public bool IsLocked = true;
 
-	public void Awake() {
-		InitLockableArmatureTrigger();
-	}
-	
-	public void InitLockableArmatureTrigger() {
-		InitOpenCloseArmatureTrigger();
-	}
+    public void InitLockableArmatureTrigger()
+    {
+        InitOpenCloseArmatureTrigger();
+    }
 
-	public override void HandleAnimation() {
-		HandleLockCheck();
-	}
-	
-	public void HandleLockCheck() {
-//		// Debug.Log("LockableArmatureTrigger[ " + name + " ]/HandleLockCheck, IsLocked = " + IsLocked);
-		if(!IsLocked) {
-			HandleOpenClose();
-		} else {
-			EventCenter.Instance.AddNote("The " + this.name + " is locked");
-		}
-	}
+    public override void HandleAnimation()
+    {
+        HandleLockCheck();
+    }
 
-	public void Unlock() {
-		_unlock ();
-	}
+    public void HandleLockCheck()
+    {
+        //		// Debug.Log("LockableArmatureTrigger[ " + name + " ]/HandleLockCheck, IsLocked = " + IsLocked);
+        if (!IsLocked)
+        {
+            HandleOpenClose();
+        }
+        else
+        {
+            EventCenter.Instance.AddNote("The " + this.name + " is locked");
+        }
+    }
 
-	private void _unlock() {
-		IsLocked = false;
-		EventCenter.Instance.AddNote("The " + this.name + " was unlocked");
-		HandleOpenClose();
-	}
+    public void Unlock()
+    {
+        _unlock();
+    }
+
+    private void _unlock()
+    {
+        IsLocked = false;
+        EventCenter.Instance.AddNote("The " + this.name + " was unlocked");
+        HandleOpenClose();
+    }
+
+    private void Awake()
+    {
+        InitLockableArmatureTrigger();
+    }
 }
-

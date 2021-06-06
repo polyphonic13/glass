@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 
 /*
  * SceneData contains general information on scene, not stored in persistent GameData
@@ -7,13 +6,13 @@ using System.Collections;
  */
 namespace Polyworks
 {
-	[Serializable]
-	public class SceneData
-	{
-		public string sceneName;
+    [Serializable]
+    public class SceneData
+    {
+        public string sceneName;
 
-		public SectionPrefabs[] sectionPrefabs;
-	}
+        public SectionPrefabs[] sectionPrefabs;
+    }
 
 }
 

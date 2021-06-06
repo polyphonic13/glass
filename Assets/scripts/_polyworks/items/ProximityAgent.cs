@@ -1,97 +1,122 @@
 ﻿using UnityEngine;
 
-namespace Polyworks {
-	public class ProximityAgent : MonoBehaviour {
+namespace Polyworks
+{
+    public class ProximityAgent : MonoBehaviour
+    {
 
-		public float interactDistance = 2f;
-		public Transform target;
-		public bool isTargetPlayer = true; 
-		public bool isLogOn = false; 
+        public float interactDistance = 2f;
+        public Transform target;
+        public bool isTargetPlayer = true;
+        public bool isLogOn = false;
 
-		private bool _wasJustFocused;
-		private bool _isInitialized;
-		private Item _item;
-	
-		#region handlers
-		public void OnSceneInitialized(string scene) {
-			Init();
-		}
-		#endregion
+        private bool _wasJustFocused;
+        private bool _isInitialized;
+        private Item _item;
 
-		#region public methods
-		public void SetFocus(bool isFocused) {
-			_log ("ProximityAgent[" + this.name + "]/SetFocus, isFocused = " + isFocused + ", _isInitialized = " + _isInitialized + ", isEnabled = " + _item.isEnabled);
-			SendMessage ("SetInProximity", isFocused, SendMessageOptions.DontRequireReceiver);
-			if(_isInitialized && _item.isEnabled) {
-				if (isFocused) {
-					if (!_wasJustFocused) {
-						EventCenter.Instance.NearItem(_item, true);
-						_wasJustFocused = true;
-					}
-				} else if (_wasJustFocused) {
-					EventCenter.Instance.NearItem(_item, false);
-					_wasJustFocused = false;
-				}
-			}
-		}
+        #region handlers
+        public void OnSceneInitialized(string scene)
+        {
+            Init();
+        }
+        #endregion
 
-		public bool Check() {
-			if (target == null) {
-				return true;
-			}
+        #region public methods
+        public void SetFocus(bool isFocused)
+        {
+            _log("ProximityAgent[" + this.name + "]/SetFocus, isFocused = " + isFocused + ", _isInitialized = " + _isInitialized + ", isEnabled = " + _item.isEnabled);
+            SendMessage("SetInProximity", isFocused, SendMessageOptions.DontRequireReceiver);
+            if (_isInitialized && _item.isEnabled)
+            {
+                if (isFocused)
+                {
+                    if (!_wasJustFocused)
+                    {
+                        EventCenter.Instance.NearItem(_item, true);
+                        _wasJustFocused = true;
+                    }
+                }
+                else if (_wasJustFocused)
+                {
+                    EventCenter.Instance.NearItem(_item, false);
+                    _wasJustFocused = false;
+                }
+            }
+        }
 
-			bool isInProximity = false;
-			if (_item.isEnabled) {
-				var difference = Vector3.Distance (target.position, transform.position);
-				if (difference < interactDistance) {
-					isInProximity = true;
-					EventCenter.Instance.NearItem (_item, isInProximity);
-					_wasJustFocused = true;
-				} else if (_wasJustFocused) {
-					EventCenter.Instance.NearItem (_item, isInProximity);
-					_wasJustFocused = false;
-				}
-			}
-			_log ("ProximityAgent["+this.name+"]/Check, item isEnabled = " + _item.isEnabled + ", isInProximity");
-			return isInProximity;
-		}
+        public bool Check()
+        {
+            if (target == null)
+            {
+                return true;
+            }
 
-		public void Init() {
-			_log ("ProximityAgent[" + this.name + "]/Init");
-			if(!_isInitialized) {
-				_item = gameObject.GetComponent<Item> ();
+            bool isInProximity = false;
+            if (_item.isEnabled)
+            {
+                var difference = Vector3.Distance(target.position, transform.position);
+                if (difference < interactDistance)
+                {
+                    isInProximity = true;
+                    EventCenter.Instance.NearItem(_item, isInProximity);
+                    _wasJustFocused = true;
+                }
+                else if (_wasJustFocused)
+                {
+                    EventCenter.Instance.NearItem(_item, isInProximity);
+                    _wasJustFocused = false;
+                }
+            }
+            _log("ProximityAgent[" + this.name + "]/Check, item isEnabled = " + _item.isEnabled + ", isInProximity");
+            return isInProximity;
+        }
 
-				if (isTargetPlayer) {
-					GameObject player = GameObject.Find("player");
-					if(player != null) {
-						target = player.transform;						
-					}
-				}
-				_isInitialized = true;
-			}
-		}
-		#endregion
+        public void Init()
+        {
+            // _log ("ProximityAgent[" + this.name + "]/Init");
+            if (!_isInitialized)
+            {
+                _item = gameObject.GetComponent<Item>();
 
-		#region private methods
-		private void Awake() {
-			if (Game.Instance != null && Game.Instance.isSceneInitialized) {
-				Init ();
-			}
-			EventCenter.Instance.OnSceneInitialized += this.OnSceneInitialized;
-		}
+                if (isTargetPlayer)
+                {
+                    GameObject player = GameObject.Find("player");
+                    if (player != null)
+                    {
+                        target = player.transform;
+                    }
+                }
+                _isInitialized = true;
+            }
+        }
+        #endregion
 
-		private void OnDestroy() {
-			EventCenter ec = EventCenter.Instance;
-			if (ec != null) {
-				ec.OnSceneInitialized -= this.OnSceneInitialized;
-			}
-		}
-		#endregion
+        #region private methods
+        private void Awake()
+        {
+            if (Game.Instance != null && Game.Instance.isSceneInitialized)
+            {
+                Init();
+            }
+            EventCenter.Instance.OnSceneInitialized += this.OnSceneInitialized;
+        }
 
-		private void _log(string message) {
-			if(isLogOn) {
-				Debug.Log(message);
-			}
-		}
-	}
+        private void OnDestroy()
+        {
+            EventCenter ec = EventCenter.Instance;
+            if (ec != null)
+            {
+                ec.OnSceneInitialized -= this.OnSceneInitialized;
+            }
+        }
+        #endregion
+
+        private void _log(string message)
+        {
+            if (isLogOn)
+            {
+                Debug.Log(message);
+            }
+        }
+    }
 }
