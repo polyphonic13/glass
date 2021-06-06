@@ -7,14 +7,8 @@ public enum SceneType
     None,
     Splash,
     Title,
-    Map,
-    Level,
-    Shop,
-    Settings,
-    Info,
-    Interstitial,
-    Reward,
-    RewardedGems,
+    HouseSecondFloor,
+    Cave02a,
 }
 
 public class SceneController : MonoBehaviour
