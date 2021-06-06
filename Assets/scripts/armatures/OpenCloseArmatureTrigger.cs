@@ -1,40 +1,50 @@
 ﻿using UnityEngine;
 
-public class OpenCloseArmatureTrigger : ArmatureTrigger {
+public class OpenCloseArmatureTrigger : ArmatureTrigger
+{
 
-	public AnimationClip _closeClip;
+    public AnimationClip _closeClip;
 
-	public bool IsOpen { get; set; }
+    public bool IsOpen { get; set; }
 
-	void Awake() {
-		InitOpenCloseArmatureTrigger();
-	}
-	
-	public void InitOpenCloseArmatureTrigger() {
-//		_pops.OnAnimationPlayed += OnAnimationPlayed;
-		IsOpen = false;
-	}
-	
-	public override void HandleAnimation() {
-		HandleOpenClose();
-	}
-	
-	public void HandleOpenClose() {
-		if(IsOpen) {
-			SendAnimationToPops(_closeClip.name, _parentBone);
-		} else {
-			SendAnimationToPops(_mainClip.name, _parentBone);
-		}
-		IsOpen = !IsOpen;
-	}
-	
-	public void OnAnimationPlayed(Transform bone) {
-		if(IsOpen) {
-			if(bone.name != _parentBone.name) {
-				SendAnimationToPops(_closeClip.name, _parentBone);
-				IsOpen = false;
-			}
-		}
-	}
-	
+    public void InitOpenCloseArmatureTrigger()
+    {
+        //		_pops.OnAnimationPlayed += OnAnimationPlayed;
+        IsOpen = false;
+    }
+
+    public override void HandleAnimation()
+    {
+        HandleOpenClose();
+    }
+
+    public void HandleOpenClose()
+    {
+        if (IsOpen)
+        {
+            SendAnimationToPops(_closeClip.name, _parentBone);
+        }
+        else
+        {
+            SendAnimationToPops(_mainClip.name, _parentBone);
+        }
+        IsOpen = !IsOpen;
+    }
+
+    public void OnAnimationPlayed(Transform bone)
+    {
+        if (IsOpen)
+        {
+            if (bone.name != _parentBone.name)
+            {
+                SendAnimationToPops(_closeClip.name, _parentBone);
+                IsOpen = false;
+            }
+        }
+    }
+
+    private void Awake()
+    {
+        InitOpenCloseArmatureTrigger();
+    }
 }

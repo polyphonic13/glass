@@ -1,22 +1,26 @@
 using UnityEngine;
-using Polyworks; 
+using Polyworks;
 
-public class OnOffLight : Toggler {
+public class OnOffLight : Toggler
+{
 
-	public Light bulb; 
+    public Light bulb;
 
-	public override void Toggle() {
-		isOn = !isOn;
-		ToggleTarget(isOn);
-	}
-	
-	public override void ToggleTarget(bool turnOn) {
-		isOn = turnOn;
-//		 Debug.Log ("ToggleTarget[" + this.name + "], isOn = " + isOn);
-		bulb.enabled = isOn;
-	}
+    public override void Toggle()
+    {
+        base.Toggle();
+        ToggleTarget(isOn);
+    }
 
-	void Awake() {
-		ToggleTarget (isOn);
-	}
+    public override void ToggleTarget(bool turnOn)
+    {
+        isOn = turnOn;
+        Log("ToggleTarget[" + this.name + "], isOn = " + isOn);
+        bulb.enabled = isOn;
+    }
+
+    void Awake()
+    {
+        ToggleTarget(isOn);
+    }
 }

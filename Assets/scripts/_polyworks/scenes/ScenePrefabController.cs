@@ -1,39 +1,58 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿namespace Polyworks
+{
+    using UnityEngine;
+    using System.Collections;
 
-namespace Polyworks {
-	
-	public class ScenePrefabController : MonoBehaviour
-	{
-		public static void Init(SectionPrefabs[] sectionsPrefabs, Hashtable items) {
+    public class ScenePrefabController : MonoBehaviour
+    {
+        public static void Init(Section[] sections, Hashtable items)
+        {
+            foreach (Section section in sections)
+            {
+                initPrefabs(section.prefabs, items);
+            }
 
-			for (int j = 0; j < sectionsPrefabs.Length; j++) {
-				Prefab[] prefabs = sectionsPrefabs[j].prefabs;
-				for (int i = 0; i < prefabs.Length; i++) {
-					bool isAddable = true; 
-					string clonedName = prefabs [i].name + "(Clone)";
+            EventCenter.Instance.PrefabsAdded();
+        }
 
-					if (items.Contains(clonedName)) {
-						isAddable = false;
-					}
+        private static void initPrefabs(PrefabData[] prefabs, Hashtable items)
+        {
+            foreach (PrefabData prefab in prefabs)
+            {
+                initPrefab(prefab, items);
+            }
+        }
 
-					if(isAddable) {
-						string prefabPath = prefabs[i].path + prefabs[i].name;
+        private static void initPrefab(PrefabData prefab, Hashtable items)
+        {
+            string clonedName = prefab.name;
+            bool isAddable = !(items.Contains(clonedName));
 
-						GameObject go = (GameObject) Instantiate (Resources.Load (prefabPath, typeof(GameObject)), prefabs [i].location, Quaternion.Euler(prefabs[i].rotation));
-						string addTo = prefabs [i].addTo;
-						if (addTo != null && addTo != "") {
-							GameObject parentObj = GameObject.Find (addTo);
-							if (parentObj != null) {
-								Transform parentTransform = parentObj.transform;
-								go.transform.parent = parentTransform;
-							}
-						}
-					}
-				}
-			}
+            if (!isAddable)
+            {
+                return;
+            }
+            string prefabPath = prefab.path + prefab.name;
 
-			EventCenter.Instance.PrefabsAdded ();
-		}
-	}
+            Vector3 position = new Vector3(prefab.position.x, prefab.position.y, prefab.position.z);
+            Vector3 rotation = new Vector3(prefab.rotation.x, prefab.rotation.y, prefab.rotation.z);
+            // Debug.Log("prefabPath = " + prefabPath);
+            GameObject go = (GameObject)Instantiate(Resources.Load(prefabPath, typeof(GameObject)), position, Quaternion.Euler(rotation));
+            go.name = prefab.name;
+
+            string addTo = prefab.addTo;
+
+            if (addTo == null || addTo == "")
+            {
+                return;
+            }
+
+            GameObject parentObj = GameObject.Find(addTo);
+            if (parentObj == null)
+            {
+                return;
+            }
+            go.transform.SetParent(parentObj.transform);
+        }
+    }
 }

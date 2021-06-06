@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 namespace Polyworks
 {
@@ -10,6 +9,7 @@ namespace Polyworks
         public bool isLockMessageDisplayed = true;
         public bool isAutoActuatedOnUnlock = false;
         public bool isNoteAddedOnUnlock = true;
+        public bool IsDisabledOnUse = false;
 
         public string customLockedMessage = "";
 
@@ -50,38 +50,57 @@ namespace Polyworks
         public override void Actuate()
         {
             Debug.Log("SwitchController[" + this.name + "]/Actuate, isLocked = " + isLocked + ", _switches = " + _switches.Length);
-            if (!isLocked)
+            if (isLocked)
             {
-                base.Actuate();
-                _actuate();
+                showLockedMessaged();
+                return;
             }
-            else if (isLockMessageDisplayed)
-            {
-                if (customLockedMessage == "")
-                {
-                    EventCenter.Instance.AddNote("The " + this.displayName + " is locked");
-                }
-                else
-                {
-                    EventCenter.Instance.AddNote(customLockedMessage);
-                }
-            }
+
+            _actuate();
         }
         #endregion
 
         #region private methods
+        private void showLockedMessaged()
+        {
+            if (!isLockMessageDisplayed)
+            {
+                return;
+            }
+
+            string message = (customLockedMessage != "") ? customLockedMessage : "The " + this.displayName + " is locked";
+            EventCenter.Instance.AddNote(message);
+
+        }
+
         private void _actuate()
         {
-            if (_switches != null)
+            if (!this.isEnabled)
             {
-                for (int i = 0; i < _switches.Length; i++)
+                return;
+            }
+
+            base.Actuate();
+
+            if (_switches == null)
+            {
+                return;
+            }
+
+            for (int i = 0; i < _switches.Length; i++)
+            {
+                if (_switches[i] != null)
                 {
-                    if (_switches[i] != null)
-                    {
-                        _switches[i].Actuate();
-                    }
+                    _switches[i].Actuate();
                 }
             }
+
+            if (!IsDisabledOnUse)
+            {
+                return;
+            }
+            isEnabled = false;
+            EventCenter.Instance.InvokeItemDisabled();
         }
 
         private void initEnable()
