@@ -77,7 +77,6 @@
 
         public void SetFlag(string key, bool value)
         {
-            Debug.Log("Game/SetFlag, key = " + key + ", value = " + value);
             FlagDataUtils.SetByKey(key, value, Instance.gameData.flags);
             saveData();
         }

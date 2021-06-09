@@ -44,10 +44,8 @@ namespace Polyworks
 
         public static void SetByKey(string key, bool value, Flag[] list)
         {
-            Debug.Log("SetByKey, key = " + key + ", value = " + value);
             for (var i = 0; i < list.Length; i++)
             {
-                Debug.Log("  list[ " + i + " ].key = " + list[i].key);
                 if (list[i].key == key)
                 {
                     list[i].value = value;
