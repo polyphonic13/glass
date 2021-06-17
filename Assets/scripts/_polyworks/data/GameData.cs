@@ -1,9 +1,8 @@
-﻿using UnityEngine;
-using System;
-using System.Collections;
-
-namespace Polyworks
+﻿namespace Polyworks
 {
+    using System;
+    using System.Collections;
+
     [Serializable]
     public struct Coords
     {
@@ -48,7 +47,6 @@ namespace Polyworks
     {
         public string currentScene;
         public int targetSection = -1;
-        public int count = 0;
         public Hashtable tasks;
         public Hashtable items;
         public Hashtable clearedScenes;
@@ -68,6 +66,4 @@ namespace Polyworks
 		 * }
 		 */
     }
-
 }
-
