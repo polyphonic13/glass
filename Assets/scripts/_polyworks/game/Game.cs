@@ -19,6 +19,7 @@
         public bool isCursorless = true;
         public Inventory playerInventory { get; set; }
 
+        private static readonly string JSON_PATH = "data/game";
         private static readonly string DATA_FILE_NAME = "game_data.dat";
         private static readonly string REWIRED_INPUT_MANAGER_PATH = "game/";
         private static readonly string REWIRED_INPUT_MANAGER_NAME = "rewired_input_manager";
@@ -103,6 +104,8 @@
 
             Cursor.visible = (isCursorless) ? false : true;
 
+            loadJSON();
+
             Instance.gameData = initGameData();
 
             Instance.gameData.currentScene = currentSceneName;
@@ -141,6 +144,13 @@
             }
             InventoryUI inventoryUI = inventoryObj.GetComponent<InventoryUI>();
             inventoryUI.InitInventory(Instance.playerInventory);
+        }
+
+        public void loadJSON()
+        {
+            var jsonTextFile = Resources.Load<TextAsset>(JSON_PATH);
+            GameJSON jsonData = JsonUtility.FromJson<GameJSON>(jsonTextFile.ToString());
+
         }
 
         public void loadData()
