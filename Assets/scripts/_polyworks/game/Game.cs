@@ -30,6 +30,7 @@
         private LevelController levelController;
         private Player player;
         private DataIOController dataIOController;
+        private GameJSON gameJSON;
         private string dataPath;
 
 
@@ -149,8 +150,8 @@
         public void loadJSON()
         {
             var jsonTextFile = Resources.Load<TextAsset>(JSON_PATH);
-            GameJSON jsonData = JsonUtility.FromJson<GameJSON>(jsonTextFile.ToString());
-
+            gameJSON = JsonUtility.FromJson<GameJSON>(jsonTextFile.ToString());
+            Debug.Log("Game/loadJSON, gameJSON.levels count = " + gameJSON.levels.Length);
         }
 
         public void loadData()

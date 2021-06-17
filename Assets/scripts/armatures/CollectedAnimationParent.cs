@@ -1,19 +1,20 @@
-using UnityEngine;
-using System.Collections;
+public class CollectedAnimationParent : EventAnimationParent
+{
 
-public class CollectedAnimationParent : EventAnimationParent {
+    void Awake()
+    {
+        InitEventAnimationParent();
+    }
 
-	void Awake() {
-		InitEventAnimationParent();
-	}
-	
-	public void InitEventAnimationParent() {
-		// Debug.Log("CollectedAnimationParent[ " + name + " ]/InitEventAnimationParent");
-		if(eventName != "") {
-//			EventCenter.Instance.OnTriggerCollectedEvent += OnTriggerEvent;
-		}
-		Init();
-	}
+    public override void InitEventAnimationParent()
+    {
+        // Debug.Log("CollectedAnimationParent[ " + name + " ]/InitEventAnimationParent");
+        if (eventName != "")
+        {
+            //			EventCenter.Instance.OnTriggerCollectedEvent += OnTriggerEvent;
+        }
+        Init();
+    }
 
 }
 
