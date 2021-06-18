@@ -6,11 +6,11 @@ namespace Polyworks
 
     public class ScenePrefabController : MonoBehaviour
     {
-        public static void Init(SectionPrefabs[] sectionsPrefabs, Hashtable items)
+        public static void Init(SectionPrefabs[] sectionPrefabs, Hashtable items)
         {
-            for (int j = 0; j < sectionsPrefabs.Length; j++)
+            foreach (SectionPrefabs sectionPrefab in sectionPrefabs)
             {
-                initPrefabs(sectionsPrefabs[j].prefabs, items);
+                initPrefabs(sectionPrefab.prefabs, items);
             }
 
             EventCenter.Instance.PrefabsAdded();
@@ -26,30 +26,29 @@ namespace Polyworks
 
         private static void initPrefab(Prefab prefab, Hashtable items)
         {
-            bool isAddable = true;
-            string clonedName = prefab.name + "(Clone)";
+            string clonedName = prefab.name;
+            bool isAddable = !(items.Contains(clonedName));
 
-            if (items.Contains(clonedName))
+            if (!isAddable)
             {
-                isAddable = false;
+                return;
+            }
+            string prefabPath = prefab.path + prefab.name;
+
+            GameObject go = (GameObject)Instantiate(Resources.Load(prefabPath, typeof(GameObject)), prefab.location, Quaternion.Euler(prefab.rotation));
+            string addTo = prefab.addTo;
+
+            if (addTo == null || addTo == "")
+            {
+                return;
             }
 
-            if (isAddable)
+            GameObject parentObj = GameObject.Find(addTo);
+            if (parentObj == null)
             {
-                string prefabPath = prefab.path + prefab.name;
-
-                GameObject go = (GameObject)Instantiate(Resources.Load(prefabPath, typeof(GameObject)), prefab.location, Quaternion.Euler(prefab.rotation));
-                string addTo = prefab.addTo;
-                if (addTo != null && addTo != "")
-                {
-                    GameObject parentObj = GameObject.Find(addTo);
-                    if (parentObj != null)
-                    {
-                        Transform parentTransform = parentObj.transform;
-                        go.transform.parent = parentTransform;
-                    }
-                }
+                return;
             }
+            go.transform.SetParent(parentObj.transform);
         }
     }
 }

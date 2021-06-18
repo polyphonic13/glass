@@ -229,13 +229,27 @@
         private void initLevel(string currentSceneName, Hashtable items)
         {
             GameObject levelControllerGO = GameObject.Find(LEVEL_CONTROLLER_GAME_OBJECT);
+
             if (levelControllerGO == null)
             {
                 Debug.LogError("ERROR: Level Controller game object could not be found");
                 return;
             }
+
             levelController = levelControllerGO.GetComponent<LevelController>();
             levelController.Init(Instance.gameData);
+        }
+
+        private Level getLevel(string name)
+        {
+            foreach (Level level in gameJSON.levels)
+            {
+                if (level.name == name)
+                {
+                    return level;
+                }
+            }
+            return new Level { name = "" };
         }
 
         private void completeSceneInitialization(bool isLevel, string currentSceneName)
