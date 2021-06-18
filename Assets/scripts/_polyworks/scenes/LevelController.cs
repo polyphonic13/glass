@@ -32,12 +32,14 @@ namespace Polyworks
         #region public methods
         public void Init(GameData gameData)
         {
-            //			Debug.Log ("LevelController/Init, gameData = " + gameData);
+            // Debug.Log ("LevelController/Init, gameData = " + gameData);
             _gameData = gameData;
-            EventCenter ec = EventCenter.Instance;
-            ec.OnPrefabsAdded += OnPrefabsAdded;
-            ec.OnLevelTasksCompleted += OnLevelTasksCompleted;
-            ec.OnSectionChanged += OnSectionChanged;
+
+            EventCenter eventCenter = EventCenter.Instance;
+            eventCenter.OnPrefabsAdded += OnPrefabsAdded;
+            eventCenter.OnLevelTasksCompleted += OnLevelTasksCompleted;
+            eventCenter.OnSectionChanged += OnSectionChanged;
+
             ScenePrefabController.Init(sceneData.sectionPrefabs, gameData.items);
         }
 
@@ -50,7 +52,7 @@ namespace Polyworks
         #region private methods
         private void _finishInitialization()
         {
-            //			Debug.Log ("LevelController/_finishInitialization, _gameData = " + _gameData.targetSection + ", sectionController = " + sectionControllers.Length);
+            // Debug.Log ("LevelController/_finishInitialization, _gameData = " + _gameData.targetSection + ", sectionController = " + sectionControllers.Length);
             bool isCleared = LevelUtils.GetIsCleared(sceneData.sceneName, Game.Instance.gameData.levels);
             _levelData = LevelUtils.GetLevel(sceneData.sceneName, _gameData.levels);
             // Debug.Log ("  _levelData = " + _levelData);

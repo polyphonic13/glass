@@ -151,7 +151,6 @@
         {
             var jsonTextFile = Resources.Load<TextAsset>(JSON_PATH);
             gameJSON = JsonUtility.FromJson<GameJSON>(jsonTextFile.ToString());
-            Debug.Log("Game/loadJSON, gameJSON.levels count = " + gameJSON.levels.Length);
         }
 
         public void loadData()
