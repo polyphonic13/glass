@@ -308,6 +308,21 @@ namespace Polyworks
             OnPlayAnimation(type, clipName);
         }
         #endregion
+
+        #region v2
+        public delegate void ChangeSceneHandler(SceneType type, bool isFadedOut);
+        public event ChangeSceneHandler OnChangeScene;
+        public void TriggerChangeScene(SceneType type, bool isFadedOut)
+        {
+            if (OnChangeScene == null)
+            {
+                return;
+            }
+            OnChangeScene(type, isFadedOut);
+        }
+
+        #endregion
+
     }
 }
 

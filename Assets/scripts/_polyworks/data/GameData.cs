@@ -39,7 +39,6 @@
     public struct GameJSON
     {
         public Level[] levels;
-
     }
 
     [Serializable]

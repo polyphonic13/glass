@@ -12,6 +12,7 @@
     [RequireComponent(typeof(Utilities))]
     public class Game : MonoBehaviour
     {
+        #region members
         public static Game Instance;
         public GameData gameData;
         public string playerPrefab = "player_objects";
@@ -27,14 +28,29 @@
         private static readonly string LEVEL_CONTROLLER_GAME_OBJECT = "level_controller";
 
         private EventCenter eventCenter;
+        private SceneController sceneController;
         private LevelController levelController;
         private Player player;
         private DataIOController dataIOController;
         private GameJSON gameJSON;
+        private SceneType currentScene = SceneType.None;
+        private SceneType previousScene = SceneType.None;
         private string dataPath;
+        #endregion
 
+        #region public event handlers
+        public void OnChangeScene(SceneType type, bool isFadedOut)
+        {
+            previousScene = currentScene;
+            currentScene = type;
 
-        #region handlers
+            if (previousScene == SceneType.None)
+            {
+                sceneController.LoadSubScene(type, onSubSceneLoaded);
+                return;
+            }
+        }
+
         public void OnStartSceneChange(string scene, int section = -1)
         {
             prepForSceneChange(scene, section);
@@ -84,10 +100,21 @@
         }
         #endregion
 
+        #region private handlers
+        private void onSubSceneUnloaded(bool isComplete)
+        {
+            sceneController.LoadSubScene(currentScene, onSubSceneLoaded);
+        }
+        private void onSubSceneLoaded(bool isComplete)
+        {
+
+        }
+        #endregion
+
         #region private methods
         public virtual void init()
         {
-            eventCenter = EventCenter.Instance;
+            sceneController = GetComponent<SceneController>();
 
             string path = REWIRED_INPUT_MANAGER_PATH + REWIRED_INPUT_MANAGER_NAME;
             GameObject rewiredInputController = (GameObject)Instantiate(Resources.Load(path));
@@ -106,6 +133,7 @@
             Cursor.visible = (isCursorless) ? false : true;
 
             loadJSON();
+            addListeners();
 
             Instance.gameData = initGameData();
 
@@ -114,15 +142,31 @@
 
             SceneChanger.Instance.Init(currentSceneName);
 
-            eventCenter.OnStartSceneChange += OnStartSceneChange;
-            eventCenter.OnCompleteSceneChange += OnCompleteSceneChange;
-
             if (isLevel)
             {
                 initLevel(currentSceneName, items);
                 return;
             }
             completeSceneInitialization(isLevel, currentSceneName);
+        }
+
+        private void addListeners()
+        {
+            eventCenter = EventCenter.Instance;
+
+            eventCenter.OnChangeScene += OnChangeScene;
+            eventCenter.OnStartSceneChange += OnStartSceneChange;
+            eventCenter.OnCompleteSceneChange += OnCompleteSceneChange;
+        }
+
+        private void removeListeners()
+        {
+            if (eventCenter == null)
+            {
+                return;
+            }
+            eventCenter.OnStartSceneChange -= OnStartSceneChange;
+            eventCenter.OnCompleteSceneChange -= OnCompleteSceneChange;
         }
 
         private GameData initGameData()
@@ -269,13 +313,7 @@
         private void cleanUp()
         {
             levelController = null;
-
-            if (eventCenter == null)
-            {
-                return;
-            }
-            eventCenter.OnStartSceneChange -= OnStartSceneChange;
-            eventCenter.OnCompleteSceneChange -= OnCompleteSceneChange;
+            removeListeners();
         }
         #endregion
 

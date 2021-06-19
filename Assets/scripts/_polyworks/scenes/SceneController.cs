@@ -7,7 +7,11 @@ public enum SceneType
     None,
     Splash,
     Title,
-    HouseSecondFloor,
+    House00,
+    House01,
+    House02,
+    House03,
+    House04,
     Cave02a,
 }
 
