@@ -28,9 +28,10 @@
         public PrefabData[] prefabs;
     }
     [Serializable]
-    public struct Level
+    public struct SceneInfo
     {
         public string name;
+        public bool isPlayerScene;
         public string[] subScenes;
         public Section[] sections;
     }
@@ -38,7 +39,7 @@
     [Serializable]
     public struct GameJSON
     {
-        public Level[] levels;
+        public SceneInfo[] scenes;
     }
 
     [Serializable]

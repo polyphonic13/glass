@@ -107,7 +107,9 @@
         }
         private void onSubSceneLoaded(bool isComplete)
         {
-
+            Debug.Log("Game/onSubSceneLoaded, current scene = " + currentScene.ToString());
+            SceneInfo sceneInfo = getSceneDataByName(currentScene.ToString());
+            Debug.Log("  sceneInfo.name = " + sceneInfo.name + ", isPlayerScene = " + sceneInfo.isPlayerScene);
         }
         #endregion
 
@@ -140,14 +142,16 @@
             Instance.gameData.currentScene = currentSceneName;
             Hashtable items = Instance.gameData.items;
 
-            SceneChanger.Instance.Init(currentSceneName);
+            // eventCenter.TriggerChangeScene(SceneType.House01, false);
+            eventCenter.TriggerChangeScene(SceneType.House02, false);
+            // SceneChanger.Instance.Init(currentSceneName);
 
-            if (isLevel)
-            {
-                initLevel(currentSceneName, items);
-                return;
-            }
-            completeSceneInitialization(isLevel, currentSceneName);
+            // if (isLevel)
+            // {
+            //     initLevel(currentSceneName, items);
+            //     return;
+            // }
+            // completeSceneInitialization(isLevel, currentSceneName);
         }
 
         private void addListeners()
@@ -284,16 +288,16 @@
             levelController.Init(Instance.gameData);
         }
 
-        private Level getLevelDataByName(string name)
+        private SceneInfo getSceneDataByName(string name)
         {
-            foreach (Level level in gameJSON.levels)
+            foreach (SceneInfo scene in gameJSON.scenes)
             {
-                if (level.name == name)
+                if (scene.name == name)
                 {
-                    return level;
+                    return scene;
                 }
             }
-            return new Level { name = "" };
+            return new SceneInfo { name = "" };
         }
 
         private void completeSceneInitialization(bool isLevel, string currentSceneName)
