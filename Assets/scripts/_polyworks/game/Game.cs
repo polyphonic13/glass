@@ -240,7 +240,7 @@
             levelController.Init(Instance.gameData);
         }
 
-        private Level getLevel(string name)
+        private Level getLevelDataByName(string name)
         {
             foreach (Level level in gameJSON.levels)
             {

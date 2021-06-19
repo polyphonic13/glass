@@ -52,10 +52,10 @@ namespace Polyworks
         #region private methods
         private void _finishInitialization()
         {
-            // Debug.Log ("LevelController/_finishInitialization, _gameData = " + _gameData.targetSection + ", sectionController = " + sectionControllers.Length);
+            Debug.Log("LevelController/_finishInitialization, _gameData = " + _gameData.targetSection + ", sectionController = " + sectionControllers.Length);
             bool isCleared = LevelUtils.GetIsCleared(sceneData.sceneName, Game.Instance.gameData.levels);
             _levelData = LevelUtils.GetLevel(sceneData.sceneName, _gameData.levels);
-            // Debug.Log ("  _levelData = " + _levelData);
+            Debug.Log("  _levelData = " + _levelData);
             if (_gameData.targetSection > -1 && _gameData.targetSection < sectionControllers.Length)
             {
                 _levelData.currentSection = _gameData.targetSection;
