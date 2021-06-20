@@ -28,7 +28,7 @@
         private static readonly string LEVEL_CONTROLLER_GAME_OBJECT = "level_controller";
 
         private EventCenter eventCenter;
-        private SceneController sceneController;
+        private SceneController subSceneController;
         private LevelController levelController;
         private Player player;
         private DataIOController dataIOController;
@@ -46,19 +46,19 @@
 
             if (previousScene == SceneType.None)
             {
-                sceneController.LoadSubScene(type, onSubSceneLoaded);
+                subSceneController.LoadSubScene(type, onSubSceneLoaded);
                 return;
             }
         }
 
-        public void OnStartSceneChange(string scene, int section = -1)
+        public void OnStartSceneChange(string subScene, int section = -1)
         {
-            prepForSceneChange(scene, section);
+            prepForSceneChange(subScene, section);
         }
 
-        public void OnCompleteSceneChange(string scene, int section = -1)
+        public void OnCompleteSceneChange(string subScene, int section = -1)
         {
-            loadScene(scene);
+            loadScene(subScene);
         }
 
         #endregion
@@ -103,20 +103,18 @@
         #region private handlers
         private void onSubSceneUnloaded(bool isComplete)
         {
-            sceneController.LoadSubScene(currentScene, onSubSceneLoaded);
+            subSceneController.LoadSubScene(currentScene, onSubSceneLoaded);
         }
         private void onSubSceneLoaded(bool isComplete)
         {
-            Debug.Log("Game/onSubSceneLoaded, current scene = " + currentScene.ToString());
-            SceneInfo sceneInfo = getSceneDataByName(currentScene.ToString());
-            Debug.Log("  sceneInfo.name = " + sceneInfo.name + ", isPlayerScene = " + sceneInfo.isPlayerScene);
+            initScene();
         }
         #endregion
 
         #region private methods
         public virtual void init()
         {
-            sceneController = GetComponent<SceneController>();
+            subSceneController = GetComponent<SceneController>();
 
             string path = REWIRED_INPUT_MANAGER_PATH + REWIRED_INPUT_MANAGER_NAME;
             GameObject rewiredInputController = (GameObject)Instantiate(Resources.Load(path));
@@ -148,7 +146,7 @@
 
             // if (isLevel)
             // {
-            //     initLevel(currentSceneName, items);
+            //     initPlayerScene(currentSceneName, items);
             //     return;
             // }
             // completeSceneInitialization(isLevel, currentSceneName);
@@ -228,12 +226,12 @@
             dataIOController.Save(dataPath, Instance.gameData);
         }
 
-        private void changeScene(string scene, int section = -1)
+        private void changeScene(string subScene, int section = -1)
         {
-            eventCenter.StartSceneChange(scene, section);
+            eventCenter.StartSceneChange(subScene, section);
         }
 
-        private void prepForSceneChange(string scene, int section = -1)
+        private void prepForSceneChange(string subScene, int section = -1)
         {
             Scene currentScene = SceneManager.GetActiveScene();
 
@@ -242,12 +240,12 @@
                 Instance.gameData.targetSection = section;
             }
 
-            if (scene == currentScene.name)
+            if (subScene == currentScene.name)
             {
                 return;
             }
             wrapUpLevel(currentScene.name, section);
-            eventCenter.ContinueSceneChange(scene, section);
+            eventCenter.ContinueSceneChange(subScene, section);
         }
 
         private void wrapUpLevel(string currentSceneName, int section)
@@ -268,13 +266,28 @@
             LevelUtils.SetLevelData(currentSceneName, Instance.gameData.levels, levelController.GetLevelData());
         }
 
-        private void loadScene(string scene)
+        private void loadScene(string subScene)
         {
             cleanUp();
-            SceneManager.LoadScene(scene);
+            SceneManager.LoadScene(subScene);
         }
 
-        private void initLevel(string currentSceneName, Hashtable items)
+
+        private void initScene()
+        {
+            string currentSceneName = currentScene.ToString();
+            Debug.Log("Game/onSubSceneLoaded, current subScene = " + currentSceneName);
+            SubSceneData subSceneData = getSubSceneDataByName(currentSceneName);
+            Debug.Log("  subSceneData.name = " + subSceneData.name + ", isPlayerScene = " + subSceneData.isPlayerScene);
+            if (!subSceneData.isPlayerScene)
+            {
+                return;
+            }
+
+            initPlayerScene(subSceneData);
+        }
+
+        private void initPlayerScene(SubSceneData subSceneData)
         {
             GameObject levelControllerGO = GameObject.Find(LEVEL_CONTROLLER_GAME_OBJECT);
 
@@ -285,19 +298,19 @@
             }
 
             levelController = levelControllerGO.GetComponent<LevelController>();
-            levelController.Init(Instance.gameData);
+            levelController.Init(Instance.gameData, subSceneData.sections);
         }
 
-        private SceneInfo getSceneDataByName(string name)
+        private SubSceneData getSubSceneDataByName(string name)
         {
-            foreach (SceneInfo scene in gameJSON.scenes)
+            foreach (SubSceneData subScene in gameJSON.subScenes)
             {
-                if (scene.name == name)
+                if (subScene.name == name)
                 {
-                    return scene;
+                    return subScene;
                 }
             }
-            return new SceneInfo { name = "" };
+            return new SubSceneData { name = "" };
         }
 
         private void completeSceneInitialization(bool isLevel, string currentSceneName)
@@ -309,9 +322,9 @@
             inputController.Init(isLevel);
         }
 
-        private bool getIsLevel(string sceneName)
+        private bool getIsLevel(string subSceneName)
         {
-            return LevelUtils.Has(sceneName, Instance.gameData.levels);
+            return LevelUtils.Has(subSceneName, Instance.gameData.levels);
         }
 
         private void cleanUp()

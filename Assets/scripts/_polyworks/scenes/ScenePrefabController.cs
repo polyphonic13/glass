@@ -1,30 +1,29 @@
-﻿using UnityEngine;
-using System.Collections;
-
-namespace Polyworks
+﻿namespace Polyworks
 {
+    using UnityEngine;
+    using System.Collections;
 
     public class ScenePrefabController : MonoBehaviour
     {
-        public static void Init(SectionPrefabs[] sectionPrefabs, Hashtable items)
+        public static void Init(Section[] sections, Hashtable items)
         {
-            foreach (SectionPrefabs sectionPrefab in sectionPrefabs)
+            foreach (Section section in sections)
             {
-                initPrefabs(sectionPrefab.prefabs, items);
+                initPrefabs(section.prefabs, items);
             }
 
             EventCenter.Instance.PrefabsAdded();
         }
 
-        private static void initPrefabs(Prefab[] prefabs, Hashtable items)
+        private static void initPrefabs(PrefabData[] prefabs, Hashtable items)
         {
-            for (int i = 0; i < prefabs.Length; i++)
+            foreach (PrefabData prefab in prefabs)
             {
-                initPrefab(prefabs[i], items);
+                initPrefab(prefab, items);
             }
         }
 
-        private static void initPrefab(Prefab prefab, Hashtable items)
+        private static void initPrefab(PrefabData prefab, Hashtable items)
         {
             string clonedName = prefab.name;
             bool isAddable = !(items.Contains(clonedName));
@@ -35,7 +34,12 @@ namespace Polyworks
             }
             string prefabPath = prefab.path + prefab.name;
 
-            GameObject go = (GameObject)Instantiate(Resources.Load(prefabPath, typeof(GameObject)), prefab.location, Quaternion.Euler(prefab.rotation));
+            Vector3 position = new Vector3(prefab.position.x, prefab.position.y, prefab.position.z);
+            Vector3 rotation = new Vector3(prefab.rotation.x, prefab.rotation.y, prefab.rotation.z);
+            Debug.Log("prefabPath = " + prefabPath);
+            GameObject go = (GameObject)Instantiate(Resources.Load(prefabPath, typeof(GameObject)), position, Quaternion.Euler(rotation));
+            go.name = prefab.name;
+
             string addTo = prefab.addTo;
 
             if (addTo == null || addTo == "")

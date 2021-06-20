@@ -17,7 +17,7 @@
         public string name;
         public string path;
         public string addTo;
-        public Coords location;
+        public Coords position;
         public Coords rotation;
     }
 
@@ -28,18 +28,18 @@
         public PrefabData[] prefabs;
     }
     [Serializable]
-    public struct SceneInfo
+    public struct SubSceneData
     {
         public string name;
         public bool isPlayerScene;
-        public string[] subScenes;
+        public string[] siblingScenes;
         public Section[] sections;
     }
 
     [Serializable]
     public struct GameJSON
     {
-        public SceneInfo[] scenes;
+        public SubSceneData[] subScenes;
     }
 
     [Serializable]

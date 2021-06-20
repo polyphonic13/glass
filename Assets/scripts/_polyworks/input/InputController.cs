@@ -138,9 +138,10 @@ namespace Polyworks
 
             initMenu();
 
+            isInitialized = true;
+
             if (!isLevel)
             {
-                isInitialized = true;
                 return;
             }
 
@@ -148,7 +149,6 @@ namespace Polyworks
             initInventory();
             initPuzzleInspector();
             addLevelEventListeners();
-            isInitialized = true;
         }
         #endregion
 
