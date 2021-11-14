@@ -304,10 +304,11 @@ namespace Polyworks
 
         public void ChangeContext(InputContext context, string param)
         {
-            if (OnContextChange != null)
+            if (OnContextChange == null)
             {
-                OnContextChange(context, param);
+                return;
             }
+            OnContextChange(context, param);
         }
 
         public event EventHandler<string> OnPlayAnimation;

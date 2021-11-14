@@ -41,7 +41,7 @@ public class PuzzleInspector : MonoBehaviour, IInputControllable
     #region event handlers
     public void OnContextChange(InputContext context, string param)
     {
-        Log("PuzzleInspector/OnContextChange, context = " + context + ", param = " + param);
+        Log(">>>>> PuzzleInspector/OnContextChange, context = " + context + ", param = " + param);
         if (context == InputContext.PUZZLE)
         {
             //			Log ("  param = " + param);
@@ -60,13 +60,14 @@ public class PuzzleInspector : MonoBehaviour, IInputControllable
 
     public void OnNearItem(Item item, bool isFocused)
     {
-        //		Log ("PuzzleInspector/OnNearItem, item = " + item.name + ", isFocused = " + isFocused);
+        // Log ("PuzzleInspector/OnNearItem, item = " + item.name + ", isFocused = " + isFocused);
     }
     #endregion
 
     #region public methods
     public void Init()
     {
+        Log(">>>>> PuzzleInspector/Init");
         EventCenter ec = EventCenter.Instance;
         ec.OnContextChange += this.OnContextChange;
         _raycastAgent = _raycastObject.GetComponent<RaycastAgent>();
@@ -74,7 +75,7 @@ public class PuzzleInspector : MonoBehaviour, IInputControllable
 
     public void Activate(int index)
     {
-        Log("PuzzleInspector/Actvate, index = " + index);
+        Log(">>>>> PuzzleInspector/Activate, index = " + index);
         _moveToNewLocation(index);
         _toggleActivated(true);
     }
@@ -119,11 +120,12 @@ public class PuzzleInspector : MonoBehaviour, IInputControllable
 
     private void Update()
     {
-        //		Log ("PuzzleInspector/Update, isActive = " + this.isActive);
-        if (this.isActive)
+        Log("PuzzleInspector/Update, isActive = " + this.isActive);
+        if (!this.isActive)
         {
-            _raycastAgent.CheckRayCast();
+            return;
         }
+        _raycastAgent.CheckRayCast();
     }
 
     private int _getLocationIndex(string name)
@@ -160,7 +162,7 @@ public class PuzzleInspector : MonoBehaviour, IInputControllable
 
     private void _toggleActivated(bool isActivated)
     {
-        //		Log ("PuzzleInspector/_toggleActivated, isActivated = " + isActivated);
+        Log("PuzzleInspector/_toggleActivated, isActivated = " + isActivated);
         EventCenter ec = EventCenter.Instance;
 
         if (isActivated)
@@ -197,11 +199,12 @@ public class PuzzleInspector : MonoBehaviour, IInputControllable
     private void OnDestroy()
     {
         EventCenter ec = EventCenter.Instance;
-        if (ec != null)
+        if (ec == null)
         {
-            ec.OnContextChange -= this.OnContextChange;
-            ec.OnNearItem -= this.OnNearItem;
+            return;
         }
+        ec.OnContextChange -= this.OnContextChange;
+        ec.OnNearItem -= this.OnNearItem;
     }
     #endregion
 }

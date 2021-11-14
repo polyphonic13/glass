@@ -54,10 +54,12 @@ public class Puzzle : MonoBehaviour
 
     public void OnChangeContext(InputContext context)
     {
-        if (context != InputContext.PUZZLE)
+        Debug.Log("Puzzle[ " + this.name + " ]/OnChangeContext, context = " + context);
+        if (context == InputContext.PUZZLE)
         {
-            _toggleActive(false);
+            return;
         }
+        _toggleActive(false);
     }
     #endregion
 
@@ -120,9 +122,8 @@ public class Puzzle : MonoBehaviour
     public virtual void Activate()
     {
         Debug.Log("--------------- Puzzle[" + this.name + "]/Activate");
-        _toggleActive(true);
         EventCenter.Instance.ChangeContext(InputContext.PUZZLE, this.name);
-
+        _toggleActive(true);
     }
 
     public virtual void Deactivate()
@@ -155,10 +156,10 @@ public class Puzzle : MonoBehaviour
 
     public void Log(string message)
     {
-        if (isLogOn)
-        {
-            Debug.Log(message);
-        }
+        // if (isLogOn)
+        // {
+        Debug.Log(message);
+        // }
     }
     #endregion
 

@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Polyworks;
+﻿using System.Collections.Generic;
 
 public class FuseCircuitPuzzle : CircuitPuzzle
 {
@@ -22,40 +19,40 @@ public class FuseCircuitPuzzle : CircuitPuzzle
 
     public override List<int> GetWireSiblings(int index)
     {
-        // Log("FuseCircuitPuzzle["+this.name+"]/GetWireSiblings, index = " + index);
+        Log("FuseCircuitPuzzle[" + this.name + "]/GetWireSiblings, index = " + index);
         List<int> siblings = new List<int>();
 
         int pos = index % verticalPositions;
-        // Log(" pos = " + pos);
+        Log(" pos = " + pos);
         if (pos == 0)
         {
             if (index > 1)
             {
-                // Log(" pos 0, adding " + (index - 1) + ", " + (index - 2));
+                Log(" pos 0, adding " + (index - 1) + ", " + (index - 2));
                 siblings.Add(index - 1);
                 siblings.Add(index - 2);
             }
             if (index < numColumns - 2)
             {
-                // Log(" pos 0, adding " + (index + 1) + ", " + (index + 2));
+                Log(" pos 0, adding " + (index + 1) + ", " + (index + 2));
                 siblings.Add(index + 1);
                 siblings.Add(index + 2);
             }
         }
         else if (pos == 1)
         {
-            // Log(" pos 1, adding " + (index - 1) + ", " + (index + 2));
+            Log(" pos 1, adding " + (index - 1) + ", " + (index + 2));
             siblings.Add(index - 1);
             siblings.Add(index + 2);
         }
         else if (pos == 2)
         {
-            // Log(" pos 1, adding " + (index + 1) + ", " + (index - 2));
+            Log(" pos 1, adding " + (index + 1) + ", " + (index - 2));
             siblings.Add(index + 1);
             siblings.Add(index - 2);
         }
 
-        // Log(" siblings count = " + siblings.Count);
+        Log(" siblings count = " + siblings.Count);
         return siblings;
     }
 
@@ -80,7 +77,7 @@ public class FuseCircuitPuzzle : CircuitPuzzle
             if (wireChildren[i].isActivated)
             {
                 currentValue += wireValues[i];
-                // Log("added wireValues["+i+"] value " + wireValues[i] + ", currentValue now = " + currentValue);
+                Log("added wireValues[" + i + "] value " + wireValues[i] + ", currentValue now = " + currentValue);
             }
         }
 

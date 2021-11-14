@@ -127,11 +127,9 @@ namespace Polyworks
             {
                 Log(" destroying item game object");
                 Destroy(item.gameObject);
+                return;
             }
-            else
-            {
-                _initDroppedItem(item);
-            }
+            _initDroppedItem(item);
         }
 
         public virtual void Drop(string name)
@@ -212,6 +210,7 @@ namespace Polyworks
             {
                 itemObj = (GameObject)Instantiate(Resources.Load(data.prefabPath, typeof(GameObject)), transform.position, transform.rotation);
             }
+            itemObj.name = data.name;
             CollectableItem item = itemObj.GetComponent<CollectableItem>();
             item.data = data;
             item.data.isCollected = item.data.isPersistent;
