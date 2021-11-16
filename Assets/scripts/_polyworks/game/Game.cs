@@ -33,19 +33,20 @@
         private Player player;
         private DataIOController dataIOController;
         private GameJSON gameJSON;
-        private SceneType currentScene = SceneType.None;
-        private SceneType previousScene = SceneType.None;
+        private SceneType currentSceneType = SceneType.None;
+        private SceneType previousSceneType = SceneType.None;
         private string dataPath;
         #endregion
 
         #region public event handlers
         public void OnChangeScene(SceneType type, bool isFadedOut)
         {
-            previousScene = currentScene;
-            currentScene = type;
-            Debug.Log("Game/OnChangeScene, previousScene = " + previousScene + ", currentScene = " + currentScene);
-            if (previousScene != SceneType.None)
+            previousSceneType = currentSceneType;
+            currentSceneType = type;
+            Debug.Log("Game/OnChangeScene, previousSceneType = " + previousSceneType + ", currentSceneType = " + currentSceneType);
+            if (previousSceneType != SceneType.None)
             {
+                subSceneController.UnloadSubScene(previousSceneType, onSubSceneUnloaded);
                 return;
             }
             subSceneController.LoadSubScene(type, onSubSceneLoaded);
@@ -103,7 +104,7 @@
         #region private handlers
         private void onSubSceneUnloaded(bool isComplete)
         {
-            subSceneController.LoadSubScene(currentScene, onSubSceneLoaded);
+            subSceneController.LoadSubScene(currentSceneType, onSubSceneLoaded);
         }
         private void onSubSceneLoaded(bool isComplete)
         {
@@ -137,7 +138,6 @@
 
             Instance.gameData = initGameData();
 
-            Instance.gameData.currentScene = currentSceneName;
             Hashtable items = Instance.gameData.items;
 
             // eventCenter.TriggerChangeScene(SceneType.House01, false);
@@ -226,6 +226,7 @@
 
         private void prepForSceneChange(string subScene, int section = -1)
         {
+            Debug.Log("Game/prepForSceneChange, subScene = " + subScene);
             Scene currentScene = SceneManager.GetActiveScene();
 
             if (section > -1)
@@ -268,7 +269,8 @@
 
         private void initScene()
         {
-            string currentSceneName = currentScene.ToString();
+            string currentSceneName = currentSceneType.ToString();
+            Instance.gameData.currentScene = currentSceneName;
             Debug.Log("Game/onSubSceneLoaded, current subScene = " + currentSceneName);
             SubSceneData subSceneData = getSubSceneDataByName(currentSceneName);
             Debug.Log("  subSceneData.name = " + subSceneData.name + ", isPlayerScene = " + subSceneData.isPlayerScene);

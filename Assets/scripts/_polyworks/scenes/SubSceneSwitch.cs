@@ -2,9 +2,9 @@
 
 namespace Polyworks
 {
-    public class SceneSwitch : Switch
+    public class SubSceneSwitch : Switch
     {
-        public string targetScene;
+        public SceneType targetScene;
         public int targetSection = -1;
 
         private bool isActive { get; set; }
@@ -16,8 +16,8 @@ namespace Polyworks
 
         public override void Actuate()
         {
-            Debug.Log("SceneSwitch[" + this.name + "]/Actuate, targetScene = " + targetScene + ", targetSection = " + targetSection);
-            EventCenter.Instance.StartSceneChange(targetScene, targetSection);
+            // TODO: some other event needs to be triggered in order to ensure housekeeping done prior to change
+            EventCenter.Instance.TriggerChangeScene(targetScene, false);
         }
     }
 }

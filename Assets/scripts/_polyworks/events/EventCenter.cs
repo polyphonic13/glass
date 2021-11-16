@@ -83,26 +83,29 @@ namespace Polyworks
         #region handlers
         public void StartSceneChange(string scene, int section = -1)
         {
-            if (OnStartSceneChange != null)
+            if (OnStartSceneChange == null)
             {
-                OnStartSceneChange(scene, section);
+                return;
             }
+            OnStartSceneChange(scene, section);
         }
 
         public void ContinueSceneChange(string scene, int section = -1)
         {
-            if (OnContinueSceneChange != null)
+            if (OnContinueSceneChange == null)
             {
-                OnContinueSceneChange(scene, section);
+                return;
             }
+            OnContinueSceneChange(scene, section);
         }
 
         public void CompleteSceneChange(string scene, int section = -1)
         {
-            if (OnCompleteSceneChange != null)
+            if (OnCompleteSceneChange == null)
             {
-                OnCompleteSceneChange(scene, section);
+                return;
             }
+            OnCompleteSceneChange(scene, section);
         }
 
         public void InvokeBoolEvent(string type, bool value = true)
