@@ -44,6 +44,9 @@ namespace Polyworks
 
             clone.usableRange = data.usableRange;
 
+            clone.requiredFlag = data.requiredFlag;
+            clone.requiredFlagMessage = data.requiredFlagMessage;
+
             return clone;
         }
 

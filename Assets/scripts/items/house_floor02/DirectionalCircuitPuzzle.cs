@@ -1,8 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System;
 using System.Collections.Generic;
-using Polyworks;
 
 public class DirectionalCircuitPuzzle : CircuitPuzzle
 {

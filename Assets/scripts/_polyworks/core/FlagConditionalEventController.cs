@@ -1,7 +1,5 @@
 ﻿namespace Polyworks
 {
-    using UnityEngine;
-
     public class FlagConditionalEventController : Item
     {
 

@@ -5,7 +5,7 @@ namespace Polyworks
 {
     public class ItemUtils : MonoBehaviour
     {
-        public static bool GetIsUsable(CollectableItemData item, bool isLogOn = false)
+        public static bool GetIsWithinUsableDistance(CollectableItemData item, bool isLogOn = false)
         {
             _log("item.usableRange = " + item.usableRange, isLogOn);
             if (item.usableRange == null || item.usableRange.distance == 0)
@@ -40,14 +40,25 @@ namespace Polyworks
             return false;
         }
 
-        private static void _log(string message, bool isLogOn = false)
+        public static bool GetIsRequiredFlagOn(CollectableItemData item, bool isLogOn = false)
         {
-            // if (isLogOn) {
-            Debug.Log(message);
-            // }
+            _log("GetIsRequiredFlagOn, item = " + item.name + ", requiredFlag = " + item.requiredFlag, isLogOn);
+            if (item.requiredFlag == null || item.requiredFlag == "")
+            {
+                return true;
+            }
+
+            return Game.Instance.GetFlag(item.requiredFlag);
         }
 
-
+        private static void _log(string message, bool isLogOn = false)
+        {
+            if (!isLogOn)
+            {
+                return;
+            }
+            Debug.Log(message);
+        }
     }
 }
 

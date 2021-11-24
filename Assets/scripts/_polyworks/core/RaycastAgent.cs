@@ -19,11 +19,11 @@ namespace Polyworks
 
         public virtual void CheckRayCast()
         {
-            // _log ("RaycastAgent[" + this.name + "]/CheckRayCast, dynamicTag = " + dynamicTag);
+            _log("RaycastAgent[" + this.name + "]/CheckRayCast, dynamicTag = " + dynamicTag);
             if (Physics.Raycast(this.transform.position, this.transform.forward, out _hit, detectionDistance))
             {
                 Debug.DrawRay(this.transform.position, this.transform.forward, rayColor);
-                // _log (" _hit tag = " + _hit.transform.tag + ", name = " + _hit.transform.name);
+                _log(" _hit tag = " + _hit.transform.tag + ", name = " + _hit.transform.name);
                 if (_hit.transform != this.transform && (_hit.transform.tag == dynamicTag || _hit.transform.tag == staticTag))
                 {
                     _log(" _hit name = " + _hit.transform.name + ", just hit = " + itemJustHit);
@@ -57,7 +57,7 @@ namespace Polyworks
 
         public void ClearFocus()
         {
-            //			_log ("RaycastAgent/ClearFocus, focusedItem = " + focusedItem);
+            // _log ("RaycastAgent/ClearFocus, focusedItem = " + focusedItem);
             _clearFocus();
         }
 
@@ -73,10 +73,11 @@ namespace Polyworks
 
         private void _log(string message)
         {
-            if (isLogOn)
+            if (!isLogOn)
             {
-                Debug.Log(message);
+                return;
             }
+            Debug.Log(message);
         }
     }
 }

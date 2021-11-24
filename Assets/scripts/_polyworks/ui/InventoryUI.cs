@@ -154,6 +154,7 @@ namespace Polyworks
             {
                 //				 Debug.Log("Inventory/_setItem, itemData.thumbnail = " + itemData.thumbnail);
                 GameObject itemObj = (GameObject)Instantiate(Resources.Load(itemData.thumbnail, typeof(GameObject)), transform.position, transform.rotation);
+                itemObj.transform.SetParent(this.transform);
                 Image thumbnail = itemObj.GetComponent<Image>();
                 itemUI.SetThumbnail(thumbnail.sprite);
             }

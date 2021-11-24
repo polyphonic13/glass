@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System;
 using Polyworks;
 
@@ -35,17 +34,11 @@ public class Puzzle : MonoBehaviour
         Log("Puzzle[" + this.name + "]/OnStringEvent, type = " + type + ", value = " + value + ", activateValue = " + activateValue);
         if (type == Puzzle.ACTIVATE_EVENT)
         {
-            if (value == activateValue)
-            {
-                Log(" type and value match");
-                Activate();
-            }
-            else if (_isActive)
-            {
-                Deactivate();
-            }
+            processActivateEvent(value);
+            return;
         }
-        else if (type == Puzzle.COMPLETED_EVENT)
+
+        if (type == Puzzle.COMPLETED_EVENT)
         {
             Log(" it is the completed event, setting isCompleted to true");
             isCompleted = true;
@@ -54,7 +47,7 @@ public class Puzzle : MonoBehaviour
 
     public void OnChangeContext(InputContext context)
     {
-        Debug.Log("Puzzle[ " + this.name + " ]/OnChangeContext, context = " + context);
+        Log("Puzzle[ " + this.name + " ]/OnChangeContext, context = " + context);
         if (context == InputContext.PUZZLE)
         {
             return;
@@ -68,9 +61,7 @@ public class Puzzle : MonoBehaviour
     {
         // Log("Puzzle["+this.name+"]/Init");
         InitChildren();
-
         _toggleActive(false);
-
     }
 
     public virtual void Enable()
@@ -135,7 +126,7 @@ public class Puzzle : MonoBehaviour
         {
             foreach (string path in removeOnDeactivateItemPaths)
             {
-                // Log("  adding " + path);
+                Log("  adding " + path);
                 Inventory inventory = Game.Instance.GetPlayerInventory();
                 inventory.AddFromPrefabPath(path);
             }
@@ -156,25 +147,28 @@ public class Puzzle : MonoBehaviour
 
     public void Log(string message)
     {
-        // if (isLogOn)
-        // {
+        if (!isLogOn)
+        {
+            return;
+        }
         Debug.Log(message);
-        // }
     }
     #endregion
 
-    private void Awake()
+    private void processActivateEvent(string value)
     {
-        Init();
-    }
-
-    private void OnDestroy()
-    {
-        EventCenter ec = EventCenter.Instance;
-        if (ec != null)
+        if (value == activateValue)
         {
-            ec.OnStringEvent -= this.OnStringEvent;
+            Log(" type and value match");
+            Activate();
+            return;
         }
+
+        if (!_isActive)
+        {
+            return;
+        }
+        Deactivate();
     }
 
     private void _toggleActive(bool isActivated)
@@ -225,6 +219,20 @@ public class Puzzle : MonoBehaviour
                 Log(" toggling child active: " + children[i].gameObject.name);
                 ToggleChildActive(children[i], false);
             }
+        }
+    }
+
+    private void Awake()
+    {
+        Init();
+    }
+
+    private void OnDestroy()
+    {
+        EventCenter ec = EventCenter.Instance;
+        if (ec != null)
+        {
+            ec.OnStringEvent -= this.OnStringEvent;
         }
     }
 

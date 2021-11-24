@@ -1,22 +1,25 @@
-﻿namespace Polyworks {
-	using UnityEngine;
-	using System.Collections;
+﻿namespace Polyworks
+{
+    using UnityEngine;
 
-	public class HighlightAgent : MonoBehaviour
-	{
-		public GameObject target;
+    public class HighlightAgent : MonoBehaviour
+    {
+        public GameObject target;
 
-		public void SetInProximity(bool isInProximity) {
-			//		Debug.Log ("HighlightAgent[" + this.name + "]/SetInProximity, isInProximity = " + isInProximity);
-			_setHighlight(isInProximity);
-		}
+        public void SetInProximity(bool isInProximity)
+        {
+            // Debug.Log ("HighlightAgent[" + this.name + "]/SetInProximity, isInProximity = " + isInProximity);
+            _setHighlight(isInProximity);
+        }
 
-		private void Awake() {
-			_setHighlight (false);
-		}
+        private void Awake()
+        {
+            _setHighlight(false);
+        }
 
-		private void _setHighlight(bool isHighlighted) {
-			target.SetActive (isHighlighted);
-		}
-	}
+        private void _setHighlight(bool isHighlighted)
+        {
+            target.SetActive(isHighlighted);
+        }
+    }
 }

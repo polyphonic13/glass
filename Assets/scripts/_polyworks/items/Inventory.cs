@@ -32,6 +32,8 @@ namespace Polyworks
         {
             Log("Inventory/AddFromPrefabPath, path = " + path);
             GameObject itemObj = (GameObject)Instantiate(Resources.Load(path, typeof(GameObject)), transform.position, transform.rotation);
+            string name = itemObj.name.Replace("(Clone)", "");
+            itemObj.name = name;
             Log(" object = " + itemObj);
             if (itemObj != null)
             {
@@ -106,13 +108,22 @@ namespace Polyworks
             {
                 return;
             }
-            data.isUsable = ItemUtils.GetIsUsable(data, isLogOn);
+
+            data.isUsable = ItemUtils.GetIsWithinUsableDistance(data, isLogOn);
             Log("  is usable = " + data.isUsable);
             if (!data.isUsable)
             {
                 _eventCenter.AddNote("The " + data.displayName + " can not be used here");
                 return;
             }
+
+            if (!ItemUtils.GetIsRequiredFlagOn(data, true))
+            {
+                Log("  flag not one, message = " + data.requiredFlagMessage);
+                _eventCenter.AddNote(data.requiredFlagMessage);
+                return;
+            }
+
             CollectableItem item = _instantiate(data);
 
             if (!data.isPersistent)

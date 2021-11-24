@@ -19,7 +19,7 @@ public class FuseCircuitPuzzle : CircuitPuzzle
 
     public override List<int> GetWireSiblings(int index)
     {
-        Log("FuseCircuitPuzzle[" + this.name + "]/GetWireSiblings, index = " + index);
+        // Log("FuseCircuitPuzzle[" + this.name + "]/GetWireSiblings, index = " + index);
         List<int> siblings = new List<int>();
 
         int pos = index % verticalPositions;

@@ -4,7 +4,6 @@ namespace Polyworks
 {
     public class ProximityAgent : MonoBehaviour
     {
-
         public float interactDistance = 2f;
         public Transform target;
         public bool isTargetPlayer = true;
@@ -67,27 +66,30 @@ namespace Polyworks
                     _wasJustFocused = false;
                 }
             }
-            _log("ProximityAgent[" + this.name + "]/Check, item isEnabled = " + _item.isEnabled + ", isInProximity");
+            _log("ProximityAgent[" + this.name + "]/Check, item isEnabled = " + _item.isEnabled + ", isInProximity = " + isInProximity);
             return isInProximity;
         }
 
         public void Init()
         {
-            // _log ("ProximityAgent[" + this.name + "]/Init");
-            if (!_isInitialized)
+            _log("ProximityAgent[" + this.name + "]/Init");
+            if (_isInitialized)
             {
-                _item = gameObject.GetComponent<Item>();
-
-                if (isTargetPlayer)
-                {
-                    GameObject player = GameObject.Find("player");
-                    if (player != null)
-                    {
-                        target = player.transform;
-                    }
-                }
-                _isInitialized = true;
+                return;
             }
+            _item = gameObject.GetComponent<Item>();
+            _isInitialized = true;
+
+            if (!isTargetPlayer)
+            {
+                return;
+            }
+            GameObject player = GameObject.Find("player");
+            if (player == null)
+            {
+                return;
+            }
+            target = player.transform;
         }
         #endregion
 

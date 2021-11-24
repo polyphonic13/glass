@@ -42,21 +42,18 @@ namespace Polyworks
             {
                 //				Debug.Log ("enabling section " + currentSection);
                 _toggleEnabled(true);
+                return;
             }
-            else
-            {
-                _toggleEnabled(false);
-            }
+            _toggleEnabled(false);
         }
 
         private void _toggleEnabled(bool isEnabled)
         {
-            //			Debug.Log ("SectionController[" + this.name + "]/_toggleEnabled, isEnabled = " + isEnabled);
+            // Debug.Log("SectionController[" + this.name + "]/_toggleEnabled, isEnabled = " + isEnabled);
             foreach (SectionAgent agent in _agents)
             {
                 if (agent != null)
                 {
-                    //					Debug.Log (" sending " + isEnabled + " to agent[" + agent.name + "]");
                     agent.ToggleEnabled(isEnabled);
                 }
             }
