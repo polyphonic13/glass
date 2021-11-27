@@ -11,7 +11,9 @@ namespace Polyworks
         public void Init(PlayerLocation location, PlayerData data, Hashtable items)
         {
             // Debug.Log("PlayerManager/Init, prefab = " + Game.Instance.playerPrefab);
-            GameObject playerObject = (GameObject)Instantiate(Resources.Load(Game.Instance.playerPrefab, typeof(GameObject)), location.position, Quaternion.Euler(location.rotation));
+            string playerPrefab = Game.Instance.playerPrefab;
+            GameObject playerObject = (GameObject)Instantiate(Resources.Load(playerPrefab, typeof(GameObject)), location.position, Quaternion.Euler(location.rotation));
+            playerObject.name = playerPrefab;
             // Debug.Log (" player = " + playerObject);
             GameObject playerGO = playerObject.transform.Find("player").gameObject;
             _player = playerGO.GetComponent<Player>();

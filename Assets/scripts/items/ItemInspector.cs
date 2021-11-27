@@ -130,6 +130,17 @@ public class ItemInspector : MonoBehaviour, IInputControllable
         _itemDescription.text = itemDescription;
         _uiCamera.enabled = true;
         _camera.enabled = true;
+
+        ItemInspectionScale[] entries = Game.Instance.GetItemInspectionScales();
+        foreach (ItemInspectionScale entry in entries)
+        {
+            if (entry.name == _item.name)
+            {
+                Vector3 itemScale = new Vector3(entry.scale.x, entry.scale.y, entry.scale.z);
+                Debug.Log("APPLYING SCALE OF " + itemScale);
+                _item.transform.localScale = itemScale;
+            }
+        }
     }
 
     public void RemoveTarget()

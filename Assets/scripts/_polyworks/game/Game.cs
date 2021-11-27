@@ -69,6 +69,10 @@
             return Instance.playerInventory;
         }
 
+        public ItemInspectionScale[] GetItemInspectionScales()
+        {
+            return gameJSON.itemInspectionScales;
+        }
 
         public void LevelInitialized()
         {
