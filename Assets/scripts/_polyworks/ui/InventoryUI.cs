@@ -44,17 +44,18 @@ namespace Polyworks
         public void OnInventoryAdded(string name, int count, bool isPlayerInventory)
         {
             // Debug.Log ("InventoryUI/OnInventoryAdded, name = " + name);
-            if (isPlayerInventory)
+            if (!isPlayerInventory)
             {
-                for (int i = 0; i < ignoredItems.Length; i++)
-                {
-                    if (name == ignoredItems[i])
-                    {
-                        return;
-                    }
-                }
-                _resetItems();
+                return;
             }
+            for (int i = 0; i < ignoredItems.Length; i++)
+            {
+                if (name == ignoredItems[i])
+                {
+                    return;
+                }
+            }
+            _resetItems();
         }
 
         public void OnInventoryRemoved(string name, int count)
@@ -72,6 +73,7 @@ namespace Polyworks
         public void OnInspectItem(bool isInspecting, string item)
         {
             _isInspectingItem = isInspecting;
+            base.SetActive(!isInspecting);
         }
         #endregion
 
