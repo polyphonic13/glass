@@ -14,7 +14,7 @@ namespace Polyworks
 
         public override void Actuate()
         {
-            // Log("AnimationSwitch[" + this.name + "]/Actuate, _target = " + _target);
+            Log("AnimationSwitch[" + this.name + "]/Actuate, _target = " + _target);
             if (_target == null)
             {
                 return;

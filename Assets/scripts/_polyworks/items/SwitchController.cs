@@ -25,11 +25,11 @@ namespace Polyworks
         #region handlers
         public void OnStringEvent(string type, string value)
         {
-            //			Debug.Log ("SwitchController[" + this.name + "]/OnStringEvent, type " + type + ", eventType = " + eventType);
-            //			Debug.Log(" value = " + value + ", eventValue = " + eventValue);
+            Log("SwitchController[" + this.name + "]/OnStringEvent, type " + type + ", eventType = " + eventType);
+            Log(" value = " + value + ", eventValue = " + eventValue);
             if (type == eventType && value == eventValue)
             {
-                //				Debug.Log (" is a MATCH");
+                Log(" is a MATCH");
                 if (isLocked)
                 {
                     isLocked = false;
@@ -49,7 +49,7 @@ namespace Polyworks
         #region public methods
         public override void Actuate()
         {
-            Debug.Log("SwitchController[" + this.name + "]/Actuate, isLocked = " + isLocked + ", _switches = " + _switches.Length);
+            Log("SwitchController[" + this.name + "]/Actuate, isLocked = " + isLocked + ", isEnabled = " + isEnabled + ", _switches = " + _switches.Length);
             if (isLocked)
             {
                 showLockedMessaged();
