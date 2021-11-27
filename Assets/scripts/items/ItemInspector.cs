@@ -74,7 +74,7 @@ public class ItemInspector : MonoBehaviour, IInputControllable
     {
         if (!isInspecting)
         {
-            RemoveTarget();
+            removeTargetAndReset();
             return;
         }
         CollectableItem item = Game.Instance.GetPlayerInventory().GetItem(itemName);
@@ -143,7 +143,7 @@ public class ItemInspector : MonoBehaviour, IInputControllable
         }
     }
 
-    public void RemoveTarget()
+    private void removeTargetAndReset()
     {
         _item.parent = _previousParent;
         _item.position = _previousPosition;
