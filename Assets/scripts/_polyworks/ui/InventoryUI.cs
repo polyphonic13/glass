@@ -44,17 +44,18 @@ namespace Polyworks
         public void OnInventoryAdded(string name, int count, bool isPlayerInventory)
         {
             // Debug.Log ("InventoryUI/OnInventoryAdded, name = " + name);
-            if (isPlayerInventory)
+            if (!isPlayerInventory)
             {
-                for (int i = 0; i < ignoredItems.Length; i++)
-                {
-                    if (name == ignoredItems[i])
-                    {
-                        return;
-                    }
-                }
-                _resetItems();
+                return;
             }
+            for (int i = 0; i < ignoredItems.Length; i++)
+            {
+                if (name == ignoredItems[i])
+                {
+                    return;
+                }
+            }
+            _resetItems();
         }
 
         public void OnInventoryRemoved(string name, int count)
@@ -65,13 +66,14 @@ namespace Polyworks
 
         public void OnCloseInventoryUI()
         {
-            Debug.Log("InventoryUI/OnCloseInventoryUI");
+            // Debug.Log("InventoryUI/OnCloseInventoryUI");
             _reset();
         }
 
         public void OnInspectItem(bool isInspecting, string item)
         {
             _isInspectingItem = isInspecting;
+            base.SetActive(!isInspecting);
         }
         #endregion
 
@@ -144,15 +146,15 @@ namespace Polyworks
 
             CollectableItemData itemData = _playerInventory.Get(name);
             InventoryItemUI itemUI = _items[_itemsIndex] as InventoryItemUI;
-            //			Debug.Log ("InventoryUI/_setItem, name = " + name + ", itemData = " + itemData);
-            //			Debug.Log ("itemData.thumbnail = " + itemData.thumbnail);
+            // Debug.Log ("InventoryUI/_setItem, name = " + name + ", itemData = " + itemData);
+            // Debug.Log ("itemData.thumbnail = " + itemData.thumbnail);
             itemUI.name = name;
             itemUI.SetName(itemData.displayName);
             itemUI.SetCount(itemData.count);
 
             if (itemData.thumbnail != "")
             {
-                //				 Debug.Log("Inventory/_setItem, itemData.thumbnail = " + itemData.thumbnail);
+                // Debug.Log("Inventory/_setItem, itemData.thumbnail = " + itemData.thumbnail);
                 GameObject itemObj = (GameObject)Instantiate(Resources.Load(itemData.thumbnail, typeof(GameObject)), transform.position, transform.rotation);
                 itemObj.transform.SetParent(this.transform);
                 Image thumbnail = itemObj.GetComponent<Image>();

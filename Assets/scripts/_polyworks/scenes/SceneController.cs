@@ -35,7 +35,7 @@ public class SceneController : MonoBehaviour
 
         while (!asyncLoad.isDone)
         {
-            Debug.Log(" asyncLoad.isDone = " + asyncLoad.isDone);
+            // Debug.Log(" asyncLoad.isDone = " + asyncLoad.isDone);
             yield return null;
         }
         // Debug.Log(" asyncLoad.isDone at end of block = " + asyncLoad.isDone);

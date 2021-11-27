@@ -12,6 +12,13 @@
     }
 
     [Serializable]
+    public struct ItemInspectionScale
+    {
+        public string name;
+        public Coords scale;
+    }
+
+    [Serializable]
     public struct PrefabData
     {
         public string name;
@@ -40,6 +47,8 @@
     public struct GameJSON
     {
         public SubSceneData[] subScenes;
+        public Flag[] flags;
+        public ItemInspectionScale[] itemInspectionScales;
     }
 
     [Serializable]

@@ -1,5 +1,4 @@
-﻿
-namespace Polyworks
+﻿namespace Polyworks
 {
     public class EventCenter : Singleton<EventCenter>
     {

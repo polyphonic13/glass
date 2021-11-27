@@ -44,7 +44,7 @@ namespace Polyworks
         {
             currentIdx = 0;
             GameObject targetObject = GameObject.Find(targetName);
-            Log("AnimationSwitch[" + this.name + "]/Awake, targetName = " + targetName + ", targetObject = " + targetObject);
+            // Log("AnimationSwitch[" + this.name + "]/Awake, targetName = " + targetName + ", targetObject = " + targetObject);
             if (targetObject == null)
             {
                 return;

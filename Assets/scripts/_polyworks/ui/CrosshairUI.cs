@@ -11,23 +11,31 @@ namespace Polyworks
         public string[] icons;
         public int defaultIcon;
 
-        private ArrayList _sprites;
+        private ArrayList sprites;
 
         public void OnContextChange(InputContext context, string param)
         {
             if (context == InputContext.PLAYER)
             {
                 this.gameObject.SetActive(true);
+                return;
             }
-            else
+            this.gameObject.SetActive(false);
+        }
+
+        public void OnInspectItem(bool isInspecting, string itemName)
+        {
+            if (isInspecting)
             {
                 this.gameObject.SetActive(false);
+                return;
             }
+            this.gameObject.SetActive(true);
         }
 
         public void OnItemDisabled()
         {
-            image.sprite = _sprites[defaultIcon] as Sprite;
+            image.sprite = sprites[defaultIcon] as Sprite;
         }
 
         public void OnNearItem(Item item, bool isFocused)
@@ -35,17 +43,17 @@ namespace Polyworks
             // Debug.Log ("CrosshairUI/OnNearItem, isFocused = " + isFocused + ", item = " + item.name);
             if (isFocused && item.icon != -1 && item.isEnabled)
             {
-                image.sprite = _sprites[item.icon] as Sprite;
+                image.sprite = sprites[item.icon] as Sprite;
             }
             else
             {
-                image.sprite = _sprites[defaultIcon] as Sprite;
+                image.sprite = sprites[defaultIcon] as Sprite;
             }
         }
 
         private void Awake()
         {
-            _sprites = new ArrayList();
+            sprites = new ArrayList();
 
             for (int i = 0; i < icons.Length; i++)
             {
@@ -54,7 +62,7 @@ namespace Polyworks
                 iconObj.transform.SetParent(this.transform.parent, false);
 
                 Image iconImg = iconObj.GetComponent<Image>();
-                _sprites.Add(iconImg.sprite);
+                sprites.Add(iconImg.sprite);
 
                 if (i == defaultIcon)
                 {
@@ -75,6 +83,7 @@ namespace Polyworks
             ec.OnNearItem += OnNearItem;
             ec.OnContextChange += OnContextChange;
             ec.OnItemDisabled += OnItemDisabled;
+            ec.OnInspectItem += OnInspectItem;
         }
 
         private void _removeHandlers()
@@ -87,6 +96,7 @@ namespace Polyworks
             ec.OnNearItem -= OnNearItem;
             ec.OnContextChange -= OnContextChange;
             ec.OnItemDisabled -= OnItemDisabled;
+            ec.OnInspectItem -= OnInspectItem;
         }
 
         private void OnDestroy()

@@ -18,14 +18,17 @@ namespace Polyworks
         public Color32 inactiveColor = new Color32(0, 0, 0, 100);
         public Color32 controlInactivateColor = new Color32(75, 75, 75, 100);
 
-        private Image _itemBg;
+        private Image itemBg;
+        private Image useImage;
+        private Image inspectImage;
+        private Image dropImage;
 
-        private ArrayList _panels;
-        private int _focusedControlButton;
-        private int _previousControlButton;
-        private int _availableControlButtons;
+        private ArrayList panels;
+        private int focusedControlButton;
+        private int previousControlButton;
+        private int availableControlButtons;
 
-        private string _initName = "";
+        private string initName = "";
 
         public void Select()
         {
@@ -38,15 +41,15 @@ namespace Polyworks
         {
             // Debug.Log ("InventoryItemUI/Deselect");
             _controlPanel.alpha = 0;
-            _focusedControlButton = 0;
+            focusedControlButton = 0;
         }
 
         public void IncrementControlButtonFocus(bool increment)
         {
-            int btn = _focusedControlButton;
+            int btn = focusedControlButton;
             if (increment)
             {
-                if (_focusedControlButton < (_availableControlButtons - 1))
+                if (focusedControlButton < (availableControlButtons - 1))
                 {
                     btn++;
                 }
@@ -57,13 +60,13 @@ namespace Polyworks
             }
             else
             {
-                if (_focusedControlButton > 0)
+                if (focusedControlButton > 0)
                 {
                     btn--;
                 }
                 else
                 {
-                    btn = (_availableControlButtons - 1);
+                    btn = (availableControlButtons - 1);
                 }
             }
             SetControlButtonFocus(btn);
@@ -71,12 +74,12 @@ namespace Polyworks
 
         public void SetControlButtonFocus(int btn)
         {
-            _previousControlButton = _focusedControlButton;
-            _focusedControlButton = btn;
+            previousControlButton = focusedControlButton;
+            focusedControlButton = btn;
 
-            Image panel = _panels[_previousControlButton] as Image;
+            Image panel = panels[previousControlButton] as Image;
             panel.color = controlInactivateColor;
-            panel = _panels[_focusedControlButton] as Image;
+            panel = panels[focusedControlButton] as Image;
             panel.color = activeColor;
         }
 
@@ -84,7 +87,7 @@ namespace Polyworks
         {
             Inventory playerInventory = Game.Instance.GetPlayerInventory();
 
-            switch (_focusedControlButton)
+            switch (focusedControlButton)
             {
                 case 0:
                     Debug.Log("InventoryItemUI[ " + this.name + " ]/SelectControlButton");
@@ -109,20 +112,20 @@ namespace Polyworks
         {
             if (active)
             {
-                _itemBg.color = activeColor;
+                itemBg.color = activeColor;
+                return;
             }
-            else
-            {
-                _itemBg.color = inactiveColor;
-            }
+
+            itemBg.color = inactiveColor;
+            initFirstButtonImage();
         }
 
         public void SetName(string name)
         {
             itemName.text = name;
-            if (_initName == "")
+            if (initName == "")
             {
-                _initName = name;
+                initName = name;
             }
         }
 
@@ -157,7 +160,7 @@ namespace Polyworks
             isDroppable = droppable;
             if (!isDroppable)
             {
-                _availableControlButtons--;
+                availableControlButtons--;
                 GameObject dropPanel = _controlPanel.transform.Find("panel_drop").gameObject;
                 dropPanel.SetActive(false);
             }
@@ -165,7 +168,7 @@ namespace Polyworks
 
         public void Reset()
         {
-            gameObject.name = _initName;
+            gameObject.name = initName;
             SetName("");
             SetCount(0);
             SetThumbnail(null);
@@ -174,33 +177,36 @@ namespace Polyworks
             Deselect();
         }
 
-        void Awake()
+        private void initFirstButtonImage()
+        {
+            useImage.color = activeColor;
+            inspectImage.color = controlInactivateColor;
+            dropImage.color = controlInactivateColor;
+        }
+
+        private void Awake()
         {
 
             _controlPanel.alpha = 0;
 
-            _itemBg = GetComponent<Image>();
-            SetFocus(false);
-            SetThumbnail(null);
-
+            itemBg = GetComponent<Image>();
             GameObject usePanel = _controlPanel.transform.Find("panel_use").gameObject;
             GameObject inspectPanel = _controlPanel.transform.Find("panel_inspect").gameObject;
             GameObject dropPanel = _controlPanel.transform.Find("panel_drop").gameObject;
 
-            Image useImage = usePanel.GetComponent<Image>();
-            Image inspectImage = inspectPanel.GetComponent<Image>();
-            Image dropImage = dropPanel.GetComponent<Image>();
+            useImage = usePanel.GetComponent<Image>();
+            inspectImage = inspectPanel.GetComponent<Image>();
+            dropImage = dropPanel.GetComponent<Image>();
 
-            useImage.color = activeColor;
-            inspectImage.color = controlInactivateColor;
-            dropImage.color = controlInactivateColor;
+            SetFocus(false);
+            SetThumbnail(null);
 
-            _panels = new ArrayList(3);
-            _panels.Add(useImage);
-            _panels.Add(inspectImage);
-            _panels.Add(dropImage);
+            panels = new ArrayList(3);
+            panels.Add(useImage);
+            panels.Add(inspectImage);
+            panels.Add(dropImage);
 
-            _availableControlButtons = _panels.Count;
+            availableControlButtons = panels.Count;
         }
     }
 }

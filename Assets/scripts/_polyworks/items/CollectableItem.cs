@@ -9,7 +9,7 @@ namespace Polyworks
 
         public override void Actuate()
         {
-            Debug.Log("CollectableItem[" + this.name + "]/Actuate, isCollected = " + data.isCollected);
+            Log("CollectableItem[" + this.name + "]/Actuate, isCollected = " + data.isCollected);
 
             if (data.isCollected)
             {
@@ -52,7 +52,7 @@ namespace Polyworks
 
         public override void Use()
         {
-            Debug.Log("CollectableItem[" + this.name + "]/Use");
+            Log("CollectableItem[" + this.name + "]/Use");
             Switch[] _switches = gameObject.GetComponents<Switch>();
 
             if (_switches == null)

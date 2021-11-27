@@ -192,10 +192,10 @@ namespace Polyworks
 
         public void Log(string message)
         {
-            // if (isLogOn)
-            // {
-            Debug.Log(message);
-            // }
+            if (isLogOn)
+            {
+                Debug.Log(message);
+            }
         }
 
         private void Awake()

@@ -13,9 +13,10 @@
     public class Game : MonoBehaviour
     {
         #region members
+        public static string PLAYER_PREFAB_NAME = "player/player_objects";
+
         public static Game Instance;
         public GameData gameData;
-        public string playerPrefab = "player_objects";
         public bool isSceneInitialized = false;
         public bool isCursorless = true;
         public Inventory playerInventory { get; set; }
@@ -69,6 +70,10 @@
             return Instance.playerInventory;
         }
 
+        public ItemInspectionScale[] GetItemInspectionScales()
+        {
+            return gameJSON.itemInspectionScales;
+        }
 
         public void LevelInitialized()
         {
