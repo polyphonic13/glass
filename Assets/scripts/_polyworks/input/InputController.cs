@@ -320,14 +320,19 @@ namespace Polyworks
 
         private void itemInspectorUpdate(float horizontal, float vertical)
         {
-            Debug.Log("itemInspectorUpdate, itemInspector = " + itemInspector);
+            // Debug.Log("itemInspectorUpdate, itemInspector = " + itemInspector);
             if (itemInspector == null)
             {
                 return;
             }
+
+            if (input.buttons[CANCEL_BUTTON])
+            {
+                itemInspector.SetCancel(true);
+                return;
+            }
             itemInspector.SetHorizontal(horizontal);
             itemInspector.SetVertical(vertical);
-            itemInspector.SetCancel(input.buttons[CANCEL_BUTTON]);
             itemInspector.SetZoomIn(input.buttons[ZOOM_IN_BUTTON]);
             itemInspector.SetZoomOut(input.buttons[ZOOM_OUT_BUTTON]);
         }

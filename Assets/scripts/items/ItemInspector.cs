@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 using Polyworks;
 
 public class ItemInspector : MonoBehaviour, IInputControllable
@@ -72,6 +71,7 @@ public class ItemInspector : MonoBehaviour, IInputControllable
 
     public void OnInspectItem(bool isInspecting, string itemName)
     {
+        Debug.Log("ItemInspector/OnInspectItem, isInspecting = " + isInspecting + " itemName = " + itemName);
         if (!isInspecting)
         {
             removeTargetAndReset();
@@ -108,6 +108,7 @@ public class ItemInspector : MonoBehaviour, IInputControllable
 
     public void SetCancel(bool cancel)
     {
+        Debug.Log("ItemInspector/SetCancel, cancel = " + cancel);
         _cancel = cancel;
     }
 
@@ -199,7 +200,7 @@ public class ItemInspector : MonoBehaviour, IInputControllable
             return;
         }
 
-        Debug.Log("LateUpdate, horizontal = " + _horizontal + ", vertical = " + _vertical);
+        // Debug.Log("LateUpdate, horizontal = " + _horizontal + ", vertical = " + _vertical);
         if (_cancel)
         {
             EventCenter.Instance.InspectItem(false, _item.name);
