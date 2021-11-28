@@ -145,6 +145,9 @@ public class ItemInspector : MonoBehaviour, IInputControllable
 
     private void removeTargetAndReset()
     {
+        Debug.Log("ItemInspector/removeTargetAndReset");
+        _cancel = false;
+
         _item.parent = _previousParent;
         _item.position = _previousPosition;
 
@@ -167,7 +170,6 @@ public class ItemInspector : MonoBehaviour, IInputControllable
 
         transform.position = _initialPosition;
         transform.rotation = _initialRotation;
-
     }
 
     void Awake()
