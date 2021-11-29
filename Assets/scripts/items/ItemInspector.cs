@@ -71,13 +71,13 @@ public class ItemInspector : MonoBehaviour, IInputControllable
 
     public void OnInspectItem(bool isInspecting, string itemName)
     {
-        Debug.Log("ItemInspector/OnInspectItem, isInspecting = " + isInspecting + " itemName = " + itemName);
         if (!isInspecting)
         {
             removeTargetAndReset();
             return;
         }
         CollectableItem item = Game.Instance.GetPlayerInventory().GetItem(itemName);
+        item.transform.rotation = this.transform.rotation;
         AddTarget(item.transform, item.data.displayName, item.data.description);
     }
 
@@ -108,20 +108,13 @@ public class ItemInspector : MonoBehaviour, IInputControllable
 
     public void SetCancel(bool cancel)
     {
-        Debug.Log("ItemInspector/SetCancel, cancel = " + cancel);
         _cancel = cancel;
     }
 
     public void AddTarget(Transform item, string itemName, string itemDescription)
     {
-        Debug.Log("ItemInspector/AddTarget, item = " + item);
         _item = item;
-
-        // _previousParent = _item.parent.transform;
-        // _previousPosition = _item.position;
-        // _previousLayer = _item.gameObject.layer;
-
-        _item.parent = transform.parent;
+        // _item.parent = transform.parent;
 
         Utilities.Instance.ChangeLayers(_item.gameObject, INSPECTOR_LAYER);
 
@@ -133,11 +126,12 @@ public class ItemInspector : MonoBehaviour, IInputControllable
         _camera.enabled = true;
 
         ItemInspectionScale[] entries = Game.Instance.GetItemInspectionScales();
-        foreach (ItemInspectionScale entry in entries)
+        for (int i = 0; i < entries.Length; i++)
         {
-            if (entry.name == _item.name)
+
+            if (entries[i].name == _item.name)
             {
-                Vector3 itemScale = new Vector3(entry.scale.x, entry.scale.y, entry.scale.z);
+                Vector3 itemScale = new Vector3(entries[i].scale.x, entries[i].scale.y, entries[i].scale.z);
                 _item.transform.localScale = itemScale;
             }
         }
@@ -145,7 +139,6 @@ public class ItemInspector : MonoBehaviour, IInputControllable
 
     private void removeTargetAndReset()
     {
-        Debug.Log("ItemInspector/removeTargetAndReset");
         _cancel = false;
 
         _item.parent = _previousParent;
@@ -208,6 +201,8 @@ public class ItemInspector : MonoBehaviour, IInputControllable
 
         if (_zoomIn)
         {
+            _zoomIn = false;
+            Debug.Log("_zoomIn, _currentZoom = " + _currentZoom + ", maxZoom = " + maxZoom);
             if (_currentZoom >= maxZoom)
             {
                 return;
@@ -219,6 +214,8 @@ public class ItemInspector : MonoBehaviour, IInputControllable
 
         if (_zoomOut)
         {
+            _zoomOut = false;
+            Debug.Log("_zoomOut, _currentZoom = " + _currentZoom + ", minZoom = " + minZoom);
             if (_currentZoom <= minZoom)
             {
                 return;

@@ -5,45 +5,46 @@ namespace Polyworks
 {
     public class PlayerManager : MonoBehaviour
     {
-        private Player _player;
-        private Inventory _inventory;
+        private Player player;
+        private Inventory inventory;
 
         public void Init(PlayerLocation location, PlayerData data, Hashtable items)
         {
             // Debug.Log("PlayerManager/Init, prefab = " + Game.Instance.playerPrefab);
-            string playerPrefab = Game.Instance.playerPrefab;
+            string playerPrefab = Game.PLAYER_PREFAB_NAME;
             GameObject playerObject = (GameObject)Instantiate(Resources.Load(playerPrefab, typeof(GameObject)), location.position, Quaternion.Euler(location.rotation));
             playerObject.name = playerPrefab;
             // Debug.Log (" player = " + playerObject);
             GameObject playerGO = playerObject.transform.Find("player").gameObject;
-            _player = playerGO.GetComponent<Player>();
-            _inventory = playerGO.GetComponent<Inventory>();
+            player = playerGO.GetComponent<Player>();
+            inventory = playerGO.GetComponent<Inventory>();
 
-            _player.Init(data);
-            _inventory.Init(items, true);
+            player.Init(data);
+            inventory.Init(items, true);
 
-            if (Game.Instance.GetFlag(Flashlight.COLLECTED))
+            if (!Game.Instance.GetFlag(Flashlight.COLLECTED))
             {
-                EventCenter.Instance.CollectFlashight();
+                return;
             }
+            EventCenter.Instance.CollectFlashight();
         }
 
         public Player GetPlayer()
         {
-            if (_player == null)
+            if (player == null)
             {
                 return null;
             }
-            return _player;
+            return player;
         }
 
         public Inventory GetInventory()
         {
-            if (_inventory == null)
+            if (inventory == null)
             {
                 return null;
             }
-            return _inventory;
+            return inventory;
         }
     }
 }

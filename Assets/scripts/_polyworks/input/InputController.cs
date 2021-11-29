@@ -331,10 +331,21 @@ namespace Polyworks
                 itemInspector.SetCancel(true);
                 return;
             }
+
+            if (input.buttons[ZOOM_IN_BUTTON])
+            {
+                itemInspector.SetZoomIn(true);
+                return;
+            }
+
+            if (input.buttons[ZOOM_OUT_BUTTON])
+            {
+                itemInspector.SetZoomOut(true);
+                return;
+            }
+
             itemInspector.SetHorizontal(horizontal);
             itemInspector.SetVertical(vertical);
-            itemInspector.SetZoomIn(input.buttons[ZOOM_IN_BUTTON]);
-            itemInspector.SetZoomOut(input.buttons[ZOOM_OUT_BUTTON]);
         }
 
         private void playerUpdate(float horizontal, float vertical)
