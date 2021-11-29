@@ -9,8 +9,8 @@ public class ItemInspector : MonoBehaviour, IInputControllable
 
     public float distance = 2.0f;
 
-    public float xSpeed = 120.0f;
-    public float ySpeed = 120.0f;
+    public float xSpeed = 150.0f;
+    public float ySpeed = 150.0f;
     public float rotationMultiplier = 0.01f;
 
     public float yMinLimit = -361f;
