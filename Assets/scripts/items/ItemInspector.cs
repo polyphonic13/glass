@@ -138,7 +138,6 @@ public class ItemInspector : MonoBehaviour, IInputControllable
             if (entry.name == _item.name)
             {
                 Vector3 itemScale = new Vector3(entry.scale.x, entry.scale.y, entry.scale.z);
-                Debug.Log("APPLYING SCALE OF " + itemScale);
                 _item.transform.localScale = itemScale;
             }
         }
