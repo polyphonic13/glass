@@ -73,8 +73,8 @@ namespace Polyworks
 
         public void Actuate(string clip = "")
         {
-            // Debug.Log("LegacyAnimation[" + this.name + "]/Actuate, clip = " + clip);
             string clipName = (clip != "") ? clip : animationClips[_currentAnimation].name;
+            Debug.Log("LegacyAnimation[" + this.name + "]/Actuate, clip = " + clip + ", _currentAnimation[ " + _currentAnimation + "] = " + animationClips[_currentAnimation] + "clipName = " + clipName);
 
             if (clip == "")
             {
@@ -89,7 +89,12 @@ namespace Polyworks
                 _animation[clipName].AddMixingTransform(bone);
             }
 
-            // Debug.Log(" about to call _animation Play on _animation = " + _animation[clipName] + ", clipName = " + clipName);
+            Debug.Log(" about to call Play on _animation = " + _animation + ", clip = " + _animation[clipName] + ", clipName = " + clipName);
+
+            if (_animation[clipName] == null)
+            {
+                return;
+            }
             _animation[clipName].wrapMode = WrapMode.Once;
             _animation[clipName].speed = PLAY_SPEED;
             _animation.Play(clipName);
@@ -104,7 +109,7 @@ namespace Polyworks
         private void Awake()
         {
             _animation = GetComponent<Animation>();
-            // Debug.Log("LegacyAnimation[ " + this.name + " ]/Awake, got " + _animation);
+            Debug.Log("LegacyAnimation[ " + this.name + " ]/Awake, got " + _animation);
             if (isAutoStart)
             {
                 Actuate();

@@ -10,6 +10,7 @@
         {
             Debug.Log("ActuateAgent[" + this.name + "]/Actuate");
         }
+
         public virtual void Use() { }
 
         public virtual void Log(string message)

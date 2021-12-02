@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace Polyworks
+﻿namespace Polyworks
 {
     public class SwitchController : Item
     {
