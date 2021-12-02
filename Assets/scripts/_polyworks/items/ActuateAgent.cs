@@ -8,17 +8,18 @@
 
         public virtual void Actuate()
         {
-            Debug.Log("ActuateAgent[" + this.name + "]/Actuate");
+            Log("ActuateAgent[" + this.name + "]/Actuate");
         }
 
         public virtual void Use() { }
 
         public virtual void Log(string message)
         {
-            if (isLogOn)
+            if (!isLogOn)
             {
-                Debug.Log(message);
+                return;
             }
+            Debug.Log(message);
         }
     }
 }
