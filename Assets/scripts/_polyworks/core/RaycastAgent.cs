@@ -73,10 +73,10 @@ namespace Polyworks
 
         private void _log(string message)
         {
-            if (!isLogOn)
-            {
-                return;
-            }
+            // if (!isLogOn)
+            // {
+            //     return;
+            // }
             Debug.Log(message);
         }
     }

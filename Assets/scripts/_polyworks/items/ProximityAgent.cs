@@ -65,8 +65,8 @@ namespace Polyworks
                     EventCenter.Instance.NearItem(_item, isInProximity);
                     _wasJustFocused = false;
                 }
+                _log("ProximityAgent[" + this.name + "]/Check, item isEnabled = " + _item.isEnabled + ", isInProximity = " + isInProximity + ", target = " + target + ", difference = " + difference);
             }
-            _log("ProximityAgent[" + this.name + "]/Check, item isEnabled = " + _item.isEnabled + ", isInProximity = " + isInProximity);
             return isInProximity;
         }
 
