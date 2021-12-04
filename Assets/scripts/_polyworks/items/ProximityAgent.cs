@@ -115,10 +115,11 @@ namespace Polyworks
 
         private void _log(string message)
         {
-            if (isLogOn)
+            if (!isLogOn)
             {
-                Debug.Log(message);
+                return;
             }
+            Debug.Log(message);
         }
     }
 }

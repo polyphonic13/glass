@@ -2,7 +2,6 @@
 {
     public class PlayerHead : RaycastAgent
     {
-
         public void OnContextChange(InputContext context, string param)
         {
             if (context == InputContext.PLAYER)
@@ -39,10 +38,11 @@
 
         private void Update()
         {
-            if (this.isActive)
+            if (!isActive)
             {
-                CheckRayCast();
+                return;
             }
+            CheckRayCast();
         }
     }
 }
