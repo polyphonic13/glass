@@ -2,17 +2,9 @@
 {
     public class PlayerHead : RaycastAgent
     {
-
         public void OnContextChange(InputContext context, string param)
         {
-            if (context == InputContext.PLAYER)
-            {
-                this.isActive = true;
-            }
-            else if (this.isActive)
-            {
-                this.isActive = false;
-            }
+            this.isActive = (context == InputContext.PLAYER);
         }
 
         private void Awake()
@@ -22,27 +14,30 @@
             this.staticTag = "persistent";
 
             EventCenter ec = EventCenter.Instance;
-            if (ec != null)
+            if (ec == null)
             {
-                ec.OnContextChange += this.OnContextChange;
+                return;
             }
+            ec.OnContextChange += this.OnContextChange;
         }
 
         private void OnDestroy()
         {
             EventCenter ec = EventCenter.Instance;
-            if (ec != null)
+            if (ec == null)
             {
-                ec.OnContextChange -= this.OnContextChange;
+                return;
             }
+            ec.OnContextChange -= this.OnContextChange;
         }
 
         private void Update()
         {
-            if (this.isActive)
+            if (!this.isActive)
             {
-                CheckRayCast();
+                return;
             }
+            CheckRayCast();
         }
     }
 }
