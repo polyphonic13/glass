@@ -298,14 +298,30 @@ namespace Polyworks
             {
                 return;
             }
-            // controller.SetVertical (vertical);
-            // controller.SetHorizontal (horizontal);
+
             controller.SetConfirm(input.buttons[CONFIRM_BUTTON]);
             controller.SetCancel(input.buttons[CANCEL_BUTTON]);
-            controller.SetUp(input.buttons[UP_BUTTON]);
-            controller.SetDown(input.buttons[DOWN_BUTTON]);
-            controller.SetLeft(input.buttons[LEFT_BUTTON]);
-            controller.SetRight(input.buttons[RIGHT_BUTTON]);
+
+            if (input.buttons[UP_BUTTON])
+            {
+                controller.SetUp(true);
+                return;
+            }
+            if (input.buttons[DOWN_BUTTON])
+            {
+                controller.SetDown(true);
+                return;
+            }
+            if (input.buttons[LEFT_BUTTON])
+            {
+                controller.SetLeft(true);
+                return;
+            }
+            if (input.buttons[RIGHT_BUTTON])
+            {
+                controller.SetRight(true);
+                return;
+            }
         }
 
         private void inventoryUpdate(float horizontal, float vertical)

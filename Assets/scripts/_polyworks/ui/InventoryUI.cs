@@ -1,46 +1,45 @@
-﻿using UnityEngine;
-using System.Collections;
-using UnityEngine.UI;
-
-namespace Polyworks
+﻿namespace Polyworks
 {
+    using UnityEngine;
+    using System.Collections;
+    using UnityEngine.UI;
+
     public class InventoryUI : UIController
     {
         #region public members
-        public GameObject inventoryItem;
+        public InventoryItemUI[] Items;
+        public ScrollRect ItemScrollRect;
 
-        public int numColumns = 6;
-        public int numRows = 2;
+        public int NumColumns = 5;
+        public int NumRows = 12;
 
-        public string[] ignoredItems;
+        public string[] IgnoredItems;
         #endregion
 
         #region private members
-        private const float startX = -430f;
-        private const float startY = 85f;
+        private Inventory playerInventory;
 
-        private ArrayList _items;
-        private int _itemsIndex;
+        private InventoryItemUI selectedInventoryItemUI = null;
 
-        private float _width;
-        private float _height;
+        private float itemHolderHeight;
+        private float scrollSpeed = 10f;
+        private int scroll = 0;
 
-        private float _horizontal;
-        private float _vertical;
+        private int itemIndex;
 
-        private int _currentColumn;
-        private int _currentRow;
-        private int _currentItemIndex;
-        private int _previousItemIndex;
+        private int xMove;
+        private int yMove;
 
-        private bool _isInspectingItem = false;
+        private int currentColumn;
+        private int currentRow;
+        private int currentItemIndex;
+        private int previousItemIndex;
 
-        private Inventory _playerInventory;
+        private bool isInspectingItem = false;
 
-        private InventoryItemUI _selectedInventoryItemUI = null;
         #endregion
 
-        #region handlers
+        #region public event handlers
         public void OnInventoryAdded(string name, int count, bool isPlayerInventory)
         {
             // Debug.Log ("InventoryUI/OnInventoryAdded, name = " + name);
@@ -48,31 +47,31 @@ namespace Polyworks
             {
                 return;
             }
-            for (int i = 0; i < ignoredItems.Length; i++)
+            for (int i = 0; i < IgnoredItems.Length; i++)
             {
-                if (name == ignoredItems[i])
+                if (name == IgnoredItems[i])
                 {
                     return;
                 }
             }
-            _resetItems();
+            resetItems();
         }
 
         public void OnInventoryRemoved(string name, int count)
         {
             // Debug.Log ("InventoryUI/OnInventoryRemoved, name = " + name);
-            _resetItems();
+            resetItems();
         }
 
         public void OnCloseInventoryUI()
         {
             // Debug.Log("InventoryUI/OnCloseInventoryUI");
-            _reset();
+            reset();
         }
 
         public void OnInspectItem(bool isInspecting, string item)
         {
-            _isInspectingItem = isInspecting;
+            isInspectingItem = isInspecting;
             base.SetActive(!isInspecting);
         }
         #endregion
@@ -80,73 +79,50 @@ namespace Polyworks
         #region public methods
         public override void Init()
         {
-            // Debug.Log ("InventoryUI/Init");
             base.Init();
-            _itemsIndex = -1;
-            _items = new ArrayList();
+            itemIndex = -1;
 
-            _buildUI();
+            itemHolderHeight = ItemScrollRect.content.sizeDelta.y;
 
-            var ec = EventCenter.Instance;
+            EventCenter ec = EventCenter.Instance;
             ec.OnInventoryAdded += OnInventoryAdded;
             ec.OnInventoryRemoved += OnInventoryRemoved;
             ec.OnInspectItem += OnInspectItem;
             ec.OnCloseInventoryUI += OnCloseInventoryUI;
         }
 
-        public void InitInventory(Inventory playerInventory)
+        public void InitInventory(Inventory inventory)
         {
-            _playerInventory = playerInventory;
-            _resetItems();
-
+            playerInventory = inventory;
+            resetItems();
         }
 
         public override void SetActive(bool isActive)
         {
             base.SetActive(isActive);
 
-            if (_itemsIndex > -1)
-            {
-                var item = _items[_currentItemIndex] as InventoryItemUI;
-                item.SetFocus(true);
-            }
-        }
-        #endregion
-
-        private void Awake()
-        {
-            Init();
-        }
-
-        private void _reset()
-        {
-            if (_selectedInventoryItemUI != null)
-            {
-                _selectedInventoryItemUI.Deselect();
-                _selectedInventoryItemUI = null;
-            }
-            var item = _items[_currentItemIndex] as InventoryItemUI;
-            item.SetFocus(false);
-
-            _currentItemIndex = 0;
-            _currentColumn = 0;
-            _currentRow = 0;
-            _currentItemIndex = 0;
-            _previousItemIndex = 0;
-        }
-
-        #region build
-        private void _setItem(string name)
-        {
-            if (_itemsIndex == (numColumns * numRows) - 1)
+            if (itemIndex == -1)
             {
                 return;
             }
-            _itemsIndex++;
+            InventoryItemUI item = Items[currentItemIndex];
+            item.SetFocus(true);
+        }
+        #endregion
 
-            CollectableItemData itemData = _playerInventory.Get(name);
-            InventoryItemUI itemUI = _items[_itemsIndex] as InventoryItemUI;
-            // Debug.Log ("InventoryUI/_setItem, name = " + name + ", itemData = " + itemData);
+        #region build UI
+        private void setItem(string name)
+        {
+            if (itemIndex == (NumColumns * NumRows) - 1)
+            {
+                // used all available slots
+                return;
+            }
+            itemIndex++;
+
+            CollectableItemData itemData = playerInventory.Get(name);
+            InventoryItemUI itemUI = Items[itemIndex];
+            // Debug.Log ("InventoryUI/setItem, name = " + name + ", itemData = " + itemData);
             // Debug.Log ("itemData.thumbnail = " + itemData.thumbnail);
             itemUI.name = name;
             itemUI.SetName(itemData.displayName);
@@ -154,335 +130,358 @@ namespace Polyworks
 
             if (itemData.thumbnail != "")
             {
-                // Debug.Log("Inventory/_setItem, itemData.thumbnail = " + itemData.thumbnail);
+                // Debug.Log("Inventory/setItem, itemData.thumbnail = " + itemData.thumbnail);
                 GameObject itemObj = (GameObject)Instantiate(Resources.Load(itemData.thumbnail, typeof(GameObject)), transform.position, transform.rotation);
                 itemObj.transform.SetParent(this.transform);
                 Image thumbnail = itemObj.GetComponent<Image>();
                 itemUI.SetThumbnail(thumbnail.sprite);
             }
-            if (_itemsIndex == 0)
+            if (itemIndex == 0)
             {
                 itemUI.SetFocus(true);
             }
         }
 
-        private void _resetItems()
+        private void resetItems()
         {
             InventoryItemUI itemUI;
 
-            _itemsIndex = -1;
-            _previousItemIndex = _currentItemIndex = 0;
+            itemIndex = -1;
+            previousItemIndex = currentItemIndex = 0;
 
-            for (int i = 0; i < _items.Count; i++)
+            for (int i = 0; i < Items.Length; i++)
             {
-                itemUI = _items[i] as InventoryItemUI;
+                itemUI = Items[i];
                 itemUI.Reset();
             }
 
-            int total = numColumns * numRows;
+            int total = NumColumns * NumRows;
             int count = 0;
 
-            Hashtable items = _playerInventory.GetAll();
+            Hashtable items = playerInventory.GetAll();
             foreach (CollectableItemData itemData in items.Values)
             {
                 if (count < total)
                 {
-                    _setItem(itemData.name);
+                    setItem(itemData.name);
                 }
                 count++;
             }
         }
 
-        private void _buildUI()
-        {
-            RectTransform containerRectTransform = canvas.GetComponent<RectTransform>();
-            int total = numColumns * numRows;
-            int row = 0;
-            int col = 0;
-
-            _width = containerRectTransform.rect.width / numColumns;
-            _height = containerRectTransform.rect.height / numRows;
-
-            for (int i = 0; i < total; i++)
-            {
-                float x = startX + (_width * col);
-                float y = startY + -(_height * row);
-
-                string name = "item" + i;
-                var item = (GameObject)Instantiate(inventoryItem);
-
-                item.transform.SetParent(canvas.gameObject.transform, false);
-
-                InventoryItemUI itemUI = item.GetComponent<InventoryItemUI>();
-                RectTransform rect = item.GetComponent<RectTransform>();
-
-                item.name = name;
-
-                rect.localPosition = new Vector3(x, y, 0);
-                _items.Add(itemUI);
-
-                col++;
-                if (col % numColumns == 0)
-                {
-                    row++;
-                    col = 0;
-                }
-            }
-        }
         #endregion
 
         #region update
+        private void handleCancel()
+        {
+            cancel = false;
+
+            if (isInspectingItem)
+            {
+                return;
+            }
+
+            if (selectedInventoryItemUI == null)
+            {
+                EventCenter.Instance.CloseInventoryUI();
+                return;
+            }
+            selectedInventoryItemUI.Deselect();
+            selectedInventoryItemUI = null;
+        }
+
+        private void handleConfirm()
+        {
+            confirm = false;
+
+            if (selectedInventoryItemUI != null)
+            {
+                selectedInventoryItemUI.SelectControlButton();
+                return;
+            }
+
+            if (currentItemIndex > itemIndex)
+            {
+                return;
+            }
+
+            selectedInventoryItemUI = Items[currentItemIndex];
+
+            if (selectedInventoryItemUI == null)
+            {
+                return;
+            }
+            selectedInventoryItemUI.Select();
+        }
+
+        private void handleControlButtonFocus()
+        {
+            if (selectedInventoryItemUI == null)
+            {
+                return;
+            }
+
+            if (up)
+            {
+                selectedInventoryItemUI.UpdateControlButtonFocus(false);
+                return;
+            }
+
+            if (!down)
+            {
+                return;
+            }
+            selectedInventoryItemUI.UpdateControlButtonFocus(true);
+        }
+
+        private void setXandYDirection()
+        {
+            xMove = 0;
+            yMove = 0;
+            if (up)
+            {
+                yMove = 1;
+                return;
+            }
+
+            if (down)
+            {
+                yMove = -1;
+                return;
+            }
+
+            if (left)
+            {
+                xMove = -1;
+                return;
+            }
+
+            if (!right)
+            {
+                return;
+            }
+            xMove = 1;
+        }
+
+        private void updateRowAndColumn()
+        {
+            setXandYDirection();
+
+            // Debug.Log("xMove = " + xMove + ", yMove = " + yMove);
+            if (xMove == 0 && yMove == 0)
+            {
+                return;
+            }
+
+            bool isColumnChanged = calculateCol();
+
+            if (isColumnChanged)
+            {
+                return;
+            }
+            calculateRow();
+        }
+
+        private void handleItemNavigationAndFocus()
+        {
+            updateRowAndColumn();
+
+            currentItemIndex = (currentRow * NumColumns) + currentColumn;
+
+            if (currentItemIndex == previousItemIndex)
+            {
+                return;
+            }
+            InventoryItemUI item = Items[currentItemIndex];
+            // Debug.Log("  currentItemIndex = " + currentItemIndex + ", item = " + item);
+            if (item == null)
+            {
+                return;
+            }
+            item.SetFocus(true);
+
+            InventoryItemUI prevItem = Items[previousItemIndex];
+            if (prevItem == null)
+            {
+                return;
+            }
+            prevItem.SetFocus(false);
+            previousItemIndex = currentItemIndex;
+        }
+
+        private void checkInput()
+        {
+            // Debug.Log("InventoryUI/checkInput, u/d, l/f = " + up + " / " + down + ", " + left + " / " + right);
+            if (cancel)
+            {
+                handleCancel();
+                return;
+            }
+
+            if (itemIndex == -1 || isInspectingItem)
+            {
+                return;
+            }
+
+            if (confirm)
+            {
+                handleConfirm();
+                return;
+            }
+
+            if (selectedInventoryItemUI != null)
+            {
+                handleControlButtonFocus();
+                return;
+            }
+
+            handleItemNavigationAndFocus();
+        }
+        #endregion
+
+        #region ui nav
+        private bool calculateCol()
+        {
+            if (xMove == 0)
+            {
+                return false;
+            }
+            if (xMove < 0)
+            {
+                decrementCol();
+                return true;
+            }
+            incrementCol();
+            return true;
+        }
+
+        private void incrementCol()
+        {
+            if (currentColumn < (NumColumns - 1))
+            {
+                currentColumn++;
+                return;
+            }
+
+            if (currentRow == (NumRows - 1))
+            {
+                // at the end, do nothing
+                return;
+            }
+            currentColumn = 0;
+            incrementRow();
+        }
+
+        private void decrementCol()
+        {
+            if (currentColumn > 0)
+            {
+                currentColumn--;
+                return;
+            }
+
+            if (currentRow == 0)
+            {
+                // at beginning, do nothing
+                return;
+            }
+            currentColumn = NumColumns - 1;
+            decrementRow();
+        }
+
+        private void calculateRow()
+        {
+            if (yMove == 0)
+            {
+                return;
+            }
+            if (yMove > 0)
+            {
+                decrementRow();
+                return;
+            }
+            incrementRow();
+        }
+
+        private void incrementRow()
+        {
+            if (currentRow >= (NumRows - 1))
+            {
+                return;
+            }
+            currentRow++;
+            scroll = 1;
+            moveHolder();
+        }
+
+        private void decrementRow()
+        {
+            if (currentRow < 1)
+            {
+                return;
+            }
+            currentRow--;
+            scroll = -1;
+            moveHolder();
+        }
+
+        private void moveHolder()
+        {
+            float position = 1f - ((float)currentRow / (float)NumRows);
+            // Debug.Log("currentRow = " + currentRow + ", NumRows = " + NumRows + ", position = " + position);
+            ItemScrollRect.verticalNormalizedPosition = position;
+        }
+        #endregion
+
+        #region private methods
+        private void reset()
+        {
+            if (selectedInventoryItemUI != null)
+            {
+                selectedInventoryItemUI.Deselect();
+                selectedInventoryItemUI = null;
+            }
+            InventoryItemUI item = Items[currentItemIndex];
+            item.SetFocus(false);
+
+            currentItemIndex = 0;
+            currentColumn = 0;
+            currentRow = 0;
+            currentItemIndex = 0;
+            previousItemIndex = 0;
+        }
+        #endregion
+
+        #region unity methods
+        private void Awake()
+        {
+            Init();
+        }
+
         private void FixedUpdate()
         {
             if (!canvas.enabled)
             {
                 return;
             }
-            _checkInput();
+            checkInput();
+            xMove = yMove = scroll = 0;
+            up = down = left = right = false;
         }
-
-        private void _checkInput()
-        {
-            if (cancel)
-            {
-                if (!_isInspectingItem)
-                {
-                    if (_selectedInventoryItemUI == null)
-                    {
-                        EventCenter.Instance.CloseInventoryUI();
-                    }
-                    else
-                    {
-                        _selectedInventoryItemUI.Deselect();
-                        _selectedInventoryItemUI = null;
-                    }
-                }
-                cancel = false;
-            }
-            else
-            {
-                if (_itemsIndex > -1 && !_isInspectingItem)
-                {
-                    if (confirm)
-                    {
-                        if (_selectedInventoryItemUI == null)
-                        {
-                            if (_currentItemIndex <= _itemsIndex)
-                            {
-                                _selectedInventoryItemUI = _items[_currentItemIndex] as InventoryItemUI;
-                                if (_selectedInventoryItemUI != null)
-                                {
-                                    _selectedInventoryItemUI.Select();
-                                }
-                            }
-                        }
-                        else
-                        {
-                            if (_selectedInventoryItemUI != null)
-                            {
-                                _selectedInventoryItemUI.SelectControlButton();
-                            }
-                        }
-                        confirm = false;
-                    }
-                    else if (_selectedInventoryItemUI != null)
-                    {
-                        if (up)
-                        {
-                            if (_selectedInventoryItemUI != null)
-                            {
-                                _selectedInventoryItemUI.IncrementControlButtonFocus(false);
-                            }
-                        }
-                        else if (down)
-                        {
-                            if (_selectedInventoryItemUI != null)
-                            {
-                                _selectedInventoryItemUI.IncrementControlButtonFocus(true);
-                            }
-                        }
-                    }
-                    else if (_selectedInventoryItemUI == null)
-                    {
-                        _horizontal = 0;
-                        _vertical = 0;
-                        if (up)
-                        {
-                            _vertical = 1;
-                        }
-                        else if (down)
-                        {
-                            _vertical = -1;
-                        }
-                        else if (left)
-                        {
-                            _horizontal = -1;
-                        }
-                        else if (right)
-                        {
-                            _horizontal = 1;
-                        }
-
-                        if (_horizontal != 0 || _vertical != 0)
-                        {
-                            if (_horizontal != 0)
-                            {
-                                _calculateCol(_horizontal);
-                            }
-                            else if (_vertical != 0)
-                            {
-                                _calculateRow(_vertical);
-                            }
-                            _currentItemIndex = (_currentRow * numColumns) + _currentColumn;
-                            var item = _items[_currentItemIndex] as InventoryItemUI;
-
-                            if (item != null)
-                            {
-                                item.SetFocus(true);
-                            }
-                            var prevItem = _items[_previousItemIndex] as InventoryItemUI;
-                            if (prevItem != null)
-                            {
-                                prevItem.SetFocus(false);
-                            }
-                            _previousItemIndex = _currentItemIndex;
-                        }
-                    }
-                }
-            }
-        }
-        #endregion
-
-        #region ui nav
-        private void _calculateCol(float horizontal)
-        {
-            if (horizontal < 0)
-            {
-                _decrementCol(true);
-            }
-            else
-            {
-                _incrementCol(true);
-            }
-        }
-
-        private void _calculateRow(float vertical)
-        {
-            if (vertical > 0)
-            {
-                _decrementRow(true);
-            }
-            else if (vertical < 0)
-            {
-                _incrementRow(true);
-            }
-        }
-
-        private void _incrementCol(bool isCalcCalled)
-        {
-            if (_currentColumn < (numColumns - 1))
-            {
-                _currentColumn++;
-            }
-            else
-            {
-                _currentColumn = 0;
-                if (isCalcCalled)
-                {
-                    _incrementRow(false);
-                }
-            }
-        }
-
-        private void _decrementCol(bool isCalcCalled)
-        {
-            if (_currentColumn > 0)
-            {
-                _currentColumn--;
-            }
-            else
-            {
-                _currentColumn = (numColumns - 1);
-                if (isCalcCalled)
-                {
-                    _decrementRow(false);
-                }
-            }
-        }
-
-        private void _incrementRow(bool isCalcCalled)
-        {
-            if (_currentRow < (numRows - 1))
-            {
-                _currentRow++;
-            }
-            else
-            {
-                _currentRow = 0;
-                if (isCalcCalled)
-                {
-                    _incrementCol(false);
-                }
-            }
-        }
-
-        private void _decrementRow(bool isCalcCalled)
-        {
-            if (_currentRow > 0)
-            {
-                _currentRow--;
-            }
-            else
-            {
-                _currentRow = (numRows - 1);
-                if (isCalcCalled)
-                {
-                    _decrementCol(false);
-                }
-            }
-        }
-
-        private bool _increment(int counter, int max, bool isCalcCalled = false)
-        {
-            if (counter < (max - 1))
-            {
-                counter++;
-                return false;
-            }
-            else
-            {
-                counter = 0;
-                return true;
-            }
-        }
-
-        private bool _decrement(int counter, int max, bool isCalcCalled = false)
-        {
-            if (counter > 0)
-            {
-                counter--;
-                return false;
-            }
-            else
-            {
-                counter = (max - 1);
-                return true;
-            }
-        }
-        #endregion
 
         private void OnDestroy()
         {
             // Debug.Log ("Inventory/OnDestroy");
-            var ec = EventCenter.Instance;
-            if (ec != null)
+            EventCenter ec = EventCenter.Instance;
+            if (ec == null)
             {
-                ec.OnInventoryAdded -= OnInventoryAdded;
-                ec.OnInventoryRemoved -= OnInventoryRemoved;
-                ec.OnInspectItem -= OnInspectItem;
-                ec.OnCloseInventoryUI -= OnCloseInventoryUI;
+                return;
             }
+            ec.OnInventoryAdded -= OnInventoryAdded;
+            ec.OnInventoryRemoved -= OnInventoryRemoved;
+            ec.OnInspectItem -= OnInspectItem;
+            ec.OnCloseInventoryUI -= OnCloseInventoryUI;
         }
-
+        #endregion
     }
 }

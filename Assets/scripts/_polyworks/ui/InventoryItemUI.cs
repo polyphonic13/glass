@@ -1,12 +1,11 @@
-﻿using UnityEngine;
-using System.Collections;
-using UnityEngine.UI;
-
-namespace Polyworks
+﻿namespace Polyworks
 {
+    using UnityEngine;
+    using System.Collections;
+    using UnityEngine.UI;
+
     public class InventoryItemUI : MonoBehaviour
     {
-
         public Text itemName;
         public Text itemCount;
         public Image itemThumbnail;
@@ -44,7 +43,7 @@ namespace Polyworks
             focusedControlButton = 0;
         }
 
-        public void IncrementControlButtonFocus(bool increment)
+        public void UpdateControlButtonFocus(bool increment)
         {
             int btn = focusedControlButton;
             if (increment)
@@ -108,14 +107,17 @@ namespace Polyworks
             }
         }
 
-        public void SetFocus(bool active)
+        public void SetFocus(bool isActive)
         {
-            if (active)
+            // Debug.Log("InventoryItemUI[ " + this.name + " ]/SetFocus, isActive = " + isActive);
+            if (isActive)
             {
+                itemName.gameObject.SetActive(true);
                 itemBg.color = activeColor;
                 return;
             }
 
+            itemName.gameObject.SetActive(false);
             itemBg.color = inactiveColor;
             initFirstButtonImage();
         }
