@@ -1,60 +1,62 @@
 ﻿using UnityEngine;
 using Polyworks;
 
-public class Flashlight : CollectableItem {
-	public const string COLLECTED = "isFlashlightCollected";
-	public string parentName;
-	public GameObject model;
-	private Light _bulb;
+public class Flashlight : CollectableItem
+{
+    public const string COLLECTED = "isFlashlightCollected";
+    private Light bulb;
 
-	public void OnCollectFlashlight() {
-		Debug.Log ("Flashlight[" + this.name + "]/OnCollectFlashlight");
-		this.data.isCollected = true;
-	}
+    public void OnCollectFlashlight()
+    {
+        Log("Flashlight[" + this.name + "]/OnCollectFlashlight");
+        this.data.isCollected = true;
+    }
 
-	public void OnEnableFlashlight() {
-		Debug.Log ("Flashlight["+this.name+"]/OnEnableFlashlight, isCollected = " + this.data.isCollected);
-		if (this.data.isCollected) {
-			_bulb.enabled = !_bulb.enabled;
-		}
-	}
+    public void OnEnableFlashlight()
+    {
+        Log("Flashlight[" + this.name + "]/OnEnableFlashlight, isCollected = " + this.data.isCollected);
+        if (this.data.isCollected)
+        {
+            bulb.enabled = !bulb.enabled;
+        }
+    }
 
-	public override void Actuate() {
-		Debug.Log ("Flashlight/Actuate");
-//		model.SetActive (false);
-//		Quaternion rotation = new Quaternion(0, 0, 0, 0);
-//		GameObject playerHead = GameObject.Find (parentName);
-//		this.transform.rotation = rotation;
-//		this.transform.parent = playerHead.transform;
-//		this.data.isCollected = true;
-		Game.Instance.SetFlag(COLLECTED, true);
-		EventCenter ec = EventCenter.Instance;
-		ec.CollectFlashight();
-		ec.NearItem(this, false);
-		ec.AddNote (this.displayName + " added");
+    public override void Actuate()
+    {
+        Log("Flashlight/Actuate");
 
-		_removeListeners ();
-		Destroy (this.gameObject);
-	}
+        Game.Instance.SetFlag(COLLECTED, true);
+        EventCenter ec = EventCenter.Instance;
+        ec.CollectFlashight();
+        ec.NearItem(this, false);
+        ec.AddNote(this.displayName + " added");
 
-	private void Awake() {
-		_bulb = gameObject.GetComponent<Light>();
-		_bulb.enabled = false;
+        _removeListeners();
+        Destroy(this.gameObject);
+    }
 
-		EventCenter ec = EventCenter.Instance;
-		ec.OnCollectFlashlight += OnCollectFlashlight;
-		ec.OnEnableFlashlight += OnEnableFlashlight;
-	}
+    private void Awake()
+    {
+        bulb = gameObject.GetComponent<Light>();
+        bulb.enabled = false;
 
-	private void OnDestroy() {
-		_removeListeners ();
-	}
+        EventCenter ec = EventCenter.Instance;
+        ec.OnCollectFlashlight += OnCollectFlashlight;
+        ec.OnEnableFlashlight += OnEnableFlashlight;
+    }
 
-	private void _removeListeners() {
-		EventCenter ec = EventCenter.Instance;
-		if (ec != null) {
-			ec.OnCollectFlashlight -= OnCollectFlashlight;
-			ec.OnEnableFlashlight -= OnEnableFlashlight;
-		}
-	}
+    private void OnDestroy()
+    {
+        _removeListeners();
+    }
+
+    private void _removeListeners()
+    {
+        EventCenter ec = EventCenter.Instance;
+        if (ec != null)
+        {
+            ec.OnCollectFlashlight -= OnCollectFlashlight;
+            ec.OnEnableFlashlight -= OnEnableFlashlight;
+        }
+    }
 }
