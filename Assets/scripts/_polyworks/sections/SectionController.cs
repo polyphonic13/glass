@@ -40,7 +40,7 @@ namespace Polyworks
 
             if (data.section == currentSection)
             {
-                //				Debug.Log ("enabling section " + currentSection);
+                // Debug.Log ("enabling section " + currentSection);
                 _toggleEnabled(true);
                 return;
             }
