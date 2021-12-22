@@ -184,8 +184,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1309804783634391403}
   - component: {fileID: 2513714696682178276}
-  - component: {fileID: 3865169665711362096}
-  - component: {fileID: 315357275908762193}
   m_Layer: 0
   m_Name: mirror_reflection_probe
   m_TagString: Untagged
@@ -227,7 +225,7 @@ ReflectionProbe:
   m_NearClip: 0.3
   m_FarClip: 1000
   m_ShadowDistance: 100
-  m_ClearFlags: 1
+  m_ClearFlags: 2
   m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
   m_CullingMask:
     serializedVersion: 2
@@ -240,30 +238,6 @@ ReflectionProbe:
   m_UseOcclusionCulling: 1
   m_Importance: 1
   m_CustomBakedTexture: {fileID: 0}
---- !u!114 &3865169665711362096
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8610907652713228667}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3df9045043b8d4f1cb143be7d3383c2d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &315357275908762193
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8610907652713228667}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1584785ae24a41ad842d0e88af226f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &7400929974222393288
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -375,11 +349,16 @@ PrefabInstance:
       propertyPath: m_PlayAutomatically
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1887874758118008476, guid: 33daf0d64b1d94152a0f1351b725f103,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ba2b8afc490aa4670b86574bbbbe5c73, type: 2}
     - target: {fileID: 1966692167564538766, guid: 33daf0d64b1d94152a0f1351b725f103,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 31a7a2c067a3841619203f816a43ed1c, type: 2}
+      objectReference: {fileID: 2100000, guid: ae79606c504ee4d75940d9910c99a03f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33daf0d64b1d94152a0f1351b725f103, type: 3}
 --- !u!1 &7400929974222358884 stripped
