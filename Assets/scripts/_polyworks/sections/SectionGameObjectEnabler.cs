@@ -6,8 +6,8 @@ namespace Polyworks
     {
         public override void ToggleEnabled(bool isEnabled)
         {
-            Debug.Log("SectionGameObjectEnabler/ToggleEnabled, isEnabled = " + isEnabled);
             gameObject.SetActive(isEnabled);
+            gameObject.SendMessage("Enable", isEnabled, SendMessageOptions.DontRequireReceiver);
         }
     }
 }
