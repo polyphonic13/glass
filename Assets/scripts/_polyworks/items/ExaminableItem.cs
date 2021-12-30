@@ -1,31 +1,40 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿namespace Polyworks
+{
+    public class ExaminableItem : Item
+    {
+        public bool isSingleUse = true;
 
-namespace Polyworks {
-	public class ExaminableItem : Item {
+        private bool _isUsedOnce = false;
 
-		public bool isSingleUse = true;
+        public override void Enable()
+        {
+            base.Enable();
+        }
 
-		private bool _isUsedOnce = false;
+        public override void Actuate()
+        {
+            if (!isEnabled)
+            {
+                return;
+            }
 
-		public override void Enable () {
-			base.Enable ();
-		}
+            if (isSingleUse && _isUsedOnce)
+            {
+                return;
+            }
 
-		public override void Actuate() {
-			if(isEnabled) {
-				if(!isSingleUse || !_isUsedOnce) {
-					EventCenter ec = EventCenter.Instance;
+            EventCenter eventCenter = EventCenter.Instance;
 
-					_isUsedOnce = true;
-					ec.AddNote(description);
+            _isUsedOnce = true;
+            eventCenter.AddNote(description);
 
-					if (isSingleUse) {
-						Destroy (this.gameObject);
-						ec.NearItem (this, false);
-					}
-				}
-			}
-		}
-	}
+            if (!isSingleUse)
+            {
+                return;
+            }
+
+            Destroy(this.gameObject);
+            eventCenter.NearItem(this, false);
+        }
+    }
 }

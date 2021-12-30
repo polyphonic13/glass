@@ -8,6 +8,7 @@
     {
         public Text itemName;
         public Text itemCount;
+
         public Image itemThumbnail;
         public bool isDroppable;
 
@@ -119,6 +120,7 @@
 
             itemName.gameObject.SetActive(false);
             itemBg.color = inactiveColor;
+
             initFirstButtonImage();
         }
 

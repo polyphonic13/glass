@@ -17,7 +17,6 @@
 
         public static Game Instance;
         public GameData gameData;
-        public bool isSceneInitialized = false;
         public bool isCursorless = true;
         public Inventory playerInventory { get; set; }
 
@@ -33,6 +32,7 @@
         private LevelController levelController;
         private Player player;
         private DataIOController dataIOController;
+        private bool isSceneInitialized = false;
         private GameJSON gameJSON;
         private SceneType currentScene = SceneType.None;
         private SceneType previousScene = SceneType.None;
@@ -40,6 +40,14 @@
         #endregion
 
         #region public event handlers
+        public bool IsSceneInitialized
+        {
+            get
+            {
+                return isSceneInitialized;
+            }
+        }
+
         public void OnChangeScene(SceneType type, bool isFadedOut)
         {
             previousScene = currentScene;

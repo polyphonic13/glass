@@ -84,7 +84,9 @@ namespace Polyworks
             {
                 return;
             }
+
             GameObject player = GameObject.Find("player");
+
             if (player == null)
             {
                 return;
@@ -96,7 +98,7 @@ namespace Polyworks
         #region private methods
         private void Awake()
         {
-            if (Game.Instance != null && Game.Instance.isSceneInitialized)
+            if (Game.Instance != null && Game.Instance.IsSceneInitialized)
             {
                 Init();
             }
@@ -105,20 +107,22 @@ namespace Polyworks
 
         private void OnDestroy()
         {
-            EventCenter ec = EventCenter.Instance;
-            if (ec != null)
+            EventCenter eventCenter = EventCenter.Instance;
+            if (eventCenter == null)
             {
-                ec.OnSceneInitialized -= this.OnSceneInitialized;
+                return;
             }
+            eventCenter.OnSceneInitialized -= this.OnSceneInitialized;
         }
         #endregion
 
         private void _log(string message)
         {
-            if (isLogOn)
+            if (!isLogOn)
             {
-                Debug.Log(message);
+                return;
             }
+            Debug.Log(message);
         }
     }
 }
