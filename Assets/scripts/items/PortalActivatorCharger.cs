@@ -1,59 +1,72 @@
 ﻿using UnityEngine;
-using System.Collections;
 using Polyworks;
 
 public class PortalActivatorCharger : MonoBehaviour
 {
-    public const string PORTAL_ACTIVATOR_COLLECTED = "isPortalActivatorCollected";
-    public const string PORTAL_ACTIVATOR_CHARGED = "isPortalActivatorCharged";
-    public const string USABLE_MESSAGE = "The device vibrated";
+    public static readonly string PORTAL_ACTIVATOR_COLLECTED = "isPortalActivatorCollected";
+    public static readonly string PORTAL_ACTIVATOR_CHARGED = "isPortalActivatorCharged";
+    public static readonly string USABLE_MESSAGE = "The mysterious device opened and started glowing";
 
     public float secondsToCharge = 5.0f;
 
-    private bool _isCharged = false;
+    private bool isCharged = false;
 
-    private float _isChargedCounter;
+    private float isChargedCounter;
 
     public void OnSceneInitialized(string scene)
     {
-        _isCharged = Game.Instance.GetFlag(PORTAL_ACTIVATOR_CHARGED);
+        isCharged = Game.Instance.GetFlag(PORTAL_ACTIVATOR_CHARGED);
     }
 
     private void Awake()
     {
-        _isChargedCounter = secondsToCharge;
+        isChargedCounter = secondsToCharge;
 
         EventCenter.Instance.OnSceneInitialized += OnSceneInitialized;
     }
 
     private void FixedUpdate()
     {
-        //		Debug.Log ("PortalActivator: " + Time.deltaTime + ", _isChargedCounter = " + _isChargedCounter);
-        if (!_isCharged)
+        if (isCharged)
         {
-            _isChargedCounter -= Time.deltaTime;
-            if (_isChargedCounter <= 0)
-            {
-                bool isCollected = Game.Instance.GetFlag(PORTAL_ACTIVATOR_COLLECTED);
-                // Debug.Log ("PortalActivator now charged, isCollected = " + isCollected);
-                if (isCollected)
-                {
-                    EventCenter.Instance.AddNote(USABLE_MESSAGE);
-                }
-                _isCharged = true;
-                Game.Instance.SetFlag(PORTAL_ACTIVATOR_CHARGED, _isCharged);
-                _isChargedCounter = 0;
-            }
+            return;
         }
+        // Debug.Log ("PortalActivator: " + Time.deltaTime + ", isChargedCounter = " + isChargedCounter);
+        isChargedCounter -= Time.deltaTime;
+
+        if (isChargedCounter > 0)
+        {
+            return;
+        }
+
+        EventCenter eventCenter = EventCenter.Instance;
+        Game game = Game.Instance;
+
+        isCharged = true;
+        isChargedCounter = 0;
+
+        game.SetFlag(PORTAL_ACTIVATOR_CHARGED, isCharged);
+
+        eventCenter.InvokeStringEvent(PORTAL_ACTIVATOR_CHARGED);
+
+
+        bool isCollected = game.GetFlag(PORTAL_ACTIVATOR_COLLECTED);
+        // Debug.Log ("PortalActivator now charged, isCollected = " + isCollected);
+        if (!isCollected)
+        {
+            return;
+        }
+        eventCenter.AddNote(USABLE_MESSAGE);
     }
 
     private void OnDestroy()
     {
-        EventCenter ec = EventCenter.Instance;
-        if (ec != null)
+        EventCenter eventCenter = EventCenter.Instance;
+        if (eventCenter == null)
         {
-            ec.OnSceneInitialized -= OnSceneInitialized;
+            return;
         }
+        eventCenter.OnSceneInitialized -= OnSceneInitialized;
     }
 }
 

@@ -2,10 +2,8 @@
 {
     public class FlagConditionalEventController : Item
     {
-
         public string flag;
         public string falseMessage = "";
-
         public EventSwitch[] switches;
 
         public override void Actuate()
@@ -21,11 +19,14 @@
                     Log(" calling Actuate on [ " + s.name + " ]");
                     s.Actuate();
                 }
+                return;
             }
-            else if (falseMessage != "")
+
+            if (falseMessage == "")
             {
-                EventCenter.Instance.AddNote(falseMessage);
+                return;
             }
+            EventCenter.Instance.AddNote(falseMessage);
         }
     }
 }

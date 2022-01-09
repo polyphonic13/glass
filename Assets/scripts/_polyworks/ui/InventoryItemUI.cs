@@ -90,7 +90,8 @@
             switch (focusedControlButton)
             {
                 case 0:
-                    Debug.Log("InventoryItemUI[ " + this.name + " ]/SelectControlButton");
+                    // Debug.Log("InventoryItemUI[ " + this.name + " ]/SelectControlButton");
+                    EventCenter.Instance.CloseInventoryUI();
                     playerInventory.Use(this.name);
                     break;
 

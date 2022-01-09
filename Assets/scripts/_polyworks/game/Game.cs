@@ -34,6 +34,7 @@
         private DataIOController dataIOController;
         private bool isSceneInitialized = false;
         private GameJSON gameJSON;
+        private string currentSceneName;
         private SceneType currentScene = SceneType.None;
         private SceneType previousScene = SceneType.None;
         private string dataPath;
@@ -48,16 +49,25 @@
             }
         }
 
-        public void OnChangeScene(SceneType type, bool isFadedOut)
+        public string CurrentSceneName
+        {
+            get
+            {
+                return currentSceneName;
+            }
+        }
+
+        public void OnChangeScene(SceneType type, int targetSection, bool isFadedOut)
         {
             previousScene = currentScene;
             currentScene = type;
             Debug.Log("Game/OnChangeScene, previousScene = " + previousScene + ", currentScene = " + currentScene);
-            if (previousScene != SceneType.None)
+            if (previousScene == SceneType.None)
             {
+                subSceneController.LoadSubScene(currentScene, onSubSceneLoaded);
                 return;
             }
-            subSceneController.LoadSubScene(type, onSubSceneLoaded);
+            subSceneController.UnloadSubScene(previousScene, onSubSceneUnloaded);
         }
 
         public void OnStartSceneChange(string subScene, int section = -1)
@@ -135,7 +145,7 @@
             rewiredInputController.transform.SetParent(transform);
 
             Scene currentScene = SceneManager.GetActiveScene();
-            string currentSceneName = currentScene.name;
+            currentSceneName = currentScene.name;
             bool isLevel = getIsLevel(currentSceneName);
             // Debug.Log("Game/Init, isLevel = " + isLevel);
             Instance.isSceneInitialized = false;
@@ -153,9 +163,9 @@
             Instance.gameData.currentScene = currentSceneName;
             Hashtable items = Instance.gameData.items;
 
-            // eventCenter.TriggerChangeScene(SceneType.House01, false);
-            eventCenter.TriggerChangeScene(SceneType.House02, false);
-            // eventCenter.TriggerChangeScene(SceneType.Cave02a, false);
+            // eventCenter.TriggerChangeScene(SceneType.House01, -1, false);
+            eventCenter.TriggerChangeScene(SceneType.House02, -1, false);
+            // eventCenter.TriggerChangeScene(SceneType.Cave02a, =1, false);
         }
 
         private void addListeners()
@@ -219,7 +229,7 @@
                 else
                 {
                     Scene currentScene = SceneManager.GetActiveScene();
-                    string currentSceneName = currentScene.name;
+                    currentSceneName = currentScene.name;
                     changeScene(currentSceneName, data.targetSection);
                 }
             }
@@ -281,7 +291,7 @@
 
         private void initScene()
         {
-            string currentSceneName = currentScene.ToString();
+            currentSceneName = currentScene.ToString();
             Debug.Log("Game/onSubSceneLoaded, current subScene = " + currentSceneName);
             SubSceneData subSceneData = getSubSceneDataByName(currentSceneName);
             Debug.Log("  subSceneData.name = " + subSceneData.name + ", isPlayerScene = " + subSceneData.isPlayerScene);

@@ -216,9 +216,11 @@ MonoBehaviour:
     - key: isPortalActivatorCollected
       value: 0
     - key: isFlashlightCollected
-      value: 1
+      value: 0
     - key: isGeneratorRunning
-      value: 1
+      value: 0
+    - key: isGeneratorGassed
+      value: 0
   isCursorless: 1
 --- !u!114 &8318091
 MonoBehaviour:
@@ -259,9 +261,9 @@ MonoBehaviour:
   prepSteps:
   - scene: start
     count: 0
-  - scene: house_floor02b
-    count: 5
-  - scene: cave02
+  - scene: House02
+    count: 0
+  - scene: Cave02a
     count: 0
 --- !u!114 &8318094
 MonoBehaviour:
@@ -588,7 +590,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11441394, guid: d328a1d00963643d4a90ee92cfe511f5, type: 3}
       propertyPath: _userData.keyboardMaps.Array.data[0].actionElementMaps.Array.data[11]._keyboardKeyCode
-      value: 113
+      value: 101
       objectReference: {fileID: 0}
     - target: {fileID: 11441394, guid: d328a1d00963643d4a90ee92cfe511f5, type: 3}
       propertyPath: _userData.keyboardMaps.Array.data[0].actionElementMaps.Array.data[12]._keyboardKeyCode
@@ -600,7 +602,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11441394, guid: d328a1d00963643d4a90ee92cfe511f5, type: 3}
       propertyPath: _userData.keyboardMaps.Array.data[0].actionElementMaps.Array.data[14]._keyboardKeyCode
-      value: 113
+      value: 101
       objectReference: {fileID: 0}
     - target: {fileID: 11441394, guid: d328a1d00963643d4a90ee92cfe511f5, type: 3}
       propertyPath: _userData.keyboardMaps.Array.data[0].actionElementMaps.Array.data[15]._keyboardKeyCode

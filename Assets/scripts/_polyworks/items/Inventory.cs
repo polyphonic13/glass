@@ -119,7 +119,7 @@ namespace Polyworks
 
             if (!ItemUtils.GetIsRequiredFlagOn(data, true))
             {
-                Log("  flag not one, message = " + data.requiredFlagMessage);
+                Log("  flag not on, message = " + data.requiredFlagMessage);
                 _eventCenter.AddNote(data.requiredFlagMessage);
                 return;
             }

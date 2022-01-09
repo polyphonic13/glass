@@ -287,10 +287,11 @@
 
         public void CollectFlashight()
         {
-            if (OnCollectFlashlight != null)
+            if (OnCollectFlashlight == null)
             {
-                OnCollectFlashlight();
+                return;
             }
+            OnCollectFlashlight();
         }
 
         public void EnableFlashlight()
@@ -323,15 +324,15 @@
         #endregion
 
         #region v2
-        public delegate void ChangeSceneHandler(SceneType type, bool isFadedOut);
+        public delegate void ChangeSceneHandler(SceneType type, int targetSection, bool isFadedOut);
         public event ChangeSceneHandler OnChangeScene;
-        public void TriggerChangeScene(SceneType type, bool isFadedOut)
+        public void TriggerChangeScene(SceneType type, int targetSection = -1, bool isFadedOut = false)
         {
             if (OnChangeScene == null)
             {
                 return;
             }
-            OnChangeScene(type, isFadedOut);
+            OnChangeScene(type, targetSection, isFadedOut);
         }
 
         #endregion
