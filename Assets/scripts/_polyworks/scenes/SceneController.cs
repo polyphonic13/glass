@@ -12,7 +12,7 @@ public enum SceneType
     House02,
     House03,
     House04,
-    Cave02a,
+    Cave01,
 }
 
 public class SceneController : MonoBehaviour
