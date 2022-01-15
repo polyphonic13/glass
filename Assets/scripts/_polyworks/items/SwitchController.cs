@@ -84,7 +84,7 @@
             {
                 return;
             }
-
+            Log("SwitchController/_actuate, _switches.Length = " + _switches.Length);
             for (int i = 0; i < _switches.Length; i++)
             {
                 if (_switches[i] != null)

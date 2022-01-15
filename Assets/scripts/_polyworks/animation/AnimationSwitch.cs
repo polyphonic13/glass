@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 namespace Polyworks
 {
@@ -43,6 +42,12 @@ namespace Polyworks
         private void Awake()
         {
             currentIdx = 0;
+
+            if (targetName == null || targetName == "")
+            {
+                return;
+            }
+
             GameObject targetObject = GameObject.Find(targetName);
             // Log("AnimationSwitch[" + this.name + "]/Awake, targetName = " + targetName + ", targetObject = " + targetObject);
             if (targetObject == null)
