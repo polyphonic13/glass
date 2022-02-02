@@ -13,11 +13,12 @@ namespace Polyworks
 
         public void OnStringEvent(string type, string value)
         {
-            if (type == eventType && value == eventValue)
+            if (type != eventType && value != eventValue)
             {
-                Log("StringEventAgent[" + this.name + "]/OnStringEvent, type = " + type + ", eventType = " + eventType + ", value = " + value + ", eventValue = " + eventValue);
-                SendMessage("Actuate", null, SendMessageOptions.DontRequireReceiver);
+                return;
             }
+            Log("StringEventAgent[" + this.name + "]/OnStringEvent, type = " + type + ", eventType = " + eventType + ", value = " + value + ", eventValue = " + eventValue);
+            SendMessage("Actuate", null, SendMessageOptions.DontRequireReceiver);
         }
 
         public void Enable()
@@ -42,36 +43,42 @@ namespace Polyworks
 
         private void _addListeners()
         {
-            if (!_isListenersAdded)
+            if (_isListenersAdded)
             {
-                _isListenersAdded = true;
-                EventCenter ec = EventCenter.Instance;
-                if (ec != null)
-                {
-                    ec.OnStringEvent += OnStringEvent;
-                }
+                return;
             }
+
+            _isListenersAdded = true;
+            EventCenter ec = EventCenter.Instance;
+            if (ec == null)
+            {
+                return;
+            }
+            ec.OnStringEvent += OnStringEvent;
         }
 
         private void _removeListeners()
         {
-            if (_isListenersAdded)
+            if (!_isListenersAdded)
             {
-                _isListenersAdded = false;
-                EventCenter ec = EventCenter.Instance;
-                if (ec != null)
-                {
-                    ec.OnStringEvent -= OnStringEvent;
-                }
+                return;
             }
+            _isListenersAdded = false;
+            EventCenter ec = EventCenter.Instance;
+            if (ec == null)
+            {
+                return;
+            }
+            ec.OnStringEvent -= OnStringEvent;
         }
 
         private void Log(string message)
         {
-            if (isLogOn)
+            if (!isLogOn)
             {
-                Debug.Log(message);
+                return;
             }
+            Debug.Log(message);
         }
     }
 }

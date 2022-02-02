@@ -330,6 +330,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 91163659}
+  - component: {fileID: 91163662}
+  - component: {fileID: 91163661}
+  - component: {fileID: 91163660}
   m_Layer: 0
   m_Name: door_aries
   m_TagString: Untagged
@@ -350,9 +353,57 @@ Transform:
   m_Children:
   - {fileID: 118561088}
   - {fileID: 1593144403}
+  - {fileID: 171899003}
   m_Father: {fileID: 323846695}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &91163660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 91163658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e792fca1111a048b58dbd1630c65c440, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLogOn: 0
+  displayName: 
+  description: 
+  prefabPath: 
+  isEnabled: 0
+  icon: 1
+  _togglers:
+  - {fileID: 171899005}
+--- !u!114 &91163661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 91163658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feaa1b568e3e04434be783e8585d6ea1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventType: dilating_door02_open
+  eventValue: aries_door_switch
+  isLogOn: 0
+--- !u!114 &91163662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 91163658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3df9045043b8d4f1cb143be7d3383c2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &99871481
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1731,6 +1782,65 @@ MonoBehaviour:
   isAutoStart: 0
   isAutoAdvance: 0
   isLoopPlayback: 0
+--- !u!1 &171899002
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 171899003}
+  - component: {fileID: 171899005}
+  - component: {fileID: 171899004}
+  m_Layer: 0
+  m_Name: aries_door_collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &171899003
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 171899002}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.44, y: 0, z: -1.87}
+  m_LocalScale: {x: 5.176407, y: 4.3905, z: 0.475}
+  m_Children: []
+  m_Father: {fileID: 91163659}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &171899004
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 171899002}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &171899005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 171899002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcb5738485f9d4f21828b5645465e2fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isOn: 1
+  isLogOn: 0
 --- !u!1 &181372513
 GameObject:
   m_ObjectHideFlags: 0
@@ -2677,6 +2787,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 620751236}
+  - component: {fileID: 620751239}
+  - component: {fileID: 620751238}
+  - component: {fileID: 620751237}
   m_Layer: 0
   m_Name: door_leo
   m_TagString: Untagged
@@ -2697,9 +2810,57 @@ Transform:
   m_Children:
   - {fileID: 650647632}
   - {fileID: 1816090843}
+  - {fileID: 668124005}
   m_Father: {fileID: 323846695}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!114 &620751237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 620751235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e792fca1111a048b58dbd1630c65c440, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLogOn: 0
+  displayName: 
+  description: 
+  prefabPath: 
+  isEnabled: 0
+  icon: 1
+  _togglers:
+  - {fileID: 668124007}
+--- !u!114 &620751238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 620751235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feaa1b568e3e04434be783e8585d6ea1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventType: dilating_door02_open
+  eventValue: leo_door_switch
+  isLogOn: 0
+--- !u!114 &620751239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 620751235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3df9045043b8d4f1cb143be7d3383c2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &632165288
 GameObject:
   m_ObjectHideFlags: 0
@@ -3896,6 +4057,65 @@ MonoBehaviour:
   isAutoStart: 0
   isAutoAdvance: 1
   isLoopPlayback: 0
+--- !u!1 &668124004
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 668124005}
+  - component: {fileID: 668124007}
+  - component: {fileID: 668124006}
+  m_Layer: 0
+  m_Name: leo_door_collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &668124005
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 668124004}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.34, y: 0, z: -1.9}
+  m_LocalScale: {x: 4.725, y: 4.1542, z: 0.3125}
+  m_Children: []
+  m_Father: {fileID: 620751236}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &668124006
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 668124004}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &668124007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 668124004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcb5738485f9d4f21828b5645465e2fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isOn: 1
+  isLogOn: 0
 --- !u!1 &682617698 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100004, guid: 5589a5130b7ab4427aef9279bcc45f82,
@@ -4263,7 +4483,7 @@ PrefabInstance:
     - target: {fileID: 1401958549717822858, guid: e7d60dcd3eafe4efc951a82bcc36a144,
         type: 3}
       propertyPath: type
-      value: 
+      value: dilating_door02_open
       objectReference: {fileID: 0}
     - target: {fileID: 1401958549717822858, guid: e7d60dcd3eafe4efc951a82bcc36a144,
         type: 3}
@@ -5214,7 +5434,7 @@ PrefabInstance:
     - target: {fileID: -7435317787456093142, guid: 3d197233e57ff4de09b98fd1adfa7325,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.85
+      value: -0.18
       objectReference: {fileID: 0}
     - target: {fileID: -7435317787456093142, guid: 3d197233e57ff4de09b98fd1adfa7325,
         type: 3}
@@ -5409,7 +5629,7 @@ PrefabInstance:
     - target: {fileID: -4856639032928783439, guid: 3d197233e57ff4de09b98fd1adfa7325,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: -4847143603039912986, guid: 3d197233e57ff4de09b98fd1adfa7325,
         type: 3}
@@ -5419,7 +5639,7 @@ PrefabInstance:
     - target: {fileID: -4847143603039912986, guid: 3d197233e57ff4de09b98fd1adfa7325,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.81
+      value: -0.17
       objectReference: {fileID: 0}
     - target: {fileID: -4847143603039912986, guid: 3d197233e57ff4de09b98fd1adfa7325,
         type: 3}
@@ -5834,7 +6054,7 @@ PrefabInstance:
     - target: {fileID: -1481762216720427143, guid: 3d197233e57ff4de09b98fd1adfa7325,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: -1412928182833929851, guid: 3d197233e57ff4de09b98fd1adfa7325,
         type: 3}
@@ -6554,7 +6774,7 @@ PrefabInstance:
     - target: {fileID: 5879685327674991868, guid: 3d197233e57ff4de09b98fd1adfa7325,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5911904002686604020, guid: 3d197233e57ff4de09b98fd1adfa7325,
         type: 3}
@@ -6624,7 +6844,7 @@ PrefabInstance:
     - target: {fileID: 6307402598264371485, guid: 3d197233e57ff4de09b98fd1adfa7325,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6317578925029434746, guid: 3d197233e57ff4de09b98fd1adfa7325,
         type: 3}
@@ -17228,7 +17448,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.9811321, g: 0.94779015, b: 0.86543256, a: 1}
-  m_Intensity: 0.75
+  m_Intensity: 0.7
   m_Range: 50
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -17410,7 +17630,7 @@ PrefabInstance:
     - target: {fileID: 1401958549717822858, guid: e7d60dcd3eafe4efc951a82bcc36a144,
         type: 3}
       propertyPath: type
-      value: 
+      value: dilating_door02_open
       objectReference: {fileID: 0}
     - target: {fileID: 1401958549717822858, guid: e7d60dcd3eafe4efc951a82bcc36a144,
         type: 3}
@@ -17420,7 +17640,7 @@ PrefabInstance:
     - target: {fileID: 3179276816610080763, guid: e7d60dcd3eafe4efc951a82bcc36a144,
         type: 3}
       propertyPath: m_Name
-      value: leo_door_swtich
+      value: leo_door_switch
       objectReference: {fileID: 0}
     - target: {fileID: 3212964944449522394, guid: e7d60dcd3eafe4efc951a82bcc36a144,
         type: 3}
@@ -17555,6 +17775,65 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!1 &1479333916
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1479333917}
+  - component: {fileID: 1479333919}
+  - component: {fileID: 1479333918}
+  m_Layer: 0
+  m_Name: saggitarius_door_collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1479333917
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1479333916}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.42, y: 0, z: -1.7}
+  m_LocalScale: {x: 5.425, y: 3.9811, z: 0.52942}
+  m_Children: []
+  m_Father: {fileID: 1852178791}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1479333918
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1479333916}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1479333919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1479333916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcb5738485f9d4f21828b5645465e2fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isOn: 1
+  isLogOn: 1
 --- !u!1 &1512346802
 GameObject:
   m_ObjectHideFlags: 0
@@ -18195,7 +18474,7 @@ PrefabInstance:
     - target: {fileID: 1401958549717822858, guid: e7d60dcd3eafe4efc951a82bcc36a144,
         type: 3}
       propertyPath: type
-      value: 
+      value: dilating_door02_toggle
       objectReference: {fileID: 0}
     - target: {fileID: 1401958549717822858, guid: e7d60dcd3eafe4efc951a82bcc36a144,
         type: 3}
@@ -18420,6 +18699,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1852178791}
+  - component: {fileID: 1852178794}
+  - component: {fileID: 1852178793}
+  - component: {fileID: 1852178792}
   m_Layer: 0
   m_Name: door_saggitarius
   m_TagString: Untagged
@@ -18440,9 +18722,57 @@ Transform:
   m_Children:
   - {fileID: 454653874}
   - {fileID: 1744749354}
+  - {fileID: 1479333917}
   m_Father: {fileID: 323846695}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1852178792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1852178790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e792fca1111a048b58dbd1630c65c440, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLogOn: 1
+  displayName: 
+  description: 
+  prefabPath: 
+  isEnabled: 0
+  icon: 1
+  _togglers:
+  - {fileID: 1479333919}
+--- !u!114 &1852178793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1852178790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feaa1b568e3e04434be783e8585d6ea1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventType: dilating_door02_toggle
+  eventValue: saggitarius_door_switch
+  isLogOn: 1
+--- !u!114 &1852178794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1852178790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3df9045043b8d4f1cb143be7d3383c2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1864521947 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100038, guid: 5589a5130b7ab4427aef9279bcc45f82,
@@ -18493,7 +18823,7 @@ Transform:
   m_LocalScale: {x: 0.425, y: 1.9879, z: 13.630931}
   m_Children: []
   m_Father: {fileID: 979364242}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1893251890
 BoxCollider:
