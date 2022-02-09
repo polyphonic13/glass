@@ -164,8 +164,8 @@
             Hashtable items = Instance.gameData.items;
 
             // eventCenter.TriggerChangeScene(SceneType.House01, -1, false);
-            eventCenter.TriggerChangeScene(SceneType.House02, -1, false);
-            // eventCenter.TriggerChangeScene(SceneType.Cave01, -1, false);
+            // eventCenter.TriggerChangeScene(SceneType.House02, -1, false);
+            eventCenter.TriggerChangeScene(SceneType.Cave01, -1, false);
         }
 
         private void addListeners()
