@@ -29,7 +29,7 @@ namespace Polyworks
             playerObject = (GameObject)Instantiate(Resources.Load(playerPrefabName, typeof(GameObject)), location.position, Quaternion.Euler(location.rotation));
             playerObject.name = playerPrefabName;
             // Debug.Log (" player = " + playerObject);
-            GameObject playerGO = playerObject.transform.Find("player").gameObject;
+            GameObject playerGO = playerObject.transform.Find(Game.PLAYER_GAME_OBJECT_NAME).gameObject;
             player = playerGO.GetComponent<Player>();
             inventory = playerGO.GetComponent<Inventory>();
 

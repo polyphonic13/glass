@@ -14,6 +14,7 @@
     {
         #region members
         public static string PLAYER_PREFAB_NAME = "player/player_objects";
+        public static string PLAYER_GAME_OBJECT_NAME = "player";
 
         public static Game Instance;
         public GameData gameData;
@@ -164,8 +165,8 @@
             Hashtable items = Instance.gameData.items;
 
             // eventCenter.TriggerChangeScene(SceneType.House01, -1, false);
-            // eventCenter.TriggerChangeScene(SceneType.House02, -1, false);
-            eventCenter.TriggerChangeScene(SceneType.Cave01, -1, false);
+            eventCenter.TriggerChangeScene(SceneType.House02, -1, false);
+            // eventCenter.TriggerChangeScene(SceneType.Cave01, -1, false);
         }
 
         private void addListeners()
