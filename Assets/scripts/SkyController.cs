@@ -76,7 +76,7 @@ public class SkyController : MonoBehaviour
             rotationSpeed = nightRotationSpeed;
         }
 
-        Debug.Log("speed = " + (rotationSpeed * Time.deltaTime * skySpeed));
+        // Debug.Log("speed = " + (rotationSpeed * Time.deltaTime * skySpeed));
         this.transform.Rotate(rotationSpeed * Time.deltaTime * skySpeed);
 
         if (stars != null)

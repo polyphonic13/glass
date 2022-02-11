@@ -1,8 +1,15 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Polyworks;
+
+[Serializable]
+public struct PuzzleWire
+{
+    public GameObject gameObject;
+    public bool isActivated;
+    public List<int> siblings;
+}
 
 public class CircuitPuzzle : Puzzle
 {
@@ -163,10 +170,12 @@ public class CircuitPuzzle : Puzzle
     public virtual void RemoveListeners()
     {
         EventCenter ec = EventCenter.Instance;
-        if (ec != null)
+        Debug.Log("CircuitPuzzle[ " + this.name + " ]/RemoveListeners, ec = " + ec);
+        if (ec == null)
         {
-            ec.OnIntEvent -= OnIntEvent;
+            return;
         }
+        ec.OnIntEvent -= OnIntEvent;
     }
 
     private void OnDestroy()
@@ -175,10 +184,3 @@ public class CircuitPuzzle : Puzzle
     }
 }
 
-[Serializable]
-public struct PuzzleWire
-{
-    public GameObject gameObject;
-    public bool isActivated;
-    public List<int> siblings;
-}

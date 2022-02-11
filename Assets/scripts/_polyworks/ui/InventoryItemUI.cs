@@ -7,23 +7,25 @@
     public class InventoryItemUI : MonoBehaviour
     {
         public Text itemName;
+        public GameObject nameBg;
         public Text itemCount;
 
         public Image itemThumbnail;
         public bool isDroppable;
 
-        public CanvasGroup _controlPanel;
+        public CanvasGroup ButtonGroup;
+        public Text[] ButtonLabels;
+        public Image[] ButtonBackgrounds;
 
         public Color32 activeColor = new Color32(150, 150, 150, 100);
         public Color32 inactiveColor = new Color32(0, 0, 0, 100);
-        public Color32 controlInactivateColor = new Color32(75, 75, 75, 100);
+        public Color32 controlInactivateColor = new Color32(25, 25, 25, 100);
 
         private Image itemBg;
         private Image useImage;
         private Image inspectImage;
         private Image dropImage;
 
-        private ArrayList panels;
         private int focusedControlButton;
         private int previousControlButton;
         private int availableControlButtons;
@@ -33,14 +35,14 @@
         public void Select()
         {
             // Debug.Log ("InventoryItemUI/Select");
-            _controlPanel.alpha = 1;
+            ButtonGroup.alpha = 1;
             SetControlButtonFocus(0);
         }
 
         public void Deselect()
         {
             // Debug.Log ("InventoryItemUI/Deselect");
-            _controlPanel.alpha = 0;
+            ButtonGroup.alpha = 0;
             focusedControlButton = 0;
         }
 
@@ -77,10 +79,8 @@
             previousControlButton = focusedControlButton;
             focusedControlButton = btn;
 
-            Image panel = panels[previousControlButton] as Image;
-            panel.color = controlInactivateColor;
-            panel = panels[focusedControlButton] as Image;
-            panel.color = activeColor;
+            setButtonTextAndBgColor(previousControlButton, controlInactivateColor, activeColor);
+            setButtonTextAndBgColor(focusedControlButton, activeColor, controlInactivateColor);
         }
 
         public void SelectControlButton()
@@ -115,14 +115,17 @@
             if (isActive)
             {
                 itemName.gameObject.SetActive(true);
+                nameBg.SetActive(true);
                 itemBg.color = activeColor;
                 return;
             }
 
+            // itemThumbnail.gameObject.SetActive(true);
             itemName.gameObject.SetActive(false);
+            nameBg.SetActive(false);
             itemBg.color = inactiveColor;
 
-            initFirstButtonImage();
+            initButtonColors();
         }
 
         public void SetName(string name)
@@ -166,7 +169,7 @@
             if (!isDroppable)
             {
                 availableControlButtons--;
-                GameObject dropPanel = _controlPanel.transform.Find("panel_drop").gameObject;
+                GameObject dropPanel = ButtonGroup.transform.Find("panel_drop").gameObject;
                 dropPanel.SetActive(false);
             }
         }
@@ -182,36 +185,46 @@
             Deselect();
         }
 
-        private void initFirstButtonImage()
+        private void initButtonColors()
         {
-            useImage.color = activeColor;
-            inspectImage.color = controlInactivateColor;
-            dropImage.color = controlInactivateColor;
+            Color textColor;
+            Color bgColor;
+
+            for (int i = 0; i < ButtonLabels.Length; i++)
+            {
+                if (i == 0)
+                {
+                    textColor = controlInactivateColor;
+                    bgColor = activeColor;
+                }
+                else
+                {
+                    textColor = activeColor;
+                    bgColor = controlInactivateColor;
+                }
+                setButtonTextAndBgColor(i, textColor, bgColor);
+            }
         }
+
+        private void setButtonTextAndBgColor(int index, Color textColor, Color bgColor)
+        {
+            Text text = ButtonLabels[index];
+            text.color = textColor;
+            Image bg = ButtonBackgrounds[index];
+            bg.color = bgColor;
+        }
+
 
         private void Awake()
         {
-
-            _controlPanel.alpha = 0;
-
             itemBg = GetComponent<Image>();
-            GameObject usePanel = _controlPanel.transform.Find("panel_use").gameObject;
-            GameObject inspectPanel = _controlPanel.transform.Find("panel_inspect").gameObject;
-            GameObject dropPanel = _controlPanel.transform.Find("panel_drop").gameObject;
 
-            useImage = usePanel.GetComponent<Image>();
-            inspectImage = inspectPanel.GetComponent<Image>();
-            dropImage = dropPanel.GetComponent<Image>();
+            ButtonGroup.alpha = 0;
 
             SetFocus(false);
             SetThumbnail(null);
 
-            panels = new ArrayList(3);
-            panels.Add(useImage);
-            panels.Add(inspectImage);
-            panels.Add(dropImage);
-
-            availableControlButtons = panels.Count;
+            availableControlButtons = ButtonLabels.Length;
         }
     }
 }

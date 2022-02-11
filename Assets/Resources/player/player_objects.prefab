@@ -548,7 +548,6 @@ GameObject:
   - component: {fileID: 114511470423093802}
   - component: {fileID: 114848781585107252}
   - component: {fileID: 114425729613070300}
-  - component: {fileID: 114802682370313938}
   - component: {fileID: 114023662233320244}
   - component: {fileID: 7492698265378607643}
   m_Layer: 0
@@ -682,45 +681,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isMain: 1
   isInterScene: 0
---- !u!114 &114802682370313938
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1137390980080114}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fceaeb339b971b429c4cc600acabd13, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tweakMode: 0
-  screenBlendMode: 1
-  hdr: 0
-  sepBlurSpread: 2.5
-  quality: 1
-  bloomIntensity: 0.66
-  bloomThreshold: 0.5
-  bloomThresholdColor: {r: 1, g: 1, b: 1, a: 1}
-  bloomBlurIterations: 2
-  hollywoodFlareBlurIterations: 2
-  flareRotation: 0
-  lensflareMode: 1
-  hollyStretchWidth: 2.5
-  lensflareIntensity: 0
-  lensflareThreshold: 0.3
-  lensFlareSaturation: 0.75
-  flareColorA: {r: 0.4, g: 0.4, b: 0.8, a: 0.75}
-  flareColorB: {r: 0.4, g: 0.8, b: 0.8, a: 0.75}
-  flareColorC: {r: 0.8, g: 0.4, b: 0.8, a: 0.75}
-  flareColorD: {r: 0.8, g: 0.4, b: 0, a: 0.75}
-  lensFlareVignetteMask: {fileID: 2800000, guid: 95ef4804fe0be4c999ddaa383536cde8,
-    type: 3}
-  lensFlareShader: {fileID: 4800000, guid: 459fe69d2f6d74ddb92f04dbf45a866b, type: 3}
-  screenBlendShader: {fileID: 4800000, guid: 7856cbff0a0ca45c787d5431eb805bb0, type: 3}
-  blurAndFlaresShader: {fileID: 4800000, guid: be6e39cf196f146d5be72fbefb18ed75, type: 3}
-  brightPassFilterShader: {fileID: 4800000, guid: 0aeaa4cb29f5d4e9c8455f04c8575c8c,
-    type: 3}
 --- !u!114 &114023662233320244
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10792,6 +10752,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54d9bc79e66e845ef85821afeedcea64, type: 3}
+--- !u!224 &8012664948765406710 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 22403482, guid: 54d9bc79e66e845ef85821afeedcea64,
+    type: 3}
+  m_PrefabInstance: {fileID: 8012664948745792620}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &8012664948752187832 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 11431380, guid: 54d9bc79e66e845ef85821afeedcea64,
@@ -10804,12 +10770,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 791ca13e87351490aadf2bb2070ab3f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &8012664948765406710 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 22403482, guid: 54d9bc79e66e845ef85821afeedcea64,
-    type: 3}
-  m_PrefabInstance: {fileID: 8012664948745792620}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8046824744832326726
 PrefabInstance:
   m_ObjectHideFlags: 0
