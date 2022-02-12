@@ -78,7 +78,7 @@ public class SkyController : MonoBehaviour
         }
         speed = rotationSpeed * skySpeed * Time.deltaTime;
 
-        Debug.Log("rotationSpeed = " + rotationSpeed + ", speed = " + speed);
+        // Debug.Log("rotationSpeed = " + rotationSpeed + ", speed = " + speed);
 
         this.transform.Rotate(speed);
 

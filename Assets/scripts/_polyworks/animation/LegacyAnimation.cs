@@ -32,8 +32,8 @@ namespace Polyworks
     public class LegacyAnimation : AnimationAgent
     {
 
-        public AnimationClip[] animationClips;
-        public AnimationBoneCollection bones;
+        // public AnimationClip[] animationClips;
+        // public AnimationBoneCollection bones;
 
         public bool isAutoStart = false;
         public bool isAutoAdvance = true;
@@ -73,32 +73,32 @@ namespace Polyworks
 
         public void Actuate(string clip = "")
         {
-            string clipName = (clip != "") ? clip : animationClips[_currentAnimation].name;
-            // Debug.Log("LegacyAnimation[" + this.name + "]/Actuate, clip = " + clip + ", _currentAnimation[ " + _currentAnimation + "] = " + animationClips[_currentAnimation] + "clipName = " + clipName);
+            // string clipName = (clip != "") ? clip : animationClips[_currentAnimation].name;
+            // // Debug.Log("LegacyAnimation[" + this.name + "]/Actuate, clip = " + clip + ", _currentAnimation[ " + _currentAnimation + "] = " + animationClips[_currentAnimation] + "clipName = " + clipName);
 
-            if (clip == "")
-            {
-                _incrementCurrentAnimation();
-            }
+            // if (clip == "")
+            // {
+            //     _incrementCurrentAnimation();
+            // }
 
-            Transform bone = AnimationBoneCollection.GetBone(clipName, bones.animationBones);
+            // Transform bone = AnimationBoneCollection.GetBone(clipName, bones.animationBones);
 
-            if (bone != null)
-            {
-                // Debug.Log(" THERE IS A BONE: " + bone);
-                _animation[clipName].AddMixingTransform(bone);
-            }
+            // if (bone != null)
+            // {
+            //     // Debug.Log(" THERE IS A BONE: " + bone);
+            //     _animation[clipName].AddMixingTransform(bone);
+            // }
 
-            // Debug.Log(" about to call Play on _animation = " + _animation + ", clip = " + _animation[clipName] + ", clipName = " + clipName);
+            // // Debug.Log(" about to call Play on _animation = " + _animation + ", clip = " + _animation[clipName] + ", clipName = " + clipName);
 
-            if (_animation[clipName] == null)
-            {
-                return;
-            }
-            _animation[clipName].wrapMode = WrapMode.Once;
-            _animation[clipName].speed = PLAY_SPEED;
-            _animation.Play(clipName);
-            _isPlaying = true;
+            // if (_animation[clipName] == null)
+            // {
+            //     return;
+            // }
+            // _animation[clipName].wrapMode = WrapMode.Once;
+            // _animation[clipName].speed = PLAY_SPEED;
+            // _animation.Play(clipName);
+            // _isPlaying = true;
         }
 
         private string getClipName()
@@ -118,21 +118,21 @@ namespace Polyworks
 
         private void _incrementCurrentAnimation()
         {
-            if (_currentAnimation < animationClips.Length - 1)
-            {
-                _currentAnimation++;
-            }
-            else
-            {
-                _currentAnimation = 0;
-            }
+            // if (_currentAnimation < animationClips.Length - 1)
+            // {
+            //     _currentAnimation++;
+            // }
+            // else
+            // {
+            //     _currentAnimation = 0;
+            // }
         }
 
         private void _adjustSpeed(float speed)
         {
-            // Debug.Log("LegacyAnimation[" + this.name + "]/_adjustSpeed, speed = " + speed);
-            string clip = animationClips[_currentAnimation].name;
-            _animation[clip].speed = speed;
+            // // Debug.Log("LegacyAnimation[" + this.name + "]/_adjustSpeed, speed = " + speed);
+            // string clip = animationClips[_currentAnimation].name;
+            // _animation[clip].speed = speed;
         }
     }
 }

@@ -170,7 +170,7 @@ public class CircuitPuzzle : Puzzle
     public virtual void RemoveListeners()
     {
         EventCenter ec = EventCenter.Instance;
-        Debug.Log("CircuitPuzzle[ " + this.name + " ]/RemoveListeners, ec = " + ec);
+
         if (ec == null)
         {
             return;
