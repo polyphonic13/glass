@@ -107,9 +107,14 @@
                 InventoryUI inventoryUI = inventoryObj.GetComponent<InventoryUI>();
                 inventoryUI.InitInventory(Instance.playerInventory);
             }
-            NotificationUIController.Instance.Init();
 
             completeSceneInitialization(true, currentScene.name);
+
+            if (NotificationUIController.Instance == null)
+            {
+                return;
+            }
+            NotificationUIController.Instance.Init();
         }
 
         public bool GetFlag(string key)
