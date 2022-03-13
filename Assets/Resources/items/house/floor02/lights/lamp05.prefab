@@ -109,7 +109,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3307620160192120850}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0, z: -5.78}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -128,13 +128,13 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 47.746483
+  m_Intensity: 95.492966
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -159,7 +159,7 @@ Light:
       e32: 0
       e33: 1
     m_UseCullingMatrixOverride: 0
-  m_Cookie: {fileID: 0}
+  m_Cookie: {fileID: 8900000, guid: 798e81ab59e9244299c1a9631b360e1f, type: 3}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
   m_RenderMode: 0
@@ -190,7 +190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Intensity: 600
+  m_Intensity: 1200
   m_EnableSpotReflector: 1
   m_LuxAtDistance: 1
   m_InnerSpotPercent: 0
@@ -371,11 +371,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 88c0dbf62b83647e59b0f27293167bb2, type: 2}
+      objectReference: {fileID: 2100000, guid: d2f0e233c059c48e5a2e97db30c04243, type: 2}
     - target: {fileID: 919132149155446097, guid: 313b467190d5c45cc9948086f792f39c,
         type: 3}
       propertyPath: m_Name
-      value: hanging_lamp05
+      value: hanging_lamp05_model
       objectReference: {fileID: 0}
     - target: {fileID: 5429200422322036704, guid: 313b467190d5c45cc9948086f792f39c,
         type: 3}
@@ -384,9 +384,14 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: bea447928bdfd410387349cc6e3b70e3, type: 2}
     - target: {fileID: 8514692782295817543, guid: 313b467190d5c45cc9948086f792f39c,
         type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8514692782295817543, guid: 313b467190d5c45cc9948086f792f39c,
+        type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 6ed9fa9b84ee14ce48c38875c13faabb, type: 2}
+      objectReference: {fileID: 2100000, guid: 1247496f0b1794836b30b238be15b5de, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 313b467190d5c45cc9948086f792f39c, type: 3}
 --- !u!1 &1948256497762796297 stripped
@@ -407,7 +412,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcb5738485f9d4f21828b5645465e2fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOn: 0
+  isOn: 1
   isLogOn: 0
 --- !u!1 &2789404998146618215 stripped
 GameObject:
