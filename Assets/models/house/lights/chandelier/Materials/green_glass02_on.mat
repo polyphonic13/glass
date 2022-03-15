@@ -9,11 +9,11 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: green_glass02_on
   m_Shader: {fileID: 4800000, guid: 6e4ae4064600d784cac1e41a9e6f2e59, type: 3}
-  m_ShaderKeywords: _DISABLE_SSR_TRANSPARENT _DISPLACEMENT_LOCK_TILING_SCALE _HEIGHTMAP
-    _NORMALMAP _NORMALMAP_TANGENT_SPACE _PIXEL_DISPLACEMENT _PIXEL_DISPLACEMENT_LOCK_OBJECT_SCALE
+  m_ShaderKeywords: _DISABLE_SSR_TRANSPARENT _DISPLACEMENT_LOCK_TILING_SCALE _DOUBLESIDED_ON
+    _HEIGHTMAP _NORMALMAP _NORMALMAP_TANGENT_SPACE _PIXEL_DISPLACEMENT _PIXEL_DISPLACEMENT_LOCK_OBJECT_SCALE
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
+  m_DoubleSidedGI: 1
   m_CustomRenderQueue: 2225
   stringTagMap: {}
   disabledShaderPasses:
@@ -30,7 +30,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseColorMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: d7690824ff37e4055a2a320269af192c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BentNormalMap:
@@ -86,7 +86,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: d7690824ff37e4055a2a320269af192c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskMap:
@@ -169,8 +169,8 @@ Material:
     - _BlendMode: 0
     - _BumpScale: 1
     - _CoatMask: 0
-    - _CullMode: 2
-    - _CullModeForward: 2
+    - _CullMode: 0
+    - _CullModeForward: 0
     - _Cutoff: 0.5
     - _DepthOffsetEnable: 0
     - _DetailAlbedoScale: 1
@@ -182,7 +182,7 @@ Material:
     - _DisplacementLockObjectScale: 1
     - _DisplacementLockTilingScale: 1
     - _DisplacementMode: 2
-    - _DoubleSidedEnable: 0
+    - _DoubleSidedEnable: 1
     - _DoubleSidedGIMode: 0
     - _DoubleSidedNormalMode: 1
     - _DstBlend: 0
@@ -217,7 +217,7 @@ Material:
     - _MetallicRemapMin: 0
     - _Mode: 0
     - _NormalMapSpace: 0
-    - _NormalScale: 1
+    - _NormalScale: 8
     - _OcclusionStrength: 1
     - _OpaqueCullMode: 2
     - _PPDLodThreshold: 5
@@ -230,7 +230,7 @@ Material:
     - _ReceivesSSR: 1
     - _ReceivesSSRTransparent: 0
     - _RefractionModel: 0
-    - _Smoothness: 0.421
+    - _Smoothness: 0.917
     - _SmoothnessRemapMax: 0.154
     - _SmoothnessRemapMin: 0
     - _SmoothnessTextureChannel: 0
@@ -278,7 +278,7 @@ Material:
     - _DiffusionProfileAsset: {r: 0, g: 0, b: 0, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissiveColor: {r: 1.9582386, g: 8.3731575, b: 1.4855603, a: 2.152374}
+    - _EmissiveColor: {r: 0.49318343, g: 2.0932896, b: 0.3726275, a: 2.152374}
     - _EmissiveColorLDR: {r: 0.76185256, g: 0.88031507, b: 0.75440603, a: 1}
     - _InvPrimScale: {r: 1, g: 1, b: 0, a: 0}
     - _IridescenceThicknessRemap: {r: 0, g: 1, b: 0, a: 0}
