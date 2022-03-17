@@ -1,55 +1,33 @@
-using UnityEngine;
-
 namespace Polyworks
 {
-    public class StringEventAgent : MonoBehaviour
+    using UnityEngine;
+
+    public class StringEventAgent : EventAgent
     {
-        public string eventType = "";
         public string eventValue = "";
 
-        public bool isLogOn = false;
-
-        private bool _isListenersAdded = false;
+        private bool isListenersAdded = false;
 
         public void OnStringEvent(string type, string value)
         {
-            if (type != eventType && value != eventValue)
+            log("StringEventAgent[" + this.name + "]/OnStringEvent, type = " + type + ", EventType = " + EventType + ", value = " + value + ", eventValue = " + eventValue);
+            if (type != EventType && value != eventValue)
             {
                 return;
             }
-            Log("StringEventAgent[" + this.name + "]/OnStringEvent, type = " + type + ", eventType = " + eventType + ", value = " + value + ", eventValue = " + eventValue);
             SendMessage("Actuate", null, SendMessageOptions.DontRequireReceiver);
         }
 
-        public void Enable()
+        protected override void addListeners()
         {
-            _addListeners();
-        }
-
-        public void Disable()
-        {
-            _removeListeners();
-        }
-
-        private void Awake()
-        {
-            _addListeners();
-        }
-
-        private void OnDestroy()
-        {
-            _removeListeners();
-        }
-
-        private void _addListeners()
-        {
-            if (_isListenersAdded)
+            if (isListenersAdded)
             {
                 return;
             }
 
-            _isListenersAdded = true;
+            isListenersAdded = true;
             EventCenter ec = EventCenter.Instance;
+
             if (ec == null)
             {
                 return;
@@ -57,28 +35,21 @@ namespace Polyworks
             ec.OnStringEvent += OnStringEvent;
         }
 
-        private void _removeListeners()
+        protected override void removeListeners()
         {
-            if (!_isListenersAdded)
+            if (!isListenersAdded)
             {
                 return;
             }
-            _isListenersAdded = false;
+
+            isListenersAdded = false;
             EventCenter ec = EventCenter.Instance;
+
             if (ec == null)
             {
                 return;
             }
             ec.OnStringEvent -= OnStringEvent;
-        }
-
-        private void Log(string message)
-        {
-            if (!isLogOn)
-            {
-                return;
-            }
-            Debug.Log(message);
         }
     }
 }
