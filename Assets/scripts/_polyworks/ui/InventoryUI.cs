@@ -40,6 +40,16 @@
         #endregion
 
         #region public event handlers
+        public void OnOpenInventoryUI()
+        {
+            SetActive(true);
+        }
+
+        public void OnCloseInventoryUI()
+        {
+            reset();
+        }
+
         public void OnInventoryAdded(string name, int count, bool isPlayerInventory)
         {
             // Debug.Log ("InventoryUI/OnInventoryAdded, name = " + name);
@@ -61,17 +71,6 @@
         {
             // Debug.Log ("InventoryUI/OnInventoryRemoved, name = " + name);
             resetItems();
-        }
-
-        public void OnOpenInventoryUI()
-        {
-            base.SetActive(true);
-        }
-
-        public void OnCloseInventoryUI()
-        {
-            // Debug.Log("InventoryUI/OnCloseInventoryUI");
-            reset();
         }
 
         public void OnInspectItem(bool isInspecting, string item)
@@ -104,9 +103,10 @@
 
         protected override void SetActive(bool isActive)
         {
+            Debug.Log("InventoryUI/SetActive, isActive = " + isActive);
             base.SetActive(isActive);
 
-            if (itemIndex == -1)
+            if (itemIndex == -1 || !isActive)
             {
                 return;
             }
@@ -188,7 +188,7 @@
 
             if (selectedInventoryItemUI == null)
             {
-                EventCenter.Instance.CloseInventoryUI();
+                eventCenter.CloseInventoryUI();
                 return;
             }
             selectedInventoryItemUI.Deselect();
@@ -441,6 +441,7 @@
         #region private methods
         private void reset()
         {
+            Debug.Log("InventoryUI/reset");
             if (selectedInventoryItemUI != null)
             {
                 selectedInventoryItemUI.Deselect();

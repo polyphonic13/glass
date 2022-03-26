@@ -45,7 +45,7 @@
             if (cancel)
             {
                 cancel = false;
-                SetActive(false);
+                eventCenter.CloseMenuUI();
                 return;
             }
 

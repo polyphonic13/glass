@@ -68,6 +68,7 @@ namespace Polyworks
         private bool isLevel = false;
         private bool isUIOpen = false;
         private bool isInventoryOpen = false;
+        private bool isMenuOpen = false;
         private bool isInspectingItem = false;
         #endregion
 
@@ -84,11 +85,6 @@ namespace Polyworks
             itemInProximity = (isNear) ? item : null;
         }
 
-        public void OnCloseInventoryUI()
-        {
-            closeInventory();
-        }
-
         public void OnInspectItem(bool isInspecting, string itemName)
         {
             isInspectingItem = isInspecting;
@@ -102,7 +98,6 @@ namespace Polyworks
         public void OnContextChange(InputContext context, string param)
         {
             // Debug.Log ("InputController/OnContextChange, context = " + context);
-
             if (context == InputContext.PLAYER)
             {
                 if (player)
@@ -121,6 +116,26 @@ namespace Polyworks
             }
             // Debug.Log ("  setting active object to puzzle inspector: " + puzzleInspector);
             activeInputTarget = puzzleInspector;
+        }
+
+        public void OnCloseMenuUI()
+        {
+            if (!isMenuOpen)
+            {
+                return;
+            }
+            isMenuOpen = false;
+            closeUI();
+        }
+
+        public void OnCloseInventoryUI()
+        {
+            if (!isInventoryOpen)
+            {
+                return;
+            }
+            isInventoryOpen = false;
+            closeUI();
         }
         #endregion
 
@@ -183,9 +198,10 @@ namespace Polyworks
             eventCenter = EventCenter.Instance;
             eventCenter.OnSetActiveInputTarget += OnSetActiveInputTarget;
             eventCenter.OnNearItem += OnNearItem;
-            eventCenter.OnCloseInventoryUI += OnCloseInventoryUI;
             eventCenter.OnInspectItem += OnInspectItem;
             eventCenter.OnContextChange += OnContextChange;
+            eventCenter.OnCloseMenuUI += OnCloseMenuUI;
+            eventCenter.OnCloseInventoryUI += OnCloseInventoryUI;
         }
 
         private void removeLevelEventListeners()
@@ -196,57 +212,37 @@ namespace Polyworks
             }
             eventCenter.OnSetActiveInputTarget += OnSetActiveInputTarget;
             eventCenter.OnNearItem -= OnNearItem;
-            eventCenter.OnCloseInventoryUI -= OnCloseInventoryUI;
             eventCenter.OnInspectItem -= OnInspectItem;
             eventCenter.OnContextChange -= OnContextChange;
+            eventCenter.OnCloseMenuUI -= OnCloseMenuUI;
+            eventCenter.OnCloseInventoryUI -= OnCloseInventoryUI;
         }
         #endregion
 
         #region private open / close ui
-        private void handleOpenMenuInput()
-        {
-            if (isInventoryOpen)
-            {
-                EventCenter.Instance.CloseInventoryUI();
-                openMenu();
-                return;
-            }
-            if (!isUIOpen)
-            {
-                openMenu();
-                return;
-            }
-            closeMenu();
-        }
-
-        private void handleOpenInventoryInput()
-        {
-            if (!isUIOpen)
-            {
-                openInventory();
-                return;
-            }
-            if (!isInventoryOpen)
-            {
-                closeMenu();
-                openInventory();
-                return;
-            }
-            EventCenter.Instance.CloseInventoryUI();
-        }
-
         private void openInventory()
         {
-            openUI();
-            isInventoryOpen = true;
+            Debug.Log("InputController/openInventory, isInventoryOpen = " + isInventoryOpen);
+            if (isInventoryOpen || isMenuOpen)
+            {
+                return;
+            }
+
             eventCenter.OpenInventoryUI();
+            isInventoryOpen = true;
+            openUI();
         }
 
         private void openMenu()
         {
-            openUI();
-            isInventoryOpen = false;
+            if (isMenuOpen || isInventoryOpen)
+            {
+                return;
+            }
+
             eventCenter.OpenMenuUI();
+            isMenuOpen = true;
+            openUI();
         }
 
         private void openUI()
@@ -257,16 +253,12 @@ namespace Polyworks
 
         private void closeInventory()
         {
-            isInventoryOpen = false;
-
             eventCenter.CloseInventoryUI();
-            closeUI();
         }
 
         private void closeMenu()
         {
             eventCenter.CloseMenuUI();
-            closeUI();
         }
 
         private void closeUI()
@@ -278,48 +270,6 @@ namespace Polyworks
         #endregion
 
         #region private update loop
-        // private void uiUpdate(UIController controller, float horizontal, float vertical)
-        // {
-        //     if (controller == null)
-        //     {
-        //         return;
-        //     }
-
-        //     controller.SetConfirm(input.buttons[CONFIRM_BUTTON]);
-        //     controller.SetCancel(input.buttons[CANCEL_BUTTON]);
-
-        //     if (input.buttons[UP_BUTTON])
-        //     {
-        //         controller.SetUp(true);
-        //         return;
-        //     }
-        //     if (input.buttons[DOWN_BUTTON])
-        //     {
-        //         controller.SetDown(true);
-        //         return;
-        //     }
-        //     if (input.buttons[LEFT_BUTTON])
-        //     {
-        //         controller.SetLeft(true);
-        //         return;
-        //     }
-        //     if (input.buttons[RIGHT_BUTTON])
-        //     {
-        //         controller.SetRight(true);
-        //         return;
-        //     }
-        // }
-
-        // private void inventoryUpdate(float horizontal, float vertical)
-        // {
-        //     uiUpdate(inventoryUI, horizontal, vertical);
-        // }
-
-        // private void menuUpdate(float horizontal, float vertical)
-        // {
-        //     uiUpdate(menuUI, horizontal, vertical);
-        // }
-
         private void itemInspectorUpdate(float horizontal, float vertical)
         {
             // Debug.Log("itemInspectorUpdate, itemInspector = " + itemInspector);
@@ -441,13 +391,13 @@ namespace Polyworks
 
             if (input.buttons[OPEN_MENU_BUTTON])
             {
-                handleOpenMenuInput();
+                openMenu();
                 return;
             }
 
             if (input.buttons[OPEN_INVENTORY_BUTTON])
             {
-                handleOpenInventoryInput();
+                openInventory();
                 return;
             }
 
