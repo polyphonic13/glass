@@ -29,41 +29,40 @@ namespace Polyworks
         #region members
         public InputObject input;
 
-        private static readonly string MENU_OBJECT = "menu_ui";
-        private static readonly string PLAYER_OBJECT = "player";
-        private static readonly string INVENTORY_OBJECT = "inventory_ui";
-        private static readonly string PUZZLE_OBJECT = "puzzle_inspector";
         // buttons and inputs
         private static readonly string MOVE_HORIZONTAL = "move_horizontal";
         private static readonly string MOVE_VERTICAL = "move_vertical";
-        private static readonly string CONFIRM_BUTTON = "confirm";
-        private static readonly string CANCEL_BUTTON = "cancel";
-        private static readonly string UP_BUTTON = "up";
-        private static readonly string DOWN_BUTTON = "down";
-        private static readonly string LEFT_BUTTON = "left";
-        private static readonly string RIGHT_BUTTON = "right";
-        private static readonly string ZOOM_IN_BUTTON = "zoom_in";
-        private static readonly string ZOOM_OUT_BUTTON = "zoom_out";
-        private static readonly string JUMP_BUTTON = "jump";
-        private static readonly string CLIMB_BUTTON = "climp";
-        private static readonly string CRAWL_BUTTON = "crawl";
-        private static readonly string DIVE_BUTTON = "dive";
-        private static readonly string ZOOM_VIEW_BUTTON = "zoom_view";
-        private static readonly string ACTUATE_BUTTON = "actuate";
-        private static readonly string FLASHLIGHT_BUTTON = "flashlight";
-        private static readonly string OPEN_MENU_BUTTON = "open_menu";
-        private static readonly string OPEN_INVENTORY_BUTTON = "open_inventory";
+        public static readonly string CONFIRM_BUTTON = "confirm";
+        public static readonly string CANCEL_BUTTON = "cancel";
+        public static readonly string UP_BUTTON = "up";
+        public static readonly string DOWN_BUTTON = "down";
+        public static readonly string LEFT_BUTTON = "left";
+        public static readonly string RIGHT_BUTTON = "right";
+        public static readonly string ZOOM_IN_BUTTON = "zoom_in";
+        public static readonly string ZOOM_OUT_BUTTON = "zoom_out";
+        public static readonly string JUMP_BUTTON = "jump";
+        public static readonly string CLIMB_BUTTON = "climp";
+        public static readonly string CRAWL_BUTTON = "crawl";
+        public static readonly string DIVE_BUTTON = "dive";
+        public static readonly string ZOOM_VIEW_BUTTON = "zoom_view";
+        public static readonly string ACTUATE_BUTTON = "actuate";
+        public static readonly string FLASHLIGHT_BUTTON = "flashlight";
+        public static readonly string OPEN_MENU_BUTTON = "open_menu";
+        public static readonly string OPEN_INVENTORY_BUTTON = "open_inventory";
+
+        private static readonly string MENU_OBJECT = "menu_ui";
+        private static readonly string INVENTORY_OBJECT = "inventory_ui";
+        private static readonly string PUZZLE_OBJECT = "puzzle_inspector";
+        private static readonly string PLAYER_OBJECT = "player";
 
         private Rewired.Player controls;
         private Player player;
         private CameraZoom cameraZoom;
-        private MenuUI menuUI;
-        private InventoryUI inventoryUI;
         private ItemInspector itemInspector;
         private PuzzleInspector puzzleInspector;
         private Item itemInProximity = null;
         private EventCenter eventCenter;
-        private IInputControllable activeObject = null;
+        private IInputControllable activeInputTarget = null;
         private List<string> buttonKeys;
         private bool isInitialized = false;
         private bool isLevel = false;
@@ -73,6 +72,12 @@ namespace Polyworks
         #endregion
 
         #region handlers
+        public void OnSetActiveInputTarget(string type, IInputControllable target)
+        {
+            Debug.Log("InputController/OnSetActiveInputTarget, target = " + target);
+            activeInputTarget = target;
+        }
+
         public void OnNearItem(Item item, bool isNear)
         {
             // Debug.Log ("InputController/OnNearItem, item = " + item.gameObject.name + ", isNear = " + isNear);
@@ -103,7 +108,7 @@ namespace Polyworks
                 if (player)
                 {
                     player.isActive = true;
-                    activeObject = player;
+                    activeInputTarget = player;
                 }
                 return;
             }
@@ -115,7 +120,7 @@ namespace Polyworks
                 return;
             }
             // Debug.Log ("  setting active object to puzzle inspector: " + puzzleInspector);
-            activeObject = puzzleInspector;
+            activeInputTarget = puzzleInspector;
         }
         #endregion
 
@@ -136,8 +141,6 @@ namespace Polyworks
 
             buttonKeys = new List<string>(input.buttons.Keys);
 
-            initMenu();
-
             isInitialized = true;
 
             if (!isLevel)
@@ -146,23 +149,12 @@ namespace Polyworks
             }
 
             initPlayer();
-            initInventory();
             initPuzzleInspector();
             addLevelEventListeners();
         }
         #endregion
 
         #region private init
-        private void initMenu()
-        {
-            GameObject menuObj = GameObject.Find(MENU_OBJECT);
-            if (menuObj == null)
-            {
-                return;
-            }
-            menuUI = menuObj.GetComponent<MenuUI>();
-        }
-
         private void initPlayer()
         {
             GameObject playerObj = GameObject.Find(PLAYER_OBJECT);
@@ -171,21 +163,10 @@ namespace Polyworks
                 return;
             }
             player = playerObj.GetComponent<Player>();
-            activeObject = player;
+            activeInputTarget = player;
             cameraZoom = playerObj.GetComponent<CameraZoom>();
         }
 
-        private void initInventory()
-        {
-            GameObject inventoryObj = GameObject.Find(INVENTORY_OBJECT);
-            itemInspector = ItemInspector.Instance;
-
-            if (inventoryObj == null)
-            {
-                return;
-            }
-            inventoryUI = inventoryObj.GetComponent<InventoryUI>();
-        }
 
         private void initPuzzleInspector()
         {
@@ -200,6 +181,7 @@ namespace Polyworks
         private void addLevelEventListeners()
         {
             eventCenter = EventCenter.Instance;
+            eventCenter.OnSetActiveInputTarget += OnSetActiveInputTarget;
             eventCenter.OnNearItem += OnNearItem;
             eventCenter.OnCloseInventoryUI += OnCloseInventoryUI;
             eventCenter.OnInspectItem += OnInspectItem;
@@ -208,6 +190,11 @@ namespace Polyworks
 
         private void removeLevelEventListeners()
         {
+            if (eventCenter == null)
+            {
+                return;
+            }
+            eventCenter.OnSetActiveInputTarget += OnSetActiveInputTarget;
             eventCenter.OnNearItem -= OnNearItem;
             eventCenter.OnCloseInventoryUI -= OnCloseInventoryUI;
             eventCenter.OnInspectItem -= OnInspectItem;
@@ -252,16 +239,14 @@ namespace Polyworks
         {
             openUI();
             isInventoryOpen = true;
-            inventoryUI.SetActive(true);
-            activeObject = inventoryUI;
+            eventCenter.OpenInventoryUI();
         }
 
         private void openMenu()
         {
             openUI();
             isInventoryOpen = false;
-            menuUI.SetActive(true);
-            activeObject = menuUI;
+            eventCenter.OpenMenuUI();
         }
 
         private void openUI()
@@ -273,13 +258,14 @@ namespace Polyworks
         private void closeInventory()
         {
             isInventoryOpen = false;
-            inventoryUI.SetActive(false);
+
+            eventCenter.CloseInventoryUI();
             closeUI();
         }
 
         private void closeMenu()
         {
-            menuUI.SetActive(false);
+            eventCenter.CloseMenuUI();
             closeUI();
         }
 
@@ -287,52 +273,52 @@ namespace Polyworks
         {
             isUIOpen = false;
             player.isActive = true;
-            activeObject = player;
+            activeInputTarget = player;
         }
         #endregion
 
         #region private update loop
-        private void uiUpdate(UIController controller, float horizontal, float vertical)
-        {
-            if (controller == null)
-            {
-                return;
-            }
+        // private void uiUpdate(UIController controller, float horizontal, float vertical)
+        // {
+        //     if (controller == null)
+        //     {
+        //         return;
+        //     }
 
-            controller.SetConfirm(input.buttons[CONFIRM_BUTTON]);
-            controller.SetCancel(input.buttons[CANCEL_BUTTON]);
+        //     controller.SetConfirm(input.buttons[CONFIRM_BUTTON]);
+        //     controller.SetCancel(input.buttons[CANCEL_BUTTON]);
 
-            if (input.buttons[UP_BUTTON])
-            {
-                controller.SetUp(true);
-                return;
-            }
-            if (input.buttons[DOWN_BUTTON])
-            {
-                controller.SetDown(true);
-                return;
-            }
-            if (input.buttons[LEFT_BUTTON])
-            {
-                controller.SetLeft(true);
-                return;
-            }
-            if (input.buttons[RIGHT_BUTTON])
-            {
-                controller.SetRight(true);
-                return;
-            }
-        }
+        //     if (input.buttons[UP_BUTTON])
+        //     {
+        //         controller.SetUp(true);
+        //         return;
+        //     }
+        //     if (input.buttons[DOWN_BUTTON])
+        //     {
+        //         controller.SetDown(true);
+        //         return;
+        //     }
+        //     if (input.buttons[LEFT_BUTTON])
+        //     {
+        //         controller.SetLeft(true);
+        //         return;
+        //     }
+        //     if (input.buttons[RIGHT_BUTTON])
+        //     {
+        //         controller.SetRight(true);
+        //         return;
+        //     }
+        // }
 
-        private void inventoryUpdate(float horizontal, float vertical)
-        {
-            uiUpdate(inventoryUI, horizontal, vertical);
-        }
+        // private void inventoryUpdate(float horizontal, float vertical)
+        // {
+        //     uiUpdate(inventoryUI, horizontal, vertical);
+        // }
 
-        private void menuUpdate(float horizontal, float vertical)
-        {
-            uiUpdate(menuUI, horizontal, vertical);
-        }
+        // private void menuUpdate(float horizontal, float vertical)
+        // {
+        //     uiUpdate(menuUI, horizontal, vertical);
+        // }
 
         private void itemInspectorUpdate(float horizontal, float vertical)
         {
@@ -400,10 +386,11 @@ namespace Polyworks
                 itemInProximity.Actuate();
             }
 
-            if (input.buttons[FLASHLIGHT_BUTTON])
+            if (!input.buttons[FLASHLIGHT_BUTTON])
             {
-                EventCenter.Instance.EnableFlashlight();
+                return;
             }
+            EventCenter.Instance.EnableFlashlight();
         }
         #endregion
 
@@ -440,12 +427,12 @@ namespace Polyworks
                 input.buttons[key] = controls.GetButtonDown(key);
             }
 
-            if (activeObject != null)
+            if (activeInputTarget != null)
             {
-                activeObject.SetInput(input);
+                activeInputTarget.SetInput(input);
             }
 
-            if (activeObject == puzzleInspector as IInputControllable)
+            if (activeInputTarget == puzzleInspector as IInputControllable)
             {
                 // let puzzle inspector handle input
                 itemsUpdate();
@@ -470,20 +457,12 @@ namespace Polyworks
                 return;
             }
 
-            if (isLevel && !isUIOpen)
+            if (!isLevel || isUIOpen)
             {
-                playerUpdate(input.horizontal, input.vertical);
-                itemsUpdate();
                 return;
             }
-
-            if (isInventoryOpen)
-            {
-                inventoryUpdate(input.horizontal, input.vertical);
-                return;
-            }
-
-            menuUpdate(input.horizontal, input.vertical);
+            playerUpdate(input.horizontal, input.vertical);
+            itemsUpdate();
         }
 
         private void OnDestroy()

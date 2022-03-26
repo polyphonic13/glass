@@ -1,83 +1,109 @@
-﻿using UnityEngine;
-
-namespace Polyworks
+﻿namespace Polyworks
 {
+    using UnityEngine;
     public class UIController : MonoBehaviour, IInputControllable
     {
         public bool isActiveOnAwake = false;
 
-        public Canvas canvas;
+        protected float horizontal { get; set; }
+        protected float vertical { get; set; }
 
-        public float horizontal { get; set; }
-        public float vertical { get; set; }
+        protected bool up { get; set; }
+        protected bool down { get; set; }
+        protected bool left { get; set; }
+        protected bool right { get; set; }
 
-        public bool up { get; set; }
-        public bool down { get; set; }
-        public bool left { get; set; }
-        public bool right { get; set; }
+        protected bool confirm { get; set; }
+        protected bool cancel { get; set; }
+        protected bool isActive;
+        protected bool IsLogOn;
 
-        public bool confirm { get; set; }
-        public bool cancel { get; set; }
-
-        #region public methods
-        public virtual void Init()
-        {
-            canvas.enabled = isActiveOnAwake;
-        }
-
+        protected EventCenter eventCenter;
         public void SetInput(InputObject input)
         {
-
+            SetHorizontal(input.horizontal);
+            SetVertical(input.vertical);
+            SetUp(input.buttons[InputController.UP_BUTTON]);
+            SetDown(input.buttons[InputController.DOWN_BUTTON]);
+            SetLeft(input.buttons[InputController.LEFT_BUTTON]);
+            SetRight(input.buttons[InputController.RIGHT_BUTTON]);
+            SetConfirm(input.buttons[InputController.CONFIRM_BUTTON]);
+            SetCancel(input.buttons[InputController.CANCEL_BUTTON]);
         }
 
-        public virtual void SetActive(bool isActive)
+        #region protected methods
+        protected virtual void SetActive(bool isActive)
         {
-            canvas.enabled = isActive;
+            gameObject.SetActive(isActive);
+            this.isActive = isActive;
+
+            if (!isActive)
+            {
+                return;
+            }
+
+            eventCenter.SetActiveInputTarget("set_active_input_object", this);
         }
 
-        public void SetHorizontal(float h)
+
+        protected void SetHorizontal(float h)
         {
             horizontal = h;
         }
 
-        public void SetVertical(float v)
+        protected void SetVertical(float v)
         {
             vertical = v;
         }
 
-        public void SetUp(bool isPressed)
+        protected void SetUp(bool isPressed)
         {
             up = isPressed;
         }
 
-        public void SetDown(bool isPressed)
+        protected void SetDown(bool isPressed)
         {
             down = isPressed;
         }
 
-        public void SetLeft(bool isPressed)
+        protected void SetLeft(bool isPressed)
         {
             left = isPressed;
         }
 
-        public void SetRight(bool isPressed)
+        protected void SetRight(bool isPressed)
         {
             right = isPressed;
         }
 
-        public void SetConfirm(bool isPressed)
+        protected void SetConfirm(bool isPressed)
         {
             confirm = isPressed;
         }
 
-        public void SetCancel(bool isPressed)
+        protected void SetCancel(bool isPressed)
         {
-            // Debug.Log ("UIController[" + this.name + "]/SetCancel, isPressed = " + isPressed);
             cancel = isPressed;
         }
         #endregion
 
-    }
+        #region protected methods
+        protected virtual void Init()
+        {
+            gameObject.SetActive(isActiveOnAwake);
 
+            eventCenter = EventCenter.Instance;
+        }
+
+        protected void Log(string message)
+        {
+            if (!IsLogOn)
+            {
+                return;
+            }
+            Debug.Log(message);
+        }
+        #endregion
+    }
 }
 

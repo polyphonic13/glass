@@ -1,43 +1,96 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
+﻿namespace Polyworks
+{
+    using UnityEngine.UI;
+    public class MenuUI : UIController
+    {
+        public Button[] buttons;
 
-namespace Polyworks {
-	public class MenuUI : UIController
-	{
-		public Button[] buttons;
+        private int _btnIndex = 0;
 
-		private int _btnIndex = 0;
+        #region public event handlers
+        public void OnOpenMenuUI()
+        {
+            SetActive(true);
+        }
 
-		private void Awake() {
-			base.Init ();
-		}
+        public void OnCloseMenuUI()
+        {
+            SetActive(false);
+        }
+        #endregion
 
-		private void FixedUpdate() {
-//			Debug.Log("MenuUI/FixedUpdate, canvas.enabled = " + canvas.enabled);
-			if (canvas.enabled) {
-				if (cancel) {
-					cancel = false;
-					SetActive (false);
-				} else if(down) {
-					if(_btnIndex < buttons.Length - 1) {
-						_btnIndex++;
-					} else {
-						_btnIndex = 0;
-					}
-				} else if(up) {
-					if(_btnIndex > 0) {
-						_btnIndex--;
-					} else {
-						_btnIndex = buttons.Length - 1;
-					}
-				} else if(confirm) {
-					Debug.Log("confirm");
-					buttons[_btnIndex].onClick.Invoke();
-				}
+        #region protected methods
+        protected override void Init()
+        {
+            base.Init();
+            eventCenter.OnOpenMenuUI += OnOpenMenuUI;
+            eventCenter.OnCloseMenuUI += OnCloseMenuUI;
+        }
+        #endregion
 
-			}
-		}
-	}
+        #region unity methods
+        private void Awake()
+        {
+            Init();
+        }
+
+        private void FixedUpdate()
+        {
+            if (!isActive)
+            {
+                return;
+            }
+
+            // Debug.Log("MenuUI/FixedUpdate, canvas.enabled = " + canvas.enabled);
+            if (cancel)
+            {
+                cancel = false;
+                SetActive(false);
+                return;
+            }
+
+            if (down)
+            {
+                if (_btnIndex < buttons.Length - 1)
+                {
+                    _btnIndex++;
+                    return;
+                }
+
+                _btnIndex = 0;
+                return;
+            }
+
+            if (up)
+            {
+                if (_btnIndex > 0)
+                {
+                    _btnIndex--;
+                    return;
+                }
+                _btnIndex = buttons.Length - 1;
+                return;
+            }
+
+            if (!confirm)
+            {
+                return;
+            }
+            Log("confirm");
+            buttons[_btnIndex].onClick.Invoke();
+        }
+
+        private void OnDestroy()
+        {
+            if (eventCenter == null)
+            {
+                return;
+            }
+            eventCenter.OnOpenMenuUI -= OnOpenMenuUI;
+            eventCenter.OnCloseMenuUI -= OnCloseMenuUI;
+        }
+        #endregion
+    }
 }
 
 

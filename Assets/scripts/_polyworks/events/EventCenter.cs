@@ -9,10 +9,12 @@
         public event SceneChangeHandler OnContinueSceneChange;
         public event SceneChangeHandler OnCompleteSceneChange;
 
-        public delegate void EventHandler<T>(string name, T value);
-        public event EventHandler<bool> OnBoolEvent;
-        public event EventHandler<int> OnIntEvent;
-        public event EventHandler<string> OnStringEvent;
+        public delegate void EventHandler();
+
+        public delegate void ParamEventHandler<T>(string name, T value);
+        public event ParamEventHandler<bool> OnBoolEvent;
+        public event ParamEventHandler<int> OnIntEvent;
+        public event ParamEventHandler<string> OnStringEvent;
 
         public delegate void DestroyEventHandler(string target);
         public event DestroyEventHandler OnDestroyEvent;
@@ -61,12 +63,6 @@
 
         public delegate void InspectItemHandler(bool isInspecting, string item);
         public event InspectItemHandler OnInspectItem;
-
-        public delegate void CloseMenuHandler();
-        public event CloseMenuHandler OnCloseMenuUI;
-
-        public delegate void CloseInventoryHandler();
-        public event CloseInventoryHandler OnCloseInventoryUI;
 
         public delegate void FlashlightCollectHandler();
         public event FlashlightCollectHandler OnCollectFlashlight;
@@ -269,20 +265,55 @@
             }
         }
 
+        public event ParamEventHandler<IInputControllable> OnSetActiveInputTarget;
+        public void SetActiveInputTarget(string type, IInputControllable activeObject)
+        {
+            if (OnSetActiveInputTarget == null)
+            {
+                return;
+            }
+            OnSetActiveInputTarget(type, activeObject);
+        }
+
+        public event EventHandler OnOpenMenuUI;
+        public void OpenMenuUI()
+        {
+            if (OnOpenMenuUI == null)
+            {
+                return;
+            }
+            OnOpenMenuUI();
+        }
+
+        public event EventHandler OnCloseMenuUI;
         public void CloseMenuUI()
         {
-            if (OnCloseMenuUI != null)
+            if (OnCloseMenuUI == null)
             {
-                OnCloseMenuUI();
+                return;
             }
+            OnCloseMenuUI();
         }
+
+        public event EventHandler OnOpenInventoryUI;
+        public void OpenInventoryUI()
+        {
+            if (OnOpenInventoryUI == null)
+            {
+                return;
+            }
+            OnOpenInventoryUI();
+        }
+
+        public event EventHandler OnCloseInventoryUI;
 
         public void CloseInventoryUI()
         {
-            if (OnCloseInventoryUI != null)
+            if (OnCloseInventoryUI == null)
             {
-                OnCloseInventoryUI();
+                return;
             }
+            OnCloseInventoryUI();
         }
 
         public void CollectFlashight()
@@ -311,7 +342,7 @@
             OnContextChange(context, param);
         }
 
-        public event EventHandler<string> OnPlayAnimation;
+        public event ParamEventHandler<string> OnPlayAnimation;
         public void TriggerPlayAnimation(string type, string clipName)
         {
             if (OnPlayAnimation == null)

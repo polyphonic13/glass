@@ -63,6 +63,11 @@
             resetItems();
         }
 
+        public void OnOpenInventoryUI()
+        {
+            base.SetActive(true);
+        }
+
         public void OnCloseInventoryUI()
         {
             // Debug.Log("InventoryUI/OnCloseInventoryUI");
@@ -77,18 +82,18 @@
         #endregion
 
         #region public methods
-        public override void Init()
+        protected override void Init()
         {
             base.Init();
+
+            eventCenter.OnOpenInventoryUI += OnOpenInventoryUI;
+            eventCenter.OnCloseInventoryUI += OnCloseInventoryUI;
+            eventCenter.OnInventoryAdded += OnInventoryAdded;
+            eventCenter.OnInventoryRemoved += OnInventoryRemoved;
+            eventCenter.OnInspectItem += OnInspectItem;
+
             itemIndex = -1;
-
             itemHolderHeight = ItemScrollRect.content.sizeDelta.y;
-
-            EventCenter ec = EventCenter.Instance;
-            ec.OnInventoryAdded += OnInventoryAdded;
-            ec.OnInventoryRemoved += OnInventoryRemoved;
-            ec.OnInspectItem += OnInspectItem;
-            ec.OnCloseInventoryUI += OnCloseInventoryUI;
         }
 
         public void InitInventory(Inventory inventory)
@@ -97,7 +102,7 @@
             resetItems();
         }
 
-        public override void SetActive(bool isActive)
+        protected override void SetActive(bool isActive)
         {
             base.SetActive(isActive);
 
@@ -449,6 +454,8 @@
             currentRow = 0;
             currentItemIndex = 0;
             previousItemIndex = 0;
+
+            base.SetActive(false);
         }
         #endregion
 
@@ -460,7 +467,7 @@
 
         private void FixedUpdate()
         {
-            if (!canvas.enabled)
+            if (!isActive)
             {
                 return;
             }
@@ -471,16 +478,15 @@
 
         private void OnDestroy()
         {
-            // Debug.Log ("Inventory/OnDestroy");
-            EventCenter ec = EventCenter.Instance;
-            if (ec == null)
+            if (eventCenter == null)
             {
                 return;
             }
-            ec.OnInventoryAdded -= OnInventoryAdded;
-            ec.OnInventoryRemoved -= OnInventoryRemoved;
-            ec.OnInspectItem -= OnInspectItem;
-            ec.OnCloseInventoryUI -= OnCloseInventoryUI;
+            eventCenter.OnOpenInventoryUI += OnOpenInventoryUI;
+            eventCenter.OnCloseInventoryUI -= OnCloseInventoryUI;
+            eventCenter.OnInventoryAdded -= OnInventoryAdded;
+            eventCenter.OnInventoryRemoved -= OnInventoryRemoved;
+            eventCenter.OnInspectItem -= OnInspectItem;
         }
         #endregion
     }

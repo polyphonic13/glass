@@ -1,8 +1,7 @@
-﻿using UnityEngine;
-using System.Collections;
-
-namespace Polyworks
+﻿namespace Polyworks
 {
+    using UnityEngine;
+    using System.Collections;
 
     public class Inventory : MonoBehaviour
     {
@@ -10,7 +9,6 @@ namespace Polyworks
 
         private Hashtable _items;
         private EventCenter _eventCenter;
-
         private bool _isPlayerInventory;
 
         public void Init(Hashtable items = null, bool isPlayerInventory = false)
