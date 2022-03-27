@@ -1,48 +1,44 @@
 ﻿namespace Polyworks
 {
-	using System.Collections;
-	using System.Collections.Generic;
-	using UnityEngine;
+    public class NotificationUIController : Singleton<NotificationUIController>
+    {
 
-	public class NotificationUIController : Singleton<NotificationUIController>
-	{
+        public NotificationUI[] notificationUIs;
 
-		public NotificationUI[] notificationUIs;
+        public float fadeTime = 2f;
+        public float fadeSpeed = 0.03f;
 
-		public float fadeTime = 2f;
-		public float fadeSpeed = 0.03f;
+        public void OnAddNote(string message)
+        {
+            for (int i = 0; i < notificationUIs.Length; i++)
+            {
+                if (!notificationUIs[i].isDisplayingNote)
+                {
+                    notificationUIs[i].AddNote(message);
+                    break;
+                }
+            }
+        }
 
-		public void OnAddNote(string message) 
-		{
-			for(int i = 0; i < notificationUIs.Length; i++) 
-			{
-				if(!notificationUIs[i].isDisplayingNote)
-				{
-					notificationUIs[i].AddNote(message);
-					break;
-				}
-			}
-		}
+        public void Init()
+        {
+            EventCenter ec = EventCenter.Instance;
+            ec.OnAddNote += OnAddNote;
 
-		public void Init() 
-		{
-			EventCenter ec = EventCenter.Instance; 
-			ec.OnAddNote += OnAddNote;
-			
-			for(int i = 0; i < notificationUIs.Length; i++) 
-			{
-				notificationUIs[i].Init(fadeTime, fadeSpeed);
-			}
-		}
+            for (int i = 0; i < notificationUIs.Length; i++)
+            {
+                notificationUIs[i].Init(fadeTime, fadeSpeed);
+            }
+        }
 
-		private void OnDestroy() 
-		{
-			EventCenter ec = EventCenter.Instance; 
+        private void OnDestroy()
+        {
+            EventCenter ec = EventCenter.Instance;
 
-			if(ec != null) 
-			{
-				ec.OnAddNote += OnAddNote;
-			}
-		}
-	}
+            if (ec != null)
+            {
+                ec.OnAddNote += OnAddNote;
+            }
+        }
+    }
 }

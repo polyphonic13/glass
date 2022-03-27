@@ -30,6 +30,7 @@
         private int availableControlButtons;
 
         private string initName = "";
+        private bool isInitialized = false;
 
         public void Select()
         {
@@ -119,7 +120,6 @@
                 return;
             }
 
-            // itemThumbnail.gameObject.SetActive(true);
             itemName.gameObject.SetActive(false);
             nameBg.SetActive(false);
             itemBg.color = inactiveColor;
@@ -213,17 +213,27 @@
             bg.color = bgColor;
         }
 
-
-        private void Awake()
+        private void init()
         {
-            itemBg = GetComponent<Image>();
+            if (isInitialized)
+            {
+                return;
+            }
 
+            isInitialized = true;
+            itemBg = GetComponent<Image>();
+            Debug.Log("InventoryItemUI[ " + this.nameBg + "/Awake, itemBg = " + itemBg);
             ButtonGroup.alpha = 0;
 
             SetFocus(false);
             SetThumbnail(null);
 
             availableControlButtons = ButtonLabels.Length;
+        }
+
+        private void Awake()
+        {
+            init();
         }
     }
 }

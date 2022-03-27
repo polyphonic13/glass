@@ -3,22 +3,22 @@
     using UnityEngine;
     public class UIController : MonoBehaviour, IInputControllable
     {
-        public bool isActiveOnAwake = false;
-
-        protected float horizontal { get; set; }
-        protected float vertical { get; set; }
-
-        protected bool up { get; set; }
-        protected bool down { get; set; }
-        protected bool left { get; set; }
-        protected bool right { get; set; }
-
-        protected bool confirm { get; set; }
-        protected bool cancel { get; set; }
-        protected bool isActive;
-        protected bool IsLogOn;
+        public Vector3 ActivePosition = new Vector3(0, 0, 0);
+        public Vector3 InactivePosition = new Vector3(500, 0, 0);
+        public bool IsActiveOnAwake = false;
+        public bool IsLogOn;
 
         protected EventCenter eventCenter;
+        protected float horizontal;
+        protected float vertical;
+        protected bool up;
+        protected bool down;
+        protected bool left;
+        protected bool right;
+        protected bool confirm;
+        protected bool cancel;
+        protected bool isActive;
+
         public void SetInput(InputObject input)
         {
             SetHorizontal(input.horizontal);
@@ -34,7 +34,9 @@
         #region protected methods
         protected virtual void SetActive(bool isActive)
         {
-            gameObject.SetActive(isActive);
+            Vector3 position = (isActive) ? ActivePosition : InactivePosition;
+            gameObject.transform.localPosition = new Vector3(position.x, position.y, position.z);
+
             this.isActive = isActive;
 
             if (!isActive)
@@ -90,9 +92,9 @@
         #region protected methods
         protected virtual void Init()
         {
-            gameObject.SetActive(isActiveOnAwake);
-
             eventCenter = EventCenter.Instance;
+
+            SetActive(IsActiveOnAwake);
         }
 
         protected void Log(string message)

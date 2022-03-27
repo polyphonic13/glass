@@ -22,7 +22,14 @@ namespace Polyworks
     }
 
     [Serializable]
-    public enum InputContext { PLAYER, MENU, INVENTORY, INSPECTOR, PUZZLE };
+    public enum InputContext
+    {
+        PLAYER,
+        MENU,
+        INVENTORY,
+        INSPECTOR,
+        PUZZLE
+    };
 
     public class InputController : MonoBehaviour
     {

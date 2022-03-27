@@ -31,11 +31,11 @@
         public delegate void InventoryRemover(string item, int count);
         public event InventoryRemover OnInventoryRemoved;
 
-        public delegate void NoteAdder(string message);
-        public event NoteAdder OnAddNote;
+        public delegate void AddNoteHandler(string message);
+        public event AddNoteHandler OnAddNote;
 
-        public delegate void NoteHider();
-        public event NoteHider OnRemoveNote;
+        public delegate void RemoveNoteHandler();
+        public event RemoveNoteHandler OnRemoveNote;
 
         public delegate void SceneInitializer(string scene);
         public event SceneInitializer OnSceneInitialized;
@@ -70,8 +70,7 @@
         public delegate void FlashlightEnableHandler();
         public event FlashlightEnableHandler OnEnableFlashlight;
 
-        public delegate void ContextChanger(InputContext context, string param);
-        public event ContextChanger OnContextChange;
+        public delegate void ContextChangeHandler(InputContext context, string param = "");
 
         #endregion
 
@@ -275,6 +274,7 @@
             OnSetActiveInputTarget(type, activeObject);
         }
 
+        public event ParamEventHandler<InputContext> Onll;
         public event EventHandler OnOpenMenuUI;
         public void OpenMenuUI()
         {
@@ -333,6 +333,7 @@
             }
         }
 
+        public event ContextChangeHandler OnContextChange;
         public void ChangeContext(InputContext context, string param)
         {
             if (OnContextChange == null)
