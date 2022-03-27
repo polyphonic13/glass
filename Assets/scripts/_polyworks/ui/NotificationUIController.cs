@@ -1,5 +1,7 @@
 ﻿namespace Polyworks
 {
+    using UnityEngine;
+
     public class NotificationUIController : Singleton<NotificationUIController>
     {
 
@@ -12,7 +14,7 @@
         {
             for (int i = 0; i < notificationUIs.Length; i++)
             {
-                if (!notificationUIs[i].isDisplayingNote)
+                if (!notificationUIs[i].IsDisplayingNote)
                 {
                     notificationUIs[i].AddNote(message);
                     break;
@@ -25,9 +27,9 @@
             EventCenter ec = EventCenter.Instance;
             ec.OnAddNote += OnAddNote;
 
-            for (int i = 0; i < notificationUIs.Length; i++)
+            foreach (NotificationUI ui in notificationUIs)
             {
-                notificationUIs[i].Init(fadeTime, fadeSpeed);
+                ui.Init(fadeTime, fadeSpeed);
             }
         }
 

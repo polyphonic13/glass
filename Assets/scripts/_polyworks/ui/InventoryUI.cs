@@ -103,7 +103,7 @@
 
         protected override void SetActive(bool isActive)
         {
-            Debug.Log("InventoryUI/SetActive, isActive = " + isActive);
+            // Debug.Log("InventoryUI/SetActive, isActive = " + isActive);
             base.SetActive(isActive);
 
             if (itemIndex == -1 || !isActive)
@@ -441,7 +441,7 @@
         #region private methods
         private void reset()
         {
-            Debug.Log("InventoryUI/reset");
+            // Debug.Log("InventoryUI/reset");
             if (selectedInventoryItemUI != null)
             {
                 selectedInventoryItemUI.Deselect();

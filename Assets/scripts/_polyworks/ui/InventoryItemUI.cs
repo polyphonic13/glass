@@ -222,7 +222,7 @@
 
             isInitialized = true;
             itemBg = GetComponent<Image>();
-            Debug.Log("InventoryItemUI[ " + this.nameBg + "/Awake, itemBg = " + itemBg);
+            // Debug.Log("InventoryItemUI[ " + this.nameBg + "/Awake, itemBg = " + itemBg);
             ButtonGroup.alpha = 0;
 
             SetFocus(false);
