@@ -4,68 +4,69 @@ using Polyworks;
 
 public class ItemInspector : MonoBehaviour, IInputControllable
 {
+    #region public members
+    public static int INSPECTOR_LAYER = 15;
 
-    public const int INSPECTOR_LAYER = 15;
 
-    public float distance = 2.0f;
+    public float Distance = 2.0f;
+    public float DistanceMin = .5f;
+    public float DistanceMax = 15f;
+    public float XSpeed = 150.0f;
+    public float YSpeed = 150.0f;
+    public float RotationMultiplier = 0.01f;
+    public float YMinLimit = -361f;
+    public float YMaxLimit = 361f;
+    public float SmoothTime = 2f;
+    public float ZoomAmount = 15f;
+    public float MaxZoom = 4f;
+    public float MinZoom = -4f;
+    #endregion
 
-    public float xSpeed = 150.0f;
-    public float ySpeed = 150.0f;
-    public float rotationMultiplier = 0.01f;
+    #region private members
+    private EventCenter eventCenter;
+    private float horizontal = 0;
+    private float vertical = 0;
 
-    public float yMinLimit = -361f;
-    public float yMaxLimit = 361f;
+    private bool cancel = false;
+    private bool zoomIn = false;
+    private bool zoomOut = false;
 
-    public float distanceMin = .5f;
-    public float distanceMax = 15f;
+    private float rotationYAxis = 0.0f;
+    private float rotationXAxis = 0.0f;
 
-    public float smoothTime = 2f;
+    private float velocityX = 0.0f;
+    private float velocityY = 0.0f;
 
-    public float zoomAmount = 15f;
-    public float maxZoom = 4f;
-    public float minZoom = -4f;
+    private Transform item;
+    private Transform previousParent;
+    private Vector3 previousPosition;
+    private int previousLayer;
 
-    private float _horizontal = 0;
-    private float _vertical = 0;
+    private Camera uiCamera;
+    private Camera camera;
+    private float initialFieldOfView;
+    private Quaternion initialRotation;
+    private Vector3 initialPosition;
 
-    private bool _cancel = false;
-    private bool _zoomIn = false;
-    private bool _zoomOut = false;
+    private int currentZoom;
 
-    private float _rotationYAxis = 0.0f;
-    private float _rotationXAxis = 0.0f;
+    private Text itemName;
+    private Text itemDescription;
+    #endregion
 
-    private float _velocityX = 0.0f;
-    private float _velocityY = 0.0f;
+    private static ItemInspector instance;
 
-    private Transform _item;
-    private Transform _previousParent;
-    private Vector3 _previousPosition;
-    private int _previousLayer;
-
-    private Camera _uiCamera;
-    private Camera _camera;
-    private float _initialFieldOfView;
-    private Quaternion _initialRotation;
-    private Vector3 _initialPosition;
-
-    private int _currentZoom;
-
-    private Text _itemName;
-    private Text _itemDescription;
-
-    private static ItemInspector _instance;
     private ItemInspector() { }
 
     public static ItemInspector Instance
     {
         get
         {
-            if (_instance == null)
+            if (instance == null)
             {
-                _instance = GameObject.FindObjectOfType(typeof(ItemInspector)) as ItemInspector;
+                instance = GameObject.FindObjectOfType(typeof(ItemInspector)) as ItemInspector;
             }
-            return _instance;
+            return instance;
         }
     }
 
@@ -88,160 +89,168 @@ public class ItemInspector : MonoBehaviour, IInputControllable
 
     public void SetHorizontal(float horizontal)
     {
-        _horizontal = horizontal;
+        this.horizontal = horizontal;
     }
 
     public void SetVertical(float vertical)
     {
-        _vertical = vertical;
+        this.vertical = vertical;
     }
 
     public void SetZoomIn(bool zoomIn)
     {
-        _zoomIn = zoomIn;
+        this.zoomIn = zoomIn;
     }
 
     public void SetZoomOut(bool zoomOut)
     {
-        _zoomOut = zoomOut;
+        this.zoomOut = zoomOut;
     }
 
     public void SetCancel(bool cancel)
     {
-        _cancel = cancel;
+        this.cancel = cancel;
     }
 
     public void AddTarget(Transform item, string itemName, string itemDescription)
     {
-        _item = item;
-        // _item.parent = transform.parent;
+        this.item = item;
+        // item.parent = transform.parent;
 
-        Utilities.Instance.ChangeLayers(_item.gameObject, INSPECTOR_LAYER);
+        Utilities.Instance.ChangeLayers(item.gameObject, INSPECTOR_LAYER);
 
-        Vector3 position = new Vector3(transform.position.x + distance, transform.position.y, transform.position.z);
-        _item.transform.position = position;
-        _itemName.text = itemName;
-        _itemDescription.text = itemDescription;
-        _uiCamera.enabled = true;
-        _camera.enabled = true;
+        Vector3 position = new Vector3(transform.position.x + Distance, transform.position.y, transform.position.z);
+        item.transform.position = position;
+        itemName.text = itemName;
+        itemDescription.text = itemDescription;
+        uiCamera.enabled = true;
+        camera.enabled = true;
 
         ItemInspectionScale[] entries = Game.Instance.GetItemInspectionScales();
         for (int i = 0; i < entries.Length; i++)
         {
 
-            if (entries[i].name == _item.name)
+            if (entries[i].name == item.name)
             {
                 Vector3 itemScale = new Vector3(entries[i].scale.x, entries[i].scale.y, entries[i].scale.z);
-                _item.transform.localScale = itemScale;
+                item.transform.localScale = itemScale;
             }
         }
     }
 
     private void removeTargetAndReset()
     {
-        _cancel = false;
+        cancel = false;
 
-        _item.parent = _previousParent;
-        _item.position = _previousPosition;
+        item.parent = previousParent;
+        item.position = previousPosition;
 
-        Utilities.Instance.ChangeLayers(_item.gameObject, _previousLayer);
+        Utilities.Instance.ChangeLayers(item.gameObject, previousLayer);
 
-        _item = null;
-        _camera.enabled = false;
-        _camera.fieldOfView = _initialFieldOfView;
-        _currentZoom = 0;
+        item = null;
+        camera.enabled = false;
+        camera.fieldOfView = initialFieldOfView;
+        currentZoom = 0;
 
-        _uiCamera.enabled = false;
-        _itemName.text = "";
-        _itemDescription.text = "";
+        uiCamera.enabled = false;
+        itemName.text = "";
+        itemDescription.text = "";
 
-        _rotationYAxis = 0.0f;
-        _rotationXAxis = 0.0f;
+        rotationYAxis = 0.0f;
+        rotationXAxis = 0.0f;
 
-        _velocityX = 0.0f;
-        _velocityY = 0.0f;
+        velocityX = 0.0f;
+        velocityY = 0.0f;
 
-        transform.position = _initialPosition;
-        transform.rotation = _initialRotation;
+        transform.position = initialPosition;
+        transform.rotation = initialRotation;
     }
 
     void Awake()
     {
-        _camera = gameObject.GetComponent<Camera>();
-        _camera.enabled = false;
-        _initialFieldOfView = _camera.fieldOfView;
-        _initialRotation = transform.rotation;
-        _initialPosition = transform.position;
+        initialFieldOfView = camera.fieldOfView;
+        initialRotation = transform.rotation;
+        initialPosition = transform.position;
 
-        Transform uiCam = transform.parent.transform.Find("item_inspector_ui_camera");
-        _uiCamera = uiCam.GetComponent<Camera>();
-        _uiCamera.enabled = false;
-        _itemName = uiCam.transform.Find("inspector_ui/text_name").GetComponent<Text>();
-        _itemName.text = "";
-        _itemDescription = uiCam.transform.Find("inspector_ui/text_description").GetComponent<Text>();
-        _itemDescription.text = "";
+        Transform uiCam = transform.parent.transform.Find("item_inspector_uicamera");
+        uiCamera = uiCam.GetComponent<Camera>();
+        uiCamera.enabled = false;
+        itemName = uiCam.transform.Find("inspector_ui/text_name").GetComponent<Text>();
+        itemName.text = "";
+        itemDescription = uiCam.transform.Find("inspector_ui/text_description").GetComponent<Text>();
+        itemDescription.text = "";
 
-        EventCenter.Instance.OnInspectItem += OnInspectItem;
+        eventCenter = EventCenter.Instance;
+        eventCenter.OnInspectItem += OnInspectItem;
     }
 
     void LateUpdate()
     {
         // based on: http://answers.unity3d.com/questions/463704/smooth-orbit-round-object-with-adjustable-orbit-ra.html
-        if (_item == null)
+        if (item == null)
         {
             return;
         }
 
-        // Debug.Log("LateUpdate, horizontal = " + _horizontal + ", vertical = " + _vertical);
-        if (_cancel)
+        // Debug.Log("LateUpdate, horizontal = " + horizontal + ", vertical = " + vertical);
+        if (cancel)
         {
-            EventCenter.Instance.InspectItem(false, _item.name);
+            eventCenter.InspectItem(false, item.name);
             return;
         }
 
-        if (_zoomIn)
+        if (zoomIn)
         {
-            _zoomIn = false;
-            // Debug.Log("_zoomIn, _currentZoom = " + _currentZoom + ", maxZoom = " + maxZoom);
-            if (_currentZoom >= maxZoom)
+            zoomIn = false;
+            // Debug.Log("zoomIn, currentZoom = " + currentZoom + ", MaxZoom = " + MaxZoom);
+            if (currentZoom >= MaxZoom)
             {
                 return;
             }
-            _camera.fieldOfView += zoomAmount;
-            _currentZoom++;
+            camera.fieldOfView += ZoomAmount;
+            currentZoom++;
             return;
         }
 
-        if (_zoomOut)
+        if (zoomOut)
         {
-            _zoomOut = false;
-            // Debug.Log("_zoomOut, _currentZoom = " + _currentZoom + ", minZoom = " + minZoom);
-            if (_currentZoom <= minZoom)
+            zoomOut = false;
+            // Debug.Log("zoomOut, currentZoom = " + currentZoom + ", MinZoom = " + MinZoom);
+            if (currentZoom <= MinZoom)
             {
                 return;
             }
-            _camera.fieldOfView -= zoomAmount;
-            _currentZoom--;
+            camera.fieldOfView -= ZoomAmount;
+            currentZoom--;
             return;
         }
 
-        _velocityX = xSpeed * _horizontal * rotationMultiplier;
-        _velocityY = ySpeed * _vertical * rotationMultiplier;
+        velocityX = XSpeed * horizontal * RotationMultiplier;
+        velocityY = YSpeed * vertical * RotationMultiplier;
 
-        _rotationYAxis += _velocityX;
-        _rotationXAxis -= _velocityY;
-        _rotationXAxis = Polyworks.Utils.ClampAngle(_rotationXAxis, yMinLimit, yMaxLimit);
+        rotationYAxis += velocityX;
+        rotationXAxis -= velocityY;
+        rotationXAxis = Polyworks.Utils.ClampAngle(rotationXAxis, YMinLimit, YMaxLimit);
 
-        Quaternion toRotation = Quaternion.Euler(_rotationXAxis, _rotationYAxis, 0);
+        Quaternion toRotation = Quaternion.Euler(rotationXAxis, rotationYAxis, 0);
         Quaternion rotation = toRotation;
 
-        Vector3 negDistance = new Vector3(0.0f, 0.0f, -distance);
-        Vector3 position = rotation * negDistance + _item.position;
+        Vector3 negDistance = new Vector3(0.0f, 0.0f, -Distance);
+        Vector3 position = rotation * negDistance + item.position;
 
         transform.rotation = rotation;
         transform.position = position;
 
-        _velocityX = Mathf.Lerp(_velocityX, 0, Time.deltaTime * smoothTime);
-        _velocityY = Mathf.Lerp(_velocityY, 0, Time.deltaTime * smoothTime);
+        velocityX = Mathf.Lerp(velocityX, 0, Time.deltaTime * SmoothTime);
+        velocityY = Mathf.Lerp(velocityY, 0, Time.deltaTime * SmoothTime);
+    }
+
+    private void OnDestroy()
+    {
+        if (eventCenter == null)
+        {
+            return;
+        }
+        eventCenter.OnInspectItem -= OnInspectItem;
     }
 }
