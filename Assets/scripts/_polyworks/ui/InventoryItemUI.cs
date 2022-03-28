@@ -34,14 +34,12 @@
 
         public void Select()
         {
-            Debug.Log("InventoryItemUI/Select");
             ButtonGroup.alpha = 1;
             SetControlButtonFocus(0);
         }
 
         public void Deselect()
         {
-            // Debug.Log ("InventoryItemUI/Deselect");
             ButtonGroup.alpha = 0;
             focusedControlButton = 0;
         }
@@ -52,19 +50,18 @@
             SetControlButtonFocus(index);
         }
 
-        public void SetControlButtonFocus(int btn)
+        public void SetControlButtonFocus(int index)
         {
-            Debug.Log("setControlButtonFocus, btn = " + btn);
             previousControlButton = focusedControlButton;
-            focusedControlButton = btn;
+            focusedControlButton = index;
 
-            setButtonTextAndBgColor(focusedControlButton, activeColor, controlInactivateColor);
+            setButtonBgAndTextColor(focusedControlButton, activeColor, controlInactivateColor);
 
             if (previousControlButton == focusedControlButton)
             {
                 return;
             }
-            setButtonTextAndBgColor(previousControlButton, controlInactivateColor, activeColor);
+            setButtonBgAndTextColor(previousControlButton, controlInactivateColor, activeColor);
         }
 
         public void SelectControlButton()
@@ -74,7 +71,6 @@
             switch (focusedControlButton)
             {
                 case 0:
-                    // Debug.Log("InventoryItemUI[ " + this.name + " ]/SelectControlButton");
                     EventCenter.Instance.CloseInventoryUI();
                     playerInventory.Use(this.name);
                     break;
@@ -88,14 +84,13 @@
                     break;
 
                 default:
-                    // Debug.LogWarning("Unknown control button");
+                    Debug.LogWarning("Unknown control button");
                     break;
             }
         }
 
         public void SetFocus(bool isActive)
         {
-            // Debug.Log("InventoryItemUI[ " + this.name + " ]/SetFocus, isActive = " + isActive);
             itemName.gameObject.SetActive(isActive);
             nameBg.SetActive(isActive);
             itemBg.color = (isActive) ? activeColor : inactiveColor;
@@ -170,11 +165,11 @@
                     textColor = activeColor;
                     bgColor = controlInactivateColor;
                 }
-                setButtonTextAndBgColor(i, textColor, bgColor);
+                setButtonBgAndTextColor(i, bgColor, textColor);
             }
         }
 
-        private void setButtonTextAndBgColor(int index, Color textColor, Color bgColor)
+        private void setButtonBgAndTextColor(int index, Color bgColor, Color textColor)
         {
             Text text = ButtonLabels[index];
             text.color = textColor;
@@ -209,7 +204,6 @@
 
             isInitialized = true;
             itemBg = GetComponent<Image>();
-            // Debug.Log("InventoryItemUI[ " + this.nameBg + "/Awake, itemBg = " + itemBg);
             ButtonGroup.alpha = 0;
 
             SetFocus(false);
