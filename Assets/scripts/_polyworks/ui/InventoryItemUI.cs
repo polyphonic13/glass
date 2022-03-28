@@ -17,8 +17,7 @@
         public Image[] ButtonBackgrounds;
 
         public Color32 activeColor = new Color32(150, 150, 150, 100);
-        public Color32 inactiveColor = new Color32(0, 0, 0, 100);
-        public Color32 controlInactivateColor = new Color32(25, 25, 25, 100);
+        public Color32 inactiveColor = new Color32(25, 25, 25, 100);
 
         private Image itemBg;
         private Image useImage;
@@ -55,13 +54,13 @@
             previousControlButton = focusedControlButton;
             focusedControlButton = index;
 
-            setButtonBgAndTextColor(focusedControlButton, activeColor, controlInactivateColor);
+            setButtonBgAndTextColor(focusedControlButton, activeColor, inactiveColor);
 
             if (previousControlButton == focusedControlButton)
             {
                 return;
             }
-            setButtonBgAndTextColor(previousControlButton, controlInactivateColor, activeColor);
+            setButtonBgAndTextColor(previousControlButton, inactiveColor, activeColor);
         }
 
         public void SelectControlButton()
@@ -157,13 +156,13 @@
             {
                 if (i == 0)
                 {
-                    textColor = controlInactivateColor;
+                    textColor = inactiveColor;
                     bgColor = activeColor;
                 }
                 else
                 {
                     textColor = activeColor;
-                    bgColor = controlInactivateColor;
+                    bgColor = inactiveColor;
                 }
                 setButtonBgAndTextColor(i, bgColor, textColor);
             }
