@@ -25,8 +25,8 @@
         private Image inspectImage;
         private Image dropImage;
 
-        private int focusedControlButton;
-        private int previousControlButton;
+        private int focusedControlButton = 0;
+        private int previousControlButton = 0;
         private int availableControlButtons;
 
         private string initName = "";
@@ -34,7 +34,7 @@
 
         public void Select()
         {
-            // Debug.Log ("InventoryItemUI/Select");
+            Debug.Log("InventoryItemUI/Select");
             ButtonGroup.alpha = 1;
             SetControlButtonFocus(0);
         }
@@ -48,39 +48,23 @@
 
         public void UpdateControlButtonFocus(bool increment)
         {
-            int btn = focusedControlButton;
-            if (increment)
-            {
-                if (focusedControlButton < (availableControlButtons - 1))
-                {
-                    btn++;
-                }
-                else
-                {
-                    btn = 0;
-                }
-            }
-            else
-            {
-                if (focusedControlButton > 0)
-                {
-                    btn--;
-                }
-                else
-                {
-                    btn = (availableControlButtons - 1);
-                }
-            }
-            SetControlButtonFocus(btn);
+            int index = getNextFocusedControlIndex(increment);
+            SetControlButtonFocus(index);
         }
 
         public void SetControlButtonFocus(int btn)
         {
+            Debug.Log("setControlButtonFocus, btn = " + btn);
             previousControlButton = focusedControlButton;
             focusedControlButton = btn;
 
-            setButtonTextAndBgColor(previousControlButton, controlInactivateColor, activeColor);
             setButtonTextAndBgColor(focusedControlButton, activeColor, controlInactivateColor);
+
+            if (previousControlButton == focusedControlButton)
+            {
+                return;
+            }
+            setButtonTextAndBgColor(previousControlButton, controlInactivateColor, activeColor);
         }
 
         public void SelectControlButton()
@@ -112,17 +96,9 @@
         public void SetFocus(bool isActive)
         {
             // Debug.Log("InventoryItemUI[ " + this.name + " ]/SetFocus, isActive = " + isActive);
-            if (isActive)
-            {
-                itemName.gameObject.SetActive(true);
-                nameBg.SetActive(true);
-                itemBg.color = activeColor;
-                return;
-            }
-
-            itemName.gameObject.SetActive(false);
-            nameBg.SetActive(false);
-            itemBg.color = inactiveColor;
+            itemName.gameObject.SetActive(isActive);
+            nameBg.SetActive(isActive);
+            itemBg.color = (isActive) ? activeColor : inactiveColor;
 
             initButtonColors();
         }
@@ -130,22 +106,16 @@
         public void SetName(string name)
         {
             itemName.text = name;
-            if (initName == "")
+            if (initName != "")
             {
-                initName = name;
+                return;
             }
+            initName = name;
         }
 
         public void SetCount(int count)
         {
-            if (count > 1)
-            {
-                itemCount.text = "x" + count;
-            }
-            else
-            {
-                itemCount.text = "";
-            }
+            itemCount.text = (count > 1) ? ("x" + count) : "";
         }
 
         public void SetThumbnail(Sprite thumbnail)
@@ -154,23 +124,22 @@
             {
                 itemThumbnail.sprite = thumbnail;
                 itemThumbnail.color = Color.white;
+                return;
             }
-            else
-            {
-                itemThumbnail.sprite = null;
-                itemThumbnail.color = new Color32(0, 0, 0, 0);
-            }
+            itemThumbnail.sprite = null;
+            itemThumbnail.color = new Color32(0, 0, 0, 0);
         }
 
         public void SetDroppable(bool droppable)
         {
             isDroppable = droppable;
-            if (!isDroppable)
+            if (isDroppable)
             {
-                availableControlButtons--;
-                GameObject dropPanel = ButtonGroup.transform.Find("panel_drop").gameObject;
-                dropPanel.SetActive(false);
+                return;
             }
+            availableControlButtons--;
+            GameObject dropPanel = ButtonGroup.transform.Find("panel_drop").gameObject;
+            dropPanel.SetActive(false);
         }
 
         public void Reset()
@@ -211,6 +180,24 @@
             text.color = textColor;
             Image bg = ButtonBackgrounds[index];
             bg.color = bgColor;
+        }
+
+        private int getNextFocusedControlIndex(bool increment)
+        {
+            if (increment)
+            {
+                if (focusedControlButton < (availableControlButtons - 1))
+                {
+                    return focusedControlButton + 1;
+                }
+                return 0;
+            }
+
+            if (focusedControlButton > 0)
+            {
+                return focusedControlButton - 1;
+            }
+            return availableControlButtons - 1;
         }
 
         private void init()

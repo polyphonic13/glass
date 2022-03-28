@@ -7,7 +7,8 @@ public class ItemInspector : MonoBehaviour, IInputControllable
     #region public members
     public static int INSPECTOR_LAYER = 15;
 
-
+    public Camera MainCamera;
+    public string[] InspectionLayers;
     public float Distance = 2.0f;
     public float DistanceMin = .5f;
     public float DistanceMax = 15f;
@@ -20,10 +21,14 @@ public class ItemInspector : MonoBehaviour, IInputControllable
     public float ZoomAmount = 15f;
     public float MaxZoom = 4f;
     public float MinZoom = -4f;
+    public Text ItemName;
+    public Text ItemDescription;
     #endregion
 
     #region private members
     private EventCenter eventCenter;
+    private int originalCullingMask;
+
     private float horizontal = 0;
     private float vertical = 0;
 
@@ -41,17 +46,11 @@ public class ItemInspector : MonoBehaviour, IInputControllable
     private Transform previousParent;
     private Vector3 previousPosition;
     private int previousLayer;
-
-    private Camera uiCamera;
-    private Camera camera;
     private float initialFieldOfView;
     private Quaternion initialRotation;
     private Vector3 initialPosition;
 
     private int currentZoom;
-
-    private Text itemName;
-    private Text itemDescription;
     #endregion
 
     private static ItemInspector instance;
@@ -70,15 +69,20 @@ public class ItemInspector : MonoBehaviour, IInputControllable
         }
     }
 
-    public void OnInspectItem(bool isInspecting, string itemName)
+    public void OnInspectItem(bool isInspecting, string name)
     {
         if (!isInspecting)
         {
             removeTargetAndReset();
             return;
         }
-        CollectableItem item = Game.Instance.GetPlayerInventory().GetItem(itemName);
-        item.transform.rotation = this.transform.rotation;
+        CollectableItem item = Game.Instance.GetPlayerInventory().GetItem(name);
+
+        if (item == null)
+        {
+            return;
+        }
+        item.transform.rotation = transform.rotation;
         AddTarget(item.transform, item.data.displayName, item.data.description);
     }
 
@@ -112,24 +116,22 @@ public class ItemInspector : MonoBehaviour, IInputControllable
         this.cancel = cancel;
     }
 
-    public void AddTarget(Transform item, string itemName, string itemDescription)
+    public void AddTarget(Transform item, string name, string description)
     {
         this.item = item;
-        // item.parent = transform.parent;
 
         Utilities.Instance.ChangeLayers(item.gameObject, INSPECTOR_LAYER);
 
         Vector3 position = new Vector3(transform.position.x + Distance, transform.position.y, transform.position.z);
         item.transform.position = position;
-        itemName.text = itemName;
-        itemDescription.text = itemDescription;
-        uiCamera.enabled = true;
-        camera.enabled = true;
+        ItemName.text = name;
+        ItemDescription.text = description;
+
+        MainCamera.cullingMask = LayerMask.GetMask(InspectionLayers);
 
         ItemInspectionScale[] entries = Game.Instance.GetItemInspectionScales();
         for (int i = 0; i < entries.Length; i++)
         {
-
             if (entries[i].name == item.name)
             {
                 Vector3 itemScale = new Vector3(entries[i].scale.x, entries[i].scale.y, entries[i].scale.z);
@@ -148,13 +150,13 @@ public class ItemInspector : MonoBehaviour, IInputControllable
         Utilities.Instance.ChangeLayers(item.gameObject, previousLayer);
 
         item = null;
-        camera.enabled = false;
-        camera.fieldOfView = initialFieldOfView;
+
+        MainCamera.fieldOfView = initialFieldOfView;
+        MainCamera.cullingMask = originalCullingMask;
         currentZoom = 0;
 
-        uiCamera.enabled = false;
-        itemName.text = "";
-        itemDescription.text = "";
+        ItemName.text = "";
+        ItemDescription.text = "";
 
         rotationYAxis = 0.0f;
         rotationXAxis = 0.0f;
@@ -168,17 +170,18 @@ public class ItemInspector : MonoBehaviour, IInputControllable
 
     void Awake()
     {
-        initialFieldOfView = camera.fieldOfView;
+        if (MainCamera == null)
+        {
+            return;
+        }
+
+        originalCullingMask = MainCamera.cullingMask;
+        initialFieldOfView = MainCamera.fieldOfView;
         initialRotation = transform.rotation;
         initialPosition = transform.position;
 
-        Transform uiCam = transform.parent.transform.Find("item_inspector_uicamera");
-        uiCamera = uiCam.GetComponent<Camera>();
-        uiCamera.enabled = false;
-        itemName = uiCam.transform.Find("inspector_ui/text_name").GetComponent<Text>();
-        itemName.text = "";
-        itemDescription = uiCam.transform.Find("inspector_ui/text_description").GetComponent<Text>();
-        itemDescription.text = "";
+        ItemName.text = "";
+        ItemDescription.text = "";
 
         eventCenter = EventCenter.Instance;
         eventCenter.OnInspectItem += OnInspectItem;
@@ -207,7 +210,7 @@ public class ItemInspector : MonoBehaviour, IInputControllable
             {
                 return;
             }
-            camera.fieldOfView += ZoomAmount;
+            MainCamera.fieldOfView += ZoomAmount;
             currentZoom++;
             return;
         }
@@ -220,7 +223,7 @@ public class ItemInspector : MonoBehaviour, IInputControllable
             {
                 return;
             }
-            camera.fieldOfView -= ZoomAmount;
+            MainCamera.fieldOfView -= ZoomAmount;
             currentZoom--;
             return;
         }
