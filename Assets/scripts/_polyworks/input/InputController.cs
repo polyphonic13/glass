@@ -34,6 +34,8 @@ namespace Polyworks
     public class InputController : MonoBehaviour
     {
         #region members
+        public static readonly string SET_ACTIVE_INPUT_TARGET = "set_active_input_target";
+
         public InputObject input;
 
         // buttons and inputs
@@ -65,7 +67,6 @@ namespace Polyworks
         private Rewired.Player controls;
         private Player player;
         private CameraZoom cameraZoom;
-        private ItemInspector itemInspector;
         private PuzzleInspector puzzleInspector;
         private Item itemInProximity = null;
         private EventCenter eventCenter;
@@ -76,7 +77,6 @@ namespace Polyworks
         private bool isUIOpen = false;
         private bool isInventoryOpen = false;
         private bool isMenuOpen = false;
-        private bool isInspectingItem = false;
         #endregion
 
         #region handlers
@@ -84,22 +84,13 @@ namespace Polyworks
         {
             Debug.Log("InputController/OnSetActiveInputTarget, target = " + target);
             activeInputTarget = target;
+            isUIOpen = true;
         }
 
         public void OnNearItem(Item item, bool isNear)
         {
             // Debug.Log ("InputController/OnNearItem, item = " + item.gameObject.name + ", isNear = " + isNear);
             itemInProximity = (isNear) ? item : null;
-        }
-
-        public void OnInspectItem(bool isInspecting, string itemName)
-        {
-            isInspectingItem = isInspecting;
-            if (!isInspecting)
-            {
-                return;
-            }
-            isUIOpen = true;
         }
 
         public void OnContextChange(InputContext context, string param)
@@ -142,6 +133,11 @@ namespace Polyworks
                 return;
             }
             isInventoryOpen = false;
+            closeUI();
+        }
+
+        public void OnCloseItemInspector()
+        {
             closeUI();
         }
         #endregion
@@ -205,10 +201,10 @@ namespace Polyworks
             eventCenter = EventCenter.Instance;
             eventCenter.OnSetActiveInputTarget += OnSetActiveInputTarget;
             eventCenter.OnNearItem += OnNearItem;
-            eventCenter.OnInspectItem += OnInspectItem;
             eventCenter.OnContextChange += OnContextChange;
             eventCenter.OnCloseMenuUI += OnCloseMenuUI;
             eventCenter.OnCloseInventoryUI += OnCloseInventoryUI;
+            eventCenter.OnCloseItemInspector += OnCloseItemInspector;
         }
 
         private void removeLevelEventListeners()
@@ -219,36 +215,32 @@ namespace Polyworks
             }
             eventCenter.OnSetActiveInputTarget += OnSetActiveInputTarget;
             eventCenter.OnNearItem -= OnNearItem;
-            eventCenter.OnInspectItem -= OnInspectItem;
             eventCenter.OnContextChange -= OnContextChange;
             eventCenter.OnCloseMenuUI -= OnCloseMenuUI;
             eventCenter.OnCloseInventoryUI -= OnCloseInventoryUI;
+            eventCenter.OnCloseItemInspector -= OnCloseItemInspector;
         }
         #endregion
 
         #region private open / close ui
         private void openInventory()
         {
-            Debug.Log("InputController/openInventory, isInventoryOpen = " + isInventoryOpen);
-            if (isInventoryOpen || isMenuOpen)
+            if (isUIOpen)
             {
                 return;
             }
 
             eventCenter.OpenInventoryUI();
-            isInventoryOpen = true;
             openUI();
         }
 
         private void openMenu()
         {
-            if (isMenuOpen || isInventoryOpen)
+            if (isUIOpen)
             {
                 return;
             }
-
             eventCenter.OpenMenuUI();
-            isMenuOpen = true;
             openUI();
         }
 
@@ -277,36 +269,6 @@ namespace Polyworks
         #endregion
 
         #region private update loop
-        private void itemInspectorUpdate(float horizontal, float vertical)
-        {
-            // Debug.Log("itemInspectorUpdate, itemInspector = " + itemInspector);
-            if (itemInspector == null)
-            {
-                return;
-            }
-
-            if (input.buttons[CANCEL_BUTTON])
-            {
-                itemInspector.SetCancel(true);
-                return;
-            }
-
-            if (input.buttons[ZOOM_IN_BUTTON])
-            {
-                itemInspector.SetZoomIn(true);
-                return;
-            }
-
-            if (input.buttons[ZOOM_OUT_BUTTON])
-            {
-                itemInspector.SetZoomOut(true);
-                return;
-            }
-
-            itemInspector.SetHorizontal(horizontal);
-            itemInspector.SetVertical(vertical);
-        }
-
         private void playerUpdate(float horizontal, float vertical)
         {
             // player.SetHorizontal (horizontal);
@@ -352,16 +314,6 @@ namespace Polyworks
         #endregion
 
         #region private controller maps
-        private void activatePlayerMaps()
-        {
-
-        }
-
-        private void activateMenuMaps()
-        {
-
-        }
-
         private void activateMap(string activeMap)
         {
             controls.controllers.maps.SetAllMapsEnabled(false);
@@ -405,12 +357,6 @@ namespace Polyworks
             if (input.buttons[OPEN_INVENTORY_BUTTON])
             {
                 openInventory();
-                return;
-            }
-
-            if (isInspectingItem)
-            {
-                itemInspectorUpdate(input.horizontal, input.vertical);
                 return;
             }
 

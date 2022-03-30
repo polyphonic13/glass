@@ -6,6 +6,7 @@
         public Vector3 ActivePosition = new Vector3(0, 0, 0);
         public Vector3 InactivePosition = new Vector3(500, 0, 0);
         public bool IsActiveOnAwake = false;
+        public bool IsZoomable;
         public bool IsLogOn;
 
         protected EventCenter eventCenter;
@@ -17,6 +18,8 @@
         protected bool right;
         protected bool confirm;
         protected bool cancel;
+        protected bool isZoomIn;
+        protected bool isZoomOut;
         protected bool isActive;
 
         public void SetInput(InputObject input)
@@ -29,9 +32,23 @@
             SetRight(input.buttons[InputController.RIGHT_BUTTON]);
             SetConfirm(input.buttons[InputController.CONFIRM_BUTTON]);
             SetCancel(input.buttons[InputController.CANCEL_BUTTON]);
+
+            if (!IsZoomable)
+            {
+                return;
+            }
+            SetZoomIn(input.buttons[InputController.ZOOM_IN_BUTTON]);
+            SetZoomOut(input.buttons[InputController.ZOOM_OUT_BUTTON]);
         }
 
         #region protected methods
+        protected virtual void Init()
+        {
+            eventCenter = EventCenter.Instance;
+
+            SetActive(IsActiveOnAwake);
+        }
+
         protected virtual void SetActive(bool isActive)
         {
             Vector3 position = (isActive) ? ActivePosition : InactivePosition;
@@ -44,57 +61,58 @@
                 return;
             }
 
-            eventCenter.SetActiveInputTarget("set_active_input_object", this);
+            eventCenter.SetActiveInputTarget(InputController.SET_ACTIVE_INPUT_TARGET, this);
         }
 
 
-        protected void SetHorizontal(float h)
+        protected virtual void SetHorizontal(float value)
         {
-            horizontal = h;
+            horizontal = value;
         }
 
-        protected void SetVertical(float v)
+        protected virtual void SetVertical(float value)
         {
-            vertical = v;
+            vertical = value;
         }
 
-        protected void SetUp(bool isPressed)
+        protected virtual void SetUp(bool value)
         {
-            up = isPressed;
+            up = value;
         }
 
-        protected void SetDown(bool isPressed)
+        protected virtual void SetDown(bool value)
         {
-            down = isPressed;
+            down = value;
         }
 
-        protected void SetLeft(bool isPressed)
+        protected virtual void SetLeft(bool value)
         {
-            left = isPressed;
+            left = value;
         }
 
-        protected void SetRight(bool isPressed)
+        protected virtual void SetRight(bool value)
         {
-            right = isPressed;
+            right = value;
         }
 
-        protected void SetConfirm(bool isPressed)
+        protected virtual void SetConfirm(bool value)
         {
-            confirm = isPressed;
+            confirm = value;
         }
 
-        protected void SetCancel(bool isPressed)
+        protected virtual void SetCancel(bool value)
         {
-            cancel = isPressed;
+            cancel = value;
         }
-        #endregion
 
-        #region protected methods
-        protected virtual void Init()
+        protected virtual void SetZoomIn(bool value)
         {
-            eventCenter = EventCenter.Instance;
+            isZoomIn = value;
+        }
 
-            SetActive(IsActiveOnAwake);
+        protected virtual void SetZoomOut(bool value)
+        {
+            isZoomOut = value;
         }
 
         protected void Log(string message)

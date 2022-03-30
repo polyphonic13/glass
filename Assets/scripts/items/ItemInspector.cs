@@ -1,20 +1,23 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Rendering.HighDefinition;
 using Polyworks;
 
-public class ItemInspector : MonoBehaviour, IInputControllable
+public class ItemInspector : UIController
 {
     #region public members
     public static int INSPECTOR_LAYER = 15;
 
     public Camera MainCamera;
+    public GameObject InspectionLight;
+    public GameObject InspectionUI;
     public string[] InspectionLayers;
-    public float Distance = 2.0f;
-    public float DistanceMin = .5f;
+    public float Distance = 1f;
+    public float DistanceMin = 0.5f;
     public float DistanceMax = 15f;
     public float XSpeed = 150.0f;
     public float YSpeed = 150.0f;
-    public float RotationMultiplier = 0.01f;
+    public float RotationMultiplier = 4f;
     public float YMinLimit = -361f;
     public float YMaxLimit = 361f;
     public float SmoothTime = 2f;
@@ -26,15 +29,8 @@ public class ItemInspector : MonoBehaviour, IInputControllable
     #endregion
 
     #region private members
-    private EventCenter eventCenter;
     private int originalCullingMask;
-
-    private float horizontal = 0;
-    private float vertical = 0;
-
-    private bool cancel = false;
-    private bool zoomIn = false;
-    private bool zoomOut = false;
+    private HDAdditionalCameraData.ClearColorMode originalColorMode;
 
     private float rotationYAxis = 0.0f;
     private float rotationXAxis = 0.0f;
@@ -53,6 +49,7 @@ public class ItemInspector : MonoBehaviour, IInputControllable
     private int currentZoom;
     #endregion
 
+    #region singleton
     private static ItemInspector instance;
 
     private ItemInspector() { }
@@ -68,68 +65,51 @@ public class ItemInspector : MonoBehaviour, IInputControllable
             return instance;
         }
     }
+    #endregion
 
+    #region public methods
     public void OnInspectItem(bool isInspecting, string name)
     {
-        if (!isInspecting)
-        {
-            removeTargetAndReset();
-            return;
-        }
         CollectableItem item = Game.Instance.GetPlayerInventory().GetItem(name);
 
         if (item == null)
         {
             return;
         }
-        item.transform.rotation = transform.rotation;
-        AddTarget(item.transform, item.data.displayName, item.data.description);
+        addTarget(item.transform, item.data.displayName, item.data.description);
+
+        eventCenter.SetActiveInputTarget(InputController.SET_ACTIVE_INPUT_TARGET, this);
     }
 
-    public void SetInput(InputObject input)
-    {
+    #endregion
 
-    }
-
-    public void SetHorizontal(float horizontal)
+    #region private methods
+    private void addTarget(Transform target, string name, string description)
     {
-        this.horizontal = horizontal;
-    }
-
-    public void SetVertical(float vertical)
-    {
-        this.vertical = vertical;
-    }
-
-    public void SetZoomIn(bool zoomIn)
-    {
-        this.zoomIn = zoomIn;
-    }
-
-    public void SetZoomOut(bool zoomOut)
-    {
-        this.zoomOut = zoomOut;
-    }
-
-    public void SetCancel(bool cancel)
-    {
-        this.cancel = cancel;
-    }
-
-    public void AddTarget(Transform item, string name, string description)
-    {
-        this.item = item;
+        item = target;
 
         Utilities.Instance.ChangeLayers(item.gameObject, INSPECTOR_LAYER);
 
         Vector3 position = new Vector3(transform.position.x + Distance, transform.position.y, transform.position.z);
-        item.transform.position = position;
+        item.position = position;
+        // item.rotation = transform.rotation;
+        // item.position = Vector3.zero;
+        // item.SetParent(transform);
+
+        InspectionUI.SetActive(true);
+
         ItemName.text = name;
         ItemDescription.text = description;
 
         MainCamera.cullingMask = LayerMask.GetMask(InspectionLayers);
+        MainCamera.GetComponent<HDAdditionalCameraData>().clearColorMode = HDAdditionalCameraData.ClearColorMode.Color;
+        MainCamera.transform.LookAt(item);
+
+        InspectionLight.SetActive(true);
+        InspectionLight.gameObject.transform.position = new Vector3(position.x, position.y + 1, position.z);
 
         ItemInspectionScale[] entries = Game.Instance.GetItemInspectionScales();
+
         for (int i = 0; i < entries.Length; i++)
         {
             if (entries[i].name == item.name)
@@ -140,19 +120,54 @@ public class ItemInspector : MonoBehaviour, IInputControllable
         }
     }
 
+    private void setZoom()
+    {
+        if (isZoomIn)
+        {
+            isZoomIn = false;
+
+            if (currentZoom >= MaxZoom)
+            {
+                return;
+            }
+            MainCamera.fieldOfView += ZoomAmount;
+            currentZoom++;
+            return;
+        }
+
+        if (!isZoomOut)
+        {
+            return;
+        }
+
+        isZoomOut = false;
+
+        if (currentZoom <= MinZoom)
+        {
+            return;
+        }
+        MainCamera.fieldOfView -= ZoomAmount;
+        currentZoom--;
+    }
+
     private void removeTargetAndReset()
     {
         cancel = false;
+
+        InspectionUI.SetActive(false);
+        InspectionLight.SetActive(false);
 
         item.parent = previousParent;
         item.position = previousPosition;
 
         Utilities.Instance.ChangeLayers(item.gameObject, previousLayer);
 
-        item = null;
+        Destroy(item.gameObject);
 
         MainCamera.fieldOfView = initialFieldOfView;
         MainCamera.cullingMask = originalCullingMask;
+        MainCamera.GetComponent<HDAdditionalCameraData>().clearColorMode = originalColorMode;
+
         currentZoom = 0;
 
         ItemName.text = "";
@@ -166,17 +181,28 @@ public class ItemInspector : MonoBehaviour, IInputControllable
 
         transform.position = initialPosition;
         transform.rotation = initialRotation;
-    }
 
-    void Awake()
+        eventCenter.CloseItemInspector();
+    }
+    #endregion
+
+    #region unity methods
+    private void Awake()
     {
         if (MainCamera == null)
         {
             return;
         }
 
+        InspectionUI.SetActive(false);
+        InspectionLight.SetActive(false);
+
         originalCullingMask = MainCamera.cullingMask;
         initialFieldOfView = MainCamera.fieldOfView;
+        originalColorMode = MainCamera.GetComponent<HDAdditionalCameraData>().clearColorMode;
+
+        MainCamera.GetComponent<HDAdditionalCameraData>().backgroundColorHDR = Color.black;
+
         initialRotation = transform.rotation;
         initialPosition = transform.position;
 
@@ -187,7 +213,7 @@ public class ItemInspector : MonoBehaviour, IInputControllable
         eventCenter.OnInspectItem += OnInspectItem;
     }
 
-    void LateUpdate()
+    private void LateUpdate()
     {
         // based on: http://answers.unity3d.com/questions/463704/smooth-orbit-round-object-with-adjustable-orbit-ra.html
         if (item == null)
@@ -195,38 +221,13 @@ public class ItemInspector : MonoBehaviour, IInputControllable
             return;
         }
 
-        // Debug.Log("LateUpdate, horizontal = " + horizontal + ", vertical = " + vertical);
         if (cancel)
         {
             eventCenter.InspectItem(false, item.name);
             return;
         }
 
-        if (zoomIn)
-        {
-            zoomIn = false;
-            // Debug.Log("zoomIn, currentZoom = " + currentZoom + ", MaxZoom = " + MaxZoom);
-            if (currentZoom >= MaxZoom)
-            {
-                return;
-            }
-            MainCamera.fieldOfView += ZoomAmount;
-            currentZoom++;
-            return;
-        }
-
-        if (zoomOut)
-        {
-            zoomOut = false;
-            // Debug.Log("zoomOut, currentZoom = " + currentZoom + ", MinZoom = " + MinZoom);
-            if (currentZoom <= MinZoom)
-            {
-                return;
-            }
-            MainCamera.fieldOfView -= ZoomAmount;
-            currentZoom--;
-            return;
-        }
+        setZoom();
 
         velocityX = XSpeed * horizontal * RotationMultiplier;
         velocityY = YSpeed * vertical * RotationMultiplier;
@@ -256,4 +257,5 @@ public class ItemInspector : MonoBehaviour, IInputControllable
         }
         eventCenter.OnInspectItem -= OnInspectItem;
     }
+    #endregion
 }

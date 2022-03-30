@@ -121,8 +121,8 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 165.38965
-  m_Range: 50
+  m_Intensity: 82.694824
+  m_Range: 5
   m_SpotAngle: 130
   m_InnerSpotAngle: 1
   m_CookieSize: 10
@@ -162,8 +162,8 @@ Light:
   m_RenderingLayerMask: 1
   m_Lightmapping: 4
   m_LightShadowCasterMode: 2
-  m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_AreaSize: {x: 0.5, y: 0.5}
+  m_BounceIntensity: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 1
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -183,7 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Intensity: 600
+  m_Intensity: 300
   m_EnableSpotReflector: 1
   m_LuxAtDistance: 1
   m_InnerSpotPercent: 0
@@ -501,18 +501,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9204a84ad0853456a94af219574f4c38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Distance: 2
+  ActivePosition: {x: 0, y: 0, z: 0}
+  InactivePosition: {x: 500, y: 0, z: 0}
+  IsActiveOnAwake: 0
+  IsZoomable: 1
+  IsLogOn: 0
+  MainCamera: {fileID: 0}
+  inspectionLight: {fileID: 5141337446327090633}
+  InspectionLayers: []
+  Distance: 1
   DistanceMin: 0.5
   DistanceMax: 15
   XSpeed: 150
   YSpeed: 150
-  RotationMultiplier: 0.01
+  RotationMultiplier: 4
   YMinLimit: -361
   YMaxLimit: 361
   SmoothTime: 2
   ZoomAmount: 15
   MaxZoom: 4
   MinZoom: -4
+  ItemName: {fileID: 5100082315290433377}
+  ItemDescription: {fileID: 5100331740488781039}
 --- !u!1 &5142167393240448505
 GameObject:
   m_ObjectHideFlags: 0

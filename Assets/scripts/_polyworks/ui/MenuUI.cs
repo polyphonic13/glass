@@ -1,6 +1,7 @@
 ﻿namespace Polyworks
 {
     using UnityEngine.UI;
+
     public class MenuUI : UIController
     {
         public Button[] buttons;

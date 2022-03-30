@@ -316,6 +316,16 @@
             OnCloseInventoryUI();
         }
 
+        public event EventHandler OnCloseItemInspector;
+        public void CloseItemInspector()
+        {
+            if (OnCloseItemInspector == null)
+            {
+                return;
+            }
+            OnCloseItemInspector();
+        }
+
         public void CollectFlashight()
         {
             if (OnCollectFlashlight == null)
