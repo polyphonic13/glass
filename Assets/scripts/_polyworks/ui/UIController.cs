@@ -77,41 +77,73 @@
 
         protected virtual void SetUp(bool value)
         {
+            if (!value)
+            {
+                return;
+            }
             up = value;
         }
 
         protected virtual void SetDown(bool value)
         {
+            if (!value)
+            {
+                return;
+            }
             down = value;
         }
 
         protected virtual void SetLeft(bool value)
         {
+            if (!value)
+            {
+                return;
+            }
             left = value;
         }
 
         protected virtual void SetRight(bool value)
         {
+            if (!value)
+            {
+                return;
+            }
             right = value;
         }
 
         protected virtual void SetConfirm(bool value)
         {
+            if (!value)
+            {
+                return;
+            }
             confirm = value;
         }
 
         protected virtual void SetCancel(bool value)
         {
+            if (!value)
+            {
+                return;
+            }
             cancel = value;
         }
 
         protected virtual void SetZoomIn(bool value)
         {
+            if (!value)
+            {
+                return;
+            }
             isZoomIn = value;
         }
 
         protected virtual void SetZoomOut(bool value)
         {
+            if (!value)
+            {
+                return;
+            }
             isZoomOut = value;
         }
 

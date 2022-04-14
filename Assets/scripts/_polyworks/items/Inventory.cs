@@ -8,7 +8,7 @@
         public bool isLogOn = false;
 
         private Hashtable _items;
-        private EventCenter _eventCenter;
+        private EventCenter eventCenter;
         private bool _isPlayerInventory;
 
         public void Init(Hashtable items = null, bool isPlayerInventory = false)
@@ -63,13 +63,13 @@
             }
             if (_isPlayerInventory)
             {
-                _eventCenter.InventoryAdded(data.name, data.count, _isPlayerInventory);
+                eventCenter.InventoryAdded(data.name, data.count, _isPlayerInventory);
 
             }
 
             if (isNoteAdded)
             {
-                _eventCenter.AddNote(data.displayName + " added");
+                eventCenter.AddNote(data.displayName + " added");
             }
         }
 
@@ -91,7 +91,7 @@
                     {
                         _items.Remove(name);
                     }
-                    _eventCenter.InventoryRemoved(data.name, data.count);
+                    eventCenter.InventoryRemoved(data.name, data.count);
                 }
                 return data;
             }
@@ -99,7 +99,7 @@
 
         public virtual void Use(string name)
         {
-            _eventCenter.CloseInventoryUI();
+            eventCenter.CloseInventoryUI();
             CollectableItemData data = Get(name);
             Log("Inventory/Use, data = " + data);
             if (data == null)
@@ -111,14 +111,14 @@
             Log("  is usable = " + data.isUsable);
             if (!data.isUsable)
             {
-                _eventCenter.AddNote("The " + data.displayName + " can not be used here");
+                eventCenter.AddNote("The " + data.displayName + " can not be used here");
                 return;
             }
 
             if (!ItemUtils.GetIsRequiredFlagOn(data, true))
             {
                 Log("  flag not on, message = " + data.requiredFlagMessage);
-                _eventCenter.AddNote(data.requiredFlagMessage);
+                eventCenter.AddNote(data.requiredFlagMessage);
                 return;
             }
 
@@ -153,7 +153,7 @@
             }
 
             _initDroppedItem(item);
-            _eventCenter.CloseInventoryUI();
+            eventCenter.CloseInventoryUI();
         }
 
         public bool Contains(string key)
@@ -198,7 +198,7 @@
 
         private void Awake()
         {
-            _eventCenter = EventCenter.Instance;
+            eventCenter = EventCenter.Instance;
         }
 
         private CollectableItem _instantiate(CollectableItemData data)

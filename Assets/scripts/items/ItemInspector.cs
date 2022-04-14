@@ -70,6 +70,11 @@ public class ItemInspector : UIController
     #region public methods
     public void OnInspectItem(bool isInspecting, string name)
     {
+        if (!isInspecting)
+        {
+            return;
+        }
+
         CollectableItem item = Game.Instance.GetPlayerInventory().GetItem(name);
 
         if (item == null)
@@ -223,6 +228,7 @@ public class ItemInspector : UIController
 
         if (cancel)
         {
+            cancel = false;
             eventCenter.InspectItem(false, item.name);
             return;
         }
