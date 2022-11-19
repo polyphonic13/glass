@@ -72,6 +72,7 @@ public class ItemInspector : UIController
     {
         if (!isInspecting)
         {
+            removeTargetAndReset();
             return;
         }
 
@@ -129,6 +130,7 @@ public class ItemInspector : UIController
     {
         if (isZoomIn)
         {
+            Debug.Log("setZoom, isZoomIn");
             isZoomIn = false;
 
             if (currentZoom >= MaxZoom)
@@ -145,6 +147,7 @@ public class ItemInspector : UIController
             return;
         }
 
+        Debug.Log("setZoom, isZoomOut");
         isZoomOut = false;
 
         if (currentZoom <= MinZoom)
@@ -248,8 +251,10 @@ public class ItemInspector : UIController
         Vector3 negDistance = new Vector3(0.0f, 0.0f, -Distance);
         Vector3 position = rotation * negDistance + item.position;
 
-        transform.rotation = rotation;
-        transform.position = position;
+        // transform.rotation = rotation;
+        // transform.position = position;
+        item.transform.rotation = rotation;
+        item.transform.position = position;
 
         velocityX = Mathf.Lerp(velocityX, 0, Time.deltaTime * SmoothTime);
         velocityY = Mathf.Lerp(velocityY, 0, Time.deltaTime * SmoothTime);
